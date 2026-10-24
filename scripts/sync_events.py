@@ -19,6 +19,8 @@ import requests
 from bs4 import BeautifulSoup
 import artes_details
 import cabildo_public
+import ticket_reserva
+import ticket_recent
 from event_images import listing_image,image_fields
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -375,6 +377,15 @@ def upsert(conn,e):
                    "lat","lng","source_name","source_url","status",
                    "image_url","image_alt","image_origin","image_status","organizer_url")
     fields=dict(e)
+    if existing and existing["status"]=="duplicate" and fields.get("status")=="approved":
+        fields["status"]="duplicate"
+    if existing and str(e.get("source_name","")).startswith("TuReservaOnline") and not existing["source_name"].startswith("TuReservaOnline"):
+        fields["source_name"]=existing["source_name"]
+        fields["source_url"]=existing["source_url"]
+        if not existing["organizer_url"]:
+            fields["organizer_url"]=e["source_url"]
+        if existing["details"]:
+            fields["details"]=existing["details"]
     fields.update(lat=lat,lng=lng)
     for k in ("image_url","image_alt","image_origin","image_status","organizer_url"):
         fields.setdefault(k,"")
@@ -444,6 +455,31 @@ def run():
          (cabildo["source"],NOW,cabildo["found"],cabildo["added"],cabildo["changed"],cabildo.get("error","")))
         conn.commit()
         print(f"Cabildo: scanned={cabildo.get('scanned')} found={cabildo['found']} added={cabildo['added']} error={cabildo.get('error','')[:100]}")
+        # Read only active, public ticket-listing facts from TuReservaOnline.
+        # This is a separate data source, filtered strictly to Gran Canaria.
+        # Run AFTER municipal sources so those remain the authoritative URL.
+        try:
+            tickets=ticket_reserva.synchronize(conn,NOW,TODAY,PLACES,norm,category,upsert)
+        except Exception as exc:
+            tickets={"source":ticket_reserva.NAME,"checked_at":NOW,
+                 "found":0,"added":0,"changed":0,"error":str(exc)[:250]}
+            print(f"WARN ticket source: {tickets['error']}",file=sys.stderr)
+        if not tickets["error"]:
+            try:
+                recent=ticket_recent.reconcile_recent(conn,NOW,TODAY,PLACES,norm)
+                tickets["recent_pages_checked"]=recent["examined"]
+                tickets["changed"]+=recent["enriched"]
+                print(f"TuReservaOnline individual details checked={recent['examined']} enriched={recent['enriched']}")
+            except Exception as exc:
+                print(f"WARN ticket detail matching: {type(exc).__name__}: {str(exc)[:100]}",file=sys.stderr)
+        results.append(tickets)
+        conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+          VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+          checked_at=excluded.checked_at,found=excluded.found,
+          added=excluded.added,changed=excluded.changed,error=excluded.error""",
+          (tickets["source"],NOW,tickets["found"],tickets["added"],tickets["changed"],tickets["error"]))
+        conn.commit()
+        print(f"TuReservaOnline: {tickets['found']} GC activities, +{tickets['added']} new, {tickets['changed']} matched/updated")
         rows=conn.execute("""SELECT * FROM events WHERE status='approved' AND substr(COALESCE("end",start),1,10)>=?
              ORDER BY start ASC LIMIT 3500""",(TODAY.isoformat(),)).fetchall()
         events=[]

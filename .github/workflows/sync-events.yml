@@ -10,6 +10,8 @@ on:
       - "scripts/sync_events.py"
       - "scripts/cabildo_public.py"
       - "scripts/source_facts.py"
+      - "scripts/ticket_reserva.py"
+      - "scripts/ticket_recent.py"
       - "scripts/artes_details.py"
       - "scripts/requirements.txt"
       - "tests/**"

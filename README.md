@@ -83,3 +83,21 @@ Las fichas ya existentes se vuelven a revisar progresivamente mediante la column
 En la app, cuando consta, aparece un enlace «Consultar entradas» o «Web del organizador», además de la página del Cabildo. No se consultan automáticamente dominios externos desconocidos ni se garantiza disponibilidad de plazas. La información ausente permanece como «Precio por confirmar» o «Recinto por confirmar». La breve descripción del Cabildo se elabora a partir de hechos y no reproduce sin permiso sus sinopsis completas.
 
 El indicador de calidad /meta.json permite medir precios y recintos confirmados. Para ampliar la cobertura de importes será necesario añadir adaptadores oficiales específicos de organizadores y acuerdos de reutilización.
+
+
+### Fuente de entradas · TuReservaOnline (Gran Canaria)
+
+El sincronizador consulta el listado público activo de TuReservaOnline (hasta seis páginas de 24 fichas por pasada) que consume su propia web. Solo se guardan datos fácticos de eventos: título, lugar, municipio, fecha/s, tarifa mínima cuando se indica, estado de entradas agotadas, enlace al evento y URL remota de su portada. El código utiliza exclusivamente una proyección mínima de los datos de eventos; no guarda ni presenta información de usuarios, comerciantes, métodos de pago o claves aunque una respuesta del proveedor incluyera campos ajenos a las actividades.
+
+- Exclusión estricta de municipios que no pertenezcan a Gran Canaria (no se importan eventos de Tenerife u otras islas).
+- Comparación por título normalizado, fecha y municipio antes de crear una ficha nueva. Las fichas originales de ayuntamientos y Cabildo mantienen su URL y se enriquecen con el enlace de entradas cuando hay coincidencia.
+- La tarifa indicada como «Desde X €» es la mínima publicada, no un precio final garantizado. Si no aparece, no se muestra importe. Cero euros como precio mínimo no se interpreta automáticamente como que todas las localidades sean gratuitas.
+- Las actividades que abarcan varios días se publican como periodos, sin fabricar sesiones diarias ni horas no confirmadas.
+- Las fotografías permanecen alojadas en el sitio de origen, sin descarga ni redistribución de archivos. Hay que respetar derechos de sus autores y las condiciones de reutilización si se monetiza el servicio.
+- Se verifican las normas de robots.txt, se respetan errores de bloqueo o saturación y se limita el ritmo de consultas. La sincronización puede ser interrumpida si la plataforma cambia sus condiciones técnicas.
+- La reserva o compra se realiza directamente en el sitio de entradas. CanaryEvent no efectúa pagos ni comprueba disponibilidad en tiempo real.
+
+Se ha estudiado Tomaticket como posible fuente adicional, pero su web responde con un bloqueo automático a las peticiones de nuestro robot. No intentamos eludirlo: para integrarlo sería necesario disponer de un acceso autorizado o feed reutilizable. También son candidatas de ampliación las agendas oficiales del Auditorio Alfredo Kraus y otros teatros y auditorios de la isla.
+
+
+Para fichas del día que ya no figuren en el listado activo se permite una verificación focalizada y limitada contra la página pública original del evento, únicamente cuando su identificador textual coincide con el sitemap oficial; se almacenan solo fecha, recinto, precio publicado y enlace. Por ejemplo, «Gran Final Yo Canto» puede verificarse tras cerrarse las reservas sin presentarlo como un evento todavía reservable. Se utiliza una caché de 36 horas y un máximo de cuatro fichas por ejecución. La base de datos conserva duplicados históricos como registros internos, pero los oculta del catálogo cuando se demuestra la coincidencia mediante el título, la fecha, el enlace municipal original y el municipio de la plataforma.

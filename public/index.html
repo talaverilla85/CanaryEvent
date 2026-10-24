@@ -182,7 +182,7 @@ const PLACES={'Agaete':[28.100,-15.700],'Agüimes':[27.906,-15.445],'Artenara':[
 const COVER_SYMBOLS={musica:'♫',gastronomia:'✦',familia:'☀',cultura:'✳',deporte:'➜',naturaleza:'❋',ocio:'✧',otros:'✳'};
 const IMAGE_HOSTS=new Set(['ingenio.es','www.ingenio.es','eventos.aguimes.es',
  'actividadesjuventud.laspalmasgc.es','artesescenicasgrancanaria.com',
- 'www.artesescenicasgrancanaria.com','www.eventosgrancanaria.com']);
+ 'www.artesescenicasgrancanaria.com','www.eventosgrancanaria.com','www.tureservaonline.es']);
 const CLASSES={musica:'p-music',gastronomia:'p-food',familia:'p-family',cultura:'p-culture',deporte:'p-sports',naturaleza:'p-nature',ocio:'p-leisure',otros:'p-other'};
 const escapeHTML=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const textForCat=k=>CATS.find(c=>c[0]===k)?.[2]||'Actividad';
@@ -260,7 +260,7 @@ const organizerAction=e=>{
  const url=safeUrl(e.organizer_url||'');
  if(url==='#'||url===safeUrl(e.source_url))return '';
  const host=(new URL(url)).hostname.toLowerCase();
- const ticketHost=/(^|\.)(entradas|tickets|ticketmaster|janto|tickety|tix|tomaticket)(\.|-)/.test(host);
+ const ticketHost=host==='www.tureservaonline.es' || /(^|\.)(entradas|tickets|ticketmaster|janto|tickety|tix|tomaticket)(\.|-)/.test(host);
  return '<a href="'+escapeHTML(url)+'" target="_blank" rel="noopener noreferrer">'+
    (ticketHost?'Consultar entradas ↗':'Web del organizador ↗')+'</a>';
 };
@@ -271,7 +271,7 @@ function showEvent(id){const e=state.events.find(x=>x.id===+id);if(!e)return;
  <div class="event-dateblock"><span class="ico">▦</span><div><strong>${escapeHTML(dateLabel(e))}</strong><small>${escapeHTML(timeLabel(e))}${e.end?.length===10?' · Hasta '+escapeHTML(e.end.slice(8,10)+'/'+e.end.slice(5,7)):e.end?.includes('T')?' – '+escapeHTML(e.end.slice(11,16)):''}</small></div></div>
  <div class="event-dateblock"><span class="ico">⌖</span><div><strong>${escapeHTML(venueName(e))}</strong><small>${escapeHTML(e.municipality)} · ${approx!==null?'aprox. '+approx+' km · ':''}${escapeHTML(extra)}</small></div></div>
  ${price(e)?`<div class="event-dateblock"><span class="ico">€</span><div><strong>${escapeHTML(price(e))}</strong><small>Comprueba las condiciones de acceso con la organización.</small></div></div>`:''}
- <p>${escapeHTML(e.details||'Información disponible en la fuente original del evento.')}</p><div class="modal-actions"><a class="primary-action" href="${safeUrl(e.source_url)}" target="_blank" rel="noopener noreferrer">Consultar fuente ↗</a><a href="https://www.google.com/maps/search/?api=1&query=${mapQuery}" target="_blank" rel="noopener noreferrer" class="${venueName(e)==='Recinto por confirmar'?'hidden':''}">Cómo llegar ↗</a>${organizerAction(e)}</div>
+ <p>${escapeHTML(e.details||'Información disponible en la fuente original del evento.')}</p><div class="modal-actions"><a class="primary-action" href="${safeUrl(e.source_url)}" target="_blank" rel="noopener noreferrer">${e.source_name.startsWith('TuReservaOnline')?'Ver entradas ↗':'Consultar fuente ↗'}</a><a href="https://www.google.com/maps/search/?api=1&query=${mapQuery}" target="_blank" rel="noopener noreferrer" class="${venueName(e)==='Recinto por confirmar'?'hidden':''}">Cómo llegar ↗</a>${organizerAction(e)}</div>
  <div class="modal-actions"><button type="button" id="saveDetailBtn">${state.favorites.has(e.id)?'♥ Guardado':'♡ Guardar evento'}</button><button type="button" id="shareDetailBtn">↗ Compartir</button></div><p class="footnote">Fuente: ${escapeHTML(e.source_name)}. ${verifiedImage(e)?'Portada publicada por '+escapeHTML(e.image_origin||e.source_name)+'; derechos de su autor/editor.':'Este evento no dispone de una portada oficial verificable.'} Datos sujetos a cambios.</p></div>`);
  $('saveDetailBtn').onclick=()=>{toggleFav(e.id);$('saveDetailBtn').textContent=state.favorites.has(e.id)?'♥ Guardado':'♡ Guardar evento'};
  $('shareDetailBtn').onclick=async()=>{const url=new URL(location.href);url.searchParams.set('evento',e.id);try{if(navigator.share)await navigator.share({title:e.title,url:url.toString()});else{await navigator.clipboard.writeText(url.toString());toast('Enlace copiado')}}catch{}};
