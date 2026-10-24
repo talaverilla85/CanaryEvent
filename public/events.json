@@ -1990,7 +1990,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-768-31-festival.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_768-1.jpg?fp=9c5ae0d002c7b3b9fd3def8685da0aae",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_768-1.jpg?fp=bac571f58b97ba35676dbe076698bfd8",
       "image_alt": "31 FESTIVAL MASDANZA: TRANSEÚNTE de Daniel Rodríguez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote"
@@ -3355,7 +3355,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=9c5ae0d002c7b3b9fd3def8685da0aae",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=bac571f58b97ba35676dbe076698bfd8",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote"
@@ -3376,7 +3376,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=9c5ae0d002c7b3b9fd3def8685da0aae",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=bac571f58b97ba35676dbe076698bfd8",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote"
@@ -3733,7 +3733,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=9c5ae0d002c7b3b9fd3def8685da0aae",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=bac571f58b97ba35676dbe076698bfd8",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote"
@@ -3754,7 +3754,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=9c5ae0d002c7b3b9fd3def8685da0aae",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=bac571f58b97ba35676dbe076698bfd8",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote"
@@ -9472,7 +9472,7 @@
       "image_status": "not_available"
     }
   ],
-  "generated_at": "2026-10-24T19:07:33+01:00",
+  "generated_at": "2026-10-24T19:12:33+01:00",
   "timezone": "Atlantic/Canary",
   "verified_sources": 5
 }
