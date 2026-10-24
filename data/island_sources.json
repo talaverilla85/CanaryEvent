@@ -1,0 +1,67 @@
+{
+  "purpose": "Verified official source candidates for staged Canary Islands expansion; do NOT treat candidates as active connectors.",
+  "data_scope": "The live website currently lists ONLY events from Gran Canaria.",
+  "islands": [
+    {
+      "name": "Gran Canaria", "municipalities": 21, "status": "active",
+      "seed_sources": [
+        {"name": "Eventos Gran Canaria (Cabildo)", "url": "https://www.eventosgrancanaria.com/", "stage": "active"},
+        {"name": "Ayuntamiento de Santa Lucía de Tirajana", "url": "https://www.santaluciagc.com/fiestas-san-rafael-2026/", "stage": "active_specific_2026"},
+        {"name": "Turismo Gran Canaria", "url": "https://turismo.grancanaria.com/turismo/es/agenda/agenda/", "stage": "candidate"}
+      ]
+    },
+    {
+      "name": "Tenerife", "municipalities": 31, "status": "pending",
+      "seed_sources": [
+        {"name": "Turismo de Tenerife", "url": "https://www.webtenerife.com/agenda/", "stage": "candidate"},
+        {"name": "Cabildo de Tenerife", "url": "https://www.tenerife.es/eventos", "stage": "candidate"}
+      ]
+    },
+    {
+      "name": "Lanzarote", "municipalities": 7, "status": "pending",
+      "seed_sources": [
+        {"name": "Cultura Lanzarote", "url": "https://culturalanzarote.com/programacion_cultura/", "stage": "candidate"},
+        {"name": "Turismo Lanzarote", "url": "https://turismolanzarote.com/agenda-de-eventos/", "stage": "candidate"}
+      ]
+    },
+    {
+      "name": "Fuerteventura", "municipalities": 6, "status": "pending",
+      "seed_sources": [
+        {"name": "Cabildo de Fuerteventura", "url": "https://www.cabildofuer.es/cabildo/agenda-cabildo-2/", "stage": "candidate"}
+      ]
+    },
+    {
+      "name": "La Palma", "municipalities": 14, "status": "pending",
+      "seed_sources": [
+        {"name": "Cultura La Palma", "url": "https://culturalapalma.com/agenda/", "stage": "candidate"}
+      ]
+    },
+    {
+      "name": "La Gomera", "municipalities": 6, "status": "pending",
+      "seed_sources": [
+        {"name": "Cabildo de La Gomera", "url": "https://www.lagomera.es/", "stage": "candidate_find_agenda_endpoint"}
+      ]
+    },
+    {
+      "name": "El Hierro", "municipalities": 3, "status": "pending",
+      "seed_sources": [
+        {"name": "Cabildo de El Hierro", "url": "https://www.elhierro.es/es/agenda", "stage": "candidate"}
+      ]
+    },
+    {
+      "name": "La Graciosa", "municipalities": 0, "parent_municipality": "Teguise", "status": "pending",
+      "seed_sources": [
+        {"name": "Cultura Lanzarote y La Graciosa", "url": "https://culturalanzarote.com/programacion_cultura/", "stage": "candidate_requires_island_location_filter"}
+      ]
+    }
+  ],
+  "requirements_before_public_activation": [
+    "Official source terms and robots permission reviewed",
+    "Dedicated tested extractor per source, no made-up ticket prices or event times",
+    "Stable island identifier stored in SQLite and JSON (not inferred from ambiguous location strings)",
+    "Island selector, filtering, source health and per-island event counts",
+    "Cross-island duplicate rules and municipal name mapping, including La Graciosa / Teguise",
+    "Municipal bulletins, festivities and PDFs handled only when accurate extraction is possible",
+    "No empty island sections presented as if populated"
+  ]
+}

@@ -20,13 +20,13 @@ Los candidatos .es fueron vistos como disponibles el 24/10/2026; eso no reserva 
 
 ## Actualización automática y estado de fuentes
 
-GitHub Actions ejecuta el sincronizador cada seis horas, con cron UTC 00:37, 06:37, 12:37 y 18:37 (GitHub puede retrasar la ejecución). También admite ejecución manual desde GitHub Actions.
+GitHub Actions ejecuta el sincronizador una vez al día, con cron UTC 05:37 (GitHub puede retrasar la ejecución). También admite ejecución manual desde GitHub Actions.
 
 1. Las pruebas verifican los extractores, fechas, precios, enlaces y duplicados.
 2. El proceso lee las fuentes públicas conectadas y respeta sus límites/robots.txt; errores de una fuente se registran y no borran el resto del catálogo.
 3. El catálogo SQLite y los JSON de eventos y metadatos se actualizan y se versionan en GitHub. La sincronización ahora reintenta sobre la última versión de main ante rechazos por cambios simultáneos, evitando forzar el repositorio.
 4. Vercel despliega automáticamente main al recibir los cambios del catálogo.
-5. La web carga events.json evitando la caché y vuelve a comprobarlo periódicamente o al regresar a la pestaña. Muestra la fecha de última revisión en horario de Canarias y avisa cuando han transcurrido más de 12 horas o una fuente da error.
+5. La web carga events.json evitando la caché y vuelve a comprobarlo periódicamente o al regresar a la pestaña. Muestra la fecha de última revisión en horario de Canarias y avisa cuando han transcurrido más de 30 horas o una fuente da error.
 
 La renovación no es en tiempo real. Precios, aforos, cancelaciones y horarios pueden cambiar entre consultas y deben contrastarse con la organización.
 
@@ -35,7 +35,7 @@ La renovación no es en tiempo real. Precios, aforos, cancelaciones y horarios p
 - La portada carga **eventos reales importados**, no el catálogo de demostración.
 - Búsqueda, categorías, filtros de fecha/gratis, ordenación por cercanía/hora, favoritos guardados localmente y mapa con centroides municipales aproximados.
 - SQLite `data/events.sqlite` es la fuente persistente versionada en este repositorio. Se genera el catálogo público en `public/events.json` y el informe de fuentes en `public/meta.json`. Vercel publica los cambios de GitHub.
-- GitHub Actions consulta fuentes municipales 4 veces al día (cada 6 horas aproximadamente, según disponibilidad del programador de GitHub). El workflow también admite ejecución manual.
+- GitHub Actions consulta fuentes municipales una vez al día (cada 24 horas aproximadamente, según disponibilidad del programador de GitHub). El workflow también admite ejecución manual.
 - Se comprueban `robots.txt` y datos de fecha/hora; no hay scraping masivo de agregadores comerciales.
 - Un evento se marca como cancelado solo ante un aviso explícito en su título o datos estructurados oficiales. Si desaparece de un listado, permanece hasta su fecha sin asumir que está cancelado.
 - Las imágenes son **de ambientación**, no imágenes oficiales del evento.
@@ -129,3 +129,16 @@ Se ha estudiado Tomaticket como posible fuente adicional, pero su web responde c
 
 
 Para fichas del día que ya no figuren en el listado activo se permite una verificación focalizada y limitada contra la página pública original del evento, únicamente cuando su identificador textual coincide con el sitemap oficial; se almacenan solo fecha, recinto, precio publicado y enlace. Por ejemplo, «Gran Final Yo Canto» puede verificarse tras cerrarse las reservas sin presentarlo como un evento todavía reservable. Se utiliza una caché de 36 horas y un máximo de cuatro fichas por ejecución. La base de datos conserva duplicados históricos como registros internos, pero los oculta del catálogo cuando se demuestra la coincidencia mediante el título, la fecha, el enlace municipal original y el municipio de la plataforma.
+
+
+### Nueva fuente municipal: Santa Lucía de Tirajana (San Rafael 2026)
+
+La agenda publicada por el Ayuntamiento es necesaria porque parte de las fiestas de barrio,
+verbenas y actividades infantiles no aparecen en el catálogo del Cabildo. El adaptador
+municipal de 2026 permite rescatar fechas y lugares expresamente verificados desde
+noticias oficiales del Ayuntamiento. Es específico del programa 2026 y caduca el
+1 de noviembre; **no** debe reutilizar eventos como si fueran las fiestas de 2027.
+La cobertura completa de todos los ayuntamientos requiere conectores adicionales
+(individuales por formato, autorización y fuente), no solo añadir URLs a una lista.
+La Graciosa se tratará como isla seleccionable y sus eventos seguirán asociados
+administrativamente al municipio de Teguise.

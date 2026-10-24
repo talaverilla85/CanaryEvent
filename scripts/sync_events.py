@@ -21,6 +21,7 @@ import artes_details
 import cabildo_public
 import ticket_reserva
 import ticket_recent
+import santalucia_festivals
 from event_images import listing_image,image_fields
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -441,6 +442,34 @@ def run():
             results.append({"source":src["name"],"checked_at":NOW,"found":found,"added":added,"changed":changed,"error":error})
             print(f"{src['name']}: candidates={found} added={added} changed={changed} error={error[:100]}")
             time.sleep(0.4)
+        # Local patron-saint festivities not necessarily indexed by Cabildo.
+        # Publication requires two official municipal pages to verify dates and
+        # explicitly free entry; a parser failure must keep the last good data.
+        town=santalucia_festivals
+        local_found=local_added=local_changed=0
+        local_error=""
+        try:
+            a=get_html(town.ANNOUNCEMENT)
+            b=get_html(town.BRAULIO)
+            items=town.extract(str(a),str(b),TODAY,norm,category,PLACES)
+            for item in items:
+                local_found+=1
+                change=upsert(conn,item)
+                local_added+=int(change=="added")
+                local_changed+=int(change=="changed")
+            conn.commit()
+        except Exception as exc:
+            local_error=str(exc)[:250]
+            print(f"WARN Santa Lucia festivities: {local_error}",file=sys.stderr)
+        conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+           VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+           checked_at=excluded.checked_at,found=excluded.found,
+           added=excluded.added,changed=excluded.changed,error=excluded.error""",
+           (town.NAME,NOW,local_found,local_added,local_changed,local_error))
+        conn.commit()
+        results.append(dict(source=town.NAME,checked_at=NOW,found=local_found,
+                    added=local_added,changed=local_changed,error=local_error))
+        print(f"Santa Lucia festivities: found={local_found} new={local_added} error={local_error[:90]}")
         # Public official event metadata: incremental polite scan, no photos or source descriptions.
         try:
             cabildo=cabildo_public.synchronize(conn,NOW,TODAY,PLACES,norm,category,upsert)

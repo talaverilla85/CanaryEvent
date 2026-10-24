@@ -26,7 +26,7 @@ class BrandAndSyncContract(unittest.TestCase):
   self.assertIn("Atlantic/Canary",HTML)
   self.assertIn("fuente(s) con incidencias",HTML)
  def test_automatic_job_conflict_retry(self):
-  self.assertIn("37 */6 * * *",WF)
+  self.assertIn("37 5 * * *",WF)
   self.assertIn("bash scripts/publish_synced_data.sh",WF)
   sh=(ROOT/"scripts/publish_synced_data.sh").read_text(encoding="utf-8")
   self.assertIn("git fetch --no-tags origin main",sh)

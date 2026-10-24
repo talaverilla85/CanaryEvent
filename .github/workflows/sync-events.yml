@@ -2,8 +2,8 @@ name: Actualizar eventos oficiales
 on:
   workflow_dispatch:
   schedule:
-    # 00:37, 06:37, 12:37 y 18:37 UTC; GitHub puede retrasar el inicio.
-    - cron: "37 */6 * * *"
+    # Una pasada diaria a las 05:37 UTC (05:37 invierno / 06:37 verano Canarias).
+    - cron: "37 5 * * *"
   push:
     branches: [main]
     paths:
@@ -11,6 +11,7 @@ on:
       - "scripts/cabildo_public.py"
       - "scripts/source_facts.py"
       - "scripts/ticket_reserva.py"
+      - "scripts/santalucia_festivals.py"
       - "scripts/ticket_recent.py"
       - "scripts/publish_synced_data.sh"
       - "scripts/artes_details.py"
