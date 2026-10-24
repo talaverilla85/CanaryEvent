@@ -9,6 +9,7 @@
 @media (min-width:1000px){.hero{min-height:360px}.events-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.photo{height:232px}.discovery{padding-top:36px}.top-filters{margin-top:24px}.categories{margin-top:14px}.quick-toolbar{margin-top:24px;margin-bottom:16px}.bottom-nav{width:490px}}
 @media(max-width:375px){.shell{width:calc(100% - 22px)}.brand{font-size:25px}.brandmark{width:34px;height:34px}.location-btn{font-size:10px;padding:0 9px}.hero-content{padding-left:22px}.hero h1{font-size:48px}.star-one{font-size:75px;right:35px;top:80px}.star-two{display:none}.hero-tag{display:none}.events-grid{gap:9px}.photo{height:145px}.event-info{padding:10px}.event-title{font-size:13px}.event-meta,.distance{font-size:10px}.top-filters{gap:6px}.date-chip{padding:9px 12px}.quick-toolbar{align-items:start;flex-direction:column}.footer{gap:13px;flex-wrap:wrap}.info-strip{gap:10px;padding:18px}.info-orb{display:none}.info-button{padding:10px}}
 #publishCta, #profileBtn, .navtab[data-tab=publish], .info-strip, a[href='mailto:contacto@example.invalid']{display:none!important}
+#loadMoreBtn[hidden]{display:none!important}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoWqeLLl4A3P9w=" crossorigin="">
 <title>planGC · ¿Qué hacemos hoy?</title>
@@ -31,7 +32,7 @@
         <div class="toolbar-actions"><button id="freeOnlyBtn" class="small-filter" aria-pressed="false">€ Gratis</button><select id="sortSelect" aria-label="Ordenar eventos"><option value="recommended">Para ti ↕</option><option value="time">Por hora ↑</option><option value="near">Más cerca ↑</option></select></div>
       </div>
       <div id="sourceStatus" class="source-status">Consultando eventos…</div>
-      <div id="eventsGrid" class="events-grid" aria-live="polite"></div>
+      <div id="eventsGrid" class="events-grid" aria-live="polite"></div><button type="button" id="loadMoreBtn" class="small-filter" style="margin:14px auto 24px;display:block;padding:12px 24px" hidden>Mostrar 48 planes más ↓</button>
       <div id="emptyState" class="empty-state hidden"><div class="empty-icon">☀</div><h3>No encontramos planes con estos filtros</h3><p>Prueba otra fecha o amplía la zona. La isla tiene mucho por descubrir.</p><button id="resetFilters" class="primary-btn">Ver todos los planes</button></div>
     </section>
     <section class="info-strip"><span class="info-orb">✳</span><div><h3>¿Organizas algo interesante?</h3><p>Da a conocer tus eventos a personas que buscan qué hacer cerca.</p></div><button id="publishCta" class="info-button">Publicar plan ↗</button></section>
@@ -48,7 +49,7 @@ try{localStorage.setItem('plangc_check','ok');localStorage.removeItem('plangc_ch
 </script><script>/* planGC — no analytics, no trackers; user location only upon explicit action */
 'use strict';
 const $=id=>document.getElementById(id);
-const state={events:[],when:'today',category:'all',query:'',free:false,sort:'recommended',origin:null,originName:'Toda Gran Canaria',favorites:new Set(JSON.parse(localStorage.getItem('plangc_favorites')||'[]')),user:null,tab:'explore',map:null,markers:null,seen:0};
+const state={events:[],when:'today',category:'all',query:'',free:false,sort:'recommended',origin:null,originName:'Toda Gran Canaria',favorites:new Set(JSON.parse(localStorage.getItem('plangc_favorites')||'[]')),user:null,tab:'explore',map:null,markers:null,seen:0,visibleLimit:48};
 const CATS=[['all','✳','Todos'],['musica','♫','Música'],['familia','✿','Familia'],['gastronomia','♨','Gastronomía'],['cultura','◈','Cultura'],['deporte','⚑','Deporte'],['naturaleza','❋','Aire libre'],['ocio','☼','Ocio'],['otros','✺','Otros']];
 const PLACES={'Agaete':[28.100,-15.700],'Agüimes':[27.906,-15.445],'Artenara':[28.019,-15.647],'Arucas':[28.119,-15.523],'Firgas':[28.106,-15.563],'Gáldar':[28.145,-15.654],'Ingenio':[27.918,-15.436],'La Aldea de San Nicolás':[27.983,-15.780],'Las Palmas de Gran Canaria':[28.124,-15.436],'Mogán':[27.884,-15.723],'Moya':[28.108,-15.582],'San Bartolomé de Tirajana':[27.923,-15.573],'Santa Brígida':[28.035,-15.497],'Santa Lucía de Tirajana':[27.914,-15.542],'Santa María de Guía':[28.139,-15.632],'Tejeda':[27.996,-15.615],'Telde':[27.993,-15.416],'Teror':[28.060,-15.546],'Valleseco':[28.045,-15.579],'Valsequillo':[27.985,-15.497],'Vega de San Mateo':[28.010,-15.532]};
 const PICTURES={
@@ -69,7 +70,7 @@ const todayKey=()=>{const p=zoneParts();return `${p.year}-${p.month}-${p.day}`};
 const localTimeKey=()=>{const p=zoneParts();return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`};
 const plusDays=(date,n)=>{let d=new Date(date+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10)};
 const dayName=s=>new Date(s.slice(0,10)+'T12:00:00Z').toLocaleDateString('es-ES',{timeZone:'UTC',weekday:'short',day:'numeric',month:'short'}).replace('.','');
-const timeLabel=e=>e.start.length>10?e.start.slice(11,16):'Hora por confirmar';
+const timeLabel=e=>e.end&&e.end.length===10&&e.end.slice(0,10)>e.start.slice(0,10)?'Consulta las sesiones':e.start.length>10?e.start.slice(11,16):'Hora por confirmar';
 const dayLabel=e=>dayName(e.start);
 const dateLabel=e=>new Date(e.start.slice(0,10)+'T12:00:00Z').toLocaleDateString('es-ES',{timeZone:'UTC',weekday:'long',day:'numeric',month:'long',year:'numeric'});
 const distance=(p,q)=>{if(!p||!q)return null;const rad=n=>n*Math.PI/180;let dlat=rad(q[0]-p[0]),dlng=rad(q[1]-p[1]);return Math.round(6371*2*Math.asin(Math.sqrt(Math.sin(dlat/2)**2+Math.cos(rad(p[0]))*Math.cos(rad(q[0]))*Math.sin(dlng/2)**2)))};
@@ -92,8 +93,8 @@ function filtered(){let ev=state.events.filter(e=>inFilter(e)&&(!state.free||e.f
  ev.sort((a,b)=>state.sort==='near'?(distance(state.origin,[a.lat,a.lng])??99)-(distance(state.origin,[b.lat,b.lng])??99)||a.start.localeCompare(b.start):state.sort==='time'?a.start.localeCompare(b.start):eventScore(a)-eventScore(b));return ev;
 }
 function renderCategories(){$('categories').innerHTML=CATS.map(([k,icon,label])=>`<button type="button" class="category-chip ${state.category===k?'active':''}" data-category="${k}" aria-pressed="${state.category===k}"><span>${icon}</span>${label}</button>`).join('')}
-function render(){renderCategories();const events=filtered();$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente '}[state.when]);
- $('eventsGrid').innerHTML=events.map(e=>{
+function render(){renderCategories();const events=filtered();const shown=events.slice(0,state.visibleLimit);$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente '}[state.when]);
+ $('eventsGrid').innerHTML=shown.map(e=>{
   const approx=distance(state.origin,[e.lat,e.lng]);const liked=state.favorites.has(e.id);
   return `<article class="event-card" tabindex="0" role="button" data-id="${e.id}" aria-label="Ver ${escapeHTML(e.title)}">
   <div class="photo ${CLASSES[e.category]||'p-other'}" style="--photo-url:url('${PICTURES[e.category]||PICTURES.otros}')"><span class="photo-tag">${escapeHTML(textForCat(e.category))}</span><button class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button><span class="photo-date">${escapeHTML(dayLabel(e))} · ${escapeHTML(timeLabel(e))}</span></div>
@@ -112,7 +113,7 @@ function showEvent(id){const e=state.events.find(x=>x.id===+id);if(!e)return;
  const approx=distance(state.origin,[e.lat,e.lng]);const extra=e.accuracy==='municipality'?'Ubicación aproximada (centro del municipio). Consulta la fuente para encontrar el punto exacto.':'Ubicación indicada por el organizador.';
  const photo=PICTURES[e.category]||PICTURES.otros;
  openModal(`<div class="modal-photo" style="--photo-url:url('${photo}')"><span class="modal-photo-label">${escapeHTML(textForCat(e.category)).toUpperCase()} · GRAN CANARIA</span></div><div class="modal-body"><span class="eyebrow">PLAN Nº ${e.id} · ${escapeHTML(e.municipality).toUpperCase()}</span><h2 class="modal-title" id="modalHeading">${escapeHTML(e.title)}</h2>
- <div class="event-dateblock"><span class="ico">▦</span><div><strong>${escapeHTML(dateLabel(e))}</strong><small>${escapeHTML(timeLabel(e))}${e.end?.includes('T')?' – '+escapeHTML(e.end.slice(11,16)):''}</small></div></div>
+ <div class="event-dateblock"><span class="ico">▦</span><div><strong>${escapeHTML(dateLabel(e))}</strong><small>${escapeHTML(timeLabel(e))}${e.end?.length===10?' · Hasta '+escapeHTML(e.end.slice(8,10)+'/'+e.end.slice(5,7)):e.end?.includes('T')?' – '+escapeHTML(e.end.slice(11,16)):''}</small></div></div>
  <div class="event-dateblock"><span class="ico">⌖</span><div><strong>${escapeHTML(e.venue||e.municipality)}</strong><small>${escapeHTML(e.municipality)} · ${approx!==null?'aprox. '+approx+' km · ':''}${escapeHTML(extra)}</small></div></div>
  <div class="event-dateblock"><span class="ico">€</span><div><strong>${escapeHTML(price(e))}</strong><small>Comprueba disponibilidad, precios y requisitos con el organizador</small></div></div>
  <p>${escapeHTML(e.details||'Información disponible en la fuente original del evento.')}</p><div class="modal-actions"><a class="primary-action" href="${safeUrl(e.source_url)}" target="_blank" rel="noopener noreferrer">Consultar fuente ↗</a><a href="https://www.google.com/maps/search/?api=1&query=${mapQuery}" target="_blank" rel="noopener noreferrer">Cómo llegar ↗</a></div>
@@ -167,7 +168,7 @@ if(!window.__gcFirstLoad){
   }
 }
 localStorage.setItem('plangc_event_cache',JSON.stringify({at:Date.now(),events:state.events}));const count=state.events.filter(e=>eventEndDate(e)>=todayKey()).length;$('sourceStatus').textContent=`${count} planes próximos · Información de fuentes originales · Horario de Canarias`;render();const id=new URLSearchParams(location.search).get('evento');if(id&&state.events.some(e=>e.id===+id)&&!state.seen){state.seen=1;showEvent(id)}}catch(error){try{const saved=JSON.parse(localStorage.getItem('plangc_event_cache'));if(saved.events?.length){state.events=saved.events;$('sourceStatus').textContent='Sin conexión · Mostrando datos guardados (pueden estar desactualizados)';render();return}}catch{}$('sourceStatus').textContent='No se ha podido conectar con el catálogo';toast('Error de conexión con la agenda')}}
-function init(){const m=localStorage.getItem('plangc_municipio');if(m&&PLACES[m]){state.origin=PLACES[m];state.originName=m;$('locationName').textContent=m}
+function init(){$('loadMoreBtn').onclick=()=>{state.visibleLimit+=48;render()};const m=localStorage.getItem('plangc_municipio');if(m&&PLACES[m]){state.origin=PLACES[m];state.originName=m;$('locationName').textContent=m}
  $('categories').addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(b){state.category=b.dataset.category;render()}});
  document.querySelectorAll('[data-when]').forEach(b=>b.onclick=()=>{state.when=b.dataset.when;state.tab='explore';render()});
  $('searchInput').oninput=e=>{state.query=e.target.value.trim();$('clearSearch').classList.toggle('hidden',!state.query);render()};$('clearSearch').onclick=()=>{$('searchInput').value='';state.query='';$('clearSearch').classList.add('hidden');render()};

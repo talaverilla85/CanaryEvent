@@ -17,6 +17,7 @@ from urllib.robotparser import RobotFileParser
 from zoneinfo import ZoneInfo
 import requests
 from bs4 import BeautifulSoup
+import cabildo_public
 
 ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "events.sqlite"
@@ -352,8 +353,22 @@ def run():
             results.append({"source":src["name"],"checked_at":NOW,"found":found,"added":added,"changed":changed,"error":error})
             print(f"{src['name']}: candidates={found} added={added} changed={changed} error={error[:100]}")
             time.sleep(0.4)
+        # Public official event metadata: incremental polite scan, no photos or source descriptions.
+        try:
+            cabildo=cabildo_public.synchronize(conn,NOW,TODAY,PLACES,norm,category,upsert)
+        except Exception as exc:
+            cabildo={"source":cabildo_public.SOURCE_NAME,"checked_at":NOW,"found":0,
+                "added":0,"changed":0,"scanned":0,"error":str(exc)[:300]}
+        results.append(cabildo)
+        conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+         VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+         checked_at=excluded.checked_at,found=excluded.found,added=excluded.added,
+         changed=excluded.changed,error=excluded.error""",
+         (cabildo["source"],NOW,cabildo["found"],cabildo["added"],cabildo["changed"],cabildo.get("error","")))
+        conn.commit()
+        print(f"Cabildo: scanned={cabildo.get('scanned')} found={cabildo['found']} added={cabildo['added']} error={cabildo.get('error','')[:100]}")
         rows=conn.execute("""SELECT * FROM events WHERE status='approved' AND substr(COALESCE("end",start),1,10)>=?
-             ORDER BY start ASC LIMIT 1200""",(TODAY.isoformat(),)).fetchall()
+             ORDER BY start ASC LIMIT 3500""",(TODAY.isoformat(),)).fetchall()
         events=[]
         for row in rows:
             e={k:row[k] for k in ("id","title","start","end","municipality","venue","category",
