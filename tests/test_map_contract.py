@@ -20,7 +20,10 @@ class MapContractTests(unittest.TestCase):
         self.assertIn("marker.on('click'",HTML)
         self.assertIn("state.mapSelected=key",HTML)
         self.assertIn("state.mapLimit+=16",HTML)
-        self.assertIn("state.mapEntries.length",HTML)
+        self.assertIn("state.mapMunicipalities",HTML)
+        self.assertIn("state.mapClusterKeys",HTML)
+        self.assertIn("pixels[i].distanceTo(pixels[j])<55",HTML)
+        self.assertIn("state.map.on('zoomend'",HTML)
         self.assertNotIn("ev.slice(0,20).map",HTML)
 
     def test_map_accuracy_explicit(self):

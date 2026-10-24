@@ -194,15 +194,16 @@ function renderMapList(){
  const items=filtered().filter(e=>Number.isFinite(Number(e.lat))&&Number.isFinite(Number(e.lng)));
  let matches=items;
  let selectedLabel='';
- if(state.mapSelected){
-  matches=items.filter(e=>Number(e.lat)+','+Number(e.lng)===state.mapSelected);
-  selectedLabel=matches[0]?.municipality||'Esta zona';
-  if(!matches.length)state.mapSelected=null;
- }
- if(!state.mapSelected)matches=items;
+ if(state.mapSelected && state.mapClusterKeys?.has(state.mapSelected)){
+  const group=state.mapClusterKeys.get(state.mapSelected);
+  matches=items.filter(e=>group.has(Number(e.lat)+','+Number(e.lng)));
+  selectedLabel=(state.mapEntries.find(x=>x.key===state.mapSelected)?.label)||'Esta zona';
+ }else{ state.mapSelected=null; }
  const first=matches.slice(0,state.mapLimit);
  const total=matches.length;
- $('mapSummary').textContent=state.mapSelected?selectedLabel+' · '+total+' planes':'Gran Canaria · '+total+' planes en '+state.mapEntries.length+' zonas';
+ $('mapSummary').textContent=state.mapSelected?
+     selectedLabel+' · '+total+' planes':
+     'Gran Canaria · '+total+' planes en '+(state.mapMunicipalities||0)+' municipios';
  $('mapReset').classList.toggle('hidden',!state.mapSelected);
  $('mapMore').classList.toggle('hidden',total<=state.mapLimit);
  $('mapList').innerHTML=first.length?first.map(e=>{
@@ -219,8 +220,6 @@ function highlightMapSelection(){
 }
 function drawMap({fit=false}={}){
  if(!$('mapPanel')||$('mapPanel').classList.contains('hidden')||!window.L||!state.map)return;
- state.markers.clearLayers();
- state.mapEntries=[];
  const groups=new Map();
  const matches=filtered().filter(e=>Number.isFinite(Number(e.lat))&&Number.isFinite(Number(e.lng))&&Number(e.lat)>27&&Number(e.lat)<29&&Number(e.lng)>-16.4&&Number(e.lng)<-15.1);
  for(const e of matches){
@@ -228,34 +227,66 @@ function drawMap({fit=false}={}){
   if(!groups.has(key))groups.set(key,[]);
   groups.get(key).push(e);
  }
- for(const [key,list] of groups){
-  const e=list[0],coords=[Number(e.lat),Number(e.lng)];
-  const marker=L.marker(coords,{icon:mapIcon(list.length,key===state.mapSelected),
-    title:e.municipality+' · '+list.length+' planes'});
-  marker.bindPopup('<strong>'+escapeHTML(e.municipality)+'</strong><br>'+list.length+
-    ' planes · Ubicación aproximada<br><small>Las actividades no tienen por qué celebrarse en este punto.</small>');
+ const locations=[...groups.entries()].map(([key,list])=>({
+  key,list,point:L.latLng(Number(list[0].lat),Number(list[0].lng)),
+  municipality:list[0].municipality
+ }));
+ // Fit the island once, before building clusters at the actual zoom.
+ if(fit){
+  if(state.origin&&state.origin.length===2)state.map.setView(state.origin,11,{animate:false});
+  else if(locations.length)state.map.fitBounds(L.latLngBounds(locations.map(x=>x.point)),{padding:[34,34],maxZoom:11,animate:false});
+  else state.map.setView([28.04,-15.57],10,{animate:false});
+ }
+ state.markers.clearLayers();
+ state.mapEntries=[];
+ state.mapClusterKeys=new Map();
+ state.mapMunicipalities=locations.length;
+ // Cluster nearby municipality centroids in pixel space to avoid overlapping
+ // touch targets at island-scale zoom. Recompute on zoomend to split clusters.
+ const pixels=locations.map(x=>state.map.project(x.point,state.map.getZoom()));
+ const parent=locations.map((_,i)=>i);
+ const find=i=>parent[i]===i?i:(parent[i]=find(parent[i]));
+ const join=(i,j)=>{const x=find(i),y=find(j);if(x!==y)parent[y]=x};
+ for(let i=0;i<pixels.length;i++){
+  for(let j=i+1;j<pixels.length;j++){
+   if(pixels[i].distanceTo(pixels[j])<55)join(i,j);
+  }
+ }
+ const combined=new Map();
+ locations.forEach((x,i)=>{
+  const key=find(i);
+  if(!combined.has(key))combined.set(key,[]);
+  combined.get(key).push(x);
+ });
+ for(const members of combined.values()){
+  const keys=members.map(x=>x.key).sort();
+  const key=keys.join('|');
+  const all=members.flatMap(x=>x.list);
+  const lat=members.reduce((v,x)=>v+x.point.lat,0)/members.length;
+  const lng=members.reduce((v,x)=>v+x.point.lng,0)/members.length;
+  const label=members.length===1?members[0].municipality:
+    members.length+' municipios';
+  const marker=L.marker([lat,lng],{
+    icon:mapIcon(all.length,key===state.mapSelected),
+    title:label+' · '+all.length+' planes'
+  });
+  marker.bindPopup('<strong>'+escapeHTML(label)+'</strong><br>'+
+    all.length+' planes · Posición aproximada<br>'+
+    '<small>El punto representa una zona, no el recinto exacto.</small>');
   marker.on('click',()=>{
     state.mapSelected=key;state.mapLimit=16;
     renderMapList();highlightMapSelection();
     $('mapList').scrollLeft=0;
   });
   marker.addTo(state.markers);
-  state.mapEntries.push({key,count:list.length,marker});
+  state.mapEntries.push({key,count:all.length,marker,label});
+  state.mapClusterKeys.set(key,new Set(keys));
  }
- if(state.mapSelected&&!groups.has(state.mapSelected))state.mapSelected=null;
+ if(state.mapSelected&&!state.mapClusterKeys.has(state.mapSelected))state.mapSelected=null;
  renderMapList();
- if(fit){
-  if(state.origin&&state.origin.length===2){
-   state.map.setView(state.origin,11);
-  }else if(state.mapEntries.length){
-   state.map.fitBounds(L.latLngBounds(state.mapEntries.map(x=>x.marker.getLatLng())),
-     {padding:[30,30],maxZoom:11,animate:false});
-  }else{
-   state.map.setView([28.04,-15.57],10);
-  }
- }
  requestAnimationFrame(()=>state.map?.invalidateSize());
 }
+
 function openMap(){
  state.tab='map';render();
  $('mapPanel').classList.remove('hidden');
@@ -269,6 +300,7 @@ function openMap(){
   L.control.zoom({position:'bottomright'}).addTo(state.map);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap contributors'}).addTo(state.map);
   state.markers=L.layerGroup().addTo(state.map);
+  state.map.on('zoomend',()=>drawMap());
  }
  state.mapSelected=null;state.mapLimit=16;
  drawMap({fit:true});
@@ -328,7 +360,7 @@ function init(){$('loadMoreBtn').onclick=()=>{state.visibleLimit+=48;render()};c
  $('mapList').onclick=e=>{const b=e.target.closest('[data-map-id]');if(b)showEvent(b.dataset.mapId)};
  document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{const tab=b.dataset.tab;if(tab==='map'){openMap();return}if(tab==='publish'){publishDialog();return}state.tab=tab;closeMap();state.tab=tab;render();window.scrollTo({top:360,behavior:'smooth'})});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();if(!$('mapPanel').classList.contains('hidden'))closeMap()}});
- api('/api/auth/me').then(r=>{state.user=r.user}).catch(()=>{});
+ // Accounts and merchant panel are disabled in this public phase.
  loadEvents();
 let lastRefresh=Date.now();
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-lastRefresh>600000){lastRefresh=Date.now();loadEvents()}});
