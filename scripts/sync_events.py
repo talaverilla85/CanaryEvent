@@ -18,6 +18,7 @@ from zoneinfo import ZoneInfo
 import requests
 from bs4 import BeautifulSoup
 import cabildo_public
+from event_images import listing_image,image_fields
 
 ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "events.sqlite"
@@ -155,6 +156,8 @@ def extract_ingenio(soup):
              category=category(title),free=None,price="",details=details,
              source_name="Ayuntamiento de Ingenio",source_url=source_url,
              status="cancelled" if re.match(r"^(cancelad[oa]|suspendid[oa])\b",title,re.I) or source_url.strip("/").lower() in cancelled_urls else "approved"))
+        image=listing_image(art,"https://ingenio.es/",[".mec-event-image img"])
+        found[-1].update(image_fields(image,title,"Ayuntamiento de Ingenio"))
     return found
 
 def extract_aguimes(soup):
@@ -187,6 +190,8 @@ def extract_aguimes(soup):
                           free=is_free,price="Gratis" if is_free else "",details=details,
                           source_name="Ayuntamiento de Agüimes",source_url=url,
                           status="cancelled" if re.match(r"^(cancelad[oa]|suspendid[oa])\b",title,re.I) else "approved"))
+        image=listing_image(node,"https://eventos.aguimes.es/",["img.image"])
+        found[-1].update(image_fields(image,title,"Ayuntamiento de Agüimes"))
     return found
 
 
@@ -218,6 +223,8 @@ def extract_juventud(soup):
          venue=venue,category=category(title),free=is_free,price="Gratis" if is_free else "",details=details,
          source_name="Juventud Las Palmas de Gran Canaria",source_url=url,
          status="cancelled" if re.match(r"^(cancelad[oa]|suspendid[oa])\b",title,re.I) else "approved"))
+        image=listing_image(node,"https://actividadesjuventud.laspalmasgc.es/",["img.image"])
+        found[-1].update(image_fields(image,title,"Juventud Las Palmas"))
     return found
 
 
@@ -258,6 +265,8 @@ def extract_artes(soup):
                 category=category(title) if category(title)!="ocio" else "cultura",
                 free=None,price="",details=details,source_name="Circuito de Artes Escénicas GC",
                 source_url=href,status="cancelled" if re.match(r"^(cancelad[oa]|suspendid[oa])\b",title,re.I) else "approved"))
+            image=listing_image(node,"https://artesescenicasgrancanaria.com/geo",["img._imevent"])
+            found[-1].update(image_fields(image,title,"Circuito de Artes Escénicas GC"))
     return found
 
 def init(conn):
@@ -277,6 +286,11 @@ def init(conn):
          source TEXT PRIMARY KEY, checked_at TEXT, found INTEGER DEFAULT 0,
          added INTEGER DEFAULT 0, changed INTEGER DEFAULT 0, error TEXT);
     """)
+    # Safe migration of the existing SQLite database without deleting historical events.
+    columns={row[1] for row in conn.execute("PRAGMA table_info(events)")}
+    for field in ("image_url","image_alt","image_origin","image_status"):
+        if field not in columns:
+            conn.execute(f"ALTER TABLE events ADD COLUMN {field} TEXT NOT NULL DEFAULT ''")
     # One-time migration: identity stays stable when the organizer changes the hour
     # on the same day. Do not lose old rows or erase legitimate duplicates.
     for old in conn.execute("SELECT id,dedup_key,title,start,municipality,source_url FROM events").fetchall():
@@ -305,24 +319,27 @@ def dedup_key(e):
 def upsert(conn,e):
     key=dedup_key(e)
     lat,lng=PLACES[e["municipality"]]
-    # A record disappearing from a listing is NOT evidence of cancellation.
     existing=conn.execute("SELECT * FROM events WHERE dedup_key=?",(key,)).fetchone()
-    cols=(e["title"],e["start"],e.get("end"),e["municipality"],e["venue"],e["category"],
-        e["free"],e["price"],e["details"],lat,lng,e["source_name"],e["source_url"],e["status"])
+    event_columns=("title","start","end","municipality","venue","category","free","price","details",
+                   "lat","lng","source_name","source_url","status",
+                   "image_url","image_alt","image_origin","image_status")
+    fields=dict(e)
+    fields.update(lat=lat,lng=lng)
+    for k in ("image_url","image_alt","image_origin","image_status"):
+        fields.setdefault(k,"")
+    values=tuple(fields.get(key) for key in event_columns)
     if existing:
-        old=(existing["title"],existing["start"],existing["end"],existing["municipality"],existing["venue"],
-             existing["category"],existing["free"],existing["price"],existing["details"],existing["lat"],
-             existing["lng"],existing["source_name"],existing["source_url"],existing["status"])
-        if cols==old:
+        current=tuple(existing[key] for key in event_columns)
+        if values==current:
             conn.execute("UPDATE events SET last_seen=? WHERE dedup_key=?",(NOW,key))
             return "unchanged"
-        conn.execute("""UPDATE events SET title=?,start=?,"end"=?,municipality=?,venue=?,category=?,free=?,price=?,
-          details=?,lat=?,lng=?,source_name=?,source_url=?,status=?,updated_at=?,last_seen=?
-          WHERE dedup_key=?""",cols+(NOW,NOW,key))
+        setters=",".join(('"' + key + '"=?') for key in event_columns)
+        conn.execute("UPDATE events SET "+setters+",updated_at=?,last_seen=? WHERE dedup_key=?",
+                     values+(NOW,NOW,key))
         return "changed"
-    conn.execute("""INSERT INTO events(dedup_key,title,start,"end",municipality,venue,category,free,price,details,
-     lat,lng,source_name,source_url,status,created_at,updated_at,last_seen)
-     VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",(key,)+cols+(NOW,NOW,NOW))
+    keys=("dedup_key",)+event_columns+("created_at","updated_at","last_seen")
+    conn.execute("INSERT INTO events ("+",".join('"'+k+'"' for k in keys)+") VALUES("+
+        ",".join("?" for _ in keys)+")",(key,)+values+(NOW,NOW,NOW))
     return "added"
 
 def write_json(path, obj):
@@ -379,7 +396,8 @@ def run():
         events=[]
         for row in rows:
             e={k:row[k] for k in ("id","title","start","end","municipality","venue","category",
-                                  "free","price","details","lat","lng","accuracy","source_name","source_url")}
+                                  "free","price","details","lat","lng","accuracy","source_name","source_url",
+                                  "image_url","image_alt","image_origin","image_status")}
             events.append(e)
         total=conn.execute("SELECT COUNT(*) FROM events").fetchone()[0]
         statuses=dict(conn.execute("SELECT status,COUNT(*) FROM events GROUP BY status").fetchall())

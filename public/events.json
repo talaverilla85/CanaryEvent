@@ -1,6 +1,195 @@
 {
   "events": [
     {
+      "id": 193,
+      "title": "Cursos de formación especializada",
+      "start": "2026-10-06",
+      "end": "2027-03-16",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261006-0005/cursos-de-formacion-especializada",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 190,
+      "title": "Costura Creativa, Corte y Confección y Patchwork - Universidad Popular de Telde",
+      "start": "2026-10-07",
+      "end": "2027-06-30",
+      "municipality": "Telde",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 27.993,
+      "lng": -15.416,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261007-0002/costura-creativa-corte-y-confeccion-y-patchwork-universidad-popular-de-telde",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 196,
+      "title": "FUTUROS RYDERS OCTUBRE. BODYBOARD",
+      "start": "2026-10-07",
+      "end": "2026-10-28",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261005-0002/futuros-ryders-octubre-bodyboard",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 179,
+      "title": "La Sala Lola Massieu homenajea al pintor Javier Rodríguez Romero",
+      "start": "2026-10-09",
+      "end": "2026-10-31",
+      "municipality": "Santa Brígida",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 28.035,
+      "lng": -15.497,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0012/la-sala-lola-massieu-homenajea-al-pintor-javier-rodriguez-romero",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 181,
+      "title": "Oliva Lara. Último pintor indigenista americano",
+      "start": "2026-10-09",
+      "end": "2026-11-15",
+      "municipality": "Gáldar",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 28.145,
+      "lng": -15.654,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0036/oliva-lara-ultimo-pintor-indigenista-americano",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 182,
+      "title": "Geometría - Theometría",
+      "start": "2026-10-09",
+      "end": "2026-11-07",
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 28.119,
+      "lng": -15.523,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0037/geometria-theometria",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 183,
+      "title": "Paqui Álvarez Monzón presenta «Donde el tiempo se detiene» en las Casas Consistoriales",
+      "start": "2026-10-09",
+      "end": "2026-11-03",
+      "municipality": "Telde",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 27.993,
+      "lng": -15.416,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0039/paqui-alvarez-monzon-presenta-donde-el-tiempo-se-detiene-en-las-casas-consistoriales",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 160,
+      "title": "XXXI FESTIVAL INTERNACIONAL DE FOLKLORE",
+      "start": "2026-10-10",
+      "end": "2026-10-28",
+      "municipality": "Ingenio",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 27.918,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261010-0002/xxxi-festival-internacional-de-folklore",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 161,
+      "title": "Taller de Cómic y Cuentos Ilustrados",
+      "start": "2026-10-10",
+      "end": "2026-12-19",
+      "municipality": "Telde",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "familia",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 27.993,
+      "lng": -15.416,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261010-0008/taller-de-comic-y-cuentos-ilustrados",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
       "id": 141,
       "title": "Exposición itinerante «Conocer para conservar»",
       "start": "2026-10-13",
@@ -15,7 +204,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261013-0004/exposicion-itinerante-conocer-para-conservar"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261013-0004/exposicion-itinerante-conocer-para-conservar",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c736013a6268e07a77ac",
+      "image_alt": "Exposición itinerante «Conocer para conservar»",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 137,
@@ -32,7 +225,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261014-0010/charla-sesion-de-videojuegos-el-belingo-club-de-videojuegos"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261014-0010/charla-sesion-de-videojuegos-el-belingo-club-de-videojuegos",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acf40a4013a6268e07a5853",
+      "image_alt": "Charla + sesión de videojuegos: El Belingo club de videojuegos",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 130,
@@ -49,7 +246,11 @@
       "lng": -15.573,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0015/charlas-del-plan-mayor-consejos-de-seguridad-para-mayores"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0015/charlas-del-plan-mayor-consejos-de-seguridad-para-mayores",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5df59013a6268e07a7ab6",
+      "image_alt": "Charlas del Plan Mayor: Consejos de seguridad para mayores",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 131,
@@ -66,7 +267,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0016/el-cuchillo-canario-a-traves-de-la-historia-exposicion-temporal-presentacion"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0016/el-cuchillo-canario-a-traves-de-la-historia-exposicion-temporal-presentacion",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad29e81013a6268e07a6a8e",
+      "image_alt": "El cuchillo canario a través de la historia. Exposición Temporal. Presentación",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 132,
@@ -83,7 +288,11 @@
       "lng": -15.445,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0018/exposicion-emocioarte"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0018/exposicion-emocioarte",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acec616013a6268e07a5649",
+      "image_alt": "Exposición EmocioArte",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 133,
@@ -100,7 +309,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0020/talleres-la-palabra-encendida-programa-de-mediacion-y-creacion-cultural"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0020/talleres-la-palabra-encendida-programa-de-mediacion-y-creacion-cultural",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 134,
@@ -117,7 +330,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0023/exposicion-fotografica-barreras-de-la-vision-de-tim-parchikov"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0023/exposicion-fotografica-barreras-de-la-vision-de-tim-parchikov",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 135,
@@ -134,7 +351,11 @@
       "lng": -15.523,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0024/circo-francia"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0024/circo-francia",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5e22d013a6268e07a7ae8",
+      "image_alt": "Circo Francia",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 120,
@@ -151,7 +372,11 @@
       "lng": -15.573,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261016-0009/programacion-cultural-centro-cultural-maspalomas"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261016-0009/programacion-cultural-centro-cultural-maspalomas",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6abcbaa4013a6268e07a0ed8",
+      "image_alt": "Programación Cultural - Centro Cultural Maspalomas",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 110,
@@ -168,7 +393,11 @@
       "lng": -15.654,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261017-0017/fronton-king-2026"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261017-0017/fronton-king-2026",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acc3bb1013a6268e07a4c2a",
+      "image_alt": "Frontón King 2026",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 78,
@@ -185,7 +414,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0008/microcredencial-en-propiedad-intelectual-y-derechos-de-autor"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0008/microcredencial-en-propiedad-intelectual-y-derechos-de-autor",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 79,
@@ -202,7 +435,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0003/plazo-de-inscripcion-abierto-curso-de-creacion-audiovisual-el-sonido-de-la-mirada"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0003/plazo-de-inscripcion-abierto-curso-de-creacion-audiovisual-el-sonido-de-la-mirada",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 80,
@@ -219,7 +456,11 @@
       "lng": -15.497,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0004/el-espacio-del-cuerpo"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0004/el-espacio-del-cuerpo",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac5af00013a6268e07a356e",
+      "image_alt": "«EL ESPACIO DEL CUERPO»",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 81,
@@ -236,7 +477,11 @@
       "lng": -15.723,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0006/dia-de-las-bibliotecas-2026"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0006/dia-de-las-bibliotecas-2026",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5de9d013a6268e07a7aad",
+      "image_alt": "Día de las Bibliotecas 2026",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 82,
@@ -253,7 +498,11 @@
       "lng": -15.542,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0007/espejos-y-ventanas"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0007/espejos-y-ventanas",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 71,
@@ -270,7 +519,11 @@
       "lng": -15.563,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261020-0014/mi-espacio-mi-poder"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261020-0014/mi-espacio-mi-poder",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c71e013a6268e07a778e",
+      "image_alt": "Mi espacio, mi poder",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 60,
@@ -287,7 +540,11 @@
       "lng": -15.416,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261021-0011/xvi-jornadas-cultura-del-agua-territorio-de-sal-culturas-de-mar"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261021-0011/xvi-jornadas-cultura-del-agua-territorio-de-sal-culturas-de-mar",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 61,
@@ -304,7 +561,11 @@
       "lng": -15.497,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261021-0012/la-biblioteca-acoge-un-ciclo-de-conferencias-sobre-pinocho"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261021-0012/la-biblioteca-acoge-un-ciclo-de-conferencias-sobre-pinocho",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad18c37013a6268e07a62d0",
+      "image_alt": "La Biblioteca acoge un ciclo de conferencias sobre Pinocho",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 121,
@@ -321,7 +582,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261016-0022/cars-20-aniversario"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261016-0022/cars-20-aniversario",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad025a2013a6268e07a5ce5",
+      "image_alt": "CARS (20 ANIVERSARIO)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 122,
@@ -338,7 +603,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261016-0023/street-fighter-atmos"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261016-0023/street-fighter-atmos",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad025b7013a6268e07a5cf7",
+      "image_alt": "Street fighter (ATMOS)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 123,
@@ -355,7 +624,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261016-0024/street-fighter-screen-x"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261016-0024/street-fighter-screen-x",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad025b8013a6268e07a5cf9",
+      "image_alt": "Street fighter (Screen X)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 124,
@@ -372,7 +645,32 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261016-0026/whalefall-atmos"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261016-0026/whalefall-atmos",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad025c0013a6268e07a5cff",
+      "image_alt": "Whalefall (ATMOS)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 180,
+      "title": "La otra madre",
+      "start": "2026-10-21",
+      "end": "2026-10-29",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Centro Comercial Siete Palmas",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0027/la-otra-madre",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 55,
@@ -389,7 +687,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261022-0003/womex-festival"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261022-0003/womex-festival",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac9952c013a6268e07a4165",
+      "image_alt": "WOMEX Festival",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 56,
@@ -406,7 +708,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261022-0013/clayface-atmos"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261022-0013/clayface-atmos",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad025a5013a6268e07a5ced",
+      "image_alt": "Clayface (ATMOS)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 57,
@@ -423,7 +729,11 @@
       "lng": -15.416,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261022-0022/taller-de-poesia-viaje-al-centro-del-poema"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261022-0022/taller-de-poesia-viaje-al-centro-del-poema",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 58,
@@ -440,7 +750,11 @@
       "lng": -15.654,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261022-0029/ix-foro-de-agroecologia-y-biodiversidad-en-canarias"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261022-0029/ix-foro-de-agroecologia-y-biodiversidad-en-canarias",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718bf013a6268e07a7c09",
+      "image_alt": "IX Foro de Agroecología y Biodiversidad en Canarias",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 39,
@@ -457,7 +771,11 @@
       "lng": -15.497,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0013/quieres-dedicarte-profesionalmente-a-la-redes-sociales"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0013/quieres-dedicarte-profesionalmente-a-la-redes-sociales",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad18c3b013a6268e07a62e2",
+      "image_alt": "¿Quieres dedicarte profesionalmente a la redes sociales?",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 40,
@@ -474,7 +792,11 @@
       "lng": -15.546,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0014/3-edicion-teror-film-fest"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0014/3-edicion-teror-film-fest",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac74b15013a6268e07a3ab3",
+      "image_alt": "3ª edición Teror Film Fest",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 41,
@@ -491,7 +813,11 @@
       "lng": -15.416,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0024/dia-de-las-bibliotecas-en-la-calle"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0024/dia-de-las-bibliotecas-en-la-calle",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718a6013a6268e07a7be2",
+      "image_alt": "Día de las Bibliotecas en la Calle",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 42,
@@ -508,7 +834,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0027/clayface-screen-x"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0027/clayface-screen-x",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad80efa013a6268e07a8068",
+      "image_alt": "Clayface (Screen X)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 43,
@@ -525,7 +855,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0028/leones-en-invierno"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0028/leones-en-invierno",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad80f08013a6268e07a806a",
+      "image_alt": "Leones en Invierno",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 44,
@@ -542,7 +876,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0029/mascotas-al-rescate"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0029/mascotas-al-rescate",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad80f0a013a6268e07a806e",
+      "image_alt": "Mascotas al rescate",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 45,
@@ -559,7 +897,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0030/resident-evil"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0030/resident-evil",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6abc5f2e013a6268e07a0d11",
+      "image_alt": "Resident Evil",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 46,
@@ -576,7 +918,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0031/sentido-y-sensibilidad"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0031/sentido-y-sensibilidad",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad80f0f013a6268e07a8072",
+      "image_alt": "Sentido y sensibilidad",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 47,
@@ -593,7 +939,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0032/sentido-y-sensibilidad-atmos"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0032/sentido-y-sensibilidad-atmos",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad80f11013a6268e07a8076",
+      "image_alt": "Sentido y sensibilidad (ATMOS)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 48,
@@ -610,7 +960,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0033/superthings-la-pelicula-kids"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0033/superthings-la-pelicula-kids",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad80f16013a6268e07a807e",
+      "image_alt": "Superthings: La película (KIDS)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 49,
@@ -627,7 +981,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0034/verity-la-sombra-de-un-engano-kids"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0034/verity-la-sombra-de-un-engano-kids",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad80f1c013a6268e07a8082",
+      "image_alt": "Verity. La sombra de un engaño (KIDS)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 50,
@@ -644,7 +1002,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0035/wildwood-atmos"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0035/wildwood-atmos",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad80f1f013a6268e07a8086",
+      "image_alt": "Wildwood (ATMOS)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 51,
@@ -661,7 +1023,11 @@
       "lng": -15.523,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0037/divina-muerte-2026"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0037/divina-muerte-2026",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad82757013a6268e07a80ee",
+      "image_alt": "DIVINA MUERTE 2026",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 20,
@@ -678,7 +1044,11 @@
       "lng": -15.573,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0010/i-feria-mas-comercio-de-sbt"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0010/i-feria-mas-comercio-de-sbt",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6abcbab7013a6268e07a0f34",
+      "image_alt": "I Feria Más Comercio de SBT",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 21,
@@ -695,7 +1065,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0011/amafest-2026"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0011/amafest-2026",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad1f803013a6268e07a67ca",
+      "image_alt": "AMAFEST 2026",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 22,
@@ -712,7 +1086,11 @@
       "lng": -15.523,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0012/estancia-aula-de-la-naturaleza-del-lomo-jurgon"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0012/estancia-aula-de-la-naturaleza-del-lomo-jurgon",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6abf1ac0013a6268e07a19f0",
+      "image_alt": "ESTANCIA AULA DE LA NATURALEZA DEL LOMO JURGÓN",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 25,
@@ -729,7 +1107,11 @@
       "lng": -15.445,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0017/or-de-gabriel-calderon"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0017/or-de-gabriel-calderon",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac5f58f013a6268e07a3689",
+      "image_alt": "OR DE GABRIEL CALDERÓN",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 27,
@@ -746,7 +1128,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0019/gran-final-yo-canto"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0019/gran-final-yo-canto",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac74ab7013a6268e07a3a97",
+      "image_alt": "GRAN FINAL YO CANTO",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 28,
@@ -763,7 +1149,11 @@
       "lng": -15.497,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0020/santa-brigida-acoge-por-tercera-vez-la-feria-km0-gran-canaria"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0020/santa-brigida-acoge-por-tercera-vez-la-feria-km0-gran-canaria",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac9a33e013a6268e07a41f8",
+      "image_alt": "Santa Brígida acoge por tercera vez la Feria KM.0 Gran Canaria",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 30,
@@ -780,7 +1170,11 @@
       "lng": -15.416,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0022/visita-en-compania-de-titeres-titereando-en-cueva-pintada"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0022/visita-en-compania-de-titeres-titereando-en-cueva-pintada",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acf5af1013a6268e07a59e8",
+      "image_alt": "Visita en compañía de títeres: TitereANDO en Cueva Pintada",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 31,
@@ -797,7 +1191,11 @@
       "lng": -15.723,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0023/excursion-a-lagos-de-taurito"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0023/excursion-a-lagos-de-taurito",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad1d29f013a6268e07a6412",
+      "image_alt": "Excursión a Lagos de Taurito",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 32,
@@ -814,7 +1212,11 @@
       "lng": -15.563,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0024/senderismo-caminar-para-conocer"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0024/senderismo-caminar-para-conocer",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad1d2ab013a6268e07a6445",
+      "image_alt": "Senderismo: Caminar para Conocer",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 24,
@@ -831,7 +1233,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0015/ix-edicion-de-la-carrera-insular-del-mayor-2026-pasos-x-la-vida"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0015/ix-edicion-de-la-carrera-insular-del-mayor-2026-pasos-x-la-vida",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac4a3b1013a6268e07a312c",
+      "image_alt": "IX Edición de la Carrera Insular del Mayor 2026 - Pasos x la vida",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 38,
@@ -848,7 +1254,11 @@
       "lng": -15.654,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0031/taller-de-tejidos-lanas-y-telas"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0031/taller-de-tejidos-lanas-y-telas",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad9bff6013a6268e07a86df",
+      "image_alt": "Taller de tejidos, lanas y telas",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 35,
@@ -865,7 +1275,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0028/el-cuchillo-canario-a-traves-de-la-historia-demostraciones-en-vivo"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0028/el-cuchillo-canario-a-traves-de-la-historia-demostraciones-en-vivo",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c7e4013a6268e07a7a5c",
+      "image_alt": "El cuchillo canario a través de la Historia. Demostraciones en vivo.",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 36,
@@ -882,7 +1296,11 @@
       "lng": -15.573,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0029/noon-canarias-vientar-trio"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0029/noon-canarias-vientar-trio",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718b2013a6268e07a7be8",
+      "image_alt": "NOON Canarias: Vientar Trío",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 33,
@@ -899,7 +1317,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0026/juegos-de-mesa-en-level-up-game-shop"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0026/juegos-de-mesa-en-level-up-game-shop",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c731013a6268e07a779f",
+      "image_alt": "Juegos de Mesa en Level Up Game Shop",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 1,
@@ -916,7 +1338,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Ayuntamiento de Ingenio",
-      "source_url": "https://ingenio.es/events/%f0%9f%91%bb%f0%9f%94%aa-casa-del-terror-el-ratino-%f0%9f%8e%83/"
+      "source_url": "https://ingenio.es/events/%f0%9f%91%bb%f0%9f%94%aa-casa-del-terror-el-ratino-%f0%9f%8e%83/",
+      "image_url": "https://ingenio.es/wp-content/uploads/2026/10/terror-ratino-300x300.jpg",
+      "image_alt": "👻🔪 ¡CASA DEL TERROR: EL RATIÑO! 🎃",
+      "image_origin": "Ayuntamiento de Ingenio",
+      "image_status": "official_remote"
     },
     {
       "id": 19,
@@ -933,7 +1359,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0005/lecturas-dramatizadas-la-coreana-i-ciaseasea-producciones"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0005/lecturas-dramatizadas-la-coreana-i-ciaseasea-producciones",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab62dbe013a6268e079f183",
+      "image_alt": "Lecturas Dramatizadas: La Coreana I Cia.SeaSea Producciones",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 26,
@@ -950,7 +1380,11 @@
       "lng": -15.445,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0018/de-donde-venimos"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0018/de-donde-venimos",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac5f590013a6268e07a368d",
+      "image_alt": "¿DE DONDE VENIMOS?",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 14,
@@ -967,7 +1401,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
-      "source_url": "https://artesescenicasgrancanaria.com/evento-768-31-festival.html"
+      "source_url": "https://artesescenicasgrancanaria.com/evento-768-31-festival.html",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_768-1.jpg?fp=61c1711b2305d6746066ebd3c7fda1a8",
+      "image_alt": "31 FESTIVAL MASDANZA: TRANSEÚNTE de Daniel Rodríguez",
+      "image_origin": "Circuito de Artes Escénicas GC",
+      "image_status": "official_remote"
     },
     {
       "id": 34,
@@ -984,7 +1422,11 @@
       "lng": -15.78,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0027/noche-de-estrellas-en-tasartico"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0027/noche-de-estrellas-en-tasartico",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c73c013a6268e07a77bd",
+      "image_alt": "Noche de Estrellas en Tasartico",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 23,
@@ -1001,7 +1443,11 @@
       "lng": -15.497,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0014/llega-a-santa-brigida-el-lodo-que-fuimos-premio-cenit"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0014/llega-a-santa-brigida-el-lodo-que-fuimos-premio-cenit",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad03ab8013a6268e07a5d6f",
+      "image_alt": "Llega a Santa Brígida ‘El lodo que fuimos’, premio CENIT",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 2,
@@ -1018,7 +1464,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Ayuntamiento de Ingenio",
-      "source_url": "https://www.tureservaonline.es/es/events/gran-final-yo-canto"
+      "source_url": "https://www.tureservaonline.es/es/events/gran-final-yo-canto",
+      "image_url": "https://ingenio.es/wp-content/uploads/2026/10/1023-yo-canto-300x300.jpg",
+      "image_alt": "GRAN FINAL YO CANTO",
+      "image_origin": "Ayuntamiento de Ingenio",
+      "image_status": "official_remote"
     },
     {
       "id": 29,
@@ -1035,7 +1485,11 @@
       "lng": -15.654,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0021/festival-agaldar-2026"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0021/festival-agaldar-2026",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acc3bad013a6268e07a4c1b",
+      "image_alt": "Festival Agáldar 2026",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 37,
@@ -1052,7 +1506,11 @@
       "lng": -15.579,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0030/dia-de-las-bibliotecas-con-sabor-de-autor"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0030/dia-de-las-bibliotecas-con-sabor-de-autor",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad80b34013a6268e07a804d",
+      "image_alt": "Día de las Bibliotecas con “Sabor de Autor”",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 52,
@@ -1069,7 +1527,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261025-0003/orfeo-y-euridice-un-viaje-para-decir-adios"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261025-0003/orfeo-y-euridice-un-viaje-para-decir-adios",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab62dac013a6268e079f14b",
+      "image_alt": "Orfeo y Eurídice. Un viaje para decir adiós",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 53,
@@ -1086,7 +1548,53 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261025-0001/bts-world-tour-arirang-in-buenos-aires-live-viewing"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261025-0001/bts-world-tour-arirang-in-buenos-aires-live-viewing",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa9ea1f013a6268e079b57e",
+      "image_alt": "BTS WORLD TOUR 'ARIRANG' IN BUENOS AIRES: LIVE VIEWING",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 210,
+      "title": "ORFEO Y EURÍDICE: UN VIAJE PARA DECIR ADIÓS",
+      "start": "2026-10-25",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Teatro Guiniguada",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261025-0000/orfeo-y-euridice-un-viaje-para-decir-adios",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a8317c19dcad74cbac392dd",
+      "image_alt": "ORFEO Y EURÍDICE: UN VIAJE PARA DECIR ADIÓS",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 211,
+      "title": "DÍA DEL CABALLO",
+      "start": "2026-10-25",
+      "end": null,
+      "municipality": "Ingenio",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "familia",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 27.918,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261025-0005/dia-del-caballo",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718c4013a6268e07a7c15",
+      "image_alt": "DÍA DEL CABALLO",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 54,
@@ -1103,7 +1611,11 @@
       "lng": -15.497,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261025-0004/el-mercado-municipal-cumple-40-anos-con-los-gofiones"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261025-0004/el-mercado-municipal-cumple-40-anos-con-los-gofiones",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad6d245013a6268e07a7bac",
+      "image_alt": "El Mercado Municipal cumple 40 años con Los Gofiones",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 3,
@@ -1120,7 +1632,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Ayuntamiento de Ingenio",
-      "source_url": "https://ingenio.es/events/dia-del-caballo/"
+      "source_url": "https://ingenio.es/events/dia-del-caballo/",
+      "image_url": "https://ingenio.es/wp-content/uploads/2026/10/dia_caballo-300x300.jpg",
+      "image_alt": "DÍA DEL CABALLO",
+      "image_origin": "Ayuntamiento de Ingenio",
+      "image_status": "official_remote"
     },
     {
       "id": 59,
@@ -1137,7 +1653,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261026-0000/maresia"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261026-0000/maresia",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 63,
@@ -1154,7 +1674,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0001/xiii-congreso-internacional-galdosiano-galdos-presente-y-futuro-nuevos-retos-galdosianos"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0001/xiii-congreso-internacional-galdosiano-galdos-presente-y-futuro-nuevos-retos-galdosianos",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 67,
@@ -1171,7 +1695,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0005/conferencia-i-jornadas-maximiliano-en-canarias"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0005/conferencia-i-jornadas-maximiliano-en-canarias",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 68,
@@ -1188,7 +1716,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0006/dia-mundial-patrimonio-audiovisual-2026"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0006/dia-mundial-patrimonio-audiovisual-2026",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 69,
@@ -1205,7 +1737,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0007/al-golpito-con-nuestros-mayores"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0007/al-golpito-con-nuestros-mayores",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718c8013a6268e07a7c21",
+      "image_alt": "Al Golpito con Nuestros Mayores",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 65,
@@ -1222,7 +1758,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0003/campana-de-hemodonacion-escuela-de-arquitectura"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0003/campana-de-hemodonacion-escuela-de-arquitectura",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac0654a013a6268e07a1f77",
+      "image_alt": "Campaña de hemodonación: Escuela de Arquitectura",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 64,
@@ -1239,7 +1779,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0002/campana-de-hemodonacion-facultad-de-ciencias-del-mar"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0002/campana-de-hemodonacion-facultad-de-ciencias-del-mar",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac0654a013a6268e07a1f77",
+      "image_alt": "Campaña de hemodonación: Facultad de Ciencias del Mar",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 66,
@@ -1256,7 +1800,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0004/campana-de-hemodonacion-escuela-de-ingenieria-informatica"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0004/campana-de-hemodonacion-escuela-de-ingenieria-informatica",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac0654a013a6268e07a1f77",
+      "image_alt": "Campaña de hemodonación: Escuela de Ingeniería Informática",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 62,
@@ -1273,7 +1821,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0000/alcarras"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0000/alcarras",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6abb692b013a6268e07a088c",
+      "image_alt": "Alcarràs",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 74,
@@ -1290,7 +1842,11 @@
       "lng": -15.497,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0002/visita-unidad-movil-de-la-policia-nacionaldni-pasaportes"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0002/visita-unidad-movil-de-la-policia-nacionaldni-pasaportes",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac5f563013a6268e07a3661",
+      "image_alt": "Visita Unidad Móvil de la Policía Nacional(DNI - PASAPORTES)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 73,
@@ -1307,7 +1863,11 @@
       "lng": -15.523,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0001/musicampus-actuacion-del-coro-schola-cantorum-ulpgc-en-veterinaria"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0001/musicampus-actuacion-del-coro-schola-cantorum-ulpgc-en-veterinaria",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6abf13c9013a6268e07a199f",
+      "image_alt": "Musicampus. Actuación del coro Schola Cantorum ULPGC en Veterinaria",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 76,
@@ -1324,7 +1884,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0005/la-voz-de-los-libros"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0005/la-voz-de-los-libros",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 72,
@@ -1341,7 +1905,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0000/efecto-cinema-la-noche-de-los-muertos-vivientes-1968"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0000/efecto-cinema-la-noche-de-los-muertos-vivientes-1968",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab45e6e013a6268e079ea1c",
+      "image_alt": "Efecto cinema: LA NOCHE DE LOS MUERTOS VIVIENTES (1968)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 77,
@@ -1358,7 +1926,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0006/millares-centenario"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0006/millares-centenario",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 75,
@@ -1375,7 +1947,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0004/curso-basico-de-cocina-canaria-saludable"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0004/curso-basico-de-cocina-canaria-saludable",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acc42ba013a6268e07a4c4e",
+      "image_alt": "Curso básico de cocina canaria saludable",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 84,
@@ -1392,7 +1968,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0002/expofuturo"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0002/expofuturo",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6abf5d98013a6268e07a1b05",
+      "image_alt": "ExpoFuturo",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 88,
@@ -1409,7 +1989,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0008/concierto-marta-bolanos-en-acustico"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0008/concierto-marta-bolanos-en-acustico",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 89,
@@ -1426,7 +2010,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0009/ciclo-de-cine-miradas-audiovisuales-pensar-y-comprender-america"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0009/ciclo-de-cine-miradas-audiovisuales-pensar-y-comprender-america",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 90,
@@ -1443,7 +2031,11 @@
       "lng": -15.416,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0011/conferencia-el-enigma-arencibia-vidas-paralelas-de-dos-maestros-de-la-pintura-canaria-por-fabio-garcia-saleh"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0011/conferencia-el-enigma-arencibia-vidas-paralelas-de-dos-maestros-de-la-pintura-canaria-por-fabio-garcia-saleh",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 91,
@@ -1460,7 +2052,11 @@
       "lng": -15.582,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0013/presentacion-del-libro-con-sal-en-la-memoria-de-mar-zeraus"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0013/presentacion-del-libro-con-sal-en-la-memoria-de-mar-zeraus",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 92,
@@ -1477,7 +2073,11 @@
       "lng": -15.654,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0014/presentacion-de-trabajos-artisticos-a-medias-con-padron-dos-fotos-un-cuerpo"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0014/presentacion-de-trabajos-artisticos-a-medias-con-padron-dos-fotos-un-cuerpo",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 94,
@@ -1494,7 +2094,32 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0019/sentido-y-sensibilidad-vose"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0019/sentido-y-sensibilidad-vose",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad80f12013a6268e07a807a",
+      "image_alt": "Sentido y sensibilidad (VOSE)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 213,
+      "title": "MARTA BOLAÑOS EN ACÚSTICO",
+      "start": "2026-10-29",
+      "end": null,
+      "municipality": "Ingenio",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "musica",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 27.918,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0018/marta-bolanos-en-acustico",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718c6013a6268e07a7c1b",
+      "image_alt": "MARTA BOLAÑOS EN ACÚSTICO",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 85,
@@ -1511,7 +2136,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0003/campana-de-hemodonacion-parque-cientifico-y-tecnologico"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0003/campana-de-hemodonacion-parque-cientifico-y-tecnologico",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac0654a013a6268e07a1f77",
+      "image_alt": "Campaña de hemodonación: Parque Científico y Tecnológico",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 93,
@@ -1528,7 +2157,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0017/entre-paginas"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0017/entre-paginas",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 4,
@@ -1545,7 +2178,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Ayuntamiento de Ingenio",
-      "source_url": "https://ingenio.es/events/marta-bolanos-en-acustico/"
+      "source_url": "https://ingenio.es/events/marta-bolanos-en-acustico/",
+      "image_url": "https://ingenio.es/wp-content/uploads/2026/10/Marta-Bolanos-300x300.jpg",
+      "image_alt": "MARTA BOLAÑOS EN ACÚSTICO",
+      "image_origin": "Ayuntamiento de Ingenio",
+      "image_status": "official_remote"
     },
     {
       "id": 87,
@@ -1562,7 +2199,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0006/bodas-de-sangre"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0006/bodas-de-sangre",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac18c8f013a6268e07a2467",
+      "image_alt": "Bodas de sangre",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 86,
@@ -1579,7 +2220,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0004/campana-de-hemodonacion-escuela-de-ingenierias-industriales-y-civiles"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0004/campana-de-hemodonacion-escuela-de-ingenierias-industriales-y-civiles",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac0654a013a6268e07a1f77",
+      "image_alt": "Campaña de hemodonación: Escuela de Ingenierías Industriales y Civiles",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 83,
@@ -1596,7 +2241,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0000/concierto-de-soraia-cardoso"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0000/concierto-de-soraia-cardoso",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a8317cd9dcad74cbac392e8",
+      "image_alt": "CONCIERTO DE SORAIA CARDOSO",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 96,
@@ -1613,7 +2262,11 @@
       "lng": -15.542,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0002/el-ultimo-presidente"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0002/el-ultimo-presidente",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a742bf59dcad74cbac35d42",
+      "image_alt": "EL ÚLTIMO PRESIDENTE",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 98,
@@ -1630,7 +2283,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0004/las-cuartas-de-beethoven-y-brahms"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0004/las-cuartas-de-beethoven-y-brahms",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a956349013a6268e0795f83",
+      "image_alt": "Las Cuartas de Beethoven y Brahms",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 101,
@@ -1647,7 +2304,11 @@
       "lng": -15.445,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0027/ecos-de-los-reyes"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0027/ecos-de-los-reyes",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac8981b013a6268e07a3cd4",
+      "image_alt": "Ecos de los Reyes",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 102,
@@ -1664,7 +2325,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0028/recetas-sonoras-memorias-orales-y-gustativas-de-gran-canaria"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0028/recetas-sonoras-memorias-orales-y-gustativas-de-gran-canaria",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac8981f013a6268e07a3ce5",
+      "image_alt": "Recetas Sonoras: Memorias orales y gustativas de Gran Canaria",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 103,
@@ -1681,7 +2346,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0030/taller-infantil-reposteria-encantada"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0030/taller-infantil-reposteria-encantada",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 104,
@@ -1698,7 +2367,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0031/exposicion-recetas-sonoras-de-liliana-gonzalez"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0031/exposicion-recetas-sonoras-de-liliana-gonzalez",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acf49c8013a6268e07a5994",
+      "image_alt": "Exposición: Recetas sonoras de Liliana González",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 106,
@@ -1715,7 +2388,11 @@
       "lng": -15.7,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0035/actividad-de-animacion-a-la-lectura"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0035/actividad-de-animacion-a-la-lectura",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c249013a6268e07a7748",
+      "image_alt": "Actividad de Animación a la Lectura",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 107,
@@ -1732,7 +2409,11 @@
       "lng": -15.573,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0036/noche-de-finaos"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0036/noche-de-finaos",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c71b013a6268e07a7783",
+      "image_alt": "Noche de Finaos",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 108,
@@ -1749,7 +2430,11 @@
       "lng": -15.573,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0040/iii-maspaterror-2026-atrapados-en-la-red"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0040/iii-maspaterror-2026-atrapados-en-la-red",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718ce013a6268e07a7c38",
+      "image_alt": "III Maspaterror 2026: Atrapados en la red",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 109,
@@ -1766,7 +2451,95 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0043/clasicos-en-vegueta-la-muerte-en-verso"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0043/clasicos-en-vegueta-la-muerte-en-verso",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad9485b013a6268e07a8583",
+      "image_alt": "Clásicos en Vegueta: La muerte en verso",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 214,
+      "title": "TRIBUTO \"POR SIEMPRE SELENA\"",
+      "start": "2026-10-30",
+      "end": null,
+      "municipality": "Ingenio",
+      "venue": "Centro Cultural Federico García Lorca",
+      "category": "musica",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 27.918,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0000/tributo-por-siempre-selena",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a01ad65c1903334fa48b2e5",
+      "image_alt": "TRIBUTO \"POR SIEMPRE SELENA\"",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 215,
+      "title": "LA BARRACA de Vicente Blasco Ibáñez",
+      "start": "2026-10-30",
+      "end": "2026-10-31",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Sala Insular de Teatro",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0012/la-barraca-de-vicente-blasco-ibanez",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa72126013a6268e079a94e",
+      "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 216,
+      "title": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
+      "start": "2026-10-30",
+      "end": "2026-10-31",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Sala Insular de Teatro",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0013/residencias-sit1-senora-tu-madre-de-raquel-ponce",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa72134013a6268e079a958",
+      "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 218,
+      "title": "LA BARRACA de Vicente Blasco Ibáñez",
+      "start": "2026-10-30",
+      "end": "2026-10-31",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0023/la-barraca-de-vicente-blasco-ibanez",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa72126013a6268e079a94e",
+      "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 99,
@@ -1783,7 +2556,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0005/taller-de-danza-iniciacion-al-tarantismo-y-la-pizzica"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0005/taller-de-danza-iniciacion-al-tarantismo-y-la-pizzica",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a96c468013a6268e07965fc",
+      "image_alt": "Taller de danza \"Iniciación al tarantismo y la pizzica\"",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 5,
@@ -1800,7 +2577,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Ayuntamiento de Ingenio",
-      "source_url": "https://ingenio.es/events/%f0%9f%8f%9a%ef%b8%8f-la-casona-del-terror-2026-las-tres-ausentes-%f0%9f%91%bb/"
+      "source_url": "https://ingenio.es/events/%f0%9f%8f%9a%ef%b8%8f-la-casona-del-terror-2026-las-tres-ausentes-%f0%9f%91%bb/",
+      "image_url": "https://ingenio.es/wp-content/uploads/2026/10/casa-terror-31-y-31-300x300.jpg",
+      "image_alt": "🏚️ LA CASONA DEL TERROR 2026: LAS TRES AUSENTES 👻",
+      "image_origin": "Ayuntamiento de Ingenio",
+      "image_status": "official_remote"
     },
     {
       "id": 12,
@@ -1817,7 +2598,32 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Juventud Las Palmas de Gran Canaria",
-      "source_url": "https://actividadesjuventud.laspalmasgc.es/events/87ac8e81f5e3b867c6b203294dd3fb2939493ab8"
+      "source_url": "https://actividadesjuventud.laspalmasgc.es/events/87ac8e81f5e3b867c6b203294dd3fb2939493ab8",
+      "image_url": "https://actividadesjuventud.laspalmasgc.es/storage/events/8c36cb6027b8f40d3b236ef63a783461_thumb.webp",
+      "image_alt": "HIJOS DE LA BRUMA",
+      "image_origin": "Juventud Las Palmas",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 220,
+      "title": "HIJOS DE LA BRUMA",
+      "start": "2026-10-30T18:00:00",
+      "end": "2026-10-30T21:00:00",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0038/hijos-de-la-bruma",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c742013a6268e07a77ce",
+      "image_alt": "HIJOS DE LA BRUMA",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 13,
@@ -1834,7 +2640,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Juventud Las Palmas de Gran Canaria",
-      "source_url": "https://actividadesjuventud.laspalmasgc.es/events/0a0f2ae33d385bf653e6aead738c30bad323dd0a"
+      "source_url": "https://actividadesjuventud.laspalmasgc.es/events/0a0f2ae33d385bf653e6aead738c30bad323dd0a",
+      "image_url": "https://actividadesjuventud.laspalmasgc.es/storage/events/a6c05c10caa004f95d428f7eabf0aaf5_thumb.webp",
+      "image_alt": "ENTRENANDO CEREBRITOS - OCTUBRE",
+      "image_origin": "Juventud Las Palmas",
+      "image_status": "official_remote"
     },
     {
       "id": 97,
@@ -1851,7 +2661,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0003/melania-pinero-trio-y-anna-trea"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0003/melania-pinero-trio-y-anna-trea",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a8317db9dcad74cbac392ed",
+      "image_alt": "MELANIA PIÑERO TRÍO Y ANNA TRÉA",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 100,
@@ -1868,7 +2682,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0006/aula-de-cine-ciclo-los-modernos-anos-30-el-angel-azul"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0006/aula-de-cine-ciclo-los-modernos-anos-30-el-angel-azul",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa9fbe3013a6268e079bbef",
+      "image_alt": "Aula de cine. Ciclo “Los modernos años 30”. El ángel azul",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 105,
@@ -1885,7 +2703,53 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0034/cerebritos-en-juego"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0034/cerebritos-en-juego",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 217,
+      "title": "ENTRENANDO CEREBRITOS - OCTUBRE",
+      "start": "2026-10-30T19:00:00",
+      "end": "2026-10-30T23:00:00",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0022/entrenando-cerebritos-octubre",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6abf5d9e013a6268e07a1b16",
+      "image_alt": "ENTRENANDO CEREBRITOS - OCTUBRE",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 219,
+      "title": "Cerebritos en Juego",
+      "start": "2026-10-30T19:00:00",
+      "end": "2026-10-30T23:00:00",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0032/cerebritos-en-juego",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad1d2b3013a6268e07a645c",
+      "image_alt": "Cerebritos en Juego",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 15,
@@ -1902,7 +2766,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
-      "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html"
+      "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=61c1711b2305d6746066ebd3c7fda1a8",
+      "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
+      "image_origin": "Circuito de Artes Escénicas GC",
+      "image_status": "official_remote"
     },
     {
       "id": 17,
@@ -1919,7 +2787,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
-      "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html"
+      "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=61c1711b2305d6746066ebd3c7fda1a8",
+      "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
+      "image_origin": "Circuito de Artes Escénicas GC",
+      "image_status": "official_remote"
     },
     {
       "id": 70,
@@ -1936,7 +2808,32 @@
       "lng": -15.445,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0021/graciela-conchalovsky"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0021/graciela-conchalovsky",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 212,
+      "title": "GRACIELA CONCHALOVSKY",
+      "start": "2026-10-30T20:00:00",
+      "end": "2026-10-30T21:30:00",
+      "municipality": "Agüimes",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 27.906,
+      "lng": -15.445,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261020-0001/graciela-conchalovsky",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a918286013a6268e0795030",
+      "image_alt": "GRACIELA CONCHALOVSKY",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 11,
@@ -1953,7 +2850,11 @@
       "lng": -15.542,
       "accuracy": "municipality",
       "source_name": "Ayuntamiento de Agüimes",
-      "source_url": "https://eventos.aguimes.es/events/2a0918fdcbb6938dacd5c8dc3043a6b7c80a9e3b"
+      "source_url": "https://eventos.aguimes.es/events/2a0918fdcbb6938dacd5c8dc3043a6b7c80a9e3b",
+      "image_url": "https://eventos.aguimes.es/storage/events/d74d4ef899d7e3dc76d5546e5ddb28ef.png",
+      "image_alt": "Cine de Terror",
+      "image_origin": "Ayuntamiento de Agüimes",
+      "image_status": "official_remote"
     },
     {
       "id": 7,
@@ -1970,7 +2871,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Ayuntamiento de Ingenio",
-      "source_url": "https://www.tureservaonline.es/es/events/tributo-por-siempre-selena"
+      "source_url": "https://www.tureservaonline.es/es/events/tributo-por-siempre-selena",
+      "image_url": "https://ingenio.es/wp-content/uploads/2026/08/tributo-SELENA-1-300x300.jpg",
+      "image_alt": "TRIBUTO «POR SIEMPRE SELENA»",
+      "image_origin": "Ayuntamiento de Ingenio",
+      "image_status": "official_remote"
     },
     {
       "id": 95,
@@ -1987,7 +2892,11 @@
       "lng": -15.416,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0001/santiago-auseron-presenta-nerantzi"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0001/santiago-auseron-presenta-nerantzi",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a07cfb1c1903334fa48c124",
+      "image_alt": "SANTIAGO AUSERÓN PRESENTA NERANTZI",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 111,
@@ -2004,7 +2913,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0000/pablo-lopez"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0000/pablo-lopez",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6abb9543013a6268e07a0964",
+      "image_alt": "Pablo López",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 112,
@@ -2021,7 +2934,11 @@
       "lng": -15.542,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0001/maria-pelae"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0001/maria-pelae",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a50b5e84adaed35184ed1cf",
+      "image_alt": "MARÍA PELAE",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 114,
@@ -2038,7 +2955,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0005/lorca-por-damaso"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0005/lorca-por-damaso",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acf487a013a6268e07a5958",
+      "image_alt": "Lorca por Dámaso",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 115,
@@ -2055,7 +2976,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0006/bts-world-tour-arirang-in-sao-paulo-live-viewing"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0006/bts-world-tour-arirang-in-sao-paulo-live-viewing",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa9ea1f013a6268e079b57e",
+      "image_alt": "BTS WORLD TOUR 'ARIRANG' IN SAO PAULO: LIVE VIEWING",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 116,
@@ -2072,7 +2997,11 @@
       "lng": -15.647,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0008/ii-edicion-del-mercadillo-tradicional-de-artenara"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0008/ii-edicion-del-mercadillo-tradicional-de-artenara",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad1d2a3013a6268e07a641b",
+      "image_alt": "II Edición del Mercadillo Tradicional de Artenara",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 8,
@@ -2089,7 +3018,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Ayuntamiento de Ingenio",
-      "source_url": "https://ingenio.es/xc-el-burrero/"
+      "source_url": "https://ingenio.es/xc-el-burrero/",
+      "image_url": "https://ingenio.es/wp-content/uploads/2026/10/iii-xc-villa-de-ingenio-31-oct-300x300.jpg",
+      "image_alt": "III XC VILLA DE INGENIO",
+      "image_origin": "Ayuntamiento de Ingenio",
+      "image_status": "official_remote"
     },
     {
       "id": 117,
@@ -2106,7 +3039,11 @@
       "lng": -15.78,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0011/biosfera-joven-jovenes-que-cuentan-su-territorio"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0011/biosfera-joven-jovenes-que-cuentan-su-territorio",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c73f013a6268e07a77c6",
+      "image_alt": "Biosfera Joven: Jóvenes que cuentan su territorio",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 9,
@@ -2123,7 +3060,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Ayuntamiento de Ingenio",
-      "source_url": "https://ingenio.es/events/encuentro-intergeneracional/"
+      "source_url": "https://ingenio.es/events/encuentro-intergeneracional/",
+      "image_url": "https://ingenio.es/wp-content/uploads/2026/10/coach-bienestar-300x300.jpg",
+      "image_alt": "Encuentro Intergeneracional",
+      "image_origin": "Ayuntamiento de Ingenio",
+      "image_status": "official_remote"
     },
     {
       "id": 118,
@@ -2140,7 +3081,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0012/el-cuchillo-canario-a-traves-de-la-historia-demostraciones-en-vivo"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0012/el-cuchillo-canario-a-traves-de-la-historia-demostraciones-en-vivo",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c7e4013a6268e07a7a5c",
+      "image_alt": "El cuchillo canario a través de la historia. Demostraciones en vivo",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 6,
@@ -2157,7 +3102,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Ayuntamiento de Ingenio",
-      "source_url": "https://ingenio.es/events/%f0%9f%91%bb%f0%9f%94%aa-casa-del-terror-el-ratino-%f0%9f%8e%83-665/"
+      "source_url": "https://ingenio.es/events/%f0%9f%91%bb%f0%9f%94%aa-casa-del-terror-el-ratino-%f0%9f%8e%83-665/",
+      "image_url": "https://ingenio.es/wp-content/uploads/2026/10/terror-ratino-300x300.jpg",
+      "image_alt": "👻🔪 ¡CASA DEL TERROR: EL RATIÑO! 🎃",
+      "image_origin": "Ayuntamiento de Ingenio",
+      "image_status": "official_remote"
     },
     {
       "id": 119,
@@ -2174,7 +3123,11 @@
       "lng": -15.723,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0013/noche-de-finaos"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0013/noche-de-finaos",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718cb013a6268e07a7c2a",
+      "image_alt": "Noche de Finaos",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 16,
@@ -2191,7 +3144,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
-      "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html"
+      "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=61c1711b2305d6746066ebd3c7fda1a8",
+      "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
+      "image_origin": "Circuito de Artes Escénicas GC",
+      "image_status": "official_remote"
     },
     {
       "id": 18,
@@ -2208,7 +3165,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
-      "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html"
+      "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=61c1711b2305d6746066ebd3c7fda1a8",
+      "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
+      "image_origin": "Circuito de Artes Escénicas GC",
+      "image_status": "official_remote"
     },
     {
       "id": 113,
@@ -2225,7 +3186,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0004/quiso-negro"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0004/quiso-negro",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a8317e69dcad74cbac392f6",
+      "image_alt": "QUISO NEGRO",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 125,
@@ -2242,7 +3207,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261101-0000/luis-zahera"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261101-0000/luis-zahera",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6961ba4b3ab37f1f315a0fe8",
+      "image_alt": "Luis Zahera",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 127,
@@ -2259,7 +3228,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261101-0002/adri-rod"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261101-0002/adri-rod",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6abb95ce013a6268e07a096a",
+      "image_alt": "Adri & Rod",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 129,
@@ -2276,7 +3249,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261101-0005/programacion-la-grada-creativa-noviembre-2026"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261101-0005/programacion-la-grada-creativa-noviembre-2026",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acf3809013a6268e07a582a",
+      "image_alt": "Programación La Grada Creativa Noviembre 2026",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 126,
@@ -2293,7 +3270,11 @@
       "lng": -15.654,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261101-0001/mercado-agricola"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261101-0001/mercado-agricola",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a328f0bc1903334fa491a0c",
+      "image_alt": "Mercado Agrícola",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 128,
@@ -2310,7 +3291,11 @@
       "lng": -15.416,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261101-0003/el-lago-de-los-cisnes-international-ballet-company"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261101-0003/el-lago-de-los-cisnes-international-ballet-company",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aadecc2013a6268e079ce58",
+      "image_alt": "EL LAGO DE LOS CISNES - INTERNATIONAL BALLET COMPANY",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 136,
@@ -2327,7 +3312,11 @@
       "lng": -15.497,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261102-0000/formacion-en-ia-para-emprender"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261102-0000/formacion-en-ia-para-emprender",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad823d0013a6268e07a80e1",
+      "image_alt": "Formación en IA para emprender",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 139,
@@ -2344,7 +3333,11 @@
       "lng": -15.7,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261103-0001/el-ayuntamiento-de-agaete-pone-en-marcha-el-programa-de-talleres-cuida-de-tu-bienestar"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261103-0001/el-ayuntamiento-de-agaete-pone-en-marcha-el-programa-de-talleres-cuida-de-tu-bienestar",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad86a43013a6268e07a8207",
+      "image_alt": "El Ayuntamiento de Agaete pone en marcha el programa de talleres Cuida de tu Bienestar",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 140,
@@ -2361,7 +3354,11 @@
       "lng": -15.582,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261103-0002/cursos-y-talleres-de-noviembre-de-la-universidad-popular"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261103-0002/cursos-y-talleres-de-noviembre-de-la-universidad-popular",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad9c005013a6268e07a86e8",
+      "image_alt": "Cursos y talleres de noviembre de la Universidad Popular",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 138,
@@ -2378,7 +3375,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261103-0000/guardianes-de-la-noche-tren-infinito"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261103-0000/guardianes-de-la-noche-tren-infinito",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab62dc0013a6268e079f18b",
+      "image_alt": "Guardianes de la noche: Tren Infinito",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 142,
@@ -2395,7 +3396,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261104-0000/i-jornadas-de-aprendizaje-servicio-universitario-de-canarias"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261104-0000/i-jornadas-de-aprendizaje-servicio-universitario-de-canarias",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa717f1013a6268e079a8eb",
+      "image_alt": "I Jornadas de Aprendizaje-Servicio Universitario de Canarias",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 143,
@@ -2412,7 +3417,32 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261104-0002/erase-una-vez-en-el-cine-ces1"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261104-0002/erase-una-vez-en-el-cine-ces1",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab38d9d013a6268e079e73e",
+      "image_alt": "Érase una vez en el cine (CES1)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 221,
+      "title": "Érase una vez en el cine (CES1)",
+      "start": "2026-11-04",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261104-0001/erase-una-vez-en-el-cine-ces1",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab38d9d013a6268e079e73e",
+      "image_alt": "Érase una vez en el cine (CES1)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 145,
@@ -2429,7 +3459,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261104-0004/transformacion-digital-y-sostenibilidad-2026-innovacion-para-un-futuro-mas-sostenible"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261104-0004/transformacion-digital-y-sostenibilidad-2026-innovacion-para-un-futuro-mas-sostenible",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad71d1a013a6268e07a7ce5",
+      "image_alt": "Transformación Digital y Sostenibilidad 2026: innovación para un futuro más sostenible",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 144,
@@ -2446,7 +3480,11 @@
       "lng": -15.523,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261104-0003/campana-de-hemodonacion-facultad-de-veterinaria"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261104-0003/campana-de-hemodonacion-facultad-de-veterinaria",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac0654f013a6268e07a1f81",
+      "image_alt": "Campaña de hemodonación: Facultad de Veterinaria",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 147,
@@ -2463,7 +3501,32 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261105-0002/erase-una-vez-en-el-cine-ces1"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261105-0002/erase-una-vez-en-el-cine-ces1",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab38d9d013a6268e079e73e",
+      "image_alt": "Érase una vez en el cine (CES1)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 222,
+      "title": "Érase una vez en el cine (CES1)",
+      "start": "2026-11-05",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261105-0001/erase-una-vez-en-el-cine-ces1",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab38d9d013a6268e079e73e",
+      "image_alt": "Érase una vez en el cine (CES1)",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 149,
@@ -2480,7 +3543,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261105-0004/la-pantalla-inversa-matrix"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261105-0004/la-pantalla-inversa-matrix",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c24d013a6268e07a7753",
+      "image_alt": "La Pantalla Inversa: Matrix",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
     },
     {
       "id": 148,
@@ -2497,7 +3564,221 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261105-0003/microzarzuelas"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261105-0003/microzarzuelas",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6abc4682013a6268e07a0c55",
+      "image_alt": "Microzarzuelas",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 150,
+      "title": "Fashion & Friend",
+      "start": "2026-11-06",
+      "end": "2026-11-08",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0000/fashion-friend",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/68b8129b848fe4568884b2e8",
+      "image_alt": "Fashion & Friend",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 151,
+      "title": "Bello Universo",
+      "start": "2026-11-06",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Teatro Pérez Galdós",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0001/bello-universo",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5e152013a6268e07a7ae2",
+      "image_alt": "Bello Universo",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 152,
+      "title": "Aula de cine. Ciclo “Los modernos años 30”. Asesinato",
+      "start": "2026-11-06",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0002/aula-de-cine-ciclo-los-modernos-anos-30-asesinato",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6985c63909e3917fd2aca61f",
+      "image_alt": "Aula de cine. Ciclo “Los modernos años 30”. Asesinato",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 153,
+      "title": "JAZZ OTOÑO 2026 - ROBERT KESSLER TRIO",
+      "start": "2026-11-06",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Sala Insular de Teatro",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0003/jazz-otono-2026-robert-kessler-trio",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 154,
+      "title": "Érase una vez en el cine (CES1)",
+      "start": "2026-11-06",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0004/erase-una-vez-en-el-cine-ces1",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 155,
+      "title": "Érase una vez en el cine (CES1)",
+      "start": "2026-11-06",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0005/erase-una-vez-en-el-cine-ces1",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 157,
+      "title": "IV Jornadas de Neurodiversidad Mogán 2026",
+      "start": "2026-11-06",
+      "end": "2026-11-08",
+      "municipality": "Mogán",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 27.884,
+      "lng": -15.723,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0007/iv-jornadas-de-neurodiversidad-mogan-2026",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 158,
+      "title": "OL-VI-DO",
+      "start": "2026-11-06T19:00:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Teatro Guiniguada",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0008/ol-vi-do",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 159,
+      "title": "Sabores del Mundo: De Tapas en Maspalomas",
+      "start": "2026-11-06T19:00:00",
+      "end": null,
+      "municipality": "San Bartolomé de Tirajana",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "gastronomia",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 27.923,
+      "lng": -15.573,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0009/sabores-del-mundo-de-tapas-en-maspalomas",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 156,
+      "title": "Festival de magia: Dania Díaz",
+      "start": "2026-11-06T20:00:00",
+      "end": "2026-11-06T21:30:00",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0006/festival-de-magia-dania-diaz",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 10,
@@ -2514,7 +3795,578 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Ayuntamiento de Ingenio",
-      "source_url": "https://www.tureservaonline.es/es/events/cristina-medina-presenta-la-partenaire"
+      "source_url": "https://www.tureservaonline.es/es/events/cristina-medina-presenta-la-partenaire",
+      "image_url": "https://ingenio.es/wp-content/uploads/2026/08/Cristina-Medina-1-300x300.jpg",
+      "image_alt": "CRISTINA MEDINA PRESENTA “LA PARTENAIRE”",
+      "image_origin": "Ayuntamiento de Ingenio",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 165,
+      "title": "JAZZ OTOÑO 2026- JUDITH HILL QUARTET",
+      "start": "2026-11-07",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Sala Insular de Teatro",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0003/jazz-otono-2026-judith-hill-quartet",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 167,
+      "title": "Érase una vez en el cine",
+      "start": "2026-11-07",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0006/erase-una-vez-en-el-cine",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 168,
+      "title": "Érase una vez en el cine",
+      "start": "2026-11-07",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0007/erase-una-vez-en-el-cine",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 169,
+      "title": "V ORIÉNTATE CON INGENIO",
+      "start": "2026-11-07",
+      "end": null,
+      "municipality": "Santa Lucía de Tirajana",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 27.914,
+      "lng": -15.542,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0008/v-orientate-con-ingenio",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 171,
+      "title": "Stray Kids World Tour <RUN IT> LIVE VIEWING (Directo)",
+      "start": "2026-11-07",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Centro Comercial Siete Palmas",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0010/stray-kids-world-tour-run-it-live-viewing-directo",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 172,
+      "title": "Stray Kids World Tour <RUN IT> LIVE VIEWING (Reemisión)",
+      "start": "2026-11-07",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Centro Comercial Siete Palmas",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0011/stray-kids-world-tour-run-it-live-viewing-reemision",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 173,
+      "title": "Nyeleni | Ecos del Hogar",
+      "start": "2026-11-07",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0012/nyeleni-ecos-del-hogar",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 176,
+      "title": "Concierto África Vive - Bridge to Africa | John Kyffy & The Kyffyz",
+      "start": "2026-11-07",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "musica",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0015/concierto-africa-vive-bridge-to-africa-john-kyffy-the-kyffyz",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 178,
+      "title": "Conciertos África Vive - Bridge to Africa | John Kyffy & The Kyffyz",
+      "start": "2026-11-07",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "musica",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0017/conciertos-africa-vive-bridge-to-africa-john-kyffy-the-kyffyz",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 175,
+      "title": "El cuchillo canario a través de la historia. Actividades paralelas",
+      "start": "2026-11-07T12:00:00",
+      "end": "2026-11-07T14:00:00",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Museo Elder",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0014/el-cuchillo-canario-a-traves-de-la-historia-actividades-paralelas",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 164,
+      "title": "BLANCANIEVES, MÁS ALLÁ DEL ESPEJO",
+      "start": "2026-11-07T18:30:00",
+      "end": "2026-11-07T19:40:00",
+      "municipality": "Agüimes",
+      "venue": "Teatro Auditorio Agüimes",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 27.906,
+      "lng": -15.445,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0002/blancanieves-mas-alla-del-espejo",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 174,
+      "title": "Primera FEB - Inveready Askatuak Gipúzkoa",
+      "start": "2026-11-07T19:00:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Gran Canaria Arena",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0013/primera-feb-inveready-askatuak-gipuzkoa",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 162,
+      "title": "CONVERSACIONES CON MI MENTE – JOAQUÍN CASERZA",
+      "start": "2026-11-07T20:00:00",
+      "end": "2026-11-07T22:00:00",
+      "municipality": "Gáldar",
+      "venue": "Centro Cultural Guaire",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.145,
+      "lng": -15.654,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0000/conversaciones-con-mi-mente-joaquin-caserza",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 166,
+      "title": "Festival de magia: Jorge Luengo",
+      "start": "2026-11-07T20:00:00",
+      "end": "2026-11-07T21:30:00",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0004/festival-de-magia-jorge-luengo",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 170,
+      "title": "La Casa de Bernarda Alba",
+      "start": "2026-11-07T20:00:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Teatro Guiniguada",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0009/la-casa-de-bernarda-alba",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 163,
+      "title": "Celebrando a JAR",
+      "start": "2026-11-07T20:30:00",
+      "end": "2026-11-07T22:00:00",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0001/celebrando-a-jar",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 177,
+      "title": "Los Coquillos",
+      "start": "2026-11-07T20:30:00",
+      "end": "2026-11-07T23:59:00",
+      "municipality": "Valleseco",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.045,
+      "lng": -15.579,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0016/los-coquillos",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 184,
+      "title": "Víctor Manuel",
+      "start": "2026-11-08",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Auditorio Alfredo Kraus",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261108-0000/victor-manuel",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 187,
+      "title": "Trío Reinecke",
+      "start": "2026-11-08",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Auditorio Alfredo Kraus",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261108-0003/trio-reinecke",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 185,
+      "title": "Festival de magia: Carlos Adriano, Nano Arranz y Miriam La Maga",
+      "start": "2026-11-08T12:00:00",
+      "end": "2026-11-08T13:30:00",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261108-0001/festival-de-magia-carlos-adriano-nano-arranz-y-miriam-la-maga",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 186,
+      "title": "BLANCANIEVES, MÁS ALLÁ DEL ESPEJO",
+      "start": "2026-11-08T12:00:00",
+      "end": null,
+      "municipality": "Agüimes",
+      "venue": "Teatro Auditorio Agüimes",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 27.906,
+      "lng": -15.445,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261108-0002/blancanieves-mas-alla-del-espejo",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 188,
+      "title": "PAJARILLOS EN LA CABEZA",
+      "start": "2026-11-08T12:30:00",
+      "end": "2026-11-08T13:30:00",
+      "municipality": "Telde",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 27.993,
+      "lng": -15.416,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261108-0004/pajarillos-en-la-cabeza",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 189,
+      "title": "Presentación de «El Protocolo Figuera»",
+      "start": "2026-11-09",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261109-0001/presentacion-de-el-protocolo-figuera",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 194,
+      "title": "Concierto Aniversario",
+      "start": "2026-11-10",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Teatro Pérez Galdós",
+      "category": "musica",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261111-0000/concierto-aniversario",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 191,
+      "title": "Dragan Ball Super: Broly",
+      "start": "2026-11-10T19:00:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Teatro Guiniguada",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261110-0000/dragan-ball-super-broly",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 192,
+      "title": "Dragon Ball Super: Broly",
+      "start": "2026-11-10T19:00:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Teatro Guiniguada",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261110-0002/dragon-ball-super-broly",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 195,
+      "title": "Curso básico de cocina canaria saludable",
+      "start": "2026-11-11T19:30:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261111-0001/curso-basico-de-cocina-canaria-saludable",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     },
     {
       "id": 146,
@@ -2531,10 +4383,287 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261105-0000/expodeca-2026-feria-de-la-actividad-fisica-y-el-deporte-de-canarias"
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261105-0000/expodeca-2026-feria-de-la-actividad-fisica-y-el-deporte-de-canarias",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6977d5a93ab37f1f315a3bd4",
+      "image_alt": "ExpoDeca 2026, Feria de la Actividad Física y el Deporte de Canarias",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote"
+    },
+    {
+      "id": 197,
+      "title": "M.A.R.- Mujeres Africanas Rodando",
+      "start": "2026-11-12",
+      "end": "2026-11-14",
+      "municipality": "Agüimes",
+      "venue": "Teatro Auditorio Agüimes",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 27.906,
+      "lng": -15.445,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261112-0000/mar-mujeres-africanas-rodando",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 198,
+      "title": "Chichon dirige Shostakovich y Mussorgski",
+      "start": "2026-11-12",
+      "end": "2026-11-13",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Auditorio Alfredo Kraus",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261112-0001/chichon-dirige-shostakovich-y-mussorgski",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 199,
+      "title": "EL NIÑO DE LA MEDIA LUNA",
+      "start": "2026-11-12",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Sala Insular de Teatro",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261112-0004/el-nino-de-la-media-luna",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 200,
+      "title": "Calling all dawns (CES2)",
+      "start": "2026-11-12",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261112-0007/calling-all-dawns-ces2",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 201,
+      "title": "Calling all dawns (CES2)",
+      "start": "2026-11-12",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261112-0008/calling-all-dawns-ces2",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 203,
+      "title": "Ciclo de conferencias ¿A quién pertenece la ciudad?",
+      "start": "2026-11-12T19:30:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261112-0010/ciclo-de-conferencias-a-quien-pertenece-la-ciudad",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 202,
+      "title": "20 AÑOS DE ABUBUKAKA - 1ª PARTE",
+      "start": "2026-11-12T20:00:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Teatro Guiniguada",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261112-0009/20-anos-de-abubukaka-1-parte",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 204,
+      "title": "Leo & Leo",
+      "start": "2026-11-13",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Auditorio Alfredo Kraus",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0000/leo-leo",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 206,
+      "title": "FLAMENC OH! de YLLANA",
+      "start": "2026-11-13",
+      "end": "2026-11-14",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Sala Insular de Teatro",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0004/flamenc-oh-de-yllana",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 207,
+      "title": "MI SUEÑO DE INVIERNO",
+      "start": "2026-11-13",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Sala Insular de Teatro",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0005/mi-sueno-de-invierno",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 208,
+      "title": "Calling all dawns (CES2)",
+      "start": "2026-11-13",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0008/calling-all-dawns-ces2",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 209,
+      "title": "Calling all dawns (CES2)",
+      "start": "2026-11-13",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0009/calling-all-dawns-ces2",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
+    },
+    {
+      "id": 205,
+      "title": "Aula de cine. Ciclo “Los modernos años 30”. M. El vampiro de Düsseldorf",
+      "start": "2026-11-13T19:00:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0002/aula-de-cine-ciclo-los-modernos-anos-30-m-el-vampiro-de-dusseldorf",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": ""
     }
   ],
-  "generated_at": "2026-10-24T14:40:21+01:00",
+  "generated_at": "2026-10-24T15:13:53+01:00",
   "timezone": "Atlantic/Canary",
   "verified_sources": 5
 }
