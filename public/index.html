@@ -28,8 +28,29 @@
 .fallback-copy{font-size:11px;letter-spacing:.05em;opacity:.75;font-weight:700}
 .photo:after,.modal-photo:after{z-index:2;pointer-events:none}
 .photo-tag,.photo-date,.fav-btn,.modal-photo-label{z-index:3}
+
+.map-panel{padding:calc(12px + env(safe-area-inset-top,0px)) 14px calc(14px + env(safe-area-inset-bottom,0px));z-index:26;gap:8px}
+.map-panel .panel-heading{flex-shrink:0}
+.map-panel .panel-heading h2{font-size:clamp(22px,4vw,27px)}
+.map-panel .panel-heading p{line-height:1.35;margin-bottom:0}
+.map-panel #mapCanvas{height:auto;min-height:190px;flex:1 1 auto;border-radius:16px}
+.map-panel .map-list{flex-shrink:0;min-height:110px;max-height:135px;padding:2px 0 6px;scroll-snap-type:x proximity;gap:10px}
+.map-mini{min-width:210px;max-width:250px;min-height:94px;scroll-snap-align:start}
+.map-mini img{float:left;width:66px;height:66px;margin-right:9px;border-radius:9px;object-fit:cover}
+.map-mini .map-image-empty{float:left;display:grid;place-items:center;width:66px;height:66px;margin-right:9px;border-radius:9px;background:#e2ece7;color:#426b5a;font-size:25px}
+.map-mini small{line-height:1.25}
+.map-info{display:flex;align-items:center;justify-content:space-between;gap:7px;min-height:31px;flex-shrink:0}
+.map-info span{font-size:12px;color:#375a4d;font-weight:700}
+.map-reset,.map-more{background:#e8f1e9;border:1px solid #c8daca;color:#205a46;border-radius:100px;font-size:11px;font-weight:800;padding:8px 10px}
+.map-more{margin:auto;flex-shrink:0}
+.map-panel .leaflet-container{font-family:'DM Sans',system-ui,sans-serif;z-index:0;touch-action:pan-x pan-y}
+.map-panel .leaflet-popup-content button{border:0;background:#27624d;color:#fff;padding:7px 10px;border-radius:8px;margin-top:7px;font-weight:700}
+.map-cluster{width:42px;height:42px;border:3px solid white;border-radius:50%;background:#1d654a;color:white;display:grid;place-items:center;box-shadow:0 3px 12px #102b2480;font-size:13px;font-weight:800}
+.map-cluster.is-active{background:#e7ad53;color:#1f352d;border-color:#fff}
+.map-empty{font-size:12px;color:#6b8175;padding:18px;text-align:center}
+@media(max-width:480px){.map-panel{padding-left:10px;padding-right:10px}.map-panel #mapCanvas{border-radius:13px}.map-mini{min-width:207px}}
 </style>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoWqeLLl4A3P9w=" crossorigin="">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>planGC · ¿Qué hacemos hoy?</title>
 </head><body>
 <div id="app">
@@ -57,7 +78,7 @@
     <footer class="footer"><strong>planGC<span>.</span></strong><p>Un proyecto independiente para descubrir Gran Canaria. Comprueba siempre los detalles en la fuente oficial. Las fotografías de ambientación son ilustrativas.</p><div><button id="sourcesBtn" class="text-button">Fuentes y actualización</button><a href="mailto:contacto@example.invalid" class="hidden">Contacto</a></div></footer>
   </main>
   <nav class="bottom-nav" aria-label="Navegación principal"><button class="navtab selected" data-tab="explore"><span>⌕</span><small>Explorar</small></button><button class="navtab" data-tab="map"><span>♧</span><small>Mapa</small></button><button class="navtab" data-tab="saved"><span>♡</span><small>Guardados</small></button><button class="navtab" data-tab="publish"><span>＋</span><small>Publicar</small></button></nav>
-  <div id="mapPanel" class="map-panel hidden"><div class="panel-heading"><div><span class="eyebrow">CADA PLAN EN SU SITIO</span><h2>Mapa de eventos</h2><p>Los puntos muestran el centro del municipio cuando no hay dirección exacta.</p></div><button id="closeMap" class="circle-btn" aria-label="Cerrar mapa">✕</button></div><div id="mapCanvas"></div><div id="mapList" class="map-list"></div></div>
+  <div id="mapPanel" class="map-panel hidden"><div class="panel-heading"><div><span class="eyebrow">CADA PLAN EN SU SITIO</span><h2>Mapa de eventos</h2><p>Los círculos agrupan planes por municipio. La posición es aproximada salvo que la fuente facilite coordenadas exactas.</p></div><button id="closeMap" class="circle-btn" aria-label="Cerrar mapa">✕</button></div><div class="map-info"><span id="mapSummary" role="status">Cargando municipios…</span><button type="button" class="map-reset hidden" id="mapReset">Ver todos los municipios</button></div><div id="mapCanvas" aria-label="Mapa interactivo de eventos de Gran Canaria"></div><div id="mapList" class="map-list" aria-label="Eventos del municipio seleccionado"></div><button type="button" id="mapMore" class="map-more hidden">Mostrar más eventos de esta zona</button></div>
   <div id="modalBackdrop" class="backdrop hidden"></div><aside id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalHeading"><button id="modalClose" class="modal-close" aria-label="Cerrar">✕</button><div id="modalContent"></div></aside>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </div>
@@ -68,6 +89,7 @@ try{localStorage.setItem('plangc_check','ok');localStorage.removeItem('plangc_ch
 'use strict';
 const $=id=>document.getElementById(id);
 const state={events:[],when:'today',category:'all',query:'',free:false,sort:'recommended',origin:null,originName:'Toda Gran Canaria',favorites:new Set(JSON.parse(localStorage.getItem('plangc_favorites')||'[]')),user:null,tab:'explore',map:null,markers:null,seen:0,visibleLimit:48};
+state.mapSelected=null;state.mapLimit=16;state.mapEntries=[];
 const CATS=[['all','✳','Todos'],['musica','♫','Música'],['familia','✿','Familia'],['gastronomia','♨','Gastronomía'],['cultura','◈','Cultura'],['deporte','⚑','Deporte'],['naturaleza','❋','Aire libre'],['ocio','☼','Ocio'],['otros','✺','Otros']];
 const PLACES={'Agaete':[28.100,-15.700],'Agüimes':[27.906,-15.445],'Artenara':[28.019,-15.647],'Arucas':[28.119,-15.523],'Firgas':[28.106,-15.563],'Gáldar':[28.145,-15.654],'Ingenio':[27.918,-15.436],'La Aldea de San Nicolás':[27.983,-15.780],'Las Palmas de Gran Canaria':[28.124,-15.436],'Mogán':[27.884,-15.723],'Moya':[28.108,-15.582],'San Bartolomé de Tirajana':[27.923,-15.573],'Santa Brígida':[28.035,-15.497],'Santa Lucía de Tirajana':[27.914,-15.542],'Santa María de Guía':[28.139,-15.632],'Tejeda':[27.996,-15.615],'Telde':[27.993,-15.416],'Teror':[28.060,-15.546],'Valleseco':[28.045,-15.579],'Valsequillo':[27.985,-15.497],'Vega de San Mateo':[28.010,-15.532]};
 const COVER_SYMBOLS={musica:'♫',gastronomia:'✦',familia:'☀',cultura:'✳',deporte:'➜',naturaleza:'❋',ocio:'✧',otros:'✳'};
@@ -161,14 +183,101 @@ function locationDialog(){openModal(`<div class="form-panel"><span class="eyebro
  $('placeForm').onsubmit=e=>{e.preventDefault();const n=$('placeSelect').value;state.origin=n?PLACES[n]:null;state.originName=n||'Toda Gran Canaria';$('locationName').textContent=state.originName;localStorage.setItem('plangc_municipio',n);closeModal();render();toast(n?'Planes ordenados desde '+n:'Mostrando toda la isla')};
  $('geolocateBtn').onclick=()=>{if(!navigator.geolocation){toast('Tu navegador no ofrece geolocalización');return}navigator.geolocation.getCurrentPosition(p=>{state.origin=[p.coords.latitude,p.coords.longitude];state.originName='Cerca de mí';$('locationName').textContent='Cerca de mí';localStorage.removeItem('plangc_municipio');closeModal();render();toast('Distancias aproximadas actualizadas')},()=>toast('No se pudo obtener tu ubicación. Elige un municipio.'),{enableHighAccuracy:false,timeout:10000,maximumAge:120000})};
 }
-function openMap(){state.tab='map';render();$('mapPanel').classList.remove('hidden');if(!window.L){$('mapCanvas').innerHTML='<p style="padding:30px">El mapa necesita conexión a Internet. Abre las fichas para ver indicaciones.</p>';return}
- if(!state.map){state.map=L.map('mapCanvas',{zoomControl:false}).setView([28.04,-15.57],10);L.control.zoom({position:'bottomright'}).addTo(state.map);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap contributors'}).addTo(state.map);state.markers=L.layerGroup().addTo(state.map)}
- state.markers.clearLayers();const ev=filtered();const seen=new Map();ev.forEach(e=>{const key=e.lat+','+e.lng;const list=seen.get(key)||[];list.push(e);seen.set(key,list)});
- for(const list of seen.values()){const e=list[0];const icon=L.divIcon({html:`<div style="background:#1f654d;color:#fff;border:3px solid white;border-radius:50%;width:38px;height:38px;display:grid;place-items:center;box-shadow:0 4px 12px #0004;font-weight:800;font-size:12px">${list.length}</div>`,className:'',iconSize:[38,38],iconAnchor:[19,19]});L.marker([e.lat,e.lng],{icon}).addTo(state.markers).bindPopup(`<strong>${escapeHTML(e.municipality)}</strong><br>${list.length} eventos · Posición aproximada`)}
- $('mapList').innerHTML=ev.slice(0,20).map(e=>`<button class="map-mini" data-map-id="${e.id}"><strong>${escapeHTML(e.title)}</strong><small>${escapeHTML(e.municipality)} · ${escapeHTML(dayLabel(e))}</small></button>`).join('');
- setTimeout(()=>{state.map.invalidateSize();if(state.origin)state.map.setView(state.origin,11)},100);
+function mapIcon(count,selected=false){
+ const label=count>99?'99+':String(count);
+ return L.divIcon({
+  html:'<div class="map-cluster'+(selected?' is-active':'')+'">'+label+'</div>',
+  className:'map-icon',iconSize:[42,42],iconAnchor:[21,21],popupAnchor:[0,-20]
+ });
 }
-function closeMap(){$('mapPanel').classList.add('hidden');state.tab='explore';render()}
+function renderMapList(){
+ const items=filtered().filter(e=>Number.isFinite(Number(e.lat))&&Number.isFinite(Number(e.lng)));
+ let matches=items;
+ let selectedLabel='';
+ if(state.mapSelected){
+  matches=items.filter(e=>Number(e.lat)+','+Number(e.lng)===state.mapSelected);
+  selectedLabel=matches[0]?.municipality||'Esta zona';
+  if(!matches.length)state.mapSelected=null;
+ }
+ if(!state.mapSelected)matches=items;
+ const first=matches.slice(0,state.mapLimit);
+ const total=matches.length;
+ $('mapSummary').textContent=state.mapSelected?selectedLabel+' · '+total+' planes':'Gran Canaria · '+total+' planes en '+state.mapEntries.length+' zonas';
+ $('mapReset').classList.toggle('hidden',!state.mapSelected);
+ $('mapMore').classList.toggle('hidden',total<=state.mapLimit);
+ $('mapList').innerHTML=first.length?first.map(e=>{
+  const src=verifiedImage(e);
+  const thumb=src?'<img loading="lazy" decoding="async" src="'+escapeHTML(src)+'" alt="">':
+     '<span class="map-image-empty" aria-hidden="true">'+(COVER_SYMBOLS[e.category]||'✳')+'</span>';
+  return '<button type="button" class="map-mini" data-map-id="'+e.id+'" aria-label="'+escapeHTML('Ver '+e.title)+'">'+thumb+
+         '<strong>'+escapeHTML(e.title)+'</strong><small>'+escapeHTML(e.municipality)+' · '+
+         escapeHTML(dayLabel(e))+' · '+escapeHTML(timeLabel(e))+'</small></button>';
+ }).join(''):'<div class="map-empty">No hay planes que coincidan con los filtros. Prueba otras fechas desde Explorar.</div>';
+}
+function highlightMapSelection(){
+ (state.mapEntries||[]).forEach(x=>x.marker.setIcon(mapIcon(x.count,x.key===state.mapSelected)));
+}
+function drawMap({fit=false}={}){
+ if(!$('mapPanel')||$('mapPanel').classList.contains('hidden')||!window.L||!state.map)return;
+ state.markers.clearLayers();
+ state.mapEntries=[];
+ const groups=new Map();
+ const matches=filtered().filter(e=>Number.isFinite(Number(e.lat))&&Number.isFinite(Number(e.lng))&&Number(e.lat)>27&&Number(e.lat)<29&&Number(e.lng)>-16.4&&Number(e.lng)<-15.1);
+ for(const e of matches){
+  const key=Number(e.lat)+','+Number(e.lng);
+  if(!groups.has(key))groups.set(key,[]);
+  groups.get(key).push(e);
+ }
+ for(const [key,list] of groups){
+  const e=list[0],coords=[Number(e.lat),Number(e.lng)];
+  const marker=L.marker(coords,{icon:mapIcon(list.length,key===state.mapSelected),
+    title:e.municipality+' · '+list.length+' planes'});
+  marker.bindPopup('<strong>'+escapeHTML(e.municipality)+'</strong><br>'+list.length+
+    ' planes · Ubicación aproximada<br><small>Las actividades no tienen por qué celebrarse en este punto.</small>');
+  marker.on('click',()=>{
+    state.mapSelected=key;state.mapLimit=16;
+    renderMapList();highlightMapSelection();
+    $('mapList').scrollLeft=0;
+  });
+  marker.addTo(state.markers);
+  state.mapEntries.push({key,count:list.length,marker});
+ }
+ if(state.mapSelected&&!groups.has(state.mapSelected))state.mapSelected=null;
+ renderMapList();
+ if(fit){
+  if(state.origin&&state.origin.length===2){
+   state.map.setView(state.origin,11);
+  }else if(state.mapEntries.length){
+   state.map.fitBounds(L.latLngBounds(state.mapEntries.map(x=>x.marker.getLatLng())),
+     {padding:[30,30],maxZoom:11,animate:false});
+  }else{
+   state.map.setView([28.04,-15.57],10);
+  }
+ }
+ requestAnimationFrame(()=>state.map?.invalidateSize());
+}
+function openMap(){
+ state.tab='map';render();
+ $('mapPanel').classList.remove('hidden');
+ if(!window.L){
+  $('mapCanvas').innerHTML='<p class="map-empty">No se ha podido cargar el mapa. Comprueba la conexión e inténtalo de nuevo.</p>';
+  $('mapSummary').textContent='Mapa sin conexión';
+  return;
+ }
+ if(!state.map){
+  state.map=L.map('mapCanvas',{zoomControl:false,scrollWheelZoom:false}).setView([28.04,-15.57],10);
+  L.control.zoom({position:'bottomright'}).addTo(state.map);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap contributors'}).addTo(state.map);
+  state.markers=L.layerGroup().addTo(state.map);
+ }
+ state.mapSelected=null;state.mapLimit=16;
+ drawMap({fit:true});
+ setTimeout(()=>state.map?.invalidateSize(),150);
+}
+function closeMap(){
+ $('mapPanel').classList.add('hidden');
+ state.tab='explore';render();
+}
 async function api(path,method='GET',body=null){const options={method,credentials:'same-origin',headers:{}};if(method==='GET')options.cache='no-store';if(method!=='GET'){options.headers['Content-Type']='application/json';if(state.user)options.headers['X-CSRF-Token']=state.user.csrf;options.body=JSON.stringify(body||{})}const url=path==='/api/events'?'/events.json':path==='/api/meta'?'/meta.json':path;const r=await fetch(url,options);let data=await r.json();if(!r.ok)throw Error(data.error||'No se pudo completar la operación');return data}
 function authDialog(mode='login'){openModal(`<div class="form-panel"><span class="eyebrow">BIENVENIDO A LA COMUNIDAD</span><h2 id="modalHeading">${mode==='register'?'Crear cuenta':'Entrar a planGC'}</h2><p>${mode==='register'?'Publica tus actividades y descubre nuevos asistentes. Las propuestas se revisan antes de aparecer en el catálogo.':'Accede para proponer eventos y consultar tus publicaciones.'}</p><form class="stack-form" id="authForm"><div class="field"><label for="authEmail">Correo electrónico</label><input id="authEmail" type="email" required autocomplete="email" maxlength="254" placeholder="nombre@empresa.com"></div><div class="field"><label for="authPwd">Contraseña</label><input id="authPwd" type="password" required minlength="10" autocomplete="${mode==='register'?'new-password':'current-password'}" placeholder="Mínimo 10 caracteres"></div><button type="submit" class="primary-btn">${mode==='register'?'Crear cuenta':'Iniciar sesión'}</button></form><button id="toggleAuth" class="inline-link">${mode==='register'?'¿Ya tienes cuenta? Entrar':'¿No tienes cuenta? Regístrate gratis'}</button></div>`);
  $('toggleAuth').onclick=()=>authDialog(mode==='login'?'register':'login');$('authForm').onsubmit=async e=>{e.preventDefault();try{const r=await api('/api/auth/'+mode,'POST',{email:$('authEmail').value,password:$('authPwd').value});state.user=r.user;toast('Sesión iniciada');publishDialog()}catch(err){toast(err.message)}};
@@ -201,7 +310,7 @@ if(!window.__gcFirstLoad){
     document.querySelectorAll('[data-when]').forEach(b=>b.classList.toggle('active',b.dataset.when===state.when));
   }
 }
-localStorage.setItem('plangc_event_cache',JSON.stringify({at:Date.now(),events:state.events}));const count=state.events.filter(e=>eventEndDate(e)>=todayKey()).length;$('sourceStatus').textContent=`${count} planes próximos · Información de fuentes originales · Horario de Canarias`;render();const id=new URLSearchParams(location.search).get('evento');if(id&&state.events.some(e=>e.id===+id)&&!state.seen){state.seen=1;showEvent(id)}}catch(error){try{const saved=JSON.parse(localStorage.getItem('plangc_event_cache'));if(saved.events?.length){state.events=saved.events;$('sourceStatus').textContent='Sin conexión · Mostrando datos guardados (pueden estar desactualizados)';render();return}}catch{}$('sourceStatus').textContent='No se ha podido conectar con el catálogo';toast('Error de conexión con la agenda')}}
+localStorage.setItem('plangc_event_cache',JSON.stringify({at:Date.now(),events:state.events}));const count=state.events.filter(e=>eventEndDate(e)>=todayKey()).length;$('sourceStatus').textContent=`${count} planes próximos · Información de fuentes originales · Horario de Canarias`;render();if(!$('mapPanel').classList.contains('hidden'))drawMap();const id=new URLSearchParams(location.search).get('evento');if(id&&state.events.some(e=>e.id===+id)&&!state.seen){state.seen=1;showEvent(id)}}catch(error){try{const saved=JSON.parse(localStorage.getItem('plangc_event_cache'));if(saved.events?.length){state.events=saved.events;$('sourceStatus').textContent='Sin conexión · Mostrando datos guardados (pueden estar desactualizados)';render();return}}catch{}$('sourceStatus').textContent='No se ha podido conectar con el catálogo';toast('Error de conexión con la agenda')}}
 function init(){$('loadMoreBtn').onclick=()=>{state.visibleLimit+=48;render()};const m=localStorage.getItem('plangc_municipio');if(m&&PLACES[m]){state.origin=PLACES[m];state.originName=m;$('locationName').textContent=m}
  $('categories').addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(b){state.category=b.dataset.category;render()}});
  document.querySelectorAll('[data-when]').forEach(b=>b.onclick=()=>{state.when=b.dataset.when;state.tab='explore';render()});
@@ -213,7 +322,10 @@ function init(){$('loadMoreBtn').onclick=()=>{state.visibleLimit+=48;render()};c
  $('locationButton').onclick=locationDialog;$('profileBtn').onclick=()=>state.user?mineDialog():authDialog();$('publishCta').onclick=publishDialog;$('sourcesBtn').onclick=showSources;
  $('surpriseBtn').onclick=()=>{let ev=filtered();if(!ev.length){state.when='all';render();ev=filtered()}if(ev.length)showEvent(ev[Math.floor(Math.random()*Math.min(10,ev.length))].id);else toast('No hay planes disponibles')};
  $('modalClose').onclick=()=>{closeModal();if(location.search)history.replaceState(null,'',location.pathname)};$('modalBackdrop').onclick=()=>{closeModal();if(location.search)history.replaceState(null,'',location.pathname)};
- $('closeMap').onclick=closeMap;$('mapList').onclick=e=>{const b=e.target.closest('[data-map-id]');if(b)showEvent(b.dataset.mapId)};
+ $('closeMap').onclick=closeMap;
+ $('mapReset').onclick=()=>{state.mapSelected=null;state.mapLimit=16;highlightMapSelection();renderMapList();$('mapList').scrollLeft=0};
+ $('mapMore').onclick=()=>{state.mapLimit+=16;renderMapList()};
+ $('mapList').onclick=e=>{const b=e.target.closest('[data-map-id]');if(b)showEvent(b.dataset.mapId)};
  document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{const tab=b.dataset.tab;if(tab==='map'){openMap();return}if(tab==='publish'){publishDialog();return}state.tab=tab;closeMap();state.tab=tab;render();window.scrollTo({top:360,behavior:'smooth'})});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();if(!$('mapPanel').classList.contains('hidden'))closeMap()}});
  api('/api/auth/me').then(r=>{state.user=r.user}).catch(()=>{});
