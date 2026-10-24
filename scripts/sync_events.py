@@ -41,6 +41,7 @@ SOURCES = [
  {"name":"Ayuntamiento de Ingenio","url":"https://ingenio.es/events/","parser":"ingenio"},
  {"name":"Ayuntamiento de Agüimes","url":"https://eventos.aguimes.es/","parser":"aguimes"},
  {"name":"Juventud Las Palmas de Gran Canaria","url":"https://actividadesjuventud.laspalmasgc.es/","parser":"juventud"},
+ {"name":"Circuito de Artes Escénicas GC","url":"https://artesescenicasgrancanaria.com/agenda.html","parser":"artes"},
 ]
 HEADERS={"User-Agent":USER_AGENT,"Accept":"text/html,application/xhtml+xml"}
 DB.parent.mkdir(parents=True,exist_ok=True)
@@ -92,8 +93,31 @@ def get_html(url):
 def clean(text,maxchars=250):
     return " ".join(str(text or "").split())[:maxchars]
 
+def cancelled_jsonld_urls(soup):
+    urls=set()
+    def visit(node):
+        if isinstance(node,list):
+            for item in node:visit(item)
+        elif isinstance(node,dict):
+            kinds=node.get("@type",[])
+            if isinstance(kinds,str):kinds=[kinds]
+            if "Event" in kinds and str(node.get("eventStatus","")).endswith("EventCancelled"):
+                offers=node.get("offers",{})
+                links=[node.get("url")]
+                if isinstance(offers,dict):links.append(offers.get("url"))
+                for link in links:
+                    if isinstance(link,str) and link.startswith("https://"):
+                        urls.add(link.strip("/").lower())
+            for value in node.values():
+                if isinstance(value,(dict,list)):visit(value)
+    for tag in soup.select('script[type="application/ld+json"]'):
+        try:visit(json.loads(tag.string or tag.get_text()))
+        except (TypeError,ValueError):pass
+    return urls
+
 def extract_ingenio(soup):
     found=[]
+    cancelled_urls=cancelled_jsonld_urls(soup)
     for art in soup.select("article.mec-event-article"):
         title_el=art.select_one("h3.mec-event-title a[href]")
         date_el=art.select_one(".mec-start-date-label")
@@ -129,7 +153,7 @@ def extract_ingenio(soup):
         found.append(dict(title=title,start=start,end=end,municipality="Ingenio",venue=venue,
              category=category(title),free=None,price="",details=details,
              source_name="Ayuntamiento de Ingenio",source_url=source_url,
-             status="cancelled" if re.match(r"^(cancelad[oa]|suspendid[oa])\b",title,re.I) else "approved"))
+             status="cancelled" if re.match(r"^(cancelad[oa]|suspendid[oa])\b",title,re.I) or source_url.strip("/").lower() in cancelled_urls else "approved"))
     return found
 
 def extract_aguimes(soup):
@@ -195,6 +219,46 @@ def extract_juventud(soup):
          status="cancelled" if re.match(r"^(cancelad[oa]|suspendid[oa])\b",title,re.I) else "approved"))
     return found
 
+
+def extract_artes(soup):
+    found=[]
+    for node in soup.select("div.agenda_evento"):
+        title_el=node.select_one(".agenda_tituloevento")
+        zone_el=node.select_one(".calendar_zonaevento")
+        link_el=node.select_one('a[href^="evento-"]')
+        if not (title_el and zone_el and link_el):continue
+        title=clean(title_el.get_text(" ",strip=True),180)
+        zone=clean(zone_el.get_text(" ",strip=True),180)
+        if "," not in zone:continue
+        city,venue=map(str.strip,zone.split(",",1))
+        muni={
+            "guia de gran canaria":"Santa María de Guía",
+            "las palmas de gran canaria":"Las Palmas de Gran Canaria",
+            "san bartolome de tirajana":"San Bartolomé de Tirajana",
+            "santa lucia":"Santa Lucía de Tirajana",
+        }.get(norm(city).replace("-"," "))
+        if not muni:
+            muni=next((m for m in PLACES if norm(m)==norm(city)),None)
+        if not muni or not venue or len(title)<5:continue
+        href=urljoin("https://artesescenicasgrancanaria.com/",link_el.get("href",""))
+        if not href.startswith("https://artesescenicasgrancanaria.com/evento-"):continue
+        syn=node.select_one(".agenda_synopsis")
+        details=clean(syn.get_text(" ",strip=True),220) if syn else ""
+        for row in node.select("table.mtable tr"):
+            date=clean(row.get_text(" ",strip=True),230)
+            mt=re.search(r"(\d{2})/(\d{2})/(20\d{2})",date)
+            cells=row.select("td")
+            if not (mt and len(cells)>=2):continue
+            match_time=re.search(r"\b([0-2]\d:[0-5]\d)\b",cells[1].get_text(" ",strip=True))
+            if not match_time:continue
+            start=iso_start(int(mt.group(1)),int(mt.group(2)),int(mt.group(3)),match_time.group(1))
+            if not start:continue
+            found.append(dict(title=title,start=start,end=None,municipality=muni,venue=venue,
+                category=category(title) if category(title)!="ocio" else "cultura",
+                free=None,price="",details=details,source_name="Circuito de Artes Escénicas GC",
+                source_url=href,status="cancelled" if re.match(r"^(cancelad[oa]|suspendid[oa])\b",title,re.I) else "approved"))
+    return found
+
 def init(conn):
     conn.executescript("""
        CREATE TABLE IF NOT EXISTS events(
@@ -212,9 +276,23 @@ def init(conn):
          source TEXT PRIMARY KEY, checked_at TEXT, found INTEGER DEFAULT 0,
          added INTEGER DEFAULT 0, changed INTEGER DEFAULT 0, error TEXT);
     """)
+    # One-time migration: identity stays stable when the organizer changes the hour
+    # on the same day. Do not lose old rows or erase legitimate duplicates.
+    for old in conn.execute("SELECT id,dedup_key,title,start,municipality FROM events").fetchall():
+        current=dedup_key(dict(old))
+        if current!=old["dedup_key"]:
+            try:
+                conn.execute("UPDATE events SET dedup_key=? WHERE id=?",(current,old["id"]))
+            except sqlite3.IntegrityError:
+                pass
 
 def dedup_key(e):
-    return hashlib.sha256((norm(e["title"])+"|"+e["start"][:16]+"|"+norm(e["municipality"])).encode()).hexdigest()[:32]
+    title=str(e["title"]).strip()
+    for prefix in ("cancelado","cancelada","suspendido","suspendida"):
+        if norm(title).startswith(prefix+"-"):
+            title=title[len(prefix):].lstrip(" :-")
+            break
+    return hashlib.sha256((norm(title)+"|"+e["start"][:10]+"|"+norm(e["municipality"])).encode()).hexdigest()[:32]
 
 def upsert(conn,e):
     key=dedup_key(e)
@@ -253,7 +331,7 @@ def run():
             found=added=changed=0; error=""
             try:
                 soup=get_html(src["url"])
-                extractor={"ingenio":extract_ingenio,"aguimes":extract_aguimes,"juventud":extract_juventud}[src["parser"]]
+                extractor={"ingenio":extract_ingenio,"aguimes":extract_aguimes,"juventud":extract_juventud,"artes":extract_artes}[src["parser"]]
                 entries=extractor(soup)
                 # A wholesale parser break must not erase the last good catalog.
                 if len(entries)==0:raise RuntimeError("No verified entries; parser or page may have changed")

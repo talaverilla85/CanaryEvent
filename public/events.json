@@ -18,6 +18,23 @@
       "source_url": "https://ingenio.es/events/%f0%9f%91%bb%f0%9f%94%aa-casa-del-terror-el-ratino-%f0%9f%8e%83/"
     },
     {
+      "id": 14,
+      "title": "31 FESTIVAL MASDANZA: TRANSEÚNTE de Daniel Rodríguez",
+      "start": "2026-10-24T19:30:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Teatro Cuyás",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "S24 OCTUBRE, 19.30H31 FESTIVAL MASDANZATRANSEÚNTE de Daniel RodríguezDirección y coreografía: Daniel Rodríguez.Intérpretes: Javier de la Asunción,...",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Circuito de Artes Escénicas GC",
+      "source_url": "https://artesescenicasgrancanaria.com/evento-768-31-festival.html"
+    },
+    {
       "id": 2,
       "title": "GRAN FINAL YO CANTO",
       "start": "2026-10-24T20:30:00",
@@ -120,6 +137,40 @@
       "source_url": "https://actividadesjuventud.laspalmasgc.es/events/0a0f2ae33d385bf653e6aead738c30bad323dd0a"
     },
     {
+      "id": 15,
+      "title": "LA BARRACA de Vicente Blasco Ibáñez",
+      "start": "2026-10-30T19:30:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Teatro Cuyás",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "V30-S31 OCTUBRE, 19.30H.LA BARRACA de Vicente Blasco IbáñezDirección MAGÜI MIRAAdaptación MARTA TORRESCon DANIEL ALBALADEJO, ANTONIO HORTELANO,...",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Circuito de Artes Escénicas GC",
+      "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html"
+    },
+    {
+      "id": 17,
+      "title": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
+      "start": "2026-10-30T19:30:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Sala Insular de Teatro",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "V30-S31 OCTUBRE, 19.30H.RESIDENCIAS SIT1 SEÑORA TU MADREIdea original y dirección: Raquel Ponce HernándezInterpretación y creación: Raquel Ponce...",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Circuito de Artes Escénicas GC",
+      "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html"
+    },
+    {
       "id": 11,
       "title": "Cine de Terror",
       "start": "2026-10-30T20:05:00",
@@ -205,6 +256,40 @@
       "source_url": "https://ingenio.es/events/%f0%9f%91%bb%f0%9f%94%aa-casa-del-terror-el-ratino-%f0%9f%8e%83-665/"
     },
     {
+      "id": 16,
+      "title": "LA BARRACA de Vicente Blasco Ibáñez",
+      "start": "2026-10-31T19:30:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Teatro Cuyás",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "V30-S31 OCTUBRE, 19.30H.LA BARRACA de Vicente Blasco IbáñezDirección MAGÜI MIRAAdaptación MARTA TORRESCon DANIEL ALBALADEJO, ANTONIO HORTELANO,...",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Circuito de Artes Escénicas GC",
+      "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html"
+    },
+    {
+      "id": 18,
+      "title": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
+      "start": "2026-10-31T19:30:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Sala Insular de Teatro",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "V30-S31 OCTUBRE, 19.30H.RESIDENCIAS SIT1 SEÑORA TU MADREIdea original y dirección: Raquel Ponce HernándezInterpretación y creación: Raquel Ponce...",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Circuito de Artes Escénicas GC",
+      "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html"
+    },
+    {
       "id": 10,
       "title": "CRISTINA MEDINA PRESENTA “LA PARTENAIRE”",
       "start": "2026-11-06T20:30:00",
@@ -222,7 +307,7 @@
       "source_url": "https://www.tureservaonline.es/es/events/cristina-medina-presenta-la-partenaire"
     }
   ],
-  "generated_at": "2026-10-24T12:43:02+01:00",
+  "generated_at": "2026-10-24T12:50:59+01:00",
   "timezone": "Atlantic/Canary",
-  "verified_sources": 3
+  "verified_sources": 4
 }

@@ -9,7 +9,7 @@ Agenda visual de planes cercanos en Gran Canaria, optimizada para móvil y table
 - SQLite `data/events.sqlite` es la fuente persistente versionada en este repositorio. Se genera el catálogo público en `public/events.json` y el informe de fuentes en `public/meta.json`. Vercel publica los cambios de GitHub.
 - GitHub Actions consulta fuentes municipales 4 veces al día (cada 6 horas aproximadamente, según disponibilidad del programador de GitHub). El workflow también admite ejecución manual.
 - Se comprueban `robots.txt` y datos de fecha/hora; no hay scraping masivo de agregadores comerciales.
-- Un evento solo se marca como cancelado si una fuente oficial lo dice expresamente. Si desaparece de un listado, permanece hasta su fecha sin asumir que está cancelado.
+- Un evento se marca como cancelado solo ante un aviso explícito en su título o datos estructurados oficiales. Si desaparece de un listado, permanece hasta su fecha sin asumir que está cancelado.
 - Las imágenes son **de ambientación**, no imágenes oficiales del evento.
 - **La publicación de comercios y las cuentas siguen desactivadas**, deliberadamente pospuestas a una fase posterior.
 
@@ -17,6 +17,7 @@ Agenda visual de planes cercanos en Gran Canaria, optimizada para móvil y table
 1. [Ayuntamiento de Ingenio](https://ingenio.es/events/)
 2. [Ayuntamiento de Agüimes](https://eventos.aguimes.es/)
 3. [Juventud Las Palmas de Gran Canaria](https://actividadesjuventud.laspalmasgc.es/)
+4. [Circuito de Artes Escénicas y Música de Gran Canaria](https://artesescenicasgrancanaria.com/agenda.html)
 
 Solo se muestra información suficiente para una ficha verificable; la cobertura territorial todavía no es total. Las actividades con horario/fechas incompletos no se inventan. Se conserva el enlace original.
 
