@@ -142,3 +142,7 @@ La cobertura completa de todos los ayuntamientos requiere conectores adicionales
 (individuales por formato, autorización y fuente), no solo añadir URLs a una lista.
 La Graciosa se tratará como isla seleccionable y sus eventos seguirán asociados
 administrativamente al municipio de Teguise.
+
+La agenda municipal de Cultura de Gáldar también dispone de un conector activo
+que lee campos estructurados de EventON (fecha, hora, recinto, URL), limitado
+a los eventos de esa concejalía. Todavía no cubre todas las concejalías de Gáldar.

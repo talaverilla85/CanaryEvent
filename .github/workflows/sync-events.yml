@@ -12,6 +12,8 @@ on:
       - "scripts/source_facts.py"
       - "scripts/ticket_reserva.py"
       - "scripts/santalucia_festivals.py"
+      - "scripts/arucas_agenda.py"
+      - "scripts/galdar_agenda.py"
       - "scripts/ticket_recent.py"
       - "scripts/publish_synced_data.sh"
       - "scripts/artes_details.py"

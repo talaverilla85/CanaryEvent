@@ -22,6 +22,8 @@ import cabildo_public
 import ticket_reserva
 import ticket_recent
 import santalucia_festivals
+import arucas_agenda
+import galdar_agenda
 from event_images import listing_image,image_fields
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -470,6 +472,56 @@ def run():
         results.append(dict(source=town.NAME,checked_at=NOW,found=local_found,
                     added=local_added,changed=local_changed,error=local_error))
         print(f"Santa Lucia festivities: found={local_found} new={local_added} error={local_error[:90]}")
+        # Direct municipal listings capture town activities missing from Cabildo.
+        # No inferred times, entry prices, or specific venues.
+        arucas_found=arucas_added=arucas_changed=0
+        arucas_error=""
+        try:
+            listing=arucas_agenda.fetch_listing()
+            entries=arucas_agenda.extract(listing,TODAY,PLACES,norm,category)
+            for entry in entries:
+                arucas_found+=1
+                change=upsert(conn,entry)
+                arucas_added+=int(change=="added")
+                arucas_changed+=int(change=="changed")
+            conn.commit()
+        except Exception as exc:
+            arucas_error=str(exc)[:250]
+            print(f"WARN Arucas municipal agenda: {arucas_error}",file=sys.stderr)
+        conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+          VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+          checked_at=excluded.checked_at,found=excluded.found,
+          added=excluded.added,changed=excluded.changed,error=excluded.error""",
+          (arucas_agenda.NAME,NOW,arucas_found,arucas_added,arucas_changed,arucas_error))
+        conn.commit()
+        results.append({"source":arucas_agenda.NAME,"checked_at":NOW,"found":arucas_found,
+                        "added":arucas_added,"changed":arucas_changed,"error":arucas_error})
+        print(f"Arucas municipal agenda: found={arucas_found}, added={arucas_added}, changed={arucas_changed}, error={arucas_error[:100]}")
+        # The Gáldar Culture EventON listing exposes verified schema.org
+        # start/end times, venue and original event URLs.
+        galdar_found=galdar_added=galdar_changed=0
+        galdar_error=""
+        try:
+            listing=galdar_agenda.fetch_listing()
+            entries=galdar_agenda.extract(listing,TODAY,PLACES,norm,category)
+            for entry in entries:
+                galdar_found+=1
+                change=upsert(conn,entry)
+                galdar_added+=int(change=="added")
+                galdar_changed+=int(change=="changed")
+            conn.commit()
+        except Exception as exc:
+            galdar_error=str(exc)[:250]
+            print(f"WARN Galdar Culture agenda: {galdar_error}",file=sys.stderr)
+        conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+            VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+            checked_at=excluded.checked_at,found=excluded.found,
+            added=excluded.added,changed=excluded.changed,error=excluded.error""",
+            (galdar_agenda.NAME,NOW,galdar_found,galdar_added,galdar_changed,galdar_error))
+        conn.commit()
+        results.append({"source":galdar_agenda.NAME,"checked_at":NOW,"found":galdar_found,
+                        "added":galdar_added,"changed":galdar_changed,"error":galdar_error})
+        print(f"Galdar Culture agenda: found={galdar_found}, added={galdar_added}, changed={galdar_changed}, error={galdar_error[:100]}")
         # Public official event metadata: incremental polite scan, no photos or source descriptions.
         try:
             cabildo=cabildo_public.synchronize(conn,NOW,TODAY,PLACES,norm,category,upsert)

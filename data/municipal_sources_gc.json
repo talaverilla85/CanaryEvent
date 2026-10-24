@@ -1,0 +1,134 @@
+{
+  "source": "https://www.gobiernodecanarias.org/otros/ayuntamientos/ayto_grancanaria/",
+  "date_checked": "2026-10-25",
+  "scope": "Gran Canaria only",
+  "notes": "Registro de ayuntamientos oficiales y su situación de integración. agenda_url no garantiza acceso ni extracción. Faltan enlaces de agenda para algunos municipios; no se publica ningún evento sin una fecha y fuente oficiales verificadas.",
+  "municipalities": [
+    {
+      "municipality": "Agaete",
+      "official_website": "https://www.aytoagaete.es/",
+      "agenda_url": null,
+      "status": "por_localizar"
+    },
+    {
+      "municipality": "Agüimes",
+      "official_website": "https://www.aguimes.es/",
+      "agenda_url": "https://eventos.aguimes.es/",
+      "status": "conector_activo"
+    },
+    {
+      "municipality": "Artenara",
+      "official_website": "https://www.artenara.es/",
+      "agenda_url": "https://www.artenara.es/portal-ciudadano/category/eventos/",
+      "status": "agenda_localizada"
+    },
+    {
+      "municipality": "Arucas",
+      "official_website": "https://www.arucas.org/",
+      "agenda_url": "https://www.arucas.org/modules.php?file=eventos&mod=portal",
+      "status": "conector_activo"
+    },
+    {
+      "municipality": "Firgas",
+      "official_website": "https://www.firgas.es/",
+      "agenda_url": null,
+      "status": "por_localizar"
+    },
+    {
+      "municipality": "Gáldar",
+      "official_website": "https://www.galdar.es/",
+      "agenda_url": "https://www.galdar.es/event-organizer/concejalia-de-cultura-del-ayuntamiento-de-galdar/",
+      "status": "conector_parcial"
+    },
+    {
+      "municipality": "Ingenio",
+      "official_website": "https://www.ingenio.es/",
+      "agenda_url": "https://ingenio.es/events/",
+      "status": "conector_activo"
+    },
+    {
+      "municipality": "La Aldea de San Nicolás",
+      "official_website": "https://www.laaldeadesannicolas.es/",
+      "agenda_url": null,
+      "status": "por_localizar"
+    },
+    {
+      "municipality": "Las Palmas de Gran Canaria",
+      "official_website": "https://www.laspalmasgc.es/",
+      "agenda_url": "https://actividadesjuventud.laspalmasgc.es/",
+      "status": "conector_parcial"
+    },
+    {
+      "municipality": "Mogán",
+      "official_website": "https://www.mogan.es/",
+      "agenda_url": null,
+      "status": "por_localizar"
+    },
+    {
+      "municipality": "Moya",
+      "official_website": "https://www.villademoya.es/",
+      "agenda_url": null,
+      "status": "por_localizar"
+    },
+    {
+      "municipality": "San Bartolomé de Tirajana",
+      "official_website": "https://www.maspalomas.com/",
+      "agenda_url": "https://www.maspalomas.com/index.php",
+      "status": "agenda_por_localizar"
+    },
+    {
+      "municipality": "Santa Brígida",
+      "official_website": "https://www.santabrigida.es/",
+      "agenda_url": "https://eventos.santabrigida.es/eventos/mes/",
+      "status": "agenda_localizada"
+    },
+    {
+      "municipality": "Santa Lucía de Tirajana",
+      "official_website": "https://www.santaluciagc.com/",
+      "agenda_url": "https://www.santaluciagc.com/fiestas-san-rafael-2026/",
+      "status": "conector_parcial"
+    },
+    {
+      "municipality": "Santa María de Guía",
+      "official_website": "https://www.santamariadeguia.es/",
+      "agenda_url": null,
+      "status": "por_localizar"
+    },
+    {
+      "municipality": "Tejeda",
+      "official_website": "https://www.tejeda.es/",
+      "agenda_url": null,
+      "status": "por_localizar"
+    },
+    {
+      "municipality": "Telde",
+      "official_website": "https://www.telde.es/",
+      "agenda_url": null,
+      "status": "por_localizar"
+    },
+    {
+      "municipality": "Teror",
+      "official_website": "https://www.teror.es/",
+      "agenda_url": null,
+      "status": "por_localizar"
+    },
+    {
+      "municipality": "Valsequillo",
+      "official_website": "https://www.valsequillogc.es/",
+      "agenda_url": null,
+      "status": "por_localizar"
+    },
+    {
+      "municipality": "Valleseco",
+      "official_website": "https://www.valleseco.es/",
+      "agenda_url": null,
+      "status": "por_localizar"
+    },
+    {
+      "municipality": "Vega de San Mateo",
+      "official_website": "https://www.vegasanmateo.es/",
+      "agenda_url": null,
+      "status": "por_localizar"
+    }
+  ]
+}
