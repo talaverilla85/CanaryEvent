@@ -1,15 +1,39 @@
-# CanaryEvent / planGC
+# CanaryEvent · planGC
 
-Vista previa de eventos de Gran Canaria, diseñada principalmente para móvil y tablet.
+Agenda visual de planes cercanos en Gran Canaria, optimizada para móvil y tablet y publicable como PWA.
 
-## Estado de esta publicación
+## Estado actual: fase 1 — eventos oficiales
 
-**Demostración visual, NO plataforma de eventos en producción.** Incluye 18 fichas de muestra de octubre y noviembre de 2026, tarjetas visuales, filtros por fecha/categoría, mapa, cercanía aproximada, favoritos locales y enlaces a fuentes originales. Los datos no se actualizan solos; registro y publicación de comerciantes requieren un servidor y base de datos persistente. La página está marcada noindex para no presentar contenido de prueba como agenda real.
+- La portada carga **eventos reales importados**, no el catálogo de demostración.
+- Búsqueda, categorías, filtros de fecha/gratis, ordenación por cercanía/hora, favoritos guardados localmente y mapa con centroides municipales aproximados.
+- SQLite `data/events.sqlite` es la fuente persistente versionada en este repositorio. Se genera el catálogo público en `public/events.json` y el informe de fuentes en `public/meta.json`. Vercel publica los cambios de GitHub.
+- GitHub Actions consulta fuentes municipales 4 veces al día (cada 6 horas aproximadamente, según disponibilidad del programador de GitHub). El workflow también admite ejecución manual.
+- Se comprueban `robots.txt` y datos de fecha/hora; no hay scraping masivo de agregadores comerciales.
+- Un evento solo se marca como cancelado si una fuente oficial lo dice expresamente. Si desaparece de un listado, permanece hasta su fecha sin asumir que está cancelado.
+- Las imágenes son **de ambientación**, no imágenes oficiales del evento.
+- **La publicación de comercios y las cuentas siguen desactivadas**, deliberadamente pospuestas a una fase posterior.
 
-## Despliegue
+### Fuentes activas
+1. [Ayuntamiento de Ingenio](https://ingenio.es/events/)
+2. [Ayuntamiento de Agüimes](https://eventos.aguimes.es/)
+3. [Juventud Las Palmas de Gran Canaria](https://actividadesjuventud.laspalmasgc.es/)
 
-En Vercel: Importa este repositorio desde GitHub, Framework **Other**, Root Directory **./**, Output Directory **public** (ya está configurado en `vercel.json`). Se publica automáticamente tras cada push a `main`.
+Solo se muestra información suficiente para una ficha verificable; la cobertura territorial todavía no es total. Las actividades con horario/fechas incompletos no se inventan. Se conserva el enlace original.
 
-## Convertir en una plataforma completa
+### Cómo añadir más fuentes
 
-Se dispone de prototipo original de backend Python con SQLite y extracción experimental de fuentes municipales. Antes de activarlo en Vercel es imprescindible migrar a base de datos persistente (por ejemplo PostgreSQL), adaptar los endpoints API a serverless, alojar las credenciales como secretos y configurar tareas periódicas. Las fuentes no han sido verificadas en producción. No se autoriza un volcado masivo de portales privados sin un acuerdo.
+Modificar la lista `SOURCES` de `scripts/sync_events.py` y añadir un extractor probado. Verificar las condiciones, robots.txt, estructura y licencia de cada portal. Las fuentes de terceros que restringen scraping requieren permiso.
+
+### Ejecutar manualmente
+```bash
+python -m pip install -r scripts/requirements.txt
+python -m unittest discover -s tests -v
+python scripts/sync_events.py
+```
+
+### Desplegar
+Vercel conectado con la rama `main`: Framework Other; raíz `./`; Output Directory `public`. Cada push al repositorio actualiza la portada. `public/events.json` y `public/meta.json` se actualizan tras la sincronización.
+
+### Limitaciones
+
+No es una verificación instantánea de cancelaciones, solo comprobación periódica de las fuentes conectadas. Algunas agendas publican PDFs o requieren permiso, y habrá que añadir conectores específicos. La ubicación es el centro del municipio salvo que una fuente proporcione coordenadas comprobadas. SQLite + GitHub es adecuado para un catálogo público controlado por sincronización, no para altas de usuarios concurrentes: la fase de comerciantes requerirá PostgreSQL u otra base de datos multiusuario con autenticación.
