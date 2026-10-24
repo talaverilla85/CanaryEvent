@@ -1,9 +1,9 @@
 {
-  "checked_at": "2026-10-24T18:46:52+01:00",
+  "checked_at": "2026-10-24T19:07:33+01:00",
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
-      "checked_at": "2026-10-24T18:46:52+01:00",
+      "checked_at": "2026-10-24T19:07:33+01:00",
       "found": 10,
       "added": 0,
       "changed": 0,
@@ -11,7 +11,7 @@
     },
     {
       "source": "Ayuntamiento de Agüimes",
-      "checked_at": "2026-10-24T18:46:52+01:00",
+      "checked_at": "2026-10-24T19:07:33+01:00",
       "found": 1,
       "added": 0,
       "changed": 0,
@@ -19,7 +19,7 @@
     },
     {
       "source": "Juventud Las Palmas de Gran Canaria",
-      "checked_at": "2026-10-24T18:46:52+01:00",
+      "checked_at": "2026-10-24T19:07:33+01:00",
       "found": 2,
       "added": 0,
       "changed": 0,
@@ -27,7 +27,7 @@
     },
     {
       "source": "Circuito de Artes Escénicas GC",
-      "checked_at": "2026-10-24T18:46:52+01:00",
+      "checked_at": "2026-10-24T19:07:33+01:00",
       "found": 5,
       "added": 0,
       "changed": 5,
@@ -35,11 +35,11 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "checked_at": "2026-10-24T18:46:52+01:00",
-      "found": 25,
-      "added": 25,
+      "checked_at": "2026-10-24T19:07:33+01:00",
+      "found": 0,
+      "added": 0,
       "changed": 0,
-      "scanned": 38,
+      "scanned": 0,
       "sitemap_count": 667,
       "eligible_urls": 586,
       "error": ""
@@ -50,7 +50,10 @@
     "pending": 0,
     "needs_review": 0,
     "archived_or_expired": 0,
-    "cancelled": 0
+    "cancelled": 0,
+    "prices_confirmed": 3,
+    "prices_to_verify": 448,
+    "venues_to_verify": 225
   },
   "description": "Actualización programada de fuentes oficiales. Un cambio o cancelación solo se afirma cuando está explícitamente indicado."
 }

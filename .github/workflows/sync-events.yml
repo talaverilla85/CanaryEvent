@@ -9,6 +9,7 @@ on:
     paths:
       - "scripts/sync_events.py"
       - "scripts/cabildo_public.py"
+      - "scripts/artes_details.py"
       - "scripts/requirements.txt"
       - "tests/**"
       - ".github/workflows/sync-events.yml"

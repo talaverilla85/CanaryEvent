@@ -17,6 +17,7 @@ from urllib.robotparser import RobotFileParser
 from zoneinfo import ZoneInfo
 import requests
 from bs4 import BeautifulSoup
+import artes_details
 import cabildo_public
 from event_images import listing_image,image_fields
 
@@ -251,7 +252,7 @@ def extract_artes(soup):
         href=urljoin("https://artesescenicasgrancanaria.com/",link_el.get("href",""))
         if not href.startswith("https://artesescenicasgrancanaria.com/evento-"):continue
         syn=node.select_one(".agenda_synopsis")
-        details=clean(syn.get_text(" ",strip=True),220) if syn else ""
+        details="Más información sobre el espectáculo en la ficha oficial."
         for row in node.select("table.mtable tr"):
             date=clean(row.get_text(" ",strip=True),230)
             mt=re.search(r"(\d{2})/(\d{2})/(20\d{2})",date)
@@ -268,6 +269,56 @@ def extract_artes(soup):
             image=listing_image(node,"https://artesescenicasgrancanaria.com/geo",["img._imevent"])
             found[-1].update(image_fields(image,title,"Circuito de Artes Escénicas GC"))
     return found
+
+
+def enrich_artes_entries(entries,conn):
+    """Read the organizer's event detail page to complete ticket price,
+    verified venue, duration and a short intelligible description.
+    Persist a 48h cache so scheduled scans do not hammer the source.
+    """
+    conn.execute("""CREATE TABLE IF NOT EXISTS artes_detail_cache(
+      url TEXT PRIMARY KEY, checked_at TEXT NOT NULL,
+      venue TEXT NOT NULL DEFAULT '', price TEXT NOT NULL DEFAULT '',
+      free INTEGER, details TEXT NOT NULL DEFAULT '', duration_min INTEGER)""")
+    urls=list(dict.fromkeys(e["source_url"] for e in entries))
+    detail_by_url={}
+    requests_this_run=0
+    for url in urls:
+        old=conn.execute("SELECT * FROM artes_detail_cache WHERE url=?",(url,)).fetchone()
+        use_cache=False
+        if old:
+            try:
+                cache_age=(dt.datetime.fromisoformat(NOW)-dt.datetime.fromisoformat(old["checked_at"])).total_seconds()
+                use_cache=cache_age<48*3600
+            except (ValueError,TypeError):pass
+        if use_cache:
+            detail_by_url[url]={k:old[k] for k in ("venue","price","free","details","duration_min")}
+            continue
+        if requests_this_run>=12:
+            if old:detail_by_url[url]={k:old[k] for k in ("venue","price","free","details","duration_min")}
+            continue
+        try:
+            # get_html checks robots.txt and caps responses before parsing.
+            page=get_html(url)
+            detail=artes_details.parse_detail(page)
+            detail_by_url[url]=detail
+            conn.execute("""INSERT INTO artes_detail_cache
+              (url,checked_at,venue,price,free,details,duration_min)
+              VALUES(?,?,?,?,?,?,?)
+              ON CONFLICT(url) DO UPDATE SET checked_at=excluded.checked_at,
+                venue=excluded.venue,price=excluded.price,free=excluded.free,
+                details=excluded.details,duration_min=excluded.duration_min""",
+              (url,NOW,detail["venue"],detail["price"],detail["free"],detail["details"],detail["duration_min"]))
+            requests_this_run+=1
+            time.sleep(0.5)
+        except (requests.RequestException,PermissionError,ValueError,RuntimeError) as exc:
+            print(f"WARN Artes event detail {url}: {type(exc).__name__}",file=sys.stderr)
+            if old:detail_by_url[url]={k:old[k] for k in ("venue","price","free","details","duration_min")}
+    for e in entries:
+        if e["source_url"] in detail_by_url:
+            artes_details.apply_detail(e,detail_by_url[e["source_url"]])
+    conn.commit()
+    return entries
 
 def init(conn):
     conn.executescript("""
@@ -358,6 +409,8 @@ def run():
                 soup=get_html(src["url"])
                 extractor={"ingenio":extract_ingenio,"aguimes":extract_aguimes,"juventud":extract_juventud,"artes":extract_artes}[src["parser"]]
                 entries=extractor(soup)
+                if src["parser"]=="artes":
+                    entries=enrich_artes_entries(entries,conn)
                 # A wholesale parser break must not erase the last good catalog.
                 if len(entries)==0:raise RuntimeError("No verified entries; parser or page may have changed")
                 for entry in entries:
@@ -405,7 +458,10 @@ def run():
                                     "verified_sources":len([r for r in results if not r["error"]])})
     write_json(PUBLIC/"meta.json",{"checked_at":NOW,"sources":results,
         "counts":{"approved":len(events),"pending":0,"needs_review":0,"archived_or_expired":max(0,total-len(events)),
-                  "cancelled":statuses.get("cancelled",0)},
+                  "cancelled":statuses.get("cancelled",0),
+                  "prices_confirmed":sum(bool(e["price"]) or e["free"]==1 for e in events),
+                  "prices_to_verify":sum(not e["price"] and e["free"]!=1 for e in events),
+                  "venues_to_verify":sum(not e["venue"] or e["venue"].lower().startswith("consultar el recinto") for e in events)},
         "description":"Actualización programada de fuentes oficiales. Un cambio o cancelación solo se afirma cuando está explícitamente indicado."})
     print(f"Exported {len(events)} future verified events; database rows {total}")
     return 0 if any(r["found"] for r in results) else 2

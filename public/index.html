@@ -119,6 +119,22 @@
   .star-one{right:155px;top:98px;opacity:.37}
   .star-two{right:80px;opacity:.45}
 }
+
+/* Venue first: show the actual venue before the broad municipality. */
+.event-meta{align-items:flex-start;gap:7px;margin-top:10px;min-height:37px}
+.event-meta .place-icon{flex:0 0 auto;font-size:15px;line-height:1.15;color:#529074}
+.event-place{display:flex;flex:1 1 auto;flex-direction:column;min-width:0;gap:3px}
+.place-venue{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;
+ font-weight:800;color:#2b4b3d;line-height:1.25;overflow-wrap:anywhere}
+.place-municipality{display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+ color:#78877f;font-size:10px;line-height:1.25}
+.event-info{min-height:174px}
+.event-bottom{margin-top:auto}
+@media(max-width:480px){
+ .event-meta{font-size:11px;min-height:39px}
+ .event-info{min-height:163px}
+ .place-venue{-webkit-line-clamp:2}
+}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>planGC · ¿Qué hacemos hoy?</title>
@@ -201,7 +217,11 @@ const timeLabel=e=>e.end&&e.end.length===10&&e.end.slice(0,10)>e.start.slice(0,1
 const dayLabel=e=>dayName(e.start);
 const dateLabel=e=>new Date(e.start.slice(0,10)+'T12:00:00Z').toLocaleDateString('es-ES',{timeZone:'UTC',weekday:'long',day:'numeric',month:'long',year:'numeric'});
 const distance=(p,q)=>{if(!p||!q)return null;const rad=n=>n*Math.PI/180;let dlat=rad(q[0]-p[0]),dlng=rad(q[1]-p[1]);return Math.round(6371*2*Math.asin(Math.sqrt(Math.sin(dlat/2)**2+Math.cos(rad(p[0]))*Math.cos(rad(q[0]))*Math.sin(dlng/2)**2)))};
-const price=e=>e.free===1?'Gratis':e.price?e.price:'Consultar precio';
+const venueName=e=>{
+ const venue=String(e.venue||'').trim();
+ return (!venue||venue.toLowerCase().startsWith('consultar el recinto'))?'Recinto por confirmar':venue;
+};
+const price=e=>e.free===1?'Gratis':e.price?e.price:'Precio por confirmar';
 const eventEndDate=e=>(e.end||e.start).slice(0,10);
 const activeToday=e=>e.start.slice(0,10)<=todayKey()&&eventEndDate(e)>=todayKey();
 function inFilter(e){const today=todayKey(),start=e.start.slice(0,10),end=eventEndDate(e),tom=plusDays(today,1);if(end<today)return false;
@@ -225,7 +245,7 @@ function render(){renderCategories();const events=filtered();const shown=events.
   const approx=distance(state.origin,[e.lat,e.lng]);const liked=state.favorites.has(e.id);
   return `<article class="event-card" tabindex="0" role="button" data-id="${e.id}" aria-label="Ver ${escapeHTML(e.title)}">
   <div class="photo ${CLASSES[e.category]||'p-other'}">${coverHtml(e)}<span class="photo-tag">${escapeHTML(textForCat(e.category))}</span><button class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button><span class="photo-date">${escapeHTML(dayLabel(e))} · ${escapeHTML(timeLabel(e))}</span></div>
-  <div class="event-info"><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span>⌖</span><span class="event-venue">${escapeHTML(e.municipality)} · ${escapeHTML(e.venue)}</span></div><div class="event-bottom"><span class="price ${e.free!==1&&!e.price?'unknown':''}">${escapeHTML(price(e))}</span><span class="distance">${approx!==null?'≈ '+approx+' km':'Ver ubicación ↗'}</span></div></div></article>`}).join('');
+  <div class="event-info"><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span class="place-icon">⌖</span><span class="event-place"><strong class="place-venue">${escapeHTML(venueName(e))}</strong><small class="place-municipality">${escapeHTML(e.municipality)}</small></span></div><div class="event-bottom"><span class="price ${e.free!==1&&!e.price?'unknown':''}">${escapeHTML(price(e))}</span><span class="distance">${approx!==null?'≈ '+approx+' km':'Ver ubicación ↗'}</span></div></div></article>`}).join('');
  $('emptyState').classList.toggle('hidden',events.length>0);$('eventsGrid').classList.toggle('hidden',events.length===0);
  document.querySelectorAll('.date-chip').forEach(b=>b.classList.toggle('active',b.dataset.when===state.when));
  
@@ -240,7 +260,7 @@ function showEvent(id){const e=state.events.find(x=>x.id===+id);if(!e)return;
  const approx=distance(state.origin,[e.lat,e.lng]);const extra=e.accuracy==='municipality'?'Ubicación aproximada (centro del municipio). Consulta la fuente para encontrar el punto exacto.':'Ubicación indicada por el organizador.';
  openModal(`<div class="modal-photo ${CLASSES[e.category]||'p-other'}">${coverHtml(e,true)}<span class="modal-photo-label">${escapeHTML(textForCat(e.category)).toUpperCase()} · GRAN CANARIA</span></div><div class="modal-body"><span class="eyebrow">PLAN Nº ${e.id} · ${escapeHTML(e.municipality).toUpperCase()}</span><h2 class="modal-title" id="modalHeading">${escapeHTML(e.title)}</h2>
  <div class="event-dateblock"><span class="ico">▦</span><div><strong>${escapeHTML(dateLabel(e))}</strong><small>${escapeHTML(timeLabel(e))}${e.end?.length===10?' · Hasta '+escapeHTML(e.end.slice(8,10)+'/'+e.end.slice(5,7)):e.end?.includes('T')?' – '+escapeHTML(e.end.slice(11,16)):''}</small></div></div>
- <div class="event-dateblock"><span class="ico">⌖</span><div><strong>${escapeHTML(e.venue||e.municipality)}</strong><small>${escapeHTML(e.municipality)} · ${approx!==null?'aprox. '+approx+' km · ':''}${escapeHTML(extra)}</small></div></div>
+ <div class="event-dateblock"><span class="ico">⌖</span><div><strong>${escapeHTML(venueName(e))}</strong><small>${escapeHTML(e.municipality)} · ${approx!==null?'aprox. '+approx+' km · ':''}${escapeHTML(extra)}</small></div></div>
  <div class="event-dateblock"><span class="ico">€</span><div><strong>${escapeHTML(price(e))}</strong><small>Comprueba disponibilidad, precios y requisitos con el organizador</small></div></div>
  <p>${escapeHTML(e.details||'Información disponible en la fuente original del evento.')}</p><div class="modal-actions"><a class="primary-action" href="${safeUrl(e.source_url)}" target="_blank" rel="noopener noreferrer">Consultar fuente ↗</a><a href="https://www.google.com/maps/search/?api=1&query=${mapQuery}" target="_blank" rel="noopener noreferrer">Cómo llegar ↗</a></div>
  <div class="modal-actions"><button type="button" id="saveDetailBtn">${state.favorites.has(e.id)?'♥ Guardado':'♡ Guardar evento'}</button><button type="button" id="shareDetailBtn">↗ Compartir</button></div><p class="footnote">Fuente: ${escapeHTML(e.source_name)}. ${verifiedImage(e)?'Portada publicada por '+escapeHTML(e.image_origin||e.source_name)+'; derechos de su autor/editor.':'Este evento no dispone de una portada oficial verificable.'} Datos sujetos a cambios.</p></div>`);
