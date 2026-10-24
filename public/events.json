@@ -736,7 +736,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -758,7 +758,7 @@
       "category": "familia",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -768,7 +768,7 @@
       "image_alt": "Charla + sesión de videojuegos: El Belingo club de videojuegos",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11161572"
     },
     {
       "id": 130,
@@ -780,7 +780,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 27.923,
       "lng": -15.573,
       "accuracy": "municipality",
@@ -802,7 +802,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -812,7 +812,7 @@
       "image_alt": "El cuchillo canario a través de la historia. Exposición Temporal. Presentación",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://wptpv.museoelder.es/evento/el-cuchillo-canario-a-traves-de-la-historia-exposicion-temporal-presentacion/"
     },
     {
       "id": 132,
@@ -824,7 +824,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 27.906,
       "lng": -15.445,
       "accuracy": "municipality",
@@ -834,7 +834,7 @@
       "image_alt": "Exposición EmocioArte",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://aguimes.es/events/exposicion-emocioarte/var/ri-.l-L1"
     },
     {
       "id": 133,
@@ -846,7 +846,7 @@
       "category": "familia",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -855,8 +855,8 @@
       "image_url": "",
       "image_alt": "",
       "image_origin": "",
-      "image_status": "",
-      "organizer_url": ""
+      "image_status": "not_available",
+      "organizer_url": "https://cca.grancanaria.com"
     },
     {
       "id": 134,
@@ -868,7 +868,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -877,8 +877,8 @@
       "image_url": "",
       "image_alt": "",
       "image_origin": "",
-      "image_status": "",
-      "organizer_url": ""
+      "image_status": "not_available",
+      "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11227488"
     },
     {
       "id": 135,
@@ -890,7 +890,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.119,
       "lng": -15.523,
       "accuracy": "municipality",
@@ -912,7 +912,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 27.923,
       "lng": -15.573,
       "accuracy": "municipality",
@@ -934,7 +934,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.145,
       "lng": -15.654,
       "accuracy": "municipality",
@@ -944,7 +944,7 @@
       "image_alt": "Frontón King 2026",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.galdar.es/events/fronton-king-2026/"
     },
     {
       "id": 78,
@@ -1154,7 +1154,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -1164,7 +1164,7 @@
       "image_alt": "CARS (20 ANIVERSARIO)",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.ocinepremium7palmas.es/film-10864/p"
     },
     {
       "id": 122,
@@ -1176,7 +1176,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -1186,7 +1186,7 @@
       "image_alt": "Street fighter (ATMOS)",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.ocinepremium7palmas.es/film-10881/p"
     },
     {
       "id": 123,
@@ -1198,7 +1198,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -1208,7 +1208,7 @@
       "image_alt": "Street fighter (Screen X)",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.ocinepremium7palmas.es/film-10882/p"
     },
     {
       "id": 124,
@@ -1220,7 +1220,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -1230,7 +1230,7 @@
       "image_alt": "Whalefall (ATMOS)",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.ocinepremium7palmas.es/film-10947/p"
     },
     {
       "id": 180,
@@ -2106,7 +2106,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-768-31-festival.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_768-1.jpg?fp=d464fd3890eaab803498fbde2086832e",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_768-1.jpg?fp=ff30ce846173d03f37ddd948da8b13ff",
       "image_alt": "31 FESTIVAL MASDANZA: TRANSEÚNTE de Daniel Rodríguez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2782,7 +2782,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Moya. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.108,
       "lng": -15.582,
       "accuracy": "municipality",
@@ -2791,8 +2791,8 @@
       "image_url": "",
       "image_alt": "",
       "image_origin": "",
-      "image_status": "",
-      "organizer_url": ""
+      "image_status": "not_available",
+      "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11226569"
     },
     {
       "id": 92,
@@ -2804,7 +2804,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Gáldar. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.145,
       "lng": -15.654,
       "accuracy": "municipality",
@@ -2813,8 +2813,8 @@
       "image_url": "",
       "image_alt": "",
       "image_origin": "",
-      "image_status": "",
-      "organizer_url": ""
+      "image_status": "not_available",
+      "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11227458"
     },
     {
       "id": 94,
@@ -2826,7 +2826,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Centro Comercial Siete Palmas, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -2836,7 +2836,7 @@
       "image_alt": "Sentido y sensibilidad (VOSE)",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.ocinepremium7palmas.es/film-10998/p"
     },
     {
       "id": 213,
@@ -2846,9 +2846,9 @@
       "municipality": "Ingenio",
       "venue": "Consultar el recinto en la ficha oficial",
       "category": "musica",
-      "free": null,
-      "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "free": 1,
+      "price": "Gratis",
+      "details": "Actividad en Ingenio. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 27.918,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -2858,7 +2858,7 @@
       "image_alt": "MARTA BOLAÑOS EN ACÚSTICO",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://ingenio.es/events/marta-bolanos-en-acustico/"
     },
     {
       "id": 85,
@@ -2892,7 +2892,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -2901,8 +2901,8 @@
       "image_url": "",
       "image_alt": "",
       "image_origin": "",
-      "image_status": "",
-      "organizer_url": ""
+      "image_status": "not_available",
+      "organizer_url": "https://lpabibliotecas.com/events/entre-paginas-1026/"
     },
     {
       "id": 4,
@@ -3002,7 +3002,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Víctor Jara, Santa Lucía de Tirajana. Consulta los detalles y posibles cambios con la organización.",
       "lat": 27.914,
       "lng": -15.542,
       "accuracy": "municipality",
@@ -3012,7 +3012,7 @@
       "image_alt": "EL ÚLTIMO PRESIDENTE",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/el-ultimo-presidente"
     },
     {
       "id": 98,
@@ -3024,7 +3024,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Auditorio Alfredo Kraus, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3034,7 +3034,7 @@
       "image_alt": "Las Cuartas de Beethoven y Brahms",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://ofgrancanaria.com/conciertos-entradas/eventos/las-cuartas-de-beethoven-y-brahms/412"
     },
     {
       "id": 101,
@@ -3046,7 +3046,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 27.906,
       "lng": -15.445,
       "accuracy": "municipality",
@@ -3056,7 +3056,7 @@
       "image_alt": "Ecos de los Reyes",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/ecos-de-los-reyes"
     },
     {
       "id": 102,
@@ -3068,7 +3068,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3090,7 +3090,7 @@
       "category": "familia",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3099,8 +3099,8 @@
       "image_url": "",
       "image_alt": "",
       "image_origin": "",
-      "image_status": "",
-      "organizer_url": ""
+      "image_status": "not_available",
+      "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11208822"
     },
     {
       "id": 104,
@@ -3112,7 +3112,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3122,7 +3122,7 @@
       "image_alt": "Exposición: Recetas sonoras de Liliana González",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://cca.grancanaria.com"
     },
     {
       "id": 106,
@@ -3134,7 +3134,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Agaete. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.1,
       "lng": -15.7,
       "accuracy": "municipality",
@@ -3144,7 +3144,7 @@
       "image_alt": "Actividad de Animación a la Lectura",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://agaete.es/evento/actividad-de-animacion-la-lectura"
     },
     {
       "id": 107,
@@ -3156,7 +3156,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 27.923,
       "lng": -15.573,
       "accuracy": "municipality",
@@ -3178,7 +3178,7 @@
       "category": "familia",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 27.923,
       "lng": -15.573,
       "accuracy": "municipality",
@@ -3200,7 +3200,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3210,7 +3210,7 @@
       "image_alt": "Clásicos en Vegueta: La muerte en verso",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://lpacultura.com/events/clasicos-en-vegueta-la-muerte-en-verso"
     },
     {
       "id": 214,
@@ -3222,7 +3222,7 @@
       "category": "musica",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Centro Cultural Federico García Lorca, Ingenio. Consulta los detalles y posibles cambios con la organización.",
       "lat": 27.918,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3232,7 +3232,7 @@
       "image_alt": "TRIBUTO \"POR SIEMPRE SELENA\"",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/tributo-por-siempre-selena"
     },
     {
       "id": 215,
@@ -3244,7 +3244,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3266,7 +3266,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3288,7 +3288,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3298,7 +3298,7 @@
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://salainsulardeteatro.com/evento-769-la-barraca-de.html"
     },
     {
       "id": 99,
@@ -3310,7 +3310,7 @@
       "category": "familia",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3320,7 +3320,7 @@
       "image_alt": "Taller de danza \"Iniciación al tarantismo y la pizzica\"",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://cultura.icdcultural.org/programacion-guiniguada/taller-de-danza-iniciacion-al-tarantismo-y-la-pizzica"
     },
     {
       "id": 5,
@@ -3376,7 +3376,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3386,7 +3386,7 @@
       "image_alt": "HIJOS DE LA BRUMA",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://actividadesjuventud.laspalmasgc.es/events/87ac8e81f5e3b867c6b203294dd3fb2939493ab8"
     },
     {
       "id": 13,
@@ -3420,7 +3420,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Guiniguada, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3442,7 +3442,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3452,7 +3452,7 @@
       "image_alt": "Aula de cine. Ciclo “Los modernos años 30”. El ángel azul",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.ulpgc.es/agenda/2026/10/30/aula-cine-ciclo-modernos-anos-30-angel-azul"
     },
     {
       "id": 105,
@@ -3464,7 +3464,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3473,8 +3473,8 @@
       "image_url": "",
       "image_alt": "",
       "image_origin": "",
-      "image_status": "",
-      "organizer_url": ""
+      "image_status": "not_available",
+      "organizer_url": "https://lpabibliotecas.com/events/cerebritos-en-juego-301026/"
     },
     {
       "id": 217,
@@ -3486,7 +3486,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3496,7 +3496,7 @@
       "image_alt": "ENTRENANDO CEREBRITOS - OCTUBRE",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://actividadesjuventud.laspalmasgc.es/events/0a0f2ae33d385bf653e6aead738c30bad323dd0a"
     },
     {
       "id": 219,
@@ -3508,7 +3508,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3536,7 +3536,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=d464fd3890eaab803498fbde2086832e",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=ff30ce846173d03f37ddd948da8b13ff",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3558,7 +3558,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=d464fd3890eaab803498fbde2086832e",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=ff30ce846173d03f37ddd948da8b13ff",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3574,7 +3574,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Agüimes. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 27.906,
       "lng": -15.445,
       "accuracy": "municipality",
@@ -3583,8 +3583,8 @@
       "image_url": "",
       "image_alt": "",
       "image_origin": "",
-      "image_status": "",
-      "organizer_url": ""
+      "image_status": "not_available",
+      "organizer_url": "https://www.tureservaonline.es/es/events/graciela-conchalovsky-1"
     },
     {
       "id": 212,
@@ -3662,7 +3662,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Telde. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 27.993,
       "lng": -15.416,
       "accuracy": "municipality",
@@ -3672,7 +3672,7 @@
       "image_alt": "SANTIAGO AUSERÓN PRESENTA NERANTZI",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://teldecultura.org/events/santiago-auseron-presenta-nerantzi/"
     },
     {
       "id": 111,
@@ -3684,7 +3684,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Auditorio Alfredo Kraus, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3694,7 +3694,7 @@
       "image_alt": "Pablo López",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://auditorioalfredokraus.es/evento/pablo-lopez"
     },
     {
       "id": 112,
@@ -3706,7 +3706,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Víctor Jara, Santa Lucía de Tirajana. Consulta los detalles y posibles cambios con la organización.",
       "lat": 27.914,
       "lng": -15.542,
       "accuracy": "municipality",
@@ -3716,7 +3716,7 @@
       "image_alt": "MARÍA PELAE",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/maria-pelae"
     },
     {
       "id": 114,
@@ -3728,7 +3728,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Pérez Galdós, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3738,7 +3738,7 @@
       "image_alt": "Lorca por Dámaso",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://teatroperezgaldos.es/evento/lorca-por-damaso"
     },
     {
       "id": 115,
@@ -3750,7 +3750,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Centro Comercial Siete Palmas, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3760,7 +3760,7 @@
       "image_alt": "BTS WORLD TOUR 'ARIRANG' IN SAO PAULO: LIVE VIEWING",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.ocinepremium7palmas.es/film-10803/p"
     },
     {
       "id": 116,
@@ -3772,7 +3772,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Artenara. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.019,
       "lng": -15.647,
       "accuracy": "municipality",
@@ -3816,7 +3816,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en La Aldea de San Nicolás. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 27.983,
       "lng": -15.78,
       "accuracy": "municipality",
@@ -3860,7 +3860,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Museo Elder, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3870,7 +3870,7 @@
       "image_alt": "El cuchillo canario a través de la historia. Demostraciones en vivo",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://wptpv.museoelder.es/evento/el-cuchillo-canario-a-traves-de-la-historia-demostraciones-en-vivo-2/"
     },
     {
       "id": 6,
@@ -3904,7 +3904,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Mogán. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 27.884,
       "lng": -15.723,
       "accuracy": "municipality",
@@ -3932,7 +3932,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=d464fd3890eaab803498fbde2086832e",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=ff30ce846173d03f37ddd948da8b13ff",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3954,7 +3954,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=d464fd3890eaab803498fbde2086832e",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=ff30ce846173d03f37ddd948da8b13ff",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3970,7 +3970,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Guiniguada, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -3992,7 +3992,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Auditorio Alfredo Kraus, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4002,7 +4002,7 @@
       "image_alt": "Luis Zahera",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://auditorioalfredokraus.es/evento/luis-zahera/2820"
     },
     {
       "id": 127,
@@ -4014,7 +4014,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Auditorio Alfredo Kraus, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4024,7 +4024,7 @@
       "image_alt": "Adri & Rod",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://auditorioalfredokraus.es/evento/adri-rod"
     },
     {
       "id": 129,
@@ -4036,7 +4036,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4058,7 +4058,7 @@
       "category": "gastronomia",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Gáldar. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.145,
       "lng": -15.654,
       "accuracy": "municipality",
@@ -4068,7 +4068,7 @@
       "image_alt": "Mercado Agrícola",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.galdar.es/events/mercado-agricola-1nov26/"
     },
     {
       "id": 128,
@@ -4080,7 +4080,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Telde. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 27.993,
       "lng": -15.416,
       "accuracy": "municipality",
@@ -4090,7 +4090,7 @@
       "image_alt": "EL LAGO DE LOS CISNES - INTERNATIONAL BALLET COMPANY",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://teldecultura.org/events/el-lago-de-los-cisnes-international-ballet-company/"
     },
     {
       "id": 136,
@@ -4102,7 +4102,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.035,
       "lng": -15.497,
       "accuracy": "municipality",
@@ -4112,7 +4112,7 @@
       "image_alt": "Formación en IA para emprender",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://eventos.santabrigida.es/eventos/formacion-en-ia-para-emprender/"
     },
     {
       "id": 139,
@@ -4124,7 +4124,7 @@
       "category": "familia",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Agaete. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.1,
       "lng": -15.7,
       "accuracy": "municipality",
@@ -4134,7 +4134,7 @@
       "image_alt": "El Ayuntamiento de Agaete pone en marcha el programa de talleres Cuida de tu Bienestar",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://agaete.es/evento/el-ayuntamiento-de-agaete-pone-en-marcha-el-programa-de-talleres-cuida-de-tu-bienestar-2"
     },
     {
       "id": 140,
@@ -4146,7 +4146,7 @@
       "category": "familia",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.108,
       "lng": -15.582,
       "accuracy": "municipality",
@@ -4168,7 +4168,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Guiniguada, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4178,7 +4178,7 @@
       "image_alt": "Guardianes de la noche: Tren Infinito",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://entradas.elteatroguiniguada.com/es/guardianes-de-la-noche-tren-infinito-20261103-1900"
     },
     {
       "id": 142,
@@ -4190,7 +4190,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4200,7 +4200,7 @@
       "image_alt": "I Jornadas de Aprendizaje-Servicio Universitario de Canarias",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/03/i-jornadas-aprendizaje-servicio-universitario-canarias"
     },
     {
       "id": 143,
@@ -4212,7 +4212,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4222,7 +4222,7 @@
       "image_alt": "Érase una vez en el cine (CES1)",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://ofgrancanaria.com/conciertos-entradas/eventos/erase-una-vez-en-el-cine-ces1/439"
     },
     {
       "id": 221,
@@ -4234,7 +4234,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4244,7 +4244,7 @@
       "image_alt": "Érase una vez en el cine (CES1)",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://ofgrancanaria.com/conciertos-entradas/eventos/erase-una-vez-en-el-cine-ces1/439"
     },
     {
       "id": 145,
@@ -4256,7 +4256,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Museo Elder, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4266,7 +4266,7 @@
       "image_alt": "Transformación Digital y Sostenibilidad 2026: innovación para un futuro más sostenible",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://wptpv.museoelder.es/evento/transformacion-digital-y-sostenibilidad-2026-innovacion-para-un-futuro-mas-sostenible/"
     },
     {
       "id": 144,
@@ -4278,7 +4278,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Arucas. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.119,
       "lng": -15.523,
       "accuracy": "municipality",
@@ -4288,7 +4288,7 @@
       "image_alt": "Campaña de hemodonación: Facultad de Veterinaria",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/03/campana-hemodonacion-facultad-veterinaria"
     },
     {
       "id": 147,
@@ -4300,7 +4300,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4310,7 +4310,7 @@
       "image_alt": "Érase una vez en el cine (CES1)",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://ofgrancanaria.com/conciertos-entradas/eventos/erase-una-vez-en-el-cine-ces1/439"
     },
     {
       "id": 222,
@@ -4322,7 +4322,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4332,7 +4332,7 @@
       "image_alt": "Érase una vez en el cine (CES1)",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://ofgrancanaria.com/conciertos-entradas/eventos/erase-una-vez-en-el-cine-ces1/439"
     },
     {
       "id": 149,
@@ -4344,7 +4344,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4366,7 +4366,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4376,7 +4376,7 @@
       "image_alt": "Microzarzuelas",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://lpacultura.com/events/microzarzuelas"
     },
     {
       "id": 150,
@@ -4388,7 +4388,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4398,7 +4398,7 @@
       "image_alt": "Fashion & Friend",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.grancanariamodacalida.com/fashionfriends"
     },
     {
       "id": 151,
@@ -4410,7 +4410,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Pérez Galdós, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4420,7 +4420,7 @@
       "image_alt": "Bello Universo",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://teatroperezgaldos.es/evento/bello-universo"
     },
     {
       "id": 152,
@@ -4432,7 +4432,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4442,7 +4442,7 @@
       "image_alt": "Aula de cine. Ciclo “Los modernos años 30”. Asesinato",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/06/aula-cine-ciclo-modernos-anos-30-asesinato"
     },
     {
       "id": 153,
@@ -4454,7 +4454,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Sala Insular de Teatro, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4476,7 +4476,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -4486,7 +4486,7 @@
       "image_alt": "Érase una vez en el cine (CES1)",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://ofgrancanaria.com/conciertos-entradas/eventos/erase-una-vez-en-el-cine-ces1/439"
     },
     {
       "id": 155,
@@ -5246,7 +5246,7 @@
       "category": "gastronomia",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -5256,7 +5256,7 @@
       "image_alt": "ExpoDeca 2026, Feria de la Actividad Física y el Deporte de Canarias",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://infecar.es/ferias-y-eventos/expodeca-2026-feria-de-la-actividad-fisica-y-el-deporte-de-canarias/"
     },
     {
       "id": 197,
@@ -9945,7 +9945,7 @@
       "organizer_url": ""
     }
   ],
-  "generated_at": "2026-10-24T21:26:36+01:00",
+  "generated_at": "2026-10-24T21:32:47+01:00",
   "timezone": "Atlantic/Canary",
   "verified_sources": 5
 }
