@@ -1,6 +1,34 @@
-# CanaryEvent · planGC
+# ¿Pa' Dónde? · Agenda de Gran Canaria (repositorio CanaryEvent)
 
 Agenda visual de planes cercanos en Gran Canaria, optimizada para móvil y tablet y publicable como PWA.
+
+
+## Marca y dominio: decisiones pendientes (24 de octubre de 2026)
+
+Marca visible aprobada: **¿Pa' Dónde?** El repositorio técnico conserva el nombre CanaryEvent y la URL de producción sigue siendo https://canaryevent.vercel.app/ hasta que haya un dominio registrado. La aplicación opera por ahora exclusivamente en Gran Canaria, aunque su marca admite una expansión futura a las ocho islas.
+
+Pendiente de realizar — sin compras ni registros:
+- [ ] Reconfirmar disponibilidad y comprar padondecanarias.es como candidato principal. Consultar el buscador oficial de Red.es antes de pagar.
+- [ ] Considerar registrar también padondecanarias.com y padondecanarias.app como protección opcional, comprobando el coste de compra y renovación; no es necesario adquirir padonde.com.
+- [ ] Verificar posibles conflictos de marca (OEPM y EUIPO); ya existe otro servicio llamado Pa' Donde dedicado a ocio/experiencias fuera de España.
+- [ ] Verificar y, si procede, crear los perfiles de redes como @padondecanarias (su disponibilidad no está confirmada).
+- [ ] Una vez registrado el dominio y comprobada la marca: conectar el dominio propio, configurar canónicas, redirecciones e indexación SEO, manteniendo un solo dominio principal. El sitio de prueba de Vercel tiene actualmente noindex,nofollow para evitar su indexación prematura.
+- [ ] Revisar el plan de hosting antes de monetizar (el plan Hobby de Vercel está orientado a uso no comercial).
+- [ ] Planificar selector de islas e importadores específicos por isla, sin mostrar resultados de otras islas mientras solo cubrimos Gran Canaria.
+
+Los candidatos .es fueron vistos como disponibles el 24/10/2026; eso no reserva los dominios ni garantiza su disponibilidad o precio futuro. El titular debe ser el usuario o su empresa, nunca el asistente.
+
+## Actualización automática y estado de fuentes
+
+GitHub Actions ejecuta el sincronizador cada seis horas, con cron UTC 00:37, 06:37, 12:37 y 18:37 (GitHub puede retrasar la ejecución). También admite ejecución manual desde GitHub Actions.
+
+1. Las pruebas verifican los extractores, fechas, precios, enlaces y duplicados.
+2. El proceso lee las fuentes públicas conectadas y respeta sus límites/robots.txt; errores de una fuente se registran y no borran el resto del catálogo.
+3. El catálogo SQLite y los JSON de eventos y metadatos se actualizan y se versionan en GitHub. La sincronización ahora reintenta sobre la última versión de main ante rechazos por cambios simultáneos, evitando forzar el repositorio.
+4. Vercel despliega automáticamente main al recibir los cambios del catálogo.
+5. La web carga events.json evitando la caché y vuelve a comprobarlo periódicamente o al regresar a la pestaña. Muestra la fecha de última revisión en horario de Canarias y avisa cuando han transcurrido más de 12 horas o una fuente da error.
+
+La renovación no es en tiempo real. Precios, aforos, cancelaciones y horarios pueden cambiar entre consultas y deben contrastarse con la organización.
 
 ## Estado actual: fase 1 — eventos oficiales
 

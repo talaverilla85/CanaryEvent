@@ -2,7 +2,7 @@ name: Actualizar eventos oficiales
 on:
   workflow_dispatch:
   schedule:
-    # 03:37, 09:37, 15:37 y 21:37 UTC; ejecución aproximada
+    # 00:37, 06:37, 12:37 y 18:37 UTC; GitHub puede retrasar el inicio.
     - cron: "37 */6 * * *"
   push:
     branches: [main]
@@ -12,6 +12,7 @@ on:
       - "scripts/source_facts.py"
       - "scripts/ticket_reserva.py"
       - "scripts/ticket_recent.py"
+      - "scripts/publish_synced_data.sh"
       - "scripts/artes_details.py"
       - "scripts/requirements.txt"
       - "tests/**"
@@ -44,14 +45,4 @@ jobs:
         run: python scripts/sync_events.py
       - name: Guardar base de datos y exportación
         shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/events.sqlite public/events.json public/meta.json
-          if git diff --cached --quiet; then
-            echo "Sin cambios para guardar"
-            exit 0
-          fi
-          git commit -m "data: actualizar eventos y estado de fuentes [skip ci]"
-          git push origin HEAD:main
+        run: bash scripts/publish_synced_data.sh

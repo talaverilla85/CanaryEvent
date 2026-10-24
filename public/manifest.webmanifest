@@ -1,7 +1,7 @@
 {
-  "name": "planGC · ¿Qué hacemos?",
-  "short_name": "planGC",
-  "description": "Descubre planes cerca de ti en Gran Canaria",
+  "name": "¿Pa' Dónde? · Agenda de Gran Canaria",
+  "short_name": "Pa' Dónde",
+  "description": "Descubre qué hacer hoy en Gran Canaria. Preparados para sumar más islas.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
