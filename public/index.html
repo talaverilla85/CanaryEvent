@@ -49,6 +49,76 @@
 .map-cluster.is-active{background:#e7ad53;color:#1f352d;border-color:#fff}
 .map-empty{font-size:12px;color:#6b8175;padding:18px;text-align:center}
 @media(max-width:480px){.map-panel{padding-left:10px;padding-right:10px}.map-panel #mapCanvas{border-radius:13px}.map-mini{min-width:207px}}
+
+/* HERO FIX · Hero content always wins over purely decorative elements. */
+.hero{isolation:isolate}
+.hero-grain,.hero-orbit,.hero-star{
+  z-index:0;pointer-events:none;user-select:none;
+}
+.hero:after{z-index:-1;pointer-events:none}
+.hero-content{
+  position:relative;z-index:3;
+  min-width:0;max-width:calc(100% - 34px);
+}
+.hero-content h1,.hero-content p,.hero-cta,.hero-kicker{
+  position:relative;z-index:3;
+}
+.hero-star{opacity:.25}
+.hero-tag{
+  z-index:2;pointer-events:none;
+  text-shadow:0 1px 3px #102b2488;
+}
+@media (max-width:649px){
+  .hero{
+    min-height:295px;
+    align-items:center;
+  }
+  .hero-content{
+    padding:24px 25px 28px 26px;
+    max-width:100%;
+  }
+  .hero h1{
+    font-size:clamp(44px,11vw,60px);
+    letter-spacing:-2.8px;
+    max-width:100%;
+    text-wrap:balance;
+  }
+  .hero-content p{
+    max-width:min(270px,80%);
+    line-height:1.5;
+  }
+  /* The star becomes a quiet background flourish in the bottom-right. */
+  .star-one{
+    font-size:112px;
+    top:auto;bottom:18px;right:9px;
+    transform:rotate(12deg);
+    opacity:.13;
+  }
+  .star-two{
+    top:30px;right:14px;font-size:47px;
+    opacity:.25;
+  }
+  /* The vertical tagline is decorative; hide it instead of crowding mobile copy. */
+  .hero-tag{display:none}
+}
+@media (max-width:375px){
+  .hero{min-height:282px}
+  .hero-content{padding-left:22px;padding-right:19px}
+  .hero h1{font-size:clamp(40px,11vw,47px);letter-spacing:-2.6px}
+  .star-one{font-size:88px;right:7px;bottom:22px;top:auto;opacity:.12}
+  .star-two{display:none}
+}
+@media (min-width:650px){
+  .hero-content{max-width:75%}
+  .star-one{opacity:.27;right:105px;top:128px}
+  .star-two{opacity:.38;right:50px;top:42px}
+  .hero-tag{right:20px;bottom:20px;z-index:2;opacity:.72}
+}
+@media (min-width:1000px){
+  .hero-content{max-width:68%}
+  .star-one{right:155px;top:98px;opacity:.37}
+  .star-two{right:80px;opacity:.45}
+}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>planGC · ¿Qué hacemos hoy?</title>
@@ -59,7 +129,7 @@
   </header>
   <main class="shell"><p style="background:#e4f3dc;color:#1b513e;padding:12px 15px;border-radius:12px;font-size:12px;font-weight:700;margin:0 0 15px">EVENTOS DE FUENTES OFICIALES · Actualización automática programada · Comprueba siempre los detalles con la organización.</p>
     <section class="hero" aria-labelledby="heroTitle">
-      <div class="hero-grain"></div><div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div><div class="hero-star star-one">✳</div><div class="hero-star star-two">✧</div>
+      <div class="hero-grain" aria-hidden="true"></div><div class="hero-orbit orbit-a" aria-hidden="true"></div><div class="hero-orbit orbit-b" aria-hidden="true"></div><div class="hero-star star-one" aria-hidden="true">✳</div><div class="hero-star star-two" aria-hidden="true">✧</div>
       <div class="hero-content"><div class="hero-kicker"><span class="online-dot"></span> AGENDA DE GRAN CANARIA</div><h1 id="heroTitle">¿Qué hacemos<br><em>hoy?</em></h1><p>Los mejores planes de la isla, a la vuelta de la esquina.</p><button class="hero-cta" id="surpriseBtn">Sorpréndeme <span>↗</span></button></div>
       <div class="hero-tag">LOS PLANES NO ESPERAN <span>↘</span></div>
     </section>
