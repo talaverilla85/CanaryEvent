@@ -20,7 +20,7 @@
       "image_alt": "RESERVA ÁREA RECREATIVA HUERTAS DEL REY",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/reserva-area-recreativa-huertas-del-rey"
     },
     {
       "id": 355,
@@ -988,7 +988,7 @@
       "image_alt": "COPA HÍPICA SAN VICENTE 26/27 - CARRERA DE CABALLO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/copa-hipica-san-vicente-2627-carrera-de-caballo"
     },
     {
       "id": 78,
@@ -1143,28 +1143,6 @@
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
       "organizer_url": ""
-    },
-    {
-      "id": 60,
-      "title": "XVI Jornadas Cultura del Agua. Territorio de sal, culturas de mar",
-      "start": "2026-10-21",
-      "end": "2026-10-24",
-      "municipality": "Telde",
-      "venue": "Casa León y Castillo",
-      "category": "ocio",
-      "free": null,
-      "price": "",
-      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
-      "lat": 27.993,
-      "lng": -15.416,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261021-0011/xvi-jornadas-cultura-del-agua-territorio-de-sal-culturas-de-mar",
-      "image_url": "",
-      "image_alt": "",
-      "image_origin": "",
-      "image_status": "not_available",
-      "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11209147"
     },
     {
       "id": 61,
@@ -1365,28 +1343,6 @@
       "organizer_url": "https://www.ocinepremium7palmas.es/film-10506/p"
     },
     {
-      "id": 55,
-      "title": "WOMEX Festival",
-      "start": "2026-10-22",
-      "end": "2026-10-24",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Auditorio Alfredo Kraus",
-      "category": "ocio",
-      "free": null,
-      "price": "",
-      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
-      "lat": 28.124,
-      "lng": -15.436,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261022-0003/womex-festival",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac9952c013a6268e07a4165",
-      "image_alt": "WOMEX Festival",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": "https://auditorioalfredokraus.es/evento/womex-festival"
-    },
-    {
       "id": 56,
       "title": "Clayface (ATMOS)",
       "start": "2026-10-22",
@@ -1492,28 +1448,6 @@
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0014/3-edicion-teror-film-fest",
       "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac74b15013a6268e07a3ab3",
       "image_alt": "3ª edición Teror Film Fest",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": ""
-    },
-    {
-      "id": 41,
-      "title": "Día de las Bibliotecas en la Calle",
-      "start": "2026-10-23",
-      "end": "2026-10-24",
-      "municipality": "Telde",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "category": "ocio",
-      "free": null,
-      "price": "",
-      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
-      "lat": 27.993,
-      "lng": -15.416,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0024/dia-de-las-bibliotecas-en-la-calle",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718a6013a6268e07a7be2",
-      "image_alt": "Día de las Bibliotecas en la Calle",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
       "organizer_url": ""
@@ -1783,28 +1717,6 @@
       "organizer_url": ""
     },
     {
-      "id": 21,
-      "title": "AMAFEST 2026",
-      "start": "2026-10-24",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "category": "ocio",
-      "free": null,
-      "price": "",
-      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
-      "lat": 28.124,
-      "lng": -15.436,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0011/amafest-2026",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad1f803013a6268e07a67ca",
-      "image_alt": "AMAFEST 2026",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": "https://www.casafrica.es/es/evento/amafest-20256"
-    },
-    {
       "id": 22,
       "title": "ESTANCIA AULA DE LA NATURALEZA DEL LOMO JURGÓN",
       "start": "2026-10-24",
@@ -1869,380 +1781,6 @@
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
       "organizer_url": "https://eventos.santabrigida.es/eventos/santa-brigida-acoge-por-tercera-vez-la-feria-km-0-gran-canaria/"
-    },
-    {
-      "id": 30,
-      "title": "Visita en compañía de títeres: TitereANDO en Cueva Pintada",
-      "start": "2026-10-24",
-      "end": null,
-      "municipality": "Telde",
-      "venue": "Casa León y Castillo",
-      "category": "naturaleza",
-      "free": null,
-      "price": "",
-      "details": "Actividad en Casa León y Castillo, Telde. Consulta los detalles y posibles cambios con la organización.",
-      "lat": 27.993,
-      "lng": -15.416,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0022/visita-en-compania-de-titeres-titereando-en-cueva-pintada",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acf5af1013a6268e07a59e8",
-      "image_alt": "Visita en compañía de títeres: TitereANDO en Cueva Pintada",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11209432"
-    },
-    {
-      "id": 31,
-      "title": "Excursión a Lagos de Taurito",
-      "start": "2026-10-24",
-      "end": null,
-      "municipality": "Mogán",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "category": "naturaleza",
-      "free": null,
-      "price": "",
-      "details": "Actividad en Mogán. Consulta el recinto, el programa y las condiciones con el organizador.",
-      "lat": 27.884,
-      "lng": -15.723,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0023/excursion-a-lagos-de-taurito",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad1d29f013a6268e07a6412",
-      "image_alt": "Excursión a Lagos de Taurito",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": ""
-    },
-    {
-      "id": 32,
-      "title": "Senderismo: Caminar para Conocer",
-      "start": "2026-10-24T08:00:00",
-      "end": null,
-      "municipality": "Firgas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "category": "naturaleza",
-      "free": null,
-      "price": "",
-      "details": "Actividad en Firgas. Consulta el recinto, el programa y las condiciones con el organizador.",
-      "lat": 28.106,
-      "lng": -15.563,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0024/senderismo-caminar-para-conocer",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad1d2ab013a6268e07a6445",
-      "image_alt": "Senderismo: Caminar para Conocer",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": ""
-    },
-    {
-      "id": 24,
-      "title": "IX Edición de la Carrera Insular del Mayor 2026 - Pasos x la vida",
-      "start": "2026-10-24T10:30:00",
-      "end": "2026-10-24T13:30:00",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "category": "deporte",
-      "free": null,
-      "price": "",
-      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
-      "lat": 28.124,
-      "lng": -15.436,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0015/ix-edicion-de-la-carrera-insular-del-mayor-2026-pasos-x-la-vida",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac4a3b1013a6268e07a312c",
-      "image_alt": "IX Edición de la Carrera Insular del Mayor 2026 - Pasos x la vida",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": ""
-    },
-    {
-      "id": 38,
-      "title": "Taller de tejidos, lanas y telas",
-      "start": "2026-10-24T10:30:00",
-      "end": "2026-10-24T13:30:00",
-      "municipality": "Gáldar",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "category": "familia",
-      "free": null,
-      "price": "",
-      "details": "Actividad en Gáldar. Consulta el recinto, el programa y las condiciones con el organizador.",
-      "lat": 28.145,
-      "lng": -15.654,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0031/taller-de-tejidos-lanas-y-telas",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad9bff6013a6268e07a86df",
-      "image_alt": "Taller de tejidos, lanas y telas",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": ""
-    },
-    {
-      "id": 35,
-      "title": "El cuchillo canario a través de la Historia. Demostraciones en vivo.",
-      "start": "2026-10-24T12:00:00",
-      "end": "2026-10-24T14:00:00",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Museo Elder",
-      "category": "ocio",
-      "free": null,
-      "price": "",
-      "details": "Actividad en Museo Elder, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
-      "lat": 28.124,
-      "lng": -15.436,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0028/el-cuchillo-canario-a-traves-de-la-historia-demostraciones-en-vivo",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c7e4013a6268e07a7a5c",
-      "image_alt": "El cuchillo canario a través de la Historia. Demostraciones en vivo.",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": "https://wptpv.museoelder.es/evento/el-cuchillo-canario-a-traves-de-la-historia-demostraciones-en-vivo/"
-    },
-    {
-      "id": 36,
-      "title": "NOON Canarias: Vientar Trío",
-      "start": "2026-10-24T12:00:00",
-      "end": null,
-      "municipality": "San Bartolomé de Tirajana",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "category": "ocio",
-      "free": null,
-      "price": "",
-      "details": "Actividad en San Bartolomé de Tirajana. Consulta el recinto, el programa y las condiciones con el organizador.",
-      "lat": 27.923,
-      "lng": -15.573,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0029/noon-canarias-vientar-trio",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718b2013a6268e07a7be8",
-      "image_alt": "NOON Canarias: Vientar Trío",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": ""
-    },
-    {
-      "id": 33,
-      "title": "Juegos de Mesa en Level Up Game Shop",
-      "start": "2026-10-24T17:00:00",
-      "end": "2026-10-24T20:00:00",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "category": "familia",
-      "free": null,
-      "price": "",
-      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
-      "lat": 28.124,
-      "lng": -15.436,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0026/juegos-de-mesa-en-level-up-game-shop",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c731013a6268e07a779f",
-      "image_alt": "Juegos de Mesa en Level Up Game Shop",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": ""
-    },
-    {
-      "id": 1,
-      "title": "👻🔪 ¡CASA DEL TERROR: EL RATIÑO! 🎃",
-      "start": "2026-10-24T18:00:00",
-      "end": null,
-      "municipality": "Ingenio",
-      "venue": "A.VV. Los Molinillos",
-      "category": "familia",
-      "free": null,
-      "price": "",
-      "details": "👻🔪 ¡CASA DEL TERROR: EL RATIÑO! 🎃 😱 ¿Te atreves a ...",
-      "lat": 27.918,
-      "lng": -15.436,
-      "accuracy": "municipality",
-      "source_name": "Ayuntamiento de Ingenio",
-      "source_url": "https://ingenio.es/events/%f0%9f%91%bb%f0%9f%94%aa-casa-del-terror-el-ratino-%f0%9f%8e%83/",
-      "image_url": "https://ingenio.es/wp-content/uploads/2026/10/terror-ratino-300x300.jpg",
-      "image_alt": "👻🔪 ¡CASA DEL TERROR: EL RATIÑO! 🎃",
-      "image_origin": "Ayuntamiento de Ingenio",
-      "image_status": "official_remote",
-      "organizer_url": ""
-    },
-    {
-      "id": 19,
-      "title": "Lecturas Dramatizadas: La Coreana I Cia.SeaSea Producciones",
-      "start": "2026-10-24T19:00:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Teatro Guiniguada",
-      "category": "ocio",
-      "free": null,
-      "price": "",
-      "details": "Actividad en Teatro Guiniguada, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
-      "lat": 28.124,
-      "lng": -15.436,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0005/lecturas-dramatizadas-la-coreana-i-ciaseasea-producciones",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab62dbe013a6268e079f183",
-      "image_alt": "Lecturas Dramatizadas: La Coreana I Cia.SeaSea Producciones",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": "https://entradas.elteatroguiniguada.com/es/lecturas-dramatizadas-la-coreana-i-cia.seasea-producciones-20261024-1900"
-    },
-    {
-      "id": 26,
-      "title": "¿DE DONDE VENIMOS?",
-      "start": "2026-10-24T19:00:00",
-      "end": null,
-      "municipality": "Agüimes",
-      "venue": "Teatro Auditorio Agüimes",
-      "category": "ocio",
-      "free": 0,
-      "price": "Desde 8 €",
-      "details": "Actividad en Teatro Auditorio Agüimes, Agüimes. Consulta los detalles y posibles cambios con la organización.",
-      "lat": 27.906,
-      "lng": -15.445,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0018/de-donde-venimos",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac5f590013a6268e07a368d",
-      "image_alt": "¿DE DONDE VENIMOS?",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": "https://www.tureservaonline.es/es/events/de-donde-venimos"
-    },
-    {
-      "id": 14,
-      "title": "31 FESTIVAL MASDANZA: TRANSEÚNTE de Daniel Rodríguez",
-      "start": "2026-10-24T19:30:00",
-      "end": "2026-10-24T20:20:00",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Teatro Cuyás",
-      "category": "cultura",
-      "free": 0,
-      "price": "10 €",
-      "details": "TRANSEÚNTE es un espectáculo con seis intérpretes en escena, dos de los cuales también son músicos. Duración: 50 min.",
-      "lat": 28.124,
-      "lng": -15.436,
-      "accuracy": "municipality",
-      "source_name": "Circuito de Artes Escénicas GC",
-      "source_url": "https://artesescenicasgrancanaria.com/evento-768-31-festival.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_768-1.jpg?fp=9d9dc8d6c78be6885661beee34ddedf5",
-      "image_alt": "31 FESTIVAL MASDANZA: TRANSEÚNTE de Daniel Rodríguez",
-      "image_origin": "Circuito de Artes Escénicas GC",
-      "image_status": "official_remote",
-      "organizer_url": ""
-    },
-    {
-      "id": 34,
-      "title": "Noche de Estrellas en Tasartico",
-      "start": "2026-10-24T19:30:00",
-      "end": null,
-      "municipality": "La Aldea de San Nicolás",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "category": "ocio",
-      "free": null,
-      "price": "",
-      "details": "Actividad en La Aldea de San Nicolás. Consulta el recinto, el programa y las condiciones con el organizador.",
-      "lat": 27.983,
-      "lng": -15.78,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0027/noche-de-estrellas-en-tasartico",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c73c013a6268e07a77bd",
-      "image_alt": "Noche de Estrellas en Tasartico",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": ""
-    },
-    {
-      "id": 23,
-      "title": "Llega a Santa Brígida ‘El lodo que fuimos’, premio CENIT",
-      "start": "2026-10-24T20:00:00",
-      "end": "2026-10-24T21:00:00",
-      "municipality": "Santa Brígida",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "category": "ocio",
-      "free": null,
-      "price": "",
-      "details": "Actividad en Santa Brígida. Consulta el recinto, el programa y las condiciones con el organizador.",
-      "lat": 28.035,
-      "lng": -15.497,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0014/llega-a-santa-brigida-el-lodo-que-fuimos-premio-cenit",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad03ab8013a6268e07a5d6f",
-      "image_alt": "Llega a Santa Brígida ‘El lodo que fuimos’, premio CENIT",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": "https://eventos.santabrigida.es/eventos/el-lodo-que-fuimos-premiada-en-el-certamen-de-investigadores-teatrales/"
-    },
-    {
-      "id": 2,
-      "title": "GRAN FINAL YO CANTO",
-      "start": "2026-10-24T20:30:00",
-      "end": null,
-      "municipality": "Ingenio",
-      "venue": "Centro Cultural Federico García Lorca · Calle Ramón y Cajal, 29, 35250 Ingenio, Las Palmas",
-      "category": "musica",
-      "free": 1,
-      "price": "Gratis",
-      "details": "",
-      "lat": 27.918,
-      "lng": -15.436,
-      "accuracy": "municipality",
-      "source_name": "Ayuntamiento de Ingenio",
-      "source_url": "https://ingenio.es/events/gran-final-yo-canto/",
-      "image_url": "https://ingenio.es/wp-content/uploads/2026/10/1023-yo-canto-300x300.jpg",
-      "image_alt": "GRAN FINAL YO CANTO",
-      "image_origin": "Ayuntamiento de Ingenio",
-      "image_status": "official_remote",
-      "organizer_url": "https://www.tureservaonline.es/es/events/gran-final-yo-canto"
-    },
-    {
-      "id": 29,
-      "title": "Festival Agáldar 2026",
-      "start": "2026-10-24T20:30:00",
-      "end": "2026-10-24T22:00:00",
-      "municipality": "Gáldar",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "category": "ocio",
-      "free": null,
-      "price": "",
-      "details": "Actividad en Gáldar. Consulta el recinto, el programa y las condiciones con el organizador.",
-      "lat": 28.145,
-      "lng": -15.654,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0021/festival-agaldar-2026",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acc3bad013a6268e07a4c1b",
-      "image_alt": "Festival Agáldar 2026",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": "https://www.galdar.es/events/festival-agaldar-2026/"
-    },
-    {
-      "id": 37,
-      "title": "Día de las Bibliotecas con “Sabor de Autor”",
-      "start": "2026-10-24T20:30:00",
-      "end": "2026-10-24T23:59:00",
-      "municipality": "Valleseco",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "category": "ocio",
-      "free": null,
-      "price": "",
-      "details": "Actividad en Valleseco. Consulta el recinto, el programa y las condiciones con el organizador.",
-      "lat": 28.045,
-      "lng": -15.579,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261024-0030/dia-de-las-bibliotecas-con-sabor-de-autor",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad80b34013a6268e07a804d",
-      "image_alt": "Día de las Bibliotecas con “Sabor de Autor”",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": "https://valleseco.es/valleseco/events/dia-de-las-bibliotecas-con-sabor-de-autor/var/ri-.l-L1"
     },
     {
       "id": 52,
@@ -3298,7 +2836,7 @@
       "image_alt": "ENTRE REJAS - LA CASA DEL TERROR DE GÁLDAR",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/entre-rejas-la-casa-del-terror-de-galdar"
     },
     {
       "id": 456,
@@ -3320,7 +2858,7 @@
       "image_alt": "MASTERCLASS TIFF - YAIZA MÉNDEZ",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/masterclass-tiff-yaiza-mendez"
     },
     {
       "id": 99,
@@ -3364,7 +2902,7 @@
       "image_alt": "MARATON DE CORTOS REC72H TIFF",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/maraton-de-cortos-rec72h-tiff"
     },
     {
       "id": 5,
@@ -3580,7 +3118,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=9d9dc8d6c78be6885661beee34ddedf5",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=2166b06dc5011c657d7db1b104bcaa3a",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3602,7 +3140,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=9d9dc8d6c78be6885661beee34ddedf5",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=2166b06dc5011c657d7db1b104bcaa3a",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3998,7 +3536,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=9d9dc8d6c78be6885661beee34ddedf5",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=2166b06dc5011c657d7db1b104bcaa3a",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -4020,7 +3558,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=9d9dc8d6c78be6885661beee34ddedf5",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=2166b06dc5011c657d7db1b104bcaa3a",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -4200,7 +3738,7 @@
       "image_alt": "EL LAGO DE LOS CISNES",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/el-lago-de-los-cisnes-1"
     },
     {
       "id": 136,
@@ -4464,7 +4002,7 @@
       "image_alt": "PODCAST EN DIRECTO. LA HORA DE LA PIEDRA",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/podcast-en-directo-la-hora-de-la-piedra"
     },
     {
       "id": 149,
@@ -4684,7 +4222,7 @@
       "image_alt": "ESCAPE ROOM \"EL CASERÍO\" - VILLA DE MOYA",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/escape-room-el-caserio-villa-de-moya"
     },
     {
       "id": 464,
@@ -4706,7 +4244,7 @@
       "image_alt": "PASAJE DEL TERROR “PROYECTO INSOMNIA” - VILLA DE MOYA",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/pasaje-del-terror-proyecto-insomnia-villa-de-moya"
     },
     {
       "id": 461,
@@ -4728,7 +4266,7 @@
       "image_alt": "BINGO SOLIDARIO 2026 - DOWN LAS PALMAS",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/bingo-solidario-2026-down-las-palmas"
     },
     {
       "id": 462,
@@ -4750,7 +4288,7 @@
       "image_alt": "CHECK-OUT",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/check-out"
     },
     {
       "id": 158,
@@ -5278,7 +4816,7 @@
       "image_alt": "ANANDA",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/ananda"
     },
     {
       "id": 184,
@@ -5894,7 +5432,7 @@
       "image_alt": "CORAZÓN VALIENTE, EL SOLDADITO DE PLOMO - VALLESECO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/corazon-valiente-el-soldadito-de-plomo-valleseco"
     },
     {
       "id": 205,
@@ -5982,7 +5520,7 @@
       "image_alt": "MI SUEÑO DE INVIERNO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/mi-sueno-de-invierno"
     },
     {
       "id": 227,
@@ -6026,7 +5564,7 @@
       "image_alt": "ESTO ES UNA TRACA",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/esto-es-una-traca"
     },
     {
       "id": 469,
@@ -6048,7 +5586,7 @@
       "image_alt": "AL VACÍO - TELDE",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/al-vacio-telde"
     },
     {
       "id": 232,
@@ -6444,7 +5982,7 @@
       "image_alt": "ANIMAL DE COMPAÑÍA",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/animal-de-compania"
     },
     {
       "id": 249,
@@ -6554,7 +6092,7 @@
       "image_alt": "TODO INCLUIDO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/todo-incluido"
     },
     {
       "id": 264,
@@ -6796,7 +6334,7 @@
       "image_alt": "HILOS DEL ATLÁNTICO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/hilos-del-atlantico"
     },
     {
       "id": 271,
@@ -7038,7 +6576,7 @@
       "image_alt": "NOCHE EN UN BAR",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/noche-en-un-bar"
     },
     {
       "id": 275,
@@ -7148,7 +6686,7 @@
       "image_alt": "ANCESTROS; RITOS Y COSTUMBRES",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/ancestros-ritos-y-costumbres"
     },
     {
       "id": 476,
@@ -7170,7 +6708,7 @@
       "image_alt": "SOLO PALIQUE - GÁLDAR",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/solo-palique-galdar"
     },
     {
       "id": 290,
@@ -7280,7 +6818,7 @@
       "image_alt": "PONENCIAS EXPOBIENESTAR CANARIAS 2026",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/ponencias-expobienestar-canarias-2026"
     },
     {
       "id": 297,
@@ -7324,7 +6862,7 @@
       "image_alt": "TALLERES EXPOBIENESTAR CANARIAS 2026",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/talleres-expobienestar-canarias-2026"
     },
     {
       "id": 291,
@@ -7456,7 +6994,7 @@
       "image_alt": "CAMINATA SOLIDARIA - GRAND PINK RUN 2026",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/caminata-solidaria-grand-pink-run-2026"
     },
     {
       "id": 305,
@@ -7720,7 +7258,7 @@
       "image_alt": "DELIA SANTANA - OTRO SHOW DE IMPRO MÁS",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/delia-santana-otro-show-de-impro-mas"
     },
     {
       "id": 320,
@@ -7896,7 +7434,7 @@
       "image_alt": "MISERABLE II, UN SHOW DE MIGUEL LAGO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/miserable-ii-un-show-de-miguel-lago"
     },
     {
       "id": 482,
@@ -7918,7 +7456,7 @@
       "image_alt": "PANZA DE BURRO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/panza-de-burro"
     },
     {
       "id": 327,
@@ -8138,7 +7676,7 @@
       "image_alt": "MÁS ALLÁ DEL PASILLO – IVÁN TORRES - GÁLDAR",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/mas-alla-del-pasillo-ivan-torres-galdar"
     },
     {
       "id": 484,
@@ -8160,7 +7698,7 @@
       "image_alt": "GALA SOLIDARIA ASDOWNSUR 2026",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/gala-solidaria-asdownsur-2026"
     },
     {
       "id": 335,
@@ -8446,7 +7984,7 @@
       "image_alt": "GRAN GALA PEQUEÑO VALIENTE 2026",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/gran-gala-pequeno-valiente-2026"
     },
     {
       "id": 346,
@@ -8490,7 +8028,7 @@
       "image_alt": "MARU CANDEL",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/maru-candel-1"
     },
     {
       "id": 487,
@@ -8512,7 +8050,7 @@
       "image_alt": "LA ROPA VIEJA DE CUCA - TEROR",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/la-ropa-vieja-de-cuca-teror"
     },
     {
       "id": 352,
@@ -8600,7 +8138,7 @@
       "image_alt": "VIBRA MUSIC",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/vibra-music"
     },
     {
       "id": 489,
@@ -8622,7 +8160,7 @@
       "image_alt": "BLANCANIEVES. MÁS ALLÁ DE ESPEJO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/blancanieves-mas-alla-de-espejo"
     },
     {
       "id": 490,
@@ -8644,7 +8182,7 @@
       "image_alt": "MI SUEÑO DE INVIERNO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/mi-sueno-de-invierno-1"
     },
     {
       "id": 491,
@@ -8666,7 +8204,7 @@
       "image_alt": "\"LA VOZ FAVORITA\" JAY WHEELER",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/la-voz-favorita-jay-wheeler"
     },
     {
       "id": 356,
@@ -8776,7 +8314,7 @@
       "image_alt": "RUTA DE BELENES \"ARUCAS Y GÁLDAR\"",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/ruta-de-belenes-arucas-y-galdar"
     },
     {
       "id": 360,
@@ -8908,7 +8446,7 @@
       "image_alt": "CORAZÓN VALIENTE, EL SOLDADITO DE PLOMO - MASPALOMAS",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/corazon-valiente-el-soldadito-de-plomo-maspalomas"
     },
     {
       "id": 361,
@@ -8952,7 +8490,7 @@
       "image_alt": "MI NAVIDAD EN TI",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/mi-navidad-en-ti"
     },
     {
       "id": 495,
@@ -8974,7 +8512,7 @@
       "image_alt": "ALMA - TEROR",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/alma-teror"
     },
     {
       "id": 369,
@@ -9106,7 +8644,7 @@
       "image_alt": "EN BUSCA DE LA MÁGIA - GÁLDAR",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/en-busca-de-la-magia-galdar"
     },
     {
       "id": 366,
@@ -9150,7 +8688,7 @@
       "image_alt": "TREMENDA",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/tremenda-1"
     },
     {
       "id": 377,
@@ -9580,7 +9118,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Sala Insular de Teatro, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -9602,7 +9140,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Pérez Galdós, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -9612,7 +9150,7 @@
       "image_alt": "Mímesis. La familia",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://teatroperezgaldos.es/evento/mimesis-la-familia"
     },
     {
       "id": 395,
@@ -9624,7 +9162,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -9634,7 +9172,7 @@
       "image_alt": "Dune Parte Tres",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.ocinepremium7palmas.es/film-10770/p"
     },
     {
       "id": 396,
@@ -9646,7 +9184,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -9656,7 +9194,7 @@
       "image_alt": "Dune Parte Tres (VOSE)",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.ocinepremium7palmas.es/film-10775/p"
     },
     {
       "id": 390,
@@ -9712,7 +9250,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -9722,7 +9260,7 @@
       "image_alt": "Carta a Santa Claus",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://teatroperezgaldos.es/evento/carta-a-santa-claus"
     },
     {
       "id": 402,
@@ -9734,7 +9272,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Firgas. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.106,
       "lng": -15.563,
       "accuracy": "municipality",
@@ -9766,7 +9304,7 @@
       "image_alt": "ANIMAL DE COMPAÑÍA, ¿Y TÚ, HABLAS CON TU PERRO? - UN ESPECTÁCULO DE JORGE BOLAÑOS - ARUCAS",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/animal-de-compania-y-tu-hablas-con-tu-perro-un-espectaculo-de-jorge-bolanos-arucas"
     },
     {
       "id": 401,
@@ -9778,7 +9316,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Gran Canaria Arena, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -9788,7 +9326,7 @@
       "image_alt": "",
       "image_origin": "",
       "image_status": "not_available",
-      "organizer_url": ""
+      "organizer_url": "https://cbgrancanaria.net/partidos/"
     },
     {
       "id": 398,
@@ -9800,7 +9338,7 @@
       "category": "ocio",
       "free": 0,
       "price": "Desde 10 €",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Víctor Jara, Santa Lucía de Tirajana. Consulta los detalles y posibles cambios con la organización.",
       "lat": 27.914,
       "lng": -15.542,
       "accuracy": "municipality",
@@ -9832,7 +9370,7 @@
       "image_alt": "EL SHOW DE IGNATIUS FARRAY",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/el-show-de-ignatius-farray-1"
     },
     {
       "id": 397,
@@ -9844,7 +9382,7 @@
       "category": "musica",
       "free": 0,
       "price": "Desde 15 €",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Telde. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 27.993,
       "lng": -15.416,
       "accuracy": "municipality",
@@ -9854,7 +9392,7 @@
       "image_alt": "«BACK TO AMY» - TRIBUTO A AMY WINEHOUSE",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": "https://www.tureservaonline.es/es/events/back-to-amy-tributo-a-amy-winehouse-1"
+      "organizer_url": "https://teldecultura.org/events/back-to-amy-tributo-a-amy-winehouse/"
     },
     {
       "id": 399,
@@ -9866,7 +9404,7 @@
       "category": "musica",
       "free": 0,
       "price": "Desde 10 €",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Auditorio Agüimes, Agüimes. Consulta los detalles y posibles cambios con la organización.",
       "lat": 27.906,
       "lng": -15.445,
       "accuracy": "municipality",
@@ -9876,7 +9414,7 @@
       "image_alt": "LOS GOFIONES’, CONCIERTO DE NAVIDAD",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": "https://www.tureservaonline.es/es/events/los-gofiones-concierto-de-navidad-1"
+      "organizer_url": "https://aguimes.es/events/los-gofiones-concierto-de-navidad/var/ri-.l-L1"
     },
     {
       "id": 403,
@@ -9888,7 +9426,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Sala Insular de Teatro, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -9910,7 +9448,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Telde. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 27.993,
       "lng": -15.416,
       "accuracy": "municipality",
@@ -9920,7 +9458,7 @@
       "image_alt": "CORAZÓN VALIENTE",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://teldecultura.org/events/corazon-valiente/"
     },
     {
       "id": 500,
@@ -9942,7 +9480,7 @@
       "image_alt": "CORAZÓN VALIENTE - TELDE",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/corazon-valiente-telde"
     },
     {
       "id": 501,
@@ -9964,7 +9502,7 @@
       "image_alt": "EN BUSCA DE LA MAGIA",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/en-busca-de-la-magia-1"
     },
     {
       "id": 502,
@@ -9986,7 +9524,7 @@
       "image_alt": "FANTASÍA - UN ESPECTÁCULO DE SAÚL ROMERO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/fantasia-un-espectaculo-de-saul-romero"
     },
     {
       "id": 405,
@@ -9998,7 +9536,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Sala Insular de Teatro, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10020,7 +9558,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10042,7 +9580,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Sala Insular de Teatro, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10064,7 +9602,7 @@
       "category": "ocio",
       "free": 0,
       "price": "Desde 8 €",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Víctor Jara, Santa Lucía de Tirajana. Consulta los detalles y posibles cambios con la organización.",
       "lat": 27.914,
       "lng": -15.542,
       "accuracy": "municipality",
@@ -10086,7 +9624,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Sala Insular de Teatro, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10108,7 +9646,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10118,7 +9656,7 @@
       "image_alt": "ZENICIENTA by Zalakadula",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://teatroperezgaldos.es/evento/zenicienta-by-zalakadula"
     },
     {
       "id": 411,
@@ -10130,7 +9668,7 @@
       "category": "musica",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10140,7 +9678,7 @@
       "image_alt": "XV Concierto Popular de Año Nuevo",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://auditorioalfredokraus.es/evento/xv-concierto-popular-de-ano-nuevo"
     },
     {
       "id": 412,
@@ -10152,7 +9690,7 @@
       "category": "ocio",
       "free": 0,
       "price": "Desde 8 €",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Telde. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 27.993,
       "lng": -15.416,
       "accuracy": "municipality",
@@ -10162,7 +9700,7 @@
       "image_alt": "CANTILANDIA. ¿CÓMO ESTÁN USTEDES?",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": "https://www.tureservaonline.es/es/events/cantilandia-como-estan-ustedes"
+      "organizer_url": "https://teldecultura.org/events/cantilandia-como-estan-ustedes/"
     },
     {
       "id": 503,
@@ -10184,7 +9722,7 @@
       "image_alt": "BEJEQUE KIDS",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/bejeque-kids"
     },
     {
       "id": 414,
@@ -10196,7 +9734,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Sala Insular de Teatro, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10218,7 +9756,7 @@
       "category": "gastronomia",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Gáldar. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.145,
       "lng": -15.654,
       "accuracy": "municipality",
@@ -10228,7 +9766,7 @@
       "image_alt": "Mercado Agrícola",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.galdar.es/events/mercado-agricola-27dic26/"
     },
     {
       "id": 415,
@@ -10240,7 +9778,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Telde. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 27.993,
       "lng": -15.416,
       "accuracy": "municipality",
@@ -10250,7 +9788,7 @@
       "image_alt": "BLANCANIEVES, MÁS ALLÁ DEL ESPEJO",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://teldecultura.org/events/blancanieves-mas-alla-del-espejo/"
     },
     {
       "id": 504,
@@ -10272,7 +9810,7 @@
       "image_alt": "BLANCANIEVES, MÁS ALLÁ DEL ESPEJO - TELDE",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/blancanieves-mas-alla-del-espejo-telde"
     },
     {
       "id": 505,
@@ -10294,7 +9832,7 @@
       "image_alt": "DISPARATE - UN ESPECTÁCULO DE OMAYRA CAZORLA",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/disparate-un-espectaculo-de-omayra-cazorla"
     },
     {
       "id": 506,
@@ -10316,7 +9854,7 @@
       "image_alt": "BLANCANIEVES MÁS ALLÁ DEL ESPEJO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/blancanieves-mas-alla-del-espejo-1"
     },
     {
       "id": 416,
@@ -10328,7 +9866,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10350,7 +9888,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Auditorio Alfredo Kraus, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10360,7 +9898,7 @@
       "image_alt": "Omayra Cazorla",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://auditorioalfredokraus.es/evento/omayra-cazorla-7"
     },
     {
       "id": 418,
@@ -10372,7 +9910,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Gran Canaria Arena, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10382,7 +9920,7 @@
       "image_alt": "",
       "image_origin": "",
       "image_status": "not_available",
-      "organizer_url": ""
+      "organizer_url": "https://cbgrancanaria.net/partidos/"
     },
     {
       "id": 507,
@@ -10404,7 +9942,7 @@
       "image_alt": "CORAZÓN VALIENTE, EL SOLDADITO DE PLOMO - TEROR",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/corazon-valiente-el-soldadito-de-plomo-teror"
     },
     {
       "id": 508,
@@ -10426,7 +9964,7 @@
       "image_alt": "BLANCANIEVES, MÁS ALLÁ DEL ESPEJO - VALLESECO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/blancanieves-mas-alla-del-espejo-valleseco"
     },
     {
       "id": 420,
@@ -10438,7 +9976,7 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10448,7 +9986,7 @@
       "image_alt": "Exposición \\\"CONFLUENCIA\\\"",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/19/exposicion-confluencia"
     },
     {
       "id": 419,
@@ -10460,7 +9998,7 @@
       "category": "ocio",
       "free": 0,
       "price": "Desde 20 €",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Víctor Jara, Santa Lucía de Tirajana. Consulta los detalles y posibles cambios con la organización.",
       "lat": 27.914,
       "lng": -15.542,
       "accuracy": "municipality",
@@ -10482,7 +10020,7 @@
       "category": "ocio",
       "free": 0,
       "price": "Desde 20 €",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Víctor Jara, Santa Lucía de Tirajana. Consulta los detalles y posibles cambios con la organización.",
       "lat": 27.914,
       "lng": -15.542,
       "accuracy": "municipality",
@@ -10504,7 +10042,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Gran Canaria Arena, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10514,7 +10052,7 @@
       "image_alt": "",
       "image_origin": "",
       "image_status": "not_available",
-      "organizer_url": ""
+      "organizer_url": "https://cbgrancanaria.net/partidos/"
     },
     {
       "id": 423,
@@ -10526,7 +10064,7 @@
       "category": "ocio",
       "free": 0,
       "price": "Desde 10 €",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 27.906,
       "lng": -15.445,
       "accuracy": "municipality",
@@ -10548,7 +10086,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10558,7 +10096,7 @@
       "image_alt": "Cristina Ramos y Los Tenampas",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://auditorioalfredokraus.es/evento/cristina-ramos-y-los-tenampas"
     },
     {
       "id": 425,
@@ -10570,7 +10108,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Víctor Jara, Santa Lucía de Tirajana. Consulta los detalles y posibles cambios con la organización.",
       "lat": 27.914,
       "lng": -15.542,
       "accuracy": "municipality",
@@ -10580,7 +10118,7 @@
       "image_alt": "GISELA SHOW KIDS",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/gisela-show-kids"
     },
     {
       "id": 426,
@@ -10592,7 +10130,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10614,7 +10152,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10646,7 +10184,7 @@
       "image_alt": "FANTASÍA - UN ESPECTÁCULO DE SAÚL ROMERO (MASPALOMAS)",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/fantasia-un-espectaculo-de-saul-romero-maspalomas"
     },
     {
       "id": 429,
@@ -10658,7 +10196,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Auditorio Alfredo Kraus, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10668,7 +10206,7 @@
       "image_alt": "Bill Laurance",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://auditorioalfredokraus.es/evento/bill-laurance"
     },
     {
       "id": 428,
@@ -10680,7 +10218,7 @@
       "category": "ocio",
       "free": 0,
       "price": "Desde 24 €",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Víctor Jara, Santa Lucía de Tirajana. Consulta los detalles y posibles cambios con la organización.",
       "lat": 27.914,
       "lng": -15.542,
       "accuracy": "municipality",
@@ -10702,7 +10240,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10724,7 +10262,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Auditorio Alfredo Kraus, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10734,7 +10272,7 @@
       "image_alt": "Acantha Lang",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://auditorioalfredokraus.es/evento/acantha-lang"
     },
     {
       "id": 432,
@@ -10746,7 +10284,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en San Bartolomé de Tirajana. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 27.923,
       "lng": -15.573,
       "accuracy": "municipality",
@@ -10778,7 +10316,7 @@
       "image_alt": "DISPARATE - UN ESPECTÁCULO DE OMAYRA CAZORLA (MASPALOMAS)",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/disparate-un-espectaculo-de-omayra-cazorla-maspalomas"
     },
     {
       "id": 430,
@@ -10790,7 +10328,7 @@
       "category": "cultura",
       "free": 0,
       "price": "Desde 20 €",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Víctor Jara, Santa Lucía de Tirajana. Consulta los detalles y posibles cambios con la organización.",
       "lat": 27.914,
       "lng": -15.542,
       "accuracy": "municipality",
@@ -10822,7 +10360,7 @@
       "image_alt": "GRITO DE HOVIK KEUCHKERIAN",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/grito-de-hovik-keuchkerian"
     },
     {
       "id": 512,
@@ -10844,7 +10382,7 @@
       "image_alt": "GRACIAS - TEROR",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/gracias-teror"
     },
     {
       "id": 435,
@@ -10856,7 +10394,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Sala Insular de Teatro, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10878,7 +10416,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Auditorio Alfredo Kraus, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10888,7 +10426,7 @@
       "image_alt": "Luis Prado & Band",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://auditorioalfredokraus.es/evento/luis-prado-band"
     },
     {
       "id": 434,
@@ -10900,7 +10438,7 @@
       "category": "ocio",
       "free": 0,
       "price": "Desde 30 €",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Agüimes. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 27.906,
       "lng": -15.445,
       "accuracy": "municipality",
@@ -10910,7 +10448,7 @@
       "image_alt": "GRITO DE HOVIK KEUCHKERIAN",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": "https://www.tureservaonline.es/es/events/grito-de-hovik-keuchkerian-1"
+      "organizer_url": "https://aguimes.es/events/grito-de-hovik-keuchkerian/var/ri-.l-L1"
     },
     {
       "id": 437,
@@ -10922,7 +10460,7 @@
       "category": "musica",
       "free": 0,
       "price": "Desde 15 €",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Víctor Jara, Santa Lucía de Tirajana. Consulta los detalles y posibles cambios con la organización.",
       "lat": 27.914,
       "lng": -15.542,
       "accuracy": "municipality",
@@ -10944,7 +10482,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -10966,7 +10504,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Centro Cultural Guaire, Gáldar. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.145,
       "lng": -15.654,
       "accuracy": "municipality",
@@ -10976,7 +10514,7 @@
       "image_alt": "Eureka",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.galdar.es/events/eureka/"
     },
     {
       "id": 513,
@@ -10998,7 +10536,7 @@
       "image_alt": "EUREKA - UN SHOW DE MIKEL BERMEJO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/eureka-un-show-de-mikel-bermejo"
     },
     {
       "id": 514,
@@ -11020,7 +10558,7 @@
       "image_alt": "TENET",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/tenet"
     },
     {
       "id": 440,
@@ -11032,7 +10570,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Sala Insular de Teatro, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -11054,7 +10592,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Auditorio Alfredo Kraus, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -11064,7 +10602,7 @@
       "image_alt": "MT Jones",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://auditorioalfredokraus.es/evento/mt-jones"
     },
     {
       "id": 442,
@@ -11076,7 +10614,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Pérez Galdós, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -11086,7 +10624,7 @@
       "image_alt": "Mujeres y Hombres del 27",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://teatroperezgaldos.es/evento/mujeres-y-hombres-del-27"
     },
     {
       "id": 515,
@@ -11108,7 +10646,7 @@
       "image_alt": "JAMMING SESSION",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/jamming-session"
     },
     {
       "id": 443,
@@ -11120,7 +10658,7 @@
       "category": "ocio",
       "free": 0,
       "price": "Desde 30 €",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Teatro Víctor Jara, Santa Lucía de Tirajana. Consulta los detalles y posibles cambios con la organización.",
       "lat": 27.914,
       "lng": -15.542,
       "accuracy": "municipality",
@@ -11142,7 +10680,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Auditorio Alfredo Kraus, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -11152,7 +10690,7 @@
       "image_alt": "Joscho Stephan Trio",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://auditorioalfredokraus.es/evento/joscho-stephan-trio"
     },
     {
       "id": 445,
@@ -11164,7 +10702,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Sala Insular de Teatro, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -11186,7 +10724,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Gran Canaria Arena, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -11196,7 +10734,7 @@
       "image_alt": "Primera FEB - Movistar Estudiantes",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://cbgrancanaria.net/partidos/"
     },
     {
       "id": 447,
@@ -11208,7 +10746,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Museo Elder, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -11218,7 +10756,7 @@
       "image_alt": "Mujeres que investigan: ciencia, tecnología y futuro. Actividad para centros Educativos",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://wptpv.museoelder.es/evento/mujeres-que-investigan-ciencia-tecnologia-y-futuro-actividad-para-centros-educativos/"
     },
     {
       "id": 516,
@@ -11240,7 +10778,7 @@
       "image_alt": "ALPILPIL - ARUCAS",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/alpilpil-arucas"
     },
     {
       "id": 448,
@@ -11252,7 +10790,7 @@
       "category": "ocio",
       "free": 0,
       "price": "Desde 18 €",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en San Bartolomé de Tirajana. Consulta el recinto, el programa y las condiciones con el organizador.",
       "lat": 27.923,
       "lng": -15.573,
       "accuracy": "municipality",
@@ -11274,7 +10812,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Gran Canaria Arena, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -11284,7 +10822,7 @@
       "image_alt": "",
       "image_origin": "",
       "image_status": "not_available",
-      "organizer_url": ""
+      "organizer_url": "https://cbgrancanaria.net/partidos/"
     },
     {
       "id": 450,
@@ -11296,7 +10834,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial.",
+      "details": "Periodo de actividad con varias fechas. Consulta sesiones, horarios y condiciones en la fuente original.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -11318,7 +10856,7 @@
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial.",
+      "details": "Actividad en Gran Canaria Arena, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -11328,7 +10866,7 @@
       "image_alt": "",
       "image_origin": "",
       "image_status": "not_available",
-      "organizer_url": ""
+      "organizer_url": "https://cbgrancanaria.net/partidos/"
     },
     {
       "id": 517,
@@ -11350,7 +10888,7 @@
       "image_alt": "GRANDES ÉXITOS MECANO - JOANA CERPA",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/grandes-exitos-mecano-joana-cerpa"
     },
     {
       "id": 518,
@@ -11372,7 +10910,7 @@
       "image_alt": "MORIRSE DE RABIA, UN MONÓLOGO DE MÍSTER JÄGGER",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/morirse-de-rabia-un-monologo-de-mister-jagger"
     },
     {
       "id": 519,
@@ -11394,7 +10932,7 @@
       "image_alt": "SOLO PALIQUE",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/solo-palique"
     },
     {
       "id": 520,
@@ -11416,10 +10954,10 @@
       "image_alt": "ANIMAL DE COMPAÑÍA, ¿Y TÚ, HABLAS CON TU PERRO? - UN ESPECTÁCULO DE JORGE BOLAÑOS - MASPALOMAS",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/animal-de-compania-y-tu-hablas-con-tu-perro-un-espectaculo-de-jorge-bolanos-maspalomas"
     }
   ],
-  "generated_at": "2026-10-24T23:27:02+01:00",
+  "generated_at": "2026-10-25T00:12:27+01:00",
   "timezone": "Atlantic/Canary",
   "verified_sources": 6
 }

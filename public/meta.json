@@ -1,17 +1,17 @@
 {
-  "checked_at": "2026-10-24T23:27:02+01:00",
+  "checked_at": "2026-10-25T00:12:27+01:00",
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
-      "checked_at": "2026-10-24T23:17:26+01:00",
+      "checked_at": "2026-10-25T00:12:27+01:00",
       "found": 10,
       "added": 0,
-      "changed": 0,
+      "changed": 4,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Agüimes",
-      "checked_at": "2026-10-24T23:17:26+01:00",
+      "checked_at": "2026-10-25T00:12:27+01:00",
       "found": 1,
       "added": 0,
       "changed": 0,
@@ -19,7 +19,7 @@
     },
     {
       "source": "Juventud Las Palmas de Gran Canaria",
-      "checked_at": "2026-10-24T23:17:26+01:00",
+      "checked_at": "2026-10-25T00:12:27+01:00",
       "found": 2,
       "added": 0,
       "changed": 0,
@@ -27,33 +27,43 @@
     },
     {
       "source": "Circuito de Artes Escénicas GC",
-      "checked_at": "2026-10-24T23:17:26+01:00",
-      "found": 5,
+      "checked_at": "2026-10-25T00:12:27+01:00",
+      "found": 4,
       "added": 0,
-      "changed": 5,
+      "changed": 4,
       "error": ""
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "checked_at": "2026-10-24T23:17:26+01:00",
-      "found": 75,
+      "checked_at": "2026-10-25T00:12:27+01:00",
+      "found": 59,
       "added": 0,
-      "changed": 75,
+      "changed": 59,
+      "scanned": 59,
+      "sitemap_count": 667,
+      "eligible_urls": 586,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
-      "checked_at": "2026-10-24T23:17:26+01:00",
+      "checked_at": "2026-10-25T00:12:27+01:00",
       "found": 113,
-      "added": 66,
-      "changed": 49,
-      "error": ""
+      "added": 0,
+      "changed": 84,
+      "skipped_other_islands_or_expired": 8,
+      "error": "",
+      "recent_pages_checked": 0
     }
   ],
   "counts": {
-    "approved": 519,
+    "approved": 498,
+    "pending": 0,
+    "needs_review": 0,
+    "archived_or_expired": 22,
     "cancelled": 0,
-    "images_official": 467
+    "prices_confirmed": 118,
+    "prices_to_verify": 380,
+    "venues_to_verify": 194
   },
   "description": "Actualización programada de fuentes oficiales. Un cambio o cancelación solo se afirma cuando está explícitamente indicado."
 }
