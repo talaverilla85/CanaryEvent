@@ -13,6 +13,7 @@ from urllib.parse import urlparse
 import requests
 from bs4 import BeautifulSoup
 from event_images import official_page_image,image_fields
+import source_facts
 
 BASE="https://www.eventosgrancanaria.com"
 SOURCE_NAME="Portal oficial de Eventos Gran Canaria (Cabildo)"
@@ -105,7 +106,8 @@ def extract_factual_event(html,url,today,places,norm,category):
             if not re.fullmatch(r"\d{2}/\d{2}/20\d{2}",candidate):
                 venue=candidate[:160]
             break
-    venue=venue or ("Consultar el recinto en la ficha oficial")
+    facts=source_facts.enhance(soup,muni,norm,final_day>start_day)
+    venue=facts["venue"] or venue or "Consultar el recinto en la ficha oficial"
 
     status="approved"
     for tag in soup.select('script[type="application/ld+json"]'):
@@ -122,7 +124,8 @@ def extract_factual_event(html,url,today,places,norm,category):
       end=(final_day.isoformat() if final_day>start_day else
            (start_day.isoformat()+"T"+end_time+":00") if known_time and end_time and end_time>start_time else None),
       municipality=muni,venue=venue,category=category(title),
-      free=None,price="",details=("Periodo de actividad publicado: consulta los días y horarios concretos en la ficha oficial." if final_day>start_day else "Fecha publicada por el Cabildo. Comprueba el horario, las entradas y posibles cambios en la ficha oficial."),
+      free=facts["free"],price=facts["price"],details=facts["details"],
+      organizer_url=facts["organizer_url"],
       source_name=SOURCE_NAME,source_url=url,status=status)
 
 def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_PAGES_PER_RUN):
@@ -135,16 +138,21 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
     scan_columns={row[1] for row in conn.execute("PRAGMA table_info(cabildo_scans)")}
     if "image_inspected" not in scan_columns:
         conn.execute("ALTER TABLE cabildo_scans ADD COLUMN image_inspected INTEGER NOT NULL DEFAULT 0")
-    existing={r[0]:(r[1],r[2],r[3]) for r in
-              conn.execute("SELECT url,checked_at,outcome,image_inspected FROM cabildo_scans").fetchall()}
-    # One-time backfill: previously visited official pages need their real cover collected.
-    pending_images={u for u,(_,outcome,inspected) in existing.items()
-                    if outcome=="valid" and not inspected}
+    if "facts_inspected" not in scan_columns:
+        conn.execute("ALTER TABLE cabildo_scans ADD COLUMN facts_inspected INTEGER NOT NULL DEFAULT 0")
+    existing={r[0]:(r[1],r[2],r[3],r[4]) for r in
+              conn.execute("SELECT url,checked_at,outcome,image_inspected,facts_inspected FROM cabildo_scans").fetchall()}
+    # Backfill metadata on previously scanned pages, while preserving a modest
+    # per-run request limit. Historical images are refreshed in the same pass.
+    pending_facts={u for u,(_,outcome,_,facts) in existing.items()
+                   if outcome=="valid" and not facts}
+    pending_images={u for u,(_,outcome,img,_) in existing.items()
+                    if outcome=="valid" and not img}
     # Index events with a start date up to 120d ahead, allowing recently started multi-day
     # activities to be detected (but still refusing to invent session dates).
     candidates=[(u,d) for u,d in sitemap if today-dt.timedelta(days=45)<=d<=today+dt.timedelta(days=MAX_LOOKAHEAD_DAYS)]
-    candidates.sort(key=lambda el:(el[0] not in pending_images, el[0] in existing,
-                                   abs((el[1]-today).days), el[0]))
+    candidates.sort(key=lambda el:(el[0] not in pending_facts and el[0] not in pending_images,
+                                   el[0] in existing, abs((el[1]-today).days), el[0]))
     add=changed=found=checked=0
     errors=[]
     for url,_ in candidates:
@@ -152,7 +160,7 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
         if last:
             try:age=(dt.datetime.fromisoformat(now)-dt.datetime.fromisoformat(last[0])).total_seconds()
             except (TypeError,ValueError):age=9999999
-            if age<2*86400 and url not in pending_images:continue
+            if age<2*86400 and url not in pending_images and url not in pending_facts:continue
         if checked>=max_pages:break
         checked+=1
         try:
@@ -172,9 +180,10 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
         except (requests.RequestException,ValueError) as exc:
             outcome="failed"
             errors.append(type(exc).__name__)
-        conn.execute("""INSERT INTO cabildo_scans(url,checked_at,outcome,image_inspected) VALUES(?,?,?,1)
+        conn.execute("""INSERT INTO cabildo_scans(url,checked_at,outcome,image_inspected,facts_inspected) VALUES(?,?,?,1,?)
           ON CONFLICT(url) DO UPDATE SET checked_at=excluded.checked_at,outcome=excluded.outcome,
-            image_inspected=1""",(url,now,outcome))
+            image_inspected=1,facts_inspected=excluded.facts_inspected""",
+            (url,now,outcome,0 if outcome=="failed" else 1))
         # Never aggressively crawl: one page every ~0.65 s maximum
         time.sleep(0.65)
     conn.commit()

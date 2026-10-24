@@ -339,7 +339,7 @@ def init(conn):
     """)
     # Safe migration of the existing SQLite database without deleting historical events.
     columns={row[1] for row in conn.execute("PRAGMA table_info(events)")}
-    for field in ("image_url","image_alt","image_origin","image_status"):
+    for field in ("image_url","image_alt","image_origin","image_status","organizer_url"):
         if field not in columns:
             conn.execute(f"ALTER TABLE events ADD COLUMN {field} TEXT NOT NULL DEFAULT ''")
     # One-time migration: identity stays stable when the organizer changes the hour
@@ -373,10 +373,10 @@ def upsert(conn,e):
     existing=conn.execute("SELECT * FROM events WHERE dedup_key=?",(key,)).fetchone()
     event_columns=("title","start","end","municipality","venue","category","free","price","details",
                    "lat","lng","source_name","source_url","status",
-                   "image_url","image_alt","image_origin","image_status")
+                   "image_url","image_alt","image_origin","image_status","organizer_url")
     fields=dict(e)
     fields.update(lat=lat,lng=lng)
-    for k in ("image_url","image_alt","image_origin","image_status"):
+    for k in ("image_url","image_alt","image_origin","image_status","organizer_url"):
         fields.setdefault(k,"")
     values=tuple(fields.get(key) for key in event_columns)
     if existing:
@@ -450,7 +450,7 @@ def run():
         for row in rows:
             e={k:row[k] for k in ("id","title","start","end","municipality","venue","category",
                                   "free","price","details","lat","lng","accuracy","source_name","source_url",
-                                  "image_url","image_alt","image_origin","image_status")}
+                                  "image_url","image_alt","image_origin","image_status","organizer_url")}
             events.append(e)
         total=conn.execute("SELECT COUNT(*) FROM events").fetchone()[0]
         statuses=dict(conn.execute("SELECT status,COUNT(*) FROM events GROUP BY status").fetchall())
