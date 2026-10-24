@@ -127,7 +127,7 @@
   <header class="topbar shell"><a href="/" class="brand" aria-label="planGC inicio"><span class="brandmark">✳</span><span>plan<span class="brand-accent">GC</span><span class="brand-dot">.</span></span></a>
     <div class="topright"><button class="location-btn" id="locationButton" aria-label="Cambiar ubicación"><span class="pin">⌖</span><span id="locationName">Toda Gran Canaria</span><span class="chev">⌄</span></button><button id="profileBtn" class="circle-btn" aria-label="Mi cuenta">♙</button></div>
   </header>
-  <main class="shell"><p style="background:#e4f3dc;color:#1b513e;padding:12px 15px;border-radius:12px;font-size:12px;font-weight:700;margin:0 0 15px">EVENTOS DE FUENTES OFICIALES · Actualización automática programada · Comprueba siempre los detalles con la organización.</p>
+  <main class="shell">
     <section class="hero" aria-labelledby="heroTitle">
       <div class="hero-grain" aria-hidden="true"></div><div class="hero-orbit orbit-a" aria-hidden="true"></div><div class="hero-orbit orbit-b" aria-hidden="true"></div><div class="hero-star star-one" aria-hidden="true">✳</div><div class="hero-star star-two" aria-hidden="true">✧</div>
       <div class="hero-content"><div class="hero-kicker"><span class="online-dot"></span> AGENDA DE GRAN CANARIA</div><h1 id="heroTitle">¿Qué hacemos<br><em>hoy?</em></h1><p>Los mejores planes de la isla, a la vuelta de la esquina.</p><button class="hero-cta" id="surpriseBtn">Sorpréndeme <span>↗</span></button></div>
@@ -138,7 +138,7 @@
       <div class="top-filters" role="group" aria-label="Filtrar por fecha"><button class="date-chip active" data-when="today">Hoy</button><button class="date-chip" data-when="tomorrow">Mañana</button><button class="date-chip" data-when="weekend">Este finde</button><button class="date-chip" data-when="week">7 días</button><button class="date-chip" data-when="all">Próximamente</button></div>
       <div class="categories" id="categories" role="group" aria-label="Filtrar por categoría"></div>
       <div class="quick-toolbar"><div class="result-titles"><span class="eyebrow">ENCUENTRA TU PRÓXIMO PLAN</span><h2 id="sectionTitle">Para hoy <span class="count" id="eventCount">· …</span></h2></div>
-        <div class="toolbar-actions"><button id="freeOnlyBtn" class="small-filter" aria-pressed="false">€ Gratis</button><select id="sortSelect" aria-label="Ordenar eventos"><option value="recommended">Para ti ↕</option><option value="time">Por hora ↑</option><option value="near">Más cerca ↑</option></select></div>
+        <div class="toolbar-actions"><select id="sortSelect" aria-label="Ordenar eventos"><option value="recommended">Para ti ↕</option><option value="time">Por hora ↑</option><option value="near">Más cerca ↑</option></select></div>
       </div>
       <div id="sourceStatus" class="source-status">Consultando eventos…</div>
       <div id="eventsGrid" class="events-grid" aria-live="polite"></div><button type="button" id="loadMoreBtn" class="small-filter" style="margin:14px auto 24px;display:block;padding:12px 24px" hidden>Mostrar 48 planes más ↓</button>
@@ -158,7 +158,7 @@ try{localStorage.setItem('plangc_check','ok');localStorage.removeItem('plangc_ch
 </script><script>/* planGC — no analytics, no trackers; user location only upon explicit action */
 'use strict';
 const $=id=>document.getElementById(id);
-const state={events:[],when:'today',category:'all',query:'',free:false,sort:'recommended',origin:null,originName:'Toda Gran Canaria',favorites:new Set(JSON.parse(localStorage.getItem('plangc_favorites')||'[]')),user:null,tab:'explore',map:null,markers:null,seen:0,visibleLimit:48};
+const state={events:[],when:'today',category:'all',query:'',sort:'recommended',origin:null,originName:'Toda Gran Canaria',favorites:new Set(JSON.parse(localStorage.getItem('plangc_favorites')||'[]')),user:null,tab:'explore',map:null,markers:null,seen:0,visibleLimit:48};
 state.mapSelected=null;state.mapLimit=16;state.mapEntries=[];
 const CATS=[['all','✳','Todos'],['musica','♫','Música'],['familia','✿','Familia'],['gastronomia','♨','Gastronomía'],['cultura','◈','Cultura'],['deporte','⚑','Deporte'],['naturaleza','❋','Aire libre'],['ocio','☼','Ocio'],['otros','✺','Otros']];
 const PLACES={'Agaete':[28.100,-15.700],'Agüimes':[27.906,-15.445],'Artenara':[28.019,-15.647],'Arucas':[28.119,-15.523],'Firgas':[28.106,-15.563],'Gáldar':[28.145,-15.654],'Ingenio':[27.918,-15.436],'La Aldea de San Nicolás':[27.983,-15.780],'Las Palmas de Gran Canaria':[28.124,-15.436],'Mogán':[27.884,-15.723],'Moya':[28.108,-15.582],'San Bartolomé de Tirajana':[27.923,-15.573],'Santa Brígida':[28.035,-15.497],'Santa Lucía de Tirajana':[27.914,-15.542],'Santa María de Guía':[28.139,-15.632],'Tejeda':[27.996,-15.615],'Telde':[27.993,-15.416],'Teror':[28.060,-15.546],'Valleseco':[28.045,-15.579],'Valsequillo':[27.985,-15.497],'Vega de San Mateo':[28.010,-15.532]};
@@ -214,7 +214,7 @@ function inFilter(e){const today=todayKey(),start=e.start.slice(0,10),end=eventE
 function eventScore(e){const approx=distance(state.origin,[e.lat,e.lng]);const tod=todayKey(),days=Math.max(0,Math.round((Date.parse(e.start.slice(0,10)+'T00:00:00Z')-Date.parse(tod+'T00:00:00Z'))/86400000));const mins=e.start.length>10?(+e.start.slice(11,13)*60 + +e.start.slice(14,16)):600;const p=zoneParts();const current=(+p.hour*60)+(+p.minute);const delay=days*1440+mins-current;const elapsed=delay<0?Math.min(200,Math.abs(delay)/3):0;
  return (approx??20)*.75+Math.max(0,delay)/95+elapsed;
 }
-function filtered(){let ev=state.events.filter(e=>inFilter(e)&&(!state.free||e.free===1)&&(state.category==='all'||e.category===state.category));
+function filtered(){let ev=state.events.filter(e=>inFilter(e)&&(state.category==='all'||e.category===state.category));
  if(state.query){const q=state.query.toLocaleLowerCase('es');ev=ev.filter(e=>[e.title,e.venue,e.municipality,e.details,e.category].join(' ').toLocaleLowerCase('es').includes(q))}
  if(state.tab==='saved')ev=ev.filter(e=>state.favorites.has(e.id));
  ev.sort((a,b)=>state.sort==='near'?(distance(state.origin,[a.lat,a.lng])??99)-(distance(state.origin,[b.lat,b.lng])??99)||a.start.localeCompare(b.start):state.sort==='time'?a.start.localeCompare(b.start):eventScore(a)-eventScore(b));return ev;
@@ -228,7 +228,7 @@ function render(){renderCategories();const events=filtered();const shown=events.
   <div class="event-info"><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span>⌖</span><span class="event-venue">${escapeHTML(e.municipality)} · ${escapeHTML(e.venue)}</span></div><div class="event-bottom"><span class="price ${e.free!==1&&!e.price?'unknown':''}">${escapeHTML(price(e))}</span><span class="distance">${approx!==null?'≈ '+approx+' km':'Ver ubicación ↗'}</span></div></div></article>`}).join('');
  $('emptyState').classList.toggle('hidden',events.length>0);$('eventsGrid').classList.toggle('hidden',events.length===0);
  document.querySelectorAll('.date-chip').forEach(b=>b.classList.toggle('active',b.dataset.when===state.when));
- $('freeOnlyBtn').classList.toggle('active',state.free);$('freeOnlyBtn').setAttribute('aria-pressed',state.free?'true':'false');
+ 
  document.querySelectorAll('.navtab').forEach(b=>b.classList.toggle('selected',b.dataset.tab===state.tab));
 }
 function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('visible'),3300)}
@@ -417,10 +417,10 @@ function init(){$('loadMoreBtn').onclick=()=>{state.visibleLimit+=48;render()};c
  $('categories').addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(b){state.category=b.dataset.category;render()}});
  document.querySelectorAll('[data-when]').forEach(b=>b.onclick=()=>{state.when=b.dataset.when;state.tab='explore';render()});
  $('searchInput').oninput=e=>{state.query=e.target.value.trim();$('clearSearch').classList.toggle('hidden',!state.query);render()};$('clearSearch').onclick=()=>{$('searchInput').value='';state.query='';$('clearSearch').classList.add('hidden');render()};
- $('freeOnlyBtn').onclick=()=>{state.free=!state.free;render()};$('sortSelect').onchange=e=>{state.sort=e.target.value;render()};
+ $('sortSelect').onchange=e=>{state.sort=e.target.value;render()};
  $('eventsGrid').onclick=e=>{const fav=e.target.closest('[data-fav]');if(fav){e.stopPropagation();toggleFav(fav.dataset.fav);return}const card=e.target.closest('[data-id]');if(card)showEvent(card.dataset.id)};
  $('eventsGrid').onkeydown=e=>{if(['Enter',' '].includes(e.key)&&e.target.matches('article[data-id]')){e.preventDefault();showEvent(e.target.dataset.id)}};
- $('resetFilters').onclick=()=>{state.when='all';state.category='all';state.query='';state.free=false;$('searchInput').value='';state.tab='explore';render()};
+ $('resetFilters').onclick=()=>{state.when='all';state.category='all';state.query='';$('searchInput').value='';state.tab='explore';render()};
  $('locationButton').onclick=locationDialog;$('profileBtn').onclick=()=>state.user?mineDialog():authDialog();$('publishCta').onclick=publishDialog;$('sourcesBtn').onclick=showSources;
  $('surpriseBtn').onclick=()=>{let ev=filtered();if(!ev.length){state.when='all';render();ev=filtered()}if(ev.length)showEvent(ev[Math.floor(Math.random()*Math.min(10,ev.length))].id);else toast('No hay planes disponibles')};
  $('modalClose').onclick=()=>{closeModal();if(location.search)history.replaceState(null,'',location.pathname)};$('modalBackdrop').onclick=()=>{closeModal();if(location.search)history.replaceState(null,'',location.pathname)};
