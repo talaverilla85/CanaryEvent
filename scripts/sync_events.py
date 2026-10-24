@@ -279,7 +279,7 @@ def init(conn):
     """)
     # One-time migration: identity stays stable when the organizer changes the hour
     # on the same day. Do not lose old rows or erase legitimate duplicates.
-    for old in conn.execute("SELECT id,dedup_key,title,start,municipality FROM events").fetchall():
+    for old in conn.execute("SELECT id,dedup_key,title,start,municipality,source_url FROM events").fetchall():
         current=dedup_key(dict(old))
         if current!=old["dedup_key"]:
             try:
@@ -288,6 +288,13 @@ def init(conn):
                 pass
 
 def dedup_key(e):
+    url=str(e.get("source_url") or "")
+    # One official event ID can distinguish separate screenings/sessions even
+    # when titles and day match. Stable under time or venue corrections.
+    if url.startswith("https://www.eventosgrancanaria.com/event/"):
+        m=re.search(r"/event/(E-20\d{6}-\d{4})/",url)
+        if m:
+            return hashlib.sha256(("cabildo:"+m.group(1)).encode()).hexdigest()[:32]
     title=str(e["title"]).strip()
     for prefix in ("cancelado","cancelada","suspendido","suspendida"):
         if norm(title).startswith(prefix+"-"):

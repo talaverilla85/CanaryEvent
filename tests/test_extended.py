@@ -29,6 +29,12 @@ class ExtendedTests(unittest.TestCase):
             self.assertEqual(c.execute("SELECT COUNT(*) FROM events").fetchone()[0],1)
             self.assertEqual(c.execute("SELECT status FROM events").fetchone()[0],"cancelled")
 
+    def test_two_official_sessions_same_title_and_date_are_distinct(self):
+        a={"title":"Cine","start":app.TODAY.isoformat()+"T19:00:00","municipality":"Telde",
+           "source_url":"https://www.eventosgrancanaria.com/event/E-20261024-0001/cine"}
+        b={**a,"source_url":"https://www.eventosgrancanaria.com/event/E-20261024-0002/cine"}
+        self.assertNotEqual(app.dedup_key(a),app.dedup_key(b))
+
     def test_official_ingenio_cancelled_schema(self):
         d=app.TODAY
         month=[k for k,v in app.MONTHS.items() if v==d.month and len(k)==3][0]

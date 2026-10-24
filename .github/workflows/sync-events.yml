@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - "scripts/sync_events.py"
+      - "scripts/cabildo_public.py"
       - "scripts/requirements.txt"
       - "tests/**"
       - ".github/workflows/sync-events.yml"

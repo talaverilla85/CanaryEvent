@@ -141,7 +141,7 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
         if last:
             try:age=(dt.datetime.fromisoformat(now)-dt.datetime.fromisoformat(last[0])).total_seconds()
             except (TypeError,ValueError):age=9999999
-            if age<7*86400:continue
+            if age<2*86400:continue
         if checked>=max_pages:break
         checked+=1
         try:
