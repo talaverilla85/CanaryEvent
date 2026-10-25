@@ -11,6 +11,7 @@ MUNICIPAL_PREFIXES=(
  "Ayuntamiento de Santa Brígida",
  "Ayuntamiento de Arucas",
  "Ayuntamiento de Teror",
+ "Ayuntamiento de Artenara",
  "Ayuntamiento de Telde",
 )
 CABILDO_PREFIX="Portal oficial de Eventos Gran Canaria"

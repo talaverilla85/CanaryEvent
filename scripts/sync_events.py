@@ -27,6 +27,8 @@ import galdar_agenda
 import santabrigida_agenda
 import teror_auditorio
 import telde_fiestas
+import artenara_ferias
+import telde_barrio_programs
 import municipal_listing_dedup
 from event_images import listing_image,image_fields
 
@@ -530,6 +532,9 @@ def run():
         # They supplement rather than replace already-known Cabildo and ticket
         # events. Any source failure is isolated and recorded for transparency.
         new_municipal_sources=(
+            (artenara_ferias.NAME,
+             lambda: artenara_ferias.extract(artenara_ferias.fetch(),TODAY,PLACES,category)
+             if TODAY<=dt.date(2026,11,1) else []),
             (santabrigida_agenda.NAME,
              lambda: santabrigida_agenda.fetch_and_extract(TODAY,PLACES,category)),
             (teror_auditorio.NAME,
@@ -563,6 +568,40 @@ def run():
             results.append({"source":source_name,"checked_at":NOW,"found":found,
                             "added":added,"changed":changed,"error":err})
             print(f"{source_name}: verified={found} new={added} updated={changed} error={err[:100]}")
+        # Monitor Telde neighbourhood PDF programs without inventing events.
+        programs_path=PUBLIC/"municipal_programs.json"
+        programs_error=""
+        programs_found=0
+        try:
+            year=TODAY.year
+            soup=telde_barrio_programs.fetch_year(year)
+            found_pdf=telde_barrio_programs.extract(soup,year)
+            old_pdf=[]
+            if programs_path.exists():
+                try:
+                    old_obj=json.loads(programs_path.read_text(encoding="utf8"))
+                    old_pdf=old_obj.get("programs",[])
+                except (json.JSONDecodeError,OSError,AttributeError):
+                    pass
+            merged=telde_barrio_programs.merge_seen(found_pdf,old_pdf,NOW)
+            programs_found=len(merged)
+            write_json(programs_path,{"checked_at":NOW,"source_name":telde_barrio_programs.NAME,
+                       "source_url":telde_barrio_programs.index_url(year),
+                       "program_count":programs_found,"events_imported":0,
+                       "note":"PDFs descubiertos, no eventos. Cada actividad requiere comprobación independiente.",
+                       "programs":merged})
+        except Exception as exc:
+            programs_error=str(exc)[:250]
+            print(f"WARN Telde PDF index: {programs_error}",file=sys.stderr)
+        conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+          VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+          checked_at=excluded.checked_at,found=excluded.found,added=0,
+          changed=0,error=excluded.error""",
+          (telde_barrio_programs.NAME,NOW,0,0,0,programs_error))
+        conn.commit()
+        results.append({"source":telde_barrio_programs.NAME,"checked_at":NOW,
+                        "found":0,"added":0,"changed":0,"error":programs_error})
+        print(f"Telde neighbourhood PDF programs: discovered={programs_found}, events imported=0, error={programs_error[:100]}")
         # Public official event metadata: incremental polite scan, no photos or source descriptions.
         try:
             cabildo=cabildo_public.synchronize(conn,NOW,TODAY,PLACES,norm,category,upsert)

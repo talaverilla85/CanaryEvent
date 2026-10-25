@@ -1,0 +1,282 @@
+{
+  "checked_at": "2026-10-25T09:01:21+00:00",
+  "source_name": "Ayuntamiento de Telde · índice de programas PDF",
+  "source_url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/relacion-de-fiestas-ano-2026/",
+  "program_count": 34,
+  "events_imported": 0,
+  "note": "PDFs descubiertos, no eventos. Cada actividad requiere comprobación independiente.",
+  "programs": [
+    {
+      "title": "Semana Santa – Telde",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/03/semanasantatelde2026.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor a Nuestra Señora de Fátima en el barrio de El Calero",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/04/elcalero26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor a San Isidro Labrador en el barrio de La Pardilla",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/04/lapardilla26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas en honor a San José en el barrio de San José de las Longueras",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/04/sanjoselongueras26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor a Nuestra Señora María Auxiliadora y al Sagrado Corazón de Jesús en el barrio de La Gavia",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/05/lagavia26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor a Nuestra Señora María Auxiliadora en el barrio de Tecén",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/05/tecen26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor a San Juan Bautista. Patrono de la Ciudad de Telde",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/06/ProgramaSJ2026-2.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor a San Antonio de Padua y la Virgen del Carmen en el barrio de Arenales",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/06/arenales26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor a San Fermín en Caserío de Gando",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/06/caseriodegando26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor a San Pedro en el barrio de Ejido",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/06/ejido26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor a Nuestra Señora de Lourdes en el barrio de El Goro",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/06/elgoro26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor al Sagrado Corazón de Jesús en el barrio de La Higuera Canaria",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/06/higueracanaria26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor a Santa Águeda en el barrio de Hoya Aguedita",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/06/hoyaaguedita26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales de la Breña",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/06/labrena26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor a San Antonio de Padua en el barrio de San Antonio",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/06/sanantonio26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas patronales en honor a Nuestra Señora del Carmen en el barrio de Hornos del Rey",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/07/hornosdelrey26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "III Fiesta en blanco en el barrio de La Majadilla",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/07/lamajadilla26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas patronales en honor a Nuestra Señora del Carmen en el barrio de Las Huesas",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/07/lashuesas26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor a Santiago Apóstol en el barrio de Lomo Cementerio",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/07/lomocementerio26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas de Las Nieves en el barrio de Lomo Magullo",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/07/lomomagullo26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas patronales en honor a Nuestra Señora del Carmen en el barrio de Marpequeña",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/07/marpequena26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas Patronales en honor a Nuestra Señora del Carmen en el barrio de San Gregorio",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/07/sangregorio26-fiestadelcarmen.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Gran embarcación de la Virgen del Carmen en el muelle de Taliarte",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/07/taliarte26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas patronales en honor a Santa Marta y Nuestra Señora del Carmen en el barrio de Valle de los Nueve",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/07/valledelosnueve26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas patronales en honor a San Ramón Nonato y Nuestra Señora de La Merced en el barrio de El Caracol",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/08/elcaracol26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas patronales en honor a la Virgen de La Paloma en el barrio de La Viña",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/08/lavina26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas patronales en el barrio de Melenara",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/08/melenara26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas patronales en honor a San Venancio en el barrio de Casas Nuevas",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/casasnuevas26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas en honor a San Francisco de Asís, Nuestra Señora del Rosario y San Isidro Labrador en el barrio de Cazadores",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/cazadores26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas patronales en honor al Sagrado Corazón de Jesús en el barrio de La Garita",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/lagarita26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas de la Exaltación de la Cruz en honor al Santo Cristo en Playa de Ojos de Garza",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/playaojosdegarza26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas en honor a San Francisco en el barrio de San Francisco",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/sanfrancisco26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Valle los Nueve Alto",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/vallelosnuevealto26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Caserones Altos",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/10/caseronesaltos26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-10-25T09:01:21+00:00"
+    }
+  ]
+}

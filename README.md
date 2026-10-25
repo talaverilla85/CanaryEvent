@@ -171,3 +171,21 @@ La exportación pública elimina únicamente duplicados inequívocos entre
 Cabildo y ayuntamientos cuando coinciden título, municipio y día y no
 contradicen horas ni recintos. Las dos fichas originales se conservan
 en SQLite para trazabilidad; no se suprimen dos sesiones distintas.
+
+
+### Artenara y vigilancia de fiestas en barrios de Telde (octubre 2026)
+
+- Artenara: dos fichas oficiales publicadas en el archivo de noticias de
+  9/10/2026 (Mercadillo Tradicional 31/10 y Feria de las Tradiciones 1/11).
+  El conector vuelve a comprobar las noticias. Es específico de estas
+  ediciones: no infiere fechas futuras ni horas no publicadas.
+- Telde (barrios): cada ejecución consulta el índice municipal anual y
+  guarda los enlaces de programas PDF en public/municipal_programs.json.
+  Es un inventario documental, NO una agenda de actos. El archivo registra
+  la última comprobación y la primera vez que apareció cada URL.
+  No se crean eventos sin analizar el programa correspondiente.
+- Valsequillo: agenda localizada pero la consulta HTTPS falla al verificar
+  el certificado desde el ejecutor. Se deja documentado en
+  data/municipal_sources_gc.json; no se desactiva la validación TLS.
+
+La web sigue limitada a Gran Canaria y sincroniza datos diariamente.

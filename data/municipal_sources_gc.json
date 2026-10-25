@@ -20,7 +20,7 @@
       "municipality": "Artenara",
       "official_website": "https://www.artenara.es/",
       "agenda_url": "https://www.artenara.es/portal-ciudadano/category/eventos/",
-      "status": "agenda_localizada"
+      "status": "conector_parcial"
     },
     {
       "municipality": "Arucas",
@@ -104,7 +104,9 @@
       "municipality": "Telde",
       "official_website": "https://www.telde.es/",
       "agenda_url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/fiestas-de-san-gregorio/",
-      "status": "conector_parcial"
+      "status": "conector_parcial",
+      "programs_index_url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/relacion-de-fiestas-ano-2026/",
+      "programs_index_status": "monitorizada_sin_importacion_pdf"
     },
     {
       "municipality": "Teror",
@@ -116,7 +118,8 @@
       "municipality": "Valsequillo",
       "official_website": "https://www.valsequillogc.es/",
       "agenda_url": "https://www.valsequillogc.es/ayto3/calendario-de-eventos/",
-      "status": "agenda_localizada"
+      "status": "agenda_localizada_ssl_pendiente",
+      "note": "El servidor oficial tiene error de validación TLS desde el ejecutor conectado. No eludir la verificación; requiere reparación o acceso oficial seguro."
     },
     {
       "municipality": "Valleseco",

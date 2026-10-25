@@ -7,7 +7,7 @@ git config user.name 'github-actions[bot]'
 git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
 for attempt in 1 2 3; do
-  git add data/events.sqlite public/events.json public/meta.json
+  git add data/events.sqlite public/events.json public/meta.json public/municipal_programs.json
   if git diff --cached --quiet; then
     echo "Sin cambios para guardar"
     exit 0
