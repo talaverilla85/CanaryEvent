@@ -24,6 +24,10 @@ import ticket_recent
 import santalucia_festivals
 import arucas_agenda
 import galdar_agenda
+import santabrigida_agenda
+import teror_auditorio
+import telde_fiestas
+import municipal_listing_dedup
 from event_images import listing_image,image_fields
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -522,6 +526,43 @@ def run():
         results.append({"source":galdar_agenda.NAME,"checked_at":NOW,"found":galdar_found,
                         "added":galdar_added,"changed":galdar_changed,"error":galdar_error})
         print(f"Galdar Culture agenda: found={galdar_found}, added={galdar_added}, changed={galdar_changed}, error={galdar_error[:100]}")
+        # Official calendars and independently verified municipal notices.
+        # They supplement rather than replace already-known Cabildo and ticket
+        # events. Any source failure is isolated and recorded for transparency.
+        new_municipal_sources=(
+            (santabrigida_agenda.NAME,
+             lambda: santabrigida_agenda.fetch_and_extract(TODAY,PLACES,category)),
+            (teror_auditorio.NAME,
+             lambda: teror_auditorio.extract(teror_auditorio.get_html(),TODAY,PLACES,category)
+             if TODAY<=dt.date(2027,1,31) else []),
+            (telde_fiestas.NAME,
+             lambda: telde_fiestas.extract(telde_fiestas.read_official(),TODAY,PLACES,category)
+             if TODAY<=dt.date(2026,11,17) else []),
+        )
+        for source_name,loader in new_municipal_sources:
+            found=added=changed=0
+            err=""
+            try:
+                entries=loader()
+                for entry in entries:
+                    if entry["municipality"] not in PLACES:continue
+                    found+=1
+                    result=upsert(conn,entry)
+                    added+=int(result=="added")
+                    changed+=int(result=="changed")
+                conn.commit()
+            except Exception as exc:
+                err=str(exc)[:250]
+                print(f"WARN {source_name}: {err}",file=sys.stderr)
+            conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+                VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+                checked_at=excluded.checked_at,found=excluded.found,
+                added=excluded.added,changed=excluded.changed,error=excluded.error""",
+                (source_name,NOW,found,added,changed,err))
+            conn.commit()
+            results.append({"source":source_name,"checked_at":NOW,"found":found,
+                            "added":added,"changed":changed,"error":err})
+            print(f"{source_name}: verified={found} new={added} updated={changed} error={err[:100]}")
         # Public official event metadata: incremental polite scan, no photos or source descriptions.
         try:
             cabildo=cabildo_public.synchronize(conn,NOW,TODAY,PLACES,norm,category,upsert)
@@ -569,6 +610,7 @@ def run():
                                   "free","price","details","lat","lng","accuracy","source_name","source_url",
                                   "image_url","image_alt","image_origin","image_status","organizer_url")}
             events.append(e)
+        events=municipal_listing_dedup.reconcile(events,norm)
         total=conn.execute("SELECT COUNT(*) FROM events").fetchone()[0]
         statuses=dict(conn.execute("SELECT status,COUNT(*) FROM events GROUP BY status").fetchall())
     write_json(PUBLIC/"events.json",{"events":events,"generated_at":NOW,"timezone":"Atlantic/Canary",

@@ -146,3 +146,28 @@ administrativamente al municipio de Teguise.
 La agenda municipal de Cultura de Gáldar también dispone de un conector activo
 que lee campos estructurados de EventON (fecha, hora, recinto, URL), limitado
 a los eventos de esa concejalía. Todavía no cubre todas las concejalías de Gáldar.
+
+
+### Más fuentes oficiales municipales (25/10/2026)
+
+- **Santa Brígida**: calendario oficial de eventos con JSON-LD estructurado.
+  Se consultan como máximo el mes actual y el siguiente. Las actividades que
+  abarcan fechas se publican como *periodos*, no como funciones diarias. Por
+  prudencia no se inventan gratuidades ni se publican horas tempranas dudosas.
+- **Teror**: programación oficial del Auditorio publicada para
+  octubre de 2026–enero de 2027, con fecha y precio individual cuando figuran
+  expresamente. No se interpreta su calendario habitual de fiestas sin año
+  como un programa confirmado para 2026 o 2027.
+- **Telde**: noticias municipales verificadas de Finaos, pregón de San
+  Gregorio y Feria de Artesanía (2026). Es una integración parcial y finita:
+  el año próximo necesitará nuevas fuentes/programas oficiales, no copiar
+  automáticamente las fechas de este año.
+
+Los tres conectores respetan robots.txt y limitan las respuestas. Los datos
+de todas las fuentes se sincronizan una vez al día. Si falla un portal,
+las otras fuentes continúan y el error se muestra en metadatos.
+
+La exportación pública elimina únicamente duplicados inequívocos entre
+Cabildo y ayuntamientos cuando coinciden título, municipio y día y no
+contradicen horas ni recintos. Las dos fichas originales se conservan
+en SQLite para trazabilidad; no se suprimen dos sesiones distintas.

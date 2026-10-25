@@ -80,7 +80,7 @@
       "municipality": "Santa Brígida",
       "official_website": "https://www.santabrigida.es/",
       "agenda_url": "https://eventos.santabrigida.es/eventos/mes/",
-      "status": "agenda_localizada"
+      "status": "conector_activo"
     },
     {
       "municipality": "Santa Lucía de Tirajana",
@@ -103,14 +103,14 @@
     {
       "municipality": "Telde",
       "official_website": "https://www.telde.es/",
-      "agenda_url": "https://www.telde.es/category/cultura/",
-      "status": "programacion_localizada"
+      "agenda_url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/fiestas-de-san-gregorio/",
+      "status": "conector_parcial"
     },
     {
       "municipality": "Teror",
       "official_website": "https://www.teror.es/",
-      "agenda_url": "https://teror.es/",
-      "status": "agenda_localizada"
+      "agenda_url": "https://teror.es/el-auditorio-de-teror-presenta-la-programacion-para-el-proximo-cuatrimestre/",
+      "status": "conector_parcial"
     },
     {
       "municipality": "Valsequillo",
