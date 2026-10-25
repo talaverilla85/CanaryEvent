@@ -20,6 +20,13 @@ class MunicipalDedup(unittest.TestCase):
   b=event(44,M,start="2026-11-07T20:30:00",venue="Auditorio de Teror",price="10 €")
   got=de.reconcile([a,b],sync.norm)
   self.assertEqual([e["id"] for e in got],[44])
+ def test_artenara_market_is_same_event_despite_shorter_name(self):
+  cab=event(2,C,title="II Edición del Mercadillo Tradicional de Artenara",
+            start="2026-10-31",municipality="Artenara")
+  mun=event(3,"Ayuntamiento de Artenara · ferias tradicionales 2026",
+            title="II Mercadillo Tradicional · Artenara",
+            start="2026-10-31",municipality="Artenara")
+  self.assertEqual(len(de.reconcile([cab,mun],sync.norm)),1)
  def test_preserve_two_distinct_sessions(self):
   a=event(4,C,start="2026-11-07T18:00:00")
   b=event(44,M,start="2026-11-07T20:30:00")

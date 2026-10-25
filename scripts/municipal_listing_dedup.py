@@ -37,7 +37,16 @@ def score(e):
 def reconcile(events,norm):
     groups=defaultdict(list)
     for e in events:
-        groups[(norm(e["title"]),str(e["start"])[:10],norm(e["municipality"]))].append(e)
+        title_key=norm(e["title"])
+        # Both official sites refer to the same market, with a shortened title.
+        # Narrow this alias to its exact day and town; never merge annually or
+        # conflate other markets with different dates or venues.
+        if (norm(e["municipality"])==norm("Artenara")
+            and str(e["start"])[:10]=="2026-10-31"
+            and title_key in (norm("II Mercadillo Tradicional · Artenara"),
+                              norm("II Edición del Mercadillo Tradicional de Artenara"))):
+            title_key=norm("II Edición del Mercadillo Tradicional de Artenara")
+        groups[(title_key,str(e["start"])[:10],norm(e["municipality"]))].append(e)
     eliminated=set()
     for group in groups.values():
         if len(group)<2:continue
