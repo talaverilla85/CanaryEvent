@@ -1,4 +1,4 @@
-"""Contract tests for location-first discovery and readable event cards."""
+﻿"""Contract tests for location-first discovery and readable event cards."""
 import re
 import unittest
 from pathlib import Path
@@ -36,6 +36,12 @@ class GeoCardContract(unittest.TestCase):
         self.assertNotIn('Ver zona',self.js)
         self.assertIn('Distancia no disponible',self.js)
         self.assertIn(".event-card{border-color:#dce6df;box-shadow:",self.html)
+    def test_fallback_to_known_municipality_without_coordinates(self):
+        self.assertIn("const eventCoordinates=e=>eventHasVerifiedPoint(e)?",self.js)
+        self.assertIn("PLACES[e.municipality]||null",self.js)
+        self.assertIn("const eventApprox=e=>distance",self.js)
+        self.assertIn("eventUsesMunicipality(e)",self.js)
+        self.assertNotIn("eventUsesMunicipality=e=>eventUsesMunicipality(e)",self.js)
     def test_stable_other_features(self):
         self.assertIn("sponsorCardHtml",self.js)
         self.assertIn("sponsorAfter",self.html) if "sponsorAfter" in self.html else self.assertIn("sponsorInsertAfter",self.js)
@@ -44,3 +50,4 @@ class GeoCardContract(unittest.TestCase):
         self.assertIn("state.favorites",self.js)
 
 if __name__=="__main__":unittest.main()
+

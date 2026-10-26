@@ -114,7 +114,7 @@ function openReminderDialog(e){
  const valid=reminderCanSchedule(e);
  const options=choices.map(c=>'<option value="'+c[0]+'">'+c[1]+'</option>').join('');
  openModal('<div class="form-panel"><span class="eyebrow">MIS FAVORITOS · RECORDATORIOS</span>'+
-  '<h2 id="modalHeading">♧ Recordar este plan</h2>'+
+  '<h2 id="modalHeading">🔔 Recordar este plan</h2>'+
   '<p><strong>'+escapeHTML(e.title)+'</strong></p>'+
   '<p>'+escapeHTML(cardDateLabel(e))+' · '+escapeHTML(e.municipality)+'</p>'+
   (valid?'<form id="reminderForm" class="stack-form"><div class="field">'+

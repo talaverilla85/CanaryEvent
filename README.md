@@ -225,8 +225,9 @@ Los formatos patrocinados de AriMar no cambian con esta actualización.
 
 La interfaz muestra el municipio en su línea y la distancia aproximada
 al pie de cada tarjeta, calculada en línea recta desde la ubicación autorizada
-del visitante. Si la ficha solo tiene coordenadas municipales, la etiqueta
-especifica municipio. Si no existe permiso o ubicación, no se inventa un km.
+del visitante. Si la ficha no incluye coordenadas del recinto, se utilizan las
+coordenadas conocidas del municipio y la etiqueta especifica municipio.
+Si no existe permiso de ubicación, no se inventa un km.
 
 El detalle de cada plan contiene Recordarme. El visitante elige una
 antelación que aún esté en el futuro: 15 min, 1 h o 3 h para actividades con
