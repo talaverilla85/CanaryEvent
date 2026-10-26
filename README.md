@@ -245,3 +245,32 @@ la compatibilidad de ese calendario. La funcionalidad futura de recordatorios
 push, cuentas y suscripciones se evaluará posteriormente, con permisos,
 gestión de bajas y un servicio de envío. No se almacena geolocalización ni
 suscripciones en el servidor.
+
+
+### Novedades desde la última visita (sin notificaciones push)
+
+El navegador guarda un inventario local de identificadores de eventos vistos
+en la clave padonde_known_event_ids_v1 y lo compara con el catálogo actualizado.
+La primera visita crea una referencia, sin presentar cientos de falsos nuevos.
+En visitas posteriores aparece, por ejemplo, «6 planes nuevos» cuando el
+catálogo contiene seis identificadores que el navegador aún no había visto.
+La persona puede «Ver novedades» o «Marcar vistas». Las fichas modificadas
+sin cambiar su ID NO se cuentan como nuevas. No requiere cuenta de usuario,
+y no transmite al servidor ningún historial de lectura. Si se borra el
+almacenamiento del navegador, se crea una referencia nueva.
+
+### Push de nuevos eventos (PENDIENTE, no habilitado)
+
+El contador anterior funciona solamente al abrir la web. NO es una
+notificación del sistema con la aplicación cerrada. Para Web Push real faltan:
+- Backend HTTPS con almacenamiento privado y persistente de suscripciones.
+- Claves VAPID en secretos del servidor, bajas y expiración de suscripciones.
+- Permiso solicitado exclusivamente tras pulsar «Activar avisos», no al entrar.
+- Service worker con eventos push y notificationclick.
+- Diferencias de eventos añadidos en la sincronización diaria, agrupadas en
+  un solo resumen («6 planes nuevos en Gran Canaria») sin duplicados.
+- Preferencias de isla o municipios, silenciar avisos, darse de baja;
+  nunca enviar ni guardar ubicación precisa del dispositivo.
+
+No se ha activado un servidor de envío push, ni se muestra un botón que
+prometa notificaciones del sistema antes de existir el backend.
