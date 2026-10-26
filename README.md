@@ -290,3 +290,46 @@ revisión porque el cartel solo dice Ingenio, sin instalación concreta.
 El adaptador valida que el cartel oficial no ha sido reemplazado y
 caduca el 17/11/2026. El municipio del organizador y el lugar real
 de celebración son datos distintos.
+
+### Piloto de extracción visual de programas PDF de Telde
+
+El sincronizador diario ya descubre los enlaces PDF municipales (34 programas
+en el índice oficial el 26/10/2026). El script scripts/telde_pdf_vision.py
+trabaja sobre ese inventario, sin inventar eventos a partir de los títulos.
+
+Los PDF oficiales de San Francisco (1 página) y Caserones Altos (15 páginas)
+no contienen texto extraíble; los resultados de prueba gratuitos están en
+data/telde_pdf_pilot/report_sanfrancisco.json y
+data/telde_pdf_pilot/report_caserones.json. Otras seis muestras confirmaron
+también la ausencia de texto extraíble en sus primeras páginas.
+
+El pipeline respeta robots.txt, limita origen a PDF HTTPS www.telde.es,
+8 MB y 35 páginas, y calcula SHA-256 para reutilizar inferencias por
+documento/página/modelo. Usa pypdfium2 para representar cada página como
+imagen y Responses API con salida JSON estructurada y comprobación estricta
+de fechas, títulos, horarios y referencia. No realiza OCR.
+
+**Nunca publica el resultado del modelo directamente.** Los candidatos
+van a data/telde_pdf_pilot/pending_review.json con la etiqueta
+pending_review, documento y página para comprobación humana. No se
+añaden actividades vencidas a la agenda. No modifica events.sqlite.
+
+Prueba local sin API ni coste:
+
+    python -m pip install -r scripts/requirements.txt
+    python scripts/telde_pdf_vision.py --filename sanfrancisco26.pdf --max-pages 1
+
+Prueba real de vision, solo cuando el usuario configure OPENAI_API_KEY:
+
+    python scripts/telde_pdf_vision.py --filename sanfrancisco26.pdf --max-pages 1 --max-cost-usd 0.05 --api
+
+Se incluye un workflow manual de GitHub Actions llamado Piloto PDF de Telde:
+se ejecuta sin API por defecto. Para autorizar costes es necesario configurar
+el secreto OPENAI_API_KEY en GitHub y marcar el campo api; el informe y cola
+se entregan como artefacto telde-pdf-review.
+
+Usamos por defecto gpt-5.6-luna; los precios actuales indicativos son
+$0.20 por 1M tokens de entrada y $1.20 por 1M tokens de salida. El script
+mide tokens y coste del modelo en cada respuesta. El tope de gasto del
+script es orientativo, y no sustituye los limites reales del proyecto API.
+NUNCA pegar claves secretas en el chat, archivos del proyecto o GitHub.

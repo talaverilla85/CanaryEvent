@@ -1,0 +1,65 @@
+name: Piloto PDF de Telde (vision con revision)
+on:
+  workflow_dispatch:
+    inputs:
+      filename:
+        description: "Nombre exacto del PDF ya inventariado"
+        required: true
+        default: "sanfrancisco26.pdf"
+        type: string
+      max_pages:
+        description: "Maximo de paginas (1-5)"
+        required: true
+        default: "1"
+        type: string
+      api:
+        description: "Autorizar llamadas de pago a OpenAI (requiere secreto OPENAI_API_KEY)"
+        required: true
+        default: false
+        type: boolean
+permissions:
+  contents: read
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Obtener repositorio
+        uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+      - name: Dependencias
+        run: python -m pip install -r scripts/requirements.txt
+      - name: Tests del extractor
+        run: python -m unittest discover -s tests -p test_telde_pdf_vision.py -v
+      - name: Inspeccion y extraccion en cola privada
+        env:
+          PILOT_FILENAME: ${{ inputs.filename }}
+          PILOT_MAX_PAGES: ${{ inputs.max_pages }}
+          PILOT_USE_API: ${{ inputs.api }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        shell: bash
+        run: |
+          args=()
+          if [ "$PILOT_USE_API" = "true" ]; then
+            args+=(--api)
+          fi
+          python scripts/telde_pdf_vision.py \
+            --filename "$PILOT_FILENAME" \
+            --max-pages "$PILOT_MAX_PAGES" \
+            --max-cost-usd 0.05 \
+            "${args[@]}"
+      - name: Entregar informe y pendientes para revisar
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: telde-pdf-review
+          path: |
+            data/telde_pdf_pilot/pilot_report.json
+            data/telde_pdf_pilot/pending_review.json
+          if-no-files-found: warn
+          retention-days: 30
