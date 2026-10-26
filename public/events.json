@@ -3184,7 +3184,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=9ce30762919d21a5cd4a186bd0a5ebc9",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=43ee607850ad0a55c487594a8c819762",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3206,7 +3206,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=9ce30762919d21a5cd4a186bd0a5ebc9",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=43ee607850ad0a55c487594a8c819762",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3734,7 +3734,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=9ce30762919d21a5cd4a186bd0a5ebc9",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=43ee607850ad0a55c487594a8c819762",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3756,7 +3756,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=9ce30762919d21a5cd4a186bd0a5ebc9",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=43ee607850ad0a55c487594a8c819762",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -11815,7 +11815,7 @@
       "organizer_url": "https://www.tureservaonline.es/es/events/nosoloviernes"
     }
   ],
-  "generated_at": "2026-10-26T20:39:52+00:00",
+  "generated_at": "2026-10-26T22:14:46+00:00",
   "timezone": "Atlantic/Canary",
-  "verified_sources": 15
+  "verified_sources": 14
 }
