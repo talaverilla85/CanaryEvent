@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "placement": {
+    "name": "explore_feed",
+    "after_mobile": 4,
+    "after_tablet": 6,
+    "after_desktop": 8
+  },
+  "ads": [
+    {
+      "id": "arimar-fundador",
+      "enabled": true,
+      "advertiser": "AriMar",
+      "kind": "house",
+      "permanent": true,
+      "starts_at": null,
+      "ends_at": null,
+      "municipalities": [],
+      "headline": "AriMar · comida casera 100 % sin gluten",
+      "description": "¿De plan por el sureste? Pide online y recoge tu comida en Playa de Arinaga.",
+      "location": "Playa de Arinaga · Agüimes",
+      "button_text": "Pedir online",
+      "button_url": "https://arimarfoodlab.es/pedir",
+      "image": "/sponsors/arimar-pollo-asado.webp",
+      "image_alt": "Pollo asado de AriMar",
+      "disclosure": "Publicidad"
+    }
+  ]
+}

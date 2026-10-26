@@ -155,6 +155,24 @@
  .brand .brandmark{width:27px;height:27px}
  .topright .location-btn{max-width:105px}
 }
+
+/* Publicidad piloto: una tarjeta horizontal, separada de los eventos. */
+.sponsor-card{grid-column:1/-1;min-width:0;overflow:hidden;border:1px solid #a7d9e2;border-radius:19px;background:#ebf7f9;box-shadow:0 8px 24px #1a666f14}
+.sponsor-hit{display:flex;align-items:stretch;min-height:178px;width:100%;color:#163b43}
+.sponsor-hit:hover{background:#e0f2f6}
+.sponsor-hit:focus-visible{outline:3px solid #148fa5;outline-offset:-3px}
+.sponsor-media{position:relative;width:32%;min-height:178px;flex-shrink:0;background:#d2e7e6}
+.sponsor-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sponsor-content{display:flex;flex:1;min-width:0;flex-direction:column;justify-content:center;gap:6px;padding:17px 22px}
+.sponsor-label{font-weight:800;letter-spacing:.07em;color:#277e8c;font-size:10px;text-transform:uppercase}
+.sponsor-heading{font:800 clamp(17px,2.4vw,24px)/1.15 'Outfit',sans-serif;letter-spacing:-.4px;margin:0}
+.sponsor-copy{font-size:13px;line-height:1.4;color:#466a70;margin:0;max-width:560px}
+.sponsor-bottom{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-top:6px}
+.sponsor-location{font-size:11px;font-weight:650;color:#527780}
+.sponsor-button{display:inline-block;padding:10px 15px;color:#fff;background:#147e94;border-radius:30px;font-size:12px;font-weight:800;white-space:nowrap}
+@media(max-width:649px){.sponsor-hit{min-height:169px}.sponsor-media{width:34%;min-height:169px}.sponsor-content{padding:12px;gap:5px}.sponsor-heading{font-size:16px;letter-spacing:-.25px}.sponsor-copy{font-size:11px;line-height:1.35}.sponsor-bottom{margin-top:3px;gap:7px}.sponsor-location{font-size:10px}.sponsor-button{font-size:11px;padding:8px 12px}}
+@media(max-width:360px){.sponsor-media{width:31%}.sponsor-location{display:none}}
+
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>¿Pa' Dónde? · Planes y eventos en Gran Canaria</title>
@@ -196,6 +214,7 @@ try{localStorage.setItem('plangc_check','ok');localStorage.removeItem('plangc_ch
 const $=id=>document.getElementById(id);
 const state={events:[],when:'today',category:'all',query:'',sort:'recommended',origin:null,originName:'Toda Gran Canaria',favorites:new Set(JSON.parse(localStorage.getItem('plangc_favorites')||'[]')),user:null,tab:'explore',map:null,markers:null,seen:0,visibleLimit:48};
 state.mapSelected=null;state.mapLimit=16;state.mapEntries=[];
+state.sponsorAds=[];state.sponsorPlacement={after_mobile:4,after_tablet:6,after_desktop:8};
 const CATS=[['all','✳','Todos'],['musica','♫','Música'],['familia','✿','Familia'],['gastronomia','♨','Gastronomía'],['cultura','◈','Cultura'],['deporte','⚑','Deporte'],['naturaleza','❋','Aire libre'],['ocio','☼','Ocio'],['otros','✺','Otros']];
 const PLACES={'Agaete':[28.100,-15.700],'Agüimes':[27.906,-15.445],'Artenara':[28.019,-15.647],'Arucas':[28.119,-15.523],'Firgas':[28.106,-15.563],'Gáldar':[28.145,-15.654],'Ingenio':[27.918,-15.436],'La Aldea de San Nicolás':[27.983,-15.780],'Las Palmas de Gran Canaria':[28.124,-15.436],'Mogán':[27.884,-15.723],'Moya':[28.108,-15.582],'San Bartolomé de Tirajana':[27.923,-15.573],'Santa Brígida':[28.035,-15.497],'Santa Lucía de Tirajana':[27.914,-15.542],'Santa María de Guía':[28.139,-15.632],'Tejeda':[27.996,-15.615],'Telde':[27.993,-15.416],'Teror':[28.060,-15.546],'Valleseco':[28.045,-15.579],'Valsequillo':[27.985,-15.497],'Vega de San Mateo':[28.010,-15.532]};
 const COVER_SYMBOLS={musica:'♫',gastronomia:'✦',familia:'☀',cultura:'✳',deporte:'➜',naturaleza:'❋',ocio:'✧',otros:'✳'};
@@ -259,13 +278,57 @@ function filtered(){let ev=state.events.filter(e=>inFilter(e)&&(state.category==
  if(state.tab==='saved')ev=ev.filter(e=>state.favorites.has(e.id));
  ev.sort((a,b)=>state.sort==='near'?(distance(state.origin,[a.lat,a.lng])??99)-(distance(state.origin,[b.lat,b.lng])??99)||a.start.localeCompare(b.start):state.sort==='time'?a.start.localeCompare(b.start):eventScore(a)-eventScore(b));return ev;
 }
+
+function sponsorUrl(value){
+ try{const x=new URL(String(value||''));return x.protocol==='https:'?x.href:null}catch{return null}
+}
+function sponsorCardHtml(ad){
+ const href=sponsorUrl(ad.button_url);
+ if(!href)return '';
+ const path=typeof ad.image==='string'&&/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(ad.image)?ad.image:'';
+ const img=path?'<img src="'+escapeHTML(path)+'" alt="'+escapeHTML(ad.image_alt||'Imagen del anunciante')+'" loading="lazy" decoding="async">':'';
+ return '<aside class="sponsor-card" aria-label="Publicidad de '+escapeHTML(ad.advertiser)+'">'+
+   '<a class="sponsor-hit" href="'+escapeHTML(href)+'" target="_blank" rel="sponsored noopener noreferrer">'+
+   '<div class="sponsor-media">'+img+'</div><div class="sponsor-content">'+
+   '<span class="sponsor-label">PUBLICIDAD · '+escapeHTML(ad.advertiser)+'</span>'+
+   '<h3 class="sponsor-heading">'+escapeHTML(ad.headline)+'</h3>'+
+   '<p class="sponsor-copy">'+escapeHTML(ad.description)+'</p>'+
+   '<div class="sponsor-bottom"><span class="sponsor-location">⌖ '+escapeHTML(ad.location)+'</span>'+
+   '<span class="sponsor-button">'+escapeHTML(ad.button_text||'Descubrir')+' ↗</span></div>'+
+   '</div></a></aside>';
+}
+function sponsorVisible(ad){
+ if(!ad||ad.enabled!==true||!sponsorUrl(ad.button_url))return false;
+ const today=todayKey();
+ if(ad.starts_at&&ad.starts_at>today)return false;
+ if(ad.ends_at&&ad.ends_at<today)return false;
+ if(Array.isArray(ad.municipalities)&&ad.municipalities.length&&state.originName!=='Toda Gran Canaria'&&!ad.municipalities.includes(state.originName))return false;
+ return true;
+}
+function sponsorInsertAfter(){
+ const p=state.sponsorPlacement||{};
+ const target=window.innerWidth>=1000?p.after_desktop:window.innerWidth>=650?p.after_tablet:p.after_mobile;
+ const n=Number(target);
+ return Math.max(2,Math.min(48,Number.isFinite(n)?Math.floor(n):4));
+}
+async function loadSponsored(){
+ try{
+  const response=await fetch('/ads.json',{cache:'no-store'});
+  if(!response.ok)throw new Error('Sin anuncios');
+  const data=await response.json();
+  state.sponsorPlacement=data.placement||state.sponsorPlacement;
+  state.sponsorAds=Array.isArray(data.ads)?data.ads:[];
+ }catch{state.sponsorAds=[]}
+ render();
+}
+
 function renderCategories(){$('categories').innerHTML=CATS.map(([k,icon,label])=>`<button type="button" class="category-chip ${state.category===k?'active':''}" data-category="${k}" aria-pressed="${state.category===k}"><span>${icon}</span>${label}</button>`).join('')}
-function render(){renderCategories();const events=filtered();const shown=events.slice(0,state.visibleLimit);$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente '}[state.when]);
- $('eventsGrid').innerHTML=shown.map(e=>{
+function render(){renderCategories();const events=filtered();const shown=events.slice(0,state.visibleLimit);const sponsor=(state.tab==='explore'&&!state.query&&shown.length>=2)?state.sponsorAds.find(sponsorVisible):null;const sponsorAt=Math.min(sponsorInsertAfter(),shown.length);$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente '}[state.when]);
+ $('eventsGrid').innerHTML=shown.map((e,i)=>{
   const approx=distance(state.origin,[e.lat,e.lng]);const liked=state.favorites.has(e.id);
   return `<article class="event-card" tabindex="0" role="button" data-id="${e.id}" aria-label="Ver ${escapeHTML(e.title)}">
   <div class="photo ${CLASSES[e.category]||'p-other'}">${coverHtml(e)}<span class="photo-tag">${escapeHTML(textForCat(e.category))}</span><button class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button><span class="photo-date">${escapeHTML(dayLabel(e))} · ${escapeHTML(timeLabel(e))}</span></div>
-  <div class="event-info"><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span class="place-icon">⌖</span><span class="event-place"><strong class="place-venue">${escapeHTML(venueName(e))}</strong><small class="place-municipality">${escapeHTML(e.municipality)}</small></span></div><div class="event-bottom">${price(e)?`<span class="price">${escapeHTML(price(e))}</span>`:''}<span class="distance">${approx!==null?'≈ '+approx+' km':'Ver ubicación ↗'}</span></div></div></article>`}).join('');
+  <div class="event-info"><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span class="place-icon">⌖</span><span class="event-place"><strong class="place-venue">${escapeHTML(venueName(e))}</strong><small class="place-municipality">${escapeHTML(e.municipality)}</small></span></div><div class="event-bottom">${price(e)?`<span class="price">${escapeHTML(price(e))}</span>`:''}<span class="distance">${approx!==null?'≈ '+approx+' km':'Ver ubicación ↗'}</span></div></div></article>`+(sponsor&&i+1===sponsorAt?sponsorCardHtml(sponsor):'')}).join('');
  $('emptyState').classList.toggle('hidden',events.length>0);$('eventsGrid').classList.toggle('hidden',events.length===0);
  document.querySelectorAll('.date-chip').forEach(b=>b.classList.toggle('active',b.dataset.when===state.when));
  
@@ -494,6 +557,7 @@ function init(){$('loadMoreBtn').onclick=()=>{state.visibleLimit+=48;render()};c
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();if(!$('mapPanel').classList.contains('hidden'))closeMap()}});
  // Accounts and merchant panel are disabled in this public phase.
  loadEvents();
+loadSponsored();
 let lastRefresh=Date.now();
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-lastRefresh>600000){lastRefresh=Date.now();loadEvents()}});
 setInterval(()=>{if(!document.hidden){lastRefresh=Date.now();loadEvents()}},1200000);
