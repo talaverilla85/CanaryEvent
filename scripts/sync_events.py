@@ -31,6 +31,8 @@ import artenara_ferias
 import valsequillo_medianias
 import telde_barrio_programs
 import municipal_listing_dedup
+import program_quality
+import ingenio_juvenil_program
 from event_images import listing_image,image_fields
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -365,6 +367,12 @@ def init(conn):
                 pass
 
 def dedup_key(e):
+    # A child activity can share its original Cabildo poster URL with
+    # the umbrella programme. Give the individual activity a unique
+    # stable key BEFORE the special Cabildo URL-ID branch below.
+    if e.get("source_name")==ingenio_juvenil_program.NAME:
+        child="juventud-ingenio:individual:"+norm(e["title"])+"|"+e["start"][:10]+"|"+norm(e["municipality"])
+        return hashlib.sha256(child.encode()).hexdigest()[:32]
     url=str(e.get("source_url") or "")
     # One official event ID can distinguish separate screenings/sessions even
     # when titles and day match. Stable under time or venue corrections.
@@ -608,6 +616,32 @@ def run():
         results.append({"source":telde_barrio_programs.NAME,"checked_at":NOW,
                         "found":0,"added":0,"changed":0,"error":programs_error})
         print(f"Telde neighbourhood PDF programs: discovered={programs_found}, events imported=0, error={programs_error[:100]}")
+        # Official campaign posters are sources, not individual plans.
+        youth=ingenio_juvenil_program
+        youth_found=youth_added=youth_changed=0
+        youth_error=""
+        try:
+            if TODAY<=youth.PUBLISH_THROUGH:
+                official=get_html(youth.PROGRAM_URL)
+                youth_entries=youth.extract(str(official),TODAY,PLACES)
+                for entry in youth_entries:
+                    youth_found+=1
+                    change=upsert(conn,entry)
+                    youth_added+=int(change=="added")
+                    youth_changed+=int(change=="changed")
+                conn.commit()
+        except Exception as exc:
+            youth_error=str(exc)[:250]
+            print(f"WARN youth poster breakdown: {youth_error}",file=sys.stderr)
+        conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+          VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+          checked_at=excluded.checked_at,found=excluded.found,
+          added=excluded.added,changed=excluded.changed,error=excluded.error""",
+          (youth.NAME,NOW,youth_found,youth_added,youth_changed,youth_error))
+        conn.commit()
+        results.append({"source":youth.NAME,"checked_at":NOW,"found":youth_found,
+                        "added":youth_added,"changed":youth_changed,"error":youth_error})
+        print(f"Juventud Ingenio individual events: found={youth_found} added={youth_added} error={youth_error[:100]}")
         # Public official event metadata: incremental polite scan, no photos or source descriptions.
         try:
             cabildo=cabildo_public.synchronize(conn,NOW,TODAY,PLACES,norm,category,upsert)
@@ -656,12 +690,19 @@ def run():
                                   "image_url","image_alt","image_origin","image_status","organizer_url")}
             events.append(e)
         events=municipal_listing_dedup.reconcile(events,norm)
+        events,programs_pending=program_quality.filter_public_plans(events)
+        queue={"updated_at":NOW,
+               "note":"Programas de varias actividades pendientes de desglose: no mostrarlos como planes.",
+               "pending_programs":programs_pending,
+               "unverified_locations":[{**item,"source_url":ingenio_juvenil_program.PROGRAM_URL}
+                                       for item in ingenio_juvenil_program.UNRESOLVED]}
         total=conn.execute("SELECT COUNT(*) FROM events").fetchone()[0]
         statuses=dict(conn.execute("SELECT status,COUNT(*) FROM events GROUP BY status").fetchall())
+    write_json(ROOT/"data"/"program_review_gc.json",queue)
     write_json(PUBLIC/"events.json",{"events":events,"generated_at":NOW,"timezone":"Atlantic/Canary",
                                     "verified_sources":len([r for r in results if not r["error"]])})
     write_json(PUBLIC/"meta.json",{"checked_at":NOW,"sources":results,
-        "counts":{"approved":len(events),"pending":0,"needs_review":0,"archived_or_expired":max(0,total-len(events)),
+        "counts":{"approved":len(events),"pending":0,"needs_review":len(programs_pending)+len(ingenio_juvenil_program.UNRESOLVED),"archived_or_expired":max(0,total-len(events)),
                   "cancelled":statuses.get("cancelled",0),
                   "prices_confirmed":sum(bool(e["price"]) or e["free"]==1 for e in events),
                   "prices_to_verify":sum(not e["price"] and e["free"]!=1 for e in events),

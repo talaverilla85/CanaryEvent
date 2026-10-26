@@ -274,3 +274,19 @@ notificación del sistema con la aplicación cerrada. Para Web Push real faltan:
 
 No se ha activado un servidor de envío push, ni se muestra un botón que
 prometa notificaciones del sistema antes de existir el backend.
+
+
+### Control editorial de programas y ubicaciones
+
+Los carteles de programaciones de varios días se guardan como fuentes,
+pero no se publican como una actividad individual. La sincronización
+aplica program_quality.py, retira fichas genéricas de la exportación y
+genera data/program_review_gc.json con los programas por desglosar.
+
+ingenio_juvenil_program.py ejemplifica el protocolo: la iniciación al
+boxeo del 17/11/2026 se importa por separado, en Las Palmas de Gran
+Canaria (Barranco de la Ballena); el hockey del 6/11/2026 queda en
+revisión porque el cartel solo dice Ingenio, sin instalación concreta.
+El adaptador valida que el cartel oficial no ha sido reemplazado y
+caduca el 17/11/2026. El municipio del organizador y el lugar real
+de celebración son datos distintos.

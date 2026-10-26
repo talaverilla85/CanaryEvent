@@ -18,6 +18,8 @@ on:
       - "scripts/teror_auditorio.py"
       - "scripts/telde_fiestas.py"
       - "scripts/municipal_listing_dedup.py"
+      - "scripts/program_quality.py"
+      - "scripts/ingenio_juvenil_program.py"
       - "scripts/artenara_ferias.py"
       - "scripts/valsequillo_medianias.py"
       - "scripts/telde_barrio_programs.py"

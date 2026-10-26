@@ -1,0 +1,126 @@
+{
+  "updated_at": "2026-10-26T22:45:03+00:00",
+  "note": "Programas de varias actividades pendientes de desglose: no mostrarlos como planes.",
+  "pending_programs": [
+    {
+      "id": 306,
+      "title": "Programación Otoño 2026 - Juventud de Ingenio",
+      "start": "2026-09-24",
+      "end": "2026-11-17",
+      "municipality": "Ingenio",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20260924-0017/programacion-otono-2026-juventud-de-ingenio",
+      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
+    },
+    {
+      "id": 261,
+      "title": "Programación Día de las Bibliotecas 2026",
+      "start": "2026-09-30",
+      "end": "2026-11-05",
+      "municipality": "San Bartolomé de Tirajana",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20260930-0022/programacion-dia-de-las-bibliotecas-2026",
+      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
+    },
+    {
+      "id": 258,
+      "title": "Programación La Grada Creativa Octubre 2026",
+      "start": "2026-10-01",
+      "end": "2026-10-31",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261001-0037/programacion-la-grada-creativa-octubre-2026",
+      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
+    },
+    {
+      "id": 543,
+      "title": "«TALLERES DE BIENESTAR EMOCIONAL Y ENVEJECIMIENTO ACTIVO»",
+      "start": "2026-10-06",
+      "end": "2026-11-24",
+      "municipality": "Santa Brígida",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/talleres-de-bienestar-emocional-y-envejecimiento-activo/",
+      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
+    },
+    {
+      "id": 120,
+      "title": "Programación Cultural - Centro Cultural Maspalomas",
+      "start": "2026-10-16",
+      "end": "2027-04-17",
+      "municipality": "San Bartolomé de Tirajana",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261016-0009/programacion-cultural-centro-cultural-maspalomas",
+      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
+    },
+    {
+      "id": 521,
+      "title": "Fiestas de San Rafael 2026 · Vecindario",
+      "start": "2026-10-16",
+      "end": "2026-11-01",
+      "municipality": "Santa Lucía de Tirajana",
+      "source_name": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
+      "source_url": "https://www.santaluciagc.com/fiestas-san-rafael-2026/",
+      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
+    },
+    {
+      "id": 129,
+      "title": "Programación La Grada Creativa Noviembre 2026",
+      "start": "2026-11-01",
+      "end": "2026-11-30",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261101-0005/programacion-la-grada-creativa-noviembre-2026",
+      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
+    },
+    {
+      "id": 139,
+      "title": "El Ayuntamiento de Agaete pone en marcha el programa de talleres Cuida de tu Bienestar",
+      "start": "2026-11-03",
+      "end": null,
+      "municipality": "Agaete",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261103-0001/el-ayuntamiento-de-agaete-pone-en-marcha-el-programa-de-talleres-cuida-de-tu-bienestar",
+      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
+    },
+    {
+      "id": 140,
+      "title": "Cursos y talleres de noviembre de la Universidad Popular",
+      "start": "2026-11-03",
+      "end": "2026-11-27",
+      "municipality": "Moya",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261103-0002/cursos-y-talleres-de-noviembre-de-la-universidad-popular",
+      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
+    },
+    {
+      "id": 264,
+      "title": "El Ayuntamiento de Agaete pone en marcha el programa de talleres Cuida de tu Bienestar",
+      "start": "2026-11-17",
+      "end": null,
+      "municipality": "Agaete",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261117-0003/el-ayuntamiento-de-agaete-pone-en-marcha-el-programa-de-talleres-cuida-de-tu-bienestar",
+      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
+    },
+    {
+      "id": 343,
+      "title": "El Ayuntamiento de Agaete pone en marcha el programa de talleres Cuida de tu Bienestar",
+      "start": "2026-12-01",
+      "end": null,
+      "municipality": "Agaete",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261201-0002/el-ayuntamiento-de-agaete-pone-en-marcha-el-programa-de-talleres-cuida-de-tu-bienestar",
+      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
+    }
+  ],
+  "unverified_locations": [
+    {
+      "title": "Hockey patín en Ingenio",
+      "date": "2026-11-06",
+      "time": "17:30 a 19:30 aprox.",
+      "municipality": "Ingenio",
+      "reason": "El cartel no identifica la instalación deportiva o punto de encuentro",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20260924-0017/programacion-otono-2026-juventud-de-ingenio"
+    }
+  ]
+}
