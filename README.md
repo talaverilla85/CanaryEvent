@@ -219,3 +219,28 @@ Las fechas verificadas pasan a estar debajo de las fotografías, mostrando
 el periodo vigente en vez de la fecha antigua de inicio; los títulos tienen
 hasta tres líneas y los bordes/sombras son más legibles en móvil.
 Los formatos patrocinados de AriMar no cambian con esta actualización.
+
+
+### Distancias y recordatorios de favoritos
+
+La interfaz muestra el municipio en su línea y la distancia aproximada
+al pie de cada tarjeta, calculada en línea recta desde la ubicación autorizada
+del visitante. Si la ficha solo tiene coordenadas municipales, la etiqueta
+especifica municipio. Si no existe permiso o ubicación, no se inventa un km.
+
+El detalle de cada plan contiene Recordarme. El visitante elige una
+antelación que aún esté en el futuro: 15 min, 1 h o 3 h para actividades con
+hora verificada; 1, 2, 3 o 7 días antes; y para planes en sábado o domingo
+Viernes anterior, 18:00, en hora local de Canarias. El sistema produce un
+archivo iCalendar .ics con alarma VALARM absoluta, incluyendo el cambio
+de hora de Canarias. No se crea una alerta de horas para eventos sin hora
+confirmada. Los programas que comenzaron hace semanas requieren una nueva
+sesión confirmada para programar recordatorios.
+
+Importante: la aplicación todavía es estática y NO ofrece notificaciones
+push. El usuario debe abrir el .ics e incorporarlo al calendario que
+utilice (Android/iOS/otros); las notificaciones dependen de la configuración y
+la compatibilidad de ese calendario. La funcionalidad futura de recordatorios
+push, cuentas y suscripciones se evaluará posteriormente, con permisos,
+gestión de bajas y un servicio de envío. No se almacena geolocalización ni
+suscripciones en el servidor.

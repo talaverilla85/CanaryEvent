@@ -33,7 +33,8 @@ class GeoCardContract(unittest.TestCase):
         self.assertIn("line-clamp:3",self.html)
         self.assertIn("≈ '+approx+' km",self.js)
         self.assertIn("Distancia aproximada en línea recta al centro del municipio",self.html)
-        self.assertIn("Ver zona ↗",self.js)
+        self.assertNotIn('Ver zona',self.js)
+        self.assertIn('Distancia no disponible',self.js)
         self.assertIn(".event-card{border-color:#dce6df;box-shadow:",self.html)
     def test_stable_other_features(self):
         self.assertIn("sponsorCardHtml",self.js)
