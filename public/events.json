@@ -2883,6 +2883,28 @@
       "organizer_url": ""
     },
     {
+      "id": 582,
+      "title": "ARUPIA - ÓRGANO DE PARTICIPACIÓN DE LA INFANCIA Y LA ADOLESCENCIA DE ARUCAS",
+      "start": "2026-10-30",
+      "end": null,
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Actividad publicada por el Ayuntamiento de Arucas. Consulta el programa y el recinto en su ficha original.",
+      "lat": 28.119,
+      "lng": -15.523,
+      "accuracy": "municipality",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrNE1RPT0=",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": "",
+      "organizer_url": ""
+    },
+    {
       "id": 456,
       "title": "MASTERCLASS TIFF - YAIZA MÉNDEZ",
       "start": "2026-10-30T11:00:00",
@@ -3162,7 +3184,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=1266fef55e24756a25e449edc51c108f",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=90e62918075543fb8e7d77620c00af47",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3184,7 +3206,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=1266fef55e24756a25e449edc51c108f",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=90e62918075543fb8e7d77620c00af47",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3521,6 +3543,28 @@
       "organizer_url": ""
     },
     {
+      "id": 583,
+      "title": "JORNADAS ´LOS POZOS DEL OLVIDO´",
+      "start": "2026-10-31",
+      "end": null,
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Actividad publicada por el Ayuntamiento de Arucas. Consulta el programa y el recinto en su ficha original.",
+      "lat": 28.119,
+      "lng": -15.523,
+      "accuracy": "municipality",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrNE1nPT0=",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": "",
+      "organizer_url": ""
+    },
+    {
       "id": 8,
       "title": "III XC VILLA DE INGENIO",
       "start": "2026-10-31T09:00:00",
@@ -3562,6 +3606,28 @@
       "image_alt": "Biosfera Joven: Jóvenes que cuentan su territorio",
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
+      "organizer_url": ""
+    },
+    {
+      "id": 584,
+      "title": "Alma de Medianías 2026 · Feria Regional de Vino, Queso y Miel",
+      "start": "2026-10-31T10:00:00",
+      "end": "2026-10-31T19:00:00",
+      "municipality": "Valsequillo",
+      "venue": "Pabellón Municipal El Mercadillo y alrededores",
+      "category": "gastronomia",
+      "free": 1,
+      "price": "Gratis",
+      "details": "Feria de productores artesanos de Canarias, con vino, queso, miel, catas, talleres y música. Consulta posibles cambios en la convocatoria oficial de la Mancomunidad.",
+      "lat": 27.985,
+      "lng": -15.497,
+      "accuracy": "municipality",
+      "source_name": "Mancomunidad de Medianías · Alma de Medianías en Valsequillo",
+      "source_url": "https://www.medianias.org/noticias/la-mancomunidad-de-medianias-invita-a-toda-la-isla-a-su-mesa-alma-de-medianias-del-31-de-octubre-al-1-de-noviembre-en-valsequillo/4307",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": "",
       "organizer_url": ""
     },
     {
@@ -3668,7 +3734,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=1266fef55e24756a25e449edc51c108f",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=90e62918075543fb8e7d77620c00af47",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3690,7 +3756,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=1266fef55e24756a25e449edc51c108f",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=90e62918075543fb8e7d77620c00af47",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3959,6 +4025,28 @@
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
       "organizer_url": "https://www.galdar.es/events/mercado-agricola-1nov26/"
+    },
+    {
+      "id": 585,
+      "title": "Alma de Medianías 2026 · Feria Regional de Vino, Queso y Miel",
+      "start": "2026-11-01T10:00:00",
+      "end": "2026-11-01T16:00:00",
+      "municipality": "Valsequillo",
+      "venue": "Pabellón Municipal El Mercadillo y alrededores",
+      "category": "gastronomia",
+      "free": 1,
+      "price": "Gratis",
+      "details": "Feria de productores artesanos de Canarias, con vino, queso, miel, catas, talleres y música. Consulta posibles cambios en la convocatoria oficial de la Mancomunidad.",
+      "lat": 27.985,
+      "lng": -15.497,
+      "accuracy": "municipality",
+      "source_name": "Mancomunidad de Medianías · Alma de Medianías en Valsequillo",
+      "source_url": "https://www.medianias.org/noticias/la-mancomunidad-de-medianias-invita-a-toda-la-isla-a-su-mesa-alma-de-medianias-del-31-de-octubre-al-1-de-noviembre-en-valsequillo/4307",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": "",
+      "organizer_url": ""
     },
     {
       "id": 128,
@@ -7566,7 +7654,7 @@
       "image_alt": "IV PARRANDEANDO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/iv-parrandeando"
     },
     {
       "id": 304,
@@ -11595,6 +11683,28 @@
       "organizer_url": "https://cbgrancanaria.net/partidos/"
     },
     {
+      "id": 586,
+      "title": "TRÍO DE LEYENDAS",
+      "start": "2027-02-20T20:00:00",
+      "end": null,
+      "municipality": "Ingenio",
+      "venue": "Centro Cultural Federico García Lorca",
+      "category": "ocio",
+      "free": 0,
+      "price": "Desde 15 €",
+      "details": "Información básica facilitada por la plataforma de entradas; consulta condiciones y posibles cambios en origen.",
+      "lat": 27.918,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "TuReservaOnline · agenda de Gran Canaria",
+      "source_url": "https://www.tureservaonline.es/es/events/trio-de-leyendas",
+      "image_url": "https://www.tureservaonline.es/storage/6407/A3_Pedro-Quintana.jpg",
+      "image_alt": "TRÍO DE LEYENDAS",
+      "image_origin": "TuReservaOnline",
+      "image_status": "official_remote",
+      "organizer_url": ""
+    },
+    {
       "id": 517,
       "title": "GRANDES ÉXITOS MECANO - JOANA CERPA",
       "start": "2027-02-26T20:30:00",
@@ -11702,10 +11812,10 @@
       "image_alt": "NOSOLOVIERNES",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/nosoloviernes"
     }
   ],
-  "generated_at": "2026-10-26T11:28:26+00:00",
+  "generated_at": "2026-10-26T17:38:24+00:00",
   "timezone": "Atlantic/Canary",
-  "verified_sources": 13
+  "verified_sources": 15
 }

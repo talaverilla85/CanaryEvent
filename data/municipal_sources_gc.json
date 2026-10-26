@@ -118,8 +118,9 @@
       "municipality": "Valsequillo",
       "official_website": "https://www.valsequillogc.es/",
       "agenda_url": "https://www.valsequillogc.es/ayto3/calendario-de-eventos/",
-      "status": "agenda_localizada_ssl_pendiente",
-      "note": "El servidor oficial tiene error de validación TLS desde el ejecutor conectado. No eludir la verificación; requiere reparación o acceso oficial seguro."
+      "status": "conector_parcial_fuente_intermunicipal",
+      "note": "Agenda municipal pendiente por problema TLS. Por ahora se importa exclusivamente Alma de Medianías 2026 desde la Mancomunidad. No se considera conexión municipal completa.",
+      "extra_source": "https://www.medianias.org/noticias/la-mancomunidad-de-medianias-invita-a-toda-la-isla-a-su-mesa-alma-de-medianias-del-31-de-octubre-al-1-de-noviembre-en-valsequillo/4307"
     },
     {
       "municipality": "Valleseco",

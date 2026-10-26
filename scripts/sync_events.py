@@ -28,6 +28,7 @@ import santabrigida_agenda
 import teror_auditorio
 import telde_fiestas
 import artenara_ferias
+import valsequillo_medianias
 import telde_barrio_programs
 import municipal_listing_dedup
 from event_images import listing_image,image_fields
@@ -532,6 +533,11 @@ def run():
         # They supplement rather than replace already-known Cabildo and ticket
         # events. Any source failure is isolated and recorded for transparency.
         new_municipal_sources=(
+            # Official 2026 intermunicipal source; preserve Valsequillo TLS safety.
+            (valsequillo_medianias.NAME,
+             lambda: valsequillo_medianias.extract(
+                 valsequillo_medianias.fetch(),TODAY,PLACES,category)
+             if TODAY<=dt.date(2026,11,1) else []),
             (artenara_ferias.NAME,
              lambda: artenara_ferias.extract(artenara_ferias.fetch(),TODAY,PLACES,category)
              if TODAY<=dt.date(2026,11,1) else []),

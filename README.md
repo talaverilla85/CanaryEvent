@@ -189,3 +189,14 @@ en SQLite para trazabilidad; no se suprimen dos sesiones distintas.
   data/municipal_sources_gc.json; no se desactiva la validación TLS.
 
 La web sigue limitada a Gran Canaria y sincroniza datos diariamente.
+
+
+### Valsequillo: fuente verificada de la Mancomunidad (2026)
+
+valsequillo_medianias.py añade dos jornadas de Alma de Medianías
+(31 de octubre y 1 de noviembre de 2026) desde el organizador oficial.
+Las horas y entrada gratuita se contrastan contra la publicación cada vez.
+El extractor se desactiva después del 1/11/2026: no inventa ediciones 2027.
+Este conector es parcial: la agenda del Ayuntamiento de Valsequillo
+continúa pendiente de un acceso HTTPS con certificado válido. Nunca
+se inhabilita la verificación TLS.

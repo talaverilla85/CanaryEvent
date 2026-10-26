@@ -19,6 +19,7 @@ on:
       - "scripts/telde_fiestas.py"
       - "scripts/municipal_listing_dedup.py"
       - "scripts/artenara_ferias.py"
+      - "scripts/valsequillo_medianias.py"
       - "scripts/telde_barrio_programs.py"
       - "scripts/ticket_recent.py"
       - "scripts/publish_synced_data.sh"
