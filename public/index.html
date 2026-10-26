@@ -173,6 +173,23 @@
 @media(max-width:649px){.sponsor-hit{min-height:169px}.sponsor-media{width:34%;min-height:169px}.sponsor-content{padding:12px;gap:5px}.sponsor-heading{font-size:16px;letter-spacing:-.25px}.sponsor-copy{font-size:11px;line-height:1.35}.sponsor-bottom{margin-top:3px;gap:7px}.sponsor-location{font-size:10px}.sponsor-button{font-size:11px;padding:8px 12px}}
 @media(max-width:360px){.sponsor-media{width:31%}.sponsor-location{display:none}}
 
+
+/* Tarjetas editoriales: separación suave, fecha legible, menos huecos. */
+.event-card{border-color:#dce6df;box-shadow:0 4px 17px rgba(23,55,41,.065)}
+.event-card:hover{box-shadow:0 12px 30px rgba(23,55,41,.11)}
+.event-card .photo-date{display:none}
+.event-info{min-height:0!important;padding:13px 13px 15px}
+.event-title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden;margin:2px 0 6px;line-height:1.32;font-size:clamp(13px,2.1vw,16px)}
+.event-date-chip{display:inline-flex;align-self:flex-start;max-width:100%;padding:6px 9px;border-radius:8px;background:#ebf3ec;color:#32634b;font-size:11px;line-height:1.25;font-weight:800;margin:0 0 7px;overflow-wrap:anywhere}
+.event-meta{margin-top:8px;min-height:0!important;gap:6px}
+.place-venue{-webkit-line-clamp:2;line-clamp:2}
+.place-municipality{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.35;font-size:11px}
+.geo-km{font-weight:800;color:#25724f;white-space:nowrap}
+.event-bottom{margin-top:13px;padding-top:10px;min-height:22px}
+.event-bottom .distance{font-size:11px;font-weight:700;color:#5d8370}
+@media(max-width:480px){.event-info{min-height:0!important;padding:11px 11px 13px}.event-meta{min-height:0!important;font-size:11px}.event-title{font-size:14px}.event-date-chip{font-size:10px;padding:5px 7px}.event-bottom{margin-top:11px}}
+@media(max-width:375px){.event-title{font-size:13px}.event-info{padding:10px}.place-municipality{font-size:10px}.event-date-chip{font-size:10px}}
+
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>¿Pa' Dónde? · Planes y eventos en Gran Canaria</title>
@@ -213,7 +230,7 @@ try{localStorage.setItem('plangc_check','ok');localStorage.removeItem('plangc_ch
 'use strict';
 const $=id=>document.getElementById(id);
 const state={events:[],when:'today',category:'all',query:'',sort:'recommended',origin:null,originName:'Toda Gran Canaria',favorites:new Set(JSON.parse(localStorage.getItem('plangc_favorites')||'[]')),user:null,tab:'explore',map:null,markers:null,seen:0,visibleLimit:48};
-state.mapSelected=null;state.mapLimit=16;state.mapEntries=[];
+state.mapSelected=null;state.mapLimit=16;state.mapEntries=[];state.geoRequestSeq=0;state.geoLastAttempt=0;state.geoManualOverride=false;
 state.sponsorAds=[];state.sponsorPlacement={after_mobile:4,after_tablet:6,after_desktop:8};
 const CATS=[['all','✳','Todos'],['musica','♫','Música'],['familia','✿','Familia'],['gastronomia','♨','Gastronomía'],['cultura','◈','Cultura'],['deporte','⚑','Deporte'],['naturaleza','❋','Aire libre'],['ocio','☼','Ocio'],['otros','✺','Otros']];
 const PLACES={'Agaete':[28.100,-15.700],'Agüimes':[27.906,-15.445],'Artenara':[28.019,-15.647],'Arucas':[28.119,-15.523],'Firgas':[28.106,-15.563],'Gáldar':[28.145,-15.654],'Ingenio':[27.918,-15.436],'La Aldea de San Nicolás':[27.983,-15.780],'Las Palmas de Gran Canaria':[28.124,-15.436],'Mogán':[27.884,-15.723],'Moya':[28.108,-15.582],'San Bartolomé de Tirajana':[27.923,-15.573],'Santa Brígida':[28.035,-15.497],'Santa Lucía de Tirajana':[27.914,-15.542],'Santa María de Guía':[28.139,-15.632],'Tejeda':[27.996,-15.615],'Telde':[27.993,-15.416],'Teror':[28.060,-15.546],'Valleseco':[28.045,-15.579],'Valsequillo':[27.985,-15.497],'Vega de San Mateo':[28.010,-15.532]};
@@ -254,6 +271,13 @@ const plusDays=(date,n)=>{let d=new Date(date+'T12:00:00Z');d.setUTCDate(d.getUT
 const dayName=s=>new Date(s.slice(0,10)+'T12:00:00Z').toLocaleDateString('es-ES',{timeZone:'UTC',weekday:'short',day:'numeric',month:'short'}).replace('.','');
 const timeLabel=e=>e.end&&e.end.length===10&&e.end.slice(0,10)>e.start.slice(0,10)?'Consulta las sesiones':e.start.length>10?e.start.slice(11,16):'Hora por confirmar';
 const dayLabel=e=>dayName(e.start);
+function cardDateLabel(e){
+ const first=e.start.slice(0,10),last=eventEndDate(e),today=todayKey();
+ if(first<today&&last>=today&&first!==last)return 'En curso · hasta '+dayName(last);
+ if(last>first)return 'Del '+dayName(first)+' al '+dayName(last);
+ return dayName(first)+(e.start.length>10?' · '+e.start.slice(11,16):'');
+}
+
 const dateLabel=e=>new Date(e.start.slice(0,10)+'T12:00:00Z').toLocaleDateString('es-ES',{timeZone:'UTC',weekday:'long',day:'numeric',month:'long',year:'numeric'});
 const distance=(p,q)=>{if(!p||!q)return null;const rad=n=>n*Math.PI/180;let dlat=rad(q[0]-p[0]),dlng=rad(q[1]-p[1]);return Math.round(6371*2*Math.asin(Math.sqrt(Math.sin(dlat/2)**2+Math.cos(rad(p[0]))*Math.cos(rad(q[0]))*Math.sin(dlng/2)**2)))};
 const venueName=e=>{
@@ -327,8 +351,8 @@ function render(){renderCategories();const events=filtered();const shown=events.
  $('eventsGrid').innerHTML=shown.map((e,i)=>{
   const approx=distance(state.origin,[e.lat,e.lng]);const liked=state.favorites.has(e.id);
   return `<article class="event-card" tabindex="0" role="button" data-id="${e.id}" aria-label="Ver ${escapeHTML(e.title)}">
-  <div class="photo ${CLASSES[e.category]||'p-other'}">${coverHtml(e)}<span class="photo-tag">${escapeHTML(textForCat(e.category))}</span><button class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button><span class="photo-date">${escapeHTML(dayLabel(e))} · ${escapeHTML(timeLabel(e))}</span></div>
-  <div class="event-info"><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span class="place-icon">⌖</span><span class="event-place"><strong class="place-venue">${escapeHTML(venueName(e))}</strong><small class="place-municipality">${escapeHTML(e.municipality)}</small></span></div><div class="event-bottom">${price(e)?`<span class="price">${escapeHTML(price(e))}</span>`:''}<span class="distance">${approx!==null?'≈ '+approx+' km':'Ver ubicación ↗'}</span></div></div></article>`+(sponsor&&i+1===sponsorAt?sponsorCardHtml(sponsor):'')}).join('');
+  <div class="photo ${CLASSES[e.category]||'p-other'}">${coverHtml(e)}<span class="photo-tag">${escapeHTML(textForCat(e.category))}</span><button class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button></div>
+  <div class="event-info"><span class="event-date-chip">${escapeHTML(cardDateLabel(e))}</span><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span class="place-icon">⌖</span><span class="event-place"><strong class="place-venue">${escapeHTML(venueName(e))}</strong><small class="place-municipality">${escapeHTML(e.municipality)}${approx!==null?' · <span class="geo-km" title="Distancia aproximada en línea recta al centro del municipio">≈ '+approx+' km</span>':''}</small></span></div><div class="event-bottom">${price(e)?`<span class="price">${escapeHTML(price(e))}</span>`:''}<span class="distance">${e.accuracy==='municipality'?'Ver zona ↗':'Ver ubicación ↗'}</span></div></div></article>`+(sponsor&&i+1===sponsorAt?sponsorCardHtml(sponsor):'')}).join('');
  $('emptyState').classList.toggle('hidden',events.length>0);$('eventsGrid').classList.toggle('hidden',events.length===0);
  document.querySelectorAll('.date-chip').forEach(b=>b.classList.toggle('active',b.dataset.when===state.when));
  
@@ -360,9 +384,47 @@ function showEvent(id){const e=state.events.find(x=>x.id===+id);if(!e)return;
  history.replaceState(null,'',`?evento=${e.id}`);
 }
 function toggleFav(id){id=+id;if(state.favorites.has(id))state.favorites.delete(id);else state.favorites.add(id);localStorage.setItem('plangc_favorites',JSON.stringify([...state.favorites]));render();toast(state.favorites.has(id)?'Añadido a favoritos':'Eliminado de favoritos')}
-function locationDialog(){openModal(`<div class="form-panel"><span class="eyebrow">TU ISLA, TUS PLANES</span><h2 id="modalHeading">¿Desde dónde sales?</h2><p>Ordenaremos los planes por cercanía y hora. Tu ubicación no se almacena en el servidor.</p><form id="placeForm" class="stack-form"><div class="field"><label for="placeSelect">Municipio de referencia</label><select id="placeSelect"><option value="">Toda Gran Canaria</option>${Object.keys(PLACES).sort((a,b)=>a.localeCompare(b,'es')).map(n=>`<option value="${escapeHTML(n)}" ${n===state.originName?'selected':''}>${escapeHTML(n)}</option>`).join('')}</select></div><button type="submit" class="primary-btn">Usar este municipio</button></form><button class="inline-link" id="geolocateBtn">⌖ Utilizar mi ubicación actual</button><p class="footnote">El navegador solicitará permiso antes de acceder a tu ubicación. Puedes cambiarla cuando quieras.</p></div>`);
- $('placeForm').onsubmit=e=>{e.preventDefault();const n=$('placeSelect').value;state.origin=n?PLACES[n]:null;state.originName=n||'Toda Gran Canaria';$('locationName').textContent=state.originName;localStorage.setItem('plangc_municipio',n);closeModal();render();toast(n?'Planes ordenados desde '+n:'Mostrando toda la isla')};
- $('geolocateBtn').onclick=()=>{if(!navigator.geolocation){toast('Tu navegador no ofrece geolocalización');return}navigator.geolocation.getCurrentPosition(p=>{state.origin=[p.coords.latitude,p.coords.longitude];state.originName='Cerca de mí';$('locationName').textContent='Cerca de mí';localStorage.removeItem('plangc_municipio');closeModal();render();toast('Distancias aproximadas actualizadas')},()=>toast('No se pudo obtener tu ubicación. Elige un municipio.'),{enableHighAccuracy:false,timeout:10000,maximumAge:120000})};
+
+function requestCurrentLocation(notify=false){
+ if(notify)state.geoManualOverride=false;
+ // Browser-only coordinates; no network request or persistent storage.
+ if(!navigator.geolocation||!window.isSecureContext){
+  if(notify)toast('La ubicación requiere HTTPS y permiso del navegador');
+  return;
+ }
+ const seq=++state.geoRequestSeq;
+ state.geoLastAttempt=Date.now();
+ navigator.geolocation.getCurrentPosition(
+  ({coords})=>{
+   if(seq!==state.geoRequestSeq)return; // The latest manual choice wins.
+   if(!Number.isFinite(coords.latitude)||!Number.isFinite(coords.longitude))return;
+   state.origin=[coords.latitude,coords.longitude];
+   state.originName='Cerca de mí';
+   $('locationName').textContent='Cerca de mí';
+   render();
+   if(!$('mapPanel').classList.contains('hidden'))drawMap();
+   if(notify){localStorage.removeItem('plangc_municipio');closeModal();toast('Distancias aproximadas actualizadas');}
+  },
+  ()=>{
+   if(seq!==state.geoRequestSeq)return;
+   if(notify)toast('No se pudo obtener tu ubicación. Puedes elegir un municipio.');
+  },
+  {enableHighAccuracy:false,timeout:12000,maximumAge:0}
+ );
+}
+function refreshLocationIfAllowed(){
+ // Reopening a tab only refreshes after prior permission has been granted.
+ if(document.hidden||state.geoManualOverride||Date.now()-state.geoLastAttempt<600000||!navigator.geolocation)return;
+ if(navigator.permissions&&navigator.permissions.query){
+  navigator.permissions.query({name:'geolocation'}).then(p=>{
+   if(p.state==='granted')requestCurrentLocation(false);
+  }).catch(()=>{});
+ }
+}
+
+function locationDialog(){openModal(`<div class="form-panel"><span class="eyebrow">TU ISLA, TUS PLANES</span><h2 id="modalHeading">¿Desde dónde sales?</h2><p>Con tu permiso, usaremos tu ubicación al abrir la agenda para mostrar distancias aproximadas en línea recta. No la guardamos en el servidor.</p><form id="placeForm" class="stack-form"><div class="field"><label for="placeSelect">Municipio de referencia</label><select id="placeSelect"><option value="">Toda Gran Canaria</option>${Object.keys(PLACES).sort((a,b)=>a.localeCompare(b,'es')).map(n=>`<option value="${escapeHTML(n)}" ${n===state.originName?'selected':''}>${escapeHTML(n)}</option>`).join('')}</select></div><button type="submit" class="primary-btn">Usar este municipio</button></form><button class="inline-link" id="geolocateBtn">⌖ Utilizar mi ubicación actual</button><p class="footnote">El navegador solicitará permiso antes de acceder a tu ubicación. Puedes cambiarla cuando quieras.</p></div>`);
+ $('placeForm').onsubmit=e=>{e.preventDefault();const n=$('placeSelect').value;state.geoManualOverride=true;state.geoRequestSeq++;state.origin=n?PLACES[n]:null;state.originName=n||'Toda Gran Canaria';$('locationName').textContent=state.originName;localStorage.setItem('plangc_municipio',n);closeModal();render();toast(n?'Planes ordenados desde '+n:'Mostrando toda la isla')};
+ $('geolocateBtn').onclick=()=>requestCurrentLocation(true);
 }
 function mapIcon(count,selected=false){
  const label=count>99?'99+':String(count);
@@ -557,9 +619,10 @@ function init(){$('loadMoreBtn').onclick=()=>{state.visibleLimit+=48;render()};c
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();if(!$('mapPanel').classList.contains('hidden'))closeMap()}});
  // Accounts and merchant panel are disabled in this public phase.
  loadEvents();
-loadSponsored();
+ loadSponsored();
+ requestCurrentLocation(false);
 let lastRefresh=Date.now();
-document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-lastRefresh>600000){lastRefresh=Date.now();loadEvents()}});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){refreshLocationIfAllowed()}if(!document.hidden&&Date.now()-lastRefresh>600000){lastRefresh=Date.now();loadEvents()}});
 setInterval(()=>{if(!document.hidden){lastRefresh=Date.now();loadEvents()}},1200000);
 if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
 }

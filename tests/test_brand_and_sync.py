@@ -1,4 +1,4 @@
-import unittest,json
+﻿import unittest,json
 from pathlib import Path
 from xml.etree import ElementTree
 ROOT=Path(__file__).resolve().parents[1]
@@ -18,7 +18,7 @@ class BrandAndSyncContract(unittest.TestCase):
  def test_favicon_and_pwa(self):
   r=ElementTree.parse(ROOT/"public/favicon.svg").getroot()
   self.assertEqual(r.tag,"{http://www.w3.org/2000/svg}svg")
-  self.assertIn("padonde-brand-v1",SW)
+  self.assertIn("padonde-geo-cards-v2",SW)
   self.assertTrue((ROOT/"public/icons/icon-192.png").stat().st_size>1000)
  def test_sync_status_user_facing(self):
   self.assertIn("Última revisión:",HTML)
@@ -40,3 +40,4 @@ class BrandAndSyncContract(unittest.TestCase):
   self.assertIn("sin compras ni registros",readme)
 
 if __name__=="__main__":unittest.main()
+

@@ -200,3 +200,22 @@ El extractor se desactiva después del 1/11/2026: no inventa ediciones 2027.
 Este conector es parcial: la agenda del Ayuntamiento de Valsequillo
 continúa pendiente de un acceso HTTPS con certificado válido. Nunca
 se inhabilita la verificación TLS.
+
+
+### Tarjetas de eventos y geolocalización (octubre 2026)
+
+La agenda pide permiso de ubicación mediante la API nativa del navegador
+al entrar en el sitio (HTTPS). Si el visitante lo autoriza, calcula en
+memoria la distancia aproximada en kilómetros hasta las coordenadas
+publicadas para cada evento, que a menudo son el centro del municipio:
+**distancia en línea recta, no kilómetros en coche ni dirección exacta**.
+La coordenada del visitante no se guarda en el servidor ni en localStorage.
+
+Si se deniega o no está disponible el permiso, no se bloquea la agenda:
+continúa el selector de municipio, con su centro como referencia.
+La selección manual tiene prioridad sobre una respuesta de GPS pendiente;
+al reabrir la pestaña solo se refresca el GPS si el permiso sigue concedido.
+Las fechas verificadas pasan a estar debajo de las fotografías, mostrando
+el periodo vigente en vez de la fecha antigua de inicio; los títulos tienen
+hasta tres líneas y los bordes/sombras son más legibles en móvil.
+Los formatos patrocinados de AriMar no cambian con esta actualización.
