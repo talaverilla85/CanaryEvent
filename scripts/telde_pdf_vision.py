@@ -209,11 +209,11 @@ def call_openai_text(page_text,year,title,model,key,session):
     return parsed,reply.get("usage",{})
 
 
-def call_openai_vision(image_bytes,year,title,model,key,session):
+def call_openai_vision(image_bytes,year,title,model,key,session,*,instructions=None):
  payload={
   "model":model,
   "store":False,
-  "instructions":SYSTEM_PROMPT,
+  "instructions":instructions or SYSTEM_PROMPT,
   "input":[{
    "role":"user","content":[
     {"type":"input_text","text":f"Fuente oficial municipal: {title}. Año {year}. Extrae cada actividad fechada que se lea EN ESTA página. JSON."},

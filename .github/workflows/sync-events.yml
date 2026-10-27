@@ -1,4 +1,4 @@
-﻿name: Actualizar eventos oficiales
+name: Actualizar eventos oficiales
 on:
   workflow_dispatch:
   schedule:
@@ -37,6 +37,7 @@ on:
       - "scripts/telde_barrio_programs.py"
       - "scripts/telde_pdf_vision.py"
       - "scripts/telde_pdf_auto.py"
+      - "scripts/telde_pdf_verified.py"
       - "scripts/ticket_recent.py"
       - "scripts/publish_synced_data.sh"
       - "scripts/artes_details.py"
@@ -67,12 +68,6 @@ jobs:
         run: python -m pip install -r scripts/requirements.txt
       - name: Comprobar parser y deduplicación
         run: python -m unittest discover -s tests -v
-      - name: Obtener y verificar eventos oficiales
-        run: python scripts/sync_events.py
-      - name: Auditar calidad de fichas y conectores
-        run: python scripts/audit_source_health_gc.py
-      - name: Auditar precios y gratuidad de fuentes oficiales
-        run: python scripts/audit_price_provenance.py --output data/price_provenance_audit.json
       - name: Extraer actividades de PDF con IA cuando hay clave configurada
         continue-on-error: true
         env:
@@ -80,10 +75,16 @@ jobs:
         shell: bash
         run: |
           if [[ -n "$OPENAI_API_KEY" ]]; then
-            python scripts/telde_pdf_auto.py --api --max-docs 2 --max-pages 3 --max-api-calls 3 --max-cost-usd 0.05
+            python scripts/telde_pdf_auto.py --api --max-docs 2 --max-pages 3 --max-api-calls 4 --max-cost-usd 0.05
           else
             echo "Sin clave IA configurada: no se hacen llamadas de pago."
           fi
+      - name: Obtener y verificar eventos oficiales
+        run: python scripts/sync_events.py
+      - name: Auditar calidad de fichas y conectores
+        run: python scripts/audit_source_health_gc.py
+      - name: Auditar precios y gratuidad de fuentes oficiales
+        run: python scripts/audit_price_provenance.py --output data/price_provenance_audit.json
       - name: Guardar base de datos y exportación
         shell: bash
         run: bash scripts/publish_synced_data.sh

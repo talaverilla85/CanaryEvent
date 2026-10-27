@@ -34,6 +34,7 @@ import artenara_ferias
 import valsequillo_medianias
 import tejeda_agenda
 import telde_barrio_programs
+import telde_pdf_verified
 import municipal_listing_dedup
 import cinema_policy
 import event_occurrences
@@ -656,6 +657,61 @@ def run():
         results.append({"source":telde_barrio_programs.NAME,"checked_at":NOW,
                         "found":0,"added":0,"changed":0,"error":programs_error})
         print(f"Telde neighbourhood PDF programs: discovered={programs_found}, events imported=0, error={programs_error[:100]}")
+        # Import only individual PDF acts that passed two independent visual
+        # readings of the same official municipal PDF page. Uncertain AI output
+        # stays in the private review queue and is never passed to upsert().
+        pdf_verified_found=pdf_verified_added=pdf_verified_changed=0
+        pdf_verified_error=""
+        try:
+            approved_path=ROOT/"data"/"telde_pdf_pilot"/"verified_events.json"
+            if approved_path.exists():
+                approved=json.loads(approved_path.read_text(encoding="utf8"))
+                if not isinstance(approved,list):raise ValueError("Verified PDF registry must be a list")
+                official_pdfs=set()
+                if programs_path.exists():
+                    programs_data=json.loads(programs_path.read_text(encoding="utf8"))
+                    official_pdfs={x["pdf_url"] for x in programs_data.get("programs",[]) if x.get("year")==TODAY.year}
+                seen=set()
+                for item in approved:
+                    if not isinstance(item,dict) or item.get("review_status")!="auto_verified":continue
+                    if item.get("verification")!="two_independent_visual_passes":continue
+                    url=item.get("pdf_url","")
+                    if url not in official_pdfs:continue
+                    if not isinstance(item.get("pdf_page"),int) or item["pdf_page"]<1:continue
+                    if not re.fullmatch(r"[a-f0-9]{64}",str(item.get("pdf_sha256") or "")):continue
+                    if not telde_pdf_verified.safe_venue(item.get("venue")):continue
+                    try:date_value=dt.date.fromisoformat(item.get("date",""))
+                    except ValueError:continue
+                    if not TODAY<=date_value<=TODAY+dt.timedelta(days=120):continue
+                    if not re.fullmatch(r"(?:[01]\d|2[0-3]):[0-5]\d",str(item.get("time") or "")):continue
+                    entry=telde_pdf_verified.approved_to_event(item)
+                    # Trusted fields only; no invented prices, no copied posters.
+                    key=(norm(entry["title"]),entry["start"],norm(entry["venue"]))
+                    if key in seen:continue
+                    seen.add(key)
+                    pdf_verified_found+=1
+                    change=upsert(conn,entry)
+                    pdf_verified_added+=int(change=="added")
+                    pdf_verified_changed+=int(change=="changed")
+                conn.commit()
+                if programs_path.exists() and pdf_verified_found:
+                    programs_data["events_imported"]=pdf_verified_found
+                    programs_data["note"]="PDFs oficiales descubiertos; solo se importan actividades validadas por dos lecturas visuales independientes."
+                    write_json(programs_path,programs_data)
+        except Exception as exc:
+            pdf_verified_error=str(exc)[:250]
+            print(f"WARN PDF double-verified events: {pdf_verified_error}",file=sys.stderr)
+        conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+         VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+         checked_at=excluded.checked_at,found=excluded.found,
+         added=excluded.added,changed=excluded.changed,error=excluded.error""",
+         (telde_pdf_verified.SOURCE,NOW,pdf_verified_found,pdf_verified_added,
+          pdf_verified_changed,pdf_verified_error))
+        conn.commit()
+        results.append({"source":telde_pdf_verified.SOURCE,"checked_at":NOW,
+                        "found":pdf_verified_found,"added":pdf_verified_added,
+                        "changed":pdf_verified_changed,"error":pdf_verified_error})
+        print(f"Telde PDF independently verified: found={pdf_verified_found} new={pdf_verified_added} error={pdf_verified_error[:80]}")
         # Official campaign posters are sources, not individual plans.
         youth=ingenio_juvenil_program
         youth_found=youth_added=youth_changed=0
@@ -787,6 +843,7 @@ def run():
                   "pending":0,"needs_review":len(programs_pending)+len(ingenio_juvenil_program.UNRESOLVED),
                   "archived_or_expired":max(0,total-valid_candidates),
                   "cancelled":statuses.get("cancelled",0),
+                  "pdf_events_double_verified":pdf_verified_found,
                   "prices_confirmed":sum(bool(e["price"]) or e["free"]==1 for e in events),
                   "prices_to_verify":sum(not e["price"] and e["free"]!=1 for e in events),
                   "venues_to_verify":len(venue_pending),

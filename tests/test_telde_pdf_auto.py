@@ -55,6 +55,7 @@ class AutoTeldePdfTests(unittest.TestCase):
                  patch.object(auto,"STATE",p/"state.json"), \
                  patch.object(auto,"CACHE",p/"cache.json"), \
                  patch.object(auto,"REPORT",p/"report.json"), \
+                 patch.object(auto,"VERIFIED",p/"verified.json"), \
                  patch.object(tv,"SOURCE",p/"index.json"), \
                  patch.object(tv,"official_robots",return_value=object()), \
                  patch.object(tv,"download_pdf",return_value=(p/"dummy.pdf","f"*64,42)), \
@@ -79,6 +80,7 @@ class AutoTeldePdfTests(unittest.TestCase):
                  patch.object(auto,"STATE",p/"state.json"), \
                  patch.object(auto,"CACHE",p/"cache.json"), \
                  patch.object(auto,"REPORT",p/"report.json"), \
+                 patch.object(auto,"VERIFIED",p/"verified.json"), \
                  patch.object(tv,"SOURCE",p/"index.json"), \
                  patch.object(tv,"official_robots",return_value=object()), \
                  patch.object(tv,"download_pdf",return_value=(p/"dummy.pdf","c"*64,42)), \
@@ -89,18 +91,22 @@ class AutoTeldePdfTests(unittest.TestCase):
                      {"input_tokens":1000,"output_tokens":500})) as call, \
                  patch.dict(os.environ,{"OPENAI_API_KEY":"test-key"}):
                 r=auto.run(["--filename","caseronesaltos26.pdf","--api"],today=dt.date(2026,10,27))
-                self.assertEqual(r["api_calls"],1)
-                call.assert_called_once()
+                self.assertEqual(r["api_calls"],2)
+                self.assertEqual(call.call_count,2)
                 content=json.loads((p/"pending.json").read_text(encoding="utf8"))
                 self.assertEqual(len(content),1)
                 self.assertEqual(content[0]["review_status"],"pending_review")
                 self.assertEqual(content[0]["date_state"],"upcoming")
                 self.assertEqual(content[0]["extractor"],"ai_vision")
                 self.assertEqual(content[0]["pdf_page"],1)
+                auto_ready=json.loads((p/"verified.json").read_text(encoding="utf8"))
+                self.assertEqual(len(auto_ready),1)
+                self.assertEqual(auto_ready[0]["review_status"],"auto_verified")
+                self.assertEqual(auto_ready[0]["verification"],"two_independent_visual_passes")
                 # A second run does not charge the API again for this page.
                 again=auto.run(["--filename","caseronesaltos26.pdf","--api"],today=dt.date(2026,10,27))
                 self.assertEqual(again["api_calls"],0)
-                call.assert_called_once()
+                self.assertEqual(call.call_count,2)
 
     def test_workflow_never_exposes_key_in_browser(self):
         wf=(ROOT/".github/workflows/sync-events.yml").read_text(encoding="utf8")

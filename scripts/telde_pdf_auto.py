@@ -22,12 +22,23 @@ import requests
 from pypdf import PdfReader
 
 import telde_pdf_vision as tv
+import telde_pdf_verified as verified_gate
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = tv.WORK / "scan_state.json"
 CACHE = tv.WORK / "vision_cache.json"
 REVIEW = tv.WORK / "pending_review.json"
 REPORT = tv.WORK / "auto_report.json"
+VERIFIED = tv.WORK / "verified_events.json"
+SECOND_PROMPT = (
+ "Actúa como auditor independiente de un programa municipal escaneado. "
+ "Vuelve a leer visualmente desde cero la página, sin asumir datos aportados por otras lecturas. "
+ "Devuelve solo actos individuales que indiquen inequívocamente título, día, hora y recinto "
+ "en la imagen. Si falta cualquiera de estos cuatro campos, no incluyas el acto. "
+ "Usa literalmente la información de la página; no deduzcas año, lugar ni fecha de títulos. "
+ "Cita una evidencia corta realmente visible para cada acto. "
+ "Si es portada, agenda genérica o ilegible, devuelve events=[] y page_is_program=false."
+)
 VERSION = "text-fallback-vision-v1"
 MONTHS = {
     "enero": 1, "febrero": 2, "marzo": 3, "abril": 4,
@@ -123,6 +134,8 @@ def run(argv=None, *, session=None, today: dt.date | None = None):
     sess = session or requests.Session()
     robots = tv.official_robots(sess) if picks else None
     cache = tv.load_json(CACHE, {})
+    verified_events = {e["id"]: e for e in tv.load_json(VERIFIED, [])
+                       if isinstance(e,dict) and e.get("id")}
     prior = {e["id"]: e for e in tv.load_json(REVIEW, [])
              if isinstance(e, dict) and e.get("id")}
     state = tv.load_json(STATE, {})
@@ -130,8 +143,8 @@ def run(argv=None, *, session=None, today: dt.date | None = None):
               "mode": "api_fallback" if api_enabled else "offline_safe",
               "model": tv.MODEL, "api_key_configured": bool(key),
               "api_calls": 0, "usage_usd": 0.0,
-              "docs": [], "pending_review_count": 0,
-              "notes": "This pipeline never automatically publishes AI events"}
+              "docs": [], "pending_review_count": 0, "auto_verified_count": 0,
+              "notes": "Only corroborated future acts with matching time and named venue enter the feed; other results stay in review."}
     processed_docs = 0
     for pick in picks:
         if processed_docs >= args.max_docs:
@@ -234,13 +247,58 @@ def run(argv=None, *, session=None, today: dt.date | None = None):
             for rec in valid:
                 prior[rec["id"]] = rec
             info["candidates_pending_review"] = len(valid)
-            done.add(i)
+            # OCR-free scan: original visual extraction AND independent second
+            # visual pass must agree about title, date, time and named venue.
+            can_finish=True
+            if valid and method=="ai_vision":
+                ck2=f"{sha}/{i}/{tv.MODEL}/{VERSION}/independent_double_read"
+                if ck2 in cache:
+                    second=cache[ck2]["output"]
+                    info["verification"]="cached_independent_visual_read"
+                elif not api_enabled or report["api_calls"]>=args.max_api_calls or (
+                    args.max_cost_usd-report["usage_usd"]<.01
+                ):
+                    second=None
+                    can_finish=False
+                    info["verification"]="pending_second_read_budget"
+                else:
+                    img,_=tv.render_page_jpeg(file,i)
+                    second,usage=tv.call_openai_vision(
+                        img,int(pick["year"]),pick["title"],tv.MODEL,key,sess,
+                        instructions=SECOND_PROMPT
+                    )
+                    cost=tv.response_usage_cost(usage)
+                    report["api_calls"]+=1
+                    report["usage_usd"]=round(report["usage_usd"]+cost,7)
+                    cache[ck2]={"output":second,"usage":usage,"measured_cost_usd":cost}
+                    tv.atomic_json(CACHE,cache)
+                    info["verification"]="new_independent_visual_read"
+                if second is not None:
+                    if decoded.get("page_is_program") and second.get("page_is_program"):
+                        matched=verified_gate.approved_candidates(
+                            decoded.get("events",[]), second.get("events",[]),today=now
+                        )
+                    else:
+                        matched=[]
+                    for cand in matched:
+                        rec,err=tv.validate_candidate(
+                            cand,int(pick["year"]),pick["title"],url,sha,i,now
+                        )
+                        if rec and rec["id"] in prior:
+                            rec["review_status"]="auto_verified"
+                            rec["verification"]="two_independent_visual_passes"
+                            rec["verified_at"]=now.isoformat()
+                            verified_events[rec["id"]]=rec
+                    info["auto_verified"]=len(matched)
+            if can_finish:done.add(i)
         checkpoint["done_pages"] = sorted(done)
         checkpoint["complete"] = len(done) == len(pdf.pages)
         checkpoint["checked_at"] = now.isoformat()
         state[uid] = checkpoint
     report["pending_review_count"] = len(prior)
+    report["auto_verified_count"] = len(verified_events)
     tv.atomic_json(REVIEW, sorted(prior.values(), key=lambda x: (x["date"], x["id"])))
+    tv.atomic_json(VERIFIED,sorted(verified_events.values(),key=lambda x:(x["date"],x["id"])))
     tv.atomic_json(STATE, state)
     tv.atomic_json(REPORT, report)
     print(json.dumps(report, ensure_ascii=False, indent=2))
