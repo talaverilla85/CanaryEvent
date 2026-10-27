@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#142c2a"><meta name="robots" content="noindex,nofollow"><meta name="description" content="¿Pa&#39; Dónde? Descubre qué hacer hoy y este fin de semana en Gran Canaria: fiestas, conciertos, talleres, eventos y planes en familia.">
@@ -207,6 +207,46 @@
 .new-event-buttons button:first-child{background:#286849;color:#fff;border-color:#286849}
 @media(max-width:430px){.new-event-notice{padding:10px 11px}.new-event-label small{display:none}.new-event-buttons button{font-size:10px;padding:7px 9px}}
 
+
+/* Real event titles, not generic placeholders, when the official poster is missing. */
+.photo.no-official-cover .photo-tag{display:none}
+.photo.no-official-cover .fallback-top{padding-right:40px}
+.photo.no-official-cover:after{display:none}
+.photo.no-official-cover{height:220px}
+.cover-fallback{
+ z-index:1;box-sizing:border-box;display:flex;flex-direction:column;align-items:stretch;
+ justify-content:space-between;text-align:left;padding:17px 18px 15px;
+ color:#245741;background:#eaf5ef;gap:4px
+}
+.cover-fallback .fallback-top{display:flex;justify-content:space-between;align-items:center;gap:8px;font:800 10px/1.2 'Outfit',sans-serif}
+.cover-fallback .fallback-top span:last-child{font-size:10px;font-weight:700;white-space:nowrap}
+.cover-fallback .fallback-main{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:9px;min-height:0;flex:1}
+.cover-fallback .fallback-symbol{font-size:31px;line-height:1;color:inherit;opacity:.8}
+.cover-fallback .fallback-event-title{
+ font:800 clamp(17px,2.8vw,29px)/1.12 'Outfit',sans-serif;letter-spacing:-.5px;
+ display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;
+ overflow-wrap:anywhere;max-width:100%
+}
+.cover-fallback .fallback-bottom{font-size:10px;line-height:1.35;font-weight:800;letter-spacing:.025em;text-transform:uppercase;border-top:1px solid currentColor;padding-top:10px}
+.photo.p-music .cover-fallback,.modal-photo.p-music .cover-fallback{background:#eee8f7;color:#503277}
+.photo.p-food .cover-fallback,.modal-photo.p-food .cover-fallback{background:#f7efe3;color:#8b5229}
+.photo.p-family .cover-fallback,.modal-photo.p-family .cover-fallback{background:#fff1e6;color:#91543b}
+.photo.p-culture .cover-fallback,.modal-photo.p-culture .cover-fallback{background:#eeeaf5;color:#554b89}
+.photo.p-sports .cover-fallback,.modal-photo.p-sports .cover-fallback{background:#e7f2f8;color:#21566a}
+.photo.p-nature .cover-fallback,.modal-photo.p-nature .cover-fallback{background:#e7f1e8;color:#336847}
+.photo.p-leisure .cover-fallback,.modal-photo.p-leisure .cover-fallback{background:#f3eaf2;color:#7a466f}
+.photo.p-other .cover-fallback,.modal-photo.p-other .cover-fallback{background:#f0eee8;color:#5c5b47}
+.event-card.fallback-event .event-title{display:none}
+.event-card.fallback-event .event-date-chip{margin-bottom:10px}
+@media(max-width:480px){
+ .photo.no-official-cover{height:205px}
+ .cover-fallback{padding:13px 12px 12px}
+ .cover-fallback .fallback-top,.cover-fallback .fallback-top span:last-child{font-size:9px}
+ .cover-fallback .fallback-event-title{font-size:clamp(16px,4.8vw,21px);letter-spacing:-.35px}
+ .cover-fallback .fallback-symbol{font-size:26px}
+ .cover-fallback .fallback-bottom{font-size:9px;padding-top:8px}
+}
+@media(max-width:365px){.cover-fallback .fallback-event-title{font-size:16px}}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>¿Pa' Dónde? · Planes y eventos en Gran Canaria</title>
@@ -275,8 +315,11 @@ function verifiedImage(e){
 }
 function coverHtml(e,large=false){
  const src=verifiedImage(e);
- const fallback='<div class="cover-fallback" aria-hidden="true"><span class="fallback-symbol">'+
-   (COVER_SYMBOLS[e.category]||'✳')+'</span><span class="fallback-copy">Sin portada oficial</span></div>';
+ const fallback='<div class="cover-fallback" aria-hidden="true">'+
+   '<div class="fallback-top"><span>¿PA\u0027 DÓNDE?</span><span>'+escapeHTML(textForCat(e.category))+' · '+(COVER_SYMBOLS[e.category]||'✳')+'</span></div>'+
+   '<div class="fallback-main"><span class="fallback-symbol">'+(COVER_SYMBOLS[e.category]||'✳')+'</span>'+
+   '<strong class="fallback-event-title">'+escapeHTML(e.title)+'</strong></div>'+
+   '<div class="fallback-bottom">'+escapeHTML(textForCat(e.category))+' · '+escapeHTML(e.municipality)+'</div></div>';
  return fallback+(src?'<img class="official-cover" src="'+escapeHTML(src)+'" alt="'+
     escapeHTML(e.image_alt||('Cartel del evento: '+e.title))+'" loading="'+(large?'eager':'lazy')+
     '" decoding="async" referrerpolicy="strict-origin-when-cross-origin">':'');
@@ -421,8 +464,8 @@ function renderCategories(){$('categories').innerHTML=CATS.map(([k,icon,label])=
 function render(){renderCategories();renderNewEventNotice();const events=filtered();const shown=events.slice(0,state.visibleLimit);const sponsor=(state.tab==='explore'&&!state.query&&shown.length>=2)?state.sponsorAds.find(sponsorVisible):null;const sponsorAt=Math.min(sponsorInsertAfter(),shown.length);$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente '}[state.when]);
  $('eventsGrid').innerHTML=shown.map((e,i)=>{
   const approx=eventApprox(e);const liked=state.favorites.has(e.id);
-  return `<article class="event-card" tabindex="0" role="button" data-id="${e.id}" aria-label="Ver ${escapeHTML(e.title)}">
-  <div class="photo ${CLASSES[e.category]||'p-other'}">${coverHtml(e)}<span class="photo-tag">${escapeHTML(textForCat(e.category))}</span><button class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button></div>
+  return `<article class="event-card ${verifiedImage(e)?'':'fallback-event'}" tabindex="0" role="button" data-id="${e.id}" aria-label="Ver ${escapeHTML(e.title)}">
+  <div class="photo ${CLASSES[e.category]||'p-other'} ${verifiedImage(e)?'':'no-official-cover'}">${coverHtml(e)}<span class="photo-tag">${escapeHTML(textForCat(e.category))}</span><button class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button></div>
   <div class="event-info"><span class="event-date-chip">${escapeHTML(cardDateLabel(e))}</span><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span class="place-icon">⌖</span><span class="event-place"><strong class="place-venue">${escapeHTML(venueName(e))}</strong><small class="place-municipality">${escapeHTML(e.municipality)}</small></span></div><div class="event-bottom">${price(e)?`<span class="price">${escapeHTML(price(e))}</span>`:''}<span class="distance" title="${eventUsesMunicipality(e)?'Distancia aproximada en línea recta al centro del municipio':'Distancia aproximada en línea recta al recinto'}">${approx!==null?'⌖ ≈ '+approx+' km'+(eventUsesMunicipality(e)?' · municipio':''):'Distancia no disponible'}</span></div></div></article>`+(sponsor&&i+1===sponsorAt?sponsorCardHtml(sponsor):'')}).join('');
  $('emptyState').classList.toggle('hidden',events.length>0);$('eventsGrid').classList.toggle('hidden',events.length===0);
  document.querySelectorAll('.date-chip').forEach(b=>b.classList.toggle('active',b.dataset.when===state.when));
