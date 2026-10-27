@@ -6,9 +6,10 @@
   "municipalities": [
     {
       "municipality": "Agaete",
-      "official_website": "https://www.aytoagaete.es/",
-      "agenda_url": null,
-      "status": "por_localizar"
+      "official_website": "https://agaete.es/",
+      "agenda_url": "https://agaete.es/agenda",
+      "status": "agenda_localizada_sin_programacion_futura_verificada",
+      "note": "Listado oficial accesible, pero sus primeras fichas visibles están fechadas en 2025; pendiente hallar feed actualizado o profundizar en paginación."
     },
     {
       "municipality": "Agüimes",
@@ -30,9 +31,10 @@
     },
     {
       "municipality": "Firgas",
-      "official_website": "https://www.firgas.es/",
-      "agenda_url": null,
-      "status": "por_localizar"
+      "official_website": "https://www.villadefirgas.es/",
+      "agenda_url": "https://www.villadefirgas.es/events/",
+      "status": "agenda_localizada_sin_programacion_futura_verificada",
+      "note": "El portal oficial cambió de dominio. La agenda de eventos conserva anuncios de 2022/2025; no activarla hasta confirmar su actualización."
     },
     {
       "municipality": "Gáldar",
@@ -96,9 +98,10 @@
     },
     {
       "municipality": "Tejeda",
-      "official_website": "https://www.tejeda.es/",
-      "agenda_url": null,
-      "status": "por_localizar"
+      "official_website": "https://tejeda.eu/",
+      "agenda_url": "https://tejeda.eu/agenda-eventos/",
+      "status": "conector_activo",
+      "note": "Importa automáticamente los artículos de agenda que anuncian una fecha futura inequívoca; talleres recurrentes sin sesiones específicas requieren revisión."
     },
     {
       "municipality": "Telde",

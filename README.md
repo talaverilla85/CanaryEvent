@@ -344,3 +344,16 @@ $0.20 por 1M tokens de entrada y $1.20 por 1M tokens de salida. El script
 mide tokens y coste del modelo en cada respuesta. El tope de gasto del
 script es orientativo, y no sustituye los limites reales del proyecto API.
 NUNCA pegar claves secretas en el chat, archivos del proyecto o GitHub.
+
+
+### Conector continuo de agenda del Ayuntamiento de Tejeda
+
+El conector scripts/tejeda_agenda.py lee los artículos recién publicados en
+https://tejeda.eu/agenda-eventos/ en cada sincronización diaria; importa
+únicamente actividades con un día/mes futuro explícito, respaldado por la
+fecha de publicación del artículo municipal. No presupone que los talleres
+recurrentes sin fecha exacta tengan una sesión diaria; no inventa horarios,
+entrada gratuita ni precio. Respeta robots.txt y verifica el dominio HTTPS
+de cada detalle. Agaete y Firgas quedan inventariados con sus portales
+institucionales actuales, sin considerarlos conectados mientras sus listados
+mostrados continúen desactualizados.

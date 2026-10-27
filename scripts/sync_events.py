@@ -29,6 +29,7 @@ import teror_auditorio
 import telde_fiestas
 import artenara_ferias
 import valsequillo_medianias
+import tejeda_agenda
 import telde_barrio_programs
 import municipal_listing_dedup
 import program_quality
@@ -541,6 +542,10 @@ def run():
         # They supplement rather than replace already-known Cabildo and ticket
         # events. Any source failure is isolated and recorded for transparency.
         new_municipal_sources=(
+            # Tejeda: automatically inspect new official agenda articles.
+            # Publication date must support each explicit future event date.
+            (tejeda_agenda.NAME,
+             lambda: tejeda_agenda.fetch_and_extract(TODAY,PLACES,category)),
             # Official 2026 intermunicipal source; preserve Valsequillo TLS safety.
             (valsequillo_medianias.NAME,
              lambda: valsequillo_medianias.extract(

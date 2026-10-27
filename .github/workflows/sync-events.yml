@@ -22,6 +22,7 @@ on:
       - "scripts/ingenio_juvenil_program.py"
       - "scripts/artenara_ferias.py"
       - "scripts/valsequillo_medianias.py"
+      - "scripts/tejeda_agenda.py"
       - "scripts/telde_barrio_programs.py"
       - "scripts/ticket_recent.py"
       - "scripts/publish_synced_data.sh"
