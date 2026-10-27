@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-10-27T17:46:02+00:00",
+  "checked_at": "2026-10-27T18:34:03+00:00",
   "quality_counts": {
-    "publicados": 459,
+    "publicados": 430,
     "recintos_sin_verificar": 121,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 311,
+    "precios_sin_confirmar": 282,
     "distancia_a_centro_municipal": 278,
-    "fuentes_con_error": 1,
+    "fuentes_con_error": 0,
     "duplicados_potenciales": 7
   },
   "sources": [
@@ -37,7 +37,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 12,
-      "fichas_leidas_en_esta_ejecucion": 12,
+      "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
     {
@@ -72,13 +72,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
+      "fichas_leidas_en_esta_ejecucion": 2,
+      "error": ""
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
@@ -163,9 +163,9 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 310,
+      "publicados": 281,
       "recinto_sin_verificar": 101,
-      "precio_sin_confirmar": 267,
+      "precio_sin_confirmar": 238,
       "distancia_al_centro_municipal": 132,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
@@ -191,12 +191,7 @@
       "error": ""
     }
   ],
-  "reported_errors": [
-    {
-      "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
-    }
-  ],
+  "reported_errors": [],
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
