@@ -33,10 +33,19 @@ def make_report(*,registry=None,metadata=None,catalog=None,today=None):
     events=catalog.get("events",[])
     counts=Counter(e.get("municipality") for e in events
                    if isinstance(e,dict) and e.get("status") not in {"cancelled","archived"})
+    # A few official local feeds use a department name rather than the
+    # canonical "Ayuntamiento ..." source label.
+    municipal_department_sources={
+        "Las Palmas de Gran Canaria":{"Juventud Las Palmas de Gran Canaria"},
+        "Ingenio":{"Juventud de Ingenio · programa de otoño desglosado"},
+    }
     municipal_events=Counter(
         e.get("municipality") for e in events
         if isinstance(e,dict) and
-        str(e.get("source_name") or "").startswith(("Ayuntamiento de ","Ayuntamiento ","Ilustre Ayuntamiento"))
+        (str(e.get("source_name") or "").startswith(
+            ("Ayuntamiento de ","Ayuntamiento ","Ilustre Ayuntamiento"))
+         or str(e.get("source_name") or "") in municipal_department_sources.get(
+            e.get("municipality"),set()))
         and e.get("status") not in {"cancelled","archived"})
     source_logs=metadata.get("sources",[])
     clean=[]

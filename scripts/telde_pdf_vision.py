@@ -40,7 +40,7 @@ RATES={MODEL:{"input":0.10,"cached_input":0.01,"output":0.50}}
 MAX_PDF_BYTES=8_000_000
 MAX_PAGE_COUNT=35
 MAX_IMG_PX=1900
-REQUEST_MAX_OUTPUT=1800
+REQUEST_MAX_OUTPUT=3000
 
 SCHEMA={
  "type":"object","additionalProperties":False,

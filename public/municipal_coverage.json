@@ -3,8 +3,8 @@
   "scope": "21 municipios de Gran Canaria",
   "municipalities_total": 21,
   "municipalities_with_any_catalog_cards": 18,
-  "municipalities_with_official_municipal_cards": 12,
-  "municipalities_without_municipal_cards": 9,
+  "municipalities_with_official_municipal_cards": 13,
+  "municipalities_without_municipal_cards": 8,
   "full_coverage_confirmed": false,
   "important": "Municipal coverage is NOT the same as having third-party events near that town. Partial official connectors do not guarantee every local event.",
   "municipalities": [
@@ -136,11 +136,11 @@
     },
     {
       "municipality": "La Aldea de San Nicolás",
-      "official_website": "https://www.laaldeadesannicolas.es/",
-      "agenda_url": null,
-      "original_connector_state": "por_localizar",
+      "official_website": "https://laaldeasanicolas.es/",
+      "agenda_url": "https://laaldeasanicolas.es/noticias/",
+      "original_connector_state": "fuente_oficial_localizada_tls_pendiente",
       "coverage_level": "sin_extraccion_municipal_automatizada",
-      "data_status": "por_localizar",
+      "data_status": "fuente_oficial_localizada_tls_pendiente",
       "catalog_cards_total": 0,
       "municipal_cards_total": 0,
       "other_sources_cards_total": 0,
@@ -155,8 +155,8 @@
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
       "catalog_cards_total": 221,
-      "municipal_cards_total": 0,
-      "other_sources_cards_total": 221,
+      "municipal_cards_total": 12,
+      "other_sources_cards_total": 209,
       "source_health": [
         {
           "source": "Juventud Las Palmas de Gran Canaria",
