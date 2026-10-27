@@ -627,3 +627,39 @@ oficiales y están limitadas al dominio HTTPS municipal.
 
 La fecha de subida del PDF nunca determina la fecha de una actividad.
 No se aceptan PDFs externos ni anexos sin enlazar desde fuente municipal.
+
+### 21 municipios: control de cobertura y hechos municipales verificados
+
+El archivo public/municipal_coverage.json actualiza a diario la matriz de
+cobertura con el inventario de los **21 municipios**. Diferencia fichas
+procedentes de ayuntamientos de fichas de terceros o del Cabildo y no
+declara completa la cobertura donde solo hay noticias parciales.
+
+El módulo scripts/gc_documented_events.py incorpora actividades de 2026
+de Agaete, Vega de San Mateo, Santa María de Guía y San Bartolomé de
+Tirajana, siempre con evidencia de fecha, hora, recinto y artículo oficial.
+En cada actualización vuelve a leer las páginas institucionales y desactiva
+las entradas cuya fecha ya pasó o cuya evidencia desapareció.
+No inventa precios ni gratuidad. Los anuncios revisados de 2026 son
+hechos documentados, no un conector que permita asumir futuras ediciones.
+Cuando la información oficial no es suficiente, el acto queda excluido.
+
+El conector municipal PDF guarda un checkpoint por cada página confirmada;
+si una segunda página da error, la evidencia de la anterior permanece.
+El monitor y las pruebas no implican que todos los ayuntamientos ya
+publiquen una agenda completa. La prioridad pendiente es ampliar fuentes,
+mejorar los recintos sin verificar y confirmar la ejecución diaria.
+
+### Radar de noticias para ayuntamientos pendientes
+
+python scripts/gc_source_radar.py --max-sites 8 revisa progresivamente
+hasta ocho municipios con cobertura incompleta por ejecución y conserva
+candidatos en data/gc_radar_leads.json. Comprueba robots.txt, exige
+enlaces HTTPS del propio dominio municipal y no sigue enlaces externos.
+
+Los resultados del radar son titulares pendientes de contrastar,
+no son eventos ni entran en el calendario. Permiten localizar nuevas
+fuentes de noticias, programas y agendas sin inventar fechas ni horas.
+El informe conserva la fecha de cada comprobación y los errores de
+acceso, para distinguir municipios sin cobertura de webs temporalmente
+inaccesibles.

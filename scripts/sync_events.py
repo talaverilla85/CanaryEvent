@@ -39,6 +39,7 @@ import telde_pdf_integrity
 import telde_pdf_auto
 import municipal_pdf_sources
 import municipal_pdf_auto
+import gc_documented_events
 import municipal_listing_dedup
 import cinema_policy
 import event_occurrences
@@ -109,7 +110,12 @@ def allowed(url):
     p=urlparse(url); base=f"{p.scheme}://{p.netloc}"
     if p.scheme!="https":raise ValueError("https required")
     r=requests.get(base+"/robots.txt",headers=HEADERS,timeout=12)
-    if r.status_code!=200:raise RuntimeError(f"robots.txt unavailable (HTTP {r.status_code})")
+    # Under RFC 9309, a 404/410 means that no robots policy exists;
+    # explicit Disallow still takes priority, and 401/403/5xx fail closed.
+    if r.status_code in (404,410):
+        return
+    if r.status_code!=200:
+        raise RuntimeError(f"robots.txt unavailable (HTTP {r.status_code})")
     rp=RobotFileParser();rp.parse(r.text.splitlines())
     if not rp.can_fetch(USER_AGENT,url):raise PermissionError("robots disallows this URL")
 
@@ -790,6 +796,41 @@ def run():
                         "error":multi_error})
         print(f"Other municipal PDF verified: {multi_found} acts, "
               f"{multi_duplicates} skipped duplicates; error={multi_error[:80]}")
+        # Municipal notices independently reviewed for an unambiguous
+        # future day, time and named venue. Do not overwrite stronger listings.
+        documented_rows,documented_audit=gc_documented_events.extract(
+            get_html,TODAY,PLACES)
+        dc_found=dc_added=dc_changed=dc_collisions=0
+        for entry in documented_rows:
+            key=dedup_key(entry)
+            old=conn.execute("SELECT source_name FROM events WHERE dedup_key=?",
+                             (key,)).fetchone()
+            if old and old["source_name"]!=entry["source_name"]:
+                dc_collisions+=1
+                continue
+            dc_found+=1
+            change=upsert(conn,entry)
+            dc_added+=int(change=="added")
+            dc_changed+=int(change=="changed")
+        conn.commit()
+        dc_error="; ".join(
+            a["municipality"]+": "+a.get("error_type","source mismatch")
+            for a in documented_audit
+            if a["status"] in ("source_error","unverified_text"))[:250]
+        documented_source="Ayuntamientos · actos individualmente contrastados"
+        conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+                 VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+                 checked_at=excluded.checked_at,found=excluded.found,
+                 added=excluded.added,changed=excluded.changed,error=excluded.error""",
+            (documented_source,NOW,dc_found,dc_added,dc_changed,dc_error))
+        conn.commit()
+        results.append({"source":documented_source,"checked_at":NOW,
+                        "found":dc_found,"added":dc_added,"changed":dc_changed,
+                        "duplicates_skipped":dc_collisions,
+                        "municipal_sources_checked":documented_audit,
+                        "error":dc_error})
+        print(f"Documented municipal notices: {dc_found} verified, "
+              f"{dc_collisions} existing listings preserved, error={dc_error[:80]}")
         # Official campaign posters are sources, not individual plans.
         youth=ingenio_juvenil_program
         youth_found=youth_added=youth_changed=0

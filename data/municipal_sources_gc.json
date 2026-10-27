@@ -1,15 +1,15 @@
 {
   "source": "https://www.gobiernodecanarias.org/otros/ayuntamientos/ayto_grancanaria/",
-  "date_checked": "2026-10-25",
+  "date_checked": "2026-10-27",
   "scope": "Gran Canaria only",
-  "notes": "Registro de ayuntamientos oficiales y su situación de integración. agenda_url no garantiza acceso ni extracción. Faltan enlaces de agenda para algunos municipios; no se publica ningún evento sin una fecha y fuente oficiales verificadas. En Telde se ha localizado un área de noticias de Cultura, en Teror agenda en portada, en Valsequillo calendario municipal. Mogán Sociocultural procede de datos institucionales pero aún requiere verificar si ofrece agenda de actividades.",
+  "notes": "21 ayuntamientos de Gran Canaria. La existencia de agenda o de noticias con actos comprobados no implica una cobertura exhaustiva ni publicar fichas sin fecha, hora, recinto y fuente confirmados.",
   "municipalities": [
     {
       "municipality": "Agaete",
       "official_website": "https://agaete.es/",
-      "agenda_url": "https://agaete.es/agenda",
-      "status": "agenda_localizada_sin_programacion_futura_verificada",
-      "note": "Listado oficial accesible, pero sus primeras fichas visibles están fechadas en 2025; pendiente hallar feed actualizado o profundizar en paginación."
+      "agenda_url": "https://agaete.es/ciudadano",
+      "status": "conector_parcial_articulos_verificados",
+      "note": "Agenda municipal activa y fichas de eventos con fecha: Colegio del Terror 2026."
     },
     {
       "municipality": "Agüimes",
@@ -75,8 +75,9 @@
     {
       "municipality": "San Bartolomé de Tirajana",
       "official_website": "https://www.maspalomas.com/",
-      "agenda_url": "https://www.maspalomas.com/index.php",
-      "status": "agenda_por_localizar"
+      "agenda_url": "https://www.maspalomas.com/mnunotjuventud",
+      "status": "conector_parcial_articulos_verificados",
+      "note": "Concejalía Juventud, actos Maspaterror; también cultura y festejos."
     },
     {
       "municipality": "Santa Brígida",
@@ -93,8 +94,9 @@
     {
       "municipality": "Santa María de Guía",
       "official_website": "https://www.santamariadeguia.es/",
-      "agenda_url": null,
-      "status": "por_localizar"
+      "agenda_url": "https://santamariadeguia.es/guia-inicia-las-celebraciones-de-su-v-centenario-con-un-acto-que-une-historia-y-musica/",
+      "status": "conector_parcial_articulos_verificados",
+      "note": "Acto oficial de noviembre validado; faltan fuentes estructuradas recurrentes."
     },
     {
       "municipality": "Tejeda",
@@ -128,14 +130,16 @@
     {
       "municipality": "Valleseco",
       "official_website": "https://www.valleseco.es/",
-      "agenda_url": null,
-      "status": "por_localizar"
+      "agenda_url": "https://eventos.valleseco.es/",
+      "status": "agenda_localizada_por_validar_datos",
+      "note": "Portal institucional encontrado pero sin eventos en la consulta; no afirmar cobertura."
     },
     {
       "municipality": "Vega de San Mateo",
-      "official_website": "https://www.vegasanmateo.es/",
-      "agenda_url": null,
-      "status": "por_localizar"
+      "official_website": "https://vegadesanmateo.es/",
+      "agenda_url": "https://vegadesanmateo.es/noticias",
+      "status": "conector_parcial_articulos_verificados",
+      "note": "Noticias municipales oficiales con hechos revisados, no son un calendario exhaustivo."
     }
   ]
 }

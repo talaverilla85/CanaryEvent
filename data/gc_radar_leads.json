@@ -1,0 +1,185 @@
+{
+  "checked_on": "2026-10-27",
+  "scope": "Gran Canaria (official candidate links only)",
+  "no_auto_publication": true,
+  "inspected": [
+    {
+      "municipality": "Agaete",
+      "outcome": "ok",
+      "links": 0
+    },
+    {
+      "municipality": "Artenara",
+      "outcome": "ok",
+      "links": 0
+    },
+    {
+      "municipality": "Firgas",
+      "outcome": "ok",
+      "links": 5
+    },
+    {
+      "municipality": "Gáldar",
+      "outcome": "ok",
+      "links": 8
+    },
+    {
+      "municipality": "La Aldea de San Nicolás",
+      "outcome": "needs_review",
+      "error_type": "SSLError",
+      "links": 0
+    },
+    {
+      "municipality": "Las Palmas de Gran Canaria",
+      "outcome": "needs_review",
+      "error_type": "RuntimeError",
+      "links": 0
+    }
+  ],
+  "scan_state": {
+    "Agaete": {
+      "checked_on": "2026-10-27",
+      "outcome": "ok"
+    },
+    "Artenara": {
+      "checked_on": "2026-10-27",
+      "outcome": "ok"
+    },
+    "Firgas": {
+      "checked_on": "2026-10-27",
+      "outcome": "ok"
+    },
+    "Gáldar": {
+      "checked_on": "2026-10-27",
+      "outcome": "ok"
+    },
+    "La Aldea de San Nicolás": {
+      "checked_on": "2026-10-27",
+      "outcome": "needs_review"
+    },
+    "Las Palmas de Gran Canaria": {
+      "checked_on": "2026-10-27",
+      "outcome": "needs_review"
+    }
+  },
+  "candidate_count": 13,
+  "leads": [
+    {
+      "url": "https://www.galdar.es/mercado/",
+      "label": "Mercado Municipal \"La Recova\"",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/eventos/",
+      "label": "Agenda de Eventos",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/escuelamusica/",
+      "label": "Escuela de Música",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/escuela-municipal-de-musica-pedro-espinosa/",
+      "label": "Escuela Municipal de Música",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/el-ayuntamiento-de-galdar-desvela-la-magia-del-carnaval-2027-con-la-tematica-el-bosque-encantado/",
+      "label": "Cultura y Fiestas 27 de octubre de 2026 El Ayuntamiento de Gáldar desvela la magia del Carnaval 2027 con la temática ‘El Bosque Encantado’",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/culturayfiestas/#ert_pane1-1",
+      "label": "Festejos",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/bandamunicipal/",
+      "label": "Banda Municipal de Música",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/agenda-institucional/",
+      "label": "Agenda Institucional",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/programa-de-ayuda-escolar-2026/",
+      "label": "Leer más",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/firgas-celebra-el-19-de-septiembre-una-jornada-de-naturaleza-gastronomia-y-musica-con-motivo-del-dia-mundial-del-turismo/",
+      "label": "Leer más",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/taller-de-teatro/",
+      "label": "Read More",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/categories/festival/",
+      "label": "Festival",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/categories/casa-cultura/",
+      "label": "Casa Cultura",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    }
+  ]
+}

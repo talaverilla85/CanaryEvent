@@ -1,0 +1,366 @@
+{
+  "updated_on": "2026-10-27",
+  "scope": "21 municipios de Gran Canaria",
+  "municipalities_total": 21,
+  "municipalities_with_any_catalog_cards": 17,
+  "municipalities_with_official_municipal_cards": 8,
+  "municipalities_without_municipal_cards": 13,
+  "full_coverage_confirmed": false,
+  "important": "Municipal coverage is NOT the same as having third-party events near that town. Partial official connectors do not guarantee every local event.",
+  "municipalities": [
+    {
+      "municipality": "Agaete",
+      "official_website": "https://agaete.es/",
+      "agenda_url": "https://agaete.es/ciudadano",
+      "original_connector_state": "conector_parcial_articulos_verificados",
+      "coverage_level": "sin_extraccion_municipal_automatizada",
+      "data_status": "fuente_oficial_contrastada_sin_actos_futuros",
+      "catalog_cards_total": 2,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 2,
+      "source_health": [],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Agüimes",
+      "official_website": "https://www.aguimes.es/",
+      "agenda_url": "https://eventos.aguimes.es/",
+      "original_connector_state": "conector_activo",
+      "coverage_level": "conector_automatico_parcial",
+      "data_status": "conector_activo",
+      "catalog_cards_total": 18,
+      "municipal_cards_total": 1,
+      "other_sources_cards_total": 17,
+      "source_health": [
+        {
+          "source": "Ayuntamiento de Agüimes",
+          "found": 3,
+          "error": ""
+        }
+      ],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Artenara",
+      "official_website": "https://www.artenara.es/",
+      "agenda_url": "https://www.artenara.es/portal-ciudadano/category/eventos/",
+      "original_connector_state": "conector_parcial",
+      "coverage_level": "cobertura_parcial_o_en_revision",
+      "data_status": "conector_parcial",
+      "catalog_cards_total": 0,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 0,
+      "source_health": [
+        {
+          "source": "Ayuntamiento de Artenara · ferias tradicionales 2026",
+          "found": 2,
+          "error": ""
+        }
+      ],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Arucas",
+      "official_website": "https://www.arucas.org/",
+      "agenda_url": "https://www.arucas.org/modules.php?file=eventos&mod=portal",
+      "original_connector_state": "conector_activo",
+      "coverage_level": "conector_automatico_parcial",
+      "data_status": "conector_activo",
+      "catalog_cards_total": 9,
+      "municipal_cards_total": 1,
+      "other_sources_cards_total": 8,
+      "source_health": [
+        {
+          "source": "Ayuntamiento de Arucas · agenda municipal",
+          "found": 12,
+          "error": ""
+        }
+      ],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Firgas",
+      "official_website": "https://www.villadefirgas.es/",
+      "agenda_url": "https://www.villadefirgas.es/events/",
+      "original_connector_state": "agenda_localizada_sin_programacion_futura_verificada",
+      "coverage_level": "cobertura_parcial_o_en_revision",
+      "data_status": "agenda_localizada_sin_programacion_futura_verificada",
+      "catalog_cards_total": 1,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 1,
+      "source_health": [],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Gáldar",
+      "official_website": "https://www.galdar.es/",
+      "agenda_url": "https://www.galdar.es/event-organizer/concejalia-de-cultura-del-ayuntamiento-de-galdar/",
+      "original_connector_state": "conector_parcial",
+      "coverage_level": "cobertura_parcial_o_en_revision",
+      "data_status": "conector_parcial",
+      "catalog_cards_total": 22,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 22,
+      "source_health": [
+        {
+          "source": "Ayuntamiento de Gáldar · agenda de Cultura",
+          "found": 2,
+          "error": ""
+        }
+      ],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Ingenio",
+      "official_website": "https://www.ingenio.es/",
+      "agenda_url": "https://ingenio.es/events/",
+      "original_connector_state": "conector_activo",
+      "coverage_level": "conector_automatico_parcial",
+      "data_status": "conector_activo",
+      "catalog_cards_total": 28,
+      "municipal_cards_total": 11,
+      "other_sources_cards_total": 17,
+      "source_health": [
+        {
+          "source": "Ayuntamiento de Ingenio",
+          "found": 11,
+          "error": ""
+        },
+        {
+          "source": "Juventud de Ingenio · programa de otoño desglosado",
+          "found": 1,
+          "error": ""
+        }
+      ],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "La Aldea de San Nicolás",
+      "official_website": "https://www.laaldeadesannicolas.es/",
+      "agenda_url": null,
+      "original_connector_state": "por_localizar",
+      "coverage_level": "sin_extraccion_municipal_automatizada",
+      "data_status": "por_localizar",
+      "catalog_cards_total": 0,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 0,
+      "source_health": [],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Las Palmas de Gran Canaria",
+      "official_website": "https://www.laspalmasgc.es/",
+      "agenda_url": "https://actividadesjuventud.laspalmasgc.es/",
+      "original_connector_state": "conector_parcial",
+      "coverage_level": "cobertura_parcial_o_en_revision",
+      "data_status": "conector_parcial",
+      "catalog_cards_total": 221,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 221,
+      "source_health": [
+        {
+          "source": "Juventud Las Palmas de Gran Canaria",
+          "found": 11,
+          "error": ""
+        }
+      ],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Mogán",
+      "official_website": "https://www.mogan.es/",
+      "agenda_url": "https://www.mogansc.es/",
+      "original_connector_state": "programacion_por_verificar",
+      "coverage_level": "cobertura_parcial_o_en_revision",
+      "data_status": "programacion_por_verificar",
+      "catalog_cards_total": 0,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 0,
+      "source_health": [],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Moya",
+      "official_website": "https://www.villademoya.es/",
+      "agenda_url": null,
+      "original_connector_state": "por_localizar",
+      "coverage_level": "sin_extraccion_municipal_automatizada",
+      "data_status": "por_localizar",
+      "catalog_cards_total": 5,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 5,
+      "source_health": [],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "San Bartolomé de Tirajana",
+      "official_website": "https://www.maspalomas.com/",
+      "agenda_url": "https://www.maspalomas.com/mnunotjuventud",
+      "original_connector_state": "conector_parcial_articulos_verificados",
+      "coverage_level": "sin_extraccion_municipal_automatizada",
+      "data_status": "fuente_oficial_contrastada_sin_actos_futuros",
+      "catalog_cards_total": 10,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 10,
+      "source_health": [],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Santa Brígida",
+      "official_website": "https://www.santabrigida.es/",
+      "agenda_url": "https://eventos.santabrigida.es/eventos/mes/",
+      "original_connector_state": "conector_activo",
+      "coverage_level": "conector_automatico_parcial",
+      "data_status": "conector_activo",
+      "catalog_cards_total": 18,
+      "municipal_cards_total": 14,
+      "other_sources_cards_total": 4,
+      "source_health": [
+        {
+          "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
+          "found": 19,
+          "error": ""
+        }
+      ],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Santa Lucía de Tirajana",
+      "official_website": "https://www.santaluciagc.com/",
+      "agenda_url": "https://www.santaluciagc.com/fiestas-san-rafael-2026/",
+      "original_connector_state": "conector_parcial",
+      "coverage_level": "cobertura_parcial_o_en_revision",
+      "data_status": "conector_parcial",
+      "catalog_cards_total": 26,
+      "municipal_cards_total": 1,
+      "other_sources_cards_total": 25,
+      "source_health": [],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Santa María de Guía",
+      "official_website": "https://www.santamariadeguia.es/",
+      "agenda_url": "https://santamariadeguia.es/guia-inicia-las-celebraciones-de-su-v-centenario-con-un-acto-que-une-historia-y-musica/",
+      "original_connector_state": "conector_parcial_articulos_verificados",
+      "coverage_level": "sin_extraccion_municipal_automatizada",
+      "data_status": "fuente_oficial_contrastada_sin_actos_futuros",
+      "catalog_cards_total": 2,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 2,
+      "source_health": [],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Tejeda",
+      "official_website": "https://tejeda.eu/",
+      "agenda_url": "https://tejeda.eu/agenda-eventos/",
+      "original_connector_state": "conector_activo",
+      "coverage_level": "conector_automatico_parcial",
+      "data_status": "conector_activo",
+      "catalog_cards_total": 5,
+      "municipal_cards_total": 5,
+      "other_sources_cards_total": 0,
+      "source_health": [
+        {
+          "source": "Ayuntamiento de Tejeda · agenda oficial",
+          "found": 5,
+          "error": ""
+        }
+      ],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Telde",
+      "official_website": "https://www.telde.es/",
+      "agenda_url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/fiestas-de-san-gregorio/",
+      "original_connector_state": "conector_parcial",
+      "coverage_level": "cobertura_parcial_o_en_revision",
+      "data_status": "conector_parcial",
+      "catalog_cards_total": 31,
+      "municipal_cards_total": 10,
+      "other_sources_cards_total": 21,
+      "source_health": [
+        {
+          "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
+          "found": 8,
+          "error": ""
+        },
+        {
+          "source": "Ayuntamiento de Telde · índice de programas PDF",
+          "found": 0,
+          "error": ""
+        },
+        {
+          "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
+          "found": 0,
+          "error": ""
+        }
+      ],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Teror",
+      "official_website": "https://www.teror.es/",
+      "agenda_url": "https://teror.es/el-auditorio-de-teror-presenta-la-programacion-para-el-proximo-cuatrimestre/",
+      "original_connector_state": "conector_parcial",
+      "coverage_level": "cobertura_parcial_o_en_revision",
+      "data_status": "conector_parcial",
+      "catalog_cards_total": 26,
+      "municipal_cards_total": 14,
+      "other_sources_cards_total": 12,
+      "source_health": [
+        {
+          "source": "Ayuntamiento de Teror · programación del Auditorio",
+          "found": 14,
+          "error": ""
+        }
+      ],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Valsequillo",
+      "official_website": "https://www.valsequillogc.es/",
+      "agenda_url": "https://www.valsequillogc.es/ayto3/calendario-de-eventos/",
+      "original_connector_state": "conector_parcial_fuente_intermunicipal",
+      "coverage_level": "cobertura_parcial_o_en_revision",
+      "data_status": "conector_parcial_fuente_intermunicipal",
+      "catalog_cards_total": 2,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 2,
+      "source_health": [
+        {
+          "source": "Mancomunidad de Medianías · Alma de Medianías en Valsequillo",
+          "found": 2,
+          "error": ""
+        }
+      ],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Valleseco",
+      "official_website": "https://www.valleseco.es/",
+      "agenda_url": "https://eventos.valleseco.es/",
+      "original_connector_state": "agenda_localizada_por_validar_datos",
+      "coverage_level": "cobertura_parcial_o_en_revision",
+      "data_status": "agenda_localizada_por_validar_datos",
+      "catalog_cards_total": 4,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 4,
+      "source_health": [],
+      "full_coverage_claim": false
+    },
+    {
+      "municipality": "Vega de San Mateo",
+      "official_website": "https://vegadesanmateo.es/",
+      "agenda_url": "https://vegadesanmateo.es/noticias",
+      "original_connector_state": "conector_parcial_articulos_verificados",
+      "coverage_level": "sin_extraccion_municipal_automatizada",
+      "data_status": "fuente_oficial_contrastada_sin_actos_futuros",
+      "catalog_cards_total": 0,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 0,
+      "source_health": [],
+      "full_coverage_claim": false
+    }
+  ]
+}

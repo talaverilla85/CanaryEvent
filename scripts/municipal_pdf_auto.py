@@ -151,75 +151,94 @@ def run(argv=None,*,today=None,session=None):
                 report_doc["inspected"].append(info)
                 first_key=f"{sha}/{i}/{vision.MODEL}/{VERSION}/ai_vision"
                 second_key=f"{sha}/{i}/{vision.MODEL}/{VERSION}/independent_double_read"
-                if first_key in cache:
-                    first=cache[first_key]["output"]
-                    info["first_read"]="cached"
-                elif not api:
-                    info["first_read"]="requires_key"
-                    continue
-                elif not budget_ok(report,args):
-                    info["first_read"]="budget"
-                    continue
-                else:
-                    image,_=vision.render_page_jpeg(file,i)
-                    first,usage=vision.call_openai_vision(
-                        image,year,entry["title"],vision.MODEL,key,sess,
-                        municipality=municipality)
-                    charge(report,usage)
-                    cache[first_key]={"output":first,"usage":usage}
-                    vision.atomic_json(CACHE,cache)
-                    info["first_read"]="ai_vision"
-                accepted=[]
-                for item in first.get("events",[]):
-                    if not isinstance(item,dict):
+                try:
+                    if first_key in cache:
+                        first=cache[first_key]["output"]
+                        info["first_read"]="cached"
+                    elif not api:
+                        info["first_read"]="requires_key"
                         continue
-                    record,err=vision.validate_candidate(
-                        item,year,entry["title"],url,sha,i,today,
-                        municipality=municipality)
-                    if record:
-                        record["extractor"]="ai_vision"
-                        if record["date_state"]=="expired":
-                            archived+=int(telda_archive_one(record,history,today))
-                        else:
-                            pending[record["id"]]=record
-                            accepted.append(record)
-                info["candidates_for_review"]=len(accepted)
-                complete=True
-                if accepted:
-                    if second_key in cache:
-                        second=cache[second_key]["output"]
-                        info["second_read"]="cached"
-                    elif not api or not budget_ok(report,args):
-                        complete=False
-                        second=None
-                        info["second_read"]="budget_or_key"
+                    elif not budget_ok(report,args):
+                        info["first_read"]="budget"
+                        continue
                     else:
                         image,_=vision.render_page_jpeg(file,i)
-                        second,usage=vision.call_openai_vision(
+                        first,usage=vision.call_openai_vision(
                             image,year,entry["title"],vision.MODEL,key,sess,
-                            instructions=telda_second_prompt(),municipality=municipality)
+                            municipality=municipality)
                         charge(report,usage)
-                        cache[second_key]={"output":second,"usage":usage}
+                        cache[first_key]={"output":first,"usage":usage}
                         vision.atomic_json(CACHE,cache)
-                        info["second_read"]="independent_vision"
-                    if second is not None:
-                        if first.get("page_is_program") and second.get("page_is_program"):
-                            matches=gate.approved_candidates(first["events"],second["events"],today=today)
+                        info["first_read"]="ai_vision"
+                    accepted=[]
+                    for item in first.get("events",[]):
+                        if not isinstance(item,dict):
+                            continue
+                        record,err=vision.validate_candidate(
+                            item,year,entry["title"],url,sha,i,today,
+                            municipality=municipality)
+                        if record:
+                            record["extractor"]="ai_vision"
+                            if record["date_state"]=="expired":
+                                archived+=int(telda_archive_one(record,history,today))
+                            else:
+                                pending[record["id"]]=record
+                                accepted.append(record)
+                    info["candidates_for_review"]=len(accepted)
+                    complete=True
+                    if accepted:
+                        if second_key in cache:
+                            second=cache[second_key]["output"]
+                            info["second_read"]="cached"
+                        elif not api or not budget_ok(report,args):
+                            complete=False
+                            second=None
+                            info["second_read"]="budget_or_key"
                         else:
-                            matches=[]
-                        for item in matches:
-                            rec,err=vision.validate_candidate(
-                                item,year,entry["title"],url,sha,i,today,
-                                municipality=municipality)
-                            if rec and rec["id"] in pending:
-                                rec["extractor"]="ai_vision"
-                                rec["review_status"]="auto_verified"
-                                rec["verification"]="two_independent_visual_passes"
-                                rec["verified_at"]=today.isoformat()
-                                verified[rec["id"]]=rec
-                        info["auto_verified"]=len(matches)
-                if complete:
-                    done.add(i)
+                            image,_=vision.render_page_jpeg(file,i)
+                            second,usage=vision.call_openai_vision(
+                                image,year,entry["title"],vision.MODEL,key,sess,
+                                instructions=telda_second_prompt(),municipality=municipality)
+                            charge(report,usage)
+                            cache[second_key]={"output":second,"usage":usage}
+                            vision.atomic_json(CACHE,cache)
+                            info["second_read"]="independent_vision"
+                        if second is not None:
+                            if first.get("page_is_program") and second.get("page_is_program"):
+                                matches=gate.approved_candidates(first["events"],second["events"],today=today)
+                            else:
+                                matches=[]
+                            for item in matches:
+                                rec,err=vision.validate_candidate(
+                                    item,year,entry["title"],url,sha,i,today,
+                                    municipality=municipality)
+                                if rec and rec["id"] in pending:
+                                    rec["extractor"]="ai_vision"
+                                    rec["review_status"]="auto_verified"
+                                    rec["verification"]="two_independent_visual_passes"
+                                    rec["verified_at"]=today.isoformat()
+                                    verified[rec["id"]]=rec
+                            info["auto_verified"]=len(matches)
+                    if complete:
+                        done.add(i)
+                except (ValueError,RuntimeError,PermissionError,requests.RequestException) as exc:
+                    info["error_type"]=type(exc).__name__
+                    report["errors"].append({
+                        "municipality":municipality,"pdf_url":url,
+                        "pdf_page":i+1,"error_type":type(exc).__name__})
+                    # Other pages and the already-verified acts remain intact.
+                finally:
+                    # A per-page commit is vital: a later model failure must
+                    # never erase the source-proof checkpoint from earlier pages.
+                    checkpoint["sha"]=sha
+                    checkpoint["done_pages"]=sorted(done)
+                    checkpoint["complete"]=len(done)==len(pdf.pages)
+                    checkpoint["checked_at"]=today.isoformat()
+                    state[uid]=checkpoint
+                    vision.atomic_json(STATE,state)
+                    vision.atomic_json(REVIEW,sorted(pending.values(),key=lambda r:(r["date"],r["id"])))
+                    vision.atomic_json(VERIFIED,sorted(verified.values(),key=lambda r:(r["date"],r["id"])))
+                    vision.atomic_json(ARCHIVE,sorted(history.values(),key=lambda r:(r.get("date",""),r["id"])))
             checkpoint["sha"]=sha
             checkpoint["done_pages"]=sorted(done)
             checkpoint["complete"]=len(done)==len(pdf.pages)

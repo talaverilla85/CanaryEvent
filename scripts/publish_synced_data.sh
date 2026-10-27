@@ -14,7 +14,8 @@ for attempt in 1 2 3; do
   for file in data/municipal_pdf_pilot/pending_review.json data/municipal_pdf_pilot/expired_archive.json data/municipal_pdf_pilot/vision_cache.json data/municipal_pdf_pilot/scan_state.json data/municipal_pdf_pilot/auto_report.json; do
     if [[ -f "$file" ]]; then git add "$file"; fi
   done
-  git add public/municipal_pdf_programs.json
+  if [[ -f data/gc_radar_leads.json ]]; then git add data/gc_radar_leads.json; fi
+  git add public/municipal_pdf_programs.json public/municipal_coverage.json
   git add data/events.sqlite data/program_review_gc.json data/venue_review_gc.json data/source_quality_gc.json data/price_provenance_audit.json public/events.json public/meta.json public/municipal_programs.json
   if git diff --cached --quiet; then
     echo "Sin cambios para guardar"
