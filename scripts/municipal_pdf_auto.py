@@ -1,4 +1,4 @@
-﻿"""Generic, allowlisted municipal festival PDF visual extraction.
+"""Generic, allowlisted municipal festival PDF visual extraction.
 
 Starts with Santa LucÃ­a, AgÃ¼imes and GÃ¡ldar official PDF programmes.
 It reuses Telde's page renderer, Responses API JSON schema, two independent
@@ -274,4 +274,3 @@ def telda_second_prompt():
 
 if __name__=="__main__":
     run()
-
