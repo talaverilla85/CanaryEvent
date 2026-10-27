@@ -510,3 +510,16 @@ Para comprobar la plataforma de tickets contra su API pública:
 python scripts/audit_price_provenance.py --live-tickets
 La pasada diaria de sincronización consulta ya esa plataforma:
 el informe diario no duplica solicitudes a su API.
+
+
+### Filtros de descubrimiento (27/10/2026)
+
+La vista **Explorar** combina los atajos Hoy/Mañana/Fin de semana/7 días/Próximamente
+con un selector **Elegir fechas**: mes completo o intervalo inclusivo de días.
+Incluye las actividades cuyo periodo se superpone con el rango seleccionado;
+no crea eventos nuevos y depende de la cobertura futura del catálogo.
+
+El filtro **Categorías** es acumulativo (OR): tocar varias categorías
+muestra cualquiera de ellas; «Todas» limpia la selección. La preferencia
+de categorías se recuerda únicamente en el navegador. Se mantienen los
+avisos del calendario, las coordenadas autorizadas, favoritos y los anuncios.
