@@ -291,6 +291,17 @@ El adaptador valida que el cartel oficial no ha sido reemplazado y
 caduca el 17/11/2026. El municipio del organizador y el lugar real
 de celebración son datos distintos.
 
+### Auditoría de programas municipales de Gran Canaria
+
+El archivo `data/municipal_program_audit_gc.json` registra los 21 municipios,
+sus fuentes conocidas, el formato disponible y la siguiente tarea para
+extraer actividades verificadas. En 2026 los 34 PDF descubiertos en Telde
+no equivalen a 34 fiestas futuras; la revisión de contenidos debe comprobar
+fechas, recintos y ediciones. Se distinguen agendas conectadas, extractores
+parciales y portales que todavía necesitan identificación. Los PDFs escaneados
+se procesan con revisión documental y **nunca** pasan automáticamente a la
+agenda sin comprobar sus evidencias.
+
 ### Piloto de extracción visual de programas PDF de Telde
 
 El sincronizador diario ya descubre los enlaces PDF municipales (34 programas

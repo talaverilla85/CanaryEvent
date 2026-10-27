@@ -58,9 +58,10 @@ class MunicipalIntegrationsTest(unittest.TestCase):
    combined=" ".join(token for row in tl.ITEMS if row[0]==key for token in row[5])
    pages[key]=BeautifulSoup("<article>Programación 2026 "+combined+"</article>","html.parser")
   events=tl.extract(pages,DATE,sync.PLACES,sync.category)
-  self.assertEqual(len(events),7)
+  self.assertEqual(len(events),8)
   self.assertEqual(len([e for e in events if "2026-10-31" in e["start"]]),4)
-  self.assertTrue(all(e["price"]=="" and e["free"] is None for e in events))
+  self.assertTrue(all(e["price"]=="" for e in events))
+  self.assertEqual(sum(e["free"]==1 for e in events),1)
   self.assertEqual(tl.extract(pages,dt.date(2026,11,18),sync.PLACES,sync.category),[])
  def test_telde_missing_verification_blocks_import(self):
   pages={k:BeautifulSoup("<article>Programación 2026</article>","html.parser") for k in tl.NOTICES}

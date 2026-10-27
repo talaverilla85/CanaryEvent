@@ -14,12 +14,15 @@ NOTICES={
 "finaos": BASE+"/telde-celebrara-los-finaos-el-31-de-octubre-con-tradicion-cuentos-y-conciertos-en-la-plaza-de-san-juan/",
 "gregorio":BASE+"/areas/ocio-cultura-y-juventud/festejos-y-ferias/fiestas-de-san-gregorio/",
 "feria":BASE+"/telde-abre-el-plazo-para-participar-en-la-feria-de-artesania-de-las-fiestas-de-san-gregorio-taumaturgo/",
+"huerta":BASE+"/maximo-huerta-presenta-este-jueves-en-telde-su-nueva-novela-mama-esta-dormida/",
 }
 AGENT="CanaryEventBot/0.1 (+https://github.com/talaverilla85/CanaryEvent)"
 HEADERS={"User-Agent":AGENT}
 # Each entry's tokens must appear verbatim (case-insensitive) in its assigned
 # municipal notice. This blocks stale/hijacked pages from generating events.
 ITEMS=(
+ ("huerta","Máximo Huerta presenta «Mamá está dormida» · Telde","2026-10-29T19:30:00",None,
+  "Teatro Municipal Juan Ramón Jiménez",("29 de octubre","19.30 horas","Teatro Municipal Juan Ramón Jiménez","entrada libre hasta completar aforo")),
  ("finaos","El legado de los Finaos · Telde","2026-10-31T19:30:00",None,
   "Casa Condal, Telde",("31 de octubre","19.30 horas","legado de los Finaos")),
  ("finaos","Cuentos de Finaos · Telde","2026-10-31T20:00:00",None,
@@ -64,7 +67,7 @@ def extract(pages,today,places,categorize):
         if not all(token.casefold() in extracts[key] for token in tokens):
             raise ValueError(f"Telde announcement no longer verifies {title}")
         events.append(dict(title=title,start=start,end=end,municipality="Telde",
-            venue=venue,category=categorize(title),free=None,price="",
+            venue=venue,category="cultura" if key=="huerta" else categorize(title),free=1 if key=="huerta" else None,price="",
             details="Actividad anunciada por el Ayuntamiento de Telde. Consulta el programa municipal para posibles cambios de horario y condiciones de acceso.",
             source_name=NAME,source_url=NOTICES[key],status="approved"))
     return events

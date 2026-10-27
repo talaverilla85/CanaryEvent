@@ -1,0 +1,277 @@
+{
+  "checked_on": "2026-10-27",
+  "scope": "Gran Canaria, 21 municipios",
+  "release_policy": "No se incorpora una actividad solo por existir un cartel o un PDF. Se exige nombre, fecha, municipio, enlace oficial y verificación de cualquier horario, recinto o precio mostrado.",
+  "pdf_pilot": {
+    "municipality": "Telde",
+    "index_program_count": 34,
+    "events_imported_from_pdf": 0,
+    "observed": "Muestras de documentos de 2026 sin capa de texto; piloto visual seguro sin llamadas API ni costes medidos.",
+    "next_step": "Priorizar solo PDFs con actos futuros; extracción por página y cola de revisión; comprobación de evidencias y fechas antes de aprobar; las versiones nuevas invalidan datos previos."
+  },
+  "other_municipalities": [
+    {
+      "municipality": "Agaete",
+      "source_status": "por_localizar",
+      "website": "https://www.aytoagaete.es/",
+      "agenda": null,
+      "formats": [
+        "pendiente de verificar"
+      ],
+      "automation": "sin conector aprobado",
+      "action": "Localizar agenda oficial o cartelera de fiestas, determinar formato HTML/PDF/cartel y validar extracción sin inferencias",
+      "priority": "media"
+    },
+    {
+      "municipality": "Agüimes",
+      "source_status": "conector_activo",
+      "website": "https://www.aguimes.es/",
+      "agenda": "https://eventos.aguimes.es/",
+      "formats": [
+        "agenda HTML"
+      ],
+      "automation": "agenda activa",
+      "action": "Auditar que todas las áreas municipales estén cubiertas",
+      "priority": "media"
+    },
+    {
+      "municipality": "Artenara",
+      "source_status": "conector_parcial",
+      "website": "https://www.artenara.es/",
+      "agenda": "https://www.artenara.es/portal-ciudadano/category/eventos/",
+      "formats": [
+        "agenda municipal HTML",
+        "avisos de ferias"
+      ],
+      "automation": "parcial: feria concreta 2026",
+      "action": "Identificar nuevos programas para 2027 y extraer eventos concretos",
+      "priority": "media"
+    },
+    {
+      "municipality": "Arucas",
+      "source_status": "conector_activo",
+      "website": "https://www.arucas.org/",
+      "agenda": "https://www.arucas.org/modules.php?file=eventos&mod=portal",
+      "formats": [
+        "tarjetas HTML de agenda"
+      ],
+      "automation": "agenda activa",
+      "action": "Consultar fechas y recintos en fichas de detalle cuando se publiquen",
+      "priority": "media"
+    },
+    {
+      "municipality": "Firgas",
+      "source_status": "por_localizar",
+      "website": "https://www.firgas.es/",
+      "agenda": null,
+      "formats": [
+        "noticias institucionales HTML"
+      ],
+      "automation": "sin conector aprobado",
+      "action": "Filtrar por fecha de publicación: búsquedas devuelven artículos antiguos de 2012-2018",
+      "priority": "alta"
+    },
+    {
+      "municipality": "Gáldar",
+      "source_status": "conector_parcial",
+      "website": "https://www.galdar.es/",
+      "agenda": "https://www.galdar.es/event-organizer/concejalia-de-cultura-del-ayuntamiento-de-galdar/",
+      "formats": [
+        "agenda Cultura con datos estructurados"
+      ],
+      "automation": "parcial: Cultura",
+      "action": "Extender a Festejos y actividades de barrios",
+      "priority": "media"
+    },
+    {
+      "municipality": "Ingenio",
+      "source_status": "conector_activo",
+      "website": "https://www.ingenio.es/",
+      "agenda": "https://ingenio.es/events/",
+      "formats": [
+        "agenda HTML y noticias"
+      ],
+      "automation": "agenda activa",
+      "action": "Auditar novedades que solo se publican como carteles",
+      "priority": "media"
+    },
+    {
+      "municipality": "La Aldea de San Nicolás",
+      "source_status": "por_localizar",
+      "website": "https://www.laaldeadesannicolas.es/",
+      "agenda": null,
+      "formats": [
+        "pendiente de verificar"
+      ],
+      "automation": "sin conector aprobado",
+      "action": "Localizar agenda oficial o cartelera de fiestas, determinar formato HTML/PDF/cartel y validar extracción sin inferencias",
+      "priority": "media"
+    },
+    {
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_status": "conector_parcial",
+      "website": "https://www.laspalmasgc.es/",
+      "agenda": "https://actividadesjuventud.laspalmasgc.es/",
+      "formats": [
+        "agenda Juventud y otros servicios"
+      ],
+      "automation": "parcial: Juventud",
+      "action": "Detectar calendarios por área y ampliar monitor de fiestas de barrios",
+      "priority": "media"
+    },
+    {
+      "municipality": "Mogán",
+      "source_status": "programacion_por_verificar",
+      "website": "https://www.mogan.es/",
+      "agenda": "https://www.mogansc.es/",
+      "formats": [
+        "programación sociocultural por comprobar"
+      ],
+      "automation": "sin conector aprobado",
+      "action": "Verificar URL institucional vigente, calendarios y normas de acceso",
+      "priority": "alta"
+    },
+    {
+      "municipality": "Moya",
+      "source_status": "por_localizar",
+      "website": "https://www.villademoya.es/",
+      "agenda": null,
+      "formats": [
+        "pendiente de verificar"
+      ],
+      "automation": "sin conector aprobado",
+      "action": "Localizar agenda oficial o cartelera de fiestas, determinar formato HTML/PDF/cartel y validar extracción sin inferencias",
+      "priority": "media"
+    },
+    {
+      "municipality": "San Bartolomé de Tirajana",
+      "source_status": "agenda_por_localizar",
+      "website": "https://www.maspalomas.com/",
+      "agenda": "https://www.maspalomas.com/index.php",
+      "formats": [
+        "pendiente de verificar"
+      ],
+      "automation": "sin conector aprobado",
+      "action": "Localizar agenda oficial o cartelera de fiestas, determinar formato HTML/PDF/cartel y validar extracción sin inferencias",
+      "priority": "media"
+    },
+    {
+      "municipality": "Santa Brígida",
+      "source_status": "conector_activo",
+      "website": "https://www.santabrigida.es/",
+      "agenda": "https://eventos.santabrigida.es/eventos/mes/",
+      "formats": [
+        "calendario estructurado JSON-LD"
+      ],
+      "automation": "agenda activa",
+      "action": "Revisar eventos recurrentes para no crear sesiones ficticias",
+      "priority": "media"
+    },
+    {
+      "municipality": "Santa Lucía de Tirajana",
+      "source_status": "conector_parcial",
+      "website": "https://www.santaluciagc.com/",
+      "agenda": "https://www.santaluciagc.com/fiestas-san-rafael-2026/",
+      "formats": [
+        "noticias municipales",
+        "programas de fiestas PDF"
+      ],
+      "automation": "parcial: San Rafael 2026",
+      "action": "Convertir el extractor específico de San Rafael en monitor reutilizable de programas oficiales",
+      "priority": "alta"
+    },
+    {
+      "municipality": "Santa María de Guía",
+      "source_status": "por_localizar",
+      "website": "https://www.santamariadeguia.es/",
+      "agenda": null,
+      "formats": [
+        "pendiente de verificar"
+      ],
+      "automation": "sin conector aprobado",
+      "action": "Localizar agenda oficial o cartelera de fiestas, determinar formato HTML/PDF/cartel y validar extracción sin inferencias",
+      "priority": "media"
+    },
+    {
+      "municipality": "Tejeda",
+      "source_status": "por_localizar",
+      "website": "https://www.tejeda.es/",
+      "agenda": null,
+      "formats": [
+        "pendiente de verificar"
+      ],
+      "automation": "sin conector aprobado",
+      "action": "Localizar agenda oficial o cartelera de fiestas, determinar formato HTML/PDF/cartel y validar extracción sin inferencias",
+      "priority": "media"
+    },
+    {
+      "municipality": "Telde",
+      "source_status": "conector_parcial",
+      "website": "https://www.telde.es/",
+      "agenda": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/fiestas-de-san-gregorio/",
+      "formats": [
+        "noticias HTML",
+        "34 PDF de programas municipales (índice 2026)"
+      ],
+      "automation": "noticias verificadas: parcial; índice PDF: automático; actividades PDF: revisión pendiente",
+      "action": "Verificar automáticamente portada, páginas, fechas y recintos; los PDF escaneados exigen análisis visual y aprobación antes de publicar",
+      "priority": "alta"
+    },
+    {
+      "municipality": "Teror",
+      "source_status": "conector_parcial",
+      "website": "https://www.teror.es/",
+      "agenda": "https://teror.es/el-auditorio-de-teror-presenta-la-programacion-para-el-proximo-cuatrimestre/",
+      "formats": [
+        "programación cultural HTML con fechas"
+      ],
+      "automation": "parcial: Auditorio",
+      "action": "Ampliar a festejos y a programas PDF de barrios; comprobar la vigencia y la caducidad de cada edición",
+      "priority": "alta"
+    },
+    {
+      "municipality": "Valsequillo",
+      "source_status": "conector_parcial_fuente_intermunicipal",
+      "website": "https://www.valsequillogc.es/",
+      "agenda": "https://www.valsequillogc.es/ayto3/calendario-de-eventos/",
+      "formats": [
+        "agenda municipal con incidencia TLS",
+        "noticia verificada de Mancomunidad"
+      ],
+      "automation": "parcial: Alma de Medianías 2026",
+      "action": "Resolver acceso HTTPS sin desactivar certificados y localizar programación periódica",
+      "priority": "media"
+    },
+    {
+      "municipality": "Valleseco",
+      "source_status": "por_localizar",
+      "website": "https://www.valleseco.es/",
+      "agenda": null,
+      "formats": [
+        "pendiente de verificar"
+      ],
+      "automation": "sin conector aprobado",
+      "action": "Localizar agenda oficial o cartelera de fiestas, determinar formato HTML/PDF/cartel y validar extracción sin inferencias",
+      "priority": "media"
+    },
+    {
+      "municipality": "Vega de San Mateo",
+      "source_status": "por_localizar",
+      "website": "https://www.vegasanmateo.es/",
+      "agenda": null,
+      "formats": [
+        "pendiente de verificar"
+      ],
+      "automation": "sin conector aprobado",
+      "action": "Localizar agenda oficial o cartelera de fiestas, determinar formato HTML/PDF/cartel y validar extracción sin inferencias",
+      "priority": "media"
+    }
+  ],
+  "notes": [
+    "Las agendas estructuradas pueden incorporarse automáticamente tras validación.",
+    "Los PDF con texto permiten extracción documental, pero exigen comprobar cada fecha y lugar.",
+    "Los PDF escaneados precisan lectura visual; la herramienta de Telde es un piloto que deja candidatos pendientes, no un importador autónomo en producción.",
+    "Las noticias de 2026 no deben ser reinterpretadas como citas de 2027.",
+    "Si dos publicaciones oficiales se contradicen, dejar la actividad pendiente y no elegir arbitrariamente una fecha."
+  ]
+}
