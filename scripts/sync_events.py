@@ -33,6 +33,8 @@ import tejeda_agenda
 import telde_barrio_programs
 import municipal_listing_dedup
 import program_quality
+import venue_quality
+import organizer_venues
 import ingenio_juvenil_program
 from event_images import listing_image,image_fields
 
@@ -427,6 +429,10 @@ def upsert(conn,e):
             fields["organizer_url"]=e["source_url"]
         if existing["details"]:
             fields["details"]=existing["details"]
+    # A verified organizer venue is more informative than a later generic
+    # municipal placeholder: never erase it during a periodic source refresh.
+    if existing and venue_quality.named_venue(dict(existing)) and not venue_quality.named_venue(fields):
+        fields["venue"]=existing["venue"]
     fields.update(lat=lat,lng=lng)
     for k in ("image_url","image_alt","image_origin","image_status","organizer_url"):
         fields.setdefault(k,"")
@@ -709,6 +715,15 @@ def run():
           (tickets["source"],NOW,tickets["found"],tickets["added"],tickets["changed"],tickets["error"]))
         conn.commit()
         print(f"TuReservaOnline: {tickets['found']} GC activities, +{tickets['added']} new, {tickets['changed']} matched/updated")
+        # Secondary venue evidence: event-specific pages of approved official
+        # organizers only; errors do not stop the daily catalogue update.
+        try:
+            venue_result=organizer_venues.enrich(conn,NOW,TODAY)
+        except Exception as exc:
+            venue_result={"source":organizer_venues.NAME,"checked_at":NOW,
+                          "found":0,"added":0,"changed":0,"error":str(exc)[:250]}
+        results.append(venue_result)
+        print(f"Organizer venue checks: {venue_result.get('found',0)} updated={venue_result.get('changed',0)} error={venue_result.get('error','')[:100]}")
         rows=conn.execute("""SELECT * FROM events WHERE status='approved' AND substr(COALESCE("end",start),1,10)>=?
              ORDER BY start ASC LIMIT 3500""",(TODAY.isoformat(),)).fetchall()
         events=[]
@@ -719,6 +734,8 @@ def run():
             events.append(e)
         events=municipal_listing_dedup.reconcile(events,norm)
         events,programs_pending=program_quality.filter_public_plans(events)
+        valid_candidates=len(events)
+        events,venue_pending=venue_quality.split_verified(events)
         queue={"updated_at":NOW,
                "note":"Fichas pendientes de desglose o sin un evento identificable; no publicarlas como planes.",
                "pending_programs":programs_pending,
@@ -727,16 +744,24 @@ def run():
         total=conn.execute("SELECT COUNT(*) FROM events").fetchone()[0]
         statuses=dict(conn.execute("SELECT status,COUNT(*) FROM events GROUP BY status").fetchall())
     write_json(ROOT/"data"/"program_review_gc.json",queue)
+    write_json(ROOT/"data"/"venue_review_gc.json",{
+        "updated_at":NOW,"not_published":len(venue_pending),
+        "note":"Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
+        "events":venue_pending})
     write_json(PUBLIC/"events.json",{"events":events,"generated_at":NOW,"timezone":"Atlantic/Canary",
                                     "verified_sources":len([r for r in results if not r["error"]])})
     write_json(PUBLIC/"meta.json",{"checked_at":NOW,"sources":results,
-        "counts":{"approved":len(events),"pending":0,"needs_review":len(programs_pending)+len(ingenio_juvenil_program.UNRESOLVED),"archived_or_expired":max(0,total-len(events)),
+        "counts":{"approved":len(events),"candidate_events":valid_candidates,
+                  "excluded_missing_venue":len(venue_pending),
+                  "pending":0,"needs_review":len(programs_pending)+len(ingenio_juvenil_program.UNRESOLVED),
+                  "archived_or_expired":max(0,total-valid_candidates),
                   "cancelled":statuses.get("cancelled",0),
                   "prices_confirmed":sum(bool(e["price"]) or e["free"]==1 for e in events),
                   "prices_to_verify":sum(not e["price"] and e["free"]!=1 for e in events),
-                  "venues_to_verify":sum(not e["venue"] or e["venue"].lower().startswith("consultar el recinto") for e in events)},
+                  "venues_to_verify":len(venue_pending),
+                  "venues_verified":len(events)},
         "description":"Actualización programada de fuentes oficiales. Un cambio o cancelación solo se afirma cuando está explícitamente indicado."})
-    print(f"Exported {len(events)} future verified events; database rows {total}")
+    print(f"Exported {len(events)} verified-venue plans; {len(venue_pending)} withheld for location verification; database rows {total}")
     return 0 if any(r["found"] for r in results) else 2
 
 if __name__=="__main__":
