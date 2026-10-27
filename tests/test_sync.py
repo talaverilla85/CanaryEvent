@@ -35,6 +35,49 @@ class SyncTests(unittest.TestCase):
         self.assertEqual(e[0]["municipality"],"Santa Lucía de Tirajana")
         self.assertEqual(e[0]["free"],1)
 
+    def test_juventud_publishes_only_explicit_selector_sessions(self):
+        a=app.TODAY+dt.timedelta(days=3)
+        b=app.TODAY+dt.timedelta(days=10)
+        sample=f'''<div class="event">
+            <div class="name"><a href="https://actividadesjuventud.laspalmasgc.es/events/official">COSTURA CREATIVA</a></div>
+            <div class="date">mié. 30, sep. - mié. 25, nov. a las 17:00</div>
+            <div class="place">La Grada</div><span class="bg-gray-200">Gratuito</span>
+            <select name="reserved_at">
+              <option value="{a.isoformat()} 17:00:00">Plazas</option>
+              <option value="{b.isoformat()} 17:00:00">Plazas</option>
+              <option value="{b.isoformat()} 17:00:00">Repetida</option>
+              <option value="__more__">Otras fechas</option>
+              <option value="2026-02-31 17:00:00">Fecha imposible</option>
+            </select></div>'''
+        entries=app.extract_juventud(BeautifulSoup(sample,"html.parser"))
+        self.assertEqual([e["start"] for e in entries],[a.isoformat()+"T17:00:00",b.isoformat()+"T17:00:00"])
+        self.assertTrue(all(e["venue"]=="La Grada" and e["free"]==1 for e in entries))
+        self.assertEqual(len({app.dedup_key(e) for e in entries}),2)
+
+    def test_juventud_does_not_guess_schedules_from_broad_range(self):
+        sample='''<div class="event"><div class="name">
+          <a href="https://actividadesjuventud.laspalmasgc.es/events/official">Actividad semanal</a>
+          </div><div class="date">lun. 02, nov. - lun. 23, nov. a las 17:00</div>
+          <div class="place">La Grada</div><select name="reserved_at">
+          <option value="__more__">Otras fechas</option></select></div>'''
+        self.assertEqual(app.extract_juventud(BeautifulSoup(sample,"html.parser")),[])
+
+    def test_juventud_ignores_past_and_distant_booking_slots(self):
+        good=app.TODAY+dt.timedelta(days=2)
+        past=app.TODAY-dt.timedelta(days=1)
+        distant=app.TODAY+dt.timedelta(days=181)
+        sample=f'''<div class="event"><div class="name">
+          <a href="https://actividadesjuventud.laspalmasgc.es/events/official">AJEDREZ EN LA GRADA</a>
+          </div><div class="date">sáb. 23, may. - sáb. 26, dic. a las 10:00</div>
+          <div class="place">La Grada</div><select name="reserved_at">
+          <option value="{past.isoformat()} 10:00:00">Pasado</option>
+          <option value="{good.isoformat()} 10:00:00">Verificado</option>
+          <option value="{distant.isoformat()} 10:00:00">Lejano</option>
+          </select></div>'''
+        items=app.extract_juventud(BeautifulSoup(sample,"html.parser"))
+        self.assertEqual(len(items),1)
+        self.assertEqual(items[0]["start"],good.isoformat()+"T10:00:00")
+
     def test_invalid_date_and_cross_source_dedup(self):
         with self.assertRaises(ValueError):
             app.iso_start(35,11,2026,"10:00")

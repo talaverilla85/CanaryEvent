@@ -220,29 +220,51 @@ def extract_juventud(soup):
         if not (title_el and date_el and venue_el):continue
         title=clean(title_el.get_text(" ",strip=True),180)
         raw=clean(date_el.get_text(" ",strip=True).lower(),120)
-        if " - " in raw:continue  # Recurring sessions aren't dated individually
-        mt=re.search(r"(\d{1,2})\s*,?\s*([a-záéíóú]{3,})\.?\s*(?:a las|,)?\s*(\d{1,2}:\d{2})",raw)
-        if not mt:continue
-        month=MONTHS.get(norm(mt.group(2))[:3]);day=int(mt.group(1))
-        if not month:continue
-        start=iso_start(day,month,year_for(month,day),mt.group(3).zfill(5))
-        if not start:continue
         venue=clean(venue_el.get_text(" ",strip=True),180)
         url=urljoin("https://actividadesjuventud.laspalmasgc.es/",title_el.get("href",""))
         if not url.startswith("https://actividadesjuventud.laspalmasgc.es/events/") or not venue or len(title)<5:continue
+
+        # Recurring activities publish actual ISO datetimes in the official
+        # booking selector. These are VERIFIED sessions, not days extrapolated
+        # from a broad start/end range. Ignore "__more__" and other controls.
+        sessions=[]
+        for option in node.select('select[name="reserved_at"] option[value]'):
+            value=str(option.get("value","")).strip()
+            if not re.fullmatch(r"20\d{2}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}",value):continue
+            try:session=dt.datetime.strptime(value,"%Y-%m-%d %H:%M:%S")
+            except ValueError:continue
+            if TODAY<=session.date()<=TODAY+dt.timedelta(days=180):
+                sessions.append(session.isoformat(timespec="seconds"))
+        sessions=sorted(set(sessions))
+        recurring=bool(sessions)
+        if not sessions:
+            # No dated options? A range alone is NOT permission to create
+            # guessed weekly sessions. Keep the original single-day parser.
+            if " - " in raw:continue
+            mt=re.search(r"(\d{1,2})\s*,?\s*([a-záéíóú]{3,})\.?\s*(?:a las|,)?\s*(\d{1,2}:\d{2})",raw)
+            if not mt:continue
+            month=MONTHS.get(norm(mt.group(2))[:3]);day=int(mt.group(1))
+            if not month:continue
+            start=iso_start(day,month,year_for(month,day),mt.group(3).zfill(5))
+            if not start:continue
+            sessions=[start]
+
         badge=node.select_one("span.bg-gray-200")
         badge_text=clean(badge.get_text(" ",strip=True)).lower() if badge else ""
         is_free=1 if "gratuit" in badge_text else None
         extra=node.select_one("span.bg-blue-200")
-        details=clean(extra.get_text(" ",strip=True),270) if extra else "Consulta requisitos y disponibilidad con Juventud Las Palmas."
-        found.append(dict(title=title,start=start,end=None,municipality="Las Palmas de Gran Canaria",
-         venue=venue,category=category(title),free=is_free,price="Gratis" if is_free else "",details=details,
-         source_name="Juventud Las Palmas de Gran Canaria",source_url=url,
-         status="cancelled" if re.match(r"^(cancelad[oa]|suspendid[oa])\b",title,re.I) else "approved"))
-        image=listing_image(node,"https://actividadesjuventud.laspalmasgc.es/",["img.image"])
-        found[-1].update(image_fields(image,title,"Juventud Las Palmas"))
+        details=clean(extra.get_text(" ",strip=True),200) if extra else "Consulta requisitos y disponibilidad con Juventud Las Palmas."
+        if recurring:
+            details=clean(details+" Fecha y hora extraídas del selector oficial; consulta plazas e inscripción.",270)
+        picture=image_fields(listing_image(node,"https://actividadesjuventud.laspalmasgc.es/",["img.image"]),title,"Juventud Las Palmas")
+        for start in sessions:
+            item=dict(title=title,start=start,end=None,municipality="Las Palmas de Gran Canaria",
+                venue=venue,category=category(title),free=is_free,price="Gratis" if is_free else "",
+                details=details,source_name="Juventud Las Palmas de Gran Canaria",source_url=url,
+                status="cancelled" if re.match(r"^(cancelad[oa]|suspendid[oa])\b",title,re.I) else "approved")
+            item.update(picture)
+            found.append(item)
     return found
-
 
 def extract_artes(soup):
     found=[]
