@@ -1,61 +1,59 @@
 {
-  "checked_at": "2026-10-27T23:08:38.711101+00:00",
+  "checked_at": "2026-10-27T23:26:50.768981+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
   "api_calls": 4,
-  "usage_usd": 0.0019985,
+  "usage_usd": 0.0008985,
   "docs": [
     {
-      "name": "Fiestas patronales en honor a San Venancio en el barrio de Casas Nuevas",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/casasnuevas26.pdf",
-      "sha256": "9c649c6cb7e63fd1530dbe48c0426d2699c69c15db8e569976ec59121a389a66",
-      "pages": 4,
-      "bytes": 2054952,
+      "name": "Fiestas patronales en honor al Sagrado Corazón de Jesús en el barrio de La Garita",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/lagarita26.pdf",
+      "sha256": "ecd40a83e9f845b2bda3522e9b0e87d20cf8047b3d75224d456c5b19b16f25c9",
+      "pages": 8,
+      "bytes": 3779392,
       "inspected": [
         {
           "page": 1,
-          "native_text_chars": 0,
+          "native_text_chars": 90,
           "route": "ai_vision",
-          "status": "cached",
+          "render_size": [
+            1061,
+            1497
+          ],
+          "status": "new_api_result",
           "candidates_pending_review": 0
         },
         {
           "page": 2,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "status": "cached",
-          "candidates_pending_review": 14,
-          "verification": "expired_acts_no_second_api_pass"
+          "native_text_chars": 1178,
+          "route": "ai_text",
+          "status": "new_api_result",
+          "candidates_pending_review": 0
         },
         {
           "page": 3,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            923,
-            1310
-          ],
+          "native_text_chars": 2619,
+          "route": "ai_text",
           "status": "new_api_result",
-          "candidates_pending_review": 10,
-          "verification": "expired_acts_no_second_api_pass"
+          "candidates_pending_review": 0
         }
       ]
     },
     {
-      "name": "Fiestas en honor a San Francisco de Asís, Nuestra Señora del Rosario y San Isidro Labrador en el barrio de Cazadores",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/cazadores26.pdf",
-      "sha256": "0f3a936c3b4b736e6e7e2a6afa873e0b7b0fb8af81bef873a2cea01df5b096dd",
-      "pages": 7,
-      "bytes": 1696592,
+      "name": "Fiestas de la Exaltación de la Cruz en honor al Santo Cristo en Playa de Ojos de Garza",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/playaojosdegarza26.pdf",
+      "sha256": "d3ca33fe8115fe61a986ca83a628752a5c77cc7e436d9f42d526f81df58dfacd",
+      "pages": 2,
+      "bytes": 222232,
       "inspected": [
         {
           "page": 1,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
-            1309,
-            1853
+            1853,
+            1309
           ],
           "status": "new_api_result",
           "candidates_pending_review": 0
@@ -64,23 +62,7 @@
           "page": 2,
           "native_text_chars": 0,
           "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 0
-        },
-        {
-          "page": 3,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 0
+          "status": "skipped_api_budget"
         }
       ]
     }
@@ -89,6 +71,6 @@
   "pending_review_count": 0,
   "auto_verified_count": 0,
   "archived_count": 40,
-  "archived_this_run": 24,
+  "archived_this_run": 0,
   "notes": "Future events require independent date, time and venue verification. Expired records move to the historic archive; incomplete past-only PDFs are temporarily deferred."
 }

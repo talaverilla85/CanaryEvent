@@ -146,5 +146,351 @@
       },
       "total_tokens": 2886
     }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/16/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Tarde de Finaos en los barrios",
+          "date": "2026-10-30",
+          "time": "19:00",
+          "venue": "Plaza de Balos",
+          "evidence": "VIERNES 30 DE OCTUBRE; Tarde de Finaos en los barrios; Plaza de Balos, a las 19:00h",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Vecindario está de “Tenderete”",
+          "date": "2026-10-30",
+          "time": "20:00",
+          "venue": null,
+          "evidence": "VIERNES 30 DE OCTUBRE; 20:00 h. Vecindario está de “Tenderete”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Concierto con Los Coquillos, Gira 35 aniversario",
+          "date": "2026-10-30",
+          "time": "22:00",
+          "venue": "Plaza de San Rafael",
+          "evidence": "VIERNES 30 DE OCTUBRE; 22:00 h. Concierto con Los Coquillos, Gira 35 aniversario; Plaza de San Rafael",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Noche de música Km0",
+          "date": "2026-10-30",
+          "time": "23:30",
+          "venue": "Recinto Ferial",
+          "evidence": "VIERNES 30 DE OCTUBRE; 23:30 h. Noche de música Km0; Recinto Ferial",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Acto Solidario: “UN CORTE, UNA ILUSIÓN”",
+          "date": "2026-10-31",
+          "time": "10:00-15:00",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "SÁBADO 31 DE OCTUBRE; 10.00-15:00 h. Acto Solidario: “UN CORTE, UNA ILUSIÓN”; a cambio de un juguete nuevo con valor mínimo de 7 €",
+          "admission_type": "donation",
+          "admission_details": "a cambio de un juguete nuevo con valor mínimo de 7 €",
+          "type": "otros"
+        },
+        {
+          "title": "Torneo de dominó",
+          "date": "2026-10-31",
+          "time": "10:00",
+          "venue": "Salón Ateneo",
+          "evidence": "SÁBADO 31 DE OCTUBRE; 10:00 h. Torneo de DOMINÓ; Salón Ateneo",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 2556,
+      "input_tokens_details": {
+        "cache_write_tokens": 2553,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1491,
+      "output_tokens_details": {
+        "reasoning_tokens": 919
+      },
+      "total_tokens": 4047
+    }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/16/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "Tarde de Finaos en los barrios",
+          "date": "2026-10-30",
+          "time": "19:00",
+          "venue": "Plaza de Balos",
+          "evidence": "«Tarde de Finaos en los barrios»; «Plaza de Balos, a las 19:00h»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Concierto con Los Coquillos, Gira 35 aniversario",
+          "date": "2026-10-30",
+          "time": "22:00",
+          "venue": "Plaza de San Rafael",
+          "evidence": "«22:00 h. Concierto con Los Coquillos»; «Plaza de San Rafael»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Noche de música Km0",
+          "date": "2026-10-30",
+          "time": "23:30",
+          "venue": "Recinto Ferial",
+          "evidence": "«23:30 h. Noche de música Km0»; «Recinto Ferial»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Acto Solidario: “Un corte, una ilusión”",
+          "date": "2026-10-31",
+          "time": "10:00-15:00",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "«10.00-15:00 h. Acto Solidario»; «Plaza de Los Algodoneros»",
+          "admission_type": "donation",
+          "admission_details": "Corte de pelo masculino y femenino a cambio de un juguete nuevo con valor mínimo de 7 €.",
+          "type": "otros"
+        },
+        {
+          "title": "Torneo de dominó",
+          "date": "2026-10-31",
+          "time": "10:00",
+          "venue": "Salón Ateneo",
+          "evidence": "«10:00 h. Torneo de DOMINÓ»; «Salón Ateneo»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 2420,
+      "input_tokens_details": {
+        "cache_write_tokens": 2417,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1274,
+      "output_tokens_details": {
+        "reasoning_tokens": 832
+      },
+      "total_tokens": 3694
+    }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/17/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Vecindario Family Jumping",
+          "date": "2026-11-01",
+          "time": "10:00",
+          "venue": "Plaza de Los Algodoneros y Zona peatonal de la Avda. de Canarias",
+          "evidence": "DOMINGO 1 DE NOVIEMBRE; 10:00 h. Vecindario Family Jumping; Actividad gratuita.",
+          "admission_type": "free",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Taller de Salsa a cargo de Academia Nahia Dance by Samantha Sánchez",
+          "date": "2026-11-01",
+          "time": "10:00",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "DOMINGO 1 DE NOVIEMBRE; IV SAN RAFAEL LATINO; 10:00 h. Taller de Salsa a cargo de Academia Nahia Dance by Samantha Sánchez.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Taller de Salsa Rueda a cargo de la Escuela de Eva Rodríguez",
+          "date": "2026-11-01",
+          "time": "10:45",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "DOMINGO 1 DE NOVIEMBRE; IV SAN RAFAEL LATINO; 10:45 h. Taller de Salsa Rueda a cargo de la Escuela de Eva Rodríguez.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Taller de Bachata a cargo de la Asociación Cadenza & Piratas de la Salsa",
+          "date": "2026-11-01",
+          "time": "11:30",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "DOMINGO 1 DE NOVIEMBRE; 11:30 h Taller de Bachata a cargo de la Asociación Cadenza & Piratas de la Salsa.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Actuaciones de las academias",
+          "date": "2026-11-01",
+          "time": "12:15",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "DOMINGO 1 DE NOVIEMBRE; 12:15 h. Actuaciones de las academias.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Travesía Salsera Social SBkm",
+          "date": "2026-11-01",
+          "time": "13:30",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "DOMINGO 1 DE NOVIEMBRE; 13:30h Travesía Salsera Social SBkm.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Exhibición profesional de flamenco con el Ballet de Paulina",
+          "date": "2026-11-01",
+          "time": "20:00",
+          "venue": "Plaza de San Rafael",
+          "evidence": "DOMINGO 1 DE NOVIEMBRE; 20:00 h. FIN DE FIESTA; Exhibición profesional de flamenco con el Ballet de Paulina.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Concierto de Shaila Dúrcal",
+          "date": "2026-11-01",
+          "time": "20:00",
+          "venue": "Plaza de San Rafael",
+          "evidence": "DOMINGO 1 DE NOVIEMBRE; 20:00 h. FIN DE FIESTA; Concierto de Shaila Dúrcal; Plaza de San Rafael.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 2556,
+      "input_tokens_details": {
+        "cache_write_tokens": 2553,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1677,
+      "output_tokens_details": {
+        "reasoning_tokens": 903
+      },
+      "total_tokens": 4233
+    }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/8/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Apertura de las Fiestas patronales en Honor a San Rafael Arcángel con la Izada de la Bandera y repique de campanas",
+          "date": "2026-10-16",
+          "time": "19:45",
+          "venue": "Fachada de la Iglesia parroquial",
+          "evidence": "VIERNES 16 DE OCTUBRE; 19:45 h Apertura de las Fiestas patronales en Honor a San Rafael Arcángel",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Pregón de las Fiestas a cargo de Antonio Arbelo González",
+          "date": "2026-10-16",
+          "time": null,
+          "venue": null,
+          "evidence": "VIERNES 16 DE OCTUBRE; Posteriormente, Pregón a cargo de Antonio Arbelo González",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Homenaje a Fernando Martínez Segura",
+          "date": "2026-10-16",
+          "time": null,
+          "venue": "Plaza de San Rafael",
+          "evidence": "VIERNES 16 DE OCTUBRE; HOMENAJE A: Fernando Martínez Segura",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Concierto de Los Gofiones",
+          "date": "2026-10-16",
+          "time": "21:30",
+          "venue": "Plaza de San Rafael",
+          "evidence": "VIERNES 16 DE OCTUBRE; 21:30 h Concierto de Los Gofiones; Plaza de San Rafael",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Tributo a Juan Luis Guerra",
+          "date": "2026-10-16",
+          "time": "22:30",
+          "venue": null,
+          "evidence": "VIERNES 16 DE OCTUBRE; 22:30 h Tributo a Juan Luis Guerra",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Versiones con Los Lola",
+          "date": "2026-10-16",
+          "time": "00:00",
+          "venue": null,
+          "evidence": "VIERNES 16 DE OCTUBRE; 00:00 h Versiones con Los Lola",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Versiones con La Última Llave",
+          "date": "2026-10-16",
+          "time": "01:30",
+          "venue": "Recinto Ferial",
+          "evidence": "VIERNES 16 DE OCTUBRE; 01:30 h Versiones con La Última Llave; Recinto Ferial",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Comienzo del Concurso de Fotografía San Rafael 2026",
+          "date": "2026-10-16",
+          "time": null,
+          "venue": null,
+          "evidence": "VIERNES 16 DE OCTUBRE; Comienzo del ‘Concurso de Fotografía San Rafael 2026’",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 2556,
+      "input_tokens_details": {
+        "cache_write_tokens": 2553,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1703,
+      "output_tokens_details": {
+        "reasoning_tokens": 1034
+      },
+      "total_tokens": 4259
+    }
   }
 }
