@@ -12,7 +12,7 @@ import re
 import sqlite3
 import time
 import unicodedata
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit,urljoin
 from urllib.robotparser import RobotFileParser
 
 import requests
@@ -34,7 +34,7 @@ HOSTS={
 }
 MAX_PAGES=24
 CACHE_DAYS=5
-PARSER_VERSION='structured-venues-2026-10-27-v1'
+PARSER_VERSION='structured-venues-2026-10-27-v2'
 LABEL=re.compile(
     r"(?<!\w)(?:Lugar|Localizaci[oó]n|Ubicaci[oó]n|Recinto)\s*:?\s*"
     r"((?:biblioteca|casa|centro|teatro|museo|sala|auditorio|cine|"
@@ -164,6 +164,21 @@ def _robots(client,host,cache,url):
     policy=cache[host]
     return policy is None or policy.can_fetch(USER_AGENT,url)
 
+def _same_official_redirect(client,url,response,robots_cache):
+    """Follow a single HTTPS redirect within the exact allowed organizer host."""
+    if response.status_code not in (301,302,307,308):
+        return response
+    target=urljoin(url,response.headers.get("Location",""))
+    initial=urlsplit(url).hostname or ""
+    final=urlsplit(target).hostname or ""
+    if (not valid_url(target) or
+        initial.removeprefix("www.").lower()!=final.removeprefix("www.").lower() or
+        urlsplit(target).scheme!="https"):
+        raise PermissionError("unsafe organizer redirect")
+    if not _robots(client,final,robots_cache,target):
+        raise PermissionError("robots disallow redirected organizer event")
+    return client.get(target,headers=HEADERS,timeout=18,allow_redirects=False)
+
 def enrich(conn,now,today,client=requests,max_pages=MAX_PAGES,sleep=time.sleep):
     conn.execute("""CREATE TABLE IF NOT EXISTS organizer_venue_checks(
         url TEXT PRIMARY KEY, checked_at TEXT NOT NULL,
@@ -211,6 +226,7 @@ def enrich(conn,now,today,client=requests,max_pages=MAX_PAGES,sleep=time.sleep):
                 # Check robots policy before requesting an organizer document.
                 if not _robots(client,host,check_cache,url):raise PermissionError("robots disallow organizer event")
                 r=client.get(url,headers=HEADERS,timeout=18,allow_redirects=False)
+                r=_same_official_redirect(client,url,r,check_cache)
                 if r.status_code!=200:raise RuntimeError("organizer HTTP "+str(r.status_code))
                 if len(r.content)>1_200_000 or "html" not in r.headers.get("content-type","text/html"):
                     raise ValueError("unexpected organizer document")

@@ -94,4 +94,41 @@ class OrganizerVenueTests(unittest.TestCase):
             self.assertEqual(sync.upsert(conn,data),"unchanged")
             self.assertEqual(conn.execute("SELECT venue FROM events").fetchone()[0],
                              "Biblioteca Municipal Saulo Torón")
+class SameHostRedirectTests(unittest.TestCase):
+    def test_redirect_to_new_path_on_same_official_domain(self):
+        old="https://www.casafrica.es/es/evento/concierto-antiguo"
+        new="https://www.casafrica.es/es/evento/conciertos-nuevo"
+        class Response:
+            def __init__(self,code,location=""):
+                self.status_code=code
+                self.headers={"Location":location,"content-type":"text/html"}
+        class Client:
+            def __init__(self):self.calls=[]
+            def get(self,url,**kwargs):
+                self.calls.append(url)
+                if url.endswith("/robots.txt"):return Response(404)
+                if url==new:return Response(200)
+                raise ValueError("Unexpected URL "+url)
+        client=Client()
+        result=org._same_official_redirect(client,old,Response(301,"/es/evento/conciertos-nuevo"),{})
+        self.assertEqual(result.status_code,200)
+        self.assertEqual(client.calls,["https://www.casafrica.es/robots.txt",new])
+    def test_external_redirect_forbidden(self):
+        old="https://www.casafrica.es/es/evento/concierto-antiguo"
+        class Response:
+            status_code=301
+            headers={"Location":"https://teldecultura.org/events/otro"}
+        class Client:
+            def get(self,*a,**k):
+                raise AssertionError("Never contact the external host")
+        with self.assertRaises(PermissionError):
+            org._same_official_redirect(Client(),old,Response(),{})
+    def test_http_redirect_forbidden(self):
+        old="https://www.casafrica.es/es/evento/concierto-antiguo"
+        class Response:
+            status_code=301
+            headers={"Location":"http://www.casafrica.es/es/evento/a"}
+        with self.assertRaises(PermissionError):
+            org._same_official_redirect(None,old,Response(),{})
+
 if __name__=="__main__":unittest.main()

@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-27T17:02:10+00:00",
-  "not_published": 122,
+  "updated_at": "2026-10-27T17:07:02+00:00",
+  "not_published": 121,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -901,18 +901,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0009/sabores-del-mundo-de-tapas-en-maspalomas",
       "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 176,
-      "title": "Concierto África Vive - Bridge to Africa | John Kyffy & The Kyffyz",
-      "start": "2026-11-07",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0015/concierto-africa-vive-bridge-to-africa-john-kyffy-the-kyffyz",
-      "organizer_url": "https://www.casafrica.es/es/evento/concierto-africa-vive-bridge-africa-john-kyffy-kyffyz",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {

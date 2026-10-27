@@ -1772,7 +1772,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=f101c51a3bd9a71b5e3814be403262a5",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=0983248d745759c1c62ad4233e70aac8",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1794,7 +1794,7 @@
       "accuracy": "venue",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=f101c51a3bd9a71b5e3814be403262a5",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=0983248d745759c1c62ad4233e70aac8",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2230,7 +2230,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=f101c51a3bd9a71b5e3814be403262a5",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=0983248d745759c1c62ad4233e70aac8",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2252,7 +2252,7 @@
       "accuracy": "venue",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=f101c51a3bd9a71b5e3814be403262a5",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=0983248d745759c1c62ad4233e70aac8",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3459,6 +3459,28 @@
       "image_origin": "",
       "image_status": "not_available",
       "organizer_url": "https://www.casafrica.es/es/evento/nyeleni-ecos-del-hogar"
+    },
+    {
+      "id": 176,
+      "title": "Concierto África Vive - Bridge to Africa | John Kyffy & The Kyffyz",
+      "start": "2026-11-07",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Casa África",
+      "category": "musica",
+      "free": null,
+      "price": "",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0015/concierto-africa-vive-bridge-to-africa-john-kyffy-the-kyffyz",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad86a4b013a6268e07a821f",
+      "image_alt": "Concierto África Vive - Bridge to Africa | John Kyffy & The Kyffyz",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote",
+      "organizer_url": "https://www.casafrica.es/es/evento/concierto-africa-vive-bridge-africa-john-kyffy-kyffyz"
     },
     {
       "id": 178,
@@ -10479,7 +10501,7 @@
       "organizer_url": "https://www.tureservaonline.es/es/events/no-me-toques-el-cuento-ingenio"
     }
   ],
-  "generated_at": "2026-10-27T17:02:10+00:00",
+  "generated_at": "2026-10-27T17:07:02+00:00",
   "timezone": "Atlantic/Canary",
-  "verified_sources": 17
+  "verified_sources": 18
 }
