@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-10-27T20:07:34.191908+00:00",
-  "mode": "offline_safe",
+  "checked_at": "2026-10-27T20:13:34.099986+00:00",
+  "mode": "api_fallback",
   "model": "gpt-6-luna",
-  "api_key_configured": false,
-  "api_calls": 0,
-  "usage_usd": 0.0,
+  "api_key_configured": true,
+  "api_calls": 3,
+  "usage_usd": 0.0010285,
   "docs": [
     {
       "name": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Caserones Altos",
@@ -17,13 +17,61 @@
           "page": 1,
           "native_text_chars": 0,
           "route": "ai_vision",
-          "status": "requires_openai_api_key"
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 0
         },
         {
           "page": 2,
           "native_text_chars": 0,
           "route": "ai_vision",
-          "status": "requires_openai_api_key"
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 0
+        },
+        {
+          "page": 3,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 0
+        }
+      ]
+    },
+    {
+      "name": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Valle los Nueve Alto",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/vallelosnuevealto26.pdf",
+      "sha256": "e2d30f587c32e3d4846943ff14e69428f8f3f068ed5641e365711d0687d63898",
+      "pages": 5,
+      "bytes": 1062090,
+      "inspected": [
+        {
+          "page": 1,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "status": "skipped_api_budget"
+        },
+        {
+          "page": 2,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "status": "skipped_api_budget"
+        },
+        {
+          "page": 3,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "status": "skipped_api_budget"
         }
       ]
     }
