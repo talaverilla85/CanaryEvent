@@ -1343,28 +1343,6 @@
       "organizer_url": "https://www.ocinepremium7palmas.es/film-10998/p"
     },
     {
-      "id": 213,
-      "title": "MARTA BOLAÑOS EN ACÚSTICO",
-      "start": "2026-10-29",
-      "end": null,
-      "municipality": "Ingenio",
-      "venue": "Fundación Nanino Diáz Cutillas · C/ Obispo Manjón, 14 (El Toril, Carrizal)",
-      "category": "musica",
-      "free": 1,
-      "price": "Gratis",
-      "details": "Actividad en Ingenio. Consulta el recinto, el programa y las condiciones con el organizador.",
-      "lat": 27.918,
-      "lng": -15.436,
-      "accuracy": "municipality",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0018/marta-bolanos-en-acustico",
-      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718c6013a6268e07a7c1b",
-      "image_alt": "MARTA BOLAÑOS EN ACÚSTICO",
-      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "image_status": "official_remote",
-      "organizer_url": "https://ingenio.es/events/marta-bolanos-en-acustico/"
-    },
-    {
       "id": 93,
       "title": "Entre páginas",
       "start": "2026-10-29T18:00:00",
@@ -1794,7 +1772,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=1ef58260f45354c2c25432bcefa4da1c",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=6ed4b6c601f86c6e2023ca45b4ba40a2",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1816,7 +1794,7 @@
       "accuracy": "venue",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=1ef58260f45354c2c25432bcefa4da1c",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=6ed4b6c601f86c6e2023ca45b4ba40a2",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2252,7 +2230,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=1ef58260f45354c2c25432bcefa4da1c",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=6ed4b6c601f86c6e2023ca45b4ba40a2",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2274,7 +2252,7 @@
       "accuracy": "venue",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=1ef58260f45354c2c25432bcefa4da1c",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=6ed4b6c601f86c6e2023ca45b4ba40a2",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -9951,7 +9929,7 @@
       "organizer_url": "https://www.tureservaonline.es/es/events/no-me-toques-el-cuento-ingenio"
     }
   ],
-  "generated_at": "2026-10-27T16:22:35+00:00",
+  "generated_at": "2026-10-27T16:28:38+00:00",
   "timezone": "Atlantic/Canary",
   "verified_sources": 18
 }
