@@ -131,5 +131,245 @@
       "total_tokens": 3241
     },
     "measured_cost_usd": 0.0003425
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/6/gpt-6-luna/text-fallback-vision-v2/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Triduo en honor a nuestra señora del Pilar",
+          "date": "2026-10-09 y 2026-10-10",
+          "time": "18:00",
+          "venue": "Local social",
+          "evidence": "9 y 10 de octubre: 18:00 Triduo en honor a nuestra señora del Pilar.",
+          "type": "religioso"
+        },
+        {
+          "title": "Rezo del Santo Rosario y procesión de las antorchas",
+          "date": "2026-10-11",
+          "time": "19:00",
+          "venue": "Salida de los pisos",
+          "evidence": "11 de octubre: 19:00 Rezo del Santo Rosario y a su término procesión de las antorchas. Salida de los pisos.",
+          "type": "religioso"
+        },
+        {
+          "title": "Enrame de los tronos",
+          "date": "2026-10-12",
+          "time": "10:00",
+          "venue": null,
+          "evidence": "12 de Octubre: 10:00 Enrame de los tronos.",
+          "type": "religioso"
+        },
+        {
+          "title": "Rezo del Ángelus",
+          "date": "2026-10-12",
+          "time": "12:00",
+          "venue": "Local social",
+          "evidence": "12 de Octubre: 12:00 Rezo del Ángelus. Local social",
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía y procesión",
+          "date": "2026-10-12",
+          "time": "18:30",
+          "venue": "Plaza",
+          "evidence": "12 de Octubre: 18:30 Eucaristía y procesión. Plaza.",
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía por los difuntos del barrio",
+          "date": "2026-10-14",
+          "time": "18:00",
+          "venue": "Local social",
+          "evidence": "14 de octubre 18:00 Eucaristía por los difuntos del barrio. Local social",
+          "type": "religioso"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3254,
+      "input_tokens_details": {
+        "cache_write_tokens": 3251,
+        "cached_tokens": 0
+      },
+      "output_tokens": 724,
+      "output_tokens_details": {
+        "reasoning_tokens": 331
+      },
+      "total_tokens": 3978
+    },
+    "measured_cost_usd": 0.0006874
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/6/gpt-6-luna/text-fallback-vision-v2/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "Triduo en honor a nuestra señora del Pilar",
+          "date": "9 y 10 de octubre",
+          "time": "18:00",
+          "venue": "Local social",
+          "evidence": "9 y 10 de octubre: 18:00 Triduo en honor a nuestra señora del Pilar. • Local social.",
+          "type": "religioso"
+        },
+        {
+          "title": "Rezo del Santo Rosario y a su término procesión de las antorchas",
+          "date": "11 de octubre",
+          "time": "19:00",
+          "venue": "Salida de los pisos",
+          "evidence": "11 de octubre: 19:00 Rezo del Santo Rosario y a su término procesión de las antorchas. • Salida de los pisos.",
+          "type": "religioso"
+        },
+        {
+          "title": "Rezo del Ángelus",
+          "date": "12 de octubre",
+          "time": "12:00",
+          "venue": "Local social",
+          "evidence": "12:00 Rezo del Ángelus • Local social",
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía y procesión",
+          "date": "12 de octubre",
+          "time": "18:30",
+          "venue": "Plaza",
+          "evidence": "18:30 Eucaristía y procesión. • Plaza.",
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía por los difuntos del barrio",
+          "date": "14 de octubre",
+          "time": "18:00",
+          "venue": "Local social",
+          "evidence": "14 de octubre 18:00 Eucaristía por los difuntos del barrio. • Local social",
+          "type": "religioso"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3149,
+      "input_tokens_details": {
+        "cache_write_tokens": 3146,
+        "cached_tokens": 0
+      },
+      "output_tokens": 762,
+      "output_tokens_details": {
+        "reasoning_tokens": 440
+      },
+      "total_tokens": 3911
+    },
+    "measured_cost_usd": 0.0006959
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/7/gpt-6-luna/text-fallback-vision-v2/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Bingo benéfico",
+          "date": "2026-10-08",
+          "time": "18:00",
+          "venue": "Local social de La Primavera",
+          "evidence": "8 de octubre. 18:00 Bingo benéfico. Local social de La Primavera.",
+          "type": "fiesta"
+        },
+        {
+          "title": "Pregón de las fiestas por Paco Mederos",
+          "date": "2026-10-09",
+          "time": "19:30",
+          "venue": "Plaza de Caserones",
+          "evidence": "9 de octubre. 19:30 Pregón de las fiestas por Paco Mederos.",
+          "type": "cultura"
+        },
+        {
+          "title": "Acto de homenaje a varios de nuestros vecinos",
+          "date": "2026-10-09",
+          "time": null,
+          "venue": "Plaza de Caserones",
+          "evidence": "9 de octubre. A su término, acto de homenaje a varios de nuestros vecinos.",
+          "type": "cultura"
+        },
+        {
+          "title": "Gala elección de la reina infantil amenizada por DJ Sercy",
+          "date": "2026-10-09",
+          "time": "21:00",
+          "venue": "Plaza de Caserones",
+          "evidence": "9 de octubre. 21:00 Gala elección de la reina infantil amenizada por DJ Sercy.",
+          "type": "familia"
+        },
+        {
+          "title": "Guateque de Caserones. Concierto de los chicos del Guateque",
+          "date": "2026-10-09",
+          "time": "22:30",
+          "venue": "Plaza de Caserones",
+          "evidence": "9 de octubre. 22:30 Guateque de Caserones. Concierto de los chicos del Guateque. Plaza de Caserones.",
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3254,
+      "input_tokens_details": {
+        "cache_write_tokens": 3251,
+        "cached_tokens": 0
+      },
+      "output_tokens": 877,
+      "output_tokens_details": {
+        "reasoning_tokens": 516
+      },
+      "total_tokens": 4131
+    },
+    "measured_cost_usd": 0.0007639
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/7/gpt-6-luna/text-fallback-vision-v2/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "Bingo benéfico",
+          "date": "8 de octubre",
+          "time": "18:00",
+          "venue": "Local social de La Primavera",
+          "evidence": "18:00 Bingo benéfico. • Local social de La Primavera.",
+          "type": "otros"
+        },
+        {
+          "title": "Pregón de las fiestas por Paco Mederos",
+          "date": "9 de octubre",
+          "time": "19:30",
+          "venue": "Plaza de Caserones",
+          "evidence": "19:30 Pregón de las fiestas por Paco Mederos. • Plaza de Caserones.",
+          "type": "cultura"
+        },
+        {
+          "title": "Gala elección de la reina infantil amenizada por DJ Sercy",
+          "date": "9 de octubre",
+          "time": "21:00",
+          "venue": "Plaza de Caserones",
+          "evidence": "21:00 Gala elección de la reina infantil amenizada por DJ Sercy. • Plaza de Caserones.",
+          "type": "fiesta"
+        },
+        {
+          "title": "Guateque de Caserones. Concierto de los chicos del Guateque",
+          "date": "9 de octubre",
+          "time": "22:30",
+          "venue": "Plaza de Caserones",
+          "evidence": "22:30 Guateque de Caserones. Concierto de los chicos del Guateque • Plaza de Caserones.",
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3149,
+      "input_tokens_details": {
+        "cache_write_tokens": 3146,
+        "cached_tokens": 0
+      },
+      "output_tokens": 586,
+      "output_tokens_details": {
+        "reasoning_tokens": 302
+      },
+      "total_tokens": 3735
+    },
+    "measured_cost_usd": 0.0006079
   }
 }

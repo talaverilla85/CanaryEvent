@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-10-27T21:16:02.030817+00:00",
+  "checked_at": "2026-10-27T21:32:41.116202+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
   "api_calls": 4,
-  "usage_usd": 0.001418,
+  "usage_usd": 0.0027551,
   "docs": [
     {
       "name": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Caserones Altos",
@@ -14,7 +14,7 @@
       "bytes": 2981599,
       "inspected": [
         {
-          "page": 4,
+          "page": 7,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
@@ -22,10 +22,12 @@
             1853
           ],
           "status": "new_api_result",
-          "candidates_pending_review": 0
+          "candidates_pending_review": 5,
+          "verification": "new_independent_visual_read",
+          "auto_verified": 0
         },
         {
-          "page": 5,
+          "page": 8,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
@@ -33,18 +35,15 @@
             1853
           ],
           "status": "new_api_result",
-          "candidates_pending_review": 0
+          "candidates_pending_review": 5,
+          "verification": "new_independent_visual_read",
+          "auto_verified": 0
         },
         {
-          "page": 6,
+          "page": 9,
           "native_text_chars": 0,
           "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 0
+          "status": "skipped_api_budget"
         }
       ]
     },
@@ -56,17 +55,6 @@
       "bytes": 1062090,
       "inspected": [
         {
-          "page": 1,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 0
-        },
-        {
           "page": 2,
           "native_text_chars": 0,
           "route": "ai_vision",
@@ -77,11 +65,17 @@
           "native_text_chars": 0,
           "route": "ai_vision",
           "status": "skipped_api_budget"
+        },
+        {
+          "page": 4,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "status": "skipped_api_budget"
         }
       ]
     }
   ],
-  "pending_review_count": 0,
-  "auto_verified_count": 1,
+  "pending_review_count": 10,
+  "auto_verified_count": 0,
   "notes": "Only corroborated future acts with matching time and named venue enter the feed; other results stay in review."
 }
