@@ -129,6 +129,8 @@ def extract_factual_event(html,url,today,places,norm,category):
       organizer_url=facts["organizer_url"],
       source_name=SOURCE_NAME,source_url=url,status=status))
 
+import cinema_policy
+
 def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_PAGES_PER_RUN):
     scan_allowed()
     sitemap=list_public_events()
@@ -191,7 +193,10 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
             if len(r.content)>400_000 or "text/html" not in r.headers.get("content-type",""):
                 raise ValueError("Unexpected response")
             e=extract_factual_event(r.content,url,today,places,norm,category)
-            if e:
+            if e and cinema_policy.is_commercial_screening(e):
+                # Never insert routine multiplex listings into the public feed.
+                outcome="commercial_cinema_excluded"
+            elif e:
                 action=upsert(conn,e);found+=1
                 add+=int(action=="added");changed+=int(action=="changed")
                 outcome="valid"

@@ -35,6 +35,7 @@ import valsequillo_medianias
 import tejeda_agenda
 import telde_barrio_programs
 import municipal_listing_dedup
+import cinema_policy
 import event_occurrences
 import program_quality
 import venue_quality
@@ -746,6 +747,9 @@ def run():
                                   "free","price","details","lat","lng","accuracy","source_name","source_url",
                                   "image_url","image_alt","image_origin","image_status","organizer_url")}
             events.append(ulpgc_venue_facts.enhance(e))
+        # Apply the policy to old SQLite records, not only future imports.
+        events,cinema_excluded=cinema_policy.remove_commercial_screenings(events)
+        print(f"Routine commercial cinema excluded from public agenda: {len(cinema_excluded)}")
         # Quality-filter source records before projecting verified calendar
         # days: one brochure or theatre programme is not 30 sessions.
         events,programs_pending=program_quality.filter_public_plans(events)
@@ -779,6 +783,7 @@ def run():
         "counts":{"approved":len(events),"candidate_events":valid_candidates,
                   "verified_source_events_before_daily_projection":source_events,
                   "excluded_missing_venue":len(venue_pending),
+                  "excluded_commercial_cinema":len(cinema_excluded),
                   "pending":0,"needs_review":len(programs_pending)+len(ingenio_juvenil_program.UNRESOLVED),
                   "archived_or_expired":max(0,total-valid_candidates),
                   "cancelled":statuses.get("cancelled",0),
