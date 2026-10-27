@@ -50,9 +50,10 @@
     },
     {
       "municipality": "La Aldea de San Nicolás",
-      "official_website": "https://www.laaldeadesannicolas.es/",
-      "agenda_url": null,
-      "status": "por_localizar"
+      "official_website": "https://laaldeasanicolas.es/",
+      "agenda_url": "https://laaldeasanicolas.es/noticias/",
+      "status": "fuente_oficial_localizada_tls_pendiente",
+      "note": "Dominio municipal actual confirmado en octubre de 2026, pero el cliente HTTPS del extractor no valida su cadena TLS. Se monitoriza el error y no se desactiva la comprobación SSL."
     },
     {
       "municipality": "Las Palmas de Gran Canaria",

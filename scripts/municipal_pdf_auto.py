@@ -140,7 +140,12 @@ def run(argv=None,*,today=None,session=None):
                         if record.get("pdf_url")==url and record.get("pdf_sha256")!=sha:
                             del c[k]
             done=set(checkpoint.get("done_pages",[]))
-            pages=[e for e in page_scores(pdf,year,today) if e[0] not in done]
+            failures=checkpoint.setdefault("page_failures",{})
+            pages=[e for e in page_scores(pdf,year,today) if e[0] not in done
+                   and not (
+                       (retry_date:=priority.day_of(
+                           failures.get(str(e[0]),{}).get("retry_after")))
+                       and retry_date>today)]
             report_doc={"municipality":municipality,"pdf_url":url,
                         "pdf_sha256":sha,"pages":len(pdf.pages),
                         "bytes":size,"inspected":[]}
@@ -163,6 +168,7 @@ def run(argv=None,*,today=None,session=None):
                         continue
                     else:
                         image,_=vision.render_page_jpeg(file,i)
+                        reserve_call(report)
                         first,usage=vision.call_openai_vision(
                             image,year,entry["title"],vision.MODEL,key,sess,
                             municipality=municipality)
@@ -196,6 +202,7 @@ def run(argv=None,*,today=None,session=None):
                             info["second_read"]="budget_or_key"
                         else:
                             image,_=vision.render_page_jpeg(file,i)
+                            reserve_call(report)
                             second,usage=vision.call_openai_vision(
                                 image,year,entry["title"],vision.MODEL,key,sess,
                                 instructions=telda_second_prompt(),municipality=municipality)
@@ -221,8 +228,17 @@ def run(argv=None,*,today=None,session=None):
                             info["auto_verified"]=len(matches)
                     if complete:
                         done.add(i)
+                        failures.pop(str(i),None)
                 except (ValueError,RuntimeError,PermissionError,requests.RequestException) as exc:
+                    previous=failures.get(str(i),{})
+                    attempts=min(7,int(previous.get("attempts",0))+1)
+                    failures[str(i)]={
+                        "attempts":attempts,
+                        "last_error_type":type(exc).__name__,
+                        "retry_after":(today+dt.timedelta(days=min(attempts,3))).isoformat(),
+                    }
                     info["error_type"]=type(exc).__name__
+                    info["retry_after"]=failures[str(i)]["retry_after"]
                     report["errors"].append({
                         "municipality":municipality,"pdf_url":url,
                         "pdf_page":i+1,"error_type":type(exc).__name__})
@@ -284,8 +300,12 @@ def budget_ok(report,args):
     return (report["api_calls"]<args.max_api_calls
             and args.max_cost_usd-report["usage_usd"]>=.01)
 
-def charge(report,usage):
+def reserve_call(report):
+    # Reserve before the remote call. Failed or incomplete API responses can
+    # still incur token charges and must count toward the call limit.
     report["api_calls"]+=1
+
+def charge(report,usage):
     report["usage_usd"]=round(report["usage_usd"]+vision.response_usage_cost(usage),7)
 
 def telda_second_prompt():

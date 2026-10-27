@@ -59,6 +59,8 @@ class FactCheckedMunicipalSourcesTests(unittest.TestCase):
         events={"events":[
             {"title":"Feria","municipality":"Agaete","source_name":"Ayuntamiento de Agaete · actos documentados"},
             {"title":"Otro evento","municipality":"Vega de San Mateo","source_name":"Entradas comerciales"},
+            {"title":"Actividades municipales juveniles","municipality":"Las Palmas de Gran Canaria",
+             "source_name":"Juventud Las Palmas de Gran Canaria"},
         ]}
         report=coverage_gc.make_report(registry=source,metadata={"sources":[]},catalog=events,
                                       today=dt.date(2026,10,27))
@@ -67,6 +69,7 @@ class FactCheckedMunicipalSourcesTests(unittest.TestCase):
         item={x["municipality"]:x for x in report["municipalities"]}
         self.assertEqual(item["Agaete"]["municipal_cards_total"],1)
         self.assertEqual(item["Vega de San Mateo"]["municipal_cards_total"],0)
+        self.assertEqual(item["Las Palmas de Gran Canaria"]["municipal_cards_total"],1)
         self.assertEqual(item["Vega de San Mateo"]["other_sources_cards_total"],1)
         self.assertFalse(item["Agaete"]["full_coverage_claim"])
 
