@@ -15,7 +15,10 @@
       4,
       5,
       6,
-      7
+      7,
+      8,
+      9,
+      10
     ],
     "complete": false,
     "checked_at": "2026-10-27"
@@ -23,7 +26,8 @@
   "f02a475369fa59dd": {
     "sha": "e2d30f587c32e3d4846943ff14e69428f8f3f068ed5641e365711d0687d63898",
     "done_pages": [
-      0
+      0,
+      1
     ],
     "complete": false,
     "checked_at": "2026-10-27"

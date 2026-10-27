@@ -371,5 +371,131 @@
       "total_tokens": 3735
     },
     "measured_cost_usd": 0.0006079
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/8/gpt-6-luna/text-fallback-vision-v2/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Romería ofrenda en honor a la Virgen del Pilar y el Santo Cristo",
+          "date": "2026-10-10",
+          "time": "17:30",
+          "venue": "Salida de los pisos",
+          "evidence": "10 de Octubre. 17:30 Romería ofrenda en honor a la Virgen del Pilar y el Santo Cristo.",
+          "type": "religioso"
+        },
+        {
+          "title": "IX Baile de la Manzana",
+          "date": "2026-10-10",
+          "time": "20:30",
+          "venue": "Plaza de Caserones",
+          "evidence": "10 de Octubre. 20:30 IX Baile de la Manzana.",
+          "type": "fiesta"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3254,
+      "input_tokens_details": {
+        "cache_write_tokens": 3251,
+        "cached_tokens": 0
+      },
+      "output_tokens": 298,
+      "output_tokens_details": {
+        "reasoning_tokens": 142
+      },
+      "total_tokens": 3552
+    },
+    "measured_cost_usd": 0.0004744
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/9/gpt-6-luna/text-fallback-vision-v2/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Juegos infantiles",
+          "date": "2026-10-11",
+          "time": "11:00",
+          "venue": "Plaza de Caserones",
+          "evidence": "11 de Octubre. 11:00 Juegos infantiles. Plaza de Caserones.",
+          "type": "familia"
+        },
+        {
+          "title": "Rezo del santo Rosario y procesión de las antorchas acompañados por la banda Pequeña Estefanía",
+          "date": "2026-10-11",
+          "time": "19:00",
+          "venue": "Salida de los pisos",
+          "evidence": "11 de Octubre. 19:00 Rezo del santo Rosario. Al finalizar, procesión de las antorchas acompañados por la banda Pequeña Estefanía. Salida de los pisos.",
+          "type": "religioso"
+        },
+        {
+          "title": "Verbena amenizada por la orquesta Los Peques",
+          "date": "2026-10-11",
+          "time": "22:30",
+          "venue": "Plaza de Caserones",
+          "evidence": "11 de Octubre. 22:30 Verbena amenizada por la orquesta Los Peques. Plaza de Caserones.",
+          "type": "fiesta"
+        },
+        {
+          "title": "Exhibición pirotécnica a cargo de la pirotecnia San Miguel",
+          "date": "2026-10-11",
+          "time": "00:00",
+          "venue": null,
+          "evidence": "11 de Octubre. 00:00 Exhibición pirotécnica a cargo de la pirotecnia San Miguel.",
+          "type": "otros"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3254,
+      "input_tokens_details": {
+        "cache_write_tokens": 3251,
+        "cached_tokens": 0
+      },
+      "output_tokens": 639,
+      "output_tokens_details": {
+        "reasoning_tokens": 315
+      },
+      "total_tokens": 3893
+    },
+    "measured_cost_usd": 0.0006449
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/10/gpt-6-luna/text-fallback-vision-v2/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3254,
+      "input_tokens_details": {
+        "cache_write_tokens": 3251,
+        "cached_tokens": 0
+      },
+      "output_tokens": 118,
+      "output_tokens_details": {
+        "reasoning_tokens": 96
+      },
+      "total_tokens": 3372
+    },
+    "measured_cost_usd": 0.0003844
+  },
+  "e2d30f587c32e3d4846943ff14e69428f8f3f068ed5641e365711d0687d63898/1/gpt-6-luna/text-fallback-vision-v2/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3254,
+      "input_tokens_details": {
+        "cache_write_tokens": 3251,
+        "cached_tokens": 0
+      },
+      "output_tokens": 54,
+      "output_tokens_details": {
+        "reasoning_tokens": 32
+      },
+      "total_tokens": 3308
+    },
+    "measured_cost_usd": 0.0003524
   }
 }
