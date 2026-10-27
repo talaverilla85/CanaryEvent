@@ -1,13 +1,13 @@
 {
-  "checked_at": "2026-10-27T16:15:37+00:00",
+  "checked_at": "2026-10-27T16:22:35+00:00",
   "quality_counts": {
-    "publicados": 433,
-    "recintos_sin_verificar": 149,
+    "publicados": 434,
+    "recintos_sin_verificar": 147,
     "programas_y_fichas_por_revisar": 13,
     "precios_sin_confirmar": 285,
-    "distancia_a_centro_municipal": 252,
+    "distancia_a_centro_municipal": 253,
     "fuentes_con_error": 0,
-    "duplicados_potenciales": 0
+    "duplicados_potenciales": 1
   },
   "sources": [
     {
@@ -63,10 +63,10 @@
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
-      "publicados": 2,
+      "publicados": 1,
       "recinto_sin_verificar": 10,
-      "precio_sin_confirmar": 2,
-      "distancia_al_centro_municipal": 2,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
       "fichas_leidas_en_esta_ejecucion": 12,
       "error": ""
     },
@@ -163,10 +163,10 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 283,
-      "recinto_sin_verificar": 129,
-      "precio_sin_confirmar": 240,
-      "distancia_al_centro_municipal": 105,
+      "publicados": 285,
+      "recinto_sin_verificar": 127,
+      "precio_sin_confirmar": 241,
+      "distancia_al_centro_municipal": 107,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
@@ -195,7 +195,7 @@
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 129
+      "count": 127
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",

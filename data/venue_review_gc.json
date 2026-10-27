@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-27T16:15:37+00:00",
-  "not_published": 149,
+  "updated_at": "2026-10-27T16:22:35+00:00",
+  "not_published": 147,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -529,18 +529,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0014/presentacion-de-trabajos-artisticos-a-medias-con-padron-dos-fotos-un-cuerpo",
       "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11227458",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 213,
-      "title": "MARTA BOLAÑOS EN ACÚSTICO",
-      "start": "2026-10-29",
-      "end": null,
-      "municipality": "Ingenio",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0018/marta-bolanos-en-acustico",
-      "organizer_url": "https://ingenio.es/events/marta-bolanos-en-acustico/",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -1513,18 +1501,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261121-0000/teror-patea-por-gc-cruz-tejeda-talayon-teror",
       "organizer_url": "https://teror.es/events/teror-patea-por-gc-cruz-tejeda-talayon-teror/var/ri-.l-L1",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 295,
-      "title": "XV CARRERA TOLERANCIA CERO",
-      "start": "2026-11-21T09:00:00",
-      "end": null,
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261121-0007/xv-carrera-tolerancia-cero",
-      "organizer_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RreU1RPT0=",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
