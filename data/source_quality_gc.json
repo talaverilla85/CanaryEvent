@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-10-27T15:23:42+00:00",
+  "checked_at": "2026-10-27T15:27:09+00:00",
   "quality_counts": {
-    "publicados": 394,
-    "recintos_sin_verificar": 141,
+    "publicados": 395,
+    "recintos_sin_verificar": 142,
     "programas_y_fichas_por_revisar": 13,
     "precios_sin_confirmar": 255,
-    "distancia_a_centro_municipal": 394,
+    "distancia_a_centro_municipal": 395,
     "fuentes_con_error": 0,
     "duplicados_potenciales": 0
   },
@@ -23,11 +23,11 @@
     {
       "source": "Ayuntamiento de Agüimes",
       "estado": "operativa",
-      "publicados": 1,
-      "recinto_sin_verificar": 0,
+      "publicados": 2,
+      "recinto_sin_verificar": 1,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 1,
+      "distancia_al_centro_municipal": 2,
+      "fichas_leidas_en_esta_ejecucion": 3,
       "error": ""
     },
     {
@@ -208,6 +208,10 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "count": 3
+    },
+    {
+      "source": "Ayuntamiento de Agüimes",
+      "count": 1
     },
     {
       "source": "Ayuntamiento de Artenara · ferias tradicionales 2026",

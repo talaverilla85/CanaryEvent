@@ -1754,7 +1754,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=462b834460f82fd1e455e1711cd597aa",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=ddef58bbb66e539aea00c8525940bd25",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1776,7 +1776,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=462b834460f82fd1e455e1711cd597aa",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=ddef58bbb66e539aea00c8525940bd25",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2128,7 +2128,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=462b834460f82fd1e455e1711cd597aa",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=ddef58bbb66e539aea00c8525940bd25",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2150,7 +2150,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=462b834460f82fd1e455e1711cd597aa",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=ddef58bbb66e539aea00c8525940bd25",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3914,6 +3914,28 @@
       "image_alt": "",
       "image_origin": "",
       "image_status": "not_available",
+      "organizer_url": ""
+    },
+    {
+      "id": 609,
+      "title": "Airsoft",
+      "start": "2026-11-14T10:00:00",
+      "end": null,
+      "municipality": "Agüimes",
+      "venue": "San Bartolomé de Tirajana",
+      "category": "ocio",
+      "free": 1,
+      "price": "Gratis",
+      "details": "Exclusivo para personas entre 14 y 30 años.",
+      "lat": 27.906,
+      "lng": -15.445,
+      "accuracy": "municipality",
+      "source_name": "Ayuntamiento de Agüimes",
+      "source_url": "https://eventos.aguimes.es/events/b2e44c4f3a9a528831ba4c4d5163cd08cc9aa90f",
+      "image_url": "https://eventos.aguimes.es/storage/events/5894018b392d41b1e7411911a7a16a04.png",
+      "image_alt": "Airsoft",
+      "image_origin": "Ayuntamiento de Agüimes",
+      "image_status": "official_remote",
       "organizer_url": ""
     },
     {
@@ -8669,7 +8691,7 @@
       "organizer_url": "https://www.tureservaonline.es/es/events/no-me-toques-el-cuento-ingenio"
     }
   ],
-  "generated_at": "2026-10-27T15:23:42+00:00",
+  "generated_at": "2026-10-27T15:27:09+00:00",
   "timezone": "Atlantic/Canary",
   "verified_sources": 18
 }

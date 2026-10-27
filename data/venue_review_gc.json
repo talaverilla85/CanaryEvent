@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-27T15:23:42+00:00",
-  "not_published": 141,
+  "updated_at": "2026-10-27T15:27:09+00:00",
+  "not_published": 142,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -1441,6 +1441,18 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261121-0007/xv-carrera-tolerancia-cero",
       "organizer_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RreU1RPT0=",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 610,
+      "title": "Multiaventura",
+      "start": "2026-11-21T10:00:00",
+      "end": null,
+      "municipality": "Santa Lucía de Tirajana",
+      "venue": "Santa Lucía De Tirajana",
+      "source_name": "Ayuntamiento de Agüimes",
+      "source_url": "https://eventos.aguimes.es/events/ccdafbbf1c5103317a5db6a225aed63324a31a4b",
+      "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
