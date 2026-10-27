@@ -697,7 +697,7 @@ def run():
         events=municipal_listing_dedup.reconcile(events,norm)
         events,programs_pending=program_quality.filter_public_plans(events)
         queue={"updated_at":NOW,
-               "note":"Programas de varias actividades pendientes de desglose: no mostrarlos como planes.",
+               "note":"Fichas pendientes de desglose o sin un evento identificable; no publicarlas como planes.",
                "pending_programs":programs_pending,
                "unverified_locations":[{**item,"source_url":ingenio_juvenil_program.PROGRAM_URL}
                                        for item in ingenio_juvenil_program.UNRESOLVED]}

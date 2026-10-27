@@ -39,6 +39,21 @@ class ProgrammeQualityTests(unittest.TestCase):
    with self.subTest(title=title):
     self.assertTrue(q.is_multi_activity(plan(title)),title)
 
+ def test_facility_booking_is_not_published_as_event(self):
+  booking=plan("RESERVA ÁREA RECREATIVA HUERTAS DEL REY",start="2026-06-06",end="2027-01-03",venue="Área Recreativa Huertas del Rey")
+  self.assertTrue(q.is_non_event_listing(booking))
+  events,review=q.filter_public_plans([booking])
+  self.assertEqual(events,[])
+  self.assertIn("Reserva administrativa",review[0]["reason"])
+
+ def test_booking_rule_preserves_actual_events_and_registration(self):
+  for title in ("Concierto de Navidad · Reserva tus entradas",
+                "Reserva de entradas para teatro infantil",
+                "Área recreativa: Taller de senderismo",
+                "Ruta guiada por Huertas del Rey"):
+   with self.subTest(title=title):
+    self.assertFalse(q.is_non_event_listing(plan(title)),title)
+
  def test_specific_single_exhibition_remains(self):
   self.assertFalse(q.is_multi_activity(plan("Exposición África: la fuerza escondida",end="2026-10-30")))
   self.assertFalse(q.is_multi_activity(plan("Pregón de las fiestas de San Gregorio",start="2026-11-06",end=None,venue="Plaza de San Gregorio")))

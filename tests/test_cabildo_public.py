@@ -47,4 +47,26 @@ class OfficialCatalogTests(unittest.TestCase):
         e=cabildo.extract_factual_event(page("Algo Cultural","Inventado",day.strftime("%d/%m/%Y"),"18:00 - 19:00"),
            "https://www.eventosgrancanaria.com/event/E-20261024-0004/ejemplo",app.TODAY,app.PLACES,app.norm,app.category)
         self.assertIsNone(e)
+    def test_fresh_scans_report_normal_idle_cycle(self):
+        import sqlite3
+        from unittest.mock import patch
+        now="2026-10-27T10:00:00+00:00"
+        day=dt.date(2026,10,27)
+        urls=[f"https://www.eventosgrancanaria.com/event/E-20261027-{i:04d}/evento" for i in range(25)]
+        with sqlite3.connect(":memory:") as conn:
+            conn.execute("""CREATE TABLE cabildo_scans(
+                url TEXT PRIMARY KEY,checked_at TEXT NOT NULL,outcome TEXT NOT NULL,
+                image_inspected INTEGER NOT NULL,facts_inspected INTEGER NOT NULL)""")
+            conn.executemany("INSERT INTO cabildo_scans VALUES(?,?,?,1,1)",
+                             [(url,now,"valid") for url in urls])
+            with patch.object(cabildo,"scan_allowed"),patch.object(cabildo,"list_public_events",return_value=[(u,day) for u in urls]):
+                report=cabildo.synchronize(conn,now,day,app.PLACES,app.norm,app.category,
+                                           lambda c,e:"unchanged")
+        self.assertEqual(report["eligible_urls"],25)
+        self.assertEqual(report["skipped_recent"],25)
+        self.assertEqual(report["due_urls"],0)
+        self.assertEqual(report["scanned"],0)
+        self.assertEqual(report["queued_remaining"],0)
+        self.assertEqual(report["error"],"")
+
 if __name__=="__main__":unittest.main()

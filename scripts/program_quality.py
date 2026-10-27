@@ -40,16 +40,28 @@ def is_multi_activity(event):
  unspecified=(not venue or venue.startswith(("consultar","recinto por confirmar","lugar pendiente","municipio por confirmar")))
  return duration>=2 and unspecified
 
+def is_non_event_listing(event):
+ """A reservation for use of a facility is not an organized activity.
+
+ This deliberately narrow rule avoids excluding actual ticketed events or
+ activities whose titles merely mention booking or registration.
+ """
+ title=normalized(event.get("title"))
+ return bool(re.match(r"^reservas?(?:\s+de)?\s+(?:area|areas)\s+recreativas?\b",title))
+
 def filter_public_plans(events):
  accepted=[]
  needs_review=[]
  for e in events:
-  if is_multi_activity(e):
+  is_program=is_multi_activity(e)
+  is_facility=is_non_event_listing(e)
+  if is_program or is_facility:
    needs_review.append({
     "id":e.get("id"),"title":e.get("title"),"start":e.get("start"),
     "end":e.get("end"),"municipality":e.get("municipality"),
     "source_name":e.get("source_name"),"source_url":e.get("source_url"),
-    "reason":"Programa con varias actividades: desglosar por fecha, hora y recinto"
+    "reason":("Programa con varias actividades: desglosar por fecha, hora y recinto"
+              if is_program else "Reserva administrativa de una instalación, no un evento")
    })
   else:accepted.append(e)
  return accepted,needs_review

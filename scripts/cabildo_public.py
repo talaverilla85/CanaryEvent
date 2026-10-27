@@ -153,15 +153,23 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
     candidates=[(u,d) for u,d in sitemap if today-dt.timedelta(days=45)<=d<=today+dt.timedelta(days=MAX_LOOKAHEAD_DAYS)]
     candidates.sort(key=lambda el:(el[0] not in pending_facts and el[0] not in pending_images,
                                    el[0] in existing, abs((el[1]-today).days), el[0]))
-    add=changed=found=checked=0
-    errors=[]
-    for url,_ in candidates:
+    # A zero-scan cycle is normal when every indexed page was recently checked.
+    # Keep due and skipped counts separate so monitoring does not report an
+    # idle but healthy connector as an extraction failure.
+    refresh_candidates=[]
+    skipped_recent=0
+    for url,day in candidates:
         last=existing.get(url)
         if last:
             try:age=(dt.datetime.fromisoformat(now)-dt.datetime.fromisoformat(last[0])).total_seconds()
             except (TypeError,ValueError):age=9999999
-            if age<2*86400 and url not in pending_images and url not in pending_facts:continue
-        if checked>=max_pages:break
+            if age<2*86400 and url not in pending_images and url not in pending_facts:
+                skipped_recent+=1
+                continue
+        refresh_candidates.append((url,day))
+    add=changed=found=checked=0
+    errors=[]
+    for url,_ in refresh_candidates[:max_pages]:
         checked+=1
         try:
             r=SESSION.get(url,timeout=20,allow_redirects=False)
@@ -189,4 +197,7 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
     conn.commit()
     return {"source":SOURCE_NAME,"checked_at":now,"found":found,"added":add,
             "changed":changed,"scanned":checked,"sitemap_count":len(sitemap),
-            "eligible_urls":len(candidates),"error":"; ".join(errors[:3])}
+            "eligible_urls":len(candidates),"due_urls":len(refresh_candidates),
+            "skipped_recent":skipped_recent,
+            "queued_remaining":max(0,len(refresh_candidates)-checked),
+            "refresh_interval_hours":48,"error":"; ".join(errors[:3])}
