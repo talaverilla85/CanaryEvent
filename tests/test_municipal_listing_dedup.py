@@ -42,3 +42,24 @@ class MunicipalDedup(unittest.TestCase):
   self.assertEqual(len(de.reconcile([a,b,c],sync.norm)),3)
 if __name__=="__main__":unittest.main()
 
+
+class IngenioCabildoDedupRegression(unittest.TestCase):
+ def test_same_event_known_same_venue_single_public_card(self):
+  a=dict(id=501,title="MARTA BOLAÑOS EN ACÚSTICO",
+         start="2026-10-29",municipality="Ingenio",
+         venue="Fundación Nanino Diáz Cutillas · C/ Obispo Manjón, 14",
+         source_name="Portal oficial de Eventos Gran Canaria (Cabildo)",
+         source_url="https://www.eventosgrancanaria.com/event/E-20261029-0001/marta",price="",free=None)
+  b=dict(a,id=502,start="2026-10-29T19:00:00",
+         source_name="Ayuntamiento de Ingenio",
+         source_url="https://ingenio.es/events/marta-bolanos/")
+  self.assertEqual(len(de.reconcile([a,b],sync.norm)),1)
+  self.assertEqual(de.reconcile([a,b],sync.norm)[0]["id"],502)
+ def test_compatible_location_but_different_hours_not_merged(self):
+  a=dict(id=501,title="Concierto",start="2026-11-29T17:00:00",
+         municipality="Ingenio",venue="Centro Cultural Federico García Lorca",
+         source_name="Portal oficial de Eventos Gran Canaria (Cabildo)",
+         source_url="https://example.org/cabildo",free=None,price="")
+  b=dict(a,id=502,start="2026-11-29T20:00:00",source_name="Ayuntamiento de Ingenio",
+         source_url="https://ingenio.es/events/concierto/")
+  self.assertEqual(len(de.reconcile([a,b],sync.norm)),2)

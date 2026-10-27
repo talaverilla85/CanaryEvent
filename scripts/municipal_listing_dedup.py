@@ -10,6 +10,7 @@ from collections import defaultdict
 MUNICIPAL_PREFIXES=(
  "Ayuntamiento de Santa Brígida",
  "Ayuntamiento de Arucas",
+ "Ayuntamiento de Ingenio",
  "Ayuntamiento de Teror",
  "Ayuntamiento de Artenara",
  "Ayuntamiento de Telde",
