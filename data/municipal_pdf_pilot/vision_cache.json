@@ -492,5 +492,122 @@
       },
       "total_tokens": 4259
     }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/17/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "Vecindario Family Jumping",
+          "date": "2026-11-01",
+          "time": "10:00",
+          "venue": "Plaza de Los Algodoneros y zona peatonal de la Avda. de Canaria",
+          "evidence": "10:00 h. Vecindario Family Jumping; Actividad gratuita",
+          "admission_type": "free",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Taller de Salsa a cargo de Academia Nahia Dance by Samantha Sánchez",
+          "date": "2026-11-01",
+          "time": "10:00",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "10:00 h. Taller de Salsa",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Taller de Salsa Rueda a cargo de la Escuela de Eva Rodríguez",
+          "date": "2026-11-01",
+          "time": "10:45",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "10:45 h. Taller de Salsa Rueda",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Taller de Bachata a cargo de la Asociación Cadenza & Piratas de la Salsa",
+          "date": "2026-11-01",
+          "time": "11:30",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "11:30 h Taller de Bachata",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Actuaciones de las academias",
+          "date": "2026-11-01",
+          "time": "12:15",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "12:15 h Actuaciones de las academias",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Travesía Salsera Social SBkm",
+          "date": "2026-11-01",
+          "time": "13:30",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "13:30h Travesía Salsera Social SBkm; Plaza de Los Algodoneros",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Exhibición profesional de flamenco con el Ballet de Paulina",
+          "date": "2026-11-01",
+          "time": "20:00",
+          "venue": "Plaza de San Rafael",
+          "evidence": "20:00 h. FIN DE FIESTA; Exhibición profesional de flamenco con el Ballet de Paulina",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Concierto de Shaila Dúrcal",
+          "date": "2026-11-01",
+          "time": "20:00",
+          "venue": "Plaza de San Rafael",
+          "evidence": "20:00 h. FIN DE FIESTA; Concierto de Shaila Dúrcal; Plaza de San Rafael",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 2420,
+      "input_tokens_details": {
+        "cache_write_tokens": 2417,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1552,
+      "output_tokens_details": {
+        "reasoning_tokens": 916
+      },
+      "total_tokens": 3972
+    }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/2/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 2556,
+      "input_tokens_details": {
+        "cache_write_tokens": 2553,
+        "cached_tokens": 0
+      },
+      "output_tokens": 68,
+      "output_tokens_details": {
+        "reasoning_tokens": 46
+      },
+      "total_tokens": 2624
+    }
   }
 }

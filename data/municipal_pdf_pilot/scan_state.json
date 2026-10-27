@@ -2,10 +2,19 @@
   "ef30cd2075a40bbd": {
     "sha": "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0",
     "done_pages": [
+      2,
       8,
-      15
+      15,
+      17
     ],
     "complete": false,
-    "checked_at": "2026-10-27"
+    "checked_at": "2026-10-27",
+    "page_failures": {
+      "16": {
+        "attempts": 1,
+        "last_error_type": "ValueError",
+        "retry_after": "2026-10-28"
+      }
+    }
   }
 }

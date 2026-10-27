@@ -959,5 +959,95 @@
       "total_tokens": 3443
     },
     "measured_cost_usd": 0.0003627
+  },
+  "ce84859aea4f81ca4b08d1f0ae7986079efdb7d8ae58b15788b11de1bec417a1/0/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Triduo en honor de San Francisco de Asís",
+          "date": "2026-10-01, 2026-10-02 y 2026-10-03",
+          "time": "19:30h",
+          "venue": "Parroquia de San Juan Bautista",
+          "evidence": "01|02|03 Oct 19:30h — Triduo en honor de San Francisco de Asís",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Pregón inaugural de las fiestas de San Francisco, con actuación de la Escuela Municipal de Folklore",
+          "date": "2026-09-30",
+          "time": "20:30h",
+          "venue": null,
+          "evidence": "30 Sep 20:30h — Pregón inaugural de las fiestas de San Francisco; Al finalizar, actuación de la Escuela Municipal de Folklore",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Recorrido histórico-artístico por el barrio conventual de San Francisco",
+          "date": "2026-10-01",
+          "time": "20:30h",
+          "venue": null,
+          "evidence": "01 Oct 20:30h — 45º edición del recorrido histórico-artístico por el barrio conventual de San Francisco",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "IX Edición de Espacio Abierto, “Encuentro de Cantautores”",
+          "date": "2026-10-02",
+          "time": "20:00h",
+          "venue": null,
+          "evidence": "02 Oct 20:00h — IX Edición de Espacio Abierto, “Encuentro de Cantautores”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Jazz Francisco: homenaje a Bebo",
+          "date": "2026-10-03",
+          "time": "20:30h",
+          "venue": null,
+          "evidence": "03 Oct 20:30h — Jazz Francisco Homenaje a Bebo",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Concierto de Covi Quintana “Oye eta Vaina”",
+          "date": "2026-10-04",
+          "time": "20:30h",
+          "venue": null,
+          "evidence": "04 Oct 20:30h — Concierto de Covi Quintana “Oye eta Vaina”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Solemne función religiosa en honor de San Francisco de Asís, seguida de procesión",
+          "date": "2026-10-04",
+          "time": "19:00h",
+          "venue": "Parroquia de San Juan Bautista; procesión hasta la iglesia de San Francisco",
+          "evidence": "04 Oct 19:00h — Solemne Función religiosa en la parroquia de San Juan Bautista",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3387,
+      "input_tokens_details": {
+        "cache_write_tokens": 3384,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1421,
+      "output_tokens_details": {
+        "reasoning_tokens": 785
+      },
+      "total_tokens": 4808
+    },
+    "measured_cost_usd": 0.0010492
   }
 }

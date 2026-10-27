@@ -4,47 +4,47 @@
   "no_auto_publication": true,
   "inspected": [
     {
-      "municipality": "Mogán",
+      "municipality": "Valsequillo",
       "outcome": "needs_review",
-      "error_type": "RuntimeError",
+      "error_type": "SSLError",
       "links": 0
     },
     {
-      "municipality": "Moya",
-      "outcome": "needs_review",
-      "error_type": "PermissionError",
-      "links": 0
-    },
-    {
-      "municipality": "San Bartolomé de Tirajana",
-      "outcome": "ok",
-      "links": 0
-    },
-    {
-      "municipality": "Santa Lucía de Tirajana",
+      "municipality": "Vega de San Mateo",
       "outcome": "ok",
       "links": 3
     },
     {
-      "municipality": "Santa María de Guía",
-      "outcome": "needs_review",
-      "error_type": "RuntimeError",
+      "municipality": "Agaete",
+      "outcome": "ok",
       "links": 0
     },
     {
-      "municipality": "Telde",
+      "municipality": "Artenara",
       "outcome": "ok",
-      "links": 11
-    },
-    {
-      "municipality": "Teror",
-      "outcome": "needs_review",
-      "error_type": "RuntimeError",
       "links": 0
     },
     {
-      "municipality": "Valleseco",
+      "municipality": "Firgas",
       "outcome": "ok",
+      "links": 4
+    },
+    {
+      "municipality": "Gáldar",
+      "outcome": "needs_review",
+      "error_type": "ReadTimeout",
+      "links": 0
+    },
+    {
+      "municipality": "La Aldea de San Nicolás",
+      "outcome": "needs_review",
+      "error_type": "SSLError",
+      "links": 0
+    },
+    {
+      "municipality": "Las Palmas de Gran Canaria",
+      "outcome": "needs_review",
+      "error_type": "RuntimeError",
       "links": 0
     }
   ],
@@ -63,7 +63,7 @@
     },
     "Gáldar": {
       "checked_on": "2026-10-27",
-      "outcome": "ok"
+      "outcome": "needs_review"
     },
     "La Aldea de San Nicolás": {
       "checked_on": "2026-10-27",
@@ -104,10 +104,45 @@
     "Valleseco": {
       "checked_on": "2026-10-27",
       "outcome": "ok"
+    },
+    "Valsequillo": {
+      "checked_on": "2026-10-27",
+      "outcome": "needs_review"
+    },
+    "Vega de San Mateo": {
+      "checked_on": "2026-10-27",
+      "outcome": "ok"
     }
   },
-  "candidate_count": 27,
+  "candidate_count": 30,
   "leads": [
+    {
+      "url": "https://vegadesanmateo.es/areas/patrimonio-cultural-e-historico",
+      "label": "Patrimonio Cultural e Histórico",
+      "kind": "unverified_official_link",
+      "municipality": "Vega de San Mateo",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://vegadesanmateo.es/areas/mercado-municipal",
+      "label": "Mercado Municipal",
+      "kind": "unverified_official_link",
+      "municipality": "Vega de San Mateo",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://vegadesanmateo.es/areas/ferias-y-eventos",
+      "label": "Ferias y Eventos",
+      "kind": "unverified_official_link",
+      "municipality": "Vega de San Mateo",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-10-27",
+      "publication_status": "not_an_event"
+    },
     {
       "url": "https://www.telde.es/tramites-presenciales/mercados/",
       "label": "Mercados",
@@ -317,7 +352,7 @@
     },
     {
       "url": "https://www.villadefirgas.es/firgas-celebra-el-19-de-septiembre-una-jornada-de-naturaleza-gastronomia-y-musica-con-motivo-del-dia-mundial-del-turismo/",
-      "label": "Leer más",
+      "label": "Firgas celebra el Día Mundial del Turismo con senderismo, gastronomía y música en la Plaza de San Roque",
       "kind": "unverified_official_link",
       "municipality": "Firgas",
       "first_seen": "2026-10-27",
@@ -326,7 +361,7 @@
     },
     {
       "url": "https://www.villadefirgas.es/events/taller-de-teatro/",
-      "label": "Read More",
+      "label": "TALLER DE TEATRO",
       "kind": "unverified_official_link",
       "municipality": "Firgas",
       "first_seen": "2026-10-27",
