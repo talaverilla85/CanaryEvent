@@ -26,6 +26,29 @@ def safe_same_program(a,b,norm):
     if is_known_venue(a.get("venue")) and is_known_venue(b.get("venue")):
         if norm(a["venue"])!=norm(b["venue"]):return False
     return True
+def same_verified_venue(a,b,norm,municipality):
+    """Strong venue match only; never infer that two different halls coincide."""
+    aa=norm(a or "")
+    bb=norm(b or "")
+    if not aa or not bb:return False
+    if aa==bb:return True
+    # The municipal Gáldar culture programme spells Guaires in the venue,
+    # whereas the Cabildo uses Guaire. Both refer to the same named centre.
+    if norm(municipality)==norm("Gáldar"):
+        aliases={norm("Centro Cultural Guaire"),norm("Centro Cultural Guaires")}
+        if {aa,bb}==aliases:return True
+    # A venue may include a *specific postal address* appended as a subtitle.
+    # Do not allow arbitrary prefix matches: they can be separate stages.
+    left=str(a or "").split(" · ",1)
+    right=str(b or "").split(" · ",1)
+    if len(left)>1 and norm(left[0])==bb and any(
+        x in norm(left[1]) for x in ("calle","avenida","carretera","plaza","numero")):
+        return True
+    if len(right)>1 and norm(right[0])==aa and any(
+        x in norm(right[1]) for x in ("calle","avenida","carretera","plaza","numero")):
+        return True
+    return False
+
 def score(e):
     return (
         int(is_clock(e.get("start")))*8+
@@ -59,4 +82,44 @@ def reconcile(events,norm):
                 winner=max((municipal,other),key=lambda e:(score(e),-int(e["id"])))
                 loser=other if winner is municipal else municipal
                 eliminated.add(loser["id"])
+    # Reconcile duplicate factual entries from *any* official pair or even
+    # duplicate indexed Cabildo URLs, but only when exact session times and
+    # named venues agree. This conservatively handles Juventud/Cabildo,
+    # official municipal event pages and double-indexed performances.
+    for group in groups.values():
+        remaining=[e for e in group if e["id"] not in eliminated]
+        if len(remaining)<2:continue
+        for i,a in enumerate(remaining):
+            if a["id"] in eliminated:continue
+            for b in remaining[i+1:]:
+                if b["id"] in eliminated:continue
+                if not (is_clock(a.get("start")) and is_clock(b.get("start"))):continue
+                if a["start"][11:16]!=b["start"][11:16]:continue
+                if not (is_known_venue(a.get("venue")) and is_known_venue(b.get("venue"))):
+                    continue
+                if not same_verified_venue(a["venue"],b["venue"],norm,a["municipality"]):
+                    continue
+                winner=max((a,b),key=lambda e:(score(e),-int(e["id"])))
+                eliminated.add(b["id"] if winner is a else a["id"])
+                if a["id"] in eliminated:break
+    # First-party Circuito de Artes Escénicas advertises the definitive hall
+    # and session time for its own productions. The Cabildo aggregator can
+    # repeat the same show with a wrong hall or an unknown time. Prefer the
+    # exact named organizer's event page; leave its Cabildo record in SQLite.
+    # Never apply this trust to unapproved domains or conflicting known hours.
+    for group in groups.values():
+        originals=[e for e in group
+                   if str(e.get("source_name") or "")=="Circuito de Artes Escénicas GC"
+                   and str(e.get("source_url") or "").startswith(
+                       "https://artesescenicasgrancanaria.com/evento-")
+                   and is_known_venue(e.get("venue")) and is_clock(e.get("start"))]
+        aggregates=[e for e in group
+                    if str(e.get("source_name") or "").startswith(CABILDO_PREFIX)]
+        for official in originals:
+            for aggregate in aggregates:
+                if official["id"] in eliminated or aggregate["id"] in eliminated:continue
+                if (is_clock(aggregate.get("start")) and
+                    aggregate["start"][11:16]!=official["start"][11:16]):
+                    continue
+                eliminated.add(aggregate["id"])
     return [e for e in events if e["id"] not in eliminated]

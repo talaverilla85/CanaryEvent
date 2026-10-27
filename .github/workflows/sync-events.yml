@@ -12,6 +12,7 @@ on:
       - "scripts/ulpgc_venue_facts.py"
       - "scripts/source_facts.py"
       - "scripts/venue_facts.py"
+      - "scripts/audit_source_health_gc.py"
       - "scripts/venue_quality.py"
       - "scripts/organizer_venues.py"
       - "scripts/ticket_reserva.py"
@@ -60,6 +61,8 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Obtener y verificar eventos oficiales
         run: python scripts/sync_events.py
+      - name: Auditar calidad de fichas y conectores
+        run: python scripts/audit_source_health_gc.py
       - name: Guardar base de datos y exportación
         shell: bash
         run: bash scripts/publish_synced_data.sh

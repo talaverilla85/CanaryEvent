@@ -14,7 +14,7 @@ PLACE_TYPE = (
     r"biblioteca|centro(?:\s+(?:cultural|de\s+arte|cívico|municipal|de\s+mayores))?"
     r"|casa(?:\s+(?:de\s+la\s+cultura|de\s+la\s+juventud|gourié))?"
     r"|museo|teatro|auditorio|sala|plaza|parque|pabellón|recinto"
-    r"|espacio|club|salón|estadio|colegio|instituto|universidad"
+    r"|espacio|club|salón|estadio|colegio|instituto|universidad|facultad|vestíbulo"
     r"|ermita|iglesia|local|polideportivo|anfiteatro|centro\s+de\s+interpretación"
 )
 TYPE_START = re.compile(r"^(?:" + PLACE_TYPE + r")\b", re.I)
@@ -28,10 +28,20 @@ CONTEXT = re.compile(
     r"(?:el|la|los|las)\s+[«“\"']?"
     r"((?:" + PLACE_TYPE + r")\b[^\n\r,;.!?]{3,110})", re.I
 )
+# An official description sometimes names a unique university hall as the
+# grammatical subject: "el vestíbulo de la Facultad de Veterinaria será el
+# escenario...". Require the strong event-venue phrase, not just a mention
+# of the university or its organizer.
+VENUE_SUBJECT = re.compile(
+    r"\b(?:el|la)\s+((?:vest[ií]bulo|sal[oó]n\s+de\s+actos|aula\s+magna)"
+    r"\s+de\s+(?:la|el)\s+(?:Facultad|Escuela|Universidad|Instituto)"
+    r"\s+de\s+[^,.;!?]{4,100}?)\s+ser[áa]\s+el\s+escenario\b",
+    re.I,
+)
 BREAK = re.compile(
     r"\s+(?:Información|Inscripción|Inscripciones|Horario|Horarios|Precio|Entradas|Contacto"
     r"|Teléfono|Aforo|Reservas|Fecha|Más\s+información|Organiza|Organizador|Elige|Grupo\s+\d+)\s*[:\-]?"
-    r"|\s+(?:donde|durante|para|contaremos|tendremos|que\s+se|con\s+una|con\s+el|con\s+la|o\s+llamando)\b",
+    r"|\s+(?:donde|durante|para|contaremos|tendremos|habr[áa]|acoger[áa]|será\s+el\s+escenario|será\s+la\s+sede|que\s+se|con\s+una|con\s+el|con\s+la|o\s+llamando)\b",
     re.I,
 )
 GENERIC = {"centro", "biblioteca", "museo", "teatro", "casa", "plaza", "parque",
@@ -88,7 +98,11 @@ def from_description(description,municipality):
     for match in CONTEXT.finditer(text):
         candidate=_clean(match.group(1),municipality)
         if candidate:contextual.append(candidate)
-    all_names=direct+contextual
+    subject=[]
+    for match in VENUE_SUBJECT.finditer(text):
+        candidate=_clean(match.group(1),municipality)
+        if candidate:subject.append(candidate)
+    all_names=direct+contextual+subject
     unique={normalize(v):v for v in all_names}
     if len(unique)>1:return ""
     if not unique:return ""

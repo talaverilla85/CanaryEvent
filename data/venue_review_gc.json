@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-27T14:58:22+00:00",
-  "not_published": 143,
+  "updated_at": "2026-10-27T15:23:42+00:00",
+  "not_published": 141,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -436,18 +436,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 73,
-      "title": "Musicampus. Actuación del coro Schola Cantorum ULPGC en Veterinaria",
-      "start": "2026-10-28T12:30:00",
-      "end": null,
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0001/musicampus-actuacion-del-coro-schola-cantorum-ulpgc-en-veterinaria",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/10/28/musicampus-actuacion-del-coro-schola-cantorum-ulpgc-veterinaria",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 75,
       "title": "Curso básico de cocina canaria saludable",
       "start": "2026-10-28T19:30:00",
@@ -613,18 +601,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0043/clasicos-en-vegueta-la-muerte-en-verso",
       "organizer_url": "https://lpacultura.com/events/clasicos-en-vegueta-la-muerte-en-verso",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 218,
-      "title": "LA BARRACA de Vicente Blasco Ibáñez",
-      "start": "2026-10-30",
-      "end": "2026-10-31",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0023/la-barraca-de-vicente-blasco-ibanez",
-      "organizer_url": "https://salainsulardeteatro.com/evento-769-la-barraca-de.html",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {

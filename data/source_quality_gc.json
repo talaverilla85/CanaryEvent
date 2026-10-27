@@ -1,0 +1,426 @@
+{
+  "checked_at": "2026-10-27T15:23:42+00:00",
+  "quality_counts": {
+    "publicados": 394,
+    "recintos_sin_verificar": 141,
+    "programas_y_fichas_por_revisar": 13,
+    "precios_sin_confirmar": 255,
+    "distancia_a_centro_municipal": 394,
+    "fuentes_con_error": 0,
+    "duplicados_potenciales": 0
+  },
+  "sources": [
+    {
+      "source": "Ayuntamiento de Ingenio",
+      "estado": "operativa",
+      "publicados": 11,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 6,
+      "distancia_al_centro_municipal": 11,
+      "fichas_leidas_en_esta_ejecucion": 11,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Agüimes",
+      "estado": "operativa",
+      "publicados": 1,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 1,
+      "error": ""
+    },
+    {
+      "source": "Juventud Las Palmas de Gran Canaria",
+      "estado": "operativa",
+      "publicados": 12,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 12,
+      "fichas_leidas_en_esta_ejecucion": 12,
+      "error": ""
+    },
+    {
+      "source": "Circuito de Artes Escénicas GC",
+      "estado": "operativa",
+      "publicados": 4,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 4,
+      "distancia_al_centro_municipal": 4,
+      "fichas_leidas_en_esta_ejecucion": 4,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
+      "estado": "operativa",
+      "publicados": 0,
+      "recinto_sin_verificar": 4,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 5,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Arucas · agenda municipal",
+      "estado": "operativa",
+      "publicados": 1,
+      "recinto_sin_verificar": 5,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 12,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Gáldar · agenda de Cultura",
+      "estado": "operativa",
+      "publicados": 0,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 2,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Tejeda · agenda oficial",
+      "estado": "operativa",
+      "publicados": 5,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 4,
+      "distancia_al_centro_municipal": 5,
+      "fichas_leidas_en_esta_ejecucion": 5,
+      "error": ""
+    },
+    {
+      "source": "Mancomunidad de Medianías · Alma de Medianías en Valsequillo",
+      "estado": "operativa",
+      "publicados": 2,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 2,
+      "fichas_leidas_en_esta_ejecucion": 2,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Artenara · ferias tradicionales 2026",
+      "estado": "operativa",
+      "publicados": 0,
+      "recinto_sin_verificar": 1,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 2,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "estado": "operativa",
+      "publicados": 12,
+      "recinto_sin_verificar": 3,
+      "precio_sin_confirmar": 12,
+      "distancia_al_centro_municipal": 12,
+      "fichas_leidas_en_esta_ejecucion": 19,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Teror · programación del Auditorio",
+      "estado": "operativa",
+      "publicados": 14,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 4,
+      "distancia_al_centro_municipal": 14,
+      "fichas_leidas_en_esta_ejecucion": 14,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
+      "estado": "operativa",
+      "publicados": 8,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 7,
+      "distancia_al_centro_municipal": 8,
+      "fichas_leidas_en_esta_ejecucion": 8,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Telde · índice de programas PDF",
+      "estado": "inventario_documental_no_desglosado",
+      "publicados": 0,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": ""
+    },
+    {
+      "source": "Juventud de Ingenio · programa de otoño desglosado",
+      "estado": "operativa",
+      "publicados": 1,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 1,
+      "error": ""
+    },
+    {
+      "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "estado": "al_dia_sin_fichas_pendientes",
+      "publicados": 257,
+      "recinto_sin_verificar": 128,
+      "precio_sin_confirmar": 215,
+      "distancia_al_centro_municipal": 257,
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": ""
+    },
+    {
+      "source": "TuReservaOnline · agenda de Gran Canaria",
+      "estado": "operativa",
+      "publicados": 66,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 66,
+      "fichas_leidas_en_esta_ejecucion": 117,
+      "error": ""
+    },
+    {
+      "source": "Recintos · fichas oficiales de organizadores",
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 0,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": ""
+    }
+  ],
+  "reported_errors": [],
+  "missing_venue_by_source": [
+    {
+      "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "count": 128
+    },
+    {
+      "source": "Ayuntamiento de Arucas · agenda municipal",
+      "count": 5
+    },
+    {
+      "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
+      "count": 4
+    },
+    {
+      "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "count": 3
+    },
+    {
+      "source": "Ayuntamiento de Artenara · ferias tradicionales 2026",
+      "count": 1
+    }
+  ],
+  "upcoming_venue_review": [
+    {
+      "id": 539,
+      "title": "Yoga Terapéutico para mujeres",
+      "start": "2026-02-25",
+      "municipality": "Santa Brígida",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/yoga-terapeutico-para-mujeres/"
+    },
+    {
+      "id": 355,
+      "title": "𝐓𝐀𝐋𝐋𝐄𝐑 𝐃𝐄 𝐄𝐒𝐂𝐑𝐈𝐓𝐔𝐑𝐀 𝐂𝐎𝐍 𝐒𝐀𝐍𝐓𝐈𝐀𝐆𝐎 𝐆𝐈𝐋",
+      "start": "2026-09-11",
+      "municipality": "Mogán",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20260911-0004/evento"
+    },
+    {
+      "id": 337,
+      "title": "Exposición temporal: `Arqueología de las plantas: una mirada al registro arqueológico invisible´",
+      "start": "2026-09-18",
+      "municipality": "Gáldar",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20260918-0016/exposicion-temporal-arqueologia-de-las-plantas-una-mirada-al-registro-arqueologico-invisible"
+    },
+    {
+      "id": 313,
+      "title": "Taller: `Parabere una novela desmenuzada´ de Andrea Cabrera Kñallisky",
+      "start": "2026-09-21",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20260921-0005/taller-parabere-una-novela-desmenuzada-de-andrea-cabrera-knallisky"
+    },
+    {
+      "id": 309,
+      "title": "Laboratorio de Innovación Social Feminista",
+      "start": "2026-09-23",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20260923-0012/laboratorio-de-innovacion-social-feminista"
+    },
+    {
+      "id": 298,
+      "title": "II Campeonato de Envite Pal’ Pie Villa de Firgas",
+      "start": "2026-09-25",
+      "municipality": "Firgas",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20260925-0010/ii-campeonato-de-envite-pal-pie-villa-de-firgas"
+    },
+    {
+      "id": 265,
+      "title": "ESCUELA DE SALUD - MARTES",
+      "start": "2026-09-29",
+      "municipality": "Arucas",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20260929-0004/escuela-de-salud-martes"
+    },
+    {
+      "id": 259,
+      "title": "Costura Creativa",
+      "start": "2026-09-30",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20260930-0003/costura-creativa"
+    },
+    {
+      "id": 260,
+      "title": "ARTE EN FEMENINO",
+      "start": "2026-09-30",
+      "municipality": "Arucas",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20260930-0007/arte-en-femenino"
+    },
+    {
+      "id": 253,
+      "title": "XVIII Curso de Lenguaje Silbado",
+      "start": "2026-10-01",
+      "municipality": "La Aldea de San Nicolás",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261001-0006/xviii-curso-de-lenguaje-silbado"
+    },
+    {
+      "id": 254,
+      "title": "Un paseo de los colores en la isla de Gran Canaria",
+      "start": "2026-10-01",
+      "municipality": "San Bartolomé de Tirajana",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261001-0007/un-paseo-de-los-colores-en-la-isla-de-gran-canaria"
+    },
+    {
+      "id": 255,
+      "title": "La Relentada 2026",
+      "start": "2026-10-01",
+      "municipality": "Agüimes",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261001-0015/la-relentada-2026"
+    },
+    {
+      "id": 256,
+      "title": "África: La fuerza escondida",
+      "start": "2026-10-01",
+      "municipality": "Telde",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261001-0033/africa-la-fuerza-escondida"
+    },
+    {
+      "id": 257,
+      "title": "Costura Creativa",
+      "start": "2026-10-01",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261001-0035/costura-creativa"
+    },
+    {
+      "id": 193,
+      "title": "Cursos de formación especializada",
+      "start": "2026-10-06",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261006-0005/cursos-de-formacion-especializada"
+    },
+    {
+      "id": 181,
+      "title": "Oliva Lara. Último pintor indigenista americano",
+      "start": "2026-10-09",
+      "municipality": "Gáldar",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0036/oliva-lara-ultimo-pintor-indigenista-americano"
+    },
+    {
+      "id": 182,
+      "title": "Geometría - Theometría",
+      "start": "2026-10-09",
+      "municipality": "Arucas",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0037/geometria-theometria"
+    },
+    {
+      "id": 183,
+      "title": "Paqui Álvarez Monzón presenta «Donde el tiempo se detiene» en las Casas Consistoriales",
+      "start": "2026-10-09",
+      "municipality": "Telde",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0039/paqui-alvarez-monzon-presenta-donde-el-tiempo-se-detiene-en-las-casas-consistoriales"
+    },
+    {
+      "id": 160,
+      "title": "XXXI FESTIVAL INTERNACIONAL DE FOLKLORE",
+      "start": "2026-10-10",
+      "municipality": "Ingenio",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261010-0002/xxxi-festival-internacional-de-folklore"
+    },
+    {
+      "id": 137,
+      "title": "Charla + sesión de videojuegos: El Belingo club de videojuegos",
+      "start": "2026-10-14",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261014-0010/charla-sesion-de-videojuegos-el-belingo-club-de-videojuegos"
+    },
+    {
+      "id": 544,
+      "title": "«TALLER DE SOMBRERERÍA ARTESANAL EN FIELTRO»",
+      "start": "2026-10-14",
+      "municipality": "Santa Brígida",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/taller-de-sombrereria-artesanal-en-fieltro/"
+    },
+    {
+      "id": 130,
+      "title": "Charlas del Plan Mayor: Consejos de seguridad para mayores",
+      "start": "2026-10-15",
+      "municipality": "San Bartolomé de Tirajana",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0015/charlas-del-plan-mayor-consejos-de-seguridad-para-mayores"
+    },
+    {
+      "id": 133,
+      "title": "Talleres: `La palabra encendida´ Programa de mediación y creación cultural",
+      "start": "2026-10-15",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0020/talleres-la-palabra-encendida-programa-de-mediacion-y-creacion-cultural"
+    },
+    {
+      "id": 134,
+      "title": "Exposición fotográfica: Barreras de la visión de Tim Parchikov",
+      "start": "2026-10-15",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0023/exposicion-fotografica-barreras-de-la-vision-de-tim-parchikov"
+    },
+    {
+      "id": 110,
+      "title": "Frontón King 2026",
+      "start": "2026-10-17",
+      "municipality": "Gáldar",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261017-0017/fronton-king-2026"
+    }
+  ],
+  "guidance": [
+    "Un found=0 no implica necesariamente una fuente rota; comprobar scanned/due_urls/skipped_recent.",
+    "Una actividad sin precio confirmado no debe tratarse automáticamente como gratuita.",
+    "Las distancias marcadas municipality indican el centro del municipio, no el recinto exacto.",
+    "Los eventos sin recinto confirmado permanecen en revisión; no atribuirles un lugar supuesto.",
+    "Una coincidencia de título, día y municipio no prueba duplicidad si existen varias sesiones."
+  ]
+}

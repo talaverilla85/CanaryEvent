@@ -388,3 +388,25 @@ la ficha próxima del 27/10 utiliza su horario real y no el cierre como
 hora de comienzo. Las demás campañas sin inicio confirmado mantienen
 solo la fecha, no una hora supuesta. La corrección se aplica en cada
 extracción incremental del Cabildo, sin interrumpir las demás fuentes.
+
+
+### Auditoría automática de calidad (Gran Canaria)
+
+Cada sincronización ejecuta scripts/audit_source_health_gc.py y guarda
+data/source_quality_gc.json, con métricas por fuente, recintos aún sin
+verificar, precios desconocidos, programas pendientes y coincidencias
+potencialmente duplicadas. Los errores de red y parser se diferencian
+expresamente de las fuentes sanas que no tenían eventos nuevos.
+
+Los eventos con recinto desconocido permanecen en
+data/venue_review_gc.json y NO se presentan como ubicaciones verificadas.
+El parser extrae lugares únicamente cuando hay una mención clara en la
+información oficial, nunca por mera semejanza de nombres.
+Los nombres de recintos conocidos no implican que sus coordenadas estén
+verificadas: las distancias se calculan a centros de municipio
+si accuracy=municipality.
+
+La deduplicación del catálogo combina anuncios de fuentes oficiales
+cuando título, municipio, fecha, hora y recinto coinciden. Un caso de
+recintos contradictorios se conserva para revisión humana. Las fuentes
+originales siguen registradas en SQLite.
