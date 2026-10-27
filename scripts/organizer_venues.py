@@ -19,6 +19,7 @@ import requests
 from bs4 import BeautifulSoup
 import venue_facts
 import venue_quality
+import structured_organizer_venues
 
 NAME="Recintos · fichas oficiales de organizadores"
 USER_AGENT="CanaryEventBot/0.1 (+https://github.com/talaverilla85/CanaryEvent)"
@@ -29,9 +30,11 @@ HOSTS={
     "actividadesjuventud.laspalmasgc.es", "ingenio.es", "eventos.santabrigida.es",
     "arucas.org", "salainsulardeteatro.com", "cultura.icdcultural.org",
     "galdar.es", "teatroguiniguada.es",
+    "ofgrancanaria.com", "casafrica.es",
 }
 MAX_PAGES=24
 CACHE_DAYS=5
+PARSER_VERSION='structured-venues-2026-10-27-v1'
 LABEL=re.compile(
     r"(?<!\w)(?:Lugar|Localizaci[oó]n|Ubicaci[oó]n|Recinto)\s*:?\s*"
     r"((?:biblioteca|casa|centro|teatro|museo|sala|auditorio|cine|"
@@ -165,6 +168,11 @@ def enrich(conn,now,today,client=requests,max_pages=MAX_PAGES,sleep=time.sleep):
     conn.execute("""CREATE TABLE IF NOT EXISTS organizer_venue_checks(
         url TEXT PRIMARY KEY, checked_at TEXT NOT NULL,
         result TEXT NOT NULL, venue TEXT NOT NULL DEFAULT '')""")
+    # Re-evaluate negative historical checks after any parser update,
+    # while preserving the five-day cache for already checked URLs.
+    columns={x[1] for x in conn.execute("PRAGMA table_info(organizer_venue_checks)")}
+    if "parser_version" not in columns:
+        conn.execute("ALTER TABLE organizer_venue_checks ADD COLUMN parser_version TEXT NOT NULL DEFAULT ''")
     # Select only genuinely missing venues in ongoing/upcoming events.
     all_rows=conn.execute("""SELECT id,title,municipality,venue,organizer_url,start,
                            COALESCE("end",start) AS finish
@@ -175,31 +183,53 @@ def enrich(conn,now,today,client=requests,max_pages=MAX_PAGES,sleep=time.sleep):
         LIMIT 2000""",(today.isoformat(),today.isoformat(),today.isoformat())).fetchall()
     rows=[row for row in all_rows if not venue_quality.named_venue(dict(row))]
     check_cache={}
+    page_cache={}  # Only same-run official program pages; never browser storage.
     checked=updated=skipped_cache=eligible=0
     errors=[]
     for event in rows:
         url=valid_url(event["organizer_url"])
         if not url:continue
         eligible+=1
-        old=conn.execute("SELECT checked_at,result,venue FROM organizer_venue_checks WHERE url=?",(url,)).fetchone()
+        old=conn.execute("SELECT checked_at,result,venue,parser_version FROM organizer_venue_checks WHERE url=?",(url,)).fetchone()
         if old:
             # Cached successes may enrich another event sharing the same URL
             # only when its title also matches; no blind cross-event assignment.
             try:age=(dt.datetime.fromisoformat(now)-dt.datetime.fromisoformat(old[0])).total_seconds()
             except (ValueError,TypeError):age=10**9
-            if age<CACHE_DAYS*86400:
+            if (urlsplit(url).hostname.removeprefix("www.") not in
+                structured_organizer_venues.SUPPORTED_HOSTS and
+                age<CACHE_DAYS*86400 and old[3]==PARSER_VERSION):
                 skipped_cache+=1
                 continue
-        if checked>=max_pages:break
+        cached_page=url in page_cache
+        if checked>=max_pages and not cached_page:break
         host=urlsplit(url).hostname.lower()
         try:
-            # Check robots policy for the exact organizer site before reading.
-            if not _robots(client,host,check_cache,url):raise PermissionError("robots disallow organizer event")
-            r=client.get(url,headers=HEADERS,timeout=18,allow_redirects=False)
-            if r.status_code!=200:raise RuntimeError("organizer HTTP "+str(r.status_code))
-            if len(r.content)>1_200_000 or "html" not in r.headers.get("content-type","text/html"):
-                raise ValueError("unexpected organizer document")
-            candidate=parse_official(BeautifulSoup(r.content,"html.parser"),event["title"],event["municipality"])
+            if cached_page:
+                soup=page_cache[url]
+            else:
+                # Check robots policy before requesting an organizer document.
+                if not _robots(client,host,check_cache,url):raise PermissionError("robots disallow organizer event")
+                r=client.get(url,headers=HEADERS,timeout=18,allow_redirects=False)
+                if r.status_code!=200:raise RuntimeError("organizer HTTP "+str(r.status_code))
+                if len(r.content)>1_200_000 or "html" not in r.headers.get("content-type","text/html"):
+                    raise ValueError("unexpected organizer document")
+                soup=BeautifulSoup(r.content,"html.parser")
+                if structured_organizer_venues.host_of(url) in structured_organizer_venues.SUPPORTED_HOSTS:
+                    page_cache[url]=soup
+            if not title_matches(soup,event["title"]):
+                candidate=""
+            else:
+                candidate=structured_organizer_venues.extract(
+                    soup,url,event["municipality"],event["start"][:10],
+                    event["start"][11:16] if len(event["start"])>=16 else ""
+                ) or parse_official(soup,event["title"],event["municipality"])
+            if re.search(r"\b\d{1,3}\.\d{5,}",candidate):
+                candidate=""
+            if candidate and not structured_organizer_venues.municipality_consistent(
+                soup,url,event["municipality"],candidate
+            ):
+                candidate=""
             outcome="verified" if candidate else "no_unambiguous_venue"
             if candidate:
                 conn.execute("""UPDATE events SET venue=?,updated_at=? WHERE id=?""",
@@ -209,12 +239,14 @@ def enrich(conn,now,today,client=requests,max_pages=MAX_PAGES,sleep=time.sleep):
             outcome=type(exc).__name__
             candidate=""
             if len(errors)<6:errors.append(str(exc)[:90])
-        conn.execute("""INSERT INTO organizer_venue_checks(url,checked_at,result,venue)
-              VALUES(?,?,?,?) ON CONFLICT(url) DO UPDATE SET
-              checked_at=excluded.checked_at,result=excluded.result,venue=excluded.venue""",
-              (url,now,outcome,candidate))
-        checked+=1
-        sleep(0.35)
+        conn.execute("""INSERT INTO organizer_venue_checks(url,checked_at,result,venue,parser_version)
+              VALUES(?,?,?,?,?) ON CONFLICT(url) DO UPDATE SET
+              checked_at=excluded.checked_at,result=excluded.result,
+              venue=excluded.venue,parser_version=excluded.parser_version""",
+              (url,now,outcome,candidate,PARSER_VERSION))
+        if not cached_page:
+            checked+=1
+            sleep(0.35)
     conn.commit()
     return {"source":NAME,"checked_at":now,"found":checked,
             "added":0,"changed":updated,"verified_venues":updated,

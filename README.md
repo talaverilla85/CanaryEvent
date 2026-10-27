@@ -479,3 +479,20 @@ No se aplican coincidencias difusas, ni se inventan recintos.
 La distancia del usuario continúa basándose en el punto preciso del recinto
 para los siete recintos cartografiados y, en los demás casos publicados, en
 el centro aproximado del municipio. Nunca es distancia de conducción.
+
+
+### Comprobación automatizada de recintos a partir del organizador (27 oct 2026)
+
+La cola data/venue_review_gc.json contiene fichas con recinto sin
+verificar y no publicadas. El segundo contraste organizer_venues.py
+admite páginas individuales de una lista explícita de organizadores.
+structured_organizer_venues.py comprueba sala por fecha y sesión
+de OFGC, lugar con vínculo oficial de LPA Cultura y campo Lugar:
+de Casa África. Los nombres de recinto requieren coincidencia del
+título y compatibilidad municipal; un evento de Agüimes, Madrid o
+París no puede aparecer como localizado en Las Palmas de Gran Canaria.
+
+Cada página de un mismo programa se consulta una vez en cada ejecución
+y se comprueba para cada fecha individual. ULPGC queda fuera del rastreo
+automatizado por su robots.txt restrictivo. La actualización diaria
+contrasta las nuevas páginas y solo publica recintos verificados.
