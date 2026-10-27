@@ -462,3 +462,20 @@ coordenadas se revisan también. Se conservan los IDs de los eventos.
 Las actividades sin recinto identificable siguen pendientes de contraste con
 los organizadores. No se fabrican ubicaciones ni se publican como planes
 completos aquellas que no cumplen la política de calidad.
+
+
+### Cola de recintos pendientes: corroboración entre fuentes
+
+La cola data/venue_review_gc.json contenía 149 fichas en la revisión del
+27/10/2026, no publicadas hasta identificar su recinto. El módulo
+scripts/cross_source_venue_facts.py comprueba cada sincronización si otra
+fuente independiente publica el mismo título, mismo municipio y mismo día.
+Solo recupera un lugar cuando existe exactamente una opción específica y
+no hay conflicto de horario o recinto. La prueba inicial identifica dos
+recintos confirmables de esa cola; tres coincidencias ambiguas se mantienen
+pendientes. Los demás casos siguen pendientes de consulta al organizador.
+No se aplican coincidencias difusas, ni se inventan recintos.
+
+La distancia del usuario continúa basándose en el punto preciso del recinto
+para los siete recintos cartografiados y, en los demás casos publicados, en
+el centro aproximado del municipio. Nunca es distancia de conducción.

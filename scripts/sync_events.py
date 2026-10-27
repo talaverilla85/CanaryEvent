@@ -21,6 +21,7 @@ import artes_details
 import cabildo_public
 import ulpgc_venue_facts
 import verified_venue_coordinates
+import cross_source_venue_facts
 import ticket_reserva
 import ticket_recent
 import santalucia_festivals
@@ -728,6 +729,12 @@ def run():
                           "found":0,"added":0,"changed":0,"error":str(exc)[:250]}
         results.append(venue_result)
         print(f"Organizer venue checks: {venue_result.get('found',0)} updated={venue_result.get('changed',0)} error={venue_result.get('error','')[:100]}")
+        # Secondary source confirmation salvages event locations when the
+        # aggregator lacks a venue but a municipality has independently
+        # published the exact same event on the same date.
+        confirmed_cross_venues=cross_source_venue_facts.enrich(conn,NOW,TODAY)
+        if confirmed_cross_venues["verified"]:
+            print(f"Cross-source event places confirmed: {confirmed_cross_venues}")
         location_changes=verified_venue_coordinates.backfill(conn,PLACES)
         conn.commit()
         print(f"Verified venue coordinates refreshed for {location_changes} events")
