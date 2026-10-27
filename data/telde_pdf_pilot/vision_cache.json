@@ -686,5 +686,202 @@
       "total_tokens": 3634
     },
     "measured_cost_usd": 0.0010326
+  },
+  "9c649c6cb7e63fd1530dbe48c0426d2699c69c15db8e569976ec59121a389a66/2/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Misa por los difuntos del barrio",
+          "date": "2026-09-09",
+          "time": "18:00",
+          "venue": null,
+          "evidence": "MIÉRCOLES 09 SEPTIEMBRE — 18:00 h. Misa por los difuntos del barrio.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Merienda de personas mayores del barrio, amenizada por el grupo Nuevo Ritmo, con homenaje a una persona destacada del barrio",
+          "date": "2026-09-09",
+          "time": "19:00",
+          "venue": null,
+          "evidence": "MIÉRCOLES 09 SEPTIEMBRE — 19:00 h. Merienda personas mayores de nuestro barrio, amenizada por el grupo Nuevo Ritmo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "Sesión de Chi Kung impartida por Clara Monzón Cabrera",
+          "date": "2026-09-10",
+          "time": "18:00",
+          "venue": null,
+          "evidence": "JUEVES 10 SEPTIEMBRE — 18:00 h. Sesión de Chi Kung, impartida por Clara Monzón Cabrera.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Charla coloquio a cargo de los médicos del barrio",
+          "date": "2026-09-10",
+          "time": "19:00",
+          "venue": null,
+          "evidence": "JUEVES 10 SEPTIEMBRE — 19:00 h. Charla Coloquio a cargo de los médicos del barrio",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Jornada de salud capilar",
+          "date": "2026-09-11",
+          "time": "17:00",
+          "venue": null,
+          "evidence": "VIERNES 11 SEPTIEMBRE — 17:00 h. Jornada de salud capilar",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Atardecer con Valdecasas: III Fiesta Blanca",
+          "date": "2026-09-11",
+          "time": "19:00–02:00",
+          "venue": null,
+          "evidence": "VIERNES 11 SEPTIEMBRE — 19:00 a 02:00 h. Atardecer con Valdecasas III Fiesta Blanca",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Mercadillo con actividades infantiles y música",
+          "date": "2026-09-12",
+          "time": "10:00–18:00",
+          "venue": "Plaza del barrio",
+          "evidence": "SÁBADO 12 SEPTIEMBRE — 10:00 a 18:00 h. “Mercadillo” en la plaza del barrio.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "Romería",
+          "date": "2026-09-12",
+          "time": "19:30",
+          "venue": null,
+          "evidence": "SÁBADO 12 SEPTIEMBRE — 19:30 h. Romería.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Parrandeando entre mesas, actuación de la Parranda Beletén",
+          "date": "2026-09-12",
+          "time": "22:00",
+          "venue": null,
+          "evidence": "SÁBADO 12 SEPTIEMBRE — 22:00 h. Parrandeando entre mesas (actuación de la Parranda Beletén).",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Concierto de 5cobertura",
+          "date": "2026-09-12",
+          "time": "00:00",
+          "venue": null,
+          "evidence": "SÁBADO 12 SEPTIEMBRE — 00:00 h. Concierto de 5cobertura.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Misa-Procesión al Santo Patrón San Venancio, acompañada por la Banda Municipal de Telde",
+          "date": "2026-09-13",
+          "time": "17:00",
+          "venue": null,
+          "evidence": "DOMINGO 13 SEPTIEMBRE — 17:00 h. Misa-Procesión al Santo Patrón San Venancio",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Acto fin de fiestas: Scala en Hifi adultos",
+          "date": "2026-09-13",
+          "time": "19:30",
+          "venue": null,
+          "evidence": "DOMINGO 13 SEPTIEMBRE — 19:30 h. Acto fin de fiestas. Scala en Hifi adultos",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 1964,
+      "input_tokens_details": {
+        "cache_write_tokens": 1961,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1393,
+      "output_tokens_details": {
+        "reasoning_tokens": 360
+      },
+      "total_tokens": 3357
+    },
+    "measured_cost_usd": 0.0008929
+  },
+  "0f3a936c3b4b736e6e7e2a6afa873e0b7b0fb8af81bef873a2cea01df5b096dd/0/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3402,
+      "input_tokens_details": {
+        "cache_write_tokens": 3399,
+        "cached_tokens": 0
+      },
+      "output_tokens": 47,
+      "output_tokens_details": {
+        "reasoning_tokens": 25
+      },
+      "total_tokens": 3449
+    },
+    "measured_cost_usd": 0.0003637
+  },
+  "0f3a936c3b4b736e6e7e2a6afa873e0b7b0fb8af81bef873a2cea01df5b096dd/1/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3402,
+      "input_tokens_details": {
+        "cache_write_tokens": 3399,
+        "cached_tokens": 0
+      },
+      "output_tokens": 67,
+      "output_tokens_details": {
+        "reasoning_tokens": 45
+      },
+      "total_tokens": 3469
+    },
+    "measured_cost_usd": 0.0003737
+  },
+  "0f3a936c3b4b736e6e7e2a6afa873e0b7b0fb8af81bef873a2cea01df5b096dd/2/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3402,
+      "input_tokens_details": {
+        "cache_write_tokens": 3399,
+        "cached_tokens": 0
+      },
+      "output_tokens": 56,
+      "output_tokens_details": {
+        "reasoning_tokens": 34
+      },
+      "total_tokens": 3458
+    },
+    "measured_cost_usd": 0.0003682
   }
 }

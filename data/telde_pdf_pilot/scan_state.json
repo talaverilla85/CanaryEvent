@@ -33,5 +33,27 @@
     ],
     "complete": false,
     "checked_at": "2026-10-27"
+  },
+  "ba2c79d07839ce40": {
+    "sha": "9c649c6cb7e63fd1530dbe48c0426d2699c69c15db8e569976ec59121a389a66",
+    "done_pages": [
+      0,
+      1,
+      2
+    ],
+    "complete": false,
+    "checked_at": "2026-10-27",
+    "defer_until": "2026-11-03",
+    "defer_reason": "only_old_acts_seen_so_far_unread_pages_remain"
+  },
+  "85dc87d2aa51309a": {
+    "sha": "0f3a936c3b4b736e6e7e2a6afa873e0b7b0fb8af81bef873a2cea01df5b096dd",
+    "done_pages": [
+      0,
+      1,
+      2
+    ],
+    "complete": false,
+    "checked_at": "2026-10-27"
   }
 }

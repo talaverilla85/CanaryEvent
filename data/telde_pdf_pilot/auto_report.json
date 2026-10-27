@@ -1,21 +1,94 @@
 {
-  "checked_at": "2026-10-27T22:54:35.199470+00:00",
-  "mode": "archive_only",
+  "checked_at": "2026-10-27T23:08:38.711101+00:00",
+  "mode": "api_fallback",
   "model": "gpt-6-luna",
-  "api_key_configured": false,
-  "api_calls": 0,
-  "usage_usd": 0.0,
-  "docs": [],
-  "deferred_docs": [
+  "api_key_configured": true,
+  "api_calls": 4,
+  "usage_usd": 0.0019985,
+  "docs": [
     {
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/10/caseronesaltos26.pdf",
-      "reason": "past_only_cooldown",
-      "resume_on": "2026-11-03"
+      "name": "Fiestas patronales en honor a San Venancio en el barrio de Casas Nuevas",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/casasnuevas26.pdf",
+      "sha256": "9c649c6cb7e63fd1530dbe48c0426d2699c69c15db8e569976ec59121a389a66",
+      "pages": 4,
+      "bytes": 2054952,
+      "inspected": [
+        {
+          "page": 1,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "status": "cached",
+          "candidates_pending_review": 0
+        },
+        {
+          "page": 2,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "status": "cached",
+          "candidates_pending_review": 14,
+          "verification": "expired_acts_no_second_api_pass"
+        },
+        {
+          "page": 3,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "render_size": [
+            923,
+            1310
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 10,
+          "verification": "expired_acts_no_second_api_pass"
+        }
+      ]
+    },
+    {
+      "name": "Fiestas en honor a San Francisco de Asís, Nuestra Señora del Rosario y San Isidro Labrador en el barrio de Cazadores",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/cazadores26.pdf",
+      "sha256": "0f3a936c3b4b736e6e7e2a6afa873e0b7b0fb8af81bef873a2cea01df5b096dd",
+      "pages": 7,
+      "bytes": 1696592,
+      "inspected": [
+        {
+          "page": 1,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 0
+        },
+        {
+          "page": 2,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 0
+        },
+        {
+          "page": 3,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 0
+        }
+      ]
     }
   ],
+  "deferred_docs": [],
   "pending_review_count": 0,
   "auto_verified_count": 0,
-  "archived_count": 16,
-  "archived_this_run": 16,
+  "archived_count": 40,
+  "archived_this_run": 24,
   "notes": "Future events require independent date, time and venue verification. Expired records move to the historic archive; incomplete past-only PDFs are temporarily deferred."
 }
