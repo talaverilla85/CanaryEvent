@@ -161,17 +161,27 @@
     }
   ],
   "counts": {
-    "approved": 395,
-    "candidate_events": 537,
-    "excluded_missing_venue": 142,
+    "approved": 433,
+    "candidate_events": 556,
+    "excluded_missing_venue": 149,
     "pending": 0,
     "needs_review": 13,
     "archived_or_expired": 73,
     "cancelled": 0,
-    "prices_confirmed": 140,
-    "prices_to_verify": 255,
-    "venues_to_verify": 142,
-    "venues_verified": 395
+    "prices_confirmed": 148,
+    "prices_to_verify": 285,
+    "venues_to_verify": 149,
+    "venues_verified": 433,
+    "verified_source_events_before_daily_projection": 407
   },
-  "description": "Actualización programada de fuentes oficiales. Un cambio o cancelación solo se afirma cuando está explícitamente indicado."
+  "description": "Actualización programada de fuentes oficiales. Un cambio o cancelación solo se afirma cuando está explícitamente indicado.",
+  "occurrences": {
+    "raw_events": 407,
+    "daily_cards": 446,
+    "short_ranges_expanded": 32,
+    "extra_daily_cards": 39,
+    "long_ranges_preserved": 63,
+    "post_dedup_cards": 433
+  },
+  "export_rebuilt_at": "2026-10-27T15:40:56+00:00"
 }

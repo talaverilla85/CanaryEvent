@@ -33,6 +33,7 @@ import valsequillo_medianias
 import tejeda_agenda
 import telde_barrio_programs
 import municipal_listing_dedup
+import event_occurrences
 import program_quality
 import venue_quality
 import organizer_venues
@@ -733,10 +734,20 @@ def run():
                                   "free","price","details","lat","lng","accuracy","source_name","source_url",
                                   "image_url","image_alt","image_origin","image_status","organizer_url")}
             events.append(ulpgc_venue_facts.enhance(e))
-        events=municipal_listing_dedup.reconcile(events,norm)
+        # Quality-filter source records before projecting verified calendar
+        # days: one brochure or theatre programme is not 30 sessions.
         events,programs_pending=program_quality.filter_public_plans(events)
         valid_candidates=len(events)
         events,venue_pending=venue_quality.split_verified(events)
+        source_events=len(events)
+        # A genuine two-day activity is two dated cards; a month-long
+        # course remains one active range until individual sessions verified.
+        daily_events=event_occurrences.expand(events,TODAY)
+        occurrence_stats=event_occurrences.metrics(events,daily_events)
+        # Deduplicate across sources AFTER day-by-day projection; never
+        # erase the 29th just because the same source listed the 28th.
+        events=municipal_listing_dedup.reconcile(daily_events,norm)
+        occurrence_stats["post_dedup_cards"]=len(events)
         queue={"updated_at":NOW,
                "note":"Fichas pendientes de desglose o sin un evento identificable; no publicarlas como planes.",
                "pending_programs":programs_pending,
@@ -752,7 +763,9 @@ def run():
     write_json(PUBLIC/"events.json",{"events":events,"generated_at":NOW,"timezone":"Atlantic/Canary",
                                     "verified_sources":len([r for r in results if not r["error"]])})
     write_json(PUBLIC/"meta.json",{"checked_at":NOW,"sources":results,
+        "occurrences":occurrence_stats,
         "counts":{"approved":len(events),"candidate_events":valid_candidates,
+                  "verified_source_events_before_daily_projection":source_events,
                   "excluded_missing_venue":len(venue_pending),
                   "pending":0,"needs_review":len(programs_pending)+len(ingenio_juvenil_program.UNRESOLVED),
                   "archived_or_expired":max(0,total-valid_candidates),

@@ -1,0 +1,214 @@
+{
+  "checked_at": "2026-10-27T15:40:56+00:00",
+  "note": "Snapshot of last confirmed sources, not a new remote crawl",
+  "raw_future_source_records": 568,
+  "generic_programs_held_for_review": 12,
+  "venue_missing_held_for_review": 149,
+  "verified_source_records": 407,
+  "occurrence_projection": {
+    "raw_events": 407,
+    "daily_cards": 446,
+    "short_ranges_expanded": 32,
+    "extra_daily_cards": 39,
+    "long_ranges_preserved": 63,
+    "post_dedup_cards": 433
+  },
+  "source_errors": [],
+  "missing_venues_by_source": {
+    "Portal oficial de Eventos Gran Canaria (Cabildo)": 129,
+    "Ayuntamiento de Arucas · agenda municipal": 10,
+    "Ayuntamiento de Santa Lucía · Fiestas de San Rafael": 4,
+    "Ayuntamiento de Santa Brígida · agenda de eventos": 3,
+    "Ayuntamiento de Artenara · ferias tradicionales 2026": 2,
+    "Ayuntamiento de Agüimes": 1
+  },
+  "long_running_examples": [
+    {
+      "title": "Octavio Esteva expone en la Sala Lola Massieu",
+      "start": "2026-09-03",
+      "end": "2026-10-30"
+    },
+    {
+      "title": "Taller de Narración Oral con María Buenadicha",
+      "start": "2026-09-14",
+      "end": "2026-12-21"
+    },
+    {
+      "title": "Butaca24 Cinema - Próximas proyecciones",
+      "start": "2026-09-23",
+      "end": "2026-10-28"
+    },
+    {
+      "title": "Club de Lectura 'La Rejalgadera'",
+      "start": "2026-09-25",
+      "end": "2027-05-01"
+    },
+    {
+      "title": "Lo menos tierra de la Tierra",
+      "start": "2026-09-25",
+      "end": "2026-11-14"
+    },
+    {
+      "title": "SENDEROS EN FAMILIA",
+      "start": "2026-09-27",
+      "end": "2026-12-13"
+    },
+    {
+      "title": "CURSO DE DIBUJO Y PINTURA 2026/2027 - Universidad Popular de Telde",
+      "start": "2026-10-01",
+      "end": "2027-07-01"
+    },
+    {
+      "title": "¡GRADA ABIERTA! | Tu nueva Sala de Estudios",
+      "start": "2026-10-01",
+      "end": "2026-12-31"
+    },
+    {
+      "title": "Taller de lana, macramé, arte floral, salsa, bachata y mantenimiento",
+      "start": "2026-10-01",
+      "end": "2026-11-30"
+    },
+    {
+      "title": "La aterradora historia original de Pinocho llega a la Biblioteca",
+      "start": "2026-10-02",
+      "end": "2026-10-30"
+    },
+    {
+      "title": "Costura Creativa, Corte y Confección y Patchwork - Universidad Popular de Telde",
+      "start": "2026-10-07",
+      "end": "2027-06-30"
+    },
+    {
+      "title": "FUTUROS RYDERS OCTUBRE. BODYBOARD",
+      "start": "2026-10-07",
+      "end": "2026-10-28"
+    }
+  ],
+  "upcoming_short_events_examples": [
+    {
+      "source_id": 101,
+      "date": "2026-10-30",
+      "title": "Ecos de los Reyes"
+    },
+    {
+      "source_id": 458,
+      "date": "2026-10-30",
+      "title": "ENTRE REJAS - LA CASA DEL TERROR DE GÁLDAR"
+    },
+    {
+      "source_id": 605,
+      "date": "2026-10-30",
+      "title": "CASA DEL TERROR DE TEROR - APOCALIPSIS ZOMBIE"
+    },
+    {
+      "source_id": 605,
+      "date": "2026-10-31",
+      "title": "CASA DEL TERROR DE TEROR - APOCALIPSIS ZOMBIE"
+    },
+    {
+      "source_id": 458,
+      "date": "2026-10-31",
+      "title": "ENTRE REJAS - LA CASA DEL TERROR DE GÁLDAR"
+    },
+    {
+      "source_id": 101,
+      "date": "2026-10-31",
+      "title": "Ecos de los Reyes"
+    },
+    {
+      "source_id": 605,
+      "date": "2026-11-01",
+      "title": "CASA DEL TERROR DE TEROR - APOCALIPSIS ZOMBIE"
+    },
+    {
+      "source_id": 458,
+      "date": "2026-11-01",
+      "title": "ENTRE REJAS - LA CASA DEL TERROR DE GÁLDAR"
+    },
+    {
+      "source_id": 463,
+      "date": "2026-11-06",
+      "title": "ESCAPE ROOM \"EL CASERÍO\" - VILLA DE MOYA"
+    },
+    {
+      "source_id": 464,
+      "date": "2026-11-06",
+      "title": "PASAJE DEL TERROR “PROYECTO INSOMNIA” - VILLA DE MOYA"
+    },
+    {
+      "source_id": 464,
+      "date": "2026-11-07",
+      "title": "PASAJE DEL TERROR “PROYECTO INSOMNIA” - VILLA DE MOYA"
+    },
+    {
+      "source_id": 463,
+      "date": "2026-11-07",
+      "title": "ESCAPE ROOM \"EL CASERÍO\" - VILLA DE MOYA"
+    },
+    {
+      "source_id": 197,
+      "date": "2026-11-12",
+      "title": "M.A.R.- Mujeres Africanas Rodando"
+    },
+    {
+      "source_id": 198,
+      "date": "2026-11-12",
+      "title": "Chichon dirige Shostakovich y Mussorgski"
+    },
+    {
+      "source_id": 198,
+      "date": "2026-11-13",
+      "title": "Chichon dirige Shostakovich y Mussorgski"
+    },
+    {
+      "source_id": 197,
+      "date": "2026-11-13",
+      "title": "M.A.R.- Mujeres Africanas Rodando"
+    },
+    {
+      "source_id": 206,
+      "date": "2026-11-13",
+      "title": "FLAMENC OH! de YLLANA"
+    },
+    {
+      "source_id": 206,
+      "date": "2026-11-14",
+      "title": "FLAMENC OH! de YLLANA"
+    },
+    {
+      "source_id": 197,
+      "date": "2026-11-14",
+      "title": "M.A.R.- Mujeres Africanas Rodando"
+    },
+    {
+      "source_id": 576,
+      "date": "2026-11-15",
+      "title": "Feria de Artesanía de San Gregorio · Telde"
+    },
+    {
+      "source_id": 576,
+      "date": "2026-11-16",
+      "title": "Feria de Artesanía de San Gregorio · Telde"
+    },
+    {
+      "source_id": 576,
+      "date": "2026-11-17",
+      "title": "Feria de Artesanía de San Gregorio · Telde"
+    },
+    {
+      "source_id": 558,
+      "date": "2026-11-18",
+      "title": "Taller de Escritura Teatral"
+    },
+    {
+      "source_id": 558,
+      "date": "2026-11-19",
+      "title": "Taller de Escritura Teatral"
+    },
+    {
+      "source_id": 558,
+      "date": "2026-11-20",
+      "title": "Taller de Escritura Teatral"
+    }
+  ]
+}

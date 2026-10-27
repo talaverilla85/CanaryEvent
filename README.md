@@ -410,3 +410,31 @@ La deduplicación del catálogo combina anuncios de fuentes oficiales
 cuando título, municipio, fecha, hora y recinto coinciden. Un caso de
 recintos contradictorios se conserva para revisión humana. Las fuentes
 originales siguen registradas en SQLite.
+
+
+### Fechas y tarjetas por jornada
+
+Los eventos de **2 o 3 días consecutivos con un intervalo explícito
+de fechas** se publican como una tarjeta por día. Primero se descartan
+carteles/programas genéricos, luego se identifican las fechas de cada jornada
+y finalmente se deduplican solo anuncios correspondientes a la **misma fecha**.
+Si un evento va del 28 al 29, salen una ficha del 28 y otra del 29.
+
+No se inventan sesiones si un espectáculo cruza la medianoche o si las
+fuentes aportan horarios parciales ambiguos. Los cursos, exposiciones y otros
+planes con rangos largos **continúan visibles durante todos los días en que
+siguen vigentes** en los filtros temporales, sin generar decenas o cientos de
+supuestas sesiones diarias. Para disponer de una tarjeta por sesión semanal
+o mensual hay que leer las fechas reales del programa original.
+
+Las tarjetas diarias derivadas tienen IDs negativos estables que no colisionan
+con los IDs positivos originales de SQLite: los favoritos y enlaces
+compartidos pueden señalar cada jornada. Los originales permanecen intactos
+en SQLite para conservar procedencia y permitir correcciones.
+
+No confundir deduplicación con control de calidad: las fichas sin recinto
+concreto continúan en data/venue_review_gc.json para verificar lugar
+real y no mostrar una falsa ubicación exacta. El campo occurrences de
+public/meta.json desglosa esta proyección, y el campo
+verified_source_events_before_daily_projection muestra cuántos anuncios
+individuales, previos a la expansión, tenían recinto contrastado.
