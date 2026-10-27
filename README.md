@@ -663,3 +663,21 @@ fuentes de noticias, programas y agendas sin inventar fechas ni horas.
 El informe conserva la fecha de cada comprobación y los errores de
 acceso, para distinguir municipios sin cobertura de webs temporalmente
 inaccesibles.
+
+### Recuperación conservadora de recintos sin identificar (octubre 2026)
+
+La prioridad es reducir data/venue_review_gc.json, no publicar
+fichas con un centro municipal inventado.
+
+- cross_source_venue_facts.py admite variaciones acotadas del título
+  (Concierto, San Rafael o Telde) cuando existe otra ficha con
+  fecha, municipio y horario compatibles y un recinto concreto. Rechaza
+  conflictos entre recintos. No se comparan títulos con IA.
+- official_venue_confirmations.py revisa exclusivamente artículos
+  institucionales de Gáldar e Infecar y corrobora recintos de Oliva Lara,
+  Frontón King y ExpoDeca. Si la fuente falla, se mantiene pendiente.
+- Las fuentes de venta no bastan para corregir recintos, salvo cuando
+  el evento enlaza además a la página oficial de Telde Cultura y coincide
+  específicamente el acto, día y municipio.
+- Las rutas con varios puntos y ubicaciones contradictorias siguen en
+  la cola de revisión.

@@ -22,6 +22,7 @@ import cabildo_public
 import ulpgc_venue_facts
 import verified_venue_coordinates
 import cross_source_venue_facts
+import official_venue_confirmations
 import ticket_reserva
 import ticket_recent
 import santalucia_festivals
@@ -911,6 +912,20 @@ def run():
         confirmed_cross_venues=cross_source_venue_facts.enrich(conn,NOW,TODAY)
         if confirmed_cross_venues["verified"]:
             print(f"Cross-source event places confirmed: {confirmed_cross_venues}")
+        # Only independently confirmed official article/venue facts:
+        # no inferred coordinates or unspecified programme locations.
+        official_result=official_venue_confirmations.enrich(conn,NOW,TODAY)
+        official_record={
+            "source":official_venue_confirmations.SOURCE,
+            "checked_at":NOW,
+            "found":official_result["updated"],
+            "added":0,
+            "changed":official_result["updated"],
+            "error":"; ".join(e["error_type"] for e in official_result["errors"])[:220],
+            "articles_checked":official_result["checked"],
+        }
+        results.append(official_record)
+        print("Corroborated official venues:",official_result)
         location_changes=verified_venue_coordinates.backfill(conn,PLACES)
         conn.commit()
         print(f"Verified venue coordinates refreshed for {location_changes} events")

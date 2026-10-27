@@ -13,15 +13,16 @@ import sync_events
 
 class FactCheckedMunicipalSourcesTests(unittest.TestCase):
     def test_official_sources_only_and_no_invented_prices(self):
-        self.assertEqual(len(verified.SOURCES),5)
-        self.assertEqual(sum(len(x["events"]) for x in verified.SOURCES),12)
+        self.assertEqual(len(verified.SOURCES),7)
+        self.assertEqual(sum(len(x["events"]) for x in verified.SOURCES),17)
         for source in verified.SOURCES:
             self.assertTrue(source["url"].startswith("https://"))
             for event in source["events"]:
                 self.assertIsNone(event.get("free"))
                 self.assertIsNone(event.get("price"))
                 self.assertTrue(event["venue"])
-                self.assertEqual(len(event["time"]),5)
+                self.assertTrue(event.get("time") is None and event.get("end")
+                                or isinstance(event.get("time"),str) and len(event["time"])==5)
 
     def test_rechecked_article_does_not_publish_if_evidence_changes(self):
         sample=verified.SOURCES[0]
