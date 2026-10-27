@@ -49,6 +49,9 @@ def trusted(item,official_urls,state,cache,today,model,version):
     if not isinstance(first_records,list) or not isinstance(second_records,list):return False
     return any(
         _record_matches(item,a) and _record_matches(item,b) and gate.same_record(a,b)
+        and gate.confirmed_admission(a,b)==(
+            item.get("admission_type") or "unknown",
+            item.get("admission_details") or None)
         for a in first_records for b in second_records
     )
 

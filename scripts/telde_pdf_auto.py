@@ -35,11 +35,16 @@ SECOND_PROMPT = (
  "Vuelve a leer visualmente desde cero la página, sin asumir datos aportados por otras lecturas. "
  "Devuelve solo actos individuales que indiquen inequívocamente título, día, hora y recinto "
  "en la imagen. Si falta cualquiera de estos cuatro campos, no incluyas el acto. "
- "Usa literalmente la información de la página; no deduzcas año, lugar ni fecha de títulos. "
+ "Usa el año oficial proporcionado para escribir una fecha completa YYYY-MM-DD, "
+ "pero nunca deduzcas el mes o el día por el nombre del programa. "
+ "Devuelve un acto por fecha (sin rangos ni fechas agrupadas) y horas HH:MM. "
+ "Para cada acto indica admission_type: free si se indica gratis, paid si hay precio, "
+ "donation si hay un donativo, unknown en otro caso; admission_details solo cuando haya "
+ "información de pago/donación explícita y literal. "
  "Cita una evidencia corta realmente visible para cada acto. "
  "Si es portada, agenda genérica o ilegible, devuelve events=[] y page_is_program=false."
 )
-VERSION = "text-fallback-vision-v2"
+VERSION = "text-fallback-vision-v3"
 MONTHS = {
     "enero": 1, "febrero": 2, "marzo": 3, "abril": 4,
     "mayo": 5, "junio": 6, "julio": 7, "agosto": 8,

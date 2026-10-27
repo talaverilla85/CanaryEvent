@@ -54,9 +54,11 @@ SCHEMA={
      "time":{"type":["string","null"]},
      "venue":{"type":["string","null"]},
      "evidence":{"type":"string"},
+     "admission_type":{"type":"string","enum":["free","paid","donation","unknown"]},
+     "admission_details":{"type":["string","null"]},
      "type":{"type":"string","enum":["fiesta","musica","gastronomia","familia","deporte","religioso","cultura","otros"]},
     },
-    "required":["title","date","time","venue","evidence","type"]
+    "required":["title","date","time","venue","evidence","type","admission_type","admission_details"]
    }
   },
   "page_is_program":{"type":"boolean"}
@@ -77,6 +79,11 @@ SYSTEM_PROMPT=(
  "Evidence debe contener fragmentos textuales BREVES literalmente visibles en la página "
  "donde aparezcan el día y la actividad. Las fechas vencidas pueden extraerse "
  "como historial documental, pero el importador no las publicará. "
+ "Clasifica el acceso por actividad: free solo si el cartel indica explícitamente gratis, entrada libre o gratuita; "
+ "paid solo con precio/entrada de pago explícitos; donation solo si dice donativo, aportación voluntaria o equivalente; "
+ "unknown si no hay información de acceso. En admission_details cita la condición literal de acceso, "
+ "incluyendo cantidad y moneda si figuran. Si es unknown o free usa null en admission_details. "
+ "Nunca llames gratis a una actividad porque no figure precio ni confundas donativo con entrada de pago. "
  "Si es portada, solo fotos, agenda genérica o ilegible, events=[]; page_is_program=false."
 )
 
@@ -263,6 +270,16 @@ def validate_candidate(rec,year,title,url,sha,page,now):
   hh,mm=map(int,time.split(":"))
   if hh>23 or mm>59:return None,"impossible_time"
  place=" ".join(str(rec.get("venue") or "").split())[:145]
+ admission_type=str(rec.get("admission_type") or "unknown").strip()
+ if admission_type not in {"free","paid","donation","unknown"}:
+  return None,"invalid_admission_type"
+ admission_details=" ".join(str(rec.get("admission_details") or "").split())[:100]
+ if admission_type=="donation" and not re.search(r"donativ|aportaci[oó]n|voluntari",admission_details,re.I):
+  admission_type,admission_details="unknown",""
+ if admission_type=="paid" and not re.search(r"\d|€|euros?|entrada|precio|taquilla|pago",admission_details,re.I):
+  admission_type,admission_details="unknown",""
+ if admission_type in {"unknown","free"}:
+  admission_details=""
  category=rec.get("type")
  if category not in {"fiesta","musica","gastronomia","familia","deporte","religioso","cultura","otros"}:
   return None,"invalid_type"
@@ -271,6 +288,7 @@ def validate_candidate(rec,year,title,url,sha,page,now):
   "id":"telde-pdf-"+uid,"title":name,"date":date,"time":time or None,
   "venue":place or None,"type":category,"evidence":evidence[:320],
   "municipality":"Telde","program_title":title,"pdf_url":url,
+  "admission_type":admission_type,"admission_details":admission_details or None,
   "pdf_sha256":sha,"pdf_page":page+1,"review_status":"pending_review",
   "date_state":"expired" if day<now else "upcoming",
   "note":"NO PUBLICAR sin contrastar fecha/horario con la página escaneada",
