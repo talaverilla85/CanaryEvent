@@ -266,6 +266,13 @@
 .category-selected-mark{font-size:11px!important;color:#226448}
 @media(max-width:600px){.custom-date-panel{padding:13px;margin-top:4px}.custom-date-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.custom-date-fields label:first-child{grid-column:1/-1}.custom-date-or{grid-column:1/-1;padding:0;font-size:10px}.custom-date-fields input{width:100%;min-width:0;font-size:12px}}
 
+
+/* Always-visible month/date picker beside scrollable shortcuts on mobile. */
+.date-filter-wrap{display:flex;gap:7px;align-items:flex-start;margin-top:17px}
+.date-filter-wrap .top-filters{margin-top:0;min-width:0;flex:1}
+.date-filter-wrap #customDateToggle{flex:none;white-space:nowrap;background:#e9f5ed;border:1px solid #b8d8c4;color:#225940}
+.date-filter-wrap #customDateToggle.active{background:var(--green);color:#fff}
+@media(max-width:390px){.date-filter-wrap{gap:5px}.date-filter-wrap #customDateToggle{font-size:11px;padding:10px 9px}}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>¿Pa' Dónde? · Planes y eventos en Gran Canaria</title>
@@ -282,7 +289,7 @@
     </section>
     <section class="discovery" aria-label="Explorar planes">
       <div class="searchwrap"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Conciertos, ferias, talleres..." autocomplete="off" aria-label="Buscar actividades"><button id="clearSearch" class="clear-search hidden" aria-label="Borrar búsqueda">✕</button></div>
-      <div class="top-filters" role="group" aria-label="Filtrar por fecha"><button class="date-chip active" data-when="today">Hoy</button><button class="date-chip" data-when="tomorrow">Mañana</button><button class="date-chip" data-when="weekend">Este finde</button><button class="date-chip" data-when="week">7 días</button><button class="date-chip" data-when="all">Próximamente</button><button class="date-chip" type="button" data-when="custom" id="customDateToggle" aria-controls="customDatePanel" aria-expanded="false">▦ Elegir fechas</button></div>
+      <div class="date-filter-wrap"><div class="top-filters" role="group" aria-label="Filtrar por fecha"><button class="date-chip active" data-when="today">Hoy</button><button class="date-chip" data-when="tomorrow">Mañana</button><button class="date-chip" data-when="weekend">Este finde</button><button class="date-chip" data-when="week">7 días</button><button class="date-chip" data-when="all">Próximamente</button></div><button class="date-chip" type="button" data-when="custom" id="customDateToggle" aria-controls="customDatePanel" aria-expanded="false">▦ Elegir fechas</button></div>
  <form id="customDatePanel" class="custom-date-panel hidden" aria-label="Elegir fechas de actividades">
  <div class="custom-date-fields"><label>Mes completo<input type="month" id="filterMonth" aria-label="Mes de actividades"></label>
  <span class="custom-date-or">o elige un periodo</span>
