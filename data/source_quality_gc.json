@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-10-27T15:42:03+00:00",
+  "checked_at": "2026-10-27T16:15:37+00:00",
   "quality_counts": {
     "publicados": 433,
     "recintos_sin_verificar": 149,
     "programas_y_fichas_por_revisar": 13,
     "precios_sin_confirmar": 285,
-    "distancia_a_centro_municipal": 433,
+    "distancia_a_centro_municipal": 252,
     "fuentes_con_error": 0,
     "duplicados_potenciales": 0
   },
@@ -46,7 +46,7 @@
       "publicados": 4,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 4,
-      "distancia_al_centro_municipal": 4,
+      "distancia_al_centro_municipal": 2,
       "fichas_leidas_en_esta_ejecucion": 4,
       "error": ""
     },
@@ -166,7 +166,7 @@
       "publicados": 283,
       "recinto_sin_verificar": 129,
       "precio_sin_confirmar": 240,
-      "distancia_al_centro_municipal": 283,
+      "distancia_al_centro_municipal": 105,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
@@ -176,7 +176,7 @@
       "publicados": 73,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 73,
+      "distancia_al_centro_municipal": 72,
       "fichas_leidas_en_esta_ejecucion": 117,
       "error": ""
     },
