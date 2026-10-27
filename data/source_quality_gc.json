@@ -1,24 +1,24 @@
 {
-  "checked_at": "2026-10-27T17:07:02+00:00",
+  "checked_at": "2026-10-27T17:10:57+00:00",
   "quality_counts": {
     "publicados": 459,
     "recintos_sin_verificar": 121,
     "programas_y_fichas_por_revisar": 13,
     "precios_sin_confirmar": 311,
     "distancia_a_centro_municipal": 278,
-    "fuentes_con_error": 0,
+    "fuentes_con_error": 2,
     "duplicados_potenciales": 7
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 11,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 6,
       "distancia_al_centro_municipal": 11,
-      "fichas_leidas_en_esta_ejecucion": 11,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "HTTPSConnectionPool(host='ingenio.es', port=443): Read timed out. (read timeout=12)"
     },
     {
       "source": "Ayuntamiento de Agüimes",
@@ -72,13 +72,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 2,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
@@ -187,11 +187,20 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 23,
+      "fichas_leidas_en_esta_ejecucion": 5,
       "error": ""
     }
   ],
-  "reported_errors": [],
+  "reported_errors": [
+    {
+      "source": "Ayuntamiento de Ingenio",
+      "error": "HTTPSConnectionPool(host='ingenio.es', port=443): Read timed out. (read timeout=12)"
+    },
+    {
+      "source": "Ayuntamiento de Gáldar · agenda de Cultura",
+      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
+    }
+  ],
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
