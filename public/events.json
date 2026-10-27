@@ -3008,7 +3008,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=93918e44eb55adb04b9bbf2820431606",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=f9a7bdc73c7010601aa3ea4dac566935",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3030,7 +3030,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=93918e44eb55adb04b9bbf2820431606",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=f9a7bdc73c7010601aa3ea4dac566935",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3389,6 +3389,28 @@
       "organizer_url": ""
     },
     {
+      "id": 604,
+      "title": "NOCHE DE FINAOS EN MONTAÑA CARDONES",
+      "start": "2026-10-31",
+      "end": null,
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Actividad publicada por el Ayuntamiento de Arucas. Consulta el programa y el recinto en su ficha original.",
+      "lat": 28.119,
+      "lng": -15.523,
+      "accuracy": "municipality",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrNE13PT0=",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": "",
+      "organizer_url": ""
+    },
+    {
       "id": 8,
       "title": "III XC VILLA DE INGENIO",
       "start": "2026-10-31T09:00:00",
@@ -3580,7 +3602,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=93918e44eb55adb04b9bbf2820431606",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=f9a7bdc73c7010601aa3ea4dac566935",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3602,7 +3624,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=93918e44eb55adb04b9bbf2820431606",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=f9a7bdc73c7010601aa3ea4dac566935",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -11859,7 +11881,7 @@
       "organizer_url": "https://www.tureservaonline.es/es/events/nosoloviernes"
     }
   ],
-  "generated_at": "2026-10-27T09:25:32+00:00",
+  "generated_at": "2026-10-27T10:51:42+00:00",
   "timezone": "Atlantic/Canary",
   "verified_sources": 17
 }
