@@ -5,6 +5,7 @@ and original outbound links are used. No ticket cost is guessed from a link.
 """
 import json
 import re
+import venue_facts
 from urllib.parse import urlsplit
 from bs4 import BeautifulSoup
 
@@ -93,8 +94,10 @@ def verified_venue(soup,schema,municipality,norm):
         name=display_text(place.get("name"),130)
         if name and norm(name)!=norm(municipality) and name.lower() not in UNSPECIFIED:
             return name
-    # A named location in a description isn't reliable when an event lists multiple venues.
-    return ""
+    # The publisher sometimes labels only the town in JSON-LD/location while
+    # putting the actual named building in the official Event description.
+    # Parse only unambiguous named places, never a guessed municipal centroid.
+    return venue_facts.from_description(schema.get("description"),municipality)
 
 def valid_outbound(url):
     if not isinstance(url,str):return ""

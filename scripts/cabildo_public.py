@@ -140,18 +140,28 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
         conn.execute("ALTER TABLE cabildo_scans ADD COLUMN image_inspected INTEGER NOT NULL DEFAULT 0")
     if "facts_inspected" not in scan_columns:
         conn.execute("ALTER TABLE cabildo_scans ADD COLUMN facts_inspected INTEGER NOT NULL DEFAULT 0")
-    existing={r[0]:(r[1],r[2],r[3],r[4]) for r in
-              conn.execute("SELECT url,checked_at,outcome,image_inspected,facts_inspected FROM cabildo_scans").fetchall()}
+    if "venue_inspected" not in scan_columns:
+        conn.execute("ALTER TABLE cabildo_scans ADD COLUMN venue_inspected INTEGER NOT NULL DEFAULT 0")
+    existing={r[0]:(r[1],r[2],r[3],r[4],r[5]) for r in
+              conn.execute("SELECT url,checked_at,outcome,image_inspected,facts_inspected,venue_inspected FROM cabildo_scans").fetchall()}
     # Backfill metadata on previously scanned pages, while preserving a modest
     # per-run request limit. Historical images are refreshed in the same pass.
-    pending_facts={u for u,(_,outcome,_,facts) in existing.items()
+    pending_facts={u for u,(_,outcome,_,facts,_) in existing.items()
                    if outcome=="valid" and not facts}
-    pending_images={u for u,(_,outcome,img,_) in existing.items()
+    pending_images={u for u,(_,outcome,img,_,_) in existing.items()
                     if outcome=="valid" and not img}
+    missing_venue_urls={row[0] for row in conn.execute(
+        """SELECT source_url FROM events WHERE source_name=? AND status='approved' AND
+        (venue='' OR lower(venue) LIKE 'consultar el recinto%')""",(SOURCE_NAME,))}
+    pending_venues={u for u,(_,outcome,_,_,venue_done) in existing.items()
+                    if outcome=="valid" and not venue_done and u in missing_venue_urls}
     # Index events with a start date up to 120d ahead, allowing recently started multi-day
     # activities to be detected (but still refusing to invent session dates).
-    candidates=[(u,d) for u,d in sitemap if today-dt.timedelta(days=45)<=d<=today+dt.timedelta(days=MAX_LOOKAHEAD_DAYS)]
-    candidates.sort(key=lambda el:(el[0] not in pending_facts and el[0] not in pending_images,
+    candidates=[(u,d) for u,d in sitemap if
+                today-dt.timedelta(days=45)<=d<=today+dt.timedelta(days=MAX_LOOKAHEAD_DAYS)
+                or (u in missing_venue_urls and today-dt.timedelta(days=270)<=d<today)]
+    candidates.sort(key=lambda el:(el[0] not in pending_venues,
+                                   el[0] not in pending_facts and el[0] not in pending_images,
                                    el[0] in existing, abs((el[1]-today).days), el[0]))
     # A zero-scan cycle is normal when every indexed page was recently checked.
     # Keep due and skipped counts separate so monitoring does not report an
@@ -163,7 +173,7 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
         if last:
             try:age=(dt.datetime.fromisoformat(now)-dt.datetime.fromisoformat(last[0])).total_seconds()
             except (TypeError,ValueError):age=9999999
-            if age<2*86400 and url not in pending_images and url not in pending_facts:
+            if age<2*86400 and url not in pending_images and url not in pending_facts and url not in pending_venues:
                 skipped_recent+=1
                 continue
         refresh_candidates.append((url,day))
@@ -188,16 +198,18 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
         except (requests.RequestException,ValueError) as exc:
             outcome="failed"
             errors.append(type(exc).__name__)
-        conn.execute("""INSERT INTO cabildo_scans(url,checked_at,outcome,image_inspected,facts_inspected) VALUES(?,?,?,1,?)
+        conn.execute("""INSERT INTO cabildo_scans(url,checked_at,outcome,image_inspected,facts_inspected,venue_inspected) VALUES(?,?,?,1,?,?)
           ON CONFLICT(url) DO UPDATE SET checked_at=excluded.checked_at,outcome=excluded.outcome,
-            image_inspected=1,facts_inspected=excluded.facts_inspected""",
-            (url,now,outcome,0 if outcome=="failed" else 1))
+            image_inspected=1,facts_inspected=excluded.facts_inspected,
+            venue_inspected=excluded.venue_inspected""",
+            (url,now,outcome,0 if outcome=="failed" else 1,0 if outcome=="failed" else 1))
         # Never aggressively crawl: one page every ~0.65 s maximum
         time.sleep(0.65)
     conn.commit()
     return {"source":SOURCE_NAME,"checked_at":now,"found":found,"added":add,
             "changed":changed,"scanned":checked,"sitemap_count":len(sitemap),
             "eligible_urls":len(candidates),"due_urls":len(refresh_candidates),
+            "pending_venue_rechecks":len(pending_venues),
             "skipped_recent":skipped_recent,
             "queued_remaining":max(0,len(refresh_candidates)-checked),
             "refresh_interval_hours":48,"error":"; ".join(errors[:3])}

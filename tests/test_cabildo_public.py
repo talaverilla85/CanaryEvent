@@ -54,6 +54,7 @@ class OfficialCatalogTests(unittest.TestCase):
         day=dt.date(2026,10,27)
         urls=[f"https://www.eventosgrancanaria.com/event/E-20261027-{i:04d}/evento" for i in range(25)]
         with sqlite3.connect(":memory:") as conn:
+            app.init(conn)
             conn.execute("""CREATE TABLE cabildo_scans(
                 url TEXT PRIMARY KEY,checked_at TEXT NOT NULL,outcome TEXT NOT NULL,
                 image_inspected INTEGER NOT NULL,facts_inspected INTEGER NOT NULL)""")

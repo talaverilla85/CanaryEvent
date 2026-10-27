@@ -8,6 +8,7 @@ from __future__ import annotations
 import datetime as dt
 import re
 import requests
+import venue_facts
 from urllib.parse import urljoin,urlsplit,parse_qs
 from urllib.robotparser import RobotFileParser
 
@@ -95,3 +96,43 @@ def extract(soup,today,places,norm,categorize):
              source_name=NAME,source_url=href,status="approved"))
     if not result:raise ValueError("Arucas listing returned no verifiable upcoming events")
     return result
+
+
+def enrich_venues(entries,client=requests,max_pages=10):
+    """Complete missing Arucas venues from the linked municipal news article.
+
+    Each official listing URL is checked individually, with a strict cap and
+    conservative parser. Failures never replace existing, verified venues.
+    """
+    missing=[e for e in entries if str(e.get("venue","")).lower().startswith("consultar el recinto")]
+    if not missing:return entries
+    robots=client.get(BASE+"robots.txt",headers=HEADERS,timeout=10,allow_redirects=False)
+    policy=None
+    if robots.status_code==200:
+        policy=RobotFileParser();policy.parse(robots.text.splitlines())
+    elif robots.status_code not in (404,410):
+        raise RuntimeError("Arucas detail robots unavailable: "+str(robots.status_code))
+    from bs4 import BeautifulSoup
+    import time
+    for e in missing[:max_pages]:
+        url=e["source_url"]
+        parsed=urlsplit(url)
+        query=parse_qs(parsed.query)
+        if not (parsed.scheme=="https" and parsed.hostname=="www.arucas.org" and
+                parsed.path=="/modules.php" and query.get("file")==["ver_gen"]):
+            continue
+        if policy is not None and not policy.can_fetch(USER_AGENT,url):
+            continue
+        try:
+            r=client.get(url,headers=HEADERS,timeout=18,allow_redirects=False)
+            if r.status_code!=200 or len(r.content)>1_500_000 or not r.content:
+                continue
+            soup=BeautifulSoup(r.content,"html.parser")
+            article=soup.select_one(".entry-content")
+            if not article:continue
+            venue=venue_facts.from_description(article.get_text("\n",strip=True),"Arucas")
+            if venue:e["venue"]=venue
+        except requests.RequestException:
+            pass
+        time.sleep(0.35)
+    return entries

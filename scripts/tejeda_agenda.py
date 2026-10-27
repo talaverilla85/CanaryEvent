@@ -12,6 +12,7 @@ from urllib.parse import urlsplit
 from urllib.robotparser import RobotFileParser
 
 import requests
+import venue_facts
 from bs4 import BeautifulSoup
 
 NAME = "Ayuntamiento de Tejeda · agenda oficial"
@@ -102,7 +103,7 @@ def parse_article(soup,title,url,today,categorize):
     start=_date_and_clock(text,published,today)
     if start is None:return None
     lowered=text.casefold()
-    venue="Consultar el recinto en la ficha oficial"
+    venue=venue_facts.from_description(text,"Tejeda") or "Consultar el recinto en la ficha oficial"
     if "club de pensionistas y simpatizantes" in lowered:
         venue="Club de Pensionistas y Simpatizantes Texeda"
     elif "plaza de ntra. sra. del socorro" in lowered:

@@ -357,3 +357,7 @@ entrada gratuita ni precio. Respeta robots.txt y verifica el dominio HTTPS
 de cada detalle. Agaete y Firgas quedan inventariados con sus portales
 institucionales actuales, sin considerarlos conectados mientras sus listados
 mostrados continúen desactualizados.
+
+### Recintos localizados en la descripción oficial (27/10/2026)
+Cuando la ficha estructurada solo identifica un municipio, los adaptadores del Cabildo, Arucas y Tejeda pueden recuperar el **nombre** del recinto a partir de una indicación explícita en la descripción de la propia fuente (por ejemplo, `Lugar: Biblioteca Municipal...` o `en el Centro Cultural...`). Se rechazan nombres truncados, lugares de paso, menciones al organizador y programas que citan varios recintos. Nunca se geocodifica mediante suposición: las coordenadas siguen siendo las municipales hasta una validación separada.
+El Cabildo usa `cabildo_scans.venue_inspected` para revisar primero las fichas con recinto pendiente, con el límite de 75 páginas por sincronización; `meta.json` ofrece `pending_venue_rechecks` y `venues_to_verify`. Las fichas originales se conservan para posteriores correcciones.

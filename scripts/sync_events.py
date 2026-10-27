@@ -517,6 +517,7 @@ def run():
         try:
             listing=arucas_agenda.fetch_listing()
             entries=arucas_agenda.extract(listing,TODAY,PLACES,norm,category)
+            entries=arucas_agenda.enrich_venues(entries)
             for entry in entries:
                 arucas_found+=1
                 change=upsert(conn,entry)
