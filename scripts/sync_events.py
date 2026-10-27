@@ -20,6 +20,7 @@ from bs4 import BeautifulSoup
 import artes_details
 import cabildo_public
 import ulpgc_venue_facts
+import verified_venue_coordinates
 import ticket_reserva
 import ticket_recent
 import santalucia_festivals
@@ -419,7 +420,7 @@ def upsert(conn,e):
     lat,lng=PLACES[e["municipality"]]
     existing=conn.execute("SELECT * FROM events WHERE dedup_key=?",(key,)).fetchone()
     event_columns=("title","start","end","municipality","venue","category","free","price","details",
-                   "lat","lng","source_name","source_url","status",
+                   "lat","lng","accuracy","source_name","source_url","status",
                    "image_url","image_alt","image_origin","image_status","organizer_url")
     fields=dict(e)
     if existing and existing["status"]=="duplicate" and fields.get("status")=="approved":
@@ -435,7 +436,8 @@ def upsert(conn,e):
     # municipal placeholder: never erase it during a periodic source refresh.
     if existing and venue_quality.named_venue(dict(existing)) and not venue_quality.named_venue(fields):
         fields["venue"]=existing["venue"]
-    fields.update(lat=lat,lng=lng)
+    lat,lng,accuracy=verified_venue_coordinates.resolve(fields["municipality"],fields.get("venue",""),PLACES)
+    fields.update(lat=lat,lng=lng,accuracy=accuracy)
     for k in ("image_url","image_alt","image_origin","image_status","organizer_url"):
         fields.setdefault(k,"")
     values=tuple(fields.get(key) for key in event_columns)
@@ -726,6 +728,9 @@ def run():
                           "found":0,"added":0,"changed":0,"error":str(exc)[:250]}
         results.append(venue_result)
         print(f"Organizer venue checks: {venue_result.get('found',0)} updated={venue_result.get('changed',0)} error={venue_result.get('error','')[:100]}")
+        location_changes=verified_venue_coordinates.backfill(conn,PLACES)
+        conn.commit()
+        print(f"Verified venue coordinates refreshed for {location_changes} events")
         rows=conn.execute("""SELECT * FROM events WHERE status='approved' AND substr(COALESCE("end",start),1,10)>=?
              ORDER BY start ASC LIMIT 3500""",(TODAY.isoformat(),)).fetchall()
         events=[]

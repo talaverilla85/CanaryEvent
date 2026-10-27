@@ -438,3 +438,27 @@ real y no mostrar una falsa ubicación exacta. El campo occurrences de
 public/meta.json desglosa esta proyección, y el campo
 verified_source_events_before_daily_projection muestra cuántos anuncios
 individuales, previos a la expansión, tenían recinto contrastado.
+
+
+### Ubicaciones verificadas: recinto o municipio
+
+El nombre del recinto viene de la fuente oficial del evento. Su posición en
+el mapa solo deja de ser municipal cuando el par (municipio, recinto) coincide
+con una referencia geográfica contrastada por separado. La lista offline
+scripts/verified_venue_coordinates.py contiene cada punto de OpenStreetMap
+y una fuente institucional que confirma el edificio o complejo.
+
+Primera fase: siete recintos y alrededor de 181 fichas del catálogo actual.
+accuracy=venue representa el punto del edificio o complejo identificado, no
+necesariamente su puerta, una ruta por carretera ni una posición GPS exacta.
+Para todos los recintos aún no verificados se utiliza el centro del municipio,
+accuracy=municipality. No se realizan búsquedas geográficas imprecisas durante
+la sincronización diaria.
+
+El upsert y una revisión completa de coordenadas en cada sincronización
+emplean la misma tabla. Si un organizador corrige el nombre del recinto, las
+coordenadas se revisan también. Se conservan los IDs de los eventos.
+
+Las actividades sin recinto identificable siguen pendientes de contraste con
+los organizadores. No se fabrican ubicaciones ni se publican como planes
+completos aquellas que no cumplen la política de calidad.

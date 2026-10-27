@@ -14,6 +14,7 @@ on:
       - "scripts/venue_facts.py"
       - "scripts/audit_source_health_gc.py"
       - "scripts/venue_quality.py"
+      - "scripts/verified_venue_coordinates.py"
       - "scripts/organizer_venues.py"
       - "scripts/ticket_reserva.py"
       - "scripts/santalucia_festivals.py"
