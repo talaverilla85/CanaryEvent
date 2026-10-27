@@ -1,7 +1,17 @@
 {
-  "updated_at": "2026-10-26T22:45:03+00:00",
-  "note": "Programas de varias actividades pendientes de desglose: no mostrarlos como planes.",
+  "updated_at": "2026-10-27T14:32:52+00:00",
+  "note": "Fichas pendientes de desglose o sin un evento identificable; no publicarlas como planes.",
   "pending_programs": [
+    {
+      "id": 455,
+      "title": "RESERVA ÁREA RECREATIVA HUERTAS DEL REY",
+      "start": "2026-06-06",
+      "end": "2027-01-03",
+      "municipality": "Gáldar",
+      "source_name": "TuReservaOnline · agenda de Gran Canaria",
+      "source_url": "https://www.tureservaonline.es/es/events/reserva-area-recreativa-huertas-del-rey",
+      "reason": "Reserva administrativa de una instalación, no un evento"
+    },
     {
       "id": 306,
       "title": "Programación Otoño 2026 - Juventud de Ingenio",
