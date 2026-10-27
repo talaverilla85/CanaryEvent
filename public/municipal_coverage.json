@@ -3,8 +3,8 @@
   "scope": "21 municipios de Gran Canaria",
   "municipalities_total": 21,
   "municipalities_with_any_catalog_cards": 18,
-  "municipalities_with_official_municipal_cards": 13,
-  "municipalities_without_municipal_cards": 8,
+  "municipalities_with_official_municipal_cards": 15,
+  "municipalities_without_municipal_cards": 6,
   "full_coverage_confirmed": false,
   "important": "Municipal coverage is NOT the same as having third-party events near that town. Partial official connectors do not guarantee every local event.",
   "municipalities": [
@@ -66,9 +66,9 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 9,
+      "catalog_cards_total": 10,
       "municipal_cards_total": 1,
-      "other_sources_cards_total": 8,
+      "other_sources_cards_total": 9,
       "source_health": [
         {
           "source": "Ayuntamiento de Arucas · agenda municipal",
@@ -98,9 +98,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 22,
-      "municipal_cards_total": 0,
-      "other_sources_cards_total": 22,
+      "catalog_cards_total": 28,
+      "municipal_cards_total": 3,
+      "other_sources_cards_total": 25,
       "source_health": [
         {
           "source": "Ayuntamiento de Gáldar · agenda de Cultura",
@@ -117,9 +117,9 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 28,
+      "catalog_cards_total": 29,
       "municipal_cards_total": 11,
-      "other_sources_cards_total": 17,
+      "other_sources_cards_total": 18,
       "source_health": [
         {
           "source": "Ayuntamiento de Ingenio",
@@ -154,9 +154,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 221,
+      "catalog_cards_total": 222,
       "municipal_cards_total": 12,
-      "other_sources_cards_total": 209,
+      "other_sources_cards_total": 210,
       "source_health": [
         {
           "source": "Juventud Las Palmas de Gran Canaria",
@@ -231,8 +231,8 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 35,
-      "municipal_cards_total": 10,
+      "catalog_cards_total": 29,
+      "municipal_cards_total": 4,
       "other_sources_cards_total": 25,
       "source_health": [],
       "full_coverage_claim": false
@@ -276,9 +276,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 31,
+      "catalog_cards_total": 35,
       "municipal_cards_total": 10,
-      "other_sources_cards_total": 21,
+      "other_sources_cards_total": 25,
       "source_health": [
         {
           "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
@@ -343,8 +343,8 @@
       "original_connector_state": "agenda_localizada_por_validar_datos",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "agenda_localizada_por_validar_datos",
-      "catalog_cards_total": 4,
-      "municipal_cards_total": 0,
+      "catalog_cards_total": 5,
+      "municipal_cards_total": 1,
       "other_sources_cards_total": 4,
       "source_health": [],
       "full_coverage_claim": false

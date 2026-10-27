@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-27T23:34:48+00:00",
-  "not_published": 121,
+  "updated_at": "2026-10-27T23:48:59+00:00",
+  "not_published": 110,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -208,30 +208,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 181,
-      "title": "Oliva Lara. Último pintor indigenista americano",
-      "start": "2026-10-09",
-      "end": "2026-11-15",
-      "municipality": "Gáldar",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0036/oliva-lara-ultimo-pintor-indigenista-americano",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 182,
-      "title": "Geometría - Theometría",
-      "start": "2026-10-09",
-      "end": "2026-11-07",
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0037/geometria-theometria",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 183,
       "title": "Paqui Álvarez Monzón presenta «Donde el tiempo se detiene» en las Casas Consistoriales",
       "start": "2026-10-09",
@@ -313,18 +289,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0023/exposicion-fotografica-barreras-de-la-vision-de-tim-parchikov",
       "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11227488",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 110,
-      "title": "Frontón King 2026",
-      "start": "2026-10-17",
-      "end": "2026-10-31",
-      "municipality": "Gáldar",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261017-0017/fronton-king-2026",
-      "organizer_url": "https://www.galdar.es/events/fronton-king-2026/",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -496,18 +460,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 88,
-      "title": "Concierto: Marta Bolaños en acústico",
-      "start": "2026-10-29",
-      "end": null,
-      "municipality": "Ingenio",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0008/concierto-marta-bolanos-en-acustico",
-      "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11084599",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 91,
       "title": "Presentación del libro: `Con sal en la memoria´ de Mar Zeraus",
       "start": "2026-10-29",
@@ -529,18 +481,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0014/presentacion-de-trabajos-artisticos-a-medias-con-padron-dos-fotos-un-cuerpo",
       "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11227458",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 524,
-      "title": "Noche de Tapas · San Rafael",
-      "start": "2026-10-29",
-      "end": null,
-      "municipality": "Santa Lucía de Tirajana",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
-      "source_url": "https://www.santaluciagc.com/braulio-los-gofiones-bejeque-los-coquillos-enac-ska-cristina-ramos-antonia-san-juan-y-matias-alonso-en-las-fiestas-de-san-rafael/",
-      "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -916,18 +856,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 146,
-      "title": "ExpoDeca 2026, Feria de la Actividad Física y el Deporte de Canarias",
-      "start": "2026-11-12",
-      "end": "2026-11-15",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261105-0000/expodeca-2026-feria-de-la-actividad-fisica-y-el-deporte-de-canarias",
-      "organizer_url": "https://infecar.es/ferias-y-eventos/expodeca-2026-feria-de-la-actividad-fisica-y-el-deporte-de-canarias/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 203,
       "title": "Ciclo de conferencias ¿A quién pertenece la ciudad?",
       "start": "2026-11-12T19:30:00",
@@ -985,18 +913,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0013/semana-de-la-cultura-ulpgc",
       "organizer_url": "https://www.ulpgc.es/agenda/2026/11/09/semana-cultura-ulpgc",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 227,
-      "title": "AL VACÍO",
-      "start": "2026-11-13T20:30:00",
-      "end": "2026-11-13T21:30:00",
-      "municipality": "Telde",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0014/al-vacio",
-      "organizer_url": "https://teldecultura.org/events/al-vacio/",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -1068,18 +984,6 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0014/xiii-certamen-de-pintura-rapida-playa-de-mogan",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 251,
-      "title": "Oliva Lara. Último pintor indigenista americano",
-      "start": "2026-11-15",
-      "end": null,
-      "municipality": "Gáldar",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261115-0003/oliva-lara-ultimo-pintor-indigenista-americano",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
@@ -1276,18 +1180,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 316,
-      "title": "OTRO SHOW DE IMPRO MÁS",
-      "start": "2026-11-26T20:30:00",
-      "end": null,
-      "municipality": "Telde",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261126-0002/otro-show-de-impro-mas",
-      "organizer_url": "https://teldecultura.org/events/otro-show-de-impro-mas/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 323,
       "title": "Aula de cine. Ciclo “Los modernos años 30”. Scarface, El Terror del Hampa",
       "start": "2026-11-27",
@@ -1405,30 +1297,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261219-0007/i-maraton-solidaria-de-envite-a-firgas",
       "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 404,
-      "title": "CORAZÓN VALIENTE",
-      "start": "2026-12-20T12:00:00",
-      "end": "2026-12-20T13:00:00",
-      "municipality": "Telde",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261220-0001/corazon-valiente",
-      "organizer_url": "https://teldecultura.org/events/corazon-valiente/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 415,
-      "title": "BLANCANIEVES, MÁS ALLÁ DEL ESPEJO",
-      "start": "2026-12-27T12:00:00",
-      "end": "2026-12-27T13:00:00",
-      "municipality": "Telde",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261227-0002/blancanieves-mas-alla-del-espejo",
-      "organizer_url": "https://teldecultura.org/events/blancanieves-mas-alla-del-espejo/",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {

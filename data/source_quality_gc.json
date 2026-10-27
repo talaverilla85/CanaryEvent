@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-10-27T23:34:48+00:00",
+  "checked_at": "2026-10-27T23:48:59+00:00",
   "quality_counts": {
-    "publicados": 451,
-    "recintos_sin_verificar": 121,
+    "publicados": 459,
+    "recintos_sin_verificar": 110,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 303,
-    "distancia_a_centro_municipal": 299,
+    "precios_sin_confirmar": 311,
+    "distancia_a_centro_municipal": 307,
     "fuentes_con_error": 0,
     "duplicados_potenciales": 7
   },
@@ -53,10 +53,10 @@
     {
       "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
       "estado": "operativa",
-      "publicados": 0,
-      "recinto_sin_verificar": 4,
-      "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 0,
+      "publicados": 1,
+      "recinto_sin_verificar": 3,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
       "fichas_leidas_en_esta_ejecucion": 5,
       "error": ""
     },
@@ -167,7 +167,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 9,
+      "fichas_leidas_en_esta_ejecucion": 2,
       "error": ""
     },
     {
@@ -177,7 +177,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 12,
+      "fichas_leidas_en_esta_ejecucion": 16,
       "error": ""
     },
     {
@@ -193,10 +193,10 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 281,
-      "recinto_sin_verificar": 101,
-      "precio_sin_confirmar": 238,
-      "distancia_al_centro_municipal": 132,
+      "publicados": 291,
+      "recinto_sin_verificar": 91,
+      "precio_sin_confirmar": 248,
+      "distancia_al_centro_municipal": 142,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
@@ -219,24 +219,34 @@
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 5,
       "error": ""
+    },
+    {
+      "source": "Recintos · confirmaciones de noticias oficiales",
+      "estado": "operativa",
+      "publicados": 0,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 4,
+      "error": ""
     }
   ],
   "reported_errors": [],
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 101
+      "count": 91
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "count": 10
     },
     {
-      "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
-      "count": 4
+      "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "count": 3
     },
     {
-      "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
       "count": 3
     },
     {
@@ -386,22 +396,6 @@
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261006-0005/cursos-de-formacion-especializada"
     },
     {
-      "id": 181,
-      "title": "Oliva Lara. Último pintor indigenista americano",
-      "start": "2026-10-09",
-      "municipality": "Gáldar",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0036/oliva-lara-ultimo-pintor-indigenista-americano"
-    },
-    {
-      "id": 182,
-      "title": "Geometría - Theometría",
-      "start": "2026-10-09",
-      "municipality": "Arucas",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0037/geometria-theometria"
-    },
-    {
       "id": 183,
       "title": "Paqui Álvarez Monzón presenta «Donde el tiempo se detiene» en las Casas Consistoriales",
       "start": "2026-10-09",
@@ -448,6 +442,22 @@
       "municipality": "Las Palmas de Gran Canaria",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0020/talleres-la-palabra-encendida-programa-de-mediacion-y-creacion-cultural"
+    },
+    {
+      "id": 134,
+      "title": "Exposición fotográfica: Barreras de la visión de Tim Parchikov",
+      "start": "2026-10-15",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0023/exposicion-fotografica-barreras-de-la-vision-de-tim-parchikov"
+    },
+    {
+      "id": 78,
+      "title": "Microcredencial en Propiedad Intelectual y Derechos de Autor",
+      "start": "2026-10-19",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0008/microcredencial-en-propiedad-intelectual-y-derechos-de-autor"
     }
   ],
   "guidance": [

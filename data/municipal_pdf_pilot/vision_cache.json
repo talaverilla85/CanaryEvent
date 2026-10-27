@@ -609,5 +609,332 @@
       },
       "total_tokens": 2624
     }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/6/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Rezo del Santo Rosario",
+          "date": "2026-10-16",
+          "time": "18:30",
+          "venue": null,
+          "evidence": "VIERNES 16 DE OCTUBRE — 18.30 h. Rezo del Santo Rosario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía",
+          "date": "2026-10-16",
+          "time": "19:00",
+          "venue": null,
+          "evidence": "VIERNES 16 DE OCTUBRE — 19:00 h. Eucaristía.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Salida del Santo a la puerta, izado de banderas y canto del himno a San Rafael",
+          "date": "2026-10-16",
+          "time": "19:30",
+          "venue": null,
+          "evidence": "VIERNES 16 DE OCTUBRE — 19:30 h. Salida del Santo a la puerta.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Rezo del Santo Rosario",
+          "date": "2026-10-19",
+          "time": "18:30",
+          "venue": null,
+          "evidence": "LUNES 19 DE OCTUBRE — 18:30 h. Rezo del Santo Rosario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía por todos los difuntos fallecidos en el año",
+          "date": "2026-10-19",
+          "time": "19:00",
+          "venue": null,
+          "evidence": "LUNES 19 DE OCTUBRE — 19:00 h. Eucaristía por todos los difuntos fallecidos en el año.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Rezo del Santo Rosario",
+          "date": "2026-10-23",
+          "time": "18:30",
+          "venue": null,
+          "evidence": "VIERNES 23 DE OCTUBRE — 18:30 h. Rezo del Santo Rosario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía de Acción de Gracias y ofrenda al Santo de toda la comunidad parroquial",
+          "date": "2026-10-23",
+          "time": "19:00",
+          "venue": null,
+          "evidence": "VIERNES 23 DE OCTUBRE — 19:00 h. Eucaristía de Acción de Gracias y ofrenda al Santo",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía y ofrenda de los más pequeños de la comunidad, con procesión del Santo por las calles del pueblo",
+          "date": "2026-10-24",
+          "time": "12:00",
+          "venue": "Calles del pueblo",
+          "evidence": "SÁBADO 24 DE OCTUBRE — 12:00 hs. Eucaristía y ofrenda de los más pequeños de la comunidad. Procesión con el Santo por las calles del pueblo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía y romería-ofrenda de todo el pueblo al Santo",
+          "date": "2026-10-24",
+          "time": "19:30",
+          "venue": null,
+          "evidence": "SÁBADO 24 DE OCTUBRE — 19:30 h. Eucaristía y a continuación romería-ofrenda de todo el pueblo al Santo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía y fiesta principal, con procesión del Santo por las calles del pueblo",
+          "date": "2026-10-25",
+          "time": "12:00",
+          "venue": "Calles del pueblo",
+          "evidence": "DOMINGO 25 DE OCTUBRE — 12:00 hs. Eucaristía y fiesta principal. A continuación procesión con el santo por las calles del pueblo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Rezo del Santo Rosario",
+          "date": "2026-10-25",
+          "time": "18:30",
+          "venue": null,
+          "evidence": "DOMINGO 25 DE OCTUBRE — 18.30 h. Rezo del santo Rosario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía",
+          "date": "2026-10-25",
+          "time": "19:00",
+          "venue": null,
+          "evidence": "DOMINGO 25 DE OCTUBRE — 19:00h. Eucaristía.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 2556,
+      "input_tokens_details": {
+        "cache_write_tokens": 2553,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1340,
+      "output_tokens_details": {
+        "reasoning_tokens": 332
+      },
+      "total_tokens": 3896
+    }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/9/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Torneo de Zanga",
+          "date": "2026-10-17",
+          "time": "10:00",
+          "venue": "Salón Ateneo",
+          "evidence": "«SÁBADO 17 DE OCTUBRE»; «10:00 h. Torneo de Zanga»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "XXXV Milla Urbana “San Rafael 2026”",
+          "date": "2026-10-17",
+          "time": "10:00",
+          "venue": "Zona peatonal de la Avda. de Canarias",
+          "evidence": "«SÁBADO 17 DE OCTUBRE»; «10:00 h. XXXV Milla Urbana “San Rafael 2026”»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Elección del II Romero y Romera Mayor de las Fiestas de San Rafael, con concierto de Cristina Ramos y Benito Cabrera",
+          "date": "2026-10-17",
+          "time": "20:15",
+          "venue": "Plaza de San Rafael",
+          "evidence": "«SÁBADO 17 DE OCTUBRE»; «20:15 h Elección del II Romero y Romera Mayor de las Fiestas de San Rafael»; «concierto de Cristina Ramos y Benito Cabrera»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Verbena con la orquesta Banda Larga",
+          "date": "2026-10-17",
+          "time": "22:30",
+          "venue": null,
+          "evidence": "«SÁBADO 17 DE OCTUBRE»; «22:30 h Verbena con la orquesta Banda Larga»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Verbena con la orquesta Furia Joven",
+          "date": "2026-10-17",
+          "time": "00:00",
+          "venue": null,
+          "evidence": "«SÁBADO 17 DE OCTUBRE»; «00:00 h Verbena con la orquesta Furia Joven»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Verbena con el grupo Nuevo Klan",
+          "date": "2026-10-17",
+          "time": "02:00",
+          "venue": "Recinto Ferial",
+          "evidence": "«SÁBADO 17 DE OCTUBRE»; «02:00 h. Verbena con el grupo Nuevo Klan»; «Recinto Ferial»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "3ª Exposición de coches, motos y camiones clásicos",
+          "date": "2026-10-18",
+          "time": "09:00",
+          "venue": "Zona peatonal de la Avda. de Canarias",
+          "evidence": "«DOMINGO 18 DE OCTUBRE»; «09.00 h. 3ª Exposición de coches, motos y camiones clásicos»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Talleres de baile urbano y de flamenco",
+          "date": "2026-10-18",
+          "time": null,
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "«DOMINGO 18 DE OCTUBRE»; «Durante la mañana se llevarán a cabo talleres de baile urbano y de flamenco en la Plaza de Los Algodoneros»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Espectáculo “Noches de Verbena”",
+          "date": "2026-10-18",
+          "time": "20:00",
+          "venue": null,
+          "evidence": "«DOMINGO 18 DE OCTUBRE»; «20.00 h. Espectáculo “Noches de Verbena”»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 2556,
+      "input_tokens_details": {
+        "cache_write_tokens": 2553,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1649,
+      "output_tokens_details": {
+        "reasoning_tokens": 806
+      },
+      "total_tokens": 4205
+    }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/10/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Baloncesto para tod@s",
+          "date": "2026-10-19",
+          "time": "17:00-19:00",
+          "venue": null,
+          "evidence": "LUNES 19 DE OCTUBRE — 17:00-19:00 h. Baloncesto para tod@s",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Baile de Mayores, amenizado por Nueva Imagen y su bandurria",
+          "date": "2026-10-20",
+          "time": "18:00",
+          "venue": "Plaza de San Rafael",
+          "evidence": "MARTES 20 DE OCTUBRE — 18:00 h. Baile de Mayores, amenizado por Nueva Imagen y su bandurria",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Exhibición de sevillanas a cargo de la Academia Nahia Dance",
+          "date": "2026-10-20",
+          "time": null,
+          "venue": "Plaza de San Rafael",
+          "evidence": "MARTES 20 DE OCTUBRE — exhibición de sevillanas a cargo de la Academia Nahia Dance",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Actuación de las Escuelas de Baile, modalidad URBANA infantil-juvenil",
+          "date": "2026-10-21",
+          "time": "18:00",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "MIÉRCOLES 21 DE OCTUBRE — 18:00 h. Actuación de las Escuelas de Baile, modalidad URBANA infantil-juvenil",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Noche de humor: el show de Antonia San Juan",
+          "date": "2026-10-22",
+          "time": "20:00",
+          "venue": null,
+          "evidence": "JUEVES 22 DE OCTUBRE — Noche de humor — 20:00 h. El show de Antonia San Juan",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Actuación de Matías Alonso",
+          "date": "2026-10-22",
+          "time": "21:00",
+          "venue": null,
+          "evidence": "JUEVES 22 DE OCTUBRE — 21:00 h. Matías Alonso",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 2556,
+      "input_tokens_details": {
+        "cache_write_tokens": 2553,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1631,
+      "output_tokens_details": {
+        "reasoning_tokens": 1093
+      },
+      "total_tokens": 4187
+    }
   }
 }
