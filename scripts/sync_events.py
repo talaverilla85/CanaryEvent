@@ -37,6 +37,8 @@ import telde_barrio_programs
 import telde_pdf_verified
 import telde_pdf_integrity
 import telde_pdf_auto
+import municipal_pdf_sources
+import municipal_pdf_auto
 import municipal_listing_dedup
 import cinema_policy
 import event_occurrences
@@ -713,6 +715,81 @@ def run():
                         "found":pdf_verified_found,"added":pdf_verified_added,
                         "changed":pdf_verified_changed,"error":pdf_verified_error})
         print(f"Telde PDF independently verified: found={pdf_verified_found} new={pdf_verified_added} error={pdf_verified_error[:80]}")
+        # Other official municipal PDF programmes use the same two-pass
+        # evidence gate as Telde. They must never replace a stronger,
+        # independently listed record with the same normalized title and date.
+        multi_found=multi_added=multi_changed=multi_duplicates=0
+        multi_error=""
+        try:
+            multi_dir=ROOT/"data"/"municipal_pdf_pilot"
+            multi_index=PUBLIC/"municipal_pdf_programs.json"
+            if multi_index.exists():
+                indexed=json.loads(multi_index.read_text(encoding="utf8"))
+                programs={(d["pdf_url"],d["municipality"]):d
+                          for d in indexed.get("programs",[])
+                          if d.get("municipality") in municipal_pdf_sources.SOURCES
+                          and d.get("year")==TODAY.year
+                          and municipal_pdf_sources.verified_pdf(
+                              d.get("pdf_url",""),d["municipality"],TODAY.year)}
+                approved_path=multi_dir/"verified_events.json"
+                verified_rows=json.loads(approved_path.read_text(encoding="utf8")) if approved_path.exists() else []
+                if not isinstance(verified_rows,list):
+                    raise ValueError("Municipal PDF verified events must be a list")
+                state_path=multi_dir/"scan_state.json"
+                cache_path=multi_dir/"vision_cache.json"
+                scan_state=json.loads(state_path.read_text(encoding="utf8")) if state_path.exists() else {}
+                cache=json.loads(cache_path.read_text(encoding="utf8")) if cache_path.exists() else {}
+                verified_keys=set()
+                seen=set()
+                for item in verified_rows:
+                    municipality=item.get("municipality")
+                    url=item.get("pdf_url")
+                    if (url,municipality) not in programs or municipality not in PLACES:
+                        continue
+                    if not telde_pdf_integrity.trusted(
+                            item,{url},scan_state,cache,TODAY,
+                            municipal_pdf_auto.vision.MODEL,municipal_pdf_auto.VERSION):
+                        continue
+                    entry=telde_pdf_verified.approved_to_event(item)
+                    dedup=dedup_key(entry)
+                    if dedup in seen:
+                        continue
+                    seen.add(dedup)
+                    existing=conn.execute("SELECT source_name FROM events WHERE dedup_key=?",
+                                          (dedup,)).fetchone()
+                    if existing and existing["source_name"]!=entry["source_name"]:
+                        multi_duplicates+=1
+                        continue
+                    verified_keys.add((entry["title"],entry["start"],entry["source_url"]))
+                    multi_found+=1
+                    action=upsert(conn,entry)
+                    multi_added+=int(action=="added")
+                    multi_changed+=int(action=="changed")
+                for municipality in municipal_pdf_sources.SOURCES:
+                    src="Ayuntamiento de "+municipality+" · programas PDF verificados (doble lectura IA)"
+                    rows=conn.execute("SELECT id,title,start,source_url FROM events WHERE source_name=?",
+                                      (src,)).fetchall()
+                    stale=[(r["id"],) for r in rows
+                           if (r["title"],r["start"],r["source_url"]) not in verified_keys]
+                    if stale:
+                        conn.executemany("DELETE FROM events WHERE id=?",stale)
+                conn.commit()
+        except Exception as exc:
+            multi_error=type(exc).__name__+": "+str(exc)[:200]
+            print(f"WARN municipal PDF verified feed: {multi_error}",file=sys.stderr)
+        multi_source="Ayuntamientos · programas PDF verificados"
+        conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+                       VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+                       checked_at=excluded.checked_at,found=excluded.found,
+                       added=excluded.added,changed=excluded.changed,error=excluded.error""",
+                     (multi_source,NOW,multi_found,multi_added,multi_changed,multi_error))
+        conn.commit()
+        results.append({"source":multi_source,"checked_at":NOW,
+                        "found":multi_found,"added":multi_added,
+                        "changed":multi_changed,"duplicates":multi_duplicates,
+                        "error":multi_error})
+        print(f"Other municipal PDF verified: {multi_found} acts, "
+              f"{multi_duplicates} skipped duplicates; error={multi_error[:80]}")
         # Official campaign posters are sources, not individual plans.
         youth=ingenio_juvenil_program
         youth_found=youth_added=youth_changed=0

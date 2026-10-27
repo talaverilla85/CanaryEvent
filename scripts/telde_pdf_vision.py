@@ -122,7 +122,7 @@ def official_robots(session):
  rule=RobotFileParser();rule.parse(r.text.splitlines())
  return rule
 
-def download_pdf(session,url,robots,cache_dir):
+def download_pdf(session,url,robots,cache_dir,*,max_bytes=MAX_PDF_BYTES):
  if not robots.can_fetch(USER_AGENT,url):
   raise PermissionError("Telde robots policy blocks this PDF")
  # PDF bytes are cached locally, but the source index itself remains the
@@ -136,7 +136,7 @@ def download_pdf(session,url,robots,cache_dir):
  chunks=bytearray()
  for chunk in r.iter_content(64*1024):
   chunks.extend(chunk)
-  if len(chunks)>MAX_PDF_BYTES:raise ValueError("PDF exceeds size limit")
+  if len(chunks)>max_bytes:raise ValueError("PDF exceeds size limit")
  raw=bytes(chunks)
  if not raw.startswith(b"%PDF"):raise ValueError("Invalid PDF header")
  sha=hashlib.sha256(raw).hexdigest()
@@ -180,7 +180,7 @@ def response_usage_cost(usage:dict,model=MODEL):
  cost=(inp-cached)*rate["input"]/1e6+cached*rate["cached_input"]/1e6+out*rate["output"]/1e6
  return round(cost,7)
 
-def call_openai_text(page_text,year,title,model,key,session):
+def call_openai_text(page_text,year,title,model,key,session,*,municipality="Telde"):
     """Read existing text before using paid visual decoding.
 
     Structured JSON and no-store prevent unintended retention or extra calls.
@@ -189,10 +189,10 @@ def call_openai_text(page_text,year,title,model,key,session):
     payload={
       "model":model,
       "store":False,
-      "instructions":SYSTEM_PROMPT,
+      "instructions":SYSTEM_PROMPT.replace("Telde, Gran Canaria",municipality+", Gran Canaria"),
       "input":[{"role":"user","content":[{
          "type":"input_text","text":
-          f"Programa municipal de Telde, fuente {title}, año {year}. "
+          f"Programa municipal de {municipality}, fuente {title}, año {year}. "
           f"Extrae las actividades con fecha explícita de este texto:\\n{page_text[:14500]}"
       }]}],
       "text":{"format":{"type":"json_schema","name":"telde_pdf_events",
@@ -220,14 +220,14 @@ def call_openai_text(page_text,year,title,model,key,session):
     return parsed,reply.get("usage",{})
 
 
-def call_openai_vision(image_bytes,year,title,model,key,session,*,instructions=None):
+def call_openai_vision(image_bytes,year,title,model,key,session,*,instructions=None,municipality="Telde"):
  payload={
   "model":model,
   "store":False,
-  "instructions":instructions or SYSTEM_PROMPT,
+  "instructions":(instructions or SYSTEM_PROMPT).replace("Telde, Gran Canaria",municipality+", Gran Canaria"),
   "input":[{
    "role":"user","content":[
-    {"type":"input_text","text":f"Fuente oficial municipal: {title}. Año {year}. Extrae cada actividad fechada que se lea EN ESTA página. JSON."},
+    {"type":"input_text","text":f"Fuente oficial municipal de {municipality}: {title}. Año {year}. Extrae cada actividad fechada que se lea EN ESTA página. JSON."},
     {"type":"input_image","image_url":"data:image/jpeg;base64,"+base64.b64encode(image_bytes).decode("ascii"),
      "detail":"high"}]
   }],
@@ -253,7 +253,7 @@ def call_openai_vision(image_bytes,year,title,model,key,session,*,instructions=N
   raise ValueError("Model failed required JSON structure")
  return decoded,reply.get("usage",{})
 
-def validate_candidate(rec,year,title,url,sha,page,now):
+def validate_candidate(rec,year,title,url,sha,page,now,*,municipality="Telde"):
  """Never publish from model output: create only a pending review record."""
  date=str(rec.get("date") or "").strip()
  if not re.fullmatch(r"\d{4}-\d{2}-\d{2}",date):return None,"missing_or_invalid_date"
@@ -285,9 +285,9 @@ def validate_candidate(rec,year,title,url,sha,page,now):
   return None,"invalid_type"
  uid=hashlib.sha256((url+"|"+date+"|"+name.casefold()+"|"+time).encode()).hexdigest()[:16]
  return {
-  "id":"telde-pdf-"+uid,"title":name,"date":date,"time":time or None,
+  "id":("telde-pdf-" if municipality=="Telde" else "municipal-pdf-")+uid,"title":name,"date":date,"time":time or None,
   "venue":place or None,"type":category,"evidence":evidence[:320],
-  "municipality":"Telde","program_title":title,"pdf_url":url,
+  "municipality":municipality,"program_title":title,"pdf_url":url,
   "admission_type":admission_type,"admission_details":admission_details or None,
   "pdf_sha256":sha,"pdf_page":page+1,"review_status":"pending_review",
   "date_state":"expired" if day<now else "upcoming",

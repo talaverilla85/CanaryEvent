@@ -7,3 +7,7 @@ __pycache__/
 # Scanned PDF binary files are never committed.
 data/telde_pdf_pilot/pdf_cache/
 data/telde_pdf_pilot/*.tmp
+
+# Other municipality PDF binary caches must never be pushed to Git.
+data/municipal_pdf_pilot/pdf_cache/
+data/municipal_pdf_pilot/*.tmp

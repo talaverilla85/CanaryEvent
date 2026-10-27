@@ -1,0 +1,91 @@
+{
+  "checked_at": "2026-10-27T23:00:48.804859+00:00",
+  "year": 2026,
+  "scope": [
+    "Santa Lucía de Tirajana",
+    "Agüimes",
+    "Gáldar"
+  ],
+  "errors": {},
+  "program_count": 7,
+  "events_imported": 0,
+  "note": "Official PDF inventory only. Unverified acts never enter the public calendar.",
+  "programs": [
+    {
+      "municipality": "Agüimes",
+      "title": "Programa municipal de fiestas",
+      "pdf_url": "https://aguimes.es/wp-content/uploads/2026/04/AF_PROGRAMA-A5_-FIESTAS-DE-SAN-JOSE-OBRERO-2026_DIGITAL.pdf",
+      "year": 2026,
+      "official_index_url": "https://aguimes.es/festejos/",
+      "discovery": "official_html",
+      "event_date_verified": false,
+      "first_seen_at": "2026-10-27T23:00:48.804859+00:00"
+    },
+    {
+      "municipality": "Agüimes",
+      "title": "Programa municipal de fiestas",
+      "pdf_url": "https://aguimes.es/wp-content/uploads/2026/08/AF_PROGRAMA-FIESTAS-DE-GUAYADEQUE-2026_DIGITAL.pdf",
+      "year": 2026,
+      "official_index_url": "https://aguimes.es/festejos/",
+      "discovery": "official_html",
+      "event_date_verified": false,
+      "first_seen_at": "2026-10-27T23:00:48.804859+00:00"
+    },
+    {
+      "municipality": "Agüimes",
+      "title": "Programa municipal de fiestas",
+      "pdf_url": "https://aguimes.es/wp-content/uploads/2026/08/AF_PROGRAMA-FIESTAS-DEL-PINO-2026.pdf",
+      "year": 2026,
+      "official_index_url": "https://aguimes.es/festejos/",
+      "discovery": "official_html",
+      "event_date_verified": false,
+      "first_seen_at": "2026-10-27T23:00:48.804859+00:00"
+    },
+    {
+      "municipality": "Agüimes",
+      "title": "Programa municipal de fiestas",
+      "pdf_url": "https://aguimes.es/wp-content/uploads/2026/09/AF_FIESTAS-DEL-ROSARIO-2026-DIGITAL.pdf",
+      "year": 2026,
+      "official_index_url": "https://aguimes.es/festejos/",
+      "discovery": "official_html",
+      "event_date_verified": false,
+      "first_seen_at": "2026-10-27T23:00:48.804859+00:00",
+      "program_end_hint": "2026-10-13",
+      "program_end_evidence_url": "https://aguimes.es/wp-content/uploads/2026/09/AF_FIESTAS-DEL-ROSARIO-2026-DIGITAL.pdf"
+    },
+    {
+      "municipality": "Gáldar",
+      "title": "Programa oficial 2026 de Gáldar",
+      "pdf_url": "https://www.galdar.es/wp-content/uploads/2026/06/PROGRAMA-FIESTAS-DE-SANTIAGO-2026.pdf",
+      "year": 2026,
+      "official_index_url": "https://www.galdar.es/fiestas/",
+      "discovery": "official_pdf_confirmed_2026",
+      "event_date_verified": false,
+      "program_end_hint": "2026-07-26",
+      "program_end_evidence_url": "https://www.galdar.es/wp-content/uploads/2026/06/PROGRAMA-FIESTAS-DE-SANTIAGO-2026.pdf",
+      "first_seen_at": "2026-10-27T23:00:48.804859+00:00"
+    },
+    {
+      "municipality": "Gáldar",
+      "title": "Programa municipal de fiestas",
+      "pdf_url": "https://www.galdar.es/wp-content/uploads/2026/06/PROGRAMA-SANTIAGO-2026-paginas-web.pdf",
+      "year": 2026,
+      "official_index_url": "https://www.galdar.es/fiestas/",
+      "discovery": "official_html",
+      "event_date_verified": false,
+      "first_seen_at": "2026-10-27T23:00:48.804859+00:00"
+    },
+    {
+      "municipality": "Santa Lucía de Tirajana",
+      "title": "Descargar programa de Fiestas San Rafael 2026",
+      "pdf_url": "https://www.santaluciagc.com/wp-content/uploads/2026/10/Programa_Fiestas-SanRafael_2026_web-1.pdf",
+      "year": 2026,
+      "official_index_url": "https://www.santaluciagc.com/fiestas-san-rafael-2026/",
+      "discovery": "official_html",
+      "event_date_verified": false,
+      "first_seen_at": "2026-10-27T23:00:48.804859+00:00",
+      "program_end_hint": "2026-11-01",
+      "program_end_evidence_url": "https://www.santaluciagc.com/wp-content/uploads/2026/10/Programa_Fiestas-SanRafael_2026_web-1.pdf"
+    }
+  ]
+}

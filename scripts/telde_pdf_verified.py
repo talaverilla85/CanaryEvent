@@ -97,13 +97,14 @@ def approved_to_event(item):
     return {
         "title":item["title"],
         "start":item["date"]+"T"+item["time"]+":00",
-        "end":None,"municipality":"Telde",
+        "end":None,"municipality":item.get("municipality","Telde"),
         "venue":item["venue"],
         "category":category,"free":is_free,"price":price,
         "details":("Acto individual recogido en un programa oficial de fiestas de Telde. "
                    "Fecha, hora y recinto contrastados mediante dos lecturas independientes "
                    "de la página "+str(item["pdf_page"])+". Confirma posibles cambios en el PDF original."),
-        "source_name":SOURCE,
+         "source_name":(SOURCE if item.get("municipality","Telde")=="Telde"
+                       else "Ayuntamiento de "+item["municipality"]+" · programas PDF verificados (doble lectura IA)"),
         "source_url":item["pdf_url"],
         "status":"approved",
         "verification":"two_independent_visual_passes",
