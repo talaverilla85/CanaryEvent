@@ -603,3 +603,27 @@ no crean fichas, aunque estén descubiertos en el inventario.
   descargar documentos ni llamar a IA, incluso sin OPENAI_API_KEY.
 - El workflow diario guarda el archivo histórico y el informe de
   aplazamientos, y mantiene el tope nominal de gasto de IA.
+
+### Programas oficiales PDF de más ayuntamientos
+
+El motor de PDF municipal reutiliza extracción visual, doble lectura
+independiente, caché por SHA-256/página, validación de recinto y control de
+gasto. La lista de nuevas fuentes está en scripts/municipal_pdf_sources.py:
+Santa Lucía de Tirajana, Agüimes y Gáldar. Las URLs proceden de sus páginas
+oficiales y están limitadas al dominio HTTPS municipal.
+
+- python scripts/refresh_municipal_pdf_index.py: inventario oficial.
+- python scripts/municipal_pdf_auto.py --archive-only: mantenimiento sin IA.
+- python scripts/municipal_pdf_auto.py --api: extracción de páginas futuras
+  con doble lectura visual, con OPENAI_API_KEY configurada.
+- Los programas del Rosario de Agüimes y Santiago de Gáldar 2026 tienen
+  fecha final documentada en portadas oficiales y se omiten en trabajos de IA
+  una vez terminados, sin eliminarlos del inventario.
+- Cada actividad se revalida contra las dos lecturas guardadas, la página
+  de origen y la huella del archivo; no se sobreescriben registros de otra
+  fuente con igual título y fecha.
+- Presupuesto de este nuevo trabajo: máximo 4 llamadas y 0,05 USD nominales
+  por ejecución, independiente de los límites de Telde.
+
+La fecha de subida del PDF nunca determina la fecha de una actividad.
+No se aceptan PDFs externos ni anexos sin enlazar desde fuente municipal.
