@@ -1,4 +1,4 @@
-import sqlite3,unittest,datetime as dt,sys
+﻿import sqlite3,unittest,datetime as dt,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"scripts"))
@@ -58,3 +58,4 @@ class VenueCrossSourceTests(unittest.TestCase):
   self.assertEqual(before-after,got["verified"])
 
 if __name__=="__main__":unittest.main()
+
