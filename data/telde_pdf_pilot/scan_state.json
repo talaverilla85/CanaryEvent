@@ -21,7 +21,9 @@
       10
     ],
     "complete": false,
-    "checked_at": "2026-10-27"
+    "checked_at": "2026-10-27",
+    "defer_until": "2026-11-03",
+    "defer_reason": "only_old_acts_seen_so_far_unread_pages_remain"
   },
   "f02a475369fa59dd": {
     "sha": "e2d30f587c32e3d4846943ff14e69428f8f3f068ed5641e365711d0687d63898",

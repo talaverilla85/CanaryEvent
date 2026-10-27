@@ -137,7 +137,11 @@ class AutoTeldePdfTests(unittest.TestCase):
                 self.assertEqual(report["docs"][0]["inspected"][0]["verification"],"expired_acts_no_second_api_pass")
                 self.assertEqual(json.loads((p/"verified.json").read_text(encoding="utf8")),[])
                 pending=json.loads((p/"pending.json").read_text(encoding="utf8"))
-                self.assertEqual(pending[0]["date_state"],"expired")
+                self.assertEqual(pending,[])
+                archived=json.loads((p/"expired_archive.json").read_text(encoding="utf8"))
+                self.assertEqual(len(archived),1)
+                self.assertEqual(archived[0]["date_state"],"expired")
+                self.assertEqual(archived[0]["archived_from"],"pending_review")
 
     def test_workflow_never_exposes_key_in_browser(self):
         wf=(ROOT/".github/workflows/sync-events.yml").read_text(encoding="utf8")

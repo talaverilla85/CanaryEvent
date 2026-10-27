@@ -23,6 +23,7 @@ from pypdf import PdfReader
 
 import telde_pdf_vision as tv
 import telde_pdf_verified as verified_gate
+import telde_pdf_priority as priority
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = tv.WORK / "scan_state.json"
@@ -97,25 +98,35 @@ def verify_text_evidence(text: str, candidate: dict) -> bool:
     return len(evidence) >= 12 and evidence in body
 
 def choose_recent(index: dict, today: dt.date, filename: str | None,
-                  limit: int) -> list[dict]:
+                  limit: int, *, state=None, records=None) -> list[dict]:
     if filename:
         return tv.select_programs(index, filename, 1)
-    docs = index.get("programs", [])
-    recent = []
-    current = today.year * 12 + today.month
-    for item in docs:
-        if not isinstance(item, dict) or not item.get("pdf_url"):
-            continue
-        url = urlsplit(item["pdf_url"])
-        m = re.match(r"/wp-content/uploads/(20\d{2})/(\d{2})/", url.path)
-        if not m:
-            continue
-        age = current - (int(m.group(1)) * 12 + int(m.group(2)))
-        if -1 <= age <= 2:
-            recent.append(item)
-    # Recently uploaded documents first, not all 34 archive PDFs.
-    recent.sort(key=lambda e: urlsplit(e["pdf_url"]).path, reverse=True)
-    return recent
+    return priority.sorted_programs(index, today, state or {}, records or [])
+
+
+def archive_record(rec: dict, source_queue: str, today: dt.date, archive: dict):
+    """Idempotent historical preservation with original PDF evidence retained."""
+    key = "|".join((str(rec["id"]), str(rec.get("pdf_sha256") or ""),
+                    source_queue))
+    if key in archive:
+        return False
+    archive[key] = {
+        **rec, "original_review_status": rec.get("review_status"),
+        "review_status": "archived", "date_state": "expired",
+        "archived_from": source_queue, "archived_on": today.isoformat(),
+    }
+    return True
+
+
+def archive_expired(today: dt.date, prior: dict, verified_events: dict, archive: dict):
+    count = 0
+    for name, collection in (("pending_review", prior), ("auto_verified", verified_events)):
+        for key, rec in list(collection.items()):
+            when = priority.day_of(rec.get("date"))
+            if when and when < today:
+                count += int(archive_record(rec, name, today, archive))
+                del collection[key]
+    return count
 
 def run(argv=None, *, session=None, today: dt.date | None = None):
     pa = argparse.ArgumentParser()
@@ -124,6 +135,8 @@ def run(argv=None, *, session=None, today: dt.date | None = None):
     pa.add_argument("--max-pages", type=int, default=3)
     pa.add_argument("--max-api-calls", type=int, default=3)
     pa.add_argument("--max-cost-usd", type=float, default=0.05)
+    pa.add_argument("--archive-only", action="store_true",
+                    help="Archive expired review entries without fetching PDFs")
     pa.add_argument("--api", action="store_true",
                     help="Allow billable Responses API calls if secret exists")
     args = pa.parse_args(argv)
@@ -131,25 +144,61 @@ def run(argv=None, *, session=None, today: dt.date | None = None):
         pa.error("max-docs must be <=3 and max-pages <=5")
     if not 1 <= args.max_api_calls <= 8 or not .02 <= args.max_cost_usd <= .5:
         pa.error("Invalid usage guard limits")
-    now = today or dt.datetime.now(dt.timezone.utc).date()
+    from zoneinfo import ZoneInfo
+    now = today or dt.datetime.now(ZoneInfo("Atlantic/Canary")).date()
     key = os.environ.get("OPENAI_API_KEY", "")
     api_enabled = args.api and bool(key)
     index = tv.load_json(tv.SOURCE, {})
-    picks = choose_recent(index, now, args.filename, args.max_docs)
     sess = session or requests.Session()
-    robots = tv.official_robots(sess) if picks else None
     cache = tv.load_json(CACHE, {})
     verified_events = {e["id"]: e for e in tv.load_json(VERIFIED, [])
-                       if isinstance(e,dict) and e.get("id")}
+                       if isinstance(e, dict) and e.get("id")}
     prior = {e["id"]: e for e in tv.load_json(REVIEW, [])
              if isinstance(e, dict) and e.get("id")}
+    archive_path = REVIEW.with_name("expired_archive.json")
+    stored_archive = tv.load_json(archive_path, [])
+    archive = {"|".join((str(e.get("id")), str(e.get("pdf_sha256") or ""),
+                        str(e.get("archived_from") or "pending_review"))): e
+               for e in stored_archive if isinstance(e, dict) and e.get("id")}
     state = tv.load_json(STATE, {})
+    archived_now = archive_expired(now, prior, verified_events, archive)
+    if archived_now:
+        # Persist expiry cleanup even if subsequent network access fails.
+        tv.atomic_json(REVIEW, sorted(prior.values(), key=lambda x:(x["date"],x["id"])))
+        tv.atomic_json(VERIFIED, sorted(verified_events.values(),
+                                       key=lambda x:(x["date"],x["id"])))
+        tv.atomic_json(archive_path, sorted(archive.values(),
+                            key=lambda x:(x.get("date") or "", x.get("id") or "")))
+    known_records = list(prior.values())+list(archive.values())+list(verified_events.values())
+    picks = [] if args.archive_only else choose_recent(
+        index, now, args.filename, args.max_docs, state=state,
+        records=known_records)
+    robots = tv.official_robots(sess) if picks else None
     report = {"checked_at": dt.datetime.now(dt.timezone.utc).isoformat(),
-              "mode": "api_fallback" if api_enabled else "offline_safe",
+              "mode": "archive_only" if args.archive_only else "api_fallback" if api_enabled else "offline_safe",
               "model": tv.MODEL, "api_key_configured": bool(key),
               "api_calls": 0, "usage_usd": 0.0,
-              "docs": [], "pending_review_count": 0, "auto_verified_count": 0,
-              "notes": "Only corroborated future acts with matching time and named venue enter the feed; other results stay in review."}
+              "docs": [], "deferred_docs": [], "pending_review_count": 0,
+              "auto_verified_count": 0, "archived_count": 0,
+              "archived_this_run": 0,
+              "notes": "Future events require independent date, time and venue verification. Expired records move to the historic archive; incomplete past-only PDFs are temporarily deferred."}
+    if args.archive_only:
+        # Offline maintenance can seed safe cooldowns from existing evidence.
+        for program in index.get("programs", []):
+            if not isinstance(program,dict) or not program.get("pdf_url"):
+                continue
+            url=program["pdf_url"]
+            uid=priority.doc_id(url)
+            checkpoint=state.get(uid,{})
+            if not priority.future_dated(url,known_records,now,checkpoint) and (
+                priority.old_only_partial(url,checkpoint,known_records,now)
+            ):
+                if not priority.pause_active(checkpoint,now):
+                    priority.defer(checkpoint,now)
+                    state[uid]=checkpoint
+                report["deferred_docs"].append({
+                    "pdf_url":url,"reason":"past_only_cooldown",
+                    "resume_on":checkpoint["defer_until"]})
     processed_docs = 0
     for pick in picks:
         if processed_docs >= args.max_docs:
@@ -157,15 +206,26 @@ def run(argv=None, *, session=None, today: dt.date | None = None):
         url = tv.verify_pdf_url(pick["pdf_url"], int(pick["year"]))
         uid = hashlib.sha256(url.encode()).hexdigest()[:16]
         checkpoint = state.get(uid, {})
-        if not args.filename and checkpoint.get("complete", False):
-            # Completed files can be rechecked on future weekly catalog audits.
-            checked_at = checkpoint.get("checked_at", "")
-            try:
-                checked_day = dt.date.fromisoformat(checked_at)
-            except ValueError:
-                checked_day = dt.date.min
-            if (now - checked_day).days < 7:
-                continue
+        if not args.filename:
+            if checkpoint.get("complete") or priority.end_date_confirmed(pick, checkpoint, now):
+                checked = priority.day_of(checkpoint.get("checked_at")) or dt.date.min
+                if (now - checked).days < 7:
+                    report["deferred_docs"].append({"pdf_url":url,"reason":"completed_or_end_verified"})
+                    continue
+            if not priority.future_dated(url,list(prior.values())+list(verified_events.values()),now,checkpoint):
+                if priority.pause_active(checkpoint, now):
+                    report["deferred_docs"].append({
+                        "pdf_url":url, "reason":"past_only_cooldown",
+                        "resume_on":checkpoint["defer_until"]})
+                    continue
+                if not checkpoint.get("defer_until") and priority.old_only_partial(
+                        url, checkpoint, list(prior.values())+list(archive.values()),now):
+                    priority.defer(checkpoint,now)
+                    state[uid]=checkpoint
+                    report["deferred_docs"].append({
+                        "pdf_url":url,"reason":"past_only_cooldown",
+                        "resume_on":checkpoint["defer_until"]})
+                    continue
         processed_docs += 1
 
         file, sha, size = tv.download_pdf(sess, url, robots, tv.WORK / "pdf_cache")
@@ -250,7 +310,10 @@ def run(argv=None, *, session=None, today: dt.date | None = None):
                         rec["extractor"] = method
                         valid.append(rec)
             for rec in valid:
-                prior[rec["id"]] = rec
+                if priority.day_of(rec["date"]) < now:
+                    archived_now += int(archive_record(rec,"pending_review",now,archive))
+                else:
+                    prior[rec["id"]] = rec
             info["candidates_pending_review"] = len(valid)
             # OCR-free scan: original visual extraction AND independent second
             # visual pass must agree about title, date, time and named venue.
@@ -301,11 +364,24 @@ def run(argv=None, *, session=None, today: dt.date | None = None):
         checkpoint["done_pages"] = sorted(done)
         checkpoint["complete"] = len(done) == len(pdf.pages)
         checkpoint["checked_at"] = now.isoformat()
+        if checkpoint["complete"]:
+            checkpoint.pop("defer_until",None)
+            checkpoint.pop("defer_reason",None)
+        elif priority.old_only_partial(
+                url, checkpoint, list(prior.values())+list(archive.values()),now):
+            priority.defer(checkpoint,now)
+        else:
+            checkpoint.pop("defer_until",None)
+            checkpoint.pop("defer_reason",None)
         state[uid] = checkpoint
     report["pending_review_count"] = len(prior)
     report["auto_verified_count"] = len(verified_events)
+    report["archived_count"] = len(archive)
+    report["archived_this_run"] = archived_now
     tv.atomic_json(REVIEW, sorted(prior.values(), key=lambda x: (x["date"], x["id"])))
     tv.atomic_json(VERIFIED,sorted(verified_events.values(),key=lambda x:(x["date"],x["id"])))
+    tv.atomic_json(archive_path,sorted(archive.values(),
+                   key=lambda x:(x.get("date") or "",x.get("id") or "")))
     tv.atomic_json(STATE, state)
     tv.atomic_json(REPORT, report)
     print(json.dumps(report, ensure_ascii=False, indent=2))

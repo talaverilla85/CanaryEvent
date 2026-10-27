@@ -1,89 +1,21 @@
 {
-  "checked_at": "2026-10-27T22:13:03.242344+00:00",
-  "mode": "api_fallback",
+  "checked_at": "2026-10-27T22:54:35.199470+00:00",
+  "mode": "archive_only",
   "model": "gpt-6-luna",
-  "api_key_configured": true,
-  "api_calls": 4,
-  "usage_usd": 0.0018561,
-  "docs": [
+  "api_key_configured": false,
+  "api_calls": 0,
+  "usage_usd": 0.0,
+  "docs": [],
+  "deferred_docs": [
     {
-      "name": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Caserones Altos",
       "pdf_url": "https://www.telde.es/wp-content/uploads/2026/10/caseronesaltos26.pdf",
-      "sha256": "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0",
-      "pages": 15,
-      "bytes": 2981599,
-      "inspected": [
-        {
-          "page": 9,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 2,
-          "verification": "expired_acts_no_second_api_pass"
-        },
-        {
-          "page": 10,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 4,
-          "verification": "expired_acts_no_second_api_pass"
-        },
-        {
-          "page": 11,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 0
-        }
-      ]
-    },
-    {
-      "name": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Valle los Nueve Alto",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/vallelosnuevealto26.pdf",
-      "sha256": "e2d30f587c32e3d4846943ff14e69428f8f3f068ed5641e365711d0687d63898",
-      "pages": 5,
-      "bytes": 1062090,
-      "inspected": [
-        {
-          "page": 2,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 0
-        },
-        {
-          "page": 3,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "status": "skipped_api_budget"
-        },
-        {
-          "page": 4,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "status": "skipped_api_budget"
-        }
-      ]
+      "reason": "past_only_cooldown",
+      "resume_on": "2026-11-03"
     }
   ],
-  "pending_review_count": 16,
+  "pending_review_count": 0,
   "auto_verified_count": 0,
-  "notes": "Only corroborated future acts with matching time and named venue enter the feed; other results stay in review."
+  "archived_count": 16,
+  "archived_this_run": 16,
+  "notes": "Future events require independent date, time and venue verification. Expired records move to the historic archive; incomplete past-only PDFs are temporarily deferred."
 }

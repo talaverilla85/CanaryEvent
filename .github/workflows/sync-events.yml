@@ -82,7 +82,8 @@ jobs:
           if [[ -n "$OPENAI_API_KEY" ]]; then
             python scripts/telde_pdf_auto.py --api --max-docs 2 --max-pages 3 --max-api-calls 4 --max-cost-usd 0.05
           else
-            echo "Sin clave IA configurada: no se hacen llamadas de pago."
+            python scripts/telde_pdf_auto.py --archive-only
+            echo "Sin clave IA configurada: se archivan caducados sin llamadas de pago."
           fi
       - name: Obtener y verificar eventos oficiales
         run: python scripts/sync_events.py

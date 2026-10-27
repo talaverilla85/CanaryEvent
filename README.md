@@ -580,3 +580,26 @@ esto es un resultado correcto, no un fallo de la conexión.
 
 Los PDFs históricos, ilegibles o sin actuaciones futuras comprobables
 no crean fichas, aunque estén descubiertos en el inventario.
+
+#### Prioridad de PDF futuros y archivo histórico
+
+- El extractor da prioridad a los PDF que ya muestran actividades con fechas
+  futuras y después a los programas todavía no inspeccionados. La fecha de
+  subida de un PDF **no** demuestra la fecha de sus eventos.
+- Los actos con fecha vencida se trasladan de pending_review.json (o
+  verified_events.json) a data/telde_pdf_pilot/expired_archive.json. Se
+  conservan título, fecha, PDF, SHA-256 y página original, pero ya no son
+  candidatos de publicación. Archivar varias veces es seguro e idempotente.
+- Si una extracción parcial solo contiene actos cuya última fecha conocida
+  venció hace más de siete días, se aplaza el resto de ese PDF durante siete
+  días. **No se declara finalizado**: podrían quedar actos futuros en páginas
+  aún no leídas. El PDF sigue elegible tras la pausa y un PDF nuevo puede
+  adelantarlo. La opción --filename permite inspeccionarlo explícitamente.
+- Una fecha final solo permite declarar un programa terminado cuando existe
+  una fecha de fin verificada con fuente PDF oficial y asociada al SHA-256
+  exacto, nunca por inferencia del nombre o la ruta.
+- python scripts/telde_pdf_auto.py --archive-only realiza el mantenimiento
+  histórico y los aplazamientos a partir de evidencias existentes, sin
+  descargar documentos ni llamar a IA, incluso sin OPENAI_API_KEY.
+- El workflow diario guarda el archivo histórico y el informe de
+  aplazamientos, y mantiene el tope nominal de gasto de IA.

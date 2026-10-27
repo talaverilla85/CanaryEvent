@@ -8,7 +8,7 @@ git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
 for attempt in 1 2 3; do
   # Review records contain no raw PDFs, image data, or credentials.
-  for file in data/telde_pdf_pilot/pending_review.json data/telde_pdf_pilot/vision_cache.json data/telde_pdf_pilot/scan_state.json data/telde_pdf_pilot/auto_report.json data/telde_pdf_pilot/verified_events.json; do
+  for file in data/telde_pdf_pilot/pending_review.json data/telde_pdf_pilot/expired_archive.json data/telde_pdf_pilot/vision_cache.json data/telde_pdf_pilot/scan_state.json data/telde_pdf_pilot/auto_report.json data/telde_pdf_pilot/verified_events.json; do
     if [[ -f "$file" ]]; then git add "$file"; fi
   done
   git add data/events.sqlite data/program_review_gc.json data/venue_review_gc.json data/source_quality_gc.json data/price_provenance_audit.json public/events.json public/meta.json public/municipal_programs.json
