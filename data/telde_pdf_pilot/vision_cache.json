@@ -55,5 +55,81 @@
       "total_tokens": 3246
     },
     "measured_cost_usd": 0.000345
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/3/gpt-6-luna/text-fallback-vision-v1/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3195,
+      "input_tokens_details": {
+        "cache_write_tokens": 3192,
+        "cached_tokens": 0
+      },
+      "output_tokens": 78,
+      "output_tokens_details": {
+        "reasoning_tokens": 56
+      },
+      "total_tokens": 3273
+    },
+    "measured_cost_usd": 0.0003585
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/4/gpt-6-luna/text-fallback-vision-v1/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3195,
+      "input_tokens_details": {
+        "cache_write_tokens": 3192,
+        "cached_tokens": 0
+      },
+      "output_tokens": 55,
+      "output_tokens_details": {
+        "reasoning_tokens": 33
+      },
+      "total_tokens": 3250
+    },
+    "measured_cost_usd": 0.000347
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/5/gpt-6-luna/text-fallback-vision-v1/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3195,
+      "input_tokens_details": {
+        "cache_write_tokens": 3192,
+        "cached_tokens": 0
+      },
+      "output_tokens": 101,
+      "output_tokens_details": {
+        "reasoning_tokens": 79
+      },
+      "total_tokens": 3296
+    },
+    "measured_cost_usd": 0.00037
+  },
+  "e2d30f587c32e3d4846943ff14e69428f8f3f068ed5641e365711d0687d63898/0/gpt-6-luna/text-fallback-vision-v1/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3195,
+      "input_tokens_details": {
+        "cache_write_tokens": 3192,
+        "cached_tokens": 0
+      },
+      "output_tokens": 46,
+      "output_tokens_details": {
+        "reasoning_tokens": 24
+      },
+      "total_tokens": 3241
+    },
+    "measured_cost_usd": 0.0003425
   }
 }

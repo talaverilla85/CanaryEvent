@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-10-27T20:13:34.099986+00:00",
+  "checked_at": "2026-10-27T21:16:02.030817+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
-  "api_calls": 3,
-  "usage_usd": 0.0010285,
+  "api_calls": 4,
+  "usage_usd": 0.001418,
   "docs": [
     {
       "name": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Caserones Altos",
@@ -14,7 +14,7 @@
       "bytes": 2981599,
       "inspected": [
         {
-          "page": 1,
+          "page": 4,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
@@ -25,7 +25,7 @@
           "candidates_pending_review": 0
         },
         {
-          "page": 2,
+          "page": 5,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
@@ -36,7 +36,7 @@
           "candidates_pending_review": 0
         },
         {
-          "page": 3,
+          "page": 6,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
@@ -59,7 +59,12 @@
           "page": 1,
           "native_text_chars": 0,
           "route": "ai_vision",
-          "status": "skipped_api_budget"
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 0
         },
         {
           "page": 2,
@@ -77,5 +82,6 @@
     }
   ],
   "pending_review_count": 0,
-  "notes": "This pipeline never automatically publishes AI events"
+  "auto_verified_count": 1,
+  "notes": "Only corroborated future acts with matching time and named venue enter the feed; other results stay in review."
 }

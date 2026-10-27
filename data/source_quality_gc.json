@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-10-27T20:10:59+00:00",
+  "checked_at": "2026-10-27T21:16:14+00:00",
   "quality_counts": {
-    "publicados": 430,
+    "publicados": 431,
     "recintos_sin_verificar": 121,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 282,
-    "distancia_a_centro_municipal": 278,
+    "precios_sin_confirmar": 283,
+    "distancia_a_centro_municipal": 279,
     "fuentes_con_error": 0,
     "duplicados_potenciales": 7
   },
@@ -148,6 +148,16 @@
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
+      "estado": "operativa",
+      "publicados": 1,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
     {
