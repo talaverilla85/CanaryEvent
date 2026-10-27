@@ -9,6 +9,7 @@ on:
     paths:
       - "scripts/sync_events.py"
       - "scripts/cabildo_public.py"
+      - "scripts/ulpgc_venue_facts.py"
       - "scripts/source_facts.py"
       - "scripts/venue_facts.py"
       - "scripts/venue_quality.py"

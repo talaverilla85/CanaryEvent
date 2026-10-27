@@ -19,6 +19,7 @@ import requests
 from bs4 import BeautifulSoup
 import artes_details
 import cabildo_public
+import ulpgc_venue_facts
 import ticket_reserva
 import ticket_recent
 import santalucia_festivals
@@ -731,7 +732,7 @@ def run():
             e={k:row[k] for k in ("id","title","start","end","municipality","venue","category",
                                   "free","price","details","lat","lng","accuracy","source_name","source_url",
                                   "image_url","image_alt","image_origin","image_status","organizer_url")}
-            events.append(e)
+            events.append(ulpgc_venue_facts.enhance(e))
         events=municipal_listing_dedup.reconcile(events,norm)
         events,programs_pending=program_quality.filter_public_plans(events)
         valid_candidates=len(events)

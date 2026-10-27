@@ -14,6 +14,7 @@ import requests
 from bs4 import BeautifulSoup
 from event_images import official_page_image,image_fields
 import source_facts
+import ulpgc_venue_facts
 
 BASE="https://www.eventosgrancanaria.com"
 SOURCE_NAME="Portal oficial de Eventos Gran Canaria (Cabildo)"
@@ -118,7 +119,7 @@ def extract_factual_event(html,url,today,places,norm,category):
             if isinstance(node,dict) and node.get("@type")=="Event" and str(node.get("eventStatus","")).endswith("EventCancelled"):
                 status="cancelled"
     image=official_page_image(soup,url)
-    return dict(
+    return ulpgc_venue_facts.enhance(dict(
       **image_fields(image,title,SOURCE_NAME),
       title=title,start=start_day.isoformat()+("T"+start_time+":00" if known_time else ""),
       end=(final_day.isoformat() if final_day>start_day else
@@ -126,7 +127,7 @@ def extract_factual_event(html,url,today,places,norm,category):
       municipality=muni,venue=venue,category=category(title),
       free=facts["free"],price=facts["price"],details=facts["details"],
       organizer_url=facts["organizer_url"],
-      source_name=SOURCE_NAME,source_url=url,status=status)
+      source_name=SOURCE_NAME,source_url=url,status=status))
 
 def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_PAGES_PER_RUN):
     scan_allowed()

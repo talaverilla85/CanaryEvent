@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-27T14:32:52+00:00",
-  "not_published": 165,
+  "updated_at": "2026-10-27T14:54:25+00:00",
+  "not_published": 143,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -28,18 +28,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 344,
-      "title": "Taller de Narración Oral con María Buenadicha",
-      "start": "2026-09-14",
-      "end": "2026-12-21",
-      "municipality": "Telde",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260914-0006/taller-de-narracion-oral-con-maria-buenadicha",
-      "organizer_url": "https://teldecultura.org/events/taller-de-narracion-oral-con-maria-buenadicha/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 337,
       "title": "Exposición temporal: `Arqueología de las plantas: una mirada al registro arqueológico invisible´",
       "start": "2026-09-18",
@@ -64,18 +52,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 308,
-      "title": "Butaca24 Cinema - Próximas proyecciones",
-      "start": "2026-09-23",
-      "end": "2026-10-28",
-      "municipality": "San Bartolomé de Tirajana",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260923-0004/butaca24-cinema-proximas-proyecciones",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 309,
       "title": "Laboratorio de Innovación Social Feminista",
       "start": "2026-09-23",
@@ -96,30 +72,6 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260925-0010/ii-campeonato-de-envite-pal-pie-villa-de-firgas",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 302,
-      "title": "Club de Lectura 'La Rejalgadera'",
-      "start": "2026-09-25",
-      "end": "2027-05-01",
-      "municipality": "Firgas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260925-0058/club-de-lectura-la-rejalgadera",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 303,
-      "title": "Lo menos tierra de la Tierra",
-      "start": "2026-09-25",
-      "end": "2026-11-14",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260925-0063/lo-menos-tierra-de-la-tierra",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
@@ -220,18 +172,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 301,
-      "title": "¡GRADA ABIERTA! | Tu nueva Sala de Estudios",
-      "start": "2026-10-01",
-      "end": "2026-12-31",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260925-0053/grada-abierta-tu-nueva-sala-de-estudios",
-      "organizer_url": "https://actividadesjuventud.laspalmasgc.es/events/10b1bead7b736be62996d4d49b787143bd0b1bc0",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 193,
       "title": "Cursos de formación especializada",
       "start": "2026-10-06",
@@ -241,18 +181,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261006-0005/cursos-de-formacion-especializada",
       "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 196,
-      "title": "FUTUROS RYDERS OCTUBRE. BODYBOARD",
-      "start": "2026-10-07",
-      "end": "2026-10-28",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261005-0002/futuros-ryders-octubre-bodyboard",
-      "organizer_url": "https://actividadesjuventud.laspalmasgc.es/events/d1146cf95815bdf4784bbbf46b6d6e6675b19f0d",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -301,30 +229,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261010-0002/xxxi-festival-internacional-de-folklore",
       "organizer_url": "https://ingenio.es/events/xxxi-festival-internacional-de-folklore/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 161,
-      "title": "Taller de Cómic y Cuentos Ilustrados",
-      "start": "2026-10-10",
-      "end": "2026-12-19",
-      "municipality": "Telde",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261010-0008/taller-de-comic-y-cuentos-ilustrados",
-      "organizer_url": "https://teldecultura.org/events/taller-de-comic-y-cuentos-ilustrados-4/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 230,
-      "title": "AJEDREZ EN LA GRADA",
-      "start": "2026-10-10",
-      "end": "2026-12-26",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261003-0012/ajedrez-en-la-grada",
-      "organizer_url": "https://actividadesjuventud.laspalmasgc.es/events/cf8aeefc3afd9fbebe0b9ffa6b13bd51621d3cdf",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -520,42 +424,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 65,
-      "title": "Campaña de hemodonación: Escuela de Arquitectura",
-      "start": "2026-10-27T13:30:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0003/campana-de-hemodonacion-escuela-de-arquitectura",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/10/26/campana-hemodonacion-escuela-arquitectura",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 64,
-      "title": "Campaña de hemodonación: Facultad de Ciencias del Mar",
-      "start": "2026-10-27T18:30:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0002/campana-de-hemodonacion-facultad-de-ciencias-del-mar",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/10/26/campana-hemodonacion-facultad-ciencias-del-mar",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 66,
-      "title": "Campaña de hemodonación: Escuela de Ingeniería Informática",
-      "start": "2026-10-27T18:30:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0004/campana-de-hemodonacion-escuela-de-ingenieria-informatica",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/10/26/campana-hemodonacion-escuela-ingenieria-informatica",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 74,
       "title": "Visita Unidad Móvil de la Policía Nacional(DNI - PASAPORTES)",
       "start": "2026-10-28T09:00:00",
@@ -673,30 +541,6 @@
       "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "source_url": "https://eventos.santabrigida.es/eventos/xix-festival-folk-canarias/",
       "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 85,
-      "title": "Campaña de hemodonación: Parque Científico y Tecnológico",
-      "start": "2026-10-29T14:00:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0003/campana-de-hemodonacion-parque-cientifico-y-tecnologico",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/10/29/campana-hemodonacion-parque-cientifico-y-tecnologico",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 86,
-      "title": "Campaña de hemodonación: Escuela de Ingenierías Industriales y Civiles",
-      "start": "2026-10-29T19:45:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0004/campana-de-hemodonacion-escuela-de-ingenierias-industriales-y-civiles",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/10/28/campana-hemodonacion-escuela-ingenierias-industriales-y-civiles",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -997,18 +841,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261104-0001/erase-una-vez-en-el-cine-ces1",
       "organizer_url": "https://ofgrancanaria.com/conciertos-entradas/eventos/erase-una-vez-en-el-cine-ces1/439",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 144,
-      "title": "Campaña de hemodonación: Facultad de Veterinaria",
-      "start": "2026-11-04T19:30:00",
-      "end": null,
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261104-0003/campana-de-hemodonacion-facultad-de-veterinaria",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/03/campana-hemodonacion-facultad-veterinaria",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -1672,18 +1504,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 312,
-      "title": "Efecto cinema: El tren fluvial",
-      "start": "2026-11-25T19:00:00",
-      "end": "2026-11-25T20:45:00",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261125-0000/efecto-cinema-el-tren-fluvial",
-      "organizer_url": "https://lpacultura.com/events/efecto-cinema-el-tren-fluvial",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 314,
       "title": "Jazz Otoño 2026: The James Supremes",
       "start": "2026-11-26",
@@ -1732,18 +1552,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 326,
-      "title": "MISERABLE II, UN SHOW DE MIGUEL LAGO",
-      "start": "2026-11-27",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261127-0012/miserable-ii-un-show-de-miguel-lago",
-      "organizer_url": "https://ingenio.es/events/lago-miguel-lago/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 327,
       "title": "10º Encuentro Entre Corderos y Fogones",
       "start": "2026-11-28",
@@ -1780,18 +1588,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 339,
-      "title": "Mercado Agrícola",
-      "start": "2026-11-29T09:00:00",
-      "end": "2026-11-29T13:30:00",
-      "municipality": "Gáldar",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261129-0000/mercado-agricola",
-      "organizer_url": "https://www.galdar.es/events/mercado-agricola-29nov26/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 348,
       "title": "Aula de cine. Ciclo “Los modernos años 30”. Ámame esta noche",
       "start": "2026-12-04",
@@ -1801,18 +1597,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261204-0002/aula-de-cine-ciclo-los-modernos-anos-30-amame-esta-noche",
       "organizer_url": "https://www.ulpgc.es/agenda/2026/12/04/aula-cine-ciclo-modernos-anos-30-amame-esta-noche",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 351,
-      "title": "MARU CANDEL",
-      "start": "2026-12-04",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261204-0007/maru-candel",
-      "organizer_url": "https://ingenio.es/events/maru-candel/",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -1852,18 +1636,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 365,
-      "title": "MI NAVIDAD EN TI",
-      "start": "2026-12-11",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261211-0006/mi-navidad-en-ti",
-      "organizer_url": "https://ingenio.es/events/mi-navidad-en-ti/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 366,
       "title": "Teror Patea por GC: Artenara - Juncalillo - Fagajesto",
       "start": "2026-12-12T09:00:00",
@@ -1873,30 +1645,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261212-0000/teror-patea-por-gc-artenara-juncalillo-fagajesto",
       "organizer_url": "https://teror.es/events/teror-patea-por-gc-artenara-juncalillo-fagajesto/var/ri-.l-L1",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 368,
-      "title": "Navidad Canaria",
-      "start": "2026-12-12T20:30:00",
-      "end": "2026-12-12T22:00:00",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261212-0002/navidad-canaria",
-      "organizer_url": "https://lpacultura.com/events/navidad-canaria",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 378,
-      "title": "Mercado Agrícola",
-      "start": "2026-12-13T09:00:00",
-      "end": "2026-12-13T13:30:00",
-      "municipality": "Gáldar",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261213-0000/mercado-agricola",
-      "organizer_url": "https://www.galdar.es/events/mercado-agricola-13dic26/",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -1933,18 +1681,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261220-0001/corazon-valiente",
       "organizer_url": "https://teldecultura.org/events/corazon-valiente/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 413,
-      "title": "Mercado Agrícola",
-      "start": "2026-12-27T09:00:00",
-      "end": "2026-12-27T13:30:00",
-      "municipality": "Gáldar",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261227-0000/mercado-agricola",
-      "organizer_url": "https://www.galdar.es/events/mercado-agricola-27dic26/",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {

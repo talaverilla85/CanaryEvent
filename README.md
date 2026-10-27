@@ -368,3 +368,23 @@ El Cabildo usa `cabildo_scans.venue_inspected` para revisar primero las fichas c
 - El enriquecimiento adicional `scripts/organizer_venues.py` consulta solo fichas de eventos específicas de una lista estricta de **webs oficiales de organizadores**, cuando la fuente primaria incluye un enlace autorizado. Comprueba la coincidencia del título, respeta `robots.txt`, no sigue redirecciones, limita el tamaño y la frecuencia de las peticiones y guarda caché. Solo toma el nombre fáctico del recinto; no copia descripciones.
 - Los recintos sin un único lugar claro (programas itinerantes, sedes múltiples o meras referencias al municipio) siguen retenidos. No se infieren coordenadas GPS a partir del nombre del edificio: el mapa conserva el indicador explícito de precisión municipal hasta validar la geolocalización.
 - Una importación posterior no borra un recinto que ya quedó confirmado por una fuente oficial, aunque la nueva respuesta omita ese campo. La fuente original del evento permanece intacta.
+
+
+### Enriquecimiento verificable de la ubicación de ULPGC
+
+Cuando el Cabildo enlaza expresamente a una ficha de agenda ULPGC y el
+nombre de la actividad **especifica el edificio** en el propio título
+(por ejemplo «Campaña de hemodonación: Facultad de Ciencias del Mar»),
+se muestra ese recinto en lugar del texto «por confirmar». La distancia
+sigue siendo **aproximada al municipio** mientras no existan coordenadas
+contrastadas del lugar. La web de ULPGC responde HTTP 403 a la consulta
+automática: no se sortean restricciones, no se copia su página ni se generan
+horarios diarios a partir de un intervalo impreciso.
+
+El caso documentado de los días 26–27 de octubre de 2026 se contrasta con
+la captura de la ficha ULPGC y el aviso oficial sanitario del 23/10/2026:
+26/10, 09:30–19:45; 27/10, 09:00–18:30. Como el primer día ya ha pasado,
+la ficha próxima del 27/10 utiliza su horario real y no el cierre como
+hora de comienzo. Las demás campañas sin inicio confirmado mantienen
+solo la fecha, no una hora supuesta. La corrección se aplica en cada
+extracción incremental del Cabildo, sin interrumpir las demás fuentes.
