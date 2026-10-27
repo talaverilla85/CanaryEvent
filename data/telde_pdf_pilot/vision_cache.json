@@ -497,5 +497,194 @@
       "total_tokens": 3308
     },
     "measured_cost_usd": 0.0003524
+  },
+  "9c649c6cb7e63fd1530dbe48c0426d2699c69c15db8e569976ec59121a389a66/0/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 1961,
+      "input_tokens_details": {
+        "cache_write_tokens": 1958,
+        "cached_tokens": 0
+      },
+      "output_tokens": 42,
+      "output_tokens_details": {
+        "reasoning_tokens": 20
+      },
+      "total_tokens": 2003
+    },
+    "measured_cost_usd": 0.0002171
+  },
+  "9c649c6cb7e63fd1530dbe48c0426d2699c69c15db8e569976ec59121a389a66/1/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Pasacalles por las calles del barrio con la Banda Aborigen",
+          "date": "2026-09-05",
+          "time": "10:00",
+          "venue": null,
+          "evidence": "SÁBADO 05 SEPTIEMBRE — 10:00 h. Pasacalles por las calles de barrio con la Banda Aborigen",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Actividades infantiles (castillos acuáticos y espectáculo infantil)",
+          "date": "2026-09-05",
+          "time": "11:00–14:00",
+          "venue": null,
+          "evidence": "SÁBADO 05 SEPTIEMBRE — 11:00 a 14:00 h. Actividades Infantiles (castillos acuáticos y espectáculo infantil)",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Inauguración de la exposición “Paseo de la memoria, las raíces de Valdecasas”",
+          "date": "2026-09-05",
+          "time": "19:00",
+          "venue": null,
+          "evidence": "SÁBADO 05 SEPTIEMBRE — 19:00 h. Inauguración de la exposición “Paseo de la memoria, las raíces de Valdecasas”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Pregón “Valdecasas, 50 años conectando generaciones”",
+          "date": "2026-09-05",
+          "time": "19:30",
+          "venue": null,
+          "evidence": "SÁBADO 05 SEPTIEMBRE — 19:30 h. Pregón “VALDECASAS, 50 AÑOS CONECTANDO GENERACIONES”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Scala hifi Infantil",
+          "date": "2026-09-05",
+          "time": "20:30",
+          "venue": null,
+          "evidence": "SÁBADO 05 SEPTIEMBRE — 20:30 h. Scala hifi Infantil.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Actuación musical con Javi Cedres (formato verbena)",
+          "date": "2026-09-05",
+          "time": "23:30",
+          "venue": null,
+          "evidence": "SÁBADO 05 SEPTIEMBRE — 23:30 h. Actuación musical con Javi Cedres (formato verbena)",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Juegos infantiles (juegos de agua) amenizado con la música de Dj Tows",
+          "date": "2026-09-06",
+          "time": "11:00",
+          "venue": null,
+          "evidence": "DOMINGO 06 SEPTIEMBRE — 11:00 h. Juegos infantiles (juegos de agua) amenizado con la música de Dj Tows.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Sancocho Canario",
+          "date": "2026-09-06",
+          "time": "13:00",
+          "venue": null,
+          "evidence": "DOMINGO 06 SEPTIEMBRE — 13:00 h. Sancocho Canario (donativo 3€, hasta fin existencias).",
+          "admission_type": "donation",
+          "admission_details": "donativo 3€, hasta fin existencias",
+          "type": "gastronomia"
+        },
+        {
+          "title": "Verbena del Solajero con SonKaribe",
+          "date": "2026-09-06",
+          "time": "15:30",
+          "venue": null,
+          "evidence": "DOMINGO 06 SEPTIEMBRE — 15:30 h. Verbena del Solajero con SonKaribe.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Juegos de realidad virtual realizado por Metaverso Canarias",
+          "date": "2026-09-07",
+          "time": "17:30",
+          "venue": null,
+          "evidence": "LUNES 07 SEPTIEMBRE — 17:30 h. Juegos de realidad virtual realizado por Metaverso Canarias.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Clase DanceFit (impartido por Club Alltau)",
+          "date": "2026-09-07",
+          "time": "18:00",
+          "venue": null,
+          "evidence": "LUNES 07 SEPTIEMBRE — 18:00 h. Clase DanceFit (impartido por Club Alltau).",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Actuación de Ángel M. Talento Joven",
+          "date": "2026-09-07",
+          "time": "20:30",
+          "venue": null,
+          "evidence": "LUNES 07 SEPTIEMBRE — 20:30 h. Actuación de Ángel M. Talento Joven",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Verbena con La Nueva Cantera",
+          "date": "2026-09-07",
+          "time": "21:00",
+          "venue": null,
+          "evidence": "LUNES 07 SEPTIEMBRE — 21:00 h. Verbena con La Nueva Cantera.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Dj. Fabián Amador",
+          "date": "2026-09-07",
+          "time": "22:30",
+          "venue": null,
+          "evidence": "LUNES 07 SEPTIEMBRE — 22:30 h. Dj. Fabián Amador.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "I Torneo solidario de Ajedrez",
+          "date": "2026-09-08",
+          "time": "10:00",
+          "venue": null,
+          "evidence": "MARTES 08 SEPTIEMBRE — 10:00 h. I Torneo solidario de Ajedrez",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 1961,
+      "input_tokens_details": {
+        "cache_write_tokens": 1958,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1673,
+      "output_tokens_details": {
+        "reasoning_tokens": 385
+      },
+      "total_tokens": 3634
+    },
+    "measured_cost_usd": 0.0010326
   }
 }
