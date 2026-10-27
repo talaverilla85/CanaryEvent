@@ -1,9 +1,9 @@
 {
-  "checked_at": "2026-10-27T23:09:10.400167+00:00",
-  "mode": "api",
+  "checked_at": "2026-10-27T23:20:16.004343+00:00",
+  "mode": "offline",
   "model": "gpt-6-luna",
-  "api_calls": 2,
-  "usage_usd": 0.0015136,
+  "api_calls": 0,
+  "usage_usd": 0.0,
   "documents": [
     {
       "municipality": "Santa Lucía de Tirajana",
@@ -16,26 +16,27 @@
           "page": 16,
           "native_text_chars": 855,
           "page_priority": 3,
-          "first_read": "ai_vision",
+          "first_read": "cached",
           "candidates_for_review": 8,
-          "second_read": "independent_vision",
+          "second_read": "cached",
           "auto_verified": 2
         },
         {
           "page": 17,
           "native_text_chars": 1674,
-          "page_priority": 3
+          "page_priority": 3,
+          "first_read": "requires_key"
+        },
+        {
+          "page": 18,
+          "native_text_chars": 1657,
+          "page_priority": 3,
+          "first_read": "requires_key"
         }
       ]
     }
   ],
-  "errors": [
-    {
-      "municipality": "Santa Lucía de Tirajana",
-      "pdf_url": "https://www.santaluciagc.com/wp-content/uploads/2026/10/Programa_Fiestas-SanRafael_2026_web-1.pdf",
-      "error_type": "ValueError"
-    }
-  ],
+  "errors": [],
   "deferred": [],
   "archived_this_run": 0,
   "pending_review_count": 8,

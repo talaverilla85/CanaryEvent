@@ -47,5 +47,5 @@ class TejedaOfficialAgendaTest(unittest.TestCase):
   status={x["municipality"]:x["status"] for x in j["municipalities"]}
   self.assertEqual(status["Tejeda"],"conector_activo")
   self.assertTrue(status["Firgas"].startswith("agenda_localizada"))
-  self.assertTrue(status["Agaete"].startswith("agenda_localizada"))
+  self.assertIn(status["Agaete"],("agenda_localizada_sin_programacion_futura_verificada","conector_parcial_articulos_verificados"))
 if __name__=="__main__":unittest.main()
