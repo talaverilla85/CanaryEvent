@@ -39,7 +39,7 @@ SECOND_PROMPT = (
  "Cita una evidencia corta realmente visible para cada acto. "
  "Si es portada, agenda genérica o ilegible, devuelve events=[] y page_is_program=false."
 )
-VERSION = "text-fallback-vision-v1"
+VERSION = "text-fallback-vision-v2"
 MONTHS = {
     "enero": 1, "febrero": 2, "marzo": 3, "abril": 4,
     "mayo": 5, "junio": 6, "julio": 7, "agosto": 8,

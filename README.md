@@ -548,3 +548,35 @@ robots.txt, un límite de documentos y un límite de páginas por ejecución.
 Prueba local sin gasto:
 python scripts/telde_pdf_auto.py --filename sanfrancisco26.pdf
 python scripts/telde_pdf_auto.py --filename caseronesaltos26.pdf --max-pages 2
+
+
+### Seguridad de extracción de programas PDF
+
+Se verificó que el piloto había incluido por error una ficha de demostración
+de Caserones Altos el 07/11/2026. Se eliminó del conjunto verificable y el
+sincronizador compara siempre **la huella SHA-256 de la descarga real**,
+el seguimiento de la página y las dos respuestas de lectura visual independiente
+antes de publicar. También limpia las fichas exclusivas del importador PDF que
+hayan perdido esa prueba documental. No borra las actividades obtenidas de otras
+fuentes. Los documentos históricos pueden producir cero actos futuros;
+esto es un resultado correcto, no un fallo de la conexión.
+
+
+#### Proceso automático de programas PDF de Telde
+
+1. Detección previa: refresh_telde_pdf_index.py actualiza la relación oficial
+   de programas antes de pasar a la extracción, sin un día de retraso.
+2. Descarga: solo PDFs HTTPS publicados en www.telde.es y respetando robots;
+   límite de tamaño, caché y hash SHA-256 del archivo oficial.
+3. Extracción: primero texto nativo; después visión OpenAI Responses API con
+   gpt-6-luna si hay clave OPENAI_API_KEY en los secretos de GitHub Actions.
+4. Doble verificación: dos lecturas independientes deben coincidir en actividad,
+   fecha, hora, recinto, archivo y página. Las respuestas originales y la
+   huella del PDF real se cotejan de nuevo antes de publicar.
+5. Publicación: sync_events.py importa solo los actos que superen esa
+   verificación; retira registros PDF de prueba u obsoletos que no la cumplan.
+6. Coste limitado: hasta 2 documentos, 3 páginas por documento, 4 llamadas
+   IA y presupuesto nominal 0,05 USD por revisión automática diaria.
+
+Los PDFs históricos, ilegibles o sin actuaciones futuras comprobables
+no crean fichas, aunque estén descubiertos en el inventario.

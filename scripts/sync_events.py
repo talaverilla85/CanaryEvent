@@ -35,6 +35,8 @@ import valsequillo_medianias
 import tejeda_agenda
 import telde_barrio_programs
 import telde_pdf_verified
+import telde_pdf_integrity
+import telde_pdf_auto
 import municipal_listing_dedup
 import cinema_policy
 import event_occurrences
@@ -671,28 +673,27 @@ def run():
                 if programs_path.exists():
                     programs_data=json.loads(programs_path.read_text(encoding="utf8"))
                     official_pdfs={x["pdf_url"] for x in programs_data.get("programs",[]) if x.get("year")==TODAY.year}
+                scan_state=json.loads((ROOT/"data/telde_pdf_pilot/scan_state.json").read_text(encoding="utf8"))
+                image_cache=json.loads((ROOT/"data/telde_pdf_pilot/vision_cache.json").read_text(encoding="utf8"))
                 seen=set()
+                trusted_events=[]
                 for item in approved:
-                    if not isinstance(item,dict) or item.get("review_status")!="auto_verified":continue
-                    if item.get("verification")!="two_independent_visual_passes":continue
-                    url=item.get("pdf_url","")
-                    if url not in official_pdfs:continue
-                    if not isinstance(item.get("pdf_page"),int) or item["pdf_page"]<1:continue
-                    if not re.fullmatch(r"[a-f0-9]{64}",str(item.get("pdf_sha256") or "")):continue
-                    if not telde_pdf_verified.safe_venue(item.get("venue")):continue
-                    try:date_value=dt.date.fromisoformat(item.get("date",""))
-                    except ValueError:continue
-                    if not TODAY<=date_value<=TODAY+dt.timedelta(days=120):continue
-                    if not re.fullmatch(r"(?:[01]\d|2[0-3]):[0-5]\d",str(item.get("time") or "")):continue
+                    if not telde_pdf_integrity.trusted(
+                            item,official_pdfs,scan_state,image_cache,TODAY,
+                            telde_pdf_auto.tv.MODEL,telde_pdf_auto.VERSION):continue
                     entry=telde_pdf_verified.approved_to_event(item)
-                    # Trusted fields only; no invented prices, no copied posters.
                     key=(norm(entry["title"]),entry["start"],norm(entry["venue"]))
                     if key in seen:continue
                     seen.add(key)
+                    trusted_events.append(entry)
                     pdf_verified_found+=1
                     change=upsert(conn,entry)
                     pdf_verified_added+=int(change=="added")
                     pdf_verified_changed+=int(change=="changed")
+                # Garbage-collect discredited test/old PDF rows, never other sources.
+                removed=telde_pdf_integrity.cleanup_stale(conn,trusted_events)
+                if removed:
+                    print(f"WARN Removed {removed} PDF-only listings without actual source proof")
                 conn.commit()
                 if programs_path.exists() and pdf_verified_found:
                     programs_data["events_imported"]=pdf_verified_found

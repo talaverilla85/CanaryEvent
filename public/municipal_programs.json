@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-10-27T21:16:14+00:00",
+  "checked_at": "2026-10-27T21:29:09+00:00",
   "source_name": "Ayuntamiento de Telde · índice de programas PDF",
   "source_url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/relacion-de-fiestas-ano-2026/",
   "program_count": 34,
-  "events_imported": 1,
-  "note": "PDFs oficiales descubiertos; solo se importan actividades validadas por dos lecturas visuales independientes.",
+  "events_imported": 0,
+  "note": "PDFs descubiertos, no eventos. Cada actividad requiere comprobación independiente.",
   "programs": [
     {
       "title": "Semana Santa – Telde",

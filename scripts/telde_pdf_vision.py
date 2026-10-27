@@ -34,7 +34,7 @@ REVIEW=WORK/"pending_review.json"
 REPORT=WORK/"pilot_report.json"
 USER_AGENT="CanaryEventBot/0.1 (+https://github.com/talaverilla85/CanaryEvent)"
 MODEL="gpt-6-luna"
-PROMPT_VERSION="telde-program-v1"
+PROMPT_VERSION="telde-program-v2"
 # Standard token prices, USD/1M. See OpenAI model pricing; subject to change.
 RATES={MODEL:{"input":0.10,"cached_input":0.01,"output":0.50}}
 MAX_PDF_BYTES=8_000_000
@@ -65,15 +65,19 @@ SCHEMA={
 }
 SYSTEM_PROMPT=(
  "Eres un extractor documental estricto de programas municipales de Telde, Gran Canaria. "
- "Devuelve SOLO actividades individuales que se puedan leer realmente en esta página. "
- "No uses conocimientos externos ni conviertas la portada, títulos genéricos o los días de "
- "una fiesta en eventos inventados. Cada evento requiere una actividad concreta y fecha "
- "explícita, salvo si el propio programa indica el año en portada; entonces puedes usar "
- "el año de la fuente oficial suministrada. Conserva fielmente los nombres propios, "
- "horarios y recintos. Cuando no se vea hora/recinto/fecha, usa null. "
- "No inventes precio ni acceso gratuito. Evidence debe ser una cita breve, LITERAL y "
- "visible de la página, donde conste al menos la actividad y el día. "
- "Si la página es portada o ilegible, events=[]; page_is_program=false."
+ "El año que se suministra procede del índice PDF oficial del Ayuntamiento, "
+ "puedes emplearlo aunque cada página interior no repita el año. "
+ "Una fecha escrita como encabezado de una sección se aplica SOLAMENTE "
+ "a las actividades inequívocamente enumeradas debajo, hasta el siguiente encabezado de fecha. "
+ "Nunca inventes actividades, fechas, horas ni lugares; no transformes nombres de secciones "
+ "en eventos. Cada acto exige un título concreto, un día visible en la misma página "
+ "y, cuando consten, su hora exacta y recinto. Si falta fecha, omite el acto. "
+ "Si faltan hora o recinto, usa null y deja la ficha pendiente de revisión, "
+ "sin suplirlos con un recinto típico de ese barrio. "
+ "Evidence debe contener fragmentos textuales BREVES literalmente visibles en la página "
+ "donde aparezcan el día y la actividad. Las fechas vencidas pueden extraerse "
+ "como historial documental, pero el importador no las publicará. "
+ "Si es portada, solo fotos, agenda genérica o ilegible, events=[]; page_is_program=false."
 )
 
 def atomic_json(path:Path,obj):
