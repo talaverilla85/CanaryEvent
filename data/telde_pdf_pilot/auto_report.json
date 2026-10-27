@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-10-27T20:07:34.191908+00:00",
+  "mode": "offline_safe",
+  "model": "gpt-6-luna",
+  "api_key_configured": false,
+  "api_calls": 0,
+  "usage_usd": 0.0,
+  "docs": [
+    {
+      "name": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Caserones Altos",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/10/caseronesaltos26.pdf",
+      "sha256": "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0",
+      "pages": 15,
+      "bytes": 2981599,
+      "inspected": [
+        {
+          "page": 1,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "status": "requires_openai_api_key"
+        },
+        {
+          "page": 2,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "status": "requires_openai_api_key"
+        }
+      ]
+    }
+  ],
+  "pending_review_count": 0,
+  "notes": "This pipeline never automatically publishes AI events"
+}

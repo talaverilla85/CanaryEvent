@@ -1,4 +1,4 @@
-name: Actualizar eventos oficiales
+﻿name: Actualizar eventos oficiales
 on:
   workflow_dispatch:
   schedule:
@@ -35,6 +35,8 @@ on:
       - "scripts/valsequillo_medianias.py"
       - "scripts/tejeda_agenda.py"
       - "scripts/telde_barrio_programs.py"
+      - "scripts/telde_pdf_vision.py"
+      - "scripts/telde_pdf_auto.py"
       - "scripts/ticket_recent.py"
       - "scripts/publish_synced_data.sh"
       - "scripts/artes_details.py"
@@ -71,6 +73,18 @@ jobs:
         run: python scripts/audit_source_health_gc.py
       - name: Auditar precios y gratuidad de fuentes oficiales
         run: python scripts/audit_price_provenance.py --output data/price_provenance_audit.json
+      - name: Extraer actividades de PDF con IA cuando hay clave configurada
+        continue-on-error: true
+        env:
+          OPENAI_API_KEY: "${{ secrets.OPENAI_API_KEY }}"
+        shell: bash
+        run: |
+          if [[ -n "$OPENAI_API_KEY" ]]; then
+            python scripts/telde_pdf_auto.py --api --max-docs 2 --max-pages 3 --max-api-calls 3 --max-cost-usd 0.05
+          else
+            echo "Sin clave IA configurada: no se hacen llamadas de pago."
+          fi
       - name: Guardar base de datos y exportación
         shell: bash
         run: bash scripts/publish_synced_data.sh
+

@@ -3,3 +3,7 @@ node_modules/
 .vercel/
 __pycache__/
 *.sqlite3
+
+# Scanned PDF binary files are never committed.
+data/telde_pdf_pilot/pdf_cache/
+data/telde_pdf_pilot/*.tmp

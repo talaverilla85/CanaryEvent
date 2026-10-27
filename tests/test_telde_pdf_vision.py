@@ -64,7 +64,7 @@ class PdfVisionPilotTests(unittest.TestCase):
 
  def test_price_usage_excluding_cached_input(self):
   usage={"input_tokens":2100,"output_tokens":600,"input_tokens_details":{"cached_tokens":1000}}
-  expected=(1100*.20+1000*.02+600*1.20)/1e6
+  expected=(1100*.10+1000*.01+600*.50)/1e6
   self.assertAlmostEqual(tv.response_usage_cost(usage),round(expected,7))
 
  def test_model_schema_strict_and_nostore(self):

@@ -523,3 +523,28 @@ El filtro **Categorías** es acumulativo (OR): tocar varias categorías
 muestra cualquiera de ellas; «Todas» limpia la selección. La preferencia
 de categorías se recuerda únicamente en el navegador. Se mantienen los
 avisos del calendario, las coordenadas autorizadas, favoritos y los anuncios.
+
+
+### Extracción condicionada de programas PDF de Telde
+
+La lista oficial public/municipal_programs.json contiene enlaces a programas
+de barrios. scripts/telde_pdf_auto.py revisa los PDF recientes usando HTTPS,
+robots.txt, un límite de documentos y un límite de páginas por ejecución.
+
+- PDF con texto: extracción convencional de actividad, fecha y hora, con
+  coincidencia literal entre la prueba textual y el propio documento.
+- PDF escaneado o insuficiente: se envía la página como imagen a gpt-6-luna
+  mediante Responses API, solo cuando existe OPENAI_API_KEY en los secretos
+  del entorno. Sin secreto no hay llamadas ni coste.
+- Verificación: cada candidato tiene PDF y página de origen y hash SHA-256.
+  Se rechazan años incompatibles y fechas imposibles. Un modelo de IA no
+  puede publicar eventos directamente; quedan pendientes de revisión.
+- Costes: límite de documentos, páginas, llamadas y gasto estimado diario.
+  La caché por hash/página evita pagar otra vez por lo mismo. No se
+  guardan imágenes ni claves en Git.
+- Se ejecuta desde el workflow de actualización diaria en GitHub Actions,
+  cuando la clave de API está disponible.
+
+Prueba local sin gasto:
+python scripts/telde_pdf_auto.py --filename sanfrancisco26.pdf
+python scripts/telde_pdf_auto.py --filename caseronesaltos26.pdf --max-pages 2

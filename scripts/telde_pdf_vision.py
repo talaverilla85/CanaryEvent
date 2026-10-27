@@ -33,10 +33,10 @@ CACHE=WORK/"vision_cache.json"
 REVIEW=WORK/"pending_review.json"
 REPORT=WORK/"pilot_report.json"
 USER_AGENT="CanaryEventBot/0.1 (+https://github.com/talaverilla85/CanaryEvent)"
-MODEL="gpt-5.6-luna"
+MODEL="gpt-6-luna"
 PROMPT_VERSION="telde-program-v1"
 # Standard token prices, USD/1M. See OpenAI model pricing; subject to change.
-RATES={MODEL:{"input":0.20,"cached_input":0.02,"output":1.20}}
+RATES={MODEL:{"input":0.10,"cached_input":0.01,"output":0.50}}
 MAX_PDF_BYTES=8_000_000
 MAX_PAGE_COUNT=35
 MAX_IMG_PX=1900
@@ -168,6 +168,46 @@ def response_usage_cost(usage:dict,model=MODEL):
  cached=min(inp,int(details.get("cached_tokens",0)))
  cost=(inp-cached)*rate["input"]/1e6+cached*rate["cached_input"]/1e6+out*rate["output"]/1e6
  return round(cost,7)
+
+def call_openai_text(page_text,year,title,model,key,session):
+    """Read existing text before using paid visual decoding.
+
+    Structured JSON and no-store prevent unintended retention or extra calls.
+    The caller independently confirms that each evidence quote occurs in text.
+    """
+    payload={
+      "model":model,
+      "store":False,
+      "instructions":SYSTEM_PROMPT,
+      "input":[{"role":"user","content":[{
+         "type":"input_text","text":
+          f"Programa municipal de Telde, fuente {title}, año {year}. "
+          f"Extrae las actividades con fecha explícita de este texto:\\n{page_text[:14500]}"
+      }]}],
+      "text":{"format":{"type":"json_schema","name":"telde_pdf_events",
+                         "strict":True,"schema":SCHEMA}},
+      "max_output_tokens":REQUEST_MAX_OUTPUT,
+    }
+    response=session.post("https://api.openai.com/v1/responses",
+      headers={"Authorization":"Bearer "+key,
+               "Content-Type":"application/json"},
+      json=payload,timeout=110)
+    if response.status_code!=200:
+       raise RuntimeError("OpenAI API HTTP "+str(response.status_code)+": "+
+          str((response.json().get("error") or {}).get("type","request_failed"))[:80])
+    reply=response.json()
+    if reply.get("status")!="completed":
+       raise ValueError("Model response incomplete")
+    content="".join(item.get("text","")
+      for msg in reply.get("output",[]) if msg.get("type")=="message"
+      for item in msg.get("content",[]) if item.get("type")=="output_text")
+    if not content:
+       raise ValueError("Model returned no structured text")
+    parsed=json.loads(content)
+    if not isinstance(parsed,dict) or not isinstance(parsed.get("events"),list):
+       raise ValueError("Model response is not an event document")
+    return parsed,reply.get("usage",{})
+
 
 def call_openai_vision(image_bytes,year,title,model,key,session):
  payload={
