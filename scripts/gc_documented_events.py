@@ -52,6 +52,36 @@ SOURCES=(
     "tokens":("1 de noviembre","20:30","frontis de la Iglesia","V Centenario","Braulio"),
     "details":"Conmemoración del V Centenario de la ciudad con intervenciones históricas y actuación de Braulio."}
   ]},
+ {"municipality":"Gáldar",
+  "url":"https://www.galdar.es/el-centro-cultural-guaires-prepara-una-amplia-programacion-de-espectaculos-para-los-proximos-meses/",
+  "events":[
+   {"title":"Conversaciones con mi mente · Joaquín Caserza","date":"2026-11-07","time":"20:00",
+    "venue":"Centro Cultural Guaires","category":"cultura",
+    "tokens":("7 de noviembre","20.00","Joaquín Caserza","Conversaciones con mi mente","Centro Cultural Guaires"),
+    "details":"Espectáculo de humor con Joaquín Caserza, dentro de la programación oficial del Centro Cultural Guaires."},
+   {"title":"Todo pa' última hora · Jorge Ávila","date":"2026-11-14","time":"20:00",
+    "venue":"Centro Cultural Guaires","category":"cultura",
+    "tokens":("14 de noviembre","20.00","Jorge Ávila","Todo pa","Centro Cultural Guaires"),
+    "details":"Stand-up de Jorge Ávila en el Centro Cultural Guaires."},
+   {"title":"Solo Palique · humor en directo","date":"2026-11-20","time":"20:30",
+    "venue":"Centro Cultural Guaires","category":"cultura",
+    "tokens":("20 de noviembre","20.30","Solo Palique","Centro Cultural Guaires"),
+    "details":"Espectáculo y podcast de humor improvisado en el Centro Cultural Guaires."},
+   {"title":"Más allá del Pasillo · Iván Torres","date":"2026-11-28","time":"20:00",
+    "venue":"Centro Cultural Guaires","category":"musica",
+    "tokens":("28 de noviembre","20.00","Más allá del Pasillo","Iván Torres","Centro Cultural Guaires"),
+    "details":"Propuesta escénica de Iván Torres, vocalista y compositor de Efecto Pasillo."}
+  ]},
+ {"municipality":"Valleseco",
+  "url":"https://valleseco.es/valleseco/valleseco-acoge-wuateluz-la-nueva-exposicion-de-felipe-juan/",
+  "events":[
+   {"title":"WuateLuz · exposición de Felipe Juan","date":"2026-10-09",
+    "end":"2026-10-31","time":None,
+    "venue":"Sala de Exposiciones del Auditorio Dr. Juan Díaz Rodríguez","category":"cultura",
+    "tokens":("WuateLuz","Felipe Juan","9 de octubre","31 de octubre de 2026",
+              "Sala de Exposiciones","Auditorio"),
+    "details":"Exposición de Felipe Juan abierta del 9 al 31 de octubre de 2026. El Ayuntamiento no confirma el horario diario en esta noticia; consulta la fuente antes de ir."}
+  ]},
  {"municipality":"San Bartolomé de Tirajana",
   "url":"https://www.maspalomas.com/mnunotjuventud/3060-2026-ju-maspaterror-regresa-al-parque-sur-los-dias-30-y-31-de-octubre-presentando-su-tercera-edicion",
   "events":[
@@ -97,7 +127,8 @@ def extract(get_html,today,municipalities,*,source_specs=SOURCES):
         if name not in municipalities:
             continue
         eligible=[row for row in source["events"]
-                  if today<=dt.date.fromisoformat(row["date"])<=today+dt.timedelta(days=120)]
+                  if today<=dt.date.fromisoformat(row.get("end") or row["date"])
+                  and dt.date.fromisoformat(row["date"])<=today+dt.timedelta(days=120)]
         if not eligible:
             continue
         try:
@@ -110,8 +141,9 @@ def extract(get_html,today,municipalities,*,source_specs=SOURCES):
                     continue
                 rows.append({
                     "title":item["title"],
-                    "start":item["date"]+"T"+item["time"]+":00",
-                    "end":None,
+                    "start":(item["date"]+"T"+item["time"]+":00"
+                             if item.get("time") else item["date"]),
+                    "end":item.get("end"),
                     "municipality":name,
                     "venue":item["venue"],
                     "category":item["category"],

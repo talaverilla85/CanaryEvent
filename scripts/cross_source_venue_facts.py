@@ -8,6 +8,7 @@ No fuzzy matching, title guessing, venue coordinates or external requests.
 from __future__ import annotations
 from collections import defaultdict
 import venue_quality
+import venue_title_variants
 
 def norm(s):
     import re,unicodedata
@@ -21,7 +22,7 @@ def changed_time(e,other):
 def enrich(conn,now,today):
     rows=[dict(x) for x in conn.execute(
         """SELECT id,title,start,"end",municipality,venue,source_name,source_url
-           FROM events WHERE status='approved'
+           ,organizer_url FROM events WHERE status='approved'
            AND substr(COALESCE("end",start),1,10)>=?""",(today.isoformat(),))]
     groups=defaultdict(list)
     for row in rows:
@@ -50,4 +51,66 @@ def enrich(conn,now,today):
             conn.execute("UPDATE events SET venue=?,updated_at=? WHERE id=?",
                          (venue,now,target["id"]))
             verified+=1
-    return {"inspected":examined,"verified":verified,"left_ambiguous":ambiguous}
+    # Follow up exact-title matches with a *restricted* alias pass. This
+    # recognizes observed organizer wrappers ("Concierto:", "· San Rafael",
+    # " - Telde"), not fuzzy semantic guesses or unrelated programme titles.
+    all_rows=[dict(x) for x in conn.execute(
+        """SELECT id,title,start,municipality,venue,source_name,source_url,
+                  organizer_url FROM events WHERE status='approved'
+           AND substr(COALESCE("end",start),1,10)>=?""",(today.isoformat(),))]
+    by_day=defaultdict(list)
+    for item in all_rows:
+        by_day[(norm(item["municipality"]),item["start"][:10])].append(item)
+    alias_verified=alias_rejected=0
+    for records in by_day.values():
+        for target in records:
+            if venue_quality.named_venue(target):
+                continue
+            titles=venue_title_variants.variants(target["title"])
+            if not titles:
+                continue
+            corroboration=[]
+            for source in records:
+                if source["id"]==target["id"] or not venue_quality.named_venue(source):
+                    continue
+                if not (titles & venue_title_variants.variants(source["title"])):
+                    continue
+                if source["source_name"]==target["source_name"] or source["source_url"]==target["source_url"]:
+                    continue
+                if changed_time(source,target):
+                    continue
+                # Ticket listing may corroborate an organizer whose official
+                # events page independently documents the same dated act.
+                is_ticket="TuReservaOnline" in source["source_name"]
+                if is_ticket and not (
+                    "www.eventosgrancanaria.com/event/" in str(target["source_url"])
+                    and "teldecultura.org/events/" in str(target.get("organizer_url") or "")
+                ):
+                    continue
+                if not is_ticket and not (
+                    source["source_name"].startswith("Ayuntamiento")
+                    or source["source_name"]=="Portal oficial de Eventos Gran Canaria (Cabildo)"
+                    or "programas PDF verificados" in source["source_name"]
+                    or source["source_name"].startswith("Circuito de Artes Escénicas")
+                ):
+                    continue
+                corroboration.append(source)
+            if not corroboration:
+                continue
+            names={norm(x["venue"]):x["venue"] for x in corroboration}
+            # A contradictory venue on any matching record blocks promotion.
+            other_names={norm(x["venue"]) for x in records
+                         if venue_quality.named_venue(x)
+                         and titles & venue_title_variants.variants(x["title"])}
+            if len(names)!=1 or len(other_names)!=1:
+                alias_rejected+=1
+                continue
+            best=next(iter(names.values()))
+            conn.execute("UPDATE events SET venue=?,updated_at=? WHERE id=?",
+                         (best,now,target["id"]))
+            target["venue"]=best
+            alias_verified+=1
+    return {"inspected":examined,"verified":verified+alias_verified,
+            "verified_by_alias":alias_verified,
+            "alias_ambiguous":alias_rejected,
+            "left_ambiguous":ambiguous}
