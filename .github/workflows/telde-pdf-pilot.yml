@@ -61,5 +61,6 @@ jobs:
           path: |
             data/telde_pdf_pilot/pilot_report.json
             data/telde_pdf_pilot/pending_review.json
+            data/telde_pdf_pilot/vision_cache.json
           if-no-files-found: warn
           retention-days: 30

@@ -296,12 +296,15 @@ def run(argv=None, session=None):
                "pdf_url":url,"model":args.model}
     atomic_json(CACHE,cache)
    accepted=rejected=0
+   rejected_reasons={}
    for raw in decoded.get("events",[]):
     if not isinstance(raw,dict):continue
     entry,error=validate_candidate(raw,year,pick["title"],url,sha,page,today)
-    if error:rejected+=1
+    if error:
+     rejected+=1
+     rejected_reasons[error]=rejected_reasons.get(error,0)+1
     else:seen[entry["id"]]=entry;accepted+=1
-   info.update(candidates_pending_review=accepted,rejected_by_validator=rejected)
+   info.update(candidates_pending_review=accepted,rejected_by_validator=rejected,validator_rejection_reasons=rejected_reasons)
  atomic_json(REVIEW,list(seen.values()))
  atomic_json(REPORT,report)
  print(json.dumps(report,ensure_ascii=False,indent=2))
