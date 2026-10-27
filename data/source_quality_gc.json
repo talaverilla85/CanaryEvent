@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-10-27T15:27:09+00:00",
+  "checked_at": "2026-10-27T15:42:03+00:00",
   "quality_counts": {
-    "publicados": 395,
-    "recintos_sin_verificar": 142,
+    "publicados": 433,
+    "recintos_sin_verificar": 149,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 255,
-    "distancia_a_centro_municipal": 395,
+    "precios_sin_confirmar": 285,
+    "distancia_a_centro_municipal": 433,
     "fuentes_con_error": 0,
     "duplicados_potenciales": 0
   },
@@ -63,10 +63,10 @@
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
-      "publicados": 1,
-      "recinto_sin_verificar": 5,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 1,
+      "publicados": 2,
+      "recinto_sin_verificar": 10,
+      "precio_sin_confirmar": 2,
+      "distancia_al_centro_municipal": 2,
       "fichas_leidas_en_esta_ejecucion": 12,
       "error": ""
     },
@@ -104,7 +104,7 @@
       "source": "Ayuntamiento de Artenara · ferias tradicionales 2026",
       "estado": "operativa",
       "publicados": 0,
-      "recinto_sin_verificar": 1,
+      "recinto_sin_verificar": 2,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 2,
@@ -113,10 +113,10 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 12,
+      "publicados": 14,
       "recinto_sin_verificar": 3,
-      "precio_sin_confirmar": 12,
-      "distancia_al_centro_municipal": 12,
+      "precio_sin_confirmar": 14,
+      "distancia_al_centro_municipal": 14,
       "fichas_leidas_en_esta_ejecucion": 19,
       "error": ""
     },
@@ -133,10 +133,10 @@
     {
       "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
       "estado": "operativa",
-      "publicados": 8,
+      "publicados": 10,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 7,
-      "distancia_al_centro_municipal": 8,
+      "precio_sin_confirmar": 9,
+      "distancia_al_centro_municipal": 10,
       "fichas_leidas_en_esta_ejecucion": 8,
       "error": ""
     },
@@ -163,20 +163,20 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 257,
-      "recinto_sin_verificar": 128,
-      "precio_sin_confirmar": 215,
-      "distancia_al_centro_municipal": 257,
+      "publicados": 283,
+      "recinto_sin_verificar": 129,
+      "precio_sin_confirmar": 240,
+      "distancia_al_centro_municipal": 283,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 66,
+      "publicados": 73,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 66,
+      "distancia_al_centro_municipal": 73,
       "fichas_leidas_en_esta_ejecucion": 117,
       "error": ""
     },
@@ -195,11 +195,11 @@
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 128
+      "count": 129
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 5
+      "count": 10
     },
     {
       "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
@@ -210,11 +210,11 @@
       "count": 3
     },
     {
-      "source": "Ayuntamiento de Agüimes",
-      "count": 1
+      "source": "Ayuntamiento de Artenara · ferias tradicionales 2026",
+      "count": 2
     },
     {
-      "source": "Ayuntamiento de Artenara · ferias tradicionales 2026",
+      "source": "Ayuntamiento de Agüimes",
       "count": 1
     }
   ],
@@ -276,6 +276,14 @@
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260929-0004/escuela-de-salud-martes"
     },
     {
+      "id": 535,
+      "title": "ESCUELA DE SALUD - MARTES",
+      "start": "2026-09-29",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1Rrd09RPT0="
+    },
+    {
       "id": 259,
       "title": "Costura Creativa",
       "start": "2026-09-30",
@@ -290,6 +298,14 @@
       "municipality": "Arucas",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260930-0007/arte-en-femenino"
+    },
+    {
+      "id": 529,
+      "title": "ARTE EN FEMENINO",
+      "start": "2026-09-30",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RreE5BPT0="
     },
     {
       "id": 253,
@@ -402,22 +418,6 @@
       "municipality": "Las Palmas de Gran Canaria",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0020/talleres-la-palabra-encendida-programa-de-mediacion-y-creacion-cultural"
-    },
-    {
-      "id": 134,
-      "title": "Exposición fotográfica: Barreras de la visión de Tim Parchikov",
-      "start": "2026-10-15",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0023/exposicion-fotografica-barreras-de-la-vision-de-tim-parchikov"
-    },
-    {
-      "id": 110,
-      "title": "Frontón King 2026",
-      "start": "2026-10-17",
-      "municipality": "Gáldar",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261017-0017/fronton-king-2026"
     }
   ],
   "guidance": [

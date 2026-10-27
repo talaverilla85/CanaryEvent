@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-27T15:27:09+00:00",
-  "not_published": 142,
+  "updated_at": "2026-10-27T15:42:03+00:00",
+  "not_published": 149,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -88,6 +88,18 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
+      "id": 535,
+      "title": "ESCUELA DE SALUD - MARTES",
+      "start": "2026-09-29",
+      "end": "2026-12-15",
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1Rrd09RPT0=",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
       "id": 259,
       "title": "Costura Creativa",
       "start": "2026-09-30",
@@ -109,6 +121,18 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260930-0007/arte-en-femenino",
       "organizer_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RreE5BPT0=",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 529,
+      "title": "ARTE EN FEMENINO",
+      "start": "2026-09-30",
+      "end": "2026-11-06",
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RreE5BPT0=",
+      "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -388,6 +412,18 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
+      "id": 528,
+      "title": "DIVINA MUERTE 2026",
+      "start": "2026-10-23",
+      "end": "2026-11-21",
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrM01BPT0=",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
       "id": 63,
       "title": "XIII Congreso Internacional Galdosiano Galdós, Presente y Futuro. Nuevos retos Galdosianos",
       "start": "2026-10-27",
@@ -604,6 +640,18 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
+      "id": 218,
+      "title": "LA BARRACA de Vicente Blasco Ibáñez",
+      "start": "2026-10-30",
+      "end": "2026-10-31",
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0023/la-barraca-de-vicente-blasco-ibanez",
+      "organizer_url": "https://salainsulardeteatro.com/evento-769-la-barraca-de.html",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
       "id": 582,
       "title": "ARUPIA - ÓRGANO DE PARTICIPACIÓN DE LA INFANCIA Y LA ADOLESCENCIA DE ARUCAS",
       "start": "2026-10-30",
@@ -696,6 +744,18 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Ayuntamiento de Arucas · agenda municipal",
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrM09BPT0=",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 578,
+      "title": "II Mercadillo Tradicional · Artenara",
+      "start": "2026-10-31",
+      "end": null,
+      "municipality": "Artenara",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Artenara · ferias tradicionales 2026",
+      "source_url": "https://www.artenara.es/portal-ciudadano/noticias/ii-edicion-del-mercadillo-tradicional-de-artenara-%f0%9f%8d%82/",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
@@ -1240,6 +1300,18 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
+      "id": 532,
+      "title": "VI EDICIÓN DE ARUCAS ES ARTE",
+      "start": "2026-11-14",
+      "end": "2026-11-15",
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrMk5RPT0=",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
       "id": 244,
       "title": "XIII Certamen de Pintura Rápida Playa de Mogán",
       "start": "2026-11-14T07:30:00",
@@ -1405,6 +1477,18 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0017/africana-lab-en-madrid-un-puente-un-amuleto-una-mesa-compartida",
       "organizer_url": "https://www.casafrica.es/es/evento/africana-lab-en-madrid-un-puente-un-amuleto-una-mesa-compartida",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 533,
+      "title": "JÓVENES QUE RECORREN LA MEMORIA PARA CONSTRUIR FUTURO",
+      "start": "2026-11-20",
+      "end": null,
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrMk13PT0=",
+      "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
