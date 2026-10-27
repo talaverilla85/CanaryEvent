@@ -7,7 +7,7 @@ git config user.name 'github-actions[bot]'
 git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
 for attempt in 1 2 3; do
-  git add data/events.sqlite data/program_review_gc.json data/venue_review_gc.json data/source_quality_gc.json public/events.json public/meta.json public/municipal_programs.json
+  git add data/events.sqlite data/program_review_gc.json data/venue_review_gc.json data/source_quality_gc.json data/price_provenance_audit.json public/events.json public/meta.json public/municipal_programs.json
   if git diff --cached --quiet; then
     echo "Sin cambios para guardar"
     exit 0
@@ -32,4 +32,5 @@ for attempt in 1 2 3; do
   python -m unittest discover -s tests -q
   python scripts/sync_events.py
   python scripts/audit_source_health_gc.py
+  python scripts/audit_price_provenance.py --output data/price_provenance_audit.json
 done

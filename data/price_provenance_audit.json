@@ -1,0 +1,91 @@
+{
+  "checked_on": "2026-10-27T17:45:41.493262+00:00",
+  "total_events": 459,
+  "known_price_or_free": 148,
+  "classification": {
+    "minimum_zero_ambiguous": 6,
+    "free": 17,
+    "minimum_positive": 119,
+    "fixed_positive": 6
+  },
+  "known_by_source": {
+    "TuReservaOnline · agenda de Gran Canaria": 73,
+    "Ayuntamiento de Telde · fiestas y cultura 2026": 1,
+    "Portal oficial de Eventos Gran Canaria (Cabildo)": 43,
+    "Ayuntamiento de Ingenio": 5,
+    "Juventud Las Palmas de Gran Canaria": 11,
+    "Ayuntamiento de Agüimes": 2,
+    "Mancomunidad de Medianías · Alma de Medianías en Valsequillo": 2,
+    "Ayuntamiento de Tejeda · agenda oficial": 1,
+    "Ayuntamiento de Teror · programación del Auditorio": 10
+  },
+  "issues": [
+    {
+      "id": 471,
+      "title": "COPA HÍPICA SAN VICENTE 26/27 - CARRERA DE CABALLO",
+      "source": "TuReservaOnline · agenda de Gran Canaria",
+      "label": "Desde 0 €",
+      "free": 0,
+      "category": "minimum_zero_ambiguous",
+      "url": "https://www.tureservaonline.es/es/events/copa-hipica-san-vicente-2627-carrera-de-caballo"
+    },
+    {
+      "id": 5,
+      "title": "🏚️ LA CASONA DEL TERROR 2026: LAS TRES AUSENTES 👻",
+      "source": "Ayuntamiento de Ingenio",
+      "label": "Desde 0 €",
+      "free": 0,
+      "category": "minimum_zero_ambiguous",
+      "url": "https://ingenio.es/events/%f0%9f%8f%9a%ef%b8%8f-la-casona-del-terror-2026-las-tres-ausentes-%f0%9f%91%bb/"
+    },
+    {
+      "id": 466,
+      "title": "CORAZÓN VALIENTE, EL SOLDADITO DE PLOMO - VALLESECO",
+      "source": "TuReservaOnline · agenda de Gran Canaria",
+      "label": "Desde 0 €",
+      "free": 0,
+      "category": "minimum_zero_ambiguous",
+      "url": "https://www.tureservaonline.es/es/events/corazon-valiente-el-soldadito-de-plomo-valleseco"
+    },
+    {
+      "id": 473,
+      "title": "HILOS DEL ATLÁNTICO",
+      "source": "TuReservaOnline · agenda de Gran Canaria",
+      "label": "Desde 0 €",
+      "free": 0,
+      "category": "minimum_zero_ambiguous",
+      "url": "https://www.tureservaonline.es/es/events/hilos-del-atlantico"
+    },
+    {
+      "id": 478,
+      "title": "TALLERES EXPOBIENESTAR CANARIAS 2026",
+      "source": "TuReservaOnline · agenda de Gran Canaria",
+      "label": "Desde 0 €",
+      "free": 0,
+      "category": "minimum_zero_ambiguous",
+      "url": "https://www.tureservaonline.es/es/events/talleres-expobienestar-canarias-2026"
+    },
+    {
+      "id": 508,
+      "title": "BLANCANIEVES, MÁS ALLÁ DEL ESPEJO - VALLESECO",
+      "source": "TuReservaOnline · agenda de Gran Canaria",
+      "label": "Desde 0 €",
+      "free": 0,
+      "category": "minimum_zero_ambiguous",
+      "url": "https://www.tureservaonline.es/es/events/blancanieves-mas-alla-del-espejo-valleseco"
+    }
+  ],
+  "live_ticket_check": {
+    "status": "not_checked",
+    "matched": 0,
+    "price_matched": 0,
+    "mismatched": [],
+    "missing_from_current_listing": 0,
+    "not_direct_ticket_url": 0
+  },
+  "notes": [
+    "Label classification is not independent verification of each publisher's price.",
+    "Multiple event entries may share a ticket tariff; the live API check is only for matching direct ticket links.",
+    "Some events legitimately have free and paid ticket categories: Desde 0 € does not imply a completely free event."
+  ]
+}

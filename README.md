@@ -496,3 +496,17 @@ Cada página de un mismo programa se consulta una vez en cada ejecución
 y se comprueba para cada fecha individual. ULPGC queda fuera del rastreo
 automatizado por su robots.txt restrictivo. La actualización diaria
 contrasta las nuevas páginas y solo publica recintos verificados.
+
+
+### Auditoría automática de precios
+
+Tras cada sincronización diaria se genera data/price_provenance_audit.json
+desde el catálogo publicado. Distingue gratis, precio fijo,
+tarifa mínima, mínimo cero ambiguo y precios contradictorios.
+Nunca convierte automaticamente "Desde 0 EUR" en gratis porque
+solo ciertas entradas podrían ser gratuitas.
+Este control es clasificación, no verifica en directo todos los editores.
+Para comprobar la plataforma de tickets contra su API pública:
+python scripts/audit_price_provenance.py --live-tickets
+La pasada diaria de sincronización consulta ya esa plataforma:
+el informe diario no duplica solicitudes a su API.
