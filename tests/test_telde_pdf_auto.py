@@ -108,6 +108,37 @@ class AutoTeldePdfTests(unittest.TestCase):
                 self.assertEqual(again["api_calls"],0)
                 self.assertEqual(call.call_count,2)
 
+    def test_expired_acts_never_consume_second_vision_call(self):
+        old={"title":"Pregón de las fiestas", "date":"2026-10-09",
+             "time":"19:30", "venue":"Plaza de Caserones Altos",
+             "evidence":"9 octubre 19:30 Pregón en Plaza de Caserones Altos",
+             "type":"fiesta"}
+        with tempfile.TemporaryDirectory() as tmp:
+            p=Path(tmp)
+            (p/"index.json").write_text(json.dumps(INDEX),encoding="utf8")
+            with patch.object(auto,"REVIEW",p/"pending.json"), \
+                 patch.object(auto,"STATE",p/"state.json"), \
+                 patch.object(auto,"CACHE",p/"cache.json"), \
+                 patch.object(auto,"REPORT",p/"report.json"), \
+                 patch.object(auto,"VERIFIED",p/"verified.json"), \
+                 patch.object(tv,"SOURCE",p/"index.json"), \
+                 patch.object(tv,"official_robots",return_value=object()), \
+                 patch.object(tv,"download_pdf",return_value=(p/"dummy.pdf","a"*64,42)), \
+                 patch.object(auto,"PdfReader",FakeReader), \
+                 patch.object(tv,"render_page_jpeg",return_value=(b"fakepng",(500,800))), \
+                 patch.object(tv,"call_openai_vision",return_value=(
+                     {"events":[old],"page_is_program":True},
+                     {"input_tokens":1000,"output_tokens":500})) as call, \
+                 patch.dict(os.environ,{"OPENAI_API_KEY":"test-key"}):
+                report=auto.run(["--filename","caseronesaltos26.pdf","--api"],today=dt.date(2026,10,27))
+                self.assertEqual(report["api_calls"],1)
+                self.assertEqual(call.call_count,1)
+                self.assertEqual(report["auto_verified_count"],0)
+                self.assertEqual(report["docs"][0]["inspected"][0]["verification"],"expired_acts_no_second_api_pass")
+                self.assertEqual(json.loads((p/"verified.json").read_text(encoding="utf8")),[])
+                pending=json.loads((p/"pending.json").read_text(encoding="utf8"))
+                self.assertEqual(pending[0]["date_state"],"expired")
+
     def test_workflow_never_exposes_key_in_browser(self):
         wf=(ROOT/".github/workflows/sync-events.yml").read_text(encoding="utf8")
         self.assertIn("secrets.OPENAI_API_KEY",wf)

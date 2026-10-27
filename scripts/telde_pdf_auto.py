@@ -250,7 +250,7 @@ def run(argv=None, *, session=None, today: dt.date | None = None):
             # OCR-free scan: original visual extraction AND independent second
             # visual pass must agree about title, date, time and named venue.
             can_finish=True
-            if valid and method=="ai_vision":
+            if any(rec.get("date_state") == "upcoming" for rec in valid) and method=="ai_vision":
                 ck2=f"{sha}/{i}/{tv.MODEL}/{VERSION}/independent_double_read"
                 if ck2 in cache:
                     second=cache[ck2]["output"]
@@ -290,6 +290,8 @@ def run(argv=None, *, session=None, today: dt.date | None = None):
                             rec["verified_at"]=now.isoformat()
                             verified_events[rec["id"]]=rec
                     info["auto_verified"]=len(matched)
+            if valid and not any(rec.get("date_state") == "upcoming" for rec in valid):
+                info["verification"] = "expired_acts_no_second_api_pass"
             if can_finish:done.add(i)
         checkpoint["done_pages"] = sorted(done)
         checkpoint["complete"] = len(done) == len(pdf.pages)
