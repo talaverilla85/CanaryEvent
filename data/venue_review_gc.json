@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-28T00:25:37+00:00",
-  "not_published": 107,
+  "updated_at": "2026-10-28T00:46:27+00:00",
+  "not_published": 106,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -493,18 +493,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0030/taller-infantil-reposteria-encantada",
       "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11208822",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 104,
-      "title": "Exposición: Recetas sonoras de Liliana González",
-      "start": "2026-10-30",
-      "end": "2026-11-30",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0031/exposicion-recetas-sonoras-de-liliana-gonzalez",
-      "organizer_url": "https://cca.grancanaria.com",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {

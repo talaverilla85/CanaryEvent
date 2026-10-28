@@ -66,6 +66,29 @@
       "method": "two_independent_visual_passes",
       "confirmed_on": "2026-10-28",
       "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac8981f013a6268e07a3ce5"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261030-0031/exposicion-recetas-sonoras-de-liliana-gonzalez": {
+      "sha256": "ee047474a3456f7e585451a0c8caf19ec495579d0865bd4edb335c3698bb7903",
+      "title": "Exposición: Recetas sonoras de Liliana González",
+      "event_date": "2026-10-30",
+      "status": "verified",
+      "verified": true,
+      "venue": "CCA Gran Canaria, Centro de Cultura Audiovisual",
+      "method": "two_independent_visual_passes",
+      "confirmed_on": "2026-10-28",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acf49c8013a6268e07a5994"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261030-0036/noche-de-finaos": {
+      "sha256": "71456ce555fd7630f4b1f5286038bbfa0fb4663ffba89c4523d21326032fa8c0",
+      "title": "Noche de Finaos",
+      "event_date": "2026-10-30",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261030-0040/iii-maspaterror-2026-atrapados-en-la-red": {
+      "sha256": "4ae9338fb6c53a15b902258efd43d5c37d294baa140c8ad52dcf01276b35c35d",
+      "title": "III Maspaterror 2026: Atrapados en la red",
+      "event_date": "2026-10-30",
+      "status": "reviewed_no_single_venue"
     }
   }
 }
