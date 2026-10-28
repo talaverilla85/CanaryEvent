@@ -82,6 +82,7 @@ def reconcile(events,norm):
     PRIMARY_CULTURAL_SOURCES={
         "LPA Cultura · agenda municipal oficial",
         "Teatro Pérez Galdós · programación oficial",
+        "Auditorio Alfredo Kraus · programación oficial",
         "Sociedad Filarmónica de Las Palmas · conciertos"
     }
     for group in groups.values():
@@ -175,7 +176,8 @@ def reconcile(events,norm):
                 and second==norm("Concierto Aniversario")):
                 eliminated.add(other["id"])
             if (source=="Sociedad Filarmónica de Las Palmas · conciertos"
-                and other_source.startswith(CABILDO_PREFIX)
+                and (other_source.startswith(CABILDO_PREFIX)
+                     or other_source=="Auditorio Alfredo Kraus · programación oficial")
                 and str(original["start"])[:10]=="2026-11-12"
                 and ("shostakovich" in title and "mussorgs" in title)
                 and ("shostakovich" in second and "mussorgs" in second)):

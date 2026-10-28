@@ -1,7 +1,8 @@
-"""Three authoritative Gran Canaria cultural calendars (no generic aggregators).
+"""Four authoritative Gran Canaria cultural calendars (no generic aggregators).
 
 Rechecked on each run.  We read only event facts and source URLs:
 - Teatro Perez Galdos: explicit dated performances from its own detail pages
+- Auditorio Alfredo Kraus: concerts and specific musical/family showtimes
 - LPA Cultura municipal calendar: event-specific listings with actual venue
 - Sociedad Filarmonica: dated concerts and the named hall
 
@@ -20,6 +21,8 @@ import venue_quality
 
 THEATRE_URL="https://teatroperezgaldos.es/"
 THEATRE_NAME="Teatro Pérez Galdós · programación oficial"
+KRAUS_URL="https://auditorioalfredokraus.es/"
+KRAUS_NAME="Auditorio Alfredo Kraus · programación oficial"
 LPA_URL="https://lpacultura.com/programs/actividades-culturales-2026"
 LPA_NAME="LPA Cultura · agenda municipal oficial"
 PHILHARMONIC_URL="https://sociedadfilarmonicalpgc.com/programacion/conciertos"
@@ -114,8 +117,8 @@ def theatre_sessions(soup,today):
         by_day.setdefault(date,set()).add(time)
     return by_day
 
-def extract_theatre(reader,today,categorize):
-    soup=reader.html(THEATRE_URL,THEATRE_URL,r"/")
+def extract_stage(reader,today,categorize,*,site,name,venue):
+    soup=reader.html(site,site,r"/")
     rows=[]
     stats={"checked_pages":0,"skipped":0,"errored":[]}
     seen=set()
@@ -126,12 +129,12 @@ def extract_theatre(reader,today,categorize):
         if not link or len(title)<5 or not card_day or card_day>today+dt.timedelta(days=180):
             stats["skipped"]+=1
             continue
-        url=urljoin(THEATRE_URL,link.get("href",""))
-        if url in seen or not expected_url(url,THEATRE_URL,r"/evento/[a-z0-9-]+"):
+        url=urljoin(site,link.get("href",""))
+        if url in seen or not expected_url(url,site,r"/evento/[a-z0-9-]+"):
             continue
         seen.add(url)
         try:
-            detail=reader.html(url,THEATRE_URL,r"/evento/[a-z0-9-]+")
+            detail=reader.html(url,site,r"/evento/[a-z0-9-]+")
             stats["checked_pages"]+=1
             confirmed=formatted(detail.select_one("h2.page-header-event__title"))
             if norm(title)!=norm(confirmed):
@@ -153,12 +156,20 @@ def extract_theatre(reader,today,categorize):
                       else "familia" if any(t in norm(title+" "+subtitle)
                       for t in ("familia","infantil","ninos")) else "cultura")
                 rows.append(new_record(title=title,day=date,time=sorted_times[0],
-                    venue="Teatro Pérez Galdós",source=THEATRE_NAME,source_url=url,
-                    category=kind,details=(schedule+" Programación oficial del Teatro Pérez Galdós.").strip()))
+                    venue=venue,source=name,source_url=url,
+                    category=kind,details=(schedule+" Programación oficial de "+venue+".").strip()))
         except (ValueError,PermissionError,RuntimeError,requests.RequestException) as err:
-            stats["errored"].append({"event_url":url,"error_type":type(err).__name__})
-    if not rows:raise RuntimeError("No dated Teatro Pérez Galdós sessions found")
+            stats["errored"].append({"event_url":url,"error_type":type(err).__name__,"reason":str(err)[:95]})
+    if not rows:raise RuntimeError("No dated official auditorium sessions found")
     return rows,stats
+
+def extract_theatre(reader,today,categorize):
+    return extract_stage(reader,today,categorize,site=THEATRE_URL,
+                         name=THEATRE_NAME,venue="Teatro Pérez Galdós")
+
+def extract_kraus(reader,today,categorize):
+    return extract_stage(reader,today,categorize,site=KRAUS_URL,
+                         name=KRAUS_NAME,venue="Auditorio Alfredo Kraus")
 
 def extract_philharmonic(soup,today):
     rows=[]
@@ -252,4 +263,14 @@ def collect(today,*,reader=None,categorize=None):
                         "error":""})
     except (ValueError,RuntimeError,PermissionError,requests.RequestException) as error:
         sources.append({"name":THEATRE_NAME,"found":0,"error":type(error).__name__})
+    try:
+        records,extra=extract_kraus(reader,today,categorize)
+        outputs.extend(records)
+        sources.append({"name":KRAUS_NAME,"found":len(records),
+                        "detail_pages":extra["checked_pages"],
+                        "skipped":extra["skipped"],
+                        "errors":extra["errored"][:6],
+                        "error":""})
+    except (ValueError,RuntimeError,PermissionError,requests.RequestException) as error:
+        sources.append({"name":KRAUS_NAME,"found":0,"error":type(error).__name__})
     return outputs,sources
