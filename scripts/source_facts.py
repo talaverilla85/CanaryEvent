@@ -6,6 +6,7 @@ and original outbound links are used. No ticket cost is guessed from a link.
 import json
 import re
 import venue_facts
+import official_address_locations
 from urllib.parse import urlsplit
 from bs4 import BeautifulSoup
 
@@ -65,6 +66,11 @@ def parse_price(soup, schema, single_session):
         return "Desde "+display_money(amounts[0]), 0
     # Multiple activities under a single programme must NOT receive a made-up shared tariff.
     if not single_session:return "",None
+    # A complete source info panel can contain event-specific pricing after
+    # the JSON-LD clipping point. Only explicit labels, never assume free.
+    full=full_event_description(soup)
+    if re.search(r"\b(?:taller|actividad|visita|entrada)\s+gratuit[ao]s?\b",full,re.I):
+        return "Gratis",1
     for el in soup.select('[itemprop="price"],.event-detail__price,.event-detail__ticket-price'):
         amt=money(el.get("content") or el.get_text(" ",strip=True).replace("€",""))
         if amt is not None:return ("Gratis",1) if amt==0 else (display_money(amt),0)
@@ -79,6 +85,36 @@ def parse_price(soup, schema, single_session):
         amt=money(matches[0])
         if amt is not None:return ("Gratis",1) if amt==0 else (display_money(amt),0)
     return "",None
+
+def full_event_description(soup):
+    """Only the event's own *full* information panel, never global footer.
+
+    JSON-LD descriptions on Cabildo are often clipped at 500 characters.
+    The visible information panel is the factual source of record.
+    """
+    panel=soup.select_one("#info-panel .event-detail__text")
+    if not panel:
+        return ""
+    return display_text(panel.get_text(" ",strip=True),12000)
+
+
+def separate_sessions(description):
+    """Return first explicit session and all times, never a fabricated end.
+
+    A two-slot workshop is one listing with two selectable sessions, NOT
+    a continuous multi-hour event. Require an announced pair and the word
+    sesión to distinguish from registration/contact hours.
+    """
+    if not description or not re.search(r"\bsesi[oó]n(?:es)?\b",description,re.I):
+        return None,""
+    match=re.search(r"\b([01]\d|2[0-3]):([0-5]\d)\s+y\s+([01]\d|2[0-3]):([0-5]\d)\s*h\b",
+                    description[:180],re.I)
+    if not match:return None,""
+    first=match.group(1)+":"+match.group(2)
+    second=match.group(3)+":"+match.group(4)
+    if first==second:return None,""
+    return min(first,second),"Sesiones: "+first+" y "+second+" h. Confirma la edad y la inscripción en la fuente oficial."
+
 
 def verified_venue(soup,schema,municipality,norm):
     texts=[display_text(el.get_text(" ",strip=True),180) for el in soup.select(".event-detail__details-list p.event-detail__text")]
@@ -97,7 +133,13 @@ def verified_venue(soup,schema,municipality,norm):
     # The publisher sometimes labels only the town in JSON-LD/location while
     # putting the actual named building in the official Event description.
     # Parse only unambiguous named places, never a guessed municipal centroid.
-    return venue_facts.from_description(schema.get("description"),municipality)
+    # Fall back to the *complete* visual text. Do not trust the short
+    # JSON-LD description alone when a name/address is below its cutoff.
+    structured=venue_facts.from_description(schema.get("description"),municipality)
+    if structured:return structured
+    full=full_event_description(soup)
+    return (venue_facts.from_description(full,municipality)
+            or official_address_locations.from_official_address(full,municipality))
 
 def valid_outbound(url):
     if not isinstance(url,str):return ""
@@ -138,10 +180,15 @@ def enhance(soup,municipality,norm,multi_day):
     venue=verified_venue(soup,schema,municipality,norm)
     price,free=parse_price(soup,schema,not multi_day)
     external=organizer_link(soup)
+    session_start,session_summary=(separate_sessions(full_event_description(soup))
+                                  if not multi_day else (None,""))
+    summary=factual_summary(schema,venue,municipality,multi_day)
+    if session_summary:summary=session_summary+" "+summary
     return {
       "venue":venue,
       "price":price,
       "free":free,
-      "details":factual_summary(schema,venue,municipality,multi_day),
+      "details":summary,
       "organizer_url":external,
+      "session_start":session_start,
     }

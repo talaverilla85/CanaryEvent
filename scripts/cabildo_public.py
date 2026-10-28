@@ -14,6 +14,7 @@ import requests
 from bs4 import BeautifulSoup
 from event_images import official_page_image,image_fields
 import source_facts
+import venue_quality
 import ulpgc_venue_facts
 
 BASE="https://www.eventosgrancanaria.com"
@@ -109,6 +110,11 @@ def extract_factual_event(html,url,today,places,norm,category):
             break
     facts=source_facts.enhance(soup,muni,norm,final_day>start_day)
     venue=facts["venue"] or venue or "Consultar el recinto en la ficha oficial"
+    # The Cabildo date box may contain only a day, even if the information
+    # panel lists two clearly separated workshop sessions.
+    if not known_time and final_day==start_day and facts.get("session_start"):
+        start_time=facts["session_start"]
+        known_time=True
 
     status="approved"
     for tag in soup.select('script[type="application/ld+json"]'):
@@ -145,27 +151,34 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
         conn.execute("ALTER TABLE cabildo_scans ADD COLUMN facts_inspected INTEGER NOT NULL DEFAULT 0")
     if "venue_inspected" not in scan_columns:
         conn.execute("ALTER TABLE cabildo_scans ADD COLUMN venue_inspected INTEGER NOT NULL DEFAULT 0")
-    existing={r[0]:(r[1],r[2],r[3],r[4],r[5]) for r in
-              conn.execute("SELECT url,checked_at,outcome,image_inspected,facts_inspected,venue_inspected FROM cabildo_scans").fetchall()}
+    # Versioned backfill. Existing pages were scanned using clipped JSON-LD.
+    # One extra bounded scan lets us recover names in the full info panel.
+    if "full_text_v2" not in scan_columns:
+        conn.execute("ALTER TABLE cabildo_scans ADD COLUMN full_text_v2 INTEGER NOT NULL DEFAULT 0")
+    existing={r[0]:(r[1],r[2],r[3],r[4],r[5],r[6]) for r in
+              conn.execute("SELECT url,checked_at,outcome,image_inspected,facts_inspected,venue_inspected,full_text_v2 FROM cabildo_scans").fetchall()}
     # Backfill metadata on previously scanned pages, while preserving a modest
     # per-run request limit. Historical images are refreshed in the same pass.
-    pending_facts={u for u,(_,outcome,_,facts,_) in existing.items()
+    pending_facts={u for u,(_,outcome,_,facts,_,_) in existing.items()
                    if outcome=="valid" and not facts}
-    pending_images={u for u,(_,outcome,img,_,_) in existing.items()
+    pending_images={u for u,(_,outcome,img,_,_,_) in existing.items()
                     if outcome=="valid" and not img}
-    missing_venue_urls={row[0] for row in conn.execute(
-        """SELECT source_url FROM events WHERE source_name=? AND status='approved' AND
-        (venue='' OR lower(venue) LIKE 'consultar el recinto%')""",(SOURCE_NAME,))}
-    pending_venues={u for u,(_,outcome,_,_,venue_done) in existing.items()
+    missing_venue_urls={row["source_url"] for row in conn.execute(
+        "SELECT source_url,municipality,venue FROM events WHERE source_name=? AND status='approved'",
+        (SOURCE_NAME,)) if not venue_quality.named_venue(dict(row))}
+    pending_venues={u for u,(_,outcome,_,_,venue_done,_) in existing.items()
                     if outcome=="valid" and not venue_done and u in missing_venue_urls}
+    pending_full_text={u for u,(_,outcome,_,_,_,v2) in existing.items()
+                       if outcome=="valid" and not v2 and u in missing_venue_urls}
     # Index events with a start date up to 120d ahead, allowing recently started multi-day
     # activities to be detected (but still refusing to invent session dates).
     candidates=[(u,d) for u,d in sitemap if
                 today-dt.timedelta(days=45)<=d<=today+dt.timedelta(days=MAX_LOOKAHEAD_DAYS)
                 or (u in missing_venue_urls and today-dt.timedelta(days=270)<=d<today)]
-    candidates.sort(key=lambda el:(el[0] not in pending_venues,
+    candidates.sort(key=lambda el:(el[0] not in pending_full_text,
+                                   el[0] not in pending_venues,
                                    el[0] not in pending_facts and el[0] not in pending_images,
-                                   el[0] in existing, abs((el[1]-today).days), el[0]))
+                                   abs((el[1]-today).days),el[0] in existing,el[0]))
     # A zero-scan cycle is normal when every indexed page was recently checked.
     # Keep due and skipped counts separate so monitoring does not report an
     # idle but healthy connector as an extraction failure.
@@ -176,7 +189,8 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
         if last:
             try:age=(dt.datetime.fromisoformat(now)-dt.datetime.fromisoformat(last[0])).total_seconds()
             except (TypeError,ValueError):age=9999999
-            if age<2*86400 and url not in pending_images and url not in pending_facts and url not in pending_venues:
+            if (age<2*86400 and url not in pending_images and url not in pending_facts
+                and url not in pending_venues and url not in pending_full_text):
                 skipped_recent+=1
                 continue
         refresh_candidates.append((url,day))
@@ -204,11 +218,12 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
         except (requests.RequestException,ValueError) as exc:
             outcome="failed"
             errors.append(type(exc).__name__)
-        conn.execute("""INSERT INTO cabildo_scans(url,checked_at,outcome,image_inspected,facts_inspected,venue_inspected) VALUES(?,?,?,1,?,?)
+        checked_ok=outcome=="valid"
+        conn.execute("""INSERT INTO cabildo_scans(url,checked_at,outcome,image_inspected,facts_inspected,venue_inspected,full_text_v2) VALUES(?,?,?,1,?,?,?)
           ON CONFLICT(url) DO UPDATE SET checked_at=excluded.checked_at,outcome=excluded.outcome,
             image_inspected=1,facts_inspected=excluded.facts_inspected,
-            venue_inspected=excluded.venue_inspected""",
-            (url,now,outcome,0 if outcome=="failed" else 1,0 if outcome=="failed" else 1))
+            venue_inspected=excluded.venue_inspected,full_text_v2=excluded.full_text_v2""",
+            (url,now,outcome,int(outcome!="failed"),int(outcome!="failed"),int(checked_ok)))
         # Never aggressively crawl: one page every ~0.65 s maximum
         time.sleep(0.65)
     conn.commit()
@@ -216,6 +231,7 @@ def synchronize(conn, now, today, places, norm, category, upsert, max_pages=MAX_
             "changed":changed,"scanned":checked,"sitemap_count":len(sitemap),
             "eligible_urls":len(candidates),"due_urls":len(refresh_candidates),
             "pending_venue_rechecks":len(pending_venues),
+            "pending_full_text_rechecks":len(pending_full_text),
             "skipped_recent":skipped_recent,
             "queued_remaining":max(0,len(refresh_candidates)-checked),
             "refresh_interval_hours":48,"error":"; ".join(errors[:3])}

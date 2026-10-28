@@ -808,3 +808,27 @@ CONFIGURACIÓN PRIVADA UNA SOLA VEZ:
 
 La integración queda preparada, pero no se puede confirmar ningún
 envío de mensajes hasta configurar ambos secretos.
+
+### Recintos en el texto completo del Cabildo: recuperación de octubre 2026
+
+La ficha de Taller infantil: Repostería encantada (30/10/2026)
+tiene una descripción estructurada cortada a 500 caracteres, aunque
+la página visible incluye Biblioteca Insular de Gran Canaria,
+Remedios 7, 35002 Las Palmas, acceso gratuito y las sesiones 16:30 y
+18:30. En Moya, una presentación literaria confirma la Casa-Museo
+Tomás Morales, Plaza Tomás Morales s/n, 35420.
+
+El lector utiliza el panel de información completo de cada ficha
+además del esquema abreviado. El módulo official_address_locations.py
+comprueba nombre institucional, calle, número y código postal
+en un mismo bloque antes de aceptar una dirección documentada.
+venue_facts.py sigue leyendo ubicaciones inequívocas dentro del
+texto completo. Una mera mención al organizador no es una prueba.
+
+Las fichas ya escaneadas sin recinto se vuelven a revisar usando
+la marca versionada cabildo_scans.full_text_v2; se mantiene el máximo
+de 75 páginas por ejecución y una pausa respetuosa entre consultas.
+Los lugares ambiguos permanecen fuera del catálogo. Dos sesiones
+no se convierten en una duración continua falsa: se guarda la
+primera hora de inicio y se indican las demás en el resumen.
+No se asignan coordenadas exactas sin verificación independiente.

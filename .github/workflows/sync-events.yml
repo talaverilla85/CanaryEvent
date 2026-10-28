@@ -11,6 +11,7 @@ on:
       - "scripts/cabildo_public.py"
       - "scripts/ulpgc_venue_facts.py"
       - "scripts/source_facts.py"
+      - "scripts/official_address_locations.py"
       - "scripts/venue_facts.py"
       - "scripts/audit_source_health_gc.py"
       - "scripts/venue_quality.py"
