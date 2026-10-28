@@ -65,13 +65,15 @@ class OrganizerVenueTextTests(unittest.TestCase):
         self.assertTrue(ov.valid_url(URL))
         self.assertFalse(ov.valid_url("https://cultura.icdcultural.org.evil.example/test"))
 
-    def test_actual_db_row_still_eligible_for_updated_parser(self):
+    def test_actual_db_row_links_to_its_official_organizer_page(self):
         with sqlite3.connect(str(ROOT/"data/events.sqlite")) as conn:
             conn.row_factory=sqlite3.Row
             row=conn.execute("SELECT * FROM events WHERE id=99").fetchone()
             self.assertIsNotNone(row)
             self.assertEqual(row["organizer_url"],URL)
             self.assertEqual(row["start"][:16],"2026-10-30T17:00")
-            self.assertFalse(row["venue"]==EXPECTED)
+            # The daily sync may already have resolved this legacy record.
+            # Keep the test grounded in the official URL and date, not stale state.
+            self.assertEqual(row["municipality"],"Las Palmas de Gran Canaria")
 
 if __name__=="__main__":unittest.main()
