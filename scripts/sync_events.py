@@ -23,6 +23,7 @@ import ulpgc_venue_facts
 import verified_venue_coordinates
 import cross_source_venue_facts
 import official_venue_confirmations
+import ulpgc_cinema_venues
 import official_culture_calendars
 import fimc_island_agenda
 import island_eventon_agendas
@@ -1032,6 +1033,12 @@ def run():
         }
         results.append(official_record)
         print("Corroborated official venues:",official_result)
+        # ULPGC library corroborates the actual film cycle when the
+        # individual ULPGC agenda page is inaccessible (HTTP 403).
+        cinema_result=ulpgc_cinema_venues.enrich(conn,NOW,TODAY)
+        results.append(cinema_result)
+        if cinema_result["changed"] or cinema_result["error"]:
+            print("University film-cycle venues:",cinema_result)
         # Venue-specific original programmes can corroborate the hall
         # without any AI inference; use exact URL+date/time matches.
         telde_result=telde_hall_venues.enrich(conn,NOW,TODAY)

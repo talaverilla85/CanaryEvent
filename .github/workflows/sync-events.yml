@@ -50,6 +50,7 @@ on:
       - "scripts/coverage_gc.py"
       - "scripts/gc_source_radar.py"
       - "scripts/official_venue_confirmations.py"
+      - "scripts/ulpgc_cinema_venues.py"
       - "scripts/official_stage_agendas.py"
       - "scripts/fimc_island_agenda.py"
       - "scripts/island_eventon_agendas.py"

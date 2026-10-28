@@ -888,3 +888,19 @@ GitHub Actions muestra un aviso amarillo (en lugar de un
 error rojo) y el informe `data/telde_pdf_pilot/auto_report.json`
 conserva la URL y el momento de reintento. Esto es un aplazamiento
 explícito: no se afirma que el PDF se haya importado.
+
+### Fuente original de la ULPGC bloqueada: cine Los modernos 2026
+
+La agenda individual de la ULPGC puede responder HTTP 403, pero el
+blog oficial de su Biblioteca confirma que las nueve proyecciones del
+ciclo Los modernos (23/10-18/12/2026) tienen lugar a las 19:00 en
+el Salon de Actos del Edificio de Humanidades.
+
+El modulo scripts/ulpgc_cinema_venues.py lee esa evidencia original
+accesible sin burlar el 403 y la aplica exclusivamente a ocho
+fichas concretas aun sin recinto, cotejadas por titulo, dia,
+municipio, fuente original y enlace de la agenda de la ULPGC.
+No se utiliza el domicilio de la universidad ni el del pie de pagina.
+Si la fuente independiente deja de confirmar el programa, los casos
+permanecen retenidos. La revision se ejecuta diariamente antes del
+lector visual de carteles, ahorrando consultas de IA.
