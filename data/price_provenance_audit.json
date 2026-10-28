@@ -1,15 +1,16 @@
 {
-  "checked_on": "2026-10-28T00:04:29.013265+00:00",
-  "total_events": 454,
-  "known_price_or_free": 148,
+  "checked_on": "2026-10-28T00:23:38.118049+00:00",
+  "total_events": 469,
+  "known_price_or_free": 155,
   "classification": {
     "minimum_zero_ambiguous": 6,
-    "free": 17,
-    "minimum_positive": 119,
-    "fixed_positive": 6
+    "fixed_positive": 8,
+    "free": 22,
+    "minimum_positive": 119
   },
   "known_by_source": {
     "TuReservaOnline · agenda de Gran Canaria": 73,
+    "LPA Cultura · agenda municipal oficial": 7,
     "Ayuntamiento de Telde · fiestas y cultura 2026": 1,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 43,
     "Ayuntamiento de Ingenio": 5,

@@ -858,6 +858,28 @@
     "archived_on": "2026-10-27"
   },
   {
+    "id": "municipal-pdf-f13e2446cffe89a3",
+    "title": "Zumba en Familia",
+    "date": "2026-10-26",
+    "time": "18:30",
+    "venue": "Plaza de Los Algodoneros",
+    "type": "familia",
+    "evidence": "LUNES 26 DE OCTUBRE — 18:30 h. Zumba en Familia, con la instructora Inma Santana.",
+    "municipality": "Santa Lucía de Tirajana",
+    "program_title": "Descargar programa de Fiestas San Rafael 2026",
+    "pdf_url": "https://www.santaluciagc.com/wp-content/uploads/2026/10/Programa_Fiestas-SanRafael_2026_web-1.pdf",
+    "admission_type": "unknown",
+    "admission_details": null,
+    "pdf_sha256": "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0",
+    "pdf_page": 15,
+    "review_status": "archived",
+    "date_state": "expired",
+    "note": "NO PUBLICAR sin contrastar fecha/horario con la página escaneada",
+    "extractor": "ai_vision",
+    "archived_from": "pending_review",
+    "archived_on": "2026-10-28"
+  },
+  {
     "id": "municipal-pdf-7320af923f34621d",
     "title": "Exhibición de sevillanas a cargo de Ballet Paulina",
     "date": "2026-10-27",

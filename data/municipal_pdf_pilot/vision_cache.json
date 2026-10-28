@@ -1054,5 +1054,80 @@
       },
       "total_tokens": 3394
     }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/14/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Tarde de la Infancia con Ludopark infantil y talleres artísticos",
+          "date": "2026-10-26",
+          "time": "17:30-20:30",
+          "venue": "Zona peatonal de la Avda. de Canarias",
+          "evidence": "LUNES 26 DE OCTUBRE — 17:30 h.-20:30 h. Tarde de la Infancia con Ludopark infantil y talleres artísticos.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Zumba en Familia",
+          "date": "2026-10-26",
+          "time": "18:30",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "LUNES 26 DE OCTUBRE — 18:30 h. Zumba en Familia, con la instructora Inma Santana.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 2556,
+      "input_tokens_details": {
+        "cache_write_tokens": 2553,
+        "cached_tokens": 0
+      },
+      "output_tokens": 455,
+      "output_tokens_details": {
+        "reasoning_tokens": 243
+      },
+      "total_tokens": 3011
+    }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/0/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 2556,
+      "input_tokens_details": {
+        "cache_write_tokens": 2553,
+        "cached_tokens": 0
+      },
+      "output_tokens": 47,
+      "output_tokens_details": {
+        "reasoning_tokens": 25
+      },
+      "total_tokens": 2603
+    }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/1/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 2556,
+      "input_tokens_details": {
+        "cache_write_tokens": 2553,
+        "cached_tokens": 0
+      },
+      "output_tokens": 44,
+      "output_tokens_details": {
+        "reasoning_tokens": 22
+      },
+      "total_tokens": 2600
+    }
   }
 }

@@ -23,6 +23,26 @@
       "title": "Curso básico de cocina canaria saludable",
       "event_date": "2026-10-28",
       "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261029-0002/expofuturo": {
+      "sha256": "d3df363e9e1ec5ebf798ac8954e9b1b491a56e69be78af8f0f7472714983a424",
+      "title": "ExpoFuturo",
+      "event_date": "2026-10-29",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261029-0003/campana-de-hemodonacion-parque-cientifico-y-tecnologico": {
+      "sha256": "3ff9767e4d24108ecbb1559e8c2b9d0198157d3048d3476f83fa678068907faf",
+      "title": "Campaña de hemodonación: Parque Científico y Tecnológico",
+      "event_date": "2026-10-29",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261029-0004/campana-de-hemodonacion-escuela-de-ingenierias-industriales-y-civiles": {
+      "sha256": "3ff9767e4d24108ecbb1559e8c2b9d0198157d3048d3476f83fa678068907faf",
+      "title": "Campaña de hemodonación: Escuela de Ingenierías Industriales y Civiles",
+      "event_date": "2026-10-29",
+      "status": "model_error",
+      "error_type": "ValueError",
+      "retry_on": "2026-10-30"
     }
   }
 }
