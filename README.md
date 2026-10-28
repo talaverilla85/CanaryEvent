@@ -832,3 +832,24 @@ Los lugares ambiguos permanecen fuera del catálogo. Dos sesiones
 no se convierten en una duración continua falsa: se guarda la
 primera hora de inicio y se indican las demás en el resumen.
 No se asignan coordenadas exactas sin verificación independiente.
+
+### Carteles y calendario oficial de Telde: octubre de 2026
+
+El cartel oficial de El lago de los cisnes - International Ballet
+Company confirma el Teatro Municipal Juan Ramón Jiménez (Telde),
+1 de noviembre de 2026, 18:00. La ficha del Cabildo muestra sólo Telde.
+
+El módulo scripts/telde_hall_venues.py coteja el enlace exacto, el
+título, la fecha y la hora de la función con la lista de eventos
+vinculados al Teatro Juan Ramón Jiménez en la web original de
+Telde Cultura. No infiere el lugar de la casilla Organiza, ni
+utiliza fechas de una edición distinta.
+
+El lector visual scripts/poster_venues.py pasa de 3 a 10 carteles
+por ejecución, con un límite de 20 consultas de IA (dos lecturas
+independientes por cartel), coste nominal máximo 0,075 USD y caché
+para evitar gastar repetidamente en carteles no concluyentes o
+defectuosos. Acepta títulos principales distintivos sin el sufijo
+de una productora; comprueba la fecha y rechaza lugares ambiguos.
+La ausencia de recinto verificable sigue excluyendo al evento.
+No se guardan imágenes ni claves API en GitHub.
