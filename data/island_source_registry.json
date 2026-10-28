@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "updated_on": "2026-10-28",
+  "active_publication_islands": [
+    "Gran Canaria"
+  ],
+  "island_targets": [
+    "Gran Canaria",
+    "Tenerife",
+    "Lanzarote",
+    "Fuerteventura",
+    "La Palma",
+    "La Gomera",
+    "El Hierro",
+    "La Graciosa"
+  ],
+  "discovery_order": [
+    "1. Organismos públicos culturales de cabildo/gobierno y los 21 o más ayuntamientos de la isla",
+    "2. Recintos con agenda propia: auditorio, teatro, centro cultural, sala, estadio",
+    "3. Festivales recurrentes: programa actual por función/isla/recinto (NO cartel genérico)",
+    "4. Productoras y compañías: buscar por nombre en webs oficiales de recintos y organizadores",
+    "5. Ticketing autorizado para completar datos o contrastar, sin asumir recinto ni gratuidad"
+  ],
+  "publish_requirements": [
+    "source_url oficial permitido",
+    "fecha comprobada",
+    "isla exacta",
+    "municipio y recinto comprobados",
+    "no caducado",
+    "sin duplicados por título+fecha+municipio",
+    "sin hora inventada",
+    "sin precio inferido"
+  ],
+  "source_profiles": [
+    {
+      "id": "fimc",
+      "name": "Festival Internacional de Música de Canarias · agenda oficial",
+      "type": "festival_interinsular",
+      "url": "https://www.icdcultural.org/fimc/conciertos",
+      "islands": [
+        "Gran Canaria",
+        "Tenerife",
+        "Lanzarote",
+        "Fuerteventura",
+        "La Palma",
+        "La Gomera",
+        "El Hierro",
+        "La Graciosa"
+      ],
+      "adapter": "fimc_island_agenda",
+      "status": "activo_gran_canaria",
+      "note": "Detalles por isla, fecha y sala; requiere un catálogo de recintos específico antes de activar otra isla.",
+      "display_name": "Festival Internacional de Música de Canarias"
+    },
+    {
+      "id": "galdar-guaires",
+      "name": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
+      "type": "ayuntamiento_recinto",
+      "url": "https://www.galdar.es/event-location/centro-cultural-guaires/",
+      "islands": [
+        "Gran Canaria"
+      ],
+      "adapter": "island_eventon_agendas",
+      "status": "activo",
+      "display_name": "Centro Cultural Guaires · Gáldar"
+    },
+    {
+      "id": "aguimes-auditorio",
+      "name": "Ayuntamiento de Agüimes · programación de teatros",
+      "type": "ayuntamiento_recinto",
+      "url": "https://aguimes.es/event-location/teatro-auditorio-aguimes/",
+      "islands": [
+        "Gran Canaria"
+      ],
+      "adapter": "island_eventon_agendas",
+      "status": "activo",
+      "display_name": "Teatro Auditorio Agüimes"
+    },
+    {
+      "id": "aguimes-cruce",
+      "name": "Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
+      "type": "ayuntamiento_recinto",
+      "url": "https://aguimes.es/event-location/teatro-cruce-de-culturas/",
+      "islands": [
+        "Gran Canaria"
+      ],
+      "adapter": "island_eventon_agendas",
+      "status": "activo",
+      "display_name": "Teatro Cruce de Culturas"
+    },
+    {
+      "id": "victor-jara",
+      "name": "Ayuntamiento de Santa Lucía de Tirajana · actos documentados",
+      "type": "ayuntamiento_recinto",
+      "url": "https://www.santaluciagc.com/abubukaka-pablo-carbonel-alex-ubago-maria-pelae-talleres-cine-magia-y-exposiciones-en-la-programacion-de-cultura/",
+      "islands": [
+        "Gran Canaria"
+      ],
+      "adapter": "gc_documented_events",
+      "status": "importacion_fechas_2026_sin_horario_no_confirmado",
+      "note": "Noticia oficial de 29 septiembre 2026; se contrastan siete actos de octubre a diciembre con recinto, sin hora inventada. Se preservan los seis registros existentes más precisos. La página de programación separada permanece en 2025.",
+      "display_name": "Teatro Víctor Jara"
+    },
+    {
+      "id": "camino-viejo",
+      "name": "Camino Viejo Producciones",
+      "type": "productora",
+      "url": "https://caminoviejoproducciones.com/",
+      "islands": [
+        "Gran Canaria"
+      ],
+      "adapter": "seguimiento_de_creditos_en_agendas_oficiales",
+      "status": "web_en_construccion_monitor_de_recintos",
+      "note": "La productora aparece acreditada en la ficha oficial de Blancanieves, más allá del espejo de Agüimes de 7 de noviembre de 2026; RedEscena contiene su ficha de compañía. No usar su dominio como agenda activa."
+    }
+  ],
+  "island_bootstrap": {
+    "Gran Canaria": {
+      "publication": "activo",
+      "municipality_catalog": "data/municipal_sources_gc.json"
+    },
+    "Tenerife": {
+      "publication": "pendiente_mapeo_recintos_y_municipios"
+    },
+    "Lanzarote": {
+      "publication": "pendiente_mapeo_recintos_y_municipios"
+    },
+    "Fuerteventura": {
+      "publication": "pendiente_mapeo_recintos_y_municipios"
+    },
+    "La Palma": {
+      "publication": "pendiente_mapeo_recintos_y_municipios"
+    },
+    "La Gomera": {
+      "publication": "pendiente_mapeo_recintos_y_municipios"
+    },
+    "El Hierro": {
+      "publication": "pendiente_mapeo_recintos_y_municipios"
+    },
+    "La Graciosa": {
+      "publication": "pendiente_mapeo_recintos_y_municipios"
+    }
+  }
+}

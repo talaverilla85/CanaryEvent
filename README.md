@@ -736,3 +736,41 @@ Al conciliar, se prefiere el recinto indicado por la cartelera
 original frente a una ficha idéntica del Cabildo, únicamente cuando
 la fecha y la hora no son contradictorias. El registro original
 queda en SQLite para trazabilidad.
+
+### Importación de fuentes culturales por isla y seguimiento de productoras
+
+La sincronización diaria de GitHub Actions incorpora automáticamente
+el Festival Internacional de Música de Canarias, comprobando isla, fecha
+y hora tanto en el índice como en la ficha individual; únicamente los
+conciertos verificados de Gran Canaria se publican por ahora.
+
+También incorpora los calendarios municipales estructurados de los teatros
+Auditorio Agüimes y Cruce de Culturas, y del Centro Cultural Guaires.
+No crea funciones a partir de carteles generales sin hora.
+
+Camino Viejo Producciones: su web estaba en construcción en octubre de
+2026. El sistema sigue los créditos que figuran en las agendas oficiales
+de recintos y ayuntamientos, incluido Blancanieves, más allá del espejo
+del 7 de noviembre de 2026 en Agüimes; no publica su repertorio
+sin fecha ni recinto.
+
+Teatro Víctor Jara: la noticia municipal oficial de septiembre de 2026
+verifica siete actuaciones con fecha y recinto. Los horarios no presentes
+se dejan sin concretar; las seis funciones que ya tenían horarios
+contrastados conservan sus fichas. La página monográfica de
+programación aún muestra la temporada de 2025, y no se reutiliza
+como fuente de los nuevos actos. Las próximas publicaciones se
+revisarán de nuevo antes de su importación.
+
+El inventario data/island_source_registry.json enumera las ocho islas y
+prioriza cada búsqueda por organizador oficial, recinto, festival,
+productora y ticketing. El informe public/island_source_status.json
+distingue conexiones activas, solo monitorizadas, incidencias y
+créditos de productoras explícitamente contrastados. Solo Gran Canaria
+tiene activada la publicación. Para añadir otra isla se requiere
+un mapa completo de municipios y recintos con coordenadas, reglas de
+deduplicación insular y pruebas antes de habilitarla.
+
+Regla: fecha, isla, municipio, recinto y URL oficial verificables;
+no se inventan horas o precios. No se importan eventos pasados
+como si fueran futuros ni conciertos anunciados para otras islas.

@@ -49,6 +49,9 @@ on:
       - "scripts/gc_source_radar.py"
       - "scripts/official_venue_confirmations.py"
       - "scripts/official_stage_agendas.py"
+      - "scripts/fimc_island_agenda.py"
+      - "scripts/island_eventon_agendas.py"
+      - "scripts/island_source_intelligence.py"
       - "scripts/poster_venues.py"
       - "scripts/venue_title_variants.py"
       - "scripts/ticket_recent.py"
@@ -123,6 +126,8 @@ jobs:
         run: python scripts/coverage_gc.py
       - name: Auditar precios y gratuidad de fuentes oficiales
         run: python scripts/audit_price_provenance.py --output data/price_provenance_audit.json
+      - name: Comprobar cobertura cultural y productoras de las ocho islas
+        run: python scripts/island_source_intelligence.py
       - name: Guardar base de datos y exportación
         shell: bash
         run: bash scripts/publish_synced_data.sh

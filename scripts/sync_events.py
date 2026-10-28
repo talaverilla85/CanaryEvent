@@ -24,6 +24,8 @@ import verified_venue_coordinates
 import cross_source_venue_facts
 import official_venue_confirmations
 import official_culture_calendars
+import fimc_island_agenda
+import island_eventon_agendas
 import official_stage_agendas
 import poster_venues
 import ticket_reserva
@@ -568,6 +570,47 @@ def run():
             results.append(record)
             print("Official stage agenda:",source["source"],"found",len(matches),
                   "new",added,"protected",protected,"error",error)
+        # Cross-island festival: publication is scoped to the currently
+        # supported island and requires agreement between the official
+        # FIMC listing AND its individual hall/date programme.
+        fimc_rows,fimc_outcome=fimc_island_agenda.collect(TODAY,island="Gran Canaria")
+        # Municipal structured calendars for both Agüimes theatres and
+        # the Gáldar Guaires. No guessed coordinates or programme hours.
+        island_rows,island_outcomes=island_eventon_agendas.collect(TODAY,get_html)
+        island_outcomes=[fimc_outcome]+island_outcomes
+        island_rows=fimc_rows+island_rows
+        for source in island_outcomes:
+            found=added=changed=protected=0
+            for entry in island_rows:
+                if entry["source_name"]!=source["source"] or entry["municipality"] not in PLACES:
+                    continue
+                found+=1
+                old=conn.execute("SELECT source_name FROM events WHERE dedup_key=?",
+                                 (dedup_key(entry),)).fetchone()
+                # Never overwrite another organizer's original record;
+                # keep the first-party source checked for audit and dedup.
+                if old and old["source_name"]!=entry["source_name"]:
+                    protected+=1
+                    continue
+                result=upsert(conn,entry)
+                added+=int(result=="added")
+                changed+=int(result=="changed")
+            conn.commit()
+            error=source.get("error","")
+            conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+              VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+              checked_at=excluded.checked_at,found=excluded.found,
+              added=excluded.added,changed=excluded.changed,error=excluded.error""",
+              (source["source"],NOW,found,added,changed,error))
+            conn.commit()
+            report={"source":source["source"],"checked_at":NOW,"found":found,
+                    "added":added,"changed":changed,
+                    "existing_primary_preserved":protected,"error":error,
+                    "stats":source.get("stats"),
+                    "detail_pages":source.get("detail_pages")}
+            results.append(report)
+            print("Island source:",source["source"],"verified",found,
+                  "added",added,"protected",protected,"error",error)
         # Local patron-saint festivities not necessarily indexed by Cabildo.
         # Publication requires two official municipal pages to verify dates and
         # explicitly free entry; a parser failure must keep the last good data.
