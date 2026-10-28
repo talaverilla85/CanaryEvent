@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-10-28T22:18:08+00:00",
+  "checked_at": "2026-10-28T22:54:18+00:00",
   "quality_counts": {
-    "publicados": 492,
-    "recintos_sin_verificar": 107,
+    "publicados": 496,
+    "recintos_sin_verificar": 103,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 335,
-    "distancia_a_centro_municipal": 324,
-    "fuentes_con_error": 1,
+    "precios_sin_confirmar": 337,
+    "distancia_a_centro_municipal": 328,
+    "fuentes_con_error": 2,
     "duplicados_potenciales": 9
   },
   "sources": [
@@ -82,13 +82,13 @@
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 14,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 15,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -293,11 +293,11 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "operativa",
-      "publicados": 234,
-      "recinto_sin_verificar": 87,
-      "precio_sin_confirmar": 191,
-      "distancia_al_centro_municipal": 135,
-      "fichas_leidas_en_esta_ejecucion": 41,
+      "publicados": 238,
+      "recinto_sin_verificar": 83,
+      "precio_sin_confirmar": 193,
+      "distancia_al_centro_municipal": 139,
+      "fichas_leidas_en_esta_ejecucion": 75,
       "error": ""
     },
     {
@@ -343,6 +343,10 @@
   ],
   "reported_errors": [
     {
+      "source": "Auditorio Alfredo Kraus · programación oficial",
+      "error": "RuntimeError"
+    },
+    {
       "source": "Recintos · carteles oficiales comprobados",
       "error": "ValueError; ValueError"
     }
@@ -350,7 +354,7 @@
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 87
+      "count": 83
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
