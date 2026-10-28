@@ -904,3 +904,24 @@ No se utiliza el domicilio de la universidad ni el del pie de pagina.
 Si la fuente independiente deja de confirmar el programa, los casos
 permanecen retenidos. La revision se ejecuta diariamente antes del
 lector visual de carteles, ahorrando consultas de IA.
+
+### Reconciliar Teatro Cuyas frente a enlaces y listados de Sala Insular
+
+Janto es la taquilla del Teatro Cuyas, no la fuente mas fiable de
+datos estructurados: la agenda principal y la del Circuito de
+Artes Escenicas proporcionan las funciones y su recinto original.
+Algunos enlaces del Cabildo apuntan a una URL de la Sala Insular
+porque comparten identificador numerico en el CMS. El dominio del
+enlace no prueba que esa sala acoja la funcion.
+
+El modulo cuyas_corroboration.py coteja el ID numerico completo del
+espectaculo, titulo exacto normalizado, municipio y el conjunto de
+fechas verificadas por los organizadores. Solo si todos coinciden
+recupera el recinto para la copia del Cabildo sin resolver.
+Los eventos originales permanecen como tarjetas prioritarias.
+Las copias del Cabildo con una sede contradictoria Sala Insular /
+Teatro Cuyas quedan excluidas del catalogo publico (sin borrar
+SQLite), registradas en program_review_gc.json bajo
+source_venue_conflicts. Asi no se publican dias o escenarios falsos
+como la supuesta tercera funcion del 22 de noviembre de Escape Room.
+Los datos de fuentes ambiguas o fechas distintas no se deducen.
