@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-10-28T22:01:37+00:00",
+  "checked_at": "2026-10-28T22:18:08+00:00",
   "checked": 1,
   "manual_verified": 0,
   "vision_verified": 0,
   "rejected": 1,
   "api_calls": 2,
-  "usage_usd": 0.0008536,
+  "usage_usd": 0.0003788,
   "deferred": 82,
   "errors": [
     {

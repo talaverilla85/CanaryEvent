@@ -107,6 +107,12 @@
       "title": "Biosfera Joven: Jóvenes que cuentan su territorio",
       "event_date": "2026-10-31",
       "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261101-0003/el-lago-de-los-cisnes-international-ballet-company": {
+      "sha256": "230450156b2a2411c2a39fc4d39c62b48cba31cfcb348920492e38f61833fcbd",
+      "title": "EL LAGO DE LOS CISNES - INTERNATIONAL BALLET COMPANY",
+      "event_date": "2026-11-01",
+      "status": "reviewed_no_single_venue"
     }
   }
 }
