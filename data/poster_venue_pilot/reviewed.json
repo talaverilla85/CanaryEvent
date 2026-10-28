@@ -191,6 +191,81 @@
       "event_date": "2026-11-06",
       "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/68b8129b848fe4568884b2e8",
       "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261106-0002/aula-de-cine-ciclo-los-modernos-anos-30-asesinato": {
+      "sha256": "16dc5d394b4f059dca0c0bdf8e95b1196f21299c00d7686e9df11b1979e3ec74",
+      "title": "Aula de cine. Ciclo “Los modernos años 30”. Asesinato",
+      "event_date": "2026-11-06",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6985c63909e3917fd2aca61f",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261106-0007/iv-jornadas-de-neurodiversidad-mogan-2026": {
+      "sha256": "016895d69c6ad8de6d54c7f0275a1cce5f8e4f78697d03c3358a6658b2f60ab0",
+      "title": "IV Jornadas de Neurodiversidad Mogán 2026",
+      "event_date": "2026-11-06",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6abf5d9f013a6268e07a1b1a",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261106-0009/sabores-del-mundo-de-tapas-en-maspalomas": {
+      "sha256": "d118d777d2665263adf4eb713e1914f8fd2795100caf9a9ac95f71c7c59682d1",
+      "title": "Sabores del Mundo: De Tapas en Maspalomas",
+      "event_date": "2026-11-06",
+      "status": "verified",
+      "verified": true,
+      "venue": "Plaza T8",
+      "method": "two_independent_visual_passes",
+      "confirmed_on": "2026-10-28",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718b7013a6268e07a7bf8"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261015-0015/charlas-del-plan-mayor-consejos-de-seguridad-para-mayores": {
+      "sha256": "a4f2e544cec56766fb2d3d6f2d54830a856455a9e27af7d0857ed54f3128997e",
+      "title": "Charlas del Plan Mayor: Consejos de seguridad para mayores",
+      "event_date": "2026-10-15",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5df59013a6268e07a7ab6",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261014-0010/charla-sesion-de-videojuegos-el-belingo-club-de-videojuegos": {
+      "event_date": "2026-10-14",
+      "title": "Charla + sesión de videojuegos: El Belingo club de videojuegos",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acf40a4013a6268e07a5853",
+      "status": "image_error",
+      "error_type": "ValueError",
+      "retry_on": "2026-10-30"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261111-0001/curso-basico-de-cocina-canaria-saludable": {
+      "sha256": "5f8c7298e906d3e80f6a1cbe32bed8c7df228a1212a01c210148bbd34c987231",
+      "title": "Curso básico de cocina canaria saludable",
+      "event_date": "2026-11-11",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acc42ba013a6268e07a4c4e",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261113-0002/aula-de-cine-ciclo-los-modernos-anos-30-m-el-vampiro-de-dusseldorf": {
+      "sha256": "cc44c254c44ad40f1d154ef25da6335020ef1857ee2b0f5e33b556925eee91b3",
+      "title": "Aula de cine. Ciclo “Los modernos años 30”. M. El vampiro de Düsseldorf",
+      "event_date": "2026-11-13",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa9fbdd013a6268e079bbd9",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261113-0012/i-encuentro-con-el-teatro-chino-perspectivas-interculturales": {
+      "sha256": "fdc86670f4cbb6d01610c2628727e7f414e693868e02b3ee4afc80a14af0527a",
+      "title": "I Encuentro con el Teatro Chino: Perspectivas Interculturales",
+      "event_date": "2026-11-13",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac459ce013a6268e07a2fff",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261113-0013/semana-de-la-cultura-ulpgc": {
+      "sha256": "a4f97cf1e2f22d12e665a902ef22344c944c521790d90c825795e5991d095bf2",
+      "title": "Semana de la Cultura ULPGC",
+      "event_date": "2026-11-13",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acd9439013a6268e07a5182",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261113-0015/gran-gala-de-mogan-talent-2026": {
+      "sha256": "1f05704a3054588d892927bc82cbfb8c415f7f6d9376473e439a1fdd437a26a5",
+      "title": "Gran Gala de Mogán Talent 2026",
+      "event_date": "2026-11-13",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718cc013a6268e07a7c31",
+      "status": "reviewed_no_single_venue"
     }
   }
 }

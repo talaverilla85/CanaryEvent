@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-28T23:11:21+00:00",
-  "not_published": 99,
+  "updated_at": "2026-10-28T23:25:49+00:00",
+  "not_published": 97,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -520,18 +520,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 99,
-      "title": "Taller de danza \"Iniciación al tarantismo y la pizzica\"",
-      "start": "2026-10-30T17:00:00",
-      "end": "2026-10-30T19:00:00",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0005/taller-de-danza-iniciacion-al-tarantismo-y-la-pizzica",
-      "organizer_url": "https://cultura.icdcultural.org/programacion-guiniguada/taller-de-danza-iniciacion-al-tarantismo-y-la-pizzica",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 100,
       "title": "Aula de cine. Ciclo “Los modernos años 30”. El ángel azul",
       "start": "2026-10-30T19:00:00",
@@ -732,18 +720,6 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0007/iv-jornadas-de-neurodiversidad-mogan-2026",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 159,
-      "title": "Sabores del Mundo: De Tapas en Maspalomas",
-      "start": "2026-11-06T19:00:00",
-      "end": null,
-      "municipality": "San Bartolomé de Tirajana",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0009/sabores-del-mundo-de-tapas-en-maspalomas",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
