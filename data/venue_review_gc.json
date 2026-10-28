@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-28T00:21:08+00:00",
-  "not_published": 108,
+  "updated_at": "2026-10-28T00:25:37+00:00",
+  "not_published": 107,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -480,18 +480,6 @@
       "venue": "CENTRO CULTURAL",
       "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "source_url": "https://eventos.santabrigida.es/eventos/xix-festival-folk-canarias/",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 102,
-      "title": "Recetas Sonoras: Memorias orales y gustativas de Gran Canaria",
-      "start": "2026-10-30",
-      "end": "2026-11-30",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0028/recetas-sonoras-memorias-orales-y-gustativas-de-gran-canaria",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },

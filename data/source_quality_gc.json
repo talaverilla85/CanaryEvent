@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-10-28T00:21:08+00:00",
+  "checked_at": "2026-10-28T00:25:37+00:00",
   "quality_counts": {
-    "publicados": 469,
-    "recintos_sin_verificar": 108,
+    "publicados": 471,
+    "recintos_sin_verificar": 107,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 314,
-    "distancia_a_centro_municipal": 308,
-    "fuentes_con_error": 1,
+    "precios_sin_confirmar": 316,
+    "distancia_a_centro_municipal": 309,
+    "fuentes_con_error": 0,
     "duplicados_potenciales": 7
   },
   "sources": [
@@ -78,6 +78,16 @@
       "precio_sin_confirmar": 26,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 27,
+      "error": ""
+    },
+    {
+      "source": "Auditorio Alfredo Kraus · programación oficial",
+      "estado": "operativa",
+      "publicados": 4,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 4,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 4,
       "error": ""
     },
     {
@@ -223,10 +233,10 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 263,
-      "recinto_sin_verificar": 89,
-      "precio_sin_confirmar": 220,
-      "distancia_al_centro_municipal": 133,
+      "publicados": 261,
+      "recinto_sin_verificar": 88,
+      "precio_sin_confirmar": 218,
+      "distancia_al_centro_municipal": 134,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
@@ -262,25 +272,20 @@
     },
     {
       "source": "Recintos · carteles oficiales comprobados",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 3,
-      "error": "ValueError"
+      "error": ""
     }
   ],
-  "reported_errors": [
-    {
-      "source": "Recintos · carteles oficiales comprobados",
-      "error": "ValueError"
-    }
-  ],
+  "reported_errors": [],
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 89
+      "count": 88
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",

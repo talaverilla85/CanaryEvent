@@ -43,6 +43,29 @@
       "status": "model_error",
       "error_type": "ValueError",
       "retry_on": "2026-10-30"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261030-0005/taller-de-danza-iniciacion-al-tarantismo-y-la-pizzica": {
+      "sha256": "4f49f5d829427b4a32b160164ab744f0dc8245e486d708419a45903ec79b0d39",
+      "title": "Taller de danza \"Iniciación al tarantismo y la pizzica\"",
+      "event_date": "2026-10-30",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261030-0006/aula-de-cine-ciclo-los-modernos-anos-30-el-angel-azul": {
+      "sha256": "48feae87a557f246e35b1e35dff15a6ac14771112e4d8d98a8512f18700e7310",
+      "title": "Aula de cine. Ciclo “Los modernos años 30”. El ángel azul",
+      "event_date": "2026-10-30",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261030-0028/recetas-sonoras-memorias-orales-y-gustativas-de-gran-canaria": {
+      "sha256": "277bfe4a4c09b287eb0ec27a18fb1ba7eb9eed7326decfc2daadff04d6e1190e",
+      "title": "Recetas Sonoras: Memorias orales y gustativas de Gran Canaria",
+      "event_date": "2026-10-30",
+      "status": "verified",
+      "verified": true,
+      "venue": "CCA Gran Canaria, Centro de Cultura Audiovisual",
+      "method": "two_independent_visual_passes",
+      "confirmed_on": "2026-10-28",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac8981f013a6268e07a3ce5"
     }
   }
 }

@@ -4,47 +4,48 @@
   "no_auto_publication": true,
   "inspected": [
     {
-      "municipality": "San Bartolomé de Tirajana",
+      "municipality": "Agaete",
       "outcome": "ok",
       "links": 0
     },
     {
-      "municipality": "Santa Lucía de Tirajana",
-      "outcome": "ok",
-      "links": 3
-    },
-    {
-      "municipality": "Santa María de Guía",
-      "outcome": "needs_review",
-      "error_type": "RuntimeError",
-      "links": 0
-    },
-    {
-      "municipality": "Telde",
-      "outcome": "ok",
-      "links": 11
-    },
-    {
-      "municipality": "Teror",
-      "outcome": "needs_review",
-      "error_type": "RuntimeError",
-      "links": 0
-    },
-    {
-      "municipality": "Valleseco",
+      "municipality": "Artenara",
       "outcome": "ok",
       "links": 0
     },
     {
-      "municipality": "Valsequillo",
+      "municipality": "Firgas",
+      "outcome": "ok",
+      "links": 4
+    },
+    {
+      "municipality": "Gáldar",
+      "outcome": "ok",
+      "links": 5
+    },
+    {
+      "municipality": "La Aldea de San Nicolás",
       "outcome": "needs_review",
       "error_type": "SSLError",
       "links": 0
     },
     {
-      "municipality": "Vega de San Mateo",
-      "outcome": "ok",
-      "links": 3
+      "municipality": "Las Palmas de Gran Canaria",
+      "outcome": "needs_review",
+      "error_type": "RuntimeError",
+      "links": 0
+    },
+    {
+      "municipality": "Mogán",
+      "outcome": "needs_review",
+      "error_type": "RuntimeError",
+      "links": 0
+    },
+    {
+      "municipality": "Moya",
+      "outcome": "needs_review",
+      "error_type": "PermissionError",
+      "links": 0
     }
   ],
   "scan_state": {
