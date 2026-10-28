@@ -34,7 +34,7 @@ HOSTS={
 }
 MAX_PAGES=24
 CACHE_DAYS=5
-PARSER_VERSION='structured-venues-2026-10-27-v2'
+PARSER_VERSION='structured-venues-2026-10-28-v3-venue-sentences'
 LABEL=re.compile(
     r"(?<!\w)(?:Lugar|Localizaci[oó]n|Ubicaci[oó]n|Recinto)\s*:?\s*"
     r"((?:biblioteca|casa|centro|teatro|museo|sala|auditorio|cine|"

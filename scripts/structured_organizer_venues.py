@@ -11,7 +11,7 @@ from urllib.parse import urlsplit
 
 import venue_quality
 
-SUPPORTED_HOSTS={"ofgrancanaria.com","lpacultura.com","casafrica.es"}
+SUPPORTED_HOSTS={"ofgrancanaria.com","lpacultura.com","casafrica.es","cultura.icdcultural.org"}
 
 def host_of(url):
     host=(urlsplit(url).hostname or "").lower()
@@ -73,6 +73,52 @@ def casafrica(soup,municipality):
     variants={venue_quality.norm(x):x for x in candidates}
     return next(iter(variants.values())) if len(variants)==1 else ""
 
+def icdcultural(soup,municipality,event_day,event_time=""):
+    """Recognize explicit venue sentences on the event-specific Cultura page.
+
+    The theatre can organize workshops elsewhere. An organizer, global map,
+    footer address or a secondary mention of Teatro Guiniguada is not a
+    venue. Require a matching official event DATE, starting HOUR (when
+    known), and a sentence explicitly specifying where this event occurs.
+    """
+    if municipality!="Las Palmas de Gran Canaria":
+        return ""
+    try:
+        day=dt.date.fromisoformat(event_day).strftime("%d/%m/%Y")
+    except ValueError:
+        return ""
+    dates={node.get_text(" ",strip=True) for node in soup.select(".text-block-323")}
+    if day not in dates:
+        return ""
+    paragraphs=soup.select(".div-block-527 .w-richtext p")
+    if not paragraphs:
+        return ""
+    text=" ".join(p.get_text(" ",strip=True) for p in paragraphs)
+    if event_time:
+        # Explicit "Horario" means the source identifies the session,
+        # not merely the date (which may recur with a different hall).
+        hours=re.findall(r"\bHorario\s*:\s*([01]\d|2[0-3]):([0-5]\d)",text,re.I)
+        if not hours or event_time not in {h+":"+m for h,m in hours}:
+            return ""
+    text=re.sub(r"\bSta\.\s+", "Santa ",text,flags=re.I)
+    # Match one sentence of positive, event-specific venue attribution.
+    # Never use incidental references to organizations or performers.
+    patterns=(
+       r"\bLa sede del (?:taller|curso|evento|encuentro|acto|concierto|espect[aá]culo) ser[aá] (?:el|la)\s+([^.!?]{9,120})",
+       r"\b(?:El taller|La actividad|El encuentro|El concierto|El espect[aá]culo) (?:tendr[aá] lugar|se celebrar[aá]) en (?:el|la)\s+([^.!?]{9,120})",
+    )
+    names=[]
+    for pattern in patterns:
+        for m in re.finditer(pattern,text,re.I):
+            candidate=m.group(1).strip(" .,:;()-")
+            if not re.match(r"(?i)^(?:gimnasio|aulario|teatro|sala|auditorio|centro|biblioteca|plaza|pabell[oó]n|patio|sal[oó]n|campus|museo|casa|espacio|parque)\b",candidate):
+                continue
+            candidate=candidate[0].upper()+candidate[1:]
+            name=_exact_place(candidate,municipality)
+            if name:names.append(name)
+    variants={venue_quality.norm(x):x for x in names}
+    return next(iter(variants.values())) if len(variants)==1 else ""
+
 def extract(soup,url,municipality,event_day,event_time=""):
     host=host_of(url)
     if host=="ofgrancanaria.com":
@@ -81,6 +127,8 @@ def extract(soup,url,municipality,event_day,event_time=""):
         return lpacultura(soup,municipality)
     if host=="casafrica.es":
         return casafrica(soup,municipality)
+    if host=="cultura.icdcultural.org":
+        return icdcultural(soup,municipality,event_day,event_time)
     return ""
 
 

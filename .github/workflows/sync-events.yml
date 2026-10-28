@@ -19,6 +19,7 @@ on:
       - "scripts/cross_source_venue_facts.py"
       - "scripts/organizer_venues.py"
       - "scripts/structured_organizer_venues.py"
+      - "scripts/structured_organizer_venues.py"
       - "scripts/ticket_reserva.py"
       - "scripts/audit_price_provenance.py"
       - "scripts/santalucia_festivals.py"
