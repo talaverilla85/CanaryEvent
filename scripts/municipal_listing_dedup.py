@@ -72,6 +72,29 @@ def reconcile(events,norm):
             title_key=norm("II Edición del Mercadillo Tradicional de Artenara")
         groups[(title_key,str(e["start"])[:10],norm(e["municipality"]))].append(e)
     eliminated=set()
+    # For the *same printed title, date and municipality*, the event's
+    # ORIGINAL cultural organizer has more direct evidence of its own
+    # opening hour and hall than a reposted Cabildo listing. Some Cabildo
+    # descriptions use an incorrect hall or a placeholder time; do not
+    # publish two apparently identical event cards because of that.
+    # Never arbitrate between two distinct primary organizers or between
+    # unrelated titles using fuzzy similarity.
+    PRIMARY_CULTURAL_SOURCES={
+        "LPA Cultura · agenda municipal oficial",
+        "Teatro Pérez Galdós · programación oficial",
+        "Sociedad Filarmónica de Las Palmas · conciertos"
+    }
+    for group in groups.values():
+        originals=[e for e in group
+                   if str(e.get("source_name") or "") in PRIMARY_CULTURAL_SOURCES
+                   and is_known_venue(e.get("venue"))]
+        aggregates=[e for e in group
+                    if str(e.get("source_name") or "").startswith(CABILDO_PREFIX)]
+        if len(originals)==1:
+            # The original organizer has identified exactly one specific
+            # event. A duplicate Cabildo item is not a second performance.
+            for copied in aggregates:
+                eliminated.add(copied["id"])
     for group in groups.values():
         if len(group)<2:continue
         muni=[e for e in group if str(e.get("source_name") or "").startswith(MUNICIPAL_PREFIXES)]
@@ -123,4 +146,38 @@ def reconcile(events,norm):
                     aggregate["start"][11:16]!=official["start"][11:16]):
                     continue
                 eliminated.add(aggregate["id"])
+    # Two independently confirmed aliases of concert listings, where
+    # the ORIGINAL society or theatre programme spells out the performance
+    # more fully than the secondary announcement. This does not infer
+    # matches for generic performances sharing a day and location.
+    def same_day_hall(a,b):
+        return (
+            str(a.get("start") or "")[:10]==str(b.get("start") or "")[:10]
+            and is_known_venue(a.get("venue")) and is_known_venue(b.get("venue"))
+            and norm(a["venue"])==norm(b["venue"])
+            and (not is_clock(a.get("start")) or not is_clock(b.get("start"))
+                 or a["start"][11:16]==b["start"][11:16])
+        )
+    for original in events:
+        if original["id"] in eliminated:continue
+        title=norm(original["title"])
+        source=str(original.get("source_name") or "")
+        for other in events:
+            if original["id"]==other["id"] or other["id"] in eliminated:
+                continue
+            if not same_day_hall(original,other):
+                continue
+            second=norm(other["title"])
+            other_source=str(other.get("source_name") or "")
+            if (source=="Sociedad Filarmónica de Las Palmas · conciertos"
+                and title.startswith(norm("Concierto Aniversario de la Sociedad Filarmónica"))
+                and other_source=="Teatro Pérez Galdós · programación oficial"
+                and second==norm("Concierto Aniversario")):
+                eliminated.add(other["id"])
+            if (source=="Sociedad Filarmónica de Las Palmas · conciertos"
+                and other_source.startswith(CABILDO_PREFIX)
+                and str(original["start"])[:10]=="2026-11-12"
+                and ("shostakovich" in title and "mussorgs" in title)
+                and ("shostakovich" in second and "mussorgs" in second)):
+                eliminated.add(other["id"])
     return [e for e in events if e["id"] not in eliminated]
