@@ -18,7 +18,7 @@ for attempt in 1 2 3; do
   for file in data/poster_venue_pilot/reviewed.json data/poster_venue_pilot/report.json; do
     if [[ -f "$file" ]]; then git add "$file"; fi
   done
-  git add public/municipal_pdf_programs.json public/municipal_coverage.json
+  git add public/municipal_pdf_programs.json public/municipal_coverage.json public/island_source_status.json
   git add data/events.sqlite data/program_review_gc.json data/venue_review_gc.json data/source_quality_gc.json data/price_provenance_audit.json public/events.json public/meta.json public/municipal_programs.json
   if git diff --cached --quiet; then
     echo "Sin cambios para guardar"
@@ -45,4 +45,6 @@ for attempt in 1 2 3; do
   python scripts/sync_events.py
   python scripts/audit_source_health_gc.py
   python scripts/audit_price_provenance.py --output data/price_provenance_audit.json
+  python scripts/coverage_gc.py
+  python scripts/island_source_intelligence.py
 done

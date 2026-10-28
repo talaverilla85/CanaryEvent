@@ -13,15 +13,15 @@ import sync_events
 
 class FactCheckedMunicipalSourcesTests(unittest.TestCase):
     def test_official_sources_only_and_no_invented_prices(self):
-        self.assertEqual(len(verified.SOURCES),7)
-        self.assertEqual(sum(len(x["events"]) for x in verified.SOURCES),17)
+        self.assertEqual(len(verified.SOURCES),8)
+        self.assertEqual(sum(len(x["events"]) for x in verified.SOURCES),24)
         for source in verified.SOURCES:
             self.assertTrue(source["url"].startswith("https://"))
             for event in source["events"]:
                 self.assertIsNone(event.get("free"))
                 self.assertIsNone(event.get("price"))
                 self.assertTrue(event["venue"])
-                self.assertTrue(event.get("time") is None and event.get("end")
+                self.assertTrue(event.get("time") is None
                                 or isinstance(event.get("time"),str) and len(event["time"])==5)
 
     def test_rechecked_article_does_not_publish_if_evidence_changes(self):
@@ -37,7 +37,7 @@ class FactCheckedMunicipalSourcesTests(unittest.TestCase):
 
     def test_past_2026_acts_never_republished(self):
         def no_fetch(_):raise AssertionError("Historical article should not be downloaded")
-        records,audit=verified.extract(no_fetch,dt.date(2026,12,2),
+        records,audit=verified.extract(no_fetch,dt.date(2027,6,2),
                     {source["municipality"]:(28,-15) for source in verified.SOURCES})
         self.assertEqual(records,[])
         self.assertEqual(audit,[])

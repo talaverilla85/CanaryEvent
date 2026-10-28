@@ -1,0 +1,167 @@
+{
+  "checked_on": "2026-10-28",
+  "active_publication_islands": [
+    "Gran Canaria"
+  ],
+  "islands": [
+    {
+      "island": "Gran Canaria",
+      "publication_enabled": true,
+      "mapping_status": "activo",
+      "sources_registered": 6
+    },
+    {
+      "island": "Tenerife",
+      "publication_enabled": false,
+      "mapping_status": "pendiente_mapeo_recintos_y_municipios",
+      "sources_registered": 1
+    },
+    {
+      "island": "Lanzarote",
+      "publication_enabled": false,
+      "mapping_status": "pendiente_mapeo_recintos_y_municipios",
+      "sources_registered": 1
+    },
+    {
+      "island": "Fuerteventura",
+      "publication_enabled": false,
+      "mapping_status": "pendiente_mapeo_recintos_y_municipios",
+      "sources_registered": 1
+    },
+    {
+      "island": "La Palma",
+      "publication_enabled": false,
+      "mapping_status": "pendiente_mapeo_recintos_y_municipios",
+      "sources_registered": 1
+    },
+    {
+      "island": "La Gomera",
+      "publication_enabled": false,
+      "mapping_status": "pendiente_mapeo_recintos_y_municipios",
+      "sources_registered": 1
+    },
+    {
+      "island": "El Hierro",
+      "publication_enabled": false,
+      "mapping_status": "pendiente_mapeo_recintos_y_municipios",
+      "sources_registered": 1
+    },
+    {
+      "island": "La Graciosa",
+      "publication_enabled": false,
+      "mapping_status": "pendiente_mapeo_recintos_y_municipios",
+      "sources_registered": 1
+    }
+  ],
+  "source_count": 6,
+  "sources": [
+    {
+      "id": "fimc",
+      "name": "Festival Internacional de Música de Canarias · agenda oficial",
+      "type": "festival_interinsular",
+      "url": "https://www.icdcultural.org/fimc/conciertos",
+      "islands": [
+        "Gran Canaria",
+        "Tenerife",
+        "Lanzarote",
+        "Fuerteventura",
+        "La Palma",
+        "La Gomera",
+        "El Hierro",
+        "La Graciosa"
+      ],
+      "status": "activo_gran_canaria",
+      "adapter": "fimc_island_agenda",
+      "found_last_run": null,
+      "last_error": null,
+      "published_cards": 0,
+      "has_live_connector": false
+    },
+    {
+      "id": "galdar-guaires",
+      "name": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
+      "type": "ayuntamiento_recinto",
+      "url": "https://www.galdar.es/event-location/centro-cultural-guaires/",
+      "islands": [
+        "Gran Canaria"
+      ],
+      "status": "activo",
+      "adapter": "island_eventon_agendas",
+      "found_last_run": null,
+      "last_error": null,
+      "published_cards": 0,
+      "has_live_connector": false
+    },
+    {
+      "id": "aguimes-auditorio",
+      "name": "Ayuntamiento de Agüimes · programación de teatros",
+      "type": "ayuntamiento_recinto",
+      "url": "https://aguimes.es/event-location/teatro-auditorio-aguimes/",
+      "islands": [
+        "Gran Canaria"
+      ],
+      "status": "activo",
+      "adapter": "island_eventon_agendas",
+      "found_last_run": null,
+      "last_error": null,
+      "published_cards": 0,
+      "has_live_connector": false
+    },
+    {
+      "id": "aguimes-cruce",
+      "name": "Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
+      "type": "ayuntamiento_recinto",
+      "url": "https://aguimes.es/event-location/teatro-cruce-de-culturas/",
+      "islands": [
+        "Gran Canaria"
+      ],
+      "status": "activo",
+      "adapter": "island_eventon_agendas",
+      "found_last_run": null,
+      "last_error": null,
+      "published_cards": 0,
+      "has_live_connector": false
+    },
+    {
+      "id": "victor-jara",
+      "name": "Ayuntamiento de Santa Lucía de Tirajana · actos documentados",
+      "type": "ayuntamiento_recinto",
+      "url": "https://www.santaluciagc.com/abubukaka-pablo-carbonel-alex-ubago-maria-pelae-talleres-cine-magia-y-exposiciones-en-la-programacion-de-cultura/",
+      "islands": [
+        "Gran Canaria"
+      ],
+      "status": "importacion_fechas_2026_sin_horario_no_confirmado",
+      "adapter": "gc_documented_events",
+      "found_last_run": null,
+      "last_error": null,
+      "published_cards": 0,
+      "has_live_connector": false
+    },
+    {
+      "id": "camino-viejo",
+      "name": "Camino Viejo Producciones",
+      "type": "productora",
+      "url": "https://caminoviejoproducciones.com/",
+      "islands": [
+        "Gran Canaria"
+      ],
+      "status": "web_en_construccion_monitor_de_recintos",
+      "adapter": "seguimiento_de_creditos_en_agendas_oficiales",
+      "found_last_run": null,
+      "last_error": null,
+      "published_cards": 0,
+      "has_live_connector": false
+    }
+  ],
+  "producer_observations": {
+    "Camino Viejo Producciones": [],
+    "method": "Credit explicitly present in an official venue listing, not assumed from production title"
+  },
+  "next_island_requirements": [
+    "Map all municipalities and their island identities",
+    "Build a validated venue directory and coordinates",
+    "Confirm source policies, current programme and per-island filters",
+    "Run duplicate and year-scoping tests before changing publication_enabled"
+  ],
+  "security": "No unverified events published outside Gran Canaria"
+}
