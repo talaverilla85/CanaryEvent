@@ -38,6 +38,10 @@ PROMPT_VERSION="telde-program-v2"
 # Standard token prices, USD/1M. See OpenAI model pricing; subject to change.
 RATES={MODEL:{"input":0.10,"cached_input":0.01,"output":0.50}}
 MAX_PDF_BYTES=8_000_000
+
+class PdfTooLargeError(ValueError):
+    """An official PDF exceeds the fixed safe per-document size limit."""
+
 MAX_PAGE_COUNT=35
 MAX_IMG_PX=1900
 REQUEST_MAX_OUTPUT=3000
@@ -136,7 +140,7 @@ def download_pdf(session,url,robots,cache_dir,*,max_bytes=MAX_PDF_BYTES):
  chunks=bytearray()
  for chunk in r.iter_content(64*1024):
   chunks.extend(chunk)
-  if len(chunks)>max_bytes:raise ValueError("PDF exceeds size limit")
+  if len(chunks)>max_bytes:raise PdfTooLargeError("PDF exceeds size limit")
  raw=bytes(chunks)
  if not raw.startswith(b"%PDF"):raise ValueError("Invalid PDF header")
  sha=hashlib.sha256(raw).hexdigest()

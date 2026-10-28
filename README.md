@@ -874,3 +874,17 @@ Se renueva la versión del analizador para volver a revisar las
 fichas previamente descartadas, sin depender de que venza la
 caché negativa. Las pruebas comprueban fecha, hora, municipio,
 lugar contradictorio y dominios no autorizados.
+
+### PDF oficiales de Telde de más de 8 MB
+
+El lector de programas en PDF conserva su límite de seguridad de
+8 MB por archivo. Un PDF mayor no se acepta ni se interpreta
+parcialmente: se registra como `pdf_oversize` en el informe
+de la ejecución, se aplaza una semana y se reintenta después.
+Otros PDF elegibles se pueden procesar en la misma ejecución,
+sin desperdiciar el presupuesto de llamadas a IA.
+
+GitHub Actions muestra un aviso amarillo (en lugar de un
+error rojo) y el informe `data/telde_pdf_pilot/auto_report.json`
+conserva la URL y el momento de reintento. Esto es un aplazamiento
+explícito: no se afirma que el PDF se haya importado.

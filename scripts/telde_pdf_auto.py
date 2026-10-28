@@ -206,6 +206,13 @@ def run(argv=None, *, session=None, today: dt.date | None = None):
         url = tv.verify_pdf_url(pick["pdf_url"], int(pick["year"]))
         uid = hashlib.sha256(url.encode()).hexdigest()[:16]
         checkpoint = state.get(uid, {})
+        if (not args.filename and checkpoint.get("defer_reason")=="pdf_oversize"
+            and priority.pause_active(checkpoint,now)):
+            report["deferred_docs"].append({
+                "pdf_url":url,"reason":"pdf_oversize",
+                "max_bytes":tv.MAX_PDF_BYTES,
+                "resume_on":checkpoint["defer_until"]})
+            continue
         if not args.filename:
             if checkpoint.get("complete") or priority.end_date_confirmed(pick, checkpoint, now):
                 checked = priority.day_of(checkpoint.get("checked_at")) or dt.date.min
@@ -226,9 +233,24 @@ def run(argv=None, *, session=None, today: dt.date | None = None):
                         "pdf_url":url,"reason":"past_only_cooldown",
                         "resume_on":checkpoint["defer_until"]})
                     continue
+        try:
+            file, sha, size = tv.download_pdf(sess, url, robots, tv.WORK / "pdf_cache")
+        except tv.PdfTooLargeError:
+            # This programme was not analysed. Preserve the shortfall in
+            # the report, respect the 8 MB guard and continue to other PDFs.
+            # Avoid downloading the same oversize document every day.
+            resume=(now+dt.timedelta(days=7)).isoformat()
+            checkpoint["checked_at"]=now.isoformat()
+            checkpoint["defer_until"]=resume
+            checkpoint["defer_reason"]="pdf_oversize"
+            state[uid]=checkpoint
+            report["deferred_docs"].append({
+                "pdf_url":url,"reason":"pdf_oversize",
+                "max_bytes":tv.MAX_PDF_BYTES,"resume_on":resume})
+            print("::warning::Telde: PDF oficial supera 8 MB; se aplaza su"
+                  " lectura para no exceder el límite seguro: "+url)
+            continue
         processed_docs += 1
-
-        file, sha, size = tv.download_pdf(sess, url, robots, tv.WORK / "pdf_cache")
         pdf = PdfReader(str(file), strict=False)
         if not 1 <= len(pdf.pages) <= tv.MAX_PAGE_COUNT:
             raise ValueError("Unexpected PDF page count")
