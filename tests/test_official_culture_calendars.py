@@ -104,6 +104,30 @@ class OfficialCulturalFeedTests(unittest.TestCase):
         self.assertEqual(rows[0]["free"],1)
         self.assertEqual(rows[0]["price"],"Gratis")
 
+    def test_kraus_event_requires_its_own_dated_session(self):
+        homepage=soup("""
+          <article class="event-card">
+            <a href="/evento/pablo-lopez"></a>
+            <h2 class="event-card__title">Pablo López</h2>
+            <time class="event-card__date">S31 OCT 2026</time>
+          </article>""")
+        detail=soup("""
+          <h2 class="page-header-event__title">Pablo López</h2>
+          <div class="event-shows__item">
+            <p class="event-shows__date">S31 OCT 2026</p>
+            <p class="event-shows__time">20:00</p>
+          </div>""")
+        class FakeReader:
+            def html(self,url,*args):
+                self_seen=(url==cult.KRAUS_URL)
+                return homepage if self_seen else detail
+        got,meta=cult.extract_kraus(FakeReader(),DAY,lambda title:"musica")
+        self.assertEqual(len(got),1)
+        self.assertEqual(got[0]["start"],"2026-10-31T20:00:00")
+        self.assertEqual(got[0]["venue"],"Auditorio Alfredo Kraus")
+        self.assertEqual(got[0]["source_name"],cult.KRAUS_NAME)
+        self.assertTrue(got[0]["source_url"].startswith(cult.KRAUS_URL))
+
     def test_philharmonic_does_not_infer_missing_hall_or_date(self):
         s=soup("""<a class="card-article" href="/programacion/conciertos/first">
           <time class="card-article__date">18 de diciembre 2026 - 19:30h.</time>
@@ -146,6 +170,15 @@ class OfficialCulturalFeedTests(unittest.TestCase):
                 "Portal oficial de Eventos Gran Canaria (Cabildo)",
                 venue="Otro teatro",start="2026-11-12",idx=16)
         self.assertEqual(len(dedup.reconcile([a,not_same],cult.norm)),2)
+
+    def test_filarmonica_vs_kraus_one_concert_same_composers_day_room(self):
+        society=event("Grandes obras del repertorio ruso: Shostakovich y Mussorgsky",
+                      cult.PHILHARMONIC_NAME,venue="Auditorio Alfredo Kraus",
+                      start="2026-11-12T20:00:00",idx=31)
+        kraus=event("Chichon dirige Shostakovich y Mussorgsky (Top 5)",
+                    cult.KRAUS_NAME,venue="Auditorio Alfredo Kraus",
+                    start="2026-11-12T20:00:00",idx=32)
+        self.assertEqual([x["id"] for x in dedup.reconcile([society,kraus],cult.norm)],[31])
 
     def test_unrelated_titles_or_multiple_promoters_never_override(self):
         a=event("Festival Música Viva",cult.LPA_NAME,idx=11)
