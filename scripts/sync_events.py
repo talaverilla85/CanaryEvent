@@ -30,6 +30,7 @@ import island_eventon_agendas
 import official_stage_agendas
 import poster_venues
 import telde_hall_venues
+import cuyas_corroboration
 import ticket_reserva
 import ticket_recent
 import santalucia_festivals
@@ -1039,6 +1040,13 @@ def run():
         results.append(cinema_result)
         if cinema_result["changed"] or cinema_result["error"]:
             print("University film-cycle venues:",cinema_result)
+        # A Cabildo copy may link the same global CMS show via the SIT site
+        # even though Cuyas hosts it. Trust first-party programme id, full
+        # title and the *exact set* of performance dates, not the link host.
+        cuyas_result=cuyas_corroboration.enrich(conn,NOW,TODAY)
+        results.append(cuyas_result)
+        if cuyas_result["changed"]:
+            print("Cuyas confirmed duplicate copies:",cuyas_result)
         # Venue-specific original programmes can corroborate the hall
         # without any AI inference; use exact URL+date/time matches.
         telde_result=telde_hall_venues.enrich(conn,NOW,TODAY)
@@ -1073,6 +1081,12 @@ def run():
         # Quality-filter source records before projecting verified calendar
         # days: one brochure or theatre programme is not 30 sessions.
         events,programs_pending=program_quality.filter_public_plans(events)
+        # An incorrect Cabildo copy can name Sala Insular although the
+        # same exact show/date is verified by the original Teatro Cuyas.
+        # Avoid publishing a fictitious last day from the copy.
+        events,cuyas_conflicts=cuyas_corroboration.exclude_conflicting_sister_venue(events)
+        if cuyas_conflicts:
+            print("Quarantined conflicting Cuyas/SIT copies:",len(cuyas_conflicts))
         valid_candidates=len(events)
         events,venue_pending=venue_quality.split_verified(events)
         source_events=len(events)
@@ -1086,7 +1100,8 @@ def run():
         occurrence_stats["post_dedup_cards"]=len(events)
         queue={"updated_at":NOW,
                "note":"Fichas pendientes de desglose o sin un evento identificable; no publicarlas como planes.",
-               "pending_programs":programs_pending,
+                "pending_programs":programs_pending,
+               "source_venue_conflicts":cuyas_conflicts,
                "unverified_locations":[{**item,"source_url":ingenio_juvenil_program.PROGRAM_URL}
                                        for item in ingenio_juvenil_program.UNRESOLVED]}
         total=conn.execute("SELECT COUNT(*) FROM events").fetchone()[0]
@@ -1104,6 +1119,7 @@ def run():
                   "verified_source_events_before_daily_projection":source_events,
                   "excluded_missing_venue":len(venue_pending),
                   "excluded_commercial_cinema":len(cinema_excluded),
+                  "excluded_sister_venue_conflicts":len(cuyas_conflicts),
                   "pending":0,"needs_review":len(programs_pending)+len(ingenio_juvenil_program.UNRESOLVED),
                   "archived_or_expired":max(0,total-valid_candidates),
                   "cancelled":statuses.get("cancelled",0),
