@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-28T00:46:27+00:00",
-  "not_published": 106,
+  "updated_at": "2026-10-28T11:34:38+00:00",
+  "not_published": 107,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -384,6 +384,18 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Ayuntamiento de Arucas · agenda municipal",
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrM01BPT0=",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 711,
+      "title": "DIA INTERNACIONAL PARA LA ELIMINACIÓN DE LA VIOLENCIA CONTRA LA MUJER ARUCAS 2026",
+      "start": "2026-10-26",
+      "end": "2026-12-14",
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrNE5nPT0=",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },

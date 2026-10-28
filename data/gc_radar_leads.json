@@ -20,8 +20,9 @@
     },
     {
       "municipality": "Gáldar",
-      "outcome": "ok",
-      "links": 5
+      "outcome": "needs_review",
+      "error_type": "ReadTimeout",
+      "links": 0
     },
     {
       "municipality": "La Aldea de San Nicolás",
@@ -63,7 +64,7 @@
     },
     "Gáldar": {
       "checked_on": "2026-10-28",
-      "outcome": "ok"
+      "outcome": "needs_review"
     },
     "La Aldea de San Nicolás": {
       "checked_on": "2026-10-28",

@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-10-28T00:46:27+00:00",
+  "checked_at": "2026-10-28T11:34:38+00:00",
   "quality_counts": {
-    "publicados": 473,
-    "recintos_sin_verificar": 106,
+    "publicados": 474,
+    "recintos_sin_verificar": 107,
     "programas_y_fichas_por_revisar": 13,
     "precios_sin_confirmar": 318,
-    "distancia_a_centro_municipal": 319,
-    "fuentes_con_error": 0,
+    "distancia_a_centro_municipal": 320,
+    "fuentes_con_error": 3,
     "duplicados_potenciales": 7
   },
   "sources": [
@@ -124,21 +124,21 @@
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
       "publicados": 1,
-      "recinto_sin_verificar": 10,
+      "recinto_sin_verificar": 11,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 12,
+      "fichas_leidas_en_esta_ejecucion": 13,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 2,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
@@ -232,13 +232,13 @@
     },
     {
       "source": "Ayuntamientos · actos individualmente contrastados",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 16,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 13,
+      "error": "Gáldar: ReadTimeout"
     },
     {
       "source": "Juventud de Ingenio · programa de otoño desglosado",
@@ -252,7 +252,7 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "al_dia_sin_fichas_pendientes",
+      "estado": "sin_resultados_en_esta_revision",
       "publicados": 234,
       "recinto_sin_verificar": 87,
       "precio_sin_confirmar": 191,
@@ -263,11 +263,11 @@
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 73,
+      "publicados": 74,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 72,
-      "fichas_leidas_en_esta_ejecucion": 117,
+      "distancia_al_centro_municipal": 73,
+      "fichas_leidas_en_esta_ejecucion": 118,
       "error": ""
     },
     {
@@ -292,16 +292,29 @@
     },
     {
       "source": "Recintos · carteles oficiales comprobados",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 3,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 2,
+      "error": "ValueError"
     }
   ],
-  "reported_errors": [],
+  "reported_errors": [
+    {
+      "source": "Ayuntamiento de Gáldar · agenda de Cultura",
+      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
+    },
+    {
+      "source": "Ayuntamientos · actos individualmente contrastados",
+      "error": "Gáldar: ReadTimeout"
+    },
+    {
+      "source": "Recintos · carteles oficiales comprobados",
+      "error": "ValueError"
+    }
+  ],
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
@@ -309,7 +322,7 @@
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 10
+      "count": 11
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",

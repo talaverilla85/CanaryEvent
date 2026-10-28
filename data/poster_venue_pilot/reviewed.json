@@ -89,6 +89,18 @@
       "title": "III Maspaterror 2026: Atrapados en la red",
       "event_date": "2026-10-30",
       "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261030-0043/clasicos-en-vegueta-la-muerte-en-verso": {
+      "sha256": "599cd2567adf1f4186e321d46afad8abc23396be2fa46d7a360abe7bcf2be4d5",
+      "title": "Clásicos en Vegueta: La muerte en verso",
+      "event_date": "2026-10-30",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261030-0032/cerebritos-en-juego": {
+      "sha256": "74d0a68d56c2a452f55b0b5428e934406cca381448420ec56bd169668824947b",
+      "title": "Cerebritos en Juego",
+      "event_date": "2026-10-30",
+      "status": "reviewed_no_single_venue"
     }
   }
 }

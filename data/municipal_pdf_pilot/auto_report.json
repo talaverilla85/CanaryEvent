@@ -1,9 +1,9 @@
 {
-  "checked_at": "2026-10-28T00:46:07.354890+00:00",
+  "checked_at": "2026-10-28T11:34:11.725301+00:00",
   "mode": "api",
   "model": "gpt-6-luna",
-  "api_calls": 3,
-  "usage_usd": 0.0008393,
+  "api_calls": 1,
+  "usage_usd": 0.0002776,
   "documents": [
     {
       "municipality": "Santa Lucía de Tirajana",
@@ -13,21 +13,7 @@
       "bytes": 6226030,
       "inspected": [
         {
-          "page": 8,
-          "native_text_chars": 15,
-          "page_priority": 0,
-          "first_read": "ai_vision",
-          "candidates_for_review": 0
-        },
-        {
-          "page": 12,
-          "native_text_chars": 0,
-          "page_priority": 0,
-          "first_read": "ai_vision",
-          "candidates_for_review": 0
-        },
-        {
-          "page": 19,
+          "page": 20,
           "native_text_chars": 0,
           "page_priority": 0,
           "first_read": "ai_vision",

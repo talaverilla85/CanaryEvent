@@ -1,12 +1,14 @@
 {
-  "checked_at": "2026-10-28T00:46:07.044346+00:00",
+  "checked_at": "2026-10-28T11:34:11.488959+00:00",
   "year": 2026,
   "scope": [
     "Santa Lucía de Tirajana",
     "Agüimes",
     "Gáldar"
   ],
-  "errors": {},
+  "errors": {
+    "Gáldar": "ReadTimeout: HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=15)"
+  },
   "program_count": 7,
   "events_imported": 0,
   "note": "Official PDF inventory only. Unverified acts never enter the public calendar.",
