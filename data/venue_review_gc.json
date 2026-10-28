@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-27T23:48:59+00:00",
-  "not_published": 110,
+  "updated_at": "2026-10-28T00:02:07+00:00",
+  "not_published": 108,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -412,18 +412,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 69,
-      "title": "Al Golpito con Nuestros Mayores",
-      "start": "2026-10-27T11:00:00",
-      "end": "2026-10-27T17:00:00",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0007/al-golpito-con-nuestros-mayores",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 74,
       "title": "Visita Unidad Móvil de la Policía Nacional(DNI - PASAPORTES)",
       "start": "2026-10-28T09:00:00",
@@ -720,18 +708,6 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0011/biosfera-joven-jovenes-que-cuentan-su-territorio",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 119,
-      "title": "Noche de Finaos",
-      "start": "2026-10-31T19:00:00",
-      "end": null,
-      "municipality": "Mogán",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261031-0013/noche-de-finaos",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },

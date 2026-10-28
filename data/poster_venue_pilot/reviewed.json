@@ -9,8 +9,20 @@
       "verified": true,
       "venue": "Parque Nicolás Quesada",
       "method": "human_posted_poster",
-      "confirmed_on": "2026-10-27",
+      "confirmed_on": "2026-10-28",
       "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718cb013a6268e07a7c2a"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261028-0002/visita-unidad-movil-de-la-policia-nacionaldni-pasaportes": {
+      "sha256": "f948349fd919df57bf713a7515754ba434438355bfc2c798682b892495a6d279",
+      "title": "Visita Unidad Móvil de la Policía Nacional(DNI - PASAPORTES)",
+      "event_date": "2026-10-28",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261028-0004/curso-basico-de-cocina-canaria-saludable": {
+      "sha256": "5f8c7298e906d3e80f6a1cbe32bed8c7df228a1212a01c210148bbd34c987231",
+      "title": "Curso básico de cocina canaria saludable",
+      "event_date": "2026-10-28",
+      "status": "reviewed_no_single_venue"
     }
   }
 }

@@ -936,5 +936,123 @@
       },
       "total_tokens": 4187
     }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/12/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "V Torneo de Petanca ‘Memorial Miguel Guedes Jiménez’",
+          "date": "2026-10-23",
+          "time": "16:00",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "VIERNES 23 DE OCTUBRE; 16:00 h. V Torneo de Petanca ‘Memorial Miguel Guedes Jiménez’; Plaza de Los Algodoneros",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Tarde Juvenil",
+          "date": "2026-10-23",
+          "time": "17:00",
+          "venue": "Punto Jaleo (Punto de información juvenil)",
+          "evidence": "VIERNES 23 DE OCTUBRE; 17:00 h. Tarde Juvenil; Punto Jaleo",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Liga de Escritores 2026 (Por Sureste Manda)",
+          "date": "2026-10-23",
+          "time": "17:30",
+          "venue": "Recinto Ferial",
+          "evidence": "VIERNES 23 DE OCTUBRE; 17:30 h. Liga de Escritores 2026 (Por Sureste Manda); Recinto Ferial",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Tarde con nuestros compañeros peludos: pasarela y concurso de mascotas",
+          "date": "2026-10-23",
+          "time": "18:00",
+          "venue": null,
+          "evidence": "VIERNES 23 DE OCTUBRE; 18:00 h. Tarde con nuestros compañeros peludos: pasarela y concurso de mascotas",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 2556,
+      "input_tokens_details": {
+        "cache_write_tokens": 2553,
+        "cached_tokens": 0
+      },
+      "output_tokens": 759,
+      "output_tokens_details": {
+        "reasoning_tokens": 373
+      },
+      "total_tokens": 3315
+    }
+  },
+  "6e3d1e879031958ae30cb080b3cc48bc95c84e48c6b8a021452d9b02238417c0/13/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Ludopark acuático con fiesta de la espuma y castillos de agua",
+          "date": "2026-10-24",
+          "time": "11:00 h",
+          "venue": "Plaza de Los Algodoneros",
+          "evidence": "SÁBADO 24 DE OCTUBRE — 11:00 h Ludopark acuático",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Noche de verbena con Grupo Leyenda Joven y Orquesta Star Music",
+          "date": "2026-10-24",
+          "time": "22:30 h",
+          "venue": null,
+          "evidence": "SÁBADO 24 DE OCTUBRE — 22:30 h. Noche de verbena con: Grupo Leyenda Joven; Orquesta Star Music",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Espectáculo piromusical",
+          "date": "2026-10-24",
+          "time": "00:00",
+          "venue": "Recinto Ferial",
+          "evidence": "SÁBADO 24 DE OCTUBRE — 00:00: Espectáculo piromusical; la mejor ubicación es en el Recinto Ferial",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Feria exposición de ganado junto al Recinto Ferial",
+          "date": "2026-10-25",
+          "time": "09:00 a 14:00 h",
+          "venue": "Recinto Ferial",
+          "evidence": "DOMINGO 25 DE OCTUBRE — De 09:00 a 14:00 h. Feria exposición de ganado junto al Recinto Ferial",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 2556,
+      "input_tokens_details": {
+        "cache_write_tokens": 2553,
+        "cached_tokens": 0
+      },
+      "output_tokens": 838,
+      "output_tokens_details": {
+        "reasoning_tokens": 453
+      },
+      "total_tokens": 3394
+    }
   }
 }
