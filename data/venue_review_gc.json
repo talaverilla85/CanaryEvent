@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-28T23:37:36+00:00",
-  "not_published": 95,
+  "updated_at": "2026-10-28T23:43:57+00:00",
+  "not_published": 86,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -520,18 +520,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 100,
-      "title": "Aula de cine. Ciclo “Los modernos años 30”. El ángel azul",
-      "start": "2026-10-30T19:00:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0006/aula-de-cine-ciclo-los-modernos-anos-30-el-angel-azul",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/10/30/aula-cine-ciclo-modernos-anos-30-angel-azul",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 219,
       "title": "Cerebritos en Juego",
       "start": "2026-10-30T19:00:00",
@@ -700,18 +688,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 152,
-      "title": "Aula de cine. Ciclo “Los modernos años 30”. Asesinato",
-      "start": "2026-11-06",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0002/aula-de-cine-ciclo-los-modernos-anos-30-asesinato",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/06/aula-cine-ciclo-modernos-anos-30-asesinato",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 157,
       "title": "IV Jornadas de Neurodiversidad Mogán 2026",
       "start": "2026-11-06",
@@ -757,18 +733,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0012/i-encuentro-con-el-teatro-chino-perspectivas-interculturales",
       "organizer_url": "https://www.ulpgc.es/agenda/2026/11/13/i-encuentro-teatro-chino-perspectivas-interculturales",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 205,
-      "title": "Aula de cine. Ciclo “Los modernos años 30”. M. El vampiro de Düsseldorf",
-      "start": "2026-11-13T19:00:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0002/aula-de-cine-ciclo-los-modernos-anos-30-m-el-vampiro-de-dusseldorf",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/13/clon-aula-cine-ciclo-modernos-anos-30-m-vampiro-dusseldorf",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -868,18 +832,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 280,
-      "title": "Aula de cine. Ciclo “Los modernos años 30”. Viva la libertad",
-      "start": "2026-11-20",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0005/aula-de-cine-ciclo-los-modernos-anos-30-viva-la-libertad",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/20/aula-cine-ciclo-modernos-anos-30-viva-libertad",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 283,
       "title": "Antígona Negra en la Universidad París 8.",
       "start": "2026-11-20",
@@ -937,18 +889,6 @@
       "source_name": "Ayuntamiento de Arucas · agenda municipal",
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrMk13PT0=",
       "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 287,
-      "title": "JÓVENES QUE RECORREN LA MEMORIA PARA CONSTRUIR FUTURO",
-      "start": "2026-11-20T17:00:00",
-      "end": null,
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0016/jovenes-que-recorren-la-memoria-para-construir-futuro",
-      "organizer_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrMk13PT0=",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -1012,18 +952,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 323,
-      "title": "Aula de cine. Ciclo “Los modernos años 30”. Scarface, El Terror del Hampa",
-      "start": "2026-11-27",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261127-0003/aula-de-cine-ciclo-los-modernos-anos-30-scarface-el-terror-del-hampa",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/27/aula-cine-ciclo-modernos-anos-30-scarface-terror-del-hampa",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 327,
       "title": "10º Encuentro Entre Corderos y Fogones",
       "start": "2026-11-28",
@@ -1060,30 +988,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 348,
-      "title": "Aula de cine. Ciclo “Los modernos años 30”. Ámame esta noche",
-      "start": "2026-12-04",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261204-0002/aula-de-cine-ciclo-los-modernos-anos-30-amame-esta-noche",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/12/04/aula-cine-ciclo-modernos-anos-30-amame-esta-noche",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 363,
-      "title": "Aula de cine. Ciclo “Los modernos años 30”. Una mujer fuera de la ley",
-      "start": "2026-12-11",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261211-0002/aula-de-cine-ciclo-los-modernos-anos-30-una-mujer-fuera-de-la-ley",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/12/11/aula-cine-ciclo-modernos-anos-30-mujer-fuera-ley",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 366,
       "title": "Teror Patea por GC: Artenara - Juncalillo - Fagajesto",
       "start": "2026-12-12T09:00:00",
@@ -1093,18 +997,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261212-0000/teror-patea-por-gc-artenara-juncalillo-fagajesto",
       "organizer_url": "https://teror.es/events/teror-patea-por-gc-artenara-juncalillo-fagajesto/var/ri-.l-L1",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 390,
-      "title": "Aula de cine. Ciclo “Los modernos años 30”. La mujer de todos",
-      "start": "2026-12-18T19:00:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261218-0002/aula-de-cine-ciclo-los-modernos-anos-30-la-mujer-de-todos",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/12/18/aula-cine-ciclo-modernos-anos-30-mujer-todos",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {

@@ -344,6 +344,81 @@
       "event_date": "2026-10-06",
       "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab62db4013a6268e079f167",
       "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261120-0012/antigona-negra-en-la-universidad-paris-8": {
+      "sha256": "f6d14eb8b1c3be471a9e4498d9a5f21f0e0e082c2f638ed9ac0a594bd9278c33",
+      "title": "Antígona Negra en la Universidad París 8.",
+      "event_date": "2026-11-20",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6abcd1e4013a6268e07a0fe8",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261120-0013/antigona-negra-en-la-universidad-paris-8": {
+      "sha256": "bf34b7e84bb140a76f696f117d5c400abdf231d19d733ef84c1a5bf4160bb0ae",
+      "title": "Antígona Negra en la Universidad París 8.",
+      "event_date": "2026-11-20",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad21045013a6268e07a6841",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261120-0015/escape-room-de-joel-joan-y-hector-claramunt": {
+      "event_date": "2026-11-20",
+      "title": "ESCAPE ROOM de Joel Joan y Hèctor Claramunt",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa721ab013a6268e079a978",
+      "status": "image_error",
+      "error_type": "ValueError",
+      "retry_on": "2026-10-30"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261120-0016/jovenes-que-recorren-la-memoria-para-construir-futuro": {
+      "sha256": "866d25828e0978b07e3088b6302f10c042678e417fdd9f6f44b35434ce169c0d",
+      "title": "JÓVENES QUE RECORREN LA MEMORIA PARA CONSTRUIR FUTURO",
+      "event_date": "2026-11-20",
+      "status": "verified",
+      "verified": true,
+      "venue": "Plaza de la Constitución",
+      "method": "two_independent_visual_passes",
+      "confirmed_on": "2026-10-28",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad6d5cd013a6268e07a7bdb"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261120-0017/africana-lab-en-madrid-un-puente-un-amuleto-una-mesa-compartida": {
+      "sha256": "ec0c8f7da65de4cb9d0e5b5bccd6ec4d733b3de3fd608a607239281cdf5d278c",
+      "title": "Africana Lab en Madrid: «Un puente, un amuleto, una mesa compartida»",
+      "event_date": "2026-11-20",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad9c021013a6268e07a86f0",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261121-0000/teror-patea-por-gc-cruz-tejeda-talayon-teror": {
+      "sha256": "82ca62ca00167903d2981df6828cfdddc273196daee88f6ff7496f4bf2aa13c5",
+      "title": "Teror Patea por GC: Cruz Tejeda - Talayón - Teror",
+      "event_date": "2026-11-21",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6961aba53ab37f1f315a0fb9",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261123-0001/exposicion-y-charla-conocer-para-conservar": {
+      "sha256": "03dd12e7547d3071ababf3bf8c8c00b9df7194dffb3922a28d8e4cdd89727b36",
+      "title": "Exposición y charla 'Conocer para Conservar'",
+      "event_date": "2026-11-23",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c74d013a6268e07a77f6",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261001-0006/xviii-curso-de-lenguaje-silbado": {
+      "sha256": "4fb81db1ca4fae7adf1900df53fe7069d49867ccd5510edb8bbc19930dcaa760",
+      "title": "XVIII Curso de Lenguaje Silbado",
+      "event_date": "2026-10-01",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aaa498a013a6268e079be0e",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261001-0007/un-paseo-de-los-colores-en-la-isla-de-gran-canaria": {
+      "sha256": "a5047ebae8e2cd8cd5960e6ec1ac2ff7505a6700c7dc2ecf7fc5442884391294",
+      "title": "Un paseo de los colores en la isla de Gran Canaria",
+      "event_date": "2026-10-01",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aabae59013a6268e079c4a6",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261001-0015/la-relentada-2026": {
+      "sha256": "64d0e3440e78e55078cfc4da232be0a467088ef1a1562d2d02f27db0d16ea44b",
+      "title": "La Relentada 2026",
+      "event_date": "2026-10-01",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab62661013a6268e079f0db",
+      "status": "reviewed_no_single_venue"
     }
   }
 }
