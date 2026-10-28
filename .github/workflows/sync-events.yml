@@ -54,6 +54,7 @@ on:
       - "scripts/island_eventon_agendas.py"
       - "scripts/island_source_intelligence.py"
       - "scripts/poster_venues.py"
+      - "scripts/telde_hall_venues.py"
       - "scripts/venue_title_variants.py"
       - "scripts/ticket_recent.py"
       - "scripts/publish_synced_data.sh"

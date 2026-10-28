@@ -28,6 +28,7 @@ import fimc_island_agenda
 import island_eventon_agendas
 import official_stage_agendas
 import poster_venues
+import telde_hall_venues
 import ticket_reserva
 import ticket_recent
 import santalucia_festivals
@@ -1031,6 +1032,12 @@ def run():
         }
         results.append(official_record)
         print("Corroborated official venues:",official_result)
+        # Venue-specific original programmes can corroborate the hall
+        # without any AI inference; use exact URL+date/time matches.
+        telde_result=telde_hall_venues.enrich(conn,NOW,TODAY)
+        results.append(telde_result)
+        if telde_result["changed"] or telde_result["error"]:
+            print("Telde hall venue checks:",telde_result)
         poster_result=poster_venues.enrich(conn,NOW,TODAY)
         results.append({"source":"Recintos · carteles oficiales comprobados",
                         "checked_at":NOW,"found":poster_result["checked"],

@@ -39,11 +39,11 @@ EVENT_PATH=re.compile(r"/event/E-20\d{6}-\d{4}/[a-z0-9%_-]+")
 HEADERS={"User-Agent":AGENT,"Accept":"image/jpeg,image/png,image/webp"}
 MONTHS=("enero","febrero","marzo","abril","mayo","junio","julio",
         "agosto","septiembre","octubre","noviembre","diciembre")
-VERSION="poster-venues-v1"
+VERSION="poster-venues-v2"
 MAX_IMAGE_BYTES=2_000_000
-MAX_POSTERS_PER_RUN=3
-MAX_API_CALLS=6
-MAX_COST_USD=0.035
+MAX_POSTERS_PER_RUN=10
+MAX_API_CALLS=20
+MAX_COST_USD=0.075
 # A 31 October 2026 official Cabildo JPEG was visually verified directly
 # against the flyer shared by a user. Pin its exact original image digest.
 MANUALLY_VERIFIED={
@@ -152,7 +152,14 @@ def check_reading(payload,event):
         return ""
     title=norm(payload.get("poster_title"))
     expected=norm(event["title"])
-    if len(expected)<7 or expected not in title or not visible_date(payload.get("date_text",""),event["start"]):
+    # Many official posters use the main title only, while catalogue
+    # records append a production company after a dash. Accept the
+    # distinctive leading title, but never just an unrelated keyword.
+    parts=re.split(r"\s+[-–—]\s+",str(event["title"]),maxsplit=1)
+    lead=norm(parts[0]) if len(parts)>1 else ""
+    title_ok=(len(expected)>=7 and expected in title) or (
+        len(lead)>=14 and lead in title)
+    if not title_ok or not visible_date(payload.get("date_text",""),event["start"]):
         return ""
     venue=" ".join(str(payload.get("venue") or "").split())[:120]
     if not venue_quality.named_venue({"venue":venue,"municipality":event["municipality"]}):
@@ -209,7 +216,8 @@ def enrich(conn,now,today,*,session=None,api_key=None,max_posters=MAX_POSTERS_PE
     client=session or requests.Session()
     key=api_key if api_key is not None else os.environ.get("OPENAI_API_KEY","")
     old=load(CACHE,{"version":VERSION,"posters":{}})
-    entries=old.get("posters",{}) if old.get("version")==VERSION else {}
+    entries=old.get("posters",{}) if old.get("version") in (
+        VERSION,"poster-venues-v1") else {}
     counters={"checked":0,"manual_verified":0,"vision_verified":0,"rejected":0,
               "api_calls":0,"usage_usd":0.0,"deferred":0,"errors":[]}
     rows=[dict(r) for r in conn.execute(
@@ -220,9 +228,23 @@ def enrich(conn,now,today,*,session=None,api_key=None,max_posters=MAX_POSTERS_PE
           allowed_event(r.get("source_url","")) and allowed_image(r.get("image_url",""))]
     # User-confirmed posters first. Then prioritize images not already
     # reviewed; a poster with no place must not monopolize all future runs.
+    # Avoid wasting the daily quota repeatedly on already reviewed
+    # posters with no named venue, or temporary invalid-download errors.
+    def not_due(row):
+        saved=entries.get(row["source_url"],{})
+        if (saved.get("image_url") and saved["image_url"]!=row["image_url"]):
+            return False
+        if saved.get("event_date")!=row["start"][:10]:
+            return False
+        if saved.get("status")=="reviewed_no_single_venue":
+            # Legacy gridfs URLs are content-addressed and were already
+            # downloaded/read twice. They remain skipped unless the
+            # source declares a different image URL or event date.
+            return True
+        return saved.get("status") in ("model_error","image_error") and (
+            saved.get("retry_on","0000-00-00")>today.isoformat())
+    rows=[row for row in rows if not not_due(row)]
     rows.sort(key=lambda x:(x["source_url"] not in MANUALLY_VERIFIED,
-                 entries.get(x["source_url"],{}).get("status") in (
-                     "reviewed_no_single_venue","model_error"),
                  abs((dt.date.fromisoformat(x["start"][:10])-today).days),x["id"]))
     if not rows:
         atomic(REPORT,{"checked_at":now,**counters})
@@ -287,6 +309,7 @@ def enrich(conn,now,today,*,session=None,api_key=None,max_posters=MAX_POSTERS_PE
                         counters["rejected"]+=1
                         entries[cache_key]={"sha256":sha,"title":r["title"],
                            "event_date":r["start"][:10],
+                           "image_url":r["image_url"],
                            "status":"reviewed_no_single_venue"}
                         atomic(CACHE,{"version":VERSION,"posters":entries})
             if verified and venue_quality.named_venue(
@@ -303,5 +326,13 @@ def enrich(conn,now,today,*,session=None,api_key=None,max_posters=MAX_POSTERS_PE
                 atomic(CACHE,{"version":VERSION,"posters":entries})
         except (ValueError,RuntimeError,PermissionError,requests.RequestException,OSError) as exc:
             counters["errors"].append({"event_id":r["id"],"error_type":type(exc).__name__})
+            # Malformed/damaged images should not consume the same slots
+            # every day while many other posters await inspection.
+            if not (entries.get(r["source_url"],{}).get("status")=="model_error"):
+                entries[r["source_url"]]={"event_date":r["start"][:10],
+                     "title":r["title"],"image_url":r["image_url"],
+                     "status":"image_error","error_type":type(exc).__name__,
+                     "retry_on":(today+dt.timedelta(days=2)).isoformat()}
+                atomic(CACHE,{"version":VERSION,"posters":entries})
     atomic(REPORT,{"checked_at":now,**counters})
     return counters
