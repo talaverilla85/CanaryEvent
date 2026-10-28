@@ -23,6 +23,7 @@ import ulpgc_venue_facts
 import verified_venue_coordinates
 import cross_source_venue_facts
 import official_venue_confirmations
+import official_culture_calendars
 import poster_venues
 import ticket_reserva
 import ticket_recent
@@ -507,6 +508,35 @@ def run():
             results.append({"source":src["name"],"checked_at":NOW,"found":found,"added":added,"changed":changed,"error":error})
             print(f"{src['name']}: candidates={found} added={added} changed={changed} error={error[:100]}")
             time.sleep(0.4)
+        # Original organizers publish precise hours and hall names. These
+        # cultural sources bring concert, theatre and musical sessions missing
+        # from the Cabildo index. Each is checked against official HTTPS only.
+        cultural_entries,cultural_sources=official_culture_calendars.collect(
+            TODAY,categorize=category)
+        for source in cultural_sources:
+            added=changed=0
+            matching=[e for e in cultural_entries
+                      if e["source_name"]==source["name"]]
+            for entry in matching:
+                change=upsert(conn,entry)
+                added+=int(change=="added")
+                changed+=int(change=="changed")
+            conn.commit()
+            source_log={"source":source["name"],"checked_at":NOW,
+                        "found":len(matching),"added":added,"changed":changed,
+                        "detail_pages":source.get("detail_pages",0),
+                        "detail_errors":source.get("errors",[]),
+                        "error":source.get("error","")}
+            conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+             VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+             checked_at=excluded.checked_at,found=excluded.found,
+             added=excluded.added,changed=excluded.changed,error=excluded.error""",
+             (source["name"],NOW,len(matching),added,changed,source_log["error"]))
+            conn.commit()
+            results.append(source_log)
+            print("Official cultural source:",source_log["source"],
+                  "verified",len(matching),"added",added,
+                  "detail errors",len(source.get("errors",[])))
         # Local patron-saint festivities not necessarily indexed by Cabildo.
         # Publication requires two official municipal pages to verify dates and
         # explicitly free entry; a parser failure must keep the last good data.

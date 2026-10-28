@@ -697,3 +697,25 @@ Si cambia el cartel o aparece una ubicación ambigua, se mantiene pendiente.
 Solo se almacena prueba textual mínima e identificadores, nunca los
 ficheros de imagen ni la clave API. La auditoría queda registrada en
 data/poster_venue_pilot.
+
+### Agendas culturales directas: LPA Cultura, Teatro Pérez Galdós y Sociedad Filarmónica
+
+El conector scripts/official_culture_calendars.py consulta cada noche
+los listados y las fechas impresas por estas tres entidades oficiales:
+
+- Teatro Pérez Galdós: lee las fechas y sesiones concretas de cada
+  espectáculo desde su página individual, conservando varios horarios
+  anunciados del mismo día en una sola ficha, sin inventar funciones
+  intermedias. Incluye musicales y programación familiar de 2027.
+- LPA Cultura: selecciona conciertos, actividades culturales y
+  sesiones especiales con recinto reconocido. Rechaza recorridos con
+  varios puntos y convocatorias sin sede confirmada.
+- Sociedad Filarmónica: importa conciertos con fecha, hora y
+  sala publicados en la agenda de la propia sociedad.
+
+Respeta robots.txt, HTTPS, dominios exactos, sin redirecciones,
+límites de tamaño y máximo de páginas. No copia sinopsis ni imágenes.
+Los datos de precio no publicados quedan desconocidos. Las fuentes
+se comprueban y registran de forma independiente para que un fallo
+en un teatro no afecte a los demás municipios. Las 108 fichas
+sin recinto que estaban apartadas quedan fuera de este trabajo.
