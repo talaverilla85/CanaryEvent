@@ -1,59 +1,41 @@
 {
-  "checked_at": "2026-10-27T23:26:50.768981+00:00",
+  "checked_at": "2026-10-28T23:36:07.945851+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
-  "api_calls": 4,
-  "usage_usd": 0.0008985,
+  "api_calls": 3,
+  "usage_usd": 0.0022632,
   "docs": [
     {
-      "name": "Fiestas patronales en honor al Sagrado Corazón de Jesús en el barrio de La Garita",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/lagarita26.pdf",
-      "sha256": "ecd40a83e9f845b2bda3522e9b0e87d20cf8047b3d75224d456c5b19b16f25c9",
-      "pages": 8,
-      "bytes": 3779392,
+      "name": "Fiestas en honor a San Francisco en el barrio de San Francisco",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/sanfrancisco26.pdf",
+      "sha256": "ce84859aea4f81ca4b08d1f0ae7986079efdb7d8ae58b15788b11de1bec417a1",
+      "pages": 1,
+      "bytes": 982630,
       "inspected": [
         {
           "page": 1,
-          "native_text_chars": 90,
+          "native_text_chars": 0,
           "route": "ai_vision",
-          "render_size": [
-            1061,
-            1497
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 0
-        },
-        {
-          "page": 2,
-          "native_text_chars": 1178,
-          "route": "ai_text",
-          "status": "new_api_result",
-          "candidates_pending_review": 0
-        },
-        {
-          "page": 3,
-          "native_text_chars": 2619,
-          "route": "ai_text",
-          "status": "new_api_result",
+          "status": "cached",
           "candidates_pending_review": 0
         }
       ]
     },
     {
-      "name": "Fiestas de la Exaltación de la Cruz en honor al Santo Cristo en Playa de Ojos de Garza",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/playaojosdegarza26.pdf",
-      "sha256": "d3ca33fe8115fe61a986ca83a628752a5c77cc7e436d9f42d526f81df58dfacd",
-      "pages": 2,
-      "bytes": 222232,
+      "name": "Fiestas patronales en honor a la Virgen de La Paloma en el barrio de La Viña",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/08/lavina26.pdf",
+      "sha256": "05fa05f2c1d02f5f7656a33392f87fe56117ae8a93703150f75dde43075f6f3a",
+      "pages": 4,
+      "bytes": 455010,
       "inspected": [
         {
           "page": 1,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
-            1853,
-            1309
+            1309,
+            1853
           ],
           "status": "new_api_result",
           "candidates_pending_review": 0
@@ -62,15 +44,40 @@
           "page": 2,
           "native_text_chars": 0,
           "route": "ai_vision",
-          "status": "skipped_api_budget"
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 12,
+          "verification": "expired_acts_no_second_api_pass"
+        },
+        {
+          "page": 3,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 12,
+          "verification": "expired_acts_no_second_api_pass"
         }
       ]
     }
   ],
-  "deferred_docs": [],
+  "deferred_docs": [
+    {
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/08/elcaracol26.pdf",
+      "reason": "pdf_oversize",
+      "max_bytes": 8000000,
+      "resume_on": "2026-11-04"
+    }
+  ],
   "pending_review_count": 0,
   "auto_verified_count": 0,
-  "archived_count": 40,
-  "archived_this_run": 0,
+  "archived_count": 64,
+  "archived_this_run": 24,
   "notes": "Future events require independent date, time and venue verification. Expired records move to the historic archive; incomplete past-only PDFs are temporarily deferred."
 }

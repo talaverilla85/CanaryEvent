@@ -266,6 +266,84 @@
       "event_date": "2026-11-13",
       "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718cc013a6268e07a7c31",
       "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261114-0002/ruta-astronomica-degollada-del-salao-garanon": {
+      "sha256": "c9b6cd365cc9980516e56ae188084b4713fc77753ab36a813df74b0af1d0ccc8",
+      "title": "Ruta Astronómica: Degollada del Salao - Garañón",
+      "event_date": "2026-11-14",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/698a039e09e3917fd2acab45",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261114-0006/trofeo-rector-voley-playa-mixto": {
+      "sha256": "3c508becfc08d9ff89db25916504b9514aa0eae71e55d7480d4e9abc2093ee8a",
+      "title": "Trofeo Rector - Vóley Playa Mixto",
+      "event_date": "2026-11-14",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa718f6013a6268e079a8ed",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261114-0014/xiii-certamen-de-pintura-rapida-playa-de-mogan": {
+      "sha256": "c6d8d1a330901ca4ed28b7043b1240d3793b6b0b49769a4c02e235feeb5e4706",
+      "title": "XIII Certamen de Pintura Rápida Playa de Mogán",
+      "event_date": "2026-11-14",
+      "status": "verified",
+      "verified": true,
+      "venue": "Plazoleta del Kiosko - Puerto de Mogán",
+      "method": "two_independent_visual_passes",
+      "confirmed_on": "2026-10-28",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c748013a6268e07a77e7"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261114-0016/vi-edicion-de-arucas-es-arte": {
+      "sha256": "d2a45beb57b79a01e6395922d8397b643a5c8bef98a0953caf1098914e4e0000",
+      "title": "VI EDICIÓN DE ARUCAS ES ARTE",
+      "event_date": "2026-11-14",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad6d5cb013a6268e07a7bd4",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261114-0017/iii-mar-mujeres-africanas-rodando-2026": {
+      "sha256": "5f0afbe1d70db56ff23e1da82b01f6e985a335d719a6fdfa6afd4c1fb1a12b80",
+      "title": "III MAR. Mujeres Africanas Rodando 2026",
+      "event_date": "2026-11-14",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad86a59013a6268e07a8227",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261010-0002/xxxi-festival-internacional-de-folklore": {
+      "sha256": "6547bf4fda3cc81a303d691e98b8199daecbb29a85bc598d8b04ec1256ea2854",
+      "title": "XXXI FESTIVAL INTERNACIONAL DE FOLKLORE",
+      "event_date": "2026-10-10",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a50c0054adaed35184ed212",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261115-0002/visita-a-tejeda-feria-km-0": {
+      "sha256": "78da2b2d5ba44962a2b1166da8f4adfd7826068737c4f86aa78b2925e487b3a3",
+      "title": "🍂🏔️ VISITA A TEJEDA – FERIA KM 0 🧀🍯",
+      "event_date": "2026-11-15",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6acc8697013a6268e07a4d69",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261009-0039/paqui-alvarez-monzon-presenta-donde-el-tiempo-se-detiene-en-las-casas-consistoriales": {
+      "sha256": "994406f21f9c358758dea05607d2e60eb7b4318c61de312fd1a594e1b1c41485",
+      "title": "Paqui Álvarez Monzón presenta «Donde el tiempo se detiene» en las Casas Consistoriales",
+      "event_date": "2026-10-09",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac99c42013a6268e07a41c8",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261118-0002/bailar-los-campus-zola": {
+      "sha256": "ada2862b3fcea82969dde1c8630e782cb63007c9b3f10b831ce9d7d9f2009431",
+      "title": "BAILAR LOS CAMPUS. “ZOLA”",
+      "event_date": "2026-11-18",
+      "status": "verified",
+      "verified": true,
+      "venue": "Escuela de Ingeniería Informática",
+      "method": "two_independent_visual_passes",
+      "confirmed_on": "2026-10-28",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa7192b013a6268e079a8ef"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261006-0005/cursos-de-formacion-especializada": {
+      "sha256": "cff9035964a5d5477945b9558593dc7a63f24f8bd61e93ff8203ca8fe2596705",
+      "title": "Cursos de formación especializada",
+      "event_date": "2026-10-06",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab62db4013a6268e079f167",
+      "status": "reviewed_no_single_venue"
     }
   }
 }

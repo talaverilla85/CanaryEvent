@@ -1596,7 +1596,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=30ae730a3bd2334cf727aa530c1890f6",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=8369ce78dc4fcb784bc3ebc8e0bd2f0a",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1618,7 +1618,7 @@
       "accuracy": "venue",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=30ae730a3bd2334cf727aa530c1890f6",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=8369ce78dc4fcb784bc3ebc8e0bd2f0a",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2186,7 +2186,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=30ae730a3bd2334cf727aa530c1890f6",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=8369ce78dc4fcb784bc3ebc8e0bd2f0a",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2208,7 +2208,7 @@
       "accuracy": "venue",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=30ae730a3bd2334cf727aa530c1890f6",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=8369ce78dc4fcb784bc3ebc8e0bd2f0a",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -4827,6 +4827,28 @@
       "organizer_url": "https://ofgrancanaria.com/conciertos-entradas/eventos/calling-all-dawns/456"
     },
     {
+      "id": 244,
+      "title": "XIII Certamen de Pintura Rápida Playa de Mogán",
+      "start": "2026-11-14T07:30:00",
+      "end": null,
+      "municipality": "Mogán",
+      "venue": "Plazoleta del Kiosko - Puerto de Mogán",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Actividad en Mogán. Consulta el recinto, el programa y las condiciones con el organizador.",
+      "lat": 27.884,
+      "lng": -15.723,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0014/xiii-certamen-de-pintura-rapida-playa-de-mogan",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c748013a6268e07a77e7",
+      "image_alt": "XIII Certamen de Pintura Rápida Playa de Mogán",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote",
+      "organizer_url": ""
+    },
+    {
       "id": 597,
       "title": "AJEDREZ EN LA GRADA",
       "start": "2026-11-14T10:00:00",
@@ -5393,6 +5415,28 @@
       "image_origin": "",
       "image_status": "",
       "organizer_url": ""
+    },
+    {
+      "id": 268,
+      "title": "BAILAR LOS CAMPUS. “ZOLA”",
+      "start": "2026-11-18",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Escuela de Ingeniería Informática",
+      "category": "ocio",
+      "free": null,
+      "price": "",
+      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
+      "lat": 28.124,
+      "lng": -15.436,
+      "accuracy": "municipality",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261118-0002/bailar-los-campus-zola",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa7192b013a6268e079a8ef",
+      "image_alt": "BAILAR LOS CAMPUS. “ZOLA”",
+      "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "image_status": "official_remote",
+      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/18/bailar-campus-zola"
     },
     {
       "id": 558,
@@ -11321,7 +11365,7 @@
       "organizer_url": "https://www.tureservaonline.es/es/events/no-me-toques-el-cuento-ingenio"
     }
   ],
-  "generated_at": "2026-10-28T23:25:49+00:00",
+  "generated_at": "2026-10-28T23:37:36+00:00",
   "timezone": "Atlantic/Canary",
-  "verified_sources": 33
+  "verified_sources": 31
 }

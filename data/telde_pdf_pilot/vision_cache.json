@@ -1049,5 +1049,304 @@
       "total_tokens": 4808
     },
     "measured_cost_usd": 0.0010492
+  },
+  "05fa05f2c1d02f5f7656a33392f87fe56117ae8a93703150f75dde43075f6f3a/0/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3394,
+      "input_tokens_details": {
+        "cache_write_tokens": 3391,
+        "cached_tokens": 0
+      },
+      "output_tokens": 42,
+      "output_tokens_details": {
+        "reasoning_tokens": 20
+      },
+      "total_tokens": 3436
+    },
+    "measured_cost_usd": 0.0003604
+  },
+  "05fa05f2c1d02f5f7656a33392f87fe56117ae8a93703150f75dde43075f6f3a/1/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Pregón de fiestas",
+          "date": "2026-08-07",
+          "time": "19:00",
+          "venue": null,
+          "evidence": "Viernes. 07 de Agosto — 19:00 PREGÓN DE FIESTAS",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Viajamos a los 80's + DJ Partymax",
+          "date": "2026-08-07",
+          "time": "22:00",
+          "venue": null,
+          "evidence": "Viernes. 07 de Agosto — 22:00 VIAJAMOS A LOS 80'S + DJ PARTYMAX",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Tenderete vecinal",
+          "date": "2026-08-08",
+          "time": "10:00",
+          "venue": null,
+          "evidence": "Sábado. 08 de Agosto — 10:00 TENDERETE VECINAL",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Romería popular",
+          "date": "2026-08-08",
+          "time": "18:30",
+          "venue": "Salida frente al CAE",
+          "evidence": "Sábado. 08 de Agosto — 18:30 ROMERÍA POPULAR (SALIDA FRENTE AL CAE)",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Gran verbena Línea Latina",
+          "date": "2026-08-08",
+          "time": "22:00",
+          "venue": null,
+          "evidence": "Sábado. 08 de Agosto — 22:00 GRAN VERBENA LÍNEA LATINA",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Día del niño",
+          "date": "2026-08-09",
+          "time": "17:00",
+          "venue": null,
+          "evidence": "Domingo. 09 de Agosto — 17:00 DÍA DEL NIÑO",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "El payaso Pepón",
+          "date": "2026-08-09",
+          "time": "18:00",
+          "venue": null,
+          "evidence": "Domingo. 09 de Agosto — 18:00 EL PAYASO PEPÓN",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Actuación “Los Diver”",
+          "date": "2026-08-09",
+          "time": "20:00",
+          "venue": null,
+          "evidence": "Domingo. 09 de Agosto — 20:00 ACTUACIÓN “LOS DIVER”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Rezo del Rosario",
+          "date": "2026-08-10",
+          "time": "18:00",
+          "venue": "Ermita",
+          "evidence": "Lunes. 10 de Agosto — 18:00 REZO DEL ROSARIO (ERMITA)",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Encuentro de vecinos + concurso de repostería junto a Mariachi Peleón",
+          "date": "2026-08-10",
+          "time": "19:00",
+          "venue": "Junto a Mariachi Peleón",
+          "evidence": "Lunes. 10 de Agosto — 19:00 ENCUENTRO DE VECINOS + CONCURSO DE REPOSTERÍA JUNTO A MARIACHI PELEÓN",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "“Entre recuerdos y tradición”",
+          "date": "2026-08-11",
+          "time": "19:00",
+          "venue": null,
+          "evidence": "Martes. 11 de Agosto — 19:00 “ENTRE RECUERDOS Y TRADICIÓN”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Puntos cubanos",
+          "date": "2026-08-11",
+          "time": "20:00",
+          "venue": null,
+          "evidence": "Martes. 11 de Agosto — 20:00 PUNTOS CUBANOS.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3394,
+      "input_tokens_details": {
+        "cache_write_tokens": 3391,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1227,
+      "output_tokens_details": {
+        "reasoning_tokens": 329
+      },
+      "total_tokens": 4621
+    },
+    "measured_cost_usd": 0.0009529
+  },
+  "05fa05f2c1d02f5f7656a33392f87fe56117ae8a93703150f75dde43075f6f3a/2/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Levantamiento de arado",
+          "date": "2026-08-12",
+          "time": "17:00",
+          "venue": null,
+          "evidence": "Miércoles. 12 de Agosto — 17:00 LEVANTAMIENTO DE ARADO.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Bingo solidario",
+          "date": "2026-08-12",
+          "time": "18:00",
+          "venue": null,
+          "evidence": "Miércoles. 12 de Agosto — 18:00 BINGO SOLIDARIO",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Iván el Bastonero",
+          "date": "2026-08-12",
+          "time": "20:00",
+          "venue": null,
+          "evidence": "Miércoles. 12 de Agosto — 20:00 IVÁN EL BASTONERO",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Día del adulto",
+          "date": "2026-08-13",
+          "time": "18:00",
+          "venue": null,
+          "evidence": "Jueves. 13 de Agosto — 18:00 DÍA DEL ADULTO",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Sensy Karaoke",
+          "date": "2026-08-13",
+          "time": "20:00",
+          "venue": null,
+          "evidence": "Jueves. 13 de Agosto — 20:00 SENSY KARAOKE",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Actuación “Naiara Diaz” y “Teresa”",
+          "date": "2026-08-14",
+          "time": "20:00",
+          "venue": null,
+          "evidence": "Viernes. 14 de Agosto — 20:00 ACTUACIÓN “NAIARA DIAZ” Y “TERESA”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "DJ Oliver Reina",
+          "date": "2026-08-14",
+          "time": "22:00",
+          "venue": null,
+          "evidence": "Viernes. 14 de Agosto — 22:00 DJ OLIVER REINA",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Toque de diana",
+          "date": "2026-08-15",
+          "time": "08:00",
+          "venue": null,
+          "evidence": "Sábado. 15 de Agosto — 08:00 TOQUE DE DIANA",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Santa misa en honor a Ntra. Sra. de La Paloma",
+          "date": "2026-08-15",
+          "time": "12:00",
+          "venue": null,
+          "evidence": "Sábado. 15 de Agosto — 12:00 SANTA MISA EN HONOR A NTRA. SRA. DE LA PALOMA",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Procesión por las calles del barrio acompañada por la banda municipal",
+          "date": "2026-08-15",
+          "time": "13:00",
+          "venue": null,
+          "evidence": "Sábado. 15 de Agosto — 13:00 PROCESIÓN POR LAS CALLES DEL BARRIO ACOMPAÑADA POR LA BANDA MUNICIPAL",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Comida popular + DJ",
+          "date": "2026-08-15",
+          "time": "14:00",
+          "venue": null,
+          "evidence": "Sábado. 15 de Agosto — 14:00 COMIDA POPULAR + DJ",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "Verbena a cargo de “Dulce Cacao”",
+          "date": "2026-08-15",
+          "time": "22:00",
+          "venue": null,
+          "evidence": "Sábado. 15 de Agosto — 22:00 VERBENA A CARGO DE “DULCE CACAO”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3394,
+      "input_tokens_details": {
+        "cache_write_tokens": 3391,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1221,
+      "output_tokens_details": {
+        "reasoning_tokens": 330
+      },
+      "total_tokens": 4615
+    },
+    "measured_cost_usd": 0.0009499
   }
 }

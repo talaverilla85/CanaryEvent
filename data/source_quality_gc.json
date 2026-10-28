@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-10-28T23:25:49+00:00",
+  "checked_at": "2026-10-28T23:37:36+00:00",
   "quality_counts": {
-    "publicados": 502,
-    "recintos_sin_verificar": 97,
+    "publicados": 504,
+    "recintos_sin_verificar": 95,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 343,
-    "distancia_a_centro_municipal": 334,
-    "fuentes_con_error": 1,
+    "precios_sin_confirmar": 345,
+    "distancia_a_centro_municipal": 336,
+    "fuentes_con_error": 3,
     "duplicados_potenciales": 9
   },
   "sources": [
@@ -142,13 +142,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 1,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 6,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "ReadTimeout"
     },
     {
       "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
@@ -172,13 +172,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 2,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
@@ -272,13 +272,13 @@
     },
     {
       "source": "Ayuntamientos · actos individualmente contrastados",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 22,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 19,
+      "error": "Gáldar: ReadTimeout"
     },
     {
       "source": "Juventud de Ingenio · programa de otoño desglosado",
@@ -292,12 +292,12 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "operativa",
-      "publicados": 244,
-      "recinto_sin_verificar": 77,
-      "precio_sin_confirmar": 199,
-      "distancia_al_centro_municipal": 145,
-      "fichas_leidas_en_esta_ejecucion": 34,
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 246,
+      "recinto_sin_verificar": 75,
+      "precio_sin_confirmar": 201,
+      "distancia_al_centro_municipal": 147,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -317,7 +317,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 16,
+      "fichas_leidas_en_esta_ejecucion": 5,
       "error": ""
     },
     {
@@ -342,25 +342,33 @@
     },
     {
       "source": "Recintos · carteles oficiales comprobados",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 9,
-      "error": "ValueError"
+      "fichas_leidas_en_esta_ejecucion": 10,
+      "error": ""
     }
   ],
   "reported_errors": [
     {
-      "source": "Recintos · carteles oficiales comprobados",
-      "error": "ValueError"
+      "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
+      "error": "ReadTimeout"
+    },
+    {
+      "source": "Ayuntamiento de Gáldar · agenda de Cultura",
+      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
+    },
+    {
+      "source": "Ayuntamientos · actos individualmente contrastados",
+      "error": "Gáldar: ReadTimeout"
     }
   ],
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 77
+      "count": 75
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",

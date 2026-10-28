@@ -1,9 +1,11 @@
 {
   "c0b26de52cc5ef87": {
     "sha": "ce84859aea4f81ca4b08d1f0ae7986079efdb7d8ae58b15788b11de1bec417a1",
-    "done_pages": [],
-    "complete": false,
-    "checked_at": "2026-10-27"
+    "done_pages": [
+      0
+    ],
+    "complete": true,
+    "checked_at": "2026-10-28"
   },
   "6c6091fe4b16034f": {
     "sha": "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0",
@@ -73,5 +75,22 @@
     ],
     "complete": false,
     "checked_at": "2026-10-27"
+  },
+  "211ad67171cb5bbf": {
+    "checked_at": "2026-10-28",
+    "defer_until": "2026-11-04",
+    "defer_reason": "pdf_oversize"
+  },
+  "bfed9b864a8c3466": {
+    "sha": "05fa05f2c1d02f5f7656a33392f87fe56117ae8a93703150f75dde43075f6f3a",
+    "done_pages": [
+      0,
+      1,
+      2
+    ],
+    "complete": false,
+    "checked_at": "2026-10-28",
+    "defer_until": "2026-11-04",
+    "defer_reason": "only_old_acts_seen_so_far_unread_pages_remain"
   }
 }

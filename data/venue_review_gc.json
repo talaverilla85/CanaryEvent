@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-28T23:25:49+00:00",
-  "not_published": 97,
+  "updated_at": "2026-10-28T23:37:36+00:00",
+  "not_published": 95,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -844,18 +844,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 244,
-      "title": "XIII Certamen de Pintura Rápida Playa de Mogán",
-      "start": "2026-11-14T07:30:00",
-      "end": null,
-      "municipality": "Mogán",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0014/xiii-certamen-de-pintura-rapida-playa-de-mogan",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 250,
       "title": "🍂🏔️ VISITA A TEJEDA – FERIA KM 0 🧀🍯",
       "start": "2026-11-15T08:30:00",
@@ -865,18 +853,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261115-0002/visita-a-tejeda-feria-km-0",
       "organizer_url": "https://ingenio.es/events/%f0%9f%8d%82%f0%9f%8f%94%ef%b8%8f-visita-a-tejeda-feria-km-0-%f0%9f%a7%80%f0%9f%8d%af/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 268,
-      "title": "BAILAR LOS CAMPUS. “ZOLA”",
-      "start": "2026-11-18",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261118-0002/bailar-los-campus-zola",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/18/bailar-campus-zola",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
