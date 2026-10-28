@@ -15,6 +15,9 @@ for attempt in 1 2 3; do
     if [[ -f "$file" ]]; then git add "$file"; fi
   done
   if [[ -f data/gc_radar_leads.json ]]; then git add data/gc_radar_leads.json; fi
+  for file in data/poster_venue_pilot/reviewed.json data/poster_venue_pilot/report.json; do
+    if [[ -f "$file" ]]; then git add "$file"; fi
+  done
   git add public/municipal_pdf_programs.json public/municipal_coverage.json
   git add data/events.sqlite data/program_review_gc.json data/venue_review_gc.json data/source_quality_gc.json data/price_provenance_audit.json public/events.json public/meta.json public/municipal_programs.json
   if git diff --cached --quiet; then

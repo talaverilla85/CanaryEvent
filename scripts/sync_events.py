@@ -23,6 +23,7 @@ import ulpgc_venue_facts
 import verified_venue_coordinates
 import cross_source_venue_facts
 import official_venue_confirmations
+import poster_venues
 import ticket_reserva
 import ticket_recent
 import santalucia_festivals
@@ -926,6 +927,17 @@ def run():
         }
         results.append(official_record)
         print("Corroborated official venues:",official_result)
+        poster_result=poster_venues.enrich(conn,NOW,TODAY)
+        results.append({"source":"Recintos · carteles oficiales comprobados",
+                        "checked_at":NOW,"found":poster_result["checked"],
+                        "added":0,
+                        "changed":poster_result["manual_verified"]+poster_result["vision_verified"],
+                        "error":"; ".join(e.get("error_type","") for e in poster_result["errors"])[:180],
+                        "poster_readings":poster_result["api_calls"],
+                        "vision_usd":poster_result["usage_usd"],
+                        "posters_deferred":poster_result["deferred"]})
+        conn.commit()
+        print("Official event poster venues:",poster_result)
         location_changes=verified_venue_coordinates.backfill(conn,PLACES)
         conn.commit()
         print(f"Verified venue coordinates refreshed for {location_changes} events")
