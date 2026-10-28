@@ -72,10 +72,10 @@
       ],
       "status": "activo_gran_canaria",
       "adapter": "fimc_island_agenda",
-      "found_last_run": null,
-      "last_error": null,
-      "published_cards": 0,
-      "has_live_connector": false
+      "found_last_run": 14,
+      "last_error": "",
+      "published_cards": 14,
+      "has_live_connector": true
     },
     {
       "id": "galdar-guaires",
@@ -87,10 +87,10 @@
       ],
       "status": "activo",
       "adapter": "island_eventon_agendas",
-      "found_last_run": null,
-      "last_error": null,
-      "published_cards": 0,
-      "has_live_connector": false
+      "found_last_run": 6,
+      "last_error": "",
+      "published_cards": 1,
+      "has_live_connector": true
     },
     {
       "id": "aguimes-auditorio",
@@ -102,10 +102,10 @@
       ],
       "status": "activo",
       "adapter": "island_eventon_agendas",
-      "found_last_run": null,
-      "last_error": null,
+      "found_last_run": 6,
+      "last_error": "",
       "published_cards": 0,
-      "has_live_connector": false
+      "has_live_connector": true
     },
     {
       "id": "aguimes-cruce",
@@ -117,10 +117,10 @@
       ],
       "status": "activo",
       "adapter": "island_eventon_agendas",
-      "found_last_run": null,
-      "last_error": null,
-      "published_cards": 0,
-      "has_live_connector": false
+      "found_last_run": 1,
+      "last_error": "",
+      "published_cards": 1,
+      "has_live_connector": true
     },
     {
       "id": "victor-jara",
@@ -134,7 +134,7 @@
       "adapter": "gc_documented_events",
       "found_last_run": null,
       "last_error": null,
-      "published_cards": 0,
+      "published_cards": 1,
       "has_live_connector": false
     },
     {

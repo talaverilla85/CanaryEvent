@@ -1,12 +1,12 @@
 {
-  "checked_on": "2026-10-28T11:38:07.327575+00:00",
-  "total_events": 474,
-  "known_price_or_free": 156,
+  "checked_on": "2026-10-28T22:05:55.145633+00:00",
+  "total_events": 492,
+  "known_price_or_free": 157,
   "classification": {
     "minimum_zero_ambiguous": 6,
     "fixed_positive": 8,
     "free": 22,
-    "minimum_positive": 120
+    "minimum_positive": 121
   },
   "known_by_source": {
     "TuReservaOnline · agenda de Gran Canaria": 74,
@@ -15,6 +15,7 @@
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 43,
     "Ayuntamiento de Ingenio": 5,
     "Juventud Las Palmas de Gran Canaria": 11,
+    "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 1,
     "Ayuntamiento de Agüimes": 2,
     "Mancomunidad de Medianías · Alma de Medianías en Valsequillo": 2,
     "Ayuntamiento de Tejeda · agenda oficial": 1,

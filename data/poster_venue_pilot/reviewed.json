@@ -101,6 +101,12 @@
       "title": "Cerebritos en Juego",
       "event_date": "2026-10-30",
       "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261031-0011/biosfera-joven-jovenes-que-cuentan-su-territorio": {
+      "sha256": "820eaf19fb1abecfb148ac1a73de306b900d64a8d22b1f75fa06ba4fe0a1c54f",
+      "title": "Biosfera Joven: Jóvenes que cuentan su territorio",
+      "event_date": "2026-10-31",
+      "status": "reviewed_no_single_venue"
     }
   }
 }

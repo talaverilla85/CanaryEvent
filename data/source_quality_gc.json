@@ -1,13 +1,13 @@
 {
-  "checked_at": "2026-10-28T11:34:38+00:00",
+  "checked_at": "2026-10-28T22:01:37+00:00",
   "quality_counts": {
-    "publicados": 474,
+    "publicados": 492,
     "recintos_sin_verificar": 107,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 318,
-    "distancia_a_centro_municipal": 320,
-    "fuentes_con_error": 3,
-    "duplicados_potenciales": 7
+    "precios_sin_confirmar": 335,
+    "distancia_a_centro_municipal": 324,
+    "fuentes_con_error": 2,
+    "duplicados_potenciales": 9
   },
   "sources": [
     {
@@ -37,7 +37,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 12,
-      "fichas_leidas_en_esta_ejecucion": 11,
+      "fichas_leidas_en_esta_ejecucion": 10,
       "error": ""
     },
     {
@@ -57,7 +57,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 3,
       "distancia_al_centro_municipal": 10,
-      "fichas_leidas_en_esta_ejecucion": 10,
+      "fichas_leidas_en_esta_ejecucion": 8,
       "error": ""
     },
     {
@@ -77,18 +77,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 26,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 27,
+      "fichas_leidas_en_esta_ejecucion": 19,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 14,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 15,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -108,6 +108,46 @@
       "precio_sin_confirmar": 10,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 12,
+      "error": ""
+    },
+    {
+      "source": "Festival Internacional de Música de Canarias · agenda oficial",
+      "estado": "operativa",
+      "publicados": 14,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 14,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 14,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Agüimes · programación de teatros",
+      "estado": "operativa",
+      "publicados": 0,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 6,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
+      "estado": "operativa",
+      "publicados": 1,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 1,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
+      "estado": "operativa",
+      "publicados": 1,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 6,
       "error": ""
     },
     {
@@ -132,13 +172,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
+      "fichas_leidas_en_esta_ejecucion": 2,
+      "error": ""
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
@@ -173,11 +213,11 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 14,
+      "publicados": 15,
       "recinto_sin_verificar": 3,
-      "precio_sin_confirmar": 14,
-      "distancia_al_centro_municipal": 14,
-      "fichas_leidas_en_esta_ejecucion": 19,
+      "precio_sin_confirmar": 15,
+      "distancia_al_centro_municipal": 15,
+      "fichas_leidas_en_esta_ejecucion": 20,
       "error": ""
     },
     {
@@ -232,13 +272,13 @@
     },
     {
       "source": "Ayuntamientos · actos individualmente contrastados",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 13,
-      "error": "Gáldar: ReadTimeout"
+      "fichas_leidas_en_esta_ejecucion": 22,
+      "error": ""
     },
     {
       "source": "Juventud de Ingenio · programa de otoño desglosado",
@@ -252,12 +292,12 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "sin_resultados_en_esta_revision",
+      "estado": "operativa",
       "publicados": 234,
       "recinto_sin_verificar": 87,
       "precio_sin_confirmar": 191,
       "distancia_al_centro_municipal": 135,
-      "fichas_leidas_en_esta_ejecucion": 0,
+      "fichas_leidas_en_esta_ejecucion": 21,
       "error": ""
     },
     {
@@ -297,22 +337,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 2,
-      "error": "ValueError"
+      "fichas_leidas_en_esta_ejecucion": 1,
+      "error": "ValueError; ValueError"
     }
   ],
   "reported_errors": [
     {
-      "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
-    },
-    {
-      "source": "Ayuntamientos · actos individualmente contrastados",
-      "error": "Gáldar: ReadTimeout"
+      "source": "Auditorio Alfredo Kraus · programación oficial",
+      "error": "RuntimeError"
     },
     {
       "source": "Recintos · carteles oficiales comprobados",
-      "error": "ValueError"
+      "error": "ValueError; ValueError"
     }
   ],
   "missing_venue_by_source": [

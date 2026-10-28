@@ -20,9 +20,8 @@
     },
     {
       "municipality": "Gáldar",
-      "outcome": "needs_review",
-      "error_type": "ReadTimeout",
-      "links": 0
+      "outcome": "ok",
+      "links": 9
     },
     {
       "municipality": "La Aldea de San Nicolás",
@@ -64,7 +63,7 @@
     },
     "Gáldar": {
       "checked_on": "2026-10-28",
-      "outcome": "needs_review"
+      "outcome": "ok"
     },
     "La Aldea de San Nicolás": {
       "checked_on": "2026-10-28",
@@ -115,7 +114,7 @@
       "outcome": "ok"
     }
   },
-  "candidate_count": 30,
+  "candidate_count": 34,
   "leads": [
     {
       "url": "https://vegadesanmateo.es/areas/patrimonio-cultural-e-historico",
@@ -271,11 +270,38 @@
       "publication_status": "not_an_event"
     },
     {
+      "url": "https://www.galdar.es/villanocon-vuelve-a-la-plaza-de-santiago-este-viernes-y-sabado-con-dos-jornadas-de-fantasia-personajes-y-entretenimiento/",
+      "label": "Cultura y Fiestas 28 de octubre de 2026 VillanoCon vuelve a la Plaza de Santiago este viernes y sábado con dos jornadas de fantasía, personajes y entretenimiento",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-28",
+      "last_seen": "2026-10-28",
+      "publication_status": "not_an_event"
+    },
+    {
       "url": "https://www.galdar.es/mercado/",
       "label": "Mercado Municipal \"La Recova\"",
       "kind": "unverified_official_link",
       "municipality": "Gáldar",
       "first_seen": "2026-10-27",
+      "last_seen": "2026-10-28",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/galdar-celebra-la-noche-de-finaos-con-una-castanada-y-musica-tradicional-en-el-club-de-mayores/",
+      "label": "Mayor 28 de octubre de 2026 Gáldar celebra la Noche de Finaos con una castañada y música tradicional en el Club de Mayores",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-28",
+      "last_seen": "2026-10-28",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/galdar-celebra-este-domingo-1-de-noviembre-una-nueva-edicion-del-mercado-agricola/",
+      "label": "Desarrollo Socioeconómico 28 de octubre de 2026 Gáldar celebra este domingo 1 de noviembre una nueva edición del Mercado Agrícola",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-28",
       "last_seen": "2026-10-28",
       "publication_status": "not_an_event"
     },
@@ -312,6 +338,15 @@
       "kind": "unverified_official_link",
       "municipality": "Gáldar",
       "first_seen": "2026-10-27",
+      "last_seen": "2026-10-28",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/abierta-la-inscripcion-para-participar-en-la-ruta-de-belenes-de-2026/",
+      "label": "Cultura y Fiestas 28 de octubre de 2026 Abierta la inscripción para participar en la Ruta de Belenes de 2026",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-28",
       "last_seen": "2026-10-28",
       "publication_status": "not_an_event"
     },
