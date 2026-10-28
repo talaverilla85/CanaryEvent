@@ -1,5 +1,5 @@
 {
-  "version": "poster-venues-v1",
+  "version": "poster-venues-v2",
   "posters": {
     "https://www.eventosgrancanaria.com/event/E-20261031-0013/noche-de-finaos": {
       "sha256": "f6670136a87e95103a5be675dd902c302802e52ae9a23932325aceb53e2c1cde",
@@ -118,6 +118,78 @@
       "sha256": "81a5fdf33bbf7517b6bbb8d891065187b3f1ae680851e78432105cedb8d3d53d",
       "title": "Programación La Grada Creativa Noviembre 2026",
       "event_date": "2026-11-01",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261030-0023/la-barraca-de-vicente-blasco-ibanez": {
+      "event_date": "2026-10-30",
+      "title": "LA BARRACA de Vicente Blasco Ibáñez",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa72126013a6268e079a94e",
+      "status": "image_error",
+      "error_type": "ValueError",
+      "retry_on": "2026-10-30"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261031-0008/ii-edicion-del-mercadillo-tradicional-de-artenara": {
+      "event_date": "2026-10-31",
+      "title": "II Edición del Mercadillo Tradicional de Artenara",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad1d2a3013a6268e07a641b",
+      "status": "image_error",
+      "error_type": "ValueError",
+      "retry_on": "2026-10-30"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261023-0014/3-edicion-teror-film-fest": {
+      "sha256": "f76a35c11359d0f40ad90fa0d9342b58051fa15962483448bde555aba7a4b091",
+      "title": "3ª edición Teror Film Fest",
+      "event_date": "2026-10-23",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac74b15013a6268e07a3ab3",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261023-0037/divina-muerte-2026": {
+      "sha256": "bcac09238a20bac1bd4686ae1e833b5f6dbaaa22ce38b429cfd0c133bf899e51",
+      "title": "DIVINA MUERTE 2026",
+      "event_date": "2026-10-23",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad82757013a6268e07a80ee",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261103-0002/cursos-y-talleres-de-noviembre-de-la-universidad-popular": {
+      "sha256": "3b36e9bfd7d3c2a67c6dd205304d5d7d643c396fa4b42510a06b622317255a62",
+      "title": "Cursos y talleres de noviembre de la Universidad Popular",
+      "event_date": "2026-11-03",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad9c005013a6268e07a86e8",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261104-0000/i-jornadas-de-aprendizaje-servicio-universitario-de-canarias": {
+      "sha256": "36d39248ad96e62dd8371bddeaee8c09b5a97d97012830aab1988688961e3d89",
+      "title": "I Jornadas de Aprendizaje-Servicio Universitario de Canarias",
+      "event_date": "2026-11-04",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa717f1013a6268e079a8eb",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261020-0014/mi-espacio-mi-poder": {
+      "sha256": "d82fa3ec3b0b17c74dbee60ce33e2f4dfdd0a72185b75ac1ba6a6058b32dc5c2",
+      "title": "Mi espacio, mi poder",
+      "event_date": "2026-10-20",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c71e013a6268e07a778e",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261105-0004/la-pantalla-inversa-matrix": {
+      "sha256": "d328d0d0041c268b62c9bc135a43600a1210568dcdb42f03c577b4e36f5e59c4",
+      "title": "La Pantalla Inversa: Matrix",
+      "event_date": "2026-11-05",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5c24d013a6268e07a7753",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261019-0006/dia-de-las-bibliotecas-2026": {
+      "sha256": "f961dcd8c2d6b80232fc3d78c4a7a82608a97f66036af56c6911fc88bb9911bd",
+      "title": "Día de las Bibliotecas 2026",
+      "event_date": "2026-10-19",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5de9d013a6268e07a7aad",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261106-0000/fashion-friend": {
+      "sha256": "c31f7f0149b4db1948d5f1553ab6a2ce4e1429d1f03c0ec3552da16dcd67614b",
+      "title": "Fashion & Friend",
+      "event_date": "2026-11-06",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/68b8129b848fe4568884b2e8",
       "status": "reviewed_no_single_venue"
     }
   }

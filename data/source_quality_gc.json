@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-10-28T22:54:18+00:00",
+  "checked_at": "2026-10-28T23:11:21+00:00",
   "quality_counts": {
-    "publicados": 496,
-    "recintos_sin_verificar": 103,
+    "publicados": 500,
+    "recintos_sin_verificar": 99,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 337,
-    "distancia_a_centro_municipal": 328,
-    "fuentes_con_error": 2,
+    "precios_sin_confirmar": 341,
+    "distancia_a_centro_municipal": 332,
+    "fuentes_con_error": 4,
     "duplicados_potenciales": 9
   },
   "sources": [
@@ -82,13 +82,13 @@
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 14,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "fichas_leidas_en_esta_ejecucion": 15,
+      "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -142,13 +142,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 1,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 6,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "ReadTimeout"
     },
     {
       "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
@@ -172,13 +172,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 2,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
@@ -272,13 +272,13 @@
     },
     {
       "source": "Ayuntamientos · actos individualmente contrastados",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 22,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 19,
+      "error": "Gáldar: ReadTimeout"
     },
     {
       "source": "Juventud de Ingenio · programa de otoño desglosado",
@@ -293,11 +293,11 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "operativa",
-      "publicados": 238,
-      "recinto_sin_verificar": 83,
-      "precio_sin_confirmar": 193,
-      "distancia_al_centro_municipal": 139,
-      "fichas_leidas_en_esta_ejecucion": 75,
+      "publicados": 242,
+      "recinto_sin_verificar": 79,
+      "precio_sin_confirmar": 197,
+      "distancia_al_centro_municipal": 143,
+      "fichas_leidas_en_esta_ejecucion": 59,
       "error": ""
     },
     {
@@ -331,20 +331,38 @@
       "error": ""
     },
     {
+      "source": "Telde Cultura · funciones vinculadas a recintos oficiales",
+      "estado": "operativa",
+      "publicados": 0,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 5,
+      "error": ""
+    },
+    {
       "source": "Recintos · carteles oficiales comprobados",
       "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 1,
+      "fichas_leidas_en_esta_ejecucion": 8,
       "error": "ValueError; ValueError"
     }
   ],
   "reported_errors": [
     {
-      "source": "Auditorio Alfredo Kraus · programación oficial",
-      "error": "RuntimeError"
+      "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
+      "error": "ReadTimeout"
+    },
+    {
+      "source": "Ayuntamiento de Gáldar · agenda de Cultura",
+      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
+    },
+    {
+      "source": "Ayuntamientos · actos individualmente contrastados",
+      "error": "Gáldar: ReadTimeout"
     },
     {
       "source": "Recintos · carteles oficiales comprobados",
@@ -354,7 +372,7 @@
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 83
+      "count": 79
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
@@ -387,28 +405,12 @@
       "source_url": "https://eventos.santabrigida.es/eventos/yoga-terapeutico-para-mujeres/"
     },
     {
-      "id": 355,
-      "title": "𝐓𝐀𝐋𝐋𝐄𝐑 𝐃𝐄 𝐄𝐒𝐂𝐑𝐈𝐓𝐔𝐑𝐀 𝐂𝐎𝐍 𝐒𝐀𝐍𝐓𝐈𝐀𝐆𝐎 𝐆𝐈𝐋",
-      "start": "2026-09-11",
-      "municipality": "Mogán",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260911-0004/evento"
-    },
-    {
       "id": 337,
       "title": "Exposición temporal: `Arqueología de las plantas: una mirada al registro arqueológico invisible´",
       "start": "2026-09-18",
       "municipality": "Gáldar",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260918-0016/exposicion-temporal-arqueologia-de-las-plantas-una-mirada-al-registro-arqueologico-invisible"
-    },
-    {
-      "id": 313,
-      "title": "Taller: `Parabere una novela desmenuzada´ de Andrea Cabrera Kñallisky",
-      "start": "2026-09-21",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260921-0005/taller-parabere-una-novela-desmenuzada-de-andrea-cabrera-knallisky"
     },
     {
       "id": 309,
@@ -577,6 +579,22 @@
       "municipality": "Las Palmas de Gran Canaria",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0008/microcredencial-en-propiedad-intelectual-y-derechos-de-autor"
+    },
+    {
+      "id": 81,
+      "title": "Día de las Bibliotecas 2026",
+      "start": "2026-10-19",
+      "municipality": "Mogán",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0006/dia-de-las-bibliotecas-2026"
+    },
+    {
+      "id": 82,
+      "title": "Espejos y Ventanas",
+      "start": "2026-10-19",
+      "municipality": "Santa Lucía de Tirajana",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0007/espejos-y-ventanas"
     }
   ],
   "guidance": [

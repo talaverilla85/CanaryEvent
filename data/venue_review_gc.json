@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-28T22:54:18+00:00",
-  "not_published": 103,
+  "updated_at": "2026-10-28T23:11:21+00:00",
+  "not_published": 99,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -16,18 +16,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 355,
-      "title": "𝐓𝐀𝐋𝐋𝐄𝐑 𝐃𝐄 𝐄𝐒𝐂𝐑𝐈𝐓𝐔𝐑𝐀 𝐂𝐎𝐍 𝐒𝐀𝐍𝐓𝐈𝐀𝐆𝐎 𝐆𝐈𝐋",
-      "start": "2026-09-11",
-      "end": "2026-12-11",
-      "municipality": "Mogán",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260911-0004/evento",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 337,
       "title": "Exposición temporal: `Arqueología de las plantas: una mirada al registro arqueológico invisible´",
       "start": "2026-09-18",
@@ -37,18 +25,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260918-0016/exposicion-temporal-arqueologia-de-las-plantas-una-mirada-al-registro-arqueologico-invisible",
       "organizer_url": "https://cuevapintada.grancanaria.com/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 313,
-      "title": "Taller: `Parabere una novela desmenuzada´ de Andrea Cabrera Kñallisky",
-      "start": "2026-09-21",
-      "end": "2026-11-23",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260921-0005/taller-parabere-una-novela-desmenuzada-de-andrea-cabrera-knallisky",
-      "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=10838726",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -700,18 +676,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 128,
-      "title": "EL LAGO DE LOS CISNES - INTERNATIONAL BALLET COMPANY",
-      "start": "2026-11-01T18:00:00",
-      "end": "2026-11-01T19:00:00",
-      "municipality": "Telde",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261101-0003/el-lago-de-los-cisnes-international-ballet-company",
-      "organizer_url": "https://teldecultura.org/events/el-lago-de-los-cisnes-international-ballet-company/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 142,
       "title": "I Jornadas de Aprendizaje-Servicio Universitario de Canarias",
       "start": "2026-11-04",
@@ -1153,18 +1117,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261204-0002/aula-de-cine-ciclo-los-modernos-anos-30-amame-esta-noche",
       "organizer_url": "https://www.ulpgc.es/agenda/2026/12/04/aula-cine-ciclo-modernos-anos-30-amame-esta-noche",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 360,
-      "title": "Ciclo de conferencias ¿A quién pertenece la ciudad?",
-      "start": "2026-12-10T19:30:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261210-0001/ciclo-de-conferencias-a-quien-pertenece-la-ciudad",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/12/10/ciclo-conferencias-quien-pertenece-ciudad",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
