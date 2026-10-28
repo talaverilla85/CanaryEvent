@@ -48,6 +48,7 @@ on:
       - "scripts/coverage_gc.py"
       - "scripts/gc_source_radar.py"
       - "scripts/official_venue_confirmations.py"
+      - "scripts/official_stage_agendas.py"
       - "scripts/poster_venues.py"
       - "scripts/venue_title_variants.py"
       - "scripts/ticket_recent.py"

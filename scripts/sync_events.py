@@ -24,6 +24,7 @@ import verified_venue_coordinates
 import cross_source_venue_facts
 import official_venue_confirmations
 import official_culture_calendars
+import official_stage_agendas
 import poster_venues
 import ticket_reserva
 import ticket_recent
@@ -537,6 +538,36 @@ def run():
             print("Official cultural source:",source_log["source"],
                   "verified",len(matching),"added",added,
                   "detail errors",len(source.get("errors",[])))
+        # Official Cuyás and SIT individual sessions; keep independent
+        # pre-existing organizer entries instead of overwriting provenance.
+        stage_entries,stage_sources=official_stage_agendas.collect(TODAY)
+        for source in stage_sources:
+            added=changed=protected=0
+            matches=[e for e in stage_entries if e["source_name"]==source["source"]]
+            for entry in matches:
+                old=conn.execute("SELECT source_name FROM events WHERE dedup_key=?",
+                                 (dedup_key(entry),)).fetchone()
+                if old and old["source_name"]!=entry["source_name"]:
+                    protected+=1
+                    continue
+                result=upsert(conn,entry)
+                added+=int(result=="added")
+                changed+=int(result=="changed")
+            conn.commit()
+            error=source.get("error","")
+            conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+                 VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+                 checked_at=excluded.checked_at,found=excluded.found,
+                 added=excluded.added,changed=excluded.changed,error=excluded.error""",
+                 (source["source"],NOW,len(matches),added,changed,error))
+            conn.commit()
+            record={"source":source["source"],"checked_at":NOW,"found":len(matches),
+                    "added":added,"changed":changed,
+                    "existing_organizer_preserved":protected,"error":error,
+                    "stats":source.get("stats")}
+            results.append(record)
+            print("Official stage agenda:",source["source"],"found",len(matches),
+                  "new",added,"protected",protected,"error",error)
         # Local patron-saint festivities not necessarily indexed by Cabildo.
         # Publication requires two official municipal pages to verify dates and
         # explicitly free entry; a parser failure must keep the last good data.

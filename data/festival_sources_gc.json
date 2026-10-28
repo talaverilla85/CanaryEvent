@@ -1,0 +1,113 @@
+{
+  "checked_on": "2026-10-28",
+  "scope": "Solo fuentes originales de actuaciones, festivales y recintos de Gran Canaria",
+  "publication_rule": "Una fuente o edición festivalera no es un evento. Publicar únicamente funciones con fecha, hora y recinto oficial contrastados; no extrapolar ediciones pasadas.",
+  "sources": [
+    {
+      "name": "Teatro Cuyás",
+      "url": "https://teatrocuyas.com/agenda.html",
+      "type": "teatro y jazz",
+      "status": "conector_automatico_nuevo",
+      "priority": "alta",
+      "notes": "Funciones individuales del recinto; conciertos Jazz Otoño y programación 2026-27. Contrasta recintos erróneos de agregadores."
+    },
+    {
+      "name": "Sala Insular de Teatro",
+      "url": "https://salainsulardeteatro.com/agenda.html",
+      "type": "teatro y música alternativa",
+      "status": "conector_automatico_nuevo",
+      "priority": "alta",
+      "notes": "Sesiones FEX, Jazz Otoño, residencias de artes escénicas y programación familiar."
+    },
+    {
+      "name": "43 Festival Internacional de Música de Canarias",
+      "url": "https://www.icdcultural.org/fimc-2027",
+      "type": "festival música clásica 2027",
+      "status": "estudiado_programa_2027_pendiente_conector_propio",
+      "priority": "alta",
+      "event_start": "2027-01-09",
+      "event_end": "2027-02-04",
+      "notes": "Festival interinsular. Filtrar exclusivamente sedes y funciones de Gran Canaria; no usar los 56 conciertos globales como fichas de Gran Canaria."
+    },
+    {
+      "name": "Centro Cultural Guaires de Gáldar",
+      "url": "https://www.galdar.es/event-location/centro-cultural-guaires/",
+      "type": "teatro musical humor infantil",
+      "status": "fuente_municipal_existente_ampliable",
+      "priority": "alta",
+      "notes": "Funciones 12 y 13 diciembre musical En busca de la magia y enero/abril/mayo 2027 contrastadas por ayuntamiento."
+    },
+    {
+      "name": "Teatro Víctor Jara Vecindario",
+      "url": "https://www.santaluciagc.com/",
+      "type": "teatro conciertos familiares sureste",
+      "status": "fuente_oficial_por_localizar_programa_detallado",
+      "priority": "alta",
+      "notes": "Importante para equilibrar la capital con el sureste. Buscar programa municipal original y vincular sesiones concretas."
+    },
+    {
+      "name": "Teatro Auditorio de Agüimes y Teatro Cruce de Culturas",
+      "url": "https://aguimes.es/cultura/",
+      "type": "teatro musical y festival del sur",
+      "status": "programacion_pdf_2026_2027_publicada_pendiente_desglose",
+      "priority": "alta",
+      "notes": "Documento oficial de teatros septiembre 2026–enero 2027 y Festival del Sur."
+    },
+    {
+      "name": "Teatro Juan Ramón Jiménez",
+      "url": "https://teldecultura.org/areas/teatro-municipal-juan-ramon-jimenez/",
+      "type": "música teatro danza Telde",
+      "status": "fuentes_telde_existentes_ampliables",
+      "priority": "media",
+      "notes": "Eventos individuales con fechas y horarios en Telde Cultura. Duplicados posibles en Cabildo."
+    },
+    {
+      "name": "Auditorio Municipal de Valleseco",
+      "url": "https://valleseco.es/valleseco/auditorio-municipal-dr-juan-rodriguez/",
+      "type": "música y cultura interior",
+      "status": "sede_localizada_programa_a_solicitar",
+      "priority": "media",
+      "notes": "La web publica sede y canal para solicitar programación; no hay calendario público verificable aquí."
+    },
+    {
+      "name": "MASDANZA",
+      "url": "https://www.masdanza.com/",
+      "type": "festival de danza",
+      "status": "edicion_2026_terminada",
+      "priority": "media",
+      "event_start": "2026-10-01",
+      "event_end": "2026-10-24",
+      "notes": "Esperar próximas ediciones, no importar actividades caducadas."
+    },
+    {
+      "name": "TEMUDAS Fest",
+      "url": "https://lpatemudasfest.com/",
+      "type": "festival de teatro música danza",
+      "status": "edicion_2026_terminada",
+      "priority": "media",
+      "event_start": "2026-09-10",
+      "event_end": "2026-09-26",
+      "notes": "Programa detallado por escenario; esperar próxima edición."
+    },
+    {
+      "name": "Canarias Jazz & Más",
+      "url": "https://canariasjazz.com/conciertos/",
+      "type": "festival itinerante de jazz",
+      "status": "edicion_2026_terminada",
+      "priority": "media",
+      "event_start": "2026-07-03",
+      "event_end": "2026-07-25",
+      "notes": "No copiar conciertos de otras islas; esperar programación nueva por sede."
+    },
+    {
+      "name": "Carnaval Las Palmas 2027",
+      "url": "https://www.grancanaria.com/turismo/es/agenda/agenda/",
+      "type": "festival ciudad carnaval",
+      "status": "fecha_general_publicada_actos_pendientes",
+      "priority": "media",
+      "event_start": "2027-01-22",
+      "event_end": "2027-02-28",
+      "notes": "Publicar solo actuaciones con recinto y hora oficial, no crear un evento diario por el intervalo general."
+    }
+  ]
+}

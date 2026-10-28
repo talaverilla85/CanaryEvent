@@ -83,7 +83,9 @@ def reconcile(events,norm):
         "LPA Cultura · agenda municipal oficial",
         "Teatro Pérez Galdós · programación oficial",
         "Auditorio Alfredo Kraus · programación oficial",
-        "Sociedad Filarmónica de Las Palmas · conciertos"
+        "Sociedad Filarmónica de Las Palmas · conciertos",
+        "Teatro Cuyás · agenda oficial",
+        "Sala Insular de Teatro · agenda oficial"
     }
     for group in groups.values():
         originals=[e for e in group
@@ -91,10 +93,21 @@ def reconcile(events,norm):
                    and is_known_venue(e.get("venue"))]
         aggregates=[e for e in group
                     if str(e.get("source_name") or "").startswith(CABILDO_PREFIX)]
-        if len(originals)==1:
-            # The original organizer has identified exactly one specific
-            # event. A duplicate Cabildo item is not a second performance.
+        # Multiple primary sources may agree on the same hall and session.
+        # Do not use an unverified source to override a different showtime.
+        if originals and all(
+            norm(other["venue"])==norm(originals[0]["venue"])
+            and safe_same_program(other,originals[0],norm)
+            for other in originals):
             for copied in aggregates:
+                # Keep legacy priority of original cultural organizers.
+                # For new stage feeds, different confirmed showtimes may
+                # represent separate performances and must remain distinct.
+                if (str(originals[0]["source_name"]).startswith(("Teatro Cuy", "Sala Insular"))
+                    and is_clock(copied.get("start"))
+                    and is_clock(originals[0].get("start"))
+                    and copied["start"][11:16]!=originals[0]["start"][11:16]):
+                    continue
                 eliminated.add(copied["id"])
     for group in groups.values():
         if len(group)<2:continue

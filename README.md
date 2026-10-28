@@ -722,3 +722,17 @@ Los datos de precio no publicados quedan desconocidos. Las fuentes
 se comprueban y registran de forma independiente para que un fallo
 en un teatro no afecte a los demás municipios. Las 108 fichas
 sin recinto que estaban apartadas quedan fuera de este trabajo.
+
+### Agenda de Teatro Cuyás y Sala Insular
+
+El módulo scripts/official_stage_agendas.py lee las agendas oficiales
+de https://teatrocuyas.com/agenda.html y
+https://salainsulardeteatro.com/agenda.html. Verifica robots.txt y extrae
+cada función con fecha, hora, título, sala y su enlace oficial.
+Excluye campañas de venta de entradas y las fechas pasadas.
+No presupone acceso gratis ni tarifas.
+
+Al conciliar, se prefiere el recinto indicado por la cartelera
+original frente a una ficha idéntica del Cabildo, únicamente cuando
+la fecha y la hora no son contradictorias. El registro original
+queda en SQLite para trazabilidad.
