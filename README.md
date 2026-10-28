@@ -853,3 +853,24 @@ defectuosos. Acepta títulos principales distintivos sin el sufijo
 de una productora; comprueba la fecha y rechaza lugares ambiguos.
 La ausencia de recinto verificable sigue excluyendo al evento.
 No se guardan imágenes ni claves API en GitHub.
+
+### Recintos en enlaces originales de Cultura Canarias
+
+La ficha del Cabildo puede enlazar una página cultural con sede
+precisa expresada en una frase, no en un campo Lugar:.
+
+Caso confirmado: taller de tarantismo y pizzica, 30/10/2026
+a las 17:00. La fuente oficial indica Gimnasio del Aulario de
+Santa Teresa, Campus del Obelisco, ULPGC: no Teatro Guiniguada.
+
+El lector ya consultaba la web del organizador, pero rechazaba
+frases como «La sede del taller será el ...». Ahora el adaptador
+del dominio cultura.icdcultural.org lee el contenido del evento
+y comprueba la fecha, la hora y una frase explícita de recinto.
+No se toman ubicaciones desde el pie de página ni por la simple
+presencia del nombre de un organizador.
+
+Se renueva la versión del analizador para volver a revisar las
+fichas previamente descartadas, sin depender de que venza la
+caché negativa. Las pruebas comprueban fecha, hora, municipio,
+lugar contradictorio y dominios no autorizados.
