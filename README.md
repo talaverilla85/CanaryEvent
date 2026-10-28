@@ -774,3 +774,37 @@ deduplicación insular y pruebas antes de habilitarla.
 Regla: fecha, isla, municipio, recinto y URL oficial verificables;
 no se inventan horas o precios. No se importan eventos pasados
 como si fueran futuros ni conciertos anunciados para otras islas.
+
+### Telegram: avisos automáticos de errores de importación
+
+El flujo independiente .github/workflows/telegram-sync-alerts.yml se
+activa al terminar Actualizar eventos oficiales, incluso si este falla.
+
+- Una sincronización fallida genera un aviso inmediato, también si el
+  trabajo se inició por un cambio de código.
+- La sincronización programada cada día con errores técnicos en fuentes
+  genera un único resumen con la lista de conectores afectados y enlace
+  a la ejecución de GitHub.
+- Una ejecución correcta sin incidencias no envía mensajes.
+- Una falta de recinto, un precio no confirmado o una fuente sin nuevos
+  eventos no son por sí solos errores técnicos.
+- La vigilancia omite los errores parciales repetidos durante los
+  frecuentes pushes, pero sí comunica cualquier fallo completo.
+
+CONFIGURACIÓN PRIVADA UNA SOLA VEZ:
+
+1. En Telegram abre @BotFather y envía /newbot. Crea un bot para la
+   aplicación y conserva el token de forma privada.
+2. Abre el nuevo bot en Telegram y pulsa Iniciar o envía /start.
+3. Obtén el ID del chat donde quieres recibir los avisos. No reveles
+   el token a bots externos ni lo pegues en esta conversación.
+4. En GitHub, repositorio talaverilla85/CanaryEvent, abre
+   Settings > Secrets and variables > Actions > New repository secret.
+   Crea TELEGRAM_BOT_TOKEN con el token de BotFather y
+   TELEGRAM_CHAT_ID con el ID del chat de destino.
+5. En Actions > Avisar por Telegram de incidencias de CanaryEvent >
+   Run workflow, ejecuta la prueba manual. Llegará una notificación
+   de prueba si las credenciales son correctas.
+
+La integración queda preparada, pero no se puede confirmar ningún
+envío de mensajes hasta configurar ambos secretos.
