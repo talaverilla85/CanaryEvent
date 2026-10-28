@@ -1,0 +1,16 @@
+{
+  "version": "poster-venues-v1",
+  "posters": {
+    "https://www.eventosgrancanaria.com/event/E-20261031-0013/noche-de-finaos": {
+      "sha256": "f6670136a87e95103a5be675dd902c302802e52ae9a23932325aceb53e2c1cde",
+      "title": "Noche de Finaos",
+      "event_date": "2026-10-31",
+      "status": "verified",
+      "verified": true,
+      "venue": "Parque Nicolás Quesada",
+      "method": "human_posted_poster",
+      "confirmed_on": "2026-10-27",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718cb013a6268e07a7c2a"
+    }
+  }
+}

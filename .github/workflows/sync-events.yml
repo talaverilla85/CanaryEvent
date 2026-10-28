@@ -47,6 +47,7 @@ on:
       - "scripts/coverage_gc.py"
       - "scripts/gc_source_radar.py"
       - "scripts/official_venue_confirmations.py"
+      - "scripts/poster_venues.py"
       - "scripts/venue_title_variants.py"
       - "scripts/ticket_recent.py"
       - "scripts/publish_synced_data.sh"
@@ -110,7 +111,9 @@ jobs:
       - name: Localizar fuentes y titulares nuevos de los municipios incompletos
         continue-on-error: true
         run: python scripts/gc_source_radar.py --max-sites 8
-      - name: Obtener y verificar eventos oficiales
+      - name: Obtener y verificar eventos oficiales y carteles
+        env:
+          OPENAI_API_KEY: "${{ secrets.OPENAI_API_KEY }}"
         run: python scripts/sync_events.py
       - name: Auditar calidad de fichas y conectores
         run: python scripts/audit_source_health_gc.py

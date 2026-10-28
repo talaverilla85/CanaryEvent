@@ -681,3 +681,19 @@ fichas con un centro municipal inventado.
   específicamente el acto, día y municipio.
 - Las rutas con varios puntos y ubicaciones contradictorias siguen en
   la cola de revisión.
+
+### Recintos que aparecen solo en carteles de actos
+
+El extractor visual restringido scripts/poster_venues.py verifica el original
+de la imagen asociada a un evento del Cabildo, admite tres carteles por
+ejecución, seis llamadas visuales y un coste nominal máximo de 0,035 USD.
+Requiere dos lecturas de imagen que coincidan en título, fecha y nombre del
+recinto antes de publicar el lugar; no deduce fechas ni sedes.
+
+El cartel de Noche de Finaos (Mogán, 31/10/2026, 19:00) anuncia Parque
+Nicolás Quesada; una persona lo verificó en la imagen aportada y su
+huella SHA256 original se comprueba antes de aplicar la corrección.
+Si cambia el cartel o aparece una ubicación ambigua, se mantiene pendiente.
+Solo se almacena prueba textual mínima e identificadores, nunca los
+ficheros de imagen ni la clave API. La auditoría queda registrada en
+data/poster_venue_pilot.
