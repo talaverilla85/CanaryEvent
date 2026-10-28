@@ -76,9 +76,9 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 11,
+      "catalog_cards_total": 12,
       "municipal_cards_total": 1,
-      "other_sources_cards_total": 10,
+      "other_sources_cards_total": 11,
       "source_health": [
         {
           "source": "Ayuntamiento de Arucas · agenda municipal",

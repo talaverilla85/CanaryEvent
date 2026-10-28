@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-28T23:43:57+00:00",
-  "not_published": 86,
+  "updated_at": "2026-10-28T23:53:06+00:00",
+  "not_published": 81,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -49,18 +49,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260925-0010/ii-campeonato-de-envite-pal-pie-villa-de-firgas",
       "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 265,
-      "title": "ESCUELA DE SALUD - MARTES",
-      "start": "2026-09-29",
-      "end": "2026-12-15",
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260929-0004/escuela-de-salud-martes",
-      "organizer_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1Rrd09RPT0=",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -496,18 +484,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 218,
-      "title": "LA BARRACA de Vicente Blasco Ibáñez",
-      "start": "2026-10-30",
-      "end": "2026-10-31",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0023/la-barraca-de-vicente-blasco-ibanez",
-      "organizer_url": "https://salainsulardeteatro.com/evento-769-la-barraca-de.html",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 582,
       "title": "ARUPIA - ÓRGANO DE PARTICIPACIÓN DE LA INFANCIA Y LA ADOLESCENCIA DE ARUCAS",
       "start": "2026-10-30",
@@ -856,18 +832,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 286,
-      "title": "ESCAPE ROOM de Joel Joan y Hèctor Claramunt",
-      "start": "2026-11-20",
-      "end": "2026-11-21",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0015/escape-room-de-joel-joan-y-hector-claramunt",
-      "organizer_url": "https://salainsulardeteatro.com/evento-772-escape-room-de.html",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 288,
       "title": "Africana Lab en Madrid: «Un puente, un amuleto, una mesa compartida»",
       "start": "2026-11-20",
@@ -877,18 +841,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0017/africana-lab-en-madrid-un-puente-un-amuleto-una-mesa-compartida",
       "organizer_url": "https://www.casafrica.es/es/evento/africana-lab-en-madrid-un-puente-un-amuleto-una-mesa-compartida",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 533,
-      "title": "JÓVENES QUE RECORREN LA MEMORIA PARA CONSTRUIR FUTURO",
-      "start": "2026-11-20",
-      "end": null,
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrMk13PT0=",
-      "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -925,18 +877,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261123-0001/exposicion-y-charla-conocer-para-conservar",
       "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 314,
-      "title": "Jazz Otoño 2026: The James Supremes",
-      "start": "2026-11-26",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261126-0000/jazz-otono-2026-the-james-supremes",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/26/jazz-otono-2026-james-supremes",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {

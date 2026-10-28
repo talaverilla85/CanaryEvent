@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-10-28T23:43:57+00:00",
+  "checked_at": "2026-10-28T23:53:06+00:00",
   "quality_counts": {
-    "publicados": 513,
-    "recintos_sin_verificar": 86,
+    "publicados": 514,
+    "recintos_sin_verificar": 81,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 354,
-    "distancia_a_centro_municipal": 345,
-    "fuentes_con_error": 1,
+    "precios_sin_confirmar": 355,
+    "distancia_a_centro_municipal": 347,
+    "fuentes_con_error": 0,
     "duplicados_potenciales": 9
   },
   "sources": [
@@ -164,7 +164,7 @@
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
       "publicados": 1,
-      "recinto_sin_verificar": 11,
+      "recinto_sin_verificar": 10,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
       "fichas_leidas_en_esta_ejecucion": 13,
@@ -293,10 +293,10 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 255,
-      "recinto_sin_verificar": 66,
-      "precio_sin_confirmar": 210,
-      "distancia_al_centro_municipal": 156,
+      "publicados": 256,
+      "recinto_sin_verificar": 62,
+      "precio_sin_confirmar": 211,
+      "distancia_al_centro_municipal": 158,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
@@ -332,12 +332,22 @@
     },
     {
       "source": "ULPGC · cine documental con recinto confirmado",
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 0,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": ""
+    },
+    {
+      "source": "Cuyás · reconciliación con programas originales",
       "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 1,
+      "fichas_leidas_en_esta_ejecucion": 2,
       "error": ""
     },
     {
@@ -352,29 +362,24 @@
     },
     {
       "source": "Recintos · carteles oficiales comprobados",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 9,
-      "error": "ValueError"
+      "fichas_leidas_en_esta_ejecucion": 10,
+      "error": ""
     }
   ],
-  "reported_errors": [
-    {
-      "source": "Recintos · carteles oficiales comprobados",
-      "error": "ValueError"
-    }
-  ],
+  "reported_errors": [],
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 66
+      "count": 62
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 11
+      "count": 10
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
@@ -425,14 +430,6 @@
       "municipality": "Firgas",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260925-0010/ii-campeonato-de-envite-pal-pie-villa-de-firgas"
-    },
-    {
-      "id": 265,
-      "title": "ESCUELA DE SALUD - MARTES",
-      "start": "2026-09-29",
-      "municipality": "Arucas",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260929-0004/escuela-de-salud-martes"
     },
     {
       "id": 535,
@@ -593,6 +590,14 @@
       "municipality": "Santa Lucía de Tirajana",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0007/espejos-y-ventanas"
+    },
+    {
+      "id": 452,
+      "title": "Microcredencial en Propiedad Intelectual y Derechos de Autor",
+      "start": "2026-10-19",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0000/microcredencial-en-propiedad-intelectual-y-derechos-de-autor"
     }
   ],
   "guidance": [

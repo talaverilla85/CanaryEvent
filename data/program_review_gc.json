@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T23:43:57+00:00",
+  "updated_at": "2026-10-28T23:53:06+00:00",
   "note": "Fichas pendientes de desglose o sin un evento identificable; no publicarlas como planes.",
   "pending_programs": [
     {
@@ -121,6 +121,48 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261201-0002/el-ayuntamiento-de-agaete-pone-en-marcha-el-programa-de-talleres-cuida-de-tu-bienestar",
       "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
+    }
+  ],
+  "source_venue_conflicts": [
+    {
+      "id": 215,
+      "title": "LA BARRACA de Vicente Blasco Ibáñez",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0012/la-barraca-de-vicente-blasco-ibanez",
+      "claimed_venue": "Sala Insular de Teatro",
+      "verified_venue": "Teatro Cuyás",
+      "reason": "conflicting_sister_theatre"
+    },
+    {
+      "id": 165,
+      "title": "JAZZ OTOÑO 2026- JUDITH HILL QUARTET",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0003/jazz-otono-2026-judith-hill-quartet",
+      "claimed_venue": "Sala Insular de Teatro",
+      "verified_venue": "Teatro Cuyás",
+      "reason": "conflicting_sister_theatre"
+    },
+    {
+      "id": 282,
+      "title": "ESCAPE ROOM de Joel Joan y Hèctor Claramunt",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0008/escape-room-de-joel-joan-y-hector-claramunt",
+      "claimed_venue": "Sala Insular de Teatro",
+      "verified_venue": "Teatro Cuyás",
+      "reason": "conflicting_sister_theatre"
+    },
+    {
+      "id": 324,
+      "title": "EL ENTUSIASMO de Pablo Remón",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261127-0006/el-entusiasmo-de-pablo-remon",
+      "claimed_venue": "Sala Insular de Teatro",
+      "verified_venue": "Teatro Cuyás",
+      "reason": "conflicting_sister_theatre"
+    },
+    {
+      "id": 371,
+      "title": "POSESA MISMA de PIEDRA PÓMEZ",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261212-0005/posesa-misma-de-piedra-pomez",
+      "claimed_venue": "Sala Insular de Teatro",
+      "verified_venue": "Teatro Cuyás",
+      "reason": "conflicting_sister_theatre"
     }
   ],
   "unverified_locations": [

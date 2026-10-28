@@ -419,6 +419,84 @@
       "event_date": "2026-10-01",
       "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab62661013a6268e079f0db",
       "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261001-0033/africa-la-fuerza-escondida": {
+      "sha256": "3cdf289e6a6af0c8db9239395d5b9ab6d1097fc21ce3cd105f937f36db3d047d",
+      "title": "África: La fuerza escondida",
+      "event_date": "2026-10-01",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad5f725013a6268e07a7b6b",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261001-0035/costura-creativa": {
+      "sha256": "67f52206ee3eb830820e6309064faea0366cc7c75ffcc74b92660eedad600536",
+      "title": "Costura Creativa",
+      "event_date": "2026-10-01",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aaa4998013a6268e079be39",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261001-0037/programacion-la-grada-creativa-octubre-2026": {
+      "sha256": "861094c2f8c641c7a511df7dfa97a89c15802954d44b89c5d3970545b1785e41",
+      "title": "Programación La Grada Creativa Octubre 2026",
+      "event_date": "2026-10-01",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac89830013a6268e07a3d20",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20260930-0003/costura-creativa": {
+      "sha256": "67f52206ee3eb830820e6309064faea0366cc7c75ffcc74b92660eedad600536",
+      "title": "Costura Creativa",
+      "event_date": "2026-09-30",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aaa4998013a6268e079be39",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20260930-0007/arte-en-femenino": {
+      "sha256": "50b931cc1176b7d1a6a0015aca7e6fc4a48e48570e29cd2c8c38fa5dd8358ff7",
+      "title": "ARTE EN FEMENINO",
+      "event_date": "2026-09-30",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab731ba013a6268e079f6dd",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20260930-0022/programacion-dia-de-las-bibliotecas-2026": {
+      "sha256": "bb1cd6f3f9f23f6a38f81e1fd4dfeb627b29eedd0f3680bb99cd29e82062ca2c",
+      "title": "Programación Día de las Bibliotecas 2026",
+      "event_date": "2026-09-30",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ac89822013a6268e07a3cee",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20260929-0004/escuela-de-salud-martes": {
+      "sha256": "2e4dd323c2cb35b0a04737a61cdb6c48278c30a7ef7db53c5c3740969a7a4535",
+      "title": "ESCUELA DE SALUD - MARTES",
+      "event_date": "2026-09-29",
+      "status": "verified",
+      "verified": true,
+      "venue": "Edificio Usos Múltiples - Bañaderos",
+      "method": "two_independent_visual_passes",
+      "confirmed_on": "2026-10-28",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab5e03a013a6268e079efb9"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261126-0000/jazz-otono-2026-the-james-supremes": {
+      "sha256": "248857a3b847462fe5e32833e5ef8fbc0ac3d0286c3c87bec4f13dec33ad8066",
+      "title": "Jazz Otoño 2026: The James Supremes",
+      "event_date": "2026-11-26",
+      "status": "verified",
+      "verified": true,
+      "venue": "Paraninfo ULPGC",
+      "method": "two_independent_visual_passes",
+      "confirmed_on": "2026-10-28",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa71c9e013a6268e079a909"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261126-0005/casa-africa-en-los-encuentros-de-bamako-202627": {
+      "sha256": "e6f90013f1bdb07ab8d3f1d1f909a3bf06fc37e3492957a6d5a2977971bba797",
+      "title": "Casa África en los Encuentros de Bamako 2026/27",
+      "event_date": "2026-11-26",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad86a5a013a6268e07a822c",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261128-0000/10-encuentro-entre-corderos-y-fogones": {
+      "sha256": "4724938197ffce15b9b4bd4c1412794f7dc6e73b4ec70127d0391ec75883f40f",
+      "title": "10º Encuentro Entre Corderos y Fogones",
+      "event_date": "2026-11-28",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/698cae2009e3917fd2acc9f1",
+      "status": "reviewed_no_single_venue"
     }
   }
 }
