@@ -50,6 +50,9 @@ import municipal_pdf_sources
 import municipal_pdf_auto
 import gc_documented_events
 import aldea_ecoentradas
+import moya_autumn_agenda
+import valsequillo_calendar
+import mogan_confirmed_news
 import municipal_listing_dedup
 import cinema_policy
 import event_occurrences
@@ -971,6 +974,35 @@ def run():
              "error":eco_error,"stats":eco_details})
         print("La Aldea official hall ticket listings:",eco_found,
               "added",eco_added,"error",eco_error[:90])
+        # Complete the underrepresented municipalities with audited 2026
+        # originals. Moya and Valsequillo are fixed *reviewed snapshots*
+        # because their site hosts deny bot crawling; no robots bypass.
+        # Mog?n's venue/date is from its dated official municipal notice.
+        for municipal_module in (moya_autumn_agenda,valsequillo_calendar,mogan_confirmed_news):
+            name=municipal_module.NAME
+            found=added=changed=0
+            error=""
+            extra={}
+            try:
+                rows,extra=municipal_module.fetch_and_extract(TODAY,PLACES)
+                found=len(rows)
+                for entry in rows:
+                    outcome=upsert(conn,entry)
+                    added+=int(outcome=="added")
+                    changed+=int(outcome=="changed")
+                conn.commit()
+            except (ValueError,RuntimeError,PermissionError,requests.RequestException) as exc:
+                error=type(exc).__name__+": "+str(exc)[:140]
+                print("WARN municipal reviewed source",name,error,file=sys.stderr)
+            conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+                VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+                checked_at=excluded.checked_at,found=excluded.found,
+                added=excluded.added,changed=excluded.changed,error=excluded.error""",
+                (name,NOW,found,added,changed,error))
+            conn.commit()
+            results.append({"source":name,"checked_at":NOW,"found":found,
+                       "added":added,"changed":changed,"error":error,"stats":extra})
+            print("Reviewed municipal agenda:",name,found,"verified",added,"new")
         # Official campaign posters are sources, not individual plans.
         youth=ingenio_juvenil_program
         youth_found=youth_added=youth_changed=0
