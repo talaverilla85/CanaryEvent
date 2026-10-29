@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-10-28",
+  "checked_on": "2026-10-29",
   "active_publication_islands": [
     "Gran Canaria"
   ],
@@ -8,7 +8,7 @@
       "island": "Gran Canaria",
       "publication_enabled": true,
       "mapping_status": "activo",
-      "sources_registered": 6
+      "sources_registered": 7
     },
     {
       "island": "Tenerife",
@@ -53,7 +53,7 @@
       "sources_registered": 1
     }
   ],
-  "source_count": 6,
+  "source_count": 7,
   "sources": [
     {
       "id": "fimc",
@@ -151,6 +151,21 @@
       "last_error": null,
       "published_cards": 0,
       "has_live_connector": false
+    },
+    {
+      "id": "ecoentradas-interinsular",
+      "name": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
+      "type": "taquilla_interinsular_sedes_y_sesiones",
+      "url": "https://www.ecoentradas.com/",
+      "islands": [
+        "Gran Canaria"
+      ],
+      "status": "activo_solo_recinto_la_aldea;_expansion_islena_pendiente",
+      "adapter": "aldea_ecoentradas",
+      "found_last_run": 1,
+      "last_error": "",
+      "published_cards": 1,
+      "has_live_connector": true
     }
   ],
   "producer_observations": {

@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-28T23:53:06+00:00",
-  "not_published": 81,
+  "updated_at": "2026-10-29T00:10:37+00:00",
+  "not_published": 76,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -48,18 +48,6 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260925-0010/ii-campeonato-de-envite-pal-pie-villa-de-firgas",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 535,
-      "title": "ESCUELA DE SALUD - MARTES",
-      "start": "2026-09-29",
-      "end": "2026-12-15",
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1Rrd09RPT0=",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
@@ -181,18 +169,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0039/paqui-alvarez-monzon-presenta-donde-el-tiempo-se-detiene-en-las-casas-consistoriales",
       "organizer_url": "https://teldecultura.org/events/paqui-alvarez-monzon-presenta-donde-el-tiempo-se-detiene-en-las-casas-consistoriales/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 160,
-      "title": "XXXI FESTIVAL INTERNACIONAL DE FOLKLORE",
-      "start": "2026-10-10",
-      "end": "2026-10-28",
-      "municipality": "Ingenio",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261010-0002/xxxi-festival-internacional-de-folklore",
-      "organizer_url": "https://ingenio.es/events/xxxi-festival-internacional-de-folklore/",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -373,42 +349,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0001/xiii-congreso-internacional-galdosiano-galdos-presente-y-futuro-nuevos-retos-galdosianos",
       "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11061201",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 68,
-      "title": "Día Mundial Patrimonio audiovisual 2026",
-      "start": "2026-10-27",
-      "end": "2026-10-28",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261027-0006/dia-mundial-patrimonio-audiovisual-2026",
-      "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11161597",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 74,
-      "title": "Visita Unidad Móvil de la Policía Nacional(DNI - PASAPORTES)",
-      "start": "2026-10-28T09:00:00",
-      "end": "2026-10-28T12:30:00",
-      "municipality": "Valsequillo",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0002/visita-unidad-movil-de-la-policia-nacionaldni-pasaportes",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 75,
-      "title": "Curso básico de cocina canaria saludable",
-      "start": "2026-10-28T19:30:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261028-0004/curso-basico-de-cocina-canaria-saludable",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/10/28/curso-basico-cocina-canaria-saludable",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {

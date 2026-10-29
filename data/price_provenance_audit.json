@@ -1,16 +1,15 @@
 {
-  "checked_on": "2026-10-28T23:56:52.370256+00:00",
-  "total_events": 514,
-  "known_price_or_free": 159,
+  "checked_on": "2026-10-29T00:14:22.381774+00:00",
+  "total_events": 509,
+  "known_price_or_free": 158,
   "classification": {
     "minimum_zero_ambiguous": 6,
-    "fixed_positive": 8,
-    "free": 24,
-    "minimum_positive": 121
+    "free": 23,
+    "minimum_positive": 122,
+    "fixed_positive": 7
   },
   "known_by_source": {
     "TuReservaOnline · agenda de Gran Canaria": 74,
-    "LPA Cultura · agenda municipal oficial": 7,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 45,
     "Ayuntamiento de Telde · fiestas y cultura 2026": 1,
     "Ayuntamiento de Ingenio": 5,
@@ -19,7 +18,9 @@
     "Ayuntamiento de Agüimes": 2,
     "Mancomunidad de Medianías · Alma de Medianías en Valsequillo": 2,
     "Ayuntamiento de Tejeda · agenda oficial": 1,
-    "Ayuntamiento de Teror · programación del Auditorio": 10
+    "Ayuntamiento de Teror · programación del Auditorio": 10,
+    "LPA Cultura · agenda municipal oficial": 5,
+    "EcoEntradas · Centro Municipal de Cultura de La Aldea": 1
   },
   "issues": [
     {

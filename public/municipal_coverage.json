@@ -1,8 +1,8 @@
 {
-  "updated_on": "2026-10-28",
+  "updated_on": "2026-10-29",
   "scope": "21 municipios de Gran Canaria",
   "municipalities_total": 21,
-  "municipalities_with_any_catalog_cards": 19,
+  "municipalities_with_any_catalog_cards": 20,
   "municipalities_with_official_municipal_cards": 15,
   "municipalities_without_municipal_cards": 6,
   "full_coverage_confirmed": false,
@@ -76,9 +76,9 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 12,
+      "catalog_cards_total": 11,
       "municipal_cards_total": 1,
-      "other_sources_cards_total": 11,
+      "other_sources_cards_total": 10,
       "source_health": [
         {
           "source": "Ayuntamiento de Arucas · agenda municipal",
@@ -156,9 +156,9 @@
       "original_connector_state": "fuente_oficial_localizada_tls_pendiente",
       "coverage_level": "sin_extraccion_municipal_automatizada",
       "data_status": "fuente_oficial_localizada_tls_pendiente",
-      "catalog_cards_total": 0,
+      "catalog_cards_total": 1,
       "municipal_cards_total": 0,
-      "other_sources_cards_total": 0,
+      "other_sources_cards_total": 1,
       "source_health": [],
       "full_coverage_claim": false
     },
@@ -169,9 +169,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 266,
+      "catalog_cards_total": 264,
       "municipal_cards_total": 12,
-      "other_sources_cards_total": 254,
+      "other_sources_cards_total": 252,
       "source_health": [
         {
           "source": "Juventud Las Palmas de Gran Canaria",
@@ -214,9 +214,9 @@
       "original_connector_state": "conector_parcial_articulos_verificados",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial_articulos_contrastados",
-      "catalog_cards_total": 16,
+      "catalog_cards_total": 15,
       "municipal_cards_total": 5,
-      "other_sources_cards_total": 11,
+      "other_sources_cards_total": 10,
       "source_health": [],
       "full_coverage_claim": false
     },
@@ -227,13 +227,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 19,
+      "catalog_cards_total": 18,
       "municipal_cards_total": 15,
-      "other_sources_cards_total": 4,
+      "other_sources_cards_total": 3,
       "source_health": [
         {
           "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-          "found": 20,
+          "found": 19,
           "error": ""
         }
       ],
@@ -272,13 +272,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 5,
-      "municipal_cards_total": 5,
+      "catalog_cards_total": 4,
+      "municipal_cards_total": 4,
       "other_sources_cards_total": 0,
       "source_health": [
         {
           "source": "Ayuntamiento de Tejeda · agenda oficial",
-          "found": 5,
+          "found": 4,
           "error": ""
         }
       ],

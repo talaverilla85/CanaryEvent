@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-10-28T23:53:06+00:00",
+  "checked_at": "2026-10-29T00:10:37+00:00",
   "quality_counts": {
-    "publicados": 514,
-    "recintos_sin_verificar": 81,
+    "publicados": 509,
+    "recintos_sin_verificar": 76,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 355,
-    "distancia_a_centro_municipal": 347,
-    "fuentes_con_error": 0,
+    "precios_sin_confirmar": 351,
+    "distancia_a_centro_municipal": 339,
+    "fuentes_con_error": 1,
     "duplicados_potenciales": 9
   },
   "sources": [
@@ -53,10 +53,10 @@
     {
       "source": "LPA Cultura · agenda municipal oficial",
       "estado": "operativa",
-      "publicados": 10,
+      "publicados": 8,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 3,
-      "distancia_al_centro_municipal": 10,
+      "distancia_al_centro_municipal": 8,
       "fichas_leidas_en_esta_ejecucion": 8,
       "error": ""
     },
@@ -164,7 +164,7 @@
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
       "publicados": 1,
-      "recinto_sin_verificar": 10,
+      "recinto_sin_verificar": 9,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
       "fichas_leidas_en_esta_ejecucion": 13,
@@ -183,11 +183,11 @@
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "estado": "operativa",
-      "publicados": 5,
+      "publicados": 4,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 4,
-      "distancia_al_centro_municipal": 5,
-      "fichas_leidas_en_esta_ejecucion": 5,
+      "precio_sin_confirmar": 3,
+      "distancia_al_centro_municipal": 4,
+      "fichas_leidas_en_esta_ejecucion": 4,
       "error": ""
     },
     {
@@ -217,7 +217,7 @@
       "recinto_sin_verificar": 3,
       "precio_sin_confirmar": 15,
       "distancia_al_centro_municipal": 15,
-      "fichas_leidas_en_esta_ejecucion": 20,
+      "fichas_leidas_en_esta_ejecucion": 19,
       "error": ""
     },
     {
@@ -281,6 +281,16 @@
       "error": ""
     },
     {
+      "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
+      "estado": "operativa",
+      "publicados": 1,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 1,
+      "error": ""
+    },
+    {
       "source": "Juventud de Ingenio · programa de otoño desglosado",
       "estado": "operativa",
       "publicados": 1,
@@ -292,12 +302,12 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 256,
-      "recinto_sin_verificar": 62,
-      "precio_sin_confirmar": 211,
-      "distancia_al_centro_municipal": 158,
-      "fichas_leidas_en_esta_ejecucion": 0,
+      "estado": "operativa",
+      "publicados": 253,
+      "recinto_sin_verificar": 58,
+      "precio_sin_confirmar": 208,
+      "distancia_al_centro_municipal": 153,
+      "fichas_leidas_en_esta_ejecucion": 53,
       "error": ""
     },
     {
@@ -342,12 +352,12 @@
     },
     {
       "source": "Cuyás · reconciliación con programas originales",
-      "estado": "operativa",
+      "estado": "sin_resultados_en_esta_revision",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 2,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -362,24 +372,29 @@
     },
     {
       "source": "Recintos · carteles oficiales comprobados",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 10,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 9,
+      "error": "ValueError"
     }
   ],
-  "reported_errors": [],
+  "reported_errors": [
+    {
+      "source": "Recintos · carteles oficiales comprobados",
+      "error": "ValueError"
+    }
+  ],
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 62
+      "count": 58
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 10
+      "count": 9
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
@@ -430,14 +445,6 @@
       "municipality": "Firgas",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260925-0010/ii-campeonato-de-envite-pal-pie-villa-de-firgas"
-    },
-    {
-      "id": 535,
-      "title": "ESCUELA DE SALUD - MARTES",
-      "start": "2026-09-29",
-      "municipality": "Arucas",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1Rrd09RPT0="
     },
     {
       "id": 259,
@@ -520,14 +527,6 @@
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0039/paqui-alvarez-monzon-presenta-donde-el-tiempo-se-detiene-en-las-casas-consistoriales"
     },
     {
-      "id": 160,
-      "title": "XXXI FESTIVAL INTERNACIONAL DE FOLKLORE",
-      "start": "2026-10-10",
-      "municipality": "Ingenio",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261010-0002/xxxi-festival-internacional-de-folklore"
-    },
-    {
       "id": 137,
       "title": "Charla + sesión de videojuegos: El Belingo club de videojuegos",
       "start": "2026-10-14",
@@ -598,6 +597,22 @@
       "municipality": "Las Palmas de Gran Canaria",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0000/microcredencial-en-propiedad-intelectual-y-derechos-de-autor"
+    },
+    {
+      "id": 71,
+      "title": "Mi espacio, mi poder",
+      "start": "2026-10-20",
+      "municipality": "Firgas",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261020-0014/mi-espacio-mi-poder"
+    },
+    {
+      "id": 40,
+      "title": "3ª edición Teror Film Fest",
+      "start": "2026-10-23",
+      "municipality": "Teror",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0014/3-edicion-teror-film-fest"
     }
   ],
   "guidance": [

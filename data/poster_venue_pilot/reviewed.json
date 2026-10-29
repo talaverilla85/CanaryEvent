@@ -497,6 +497,14 @@
       "event_date": "2026-11-28",
       "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/698cae2009e3917fd2acc9f1",
       "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20260918-0016/exposicion-temporal-arqueologia-de-las-plantas-una-mirada-al-registro-arqueologico-invisible": {
+      "event_date": "2026-09-18",
+      "title": "Exposición temporal: `Arqueología de las plantas: una mirada al registro arqueológico invisible´",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aabf607013a6268e079c616",
+      "status": "image_error",
+      "error_type": "ValueError",
+      "retry_on": "2026-10-31"
     }
   }
 }
