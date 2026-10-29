@@ -527,7 +527,10 @@ const PLACES={'Agaete':[28.100,-15.700],'Agüimes':[27.906,-15.445],'Artenara':[
 const COVER_SYMBOLS={musica:'♫',gastronomia:'✦',familia:'☀',cultura:'✳',deporte:'➜',naturaleza:'❋',ocio:'✧',otros:'✳'};
 const IMAGE_HOSTS=new Set(['ingenio.es','www.ingenio.es','eventos.aguimes.es',
  'actividadesjuventud.laspalmasgc.es','artesescenicasgrancanaria.com',
- 'www.artesescenicasgrancanaria.com','www.eventosgrancanaria.com','www.tureservaonline.es']);
+ 'www.artesescenicasgrancanaria.com','www.eventosgrancanaria.com','www.tureservaonline.es',
+ 'auditorioalfredokraus.es','teatroperezgaldos.es','salainsulardeteatro.com','teatrocuyas.com',
+ 'eventos.santabrigida.es','lpacultura.com','cdn.prod.website-files.com',
+ 'tejeda.eu','valleseco.es','santamariadeguia.es','api.sociedadfilarmonicalpgc.com','teror.es']);
 const CLASSES={musica:'p-music',gastronomia:'p-food',familia:'p-family',cultura:'p-culture',deporte:'p-sports',naturaleza:'p-nature',ocio:'p-leisure',otros:'p-other'};
 const escapeHTML=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const textForCat=k=>CATS.find(c=>c[0]===k)?.[2]||'Actividad';
