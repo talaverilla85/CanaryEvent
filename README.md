@@ -980,3 +980,14 @@ El objetivo es 21/21 municipios con eventos contrastados cuando
 existan y, de forma separada, fuentes municipales activas y
 actualizables. Las fuentes que proh?ben rastreo o tienen contenido
 caducado se declaran parciales, no completas.
+
+### Firgas: Noche de Finaos 2026 por corroboracion independiente
+
+La noche del 31 de octubre de 2026 a las 21:00, la Casa de los
+Mayores de Firgas acoge un asadero de castanas con la Agrupacion
+Folclorica Tacande. Coinciden tres publicaciones locales,
+consultables en scripts/firgas_local_confirmed.py. Esta entrada
+tiene origen **no municipal**, etiqueta propia y caduca al pasar
+el dia. Firgas sigue sin una agenda del Ayuntamiento que publique
+actos culturales futuros con regularidad: NO proclamar cobertura
+municipal exhaustiva por este evento aislado.

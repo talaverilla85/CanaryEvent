@@ -53,6 +53,7 @@ import aldea_ecoentradas
 import moya_autumn_agenda
 import valsequillo_calendar
 import mogan_confirmed_news
+import firgas_local_confirmed
 import municipal_listing_dedup
 import cinema_policy
 import event_occurrences
@@ -978,7 +979,7 @@ def run():
         # originals. Moya and Valsequillo are fixed *reviewed snapshots*
         # because their site hosts deny bot crawling; no robots bypass.
         # Mog?n's venue/date is from its dated official municipal notice.
-        for municipal_module in (moya_autumn_agenda,valsequillo_calendar,mogan_confirmed_news):
+        for municipal_module in (moya_autumn_agenda,valsequillo_calendar,mogan_confirmed_news,firgas_local_confirmed):
             name=municipal_module.NAME
             found=added=changed=0
             error=""

@@ -50,6 +50,7 @@ on:
       - "scripts/moya_autumn_agenda.py"
       - "scripts/valsequillo_calendar.py"
       - "scripts/mogan_confirmed_news.py"
+      - "scripts/firgas_local_confirmed.py"
       - "scripts/official_culture_calendars.py"
       - "scripts/coverage_gc.py"
       - "scripts/gc_source_radar.py"
