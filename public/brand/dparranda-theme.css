@@ -224,3 +224,125 @@ body::before{content:"";height:4px;position:absolute;inset:0 0 auto;background:l
  .filters-panel-top,.filters-panel-footer{padding-left:17px;padding-right:17px}
  .filters-panel-body{padding-left:17px;padding-right:17px}
 }
+
+/* D’Parranda · Sponsor is a distinct editorial placement, not an event card.
+   Trust: explicit advertising disclosure, branded frame and generous spacing. */
+.events-grid > .sponsor-slot{
+ grid-column:1 / -1;
+ display:block;
+ min-width:0;
+ margin:18px 0 22px;
+ padding:16px 17px 18px;
+ border:1.5px solid #AED4D8;
+ border-radius:23px;
+ background:linear-gradient(120deg,#EDF7F7 0%,#F6FAF9 70%,#F8FBFA 100%);
+ box-shadow:0 8px 24px #10364D0C;
+ position:relative;
+ isolation:isolate;
+}
+.sponsor-slot::before{
+ content:"";position:absolute;top:16px;bottom:16px;left:0;width:4px;
+ background:#1398A8;border-radius:0 6px 6px 0;
+}
+.sponsor-slot-caption{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:9px;margin:0 1px 12px;
+}
+.sponsor-slot-heading{
+ display:inline-flex;align-items:center;gap:7px;
+ color:#176A7B;font-size:11px;font-weight:800;letter-spacing:1.2px;
+}
+.sponsor-slot-heading svg{width:17px;height:17px;flex:none}
+.sponsor-slot-kind{
+ font-size:9px;letter-spacing:1.1px;font-weight:800;
+ color:#637D83;background:#FFFFFFB8;border:1px solid #D1E4E5;
+ padding:5px 9px;border-radius:20px;
+}
+.sponsor-slot .sponsor-card{
+ grid-column:auto;
+ border:1px solid #CADFE1;
+ border-radius:17px;
+ box-shadow:0 3px 13px #10364D0B;
+ background:#fff;
+ min-width:0;
+ overflow:hidden;
+}
+.sponsor-slot .sponsor-hit{
+ background:#fff;
+ color:#10364D;
+ min-height:178px;
+ display:flex;align-items:stretch;
+ text-decoration:none;
+ transition:background .2s ease;
+}
+.sponsor-slot .sponsor-hit:hover{background:#F8FCFC}
+.sponsor-slot .sponsor-hit:focus-visible{outline:3px solid #08A9B9;outline-offset:-4px}
+.sponsor-slot .sponsor-media{
+ width:30%;min-height:178px;flex:none;
+ background:#E3EFF0;
+ overflow:hidden;
+ border-right:1px solid #E2ECEC;
+}
+.sponsor-slot .sponsor-media img{width:100%;height:100%;object-fit:cover}
+.sponsor-slot .sponsor-content{
+ padding:20px 26px 21px;gap:9px;
+ justify-content:center;
+}
+.sponsor-slot .sponsor-label{
+ color:#13798B;font-weight:800;letter-spacing:1.2px;
+ font-size:10px;
+}
+.sponsor-slot .sponsor-label-divider{color:#B9CDD1;margin:0 2px}
+.sponsor-slot .sponsor-heading{
+ color:#123D50;
+ font-family:'Outfit',sans-serif;
+ font-size:clamp(19px,2.2vw,27px);
+ line-height:1.14;
+ letter-spacing:-.45px;
+ max-width:580px;
+}
+.sponsor-slot .sponsor-copy{
+ color:#546E76;font-size:13px;line-height:1.43;
+ max-width:570px;
+}
+.sponsor-slot .sponsor-bottom{margin-top:6px;gap:12px}
+.sponsor-slot .sponsor-location{font-size:11px;color:#6D888F}
+.sponsor-slot .sponsor-button{
+ display:inline-flex;align-items:center;
+ justify-content:center;
+ min-height:40px;
+ color:#fff;background:#10364D;border-radius:11px;
+ padding:10px 17px;
+ font-size:12px;letter-spacing:.05px;font-weight:800;
+ box-shadow:0 3px 9px #10364D19;
+}
+.sponsor-slot .sponsor-hit:hover .sponsor-button{background:#087F9F}
+@media(max-width:720px){
+ .events-grid > .sponsor-slot{
+  padding:12px 12px 14px;margin:18px 0 21px;
+  border-radius:18px;border-width:1px;
+ }
+ .sponsor-slot::before{top:12px;bottom:12px;width:3px}
+ .sponsor-slot-caption{margin:0 1px 10px;gap:6px}
+ .sponsor-slot-heading{font-size:10px;letter-spacing:.75px;gap:5px}
+ .sponsor-slot-heading svg{height:15px;width:15px}
+ .sponsor-slot-kind{font-size:8px;letter-spacing:.5px;padding:4px 7px}
+ .sponsor-slot .sponsor-card{border-radius:13px}
+ .sponsor-slot .sponsor-hit{min-height:196px}
+ .sponsor-slot .sponsor-media{width:36%;min-height:196px}
+ .sponsor-slot .sponsor-content{padding:13px 14px;gap:6px}
+ .sponsor-slot .sponsor-label{font-size:9px;letter-spacing:.55px}
+ .sponsor-slot .sponsor-heading{font-size:clamp(15px,4.2vw,19px);line-height:1.17;letter-spacing:-.3px}
+ .sponsor-slot .sponsor-copy{font-size:11px;line-height:1.4}
+ .sponsor-slot .sponsor-location{font-size:10px}
+ .sponsor-slot .sponsor-bottom{gap:8px;margin-top:5px}
+ .sponsor-slot .sponsor-button{font-size:11px;min-height:36px;border-radius:9px;padding:8px 12px}
+}
+@media(max-width:370px){
+ .sponsor-slot .sponsor-media{width:32%}
+ .sponsor-slot .sponsor-content{padding:11px;gap:6px}
+ .sponsor-slot .sponsor-heading{font-size:15px}
+ .sponsor-slot .sponsor-location{display:none}
+ .sponsor-slot-heading{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.sponsor-slot .sponsor-hit{transition:none}}
