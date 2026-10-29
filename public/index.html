@@ -374,6 +374,71 @@ body{background:var(--cream)}
  .hero.ochea-intro .hero-content{padding:23px 28px}
  .events-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
+
+/* Ochea V3: centered brand and simple entry to full filtering */
+.ochea-brand-header{display:flex;flex-direction:column;align-items:center;text-align:center;padding:18px 0 19px;gap:0}
+.ochea-brand-link{display:block;width:min(390px,87vw);line-height:0}
+.ochea-brand-visual{display:block;width:100%;height:auto;object-fit:contain}
+.ochea-brand-motto{color:#0b3451;font-size:clamp(16px,2.4vw,21px);font-weight:700;letter-spacing:.35px;margin:-1px 0 0}
+.ochea-filter-entry{display:flex;align-items:center;gap:13px;text-align:left;width:100%;border:1px solid #d4e4ed;background:#fff;border-radius:20px;padding:15px 17px;min-height:75px;box-shadow:0 5px 20px #082c4808}
+.filter-entry-icon{font-size:34px;color:#008cac;line-height:1}
+.filter-entry-copy{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+.filter-entry-copy strong{font-size:17px;letter-spacing:-.35px;color:#0c314e}
+.filter-entry-copy small{font-size:11px;color:#7a8b98;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.filter-entry-action{background:#e3f5fa;color:#006b88;border-radius:99px;font-weight:800;font-size:12px;padding:11px 14px;white-space:nowrap}
+.discovery{padding-top:3px}
+.quick-toolbar{margin-top:21px;align-items:center}
+.result-titles h2{font-size:clamp(22px,3.2vw,33px);line-height:1.1;word-break:normal}
+.count{font-size:13px}
+.ochea-filters-backdrop{position:fixed;inset:0;z-index:24;background:#061929aa;backdrop-filter:blur(3px)}
+.ochea-filters-panel{position:fixed;top:0;right:0;bottom:0;z-index:25;display:flex;flex-direction:column;width:min(510px,100%);height:100dvh;background:#f7fafc;box-shadow:-14px 0 44px #001d313d}
+.filters-panel-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex:none;padding:22px 22px 14px;border-bottom:1px solid #dce9f0;background:#fff}
+.filters-panel-top h2{margin:6px 0 0;color:#082c48;font:800 27px 'Outfit',sans-serif;letter-spacing:-.7px}
+.filters-close{display:grid;place-items:center;border:1px solid #dae6ed;border-radius:50%;width:42px;height:42px;background:#fff;color:#214c66;font-size:20px}
+.filters-panel-body{overflow-y:auto;overscroll-behavior:contain;padding:15px 22px 24px;flex:1}
+.filters-label{font-weight:800;font-size:13px;color:#0b344d;margin:20px 0 9px}
+.filters-label:first-child{margin-top:2px}
+.filters-panel-body .searchwrap{width:100%;box-shadow:none;height:52px}
+.filters-panel-body .date-filter-wrap{margin-top:16px}
+.filters-panel-body .date-filter-wrap .top-filters{flex-wrap:wrap;overflow:visible;gap:8px}
+.filters-panel-body .date-chip{min-height:39px;font-size:12px}
+.filters-panel-body .category-filter-heading{margin-top:18px}
+.filters-panel-body .categories{flex-wrap:wrap;overflow:visible;padding:0;gap:8px}
+.filters-panel-body .category-chip{border:1px solid #dce9ef;background:#fff;border-radius:14px;padding:9px 13px}
+.filters-panel-body .category-chip.active{border-color:#70b8c8;background:#e0f5fa;padding:9px 13px}
+.filters-panel-body .category-next{display:none!important}
+.filters-panel-body .category-filter-heading small{display:none}
+.ochea-islands{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.island-option{display:flex;flex-direction:column;align-items:flex-start;position:relative;padding:11px 11px 10px 31px;min-height:66px;gap:3px;border:1px solid #d9e7ee;border-radius:14px;background:#fff;text-align:left;color:#274b61;font-size:13px;font-weight:800}
+.island-option small{font-size:10px;font-weight:600;color:#91a0a9}
+.island-option.selected{border:2px solid #0097b5;background:#e9f8fb;color:#063752;padding:10px 10px 9px 30px}
+.island-option.selected small{color:#007b98}
+.island-check{position:absolute;top:11px;left:10px;display:grid;place-items:center;width:15px;height:15px;border:1px solid #a4bac6;border-radius:50%;font-size:11px;line-height:1}
+.island-option.selected .island-check{background:#008eac;border-color:#008eac;color:#fff}
+.island-availability{margin:10px 0 0;color:#728896;font-size:11px;line-height:1.5}
+.filters-panel-body .filters-location{width:100%;justify-content:space-between;border-radius:14px;height:49px;font-size:13px}
+.filters-help{color:#738895;font-size:11px;line-height:1.45;margin:8px 0}
+.filters-sort{width:100%;border-radius:13px;min-height:46px;border:1px solid #dce8ef;background:#fff;padding:10px 13px;color:#082c48;font-size:13px}
+.filters-surprise{display:block;width:100%;margin-top:15px;background:transparent;border:1px dashed #b8d7e2;color:#13738f;border-radius:14px;padding:11px;font-weight:700}
+.filters-panel-footer{flex:none;display:flex;gap:10px;padding:12px 20px calc(12px + env(safe-area-inset-bottom));border-top:1px solid #dfebef;background:#fff}
+.filters-clear{border:1px solid #d7e7ef;border-radius:13px;background:#fff;color:#35596e;font-weight:800;padding:13px 17px}
+.filters-apply{flex:1;min-height:46px;border:0;border-radius:13px;background:#082c48;color:#fff;font-weight:800;padding:13px 17px}
+@media(max-width:649px){
+ .ochea-brand-header{padding:12px 0 16px}
+ .ochea-brand-link{width:min(340px,88vw)}
+ .ochea-brand-motto{font-size:clamp(16px,4.4vw,20px);margin-top:-2px}
+ .ochea-filter-entry{min-height:69px;padding:12px;gap:10px;border-radius:17px}
+ .filter-entry-copy strong{font-size:15px}
+ .filter-entry-action{font-size:11px;padding:10px 11px}
+ .quick-toolbar{margin-top:15px}
+ .filters-panel-top{padding:14px 18px 12px}
+ .filters-panel-body{padding:13px 18px 24px}
+ .filters-panel-body .date-filter-wrap{flex-wrap:wrap}
+ .filters-panel-body .date-filter-wrap .top-filters{flex:1 1 100%}
+ .filters-panel-body .date-filter-wrap #customDateToggle{width:100%}
+ .filters-panel-body .date-toggle-label-short{display:none}
+ .filters-panel-body .date-toggle-label-long{display:inline}
+}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>Ochea · Planes y eventos en Gran Canaria</title>
