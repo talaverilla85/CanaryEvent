@@ -1,4 +1,4 @@
-/* Calendario flexible de ¿Pa' Dónde?: date/month inputs complement quick filters.
+/* Calendario flexible de D’Parranda: date/month inputs complement quick filters.
  * Functions are invoked by the main app only after it defines shared state.
  */
 'use strict';
