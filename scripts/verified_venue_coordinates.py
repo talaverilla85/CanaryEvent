@@ -13,7 +13,13 @@ import unicodedata
 # Coordinates from individually inspected, same-name OpenStreetMap venue POIs.
 # OSM references identify the exact nodes/ways independently of this parser.
 # Official venues' contact/location pages support building identity.
+# In addition to name-matched OSM points, a small number of original
+# event-venue websites publish their exact map pin alongside the address.
 VENUES = (
+    ("La Aldea de San Nicol\u00e1s", "Centro Municipal de Cultura la Aldea",
+     27.98475800, -15.78012000,
+     "https://www.google.com/maps?q=27.98475800,-15.78012000",
+     "https://www.ecoentradas.com/ver-recinto/132"),
     ("Las Palmas de Gran Canaria", "Sala Insular de Teatro", 28.1073434, -15.4208720,
      "https://www.openstreetmap.org/node/10269622609",
      "https://salainsulardeteatro.com/localizacion.html"),
