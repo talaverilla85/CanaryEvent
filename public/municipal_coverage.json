@@ -18,7 +18,13 @@
       "catalog_cards_total": 4,
       "municipal_cards_total": 2,
       "other_sources_cards_total": 2,
-      "source_health": [],
+      "source_health": [
+        {
+          "source": "Municipio · descubrimiento oficial · Agaete",
+          "found": 0,
+          "error": ""
+        }
+      ],
       "full_coverage_claim": false
     },
     {
@@ -99,6 +105,11 @@
       "municipal_cards_total": 0,
       "other_sources_cards_total": 2,
       "source_health": [
+        {
+          "source": "Municipio · descubrimiento oficial · Firgas",
+          "found": 0,
+          "error": ""
+        },
         {
           "source": "Firgas · Finaos 2026 contrastados con fuentes locales",
           "found": 1,
@@ -280,7 +291,13 @@
       "catalog_cards_total": 3,
       "municipal_cards_total": 1,
       "other_sources_cards_total": 2,
-      "source_health": [],
+      "source_health": [
+        {
+          "source": "Municipio · descubrimiento oficial · Santa María de Guía",
+          "found": 0,
+          "error": ""
+        }
+      ],
       "full_coverage_claim": false
     },
     {
@@ -402,7 +419,13 @@
       "catalog_cards_total": 4,
       "municipal_cards_total": 4,
       "other_sources_cards_total": 0,
-      "source_health": [],
+      "source_health": [
+        {
+          "source": "Municipio · descubrimiento oficial · Vega de San Mateo",
+          "found": 0,
+          "error": ""
+        }
+      ],
       "full_coverage_claim": false
     }
   ]

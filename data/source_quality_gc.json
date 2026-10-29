@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-29T00:28:43+00:00",
+  "checked_at": "2026-10-29T00:37:49+00:00",
   "quality_counts": {
     "publicados": 519,
     "recintos_sin_verificar": 75,
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 15,
+      "fichas_leidas_en_esta_ejecucion": 2,
       "error": ""
     },
     {
@@ -178,6 +178,46 @@
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 2,
+      "error": ""
+    },
+    {
+      "source": "Municipio · descubrimiento oficial · Firgas",
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 0,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": ""
+    },
+    {
+      "source": "Municipio · descubrimiento oficial · Santa María de Guía",
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 0,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": ""
+    },
+    {
+      "source": "Municipio · descubrimiento oficial · Agaete",
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 0,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": ""
+    },
+    {
+      "source": "Municipio · descubrimiento oficial · Vega de San Mateo",
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 0,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
