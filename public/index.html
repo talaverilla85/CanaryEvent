@@ -508,6 +508,7 @@ body{background:var(--cream)}
 try{localStorage.setItem('plangc_check','ok');localStorage.removeItem('plangc_check')}catch(e){const mem={};Object.defineProperty(window,'localStorage',{value:{getItem:k=>mem[k]??null,setItem:(k,v)=>{mem[k]=String(v)},removeItem:k=>{delete mem[k]}}})}
 </script><script src="/reminders.js"></script>
 <script src="/filter_ui.js"></script>
+<script src="/temporal.js?v=1"></script>
 <script>/* D’Parranda · ocho-island selector, Gran Canaria events live; preserve legacy favorites */
 'use strict';
 const $=id=>document.getElementById(id);
@@ -564,10 +565,12 @@ const dayName=s=>new Date(s.slice(0,10)+'T12:00:00Z').toLocaleDateString('es-ES'
 const timeLabel=e=>e.end&&e.end.length===10&&e.end.slice(0,10)>e.start.slice(0,10)?'Consulta las sesiones':e.start.length>10?e.start.slice(11,16):'Hora por confirmar';
 const dayLabel=e=>dayName(e.start);
 function cardDateLabel(e){
- const first=e.start.slice(0,10),last=eventEndDate(e),today=todayKey();
- if(first<today&&last>=today&&first!==last)return 'En curso · hasta '+dayName(last);
+ const first=e.start.slice(0,10),last=eventEndDate(e),today=todayKey(),now=localTimeKey();
+ if(DParrandaTime.isInProgress(e,now))
+   return 'En curso · hasta '+(e.end.slice(0,10)===today?e.end.slice(11,16):dayName(e.end));
+ if(first<today&&last>=today&&first!==last)return 'Programa · hasta '+dayName(last);
  if(last>first)return 'Del '+dayName(first)+' al '+dayName(last);
- return dayName(first)+(e.start.length>10?' · '+e.start.slice(11,16):'');
+ return dayName(first)+(e.start.includes('T')?' · '+e.start.slice(11,16):' · horario por confirmar');
 }
 
 const dateLabel=e=>new Date(e.start.slice(0,10)+'T12:00:00Z').toLocaleDateString('es-ES',{timeZone:'UTC',weekday:'long',day:'numeric',month:'long',year:'numeric'});
@@ -582,17 +585,28 @@ const venueName=e=>{
 };
 const price=e=>e.free===1?'Gratis':(e.price||'').trim();
 const eventEndDate=e=>(e.end||e.start).slice(0,10);
-const activeToday=e=>e.start.slice(0,10)<=todayKey()&&eventEndDate(e)>=todayKey();
-function inFilter(e){const today=todayKey(),start=e.start.slice(0,10),end=eventEndDate(e),tom=plusDays(today,1);if(end<today)return false;
-  if(state.when==='custom'){const r=state.dateRange;return !!r&&start<=r.end&&end>=r.start;}
-  if(state.when==='today'){if(!(start<=today&&end>=today))return false;if(e.end&&e.end.includes('T')&&e.end.slice(0,16)<localTimeKey())return false;return true;}
-  if(state.when==='tomorrow')return start<=tom&&end>=tom;
-  if(state.when==='week')return start<=plusDays(today,6)&&end>=today;
-  if(state.when==='weekend'){let dow=new Date(today+'T12:00:00Z').getUTCDay(),sat=plusDays(today,(6-dow+7)%7),sun=plusDays(sat,1);return start<=sun&&end>=sat}
-  return true;
+const activeToday=e=>e.start.slice(0,10)<=todayKey()&&eventEndDate(e)>=todayKey()&&!DParrandaTime.hasFinished(e,localTimeKey());
+function inFilter(e){
+ const today=todayKey(),start=e.start.slice(0,10),end=eventEndDate(e),tom=plusDays(today,1);
+ // This runs for EVERY search mode: today, weekend, custom ranges, saved and all.
+ // Don't surface a concert whose 19:00 start is past when no finish is verified.
+ if(DParrandaTime.hasFinished(e,localTimeKey()))return false;
+ if(state.when==='custom'){const r=state.dateRange;return !!r&&start<=r.end&&end>=r.start;}
+ if(state.when==='today')return start<=today&&end>=today;
+ if(state.when==='tomorrow')return start<=tom&&end>=tom;
+ if(state.when==='week')return start<=plusDays(today,6)&&end>=today;
+ if(state.when==='weekend'){const dow=new Date(today+'T12:00:00Z').getUTCDay(),sat=plusDays(today,(6-dow+7)%7),sun=plusDays(sat,1);return start<=sun&&end>=sat}
+ return true;
 }
-function eventScore(e){const approx=eventApprox(e);const tod=todayKey(),days=Math.max(0,Math.round((Date.parse(e.start.slice(0,10)+'T00:00:00Z')-Date.parse(tod+'T00:00:00Z'))/86400000));const mins=e.start.length>10?(+e.start.slice(11,13)*60 + +e.start.slice(14,16)):600;const p=zoneParts();const current=(+p.hour*60)+(+p.minute);const delay=days*1440+mins-current;const elapsed=delay<0?Math.min(200,Math.abs(delay)/3):0;
- return (approx??20)*.75+Math.max(0,delay)/95+elapsed;
+function eventScore(e){
+ const approx=eventApprox(e),now=localTimeKey(),tod=now.slice(0,10);
+ if(DParrandaTime.isInProgress(e,now))return -500+(approx??20)*.75;
+ const days=Math.max(0,Math.round((Date.parse(e.start.slice(0,10)+'T00:00:00Z')-Date.parse(tod+'T00:00:00Z'))/86400000));
+ // Entries without a confirmed session time should never displace timed plans.
+ if(DParrandaTime.hasUnconfirmedHours(e,now))return 100000+days*15+(approx??20)*.75;
+ const mins=+e.start.slice(11,13)*60+(+e.start.slice(14,16));
+ const p=zoneParts(),current=+p.hour*60+(+p.minute),delay=days*1440+mins-current;
+ return (approx??20)*.75+Math.max(0,delay)/95;
 }
 function filtered(){let ev=(state.island==='Gran Canaria'?state.events:[]).filter(e=>inFilter(e)&&(!state.categories.size||state.categories.has(e.category)));
  if(state.query){const q=state.query.toLocaleLowerCase('es');ev=ev.filter(e=>[e.title,e.venue,e.municipality,e.details,e.category].join(' ').toLocaleLowerCase('es').includes(q))}
@@ -964,7 +978,7 @@ if(!window.__gcFirstLoad){
     document.querySelectorAll('[data-when]').forEach(b=>b.classList.toggle('active',b.dataset.when===state.when));
   }
 }
-localStorage.setItem('plangc_event_cache',JSON.stringify({at:Date.now(),events:state.events}));const count=state.events.filter(e=>eventEndDate(e)>=todayKey()).length;
+localStorage.setItem('plangc_event_cache',JSON.stringify({at:Date.now(),events:state.events}));const count=state.events.filter(e=>!DParrandaTime.hasFinished(e,localTimeKey())).length;
 $('sourceStatus').textContent=count+' planes próximos · Gran Canaria · Comprobando última revisión…';
 api('/api/meta').then(meta=>{
   const checked=Date.parse(meta.checked_at||'');
@@ -1028,7 +1042,23 @@ $('customDateCancel').onclick=closeCustomDatePanel;
  loadSponsored();
  requestCurrentLocation(false);
 let lastRefresh=Date.now();
-document.addEventListener('visibilitychange',()=>{if(!document.hidden){refreshLocationIfAllowed()}if(!document.hidden&&Date.now()-lastRefresh>600000){lastRefresh=Date.now();loadEvents()}});
+// Re-evaluate availability as Canary time passes, without reloading the catalog.
+let lastVisibleMinute=localTimeKey();
+function refreshEventTime(){
+ if(document.hidden)return;
+ const now=localTimeKey();
+ if(now===lastVisibleMinute)return;
+ lastVisibleMinute=now;
+ if(state.events.length){
+   render();
+   $('sourceStatus').dataset.clockChecked=now;
+ }
+}
+document.addEventListener('visibilitychange',()=>{
+ if(!document.hidden){refreshLocationIfAllowed();refreshEventTime()}
+ if(!document.hidden&&Date.now()-lastRefresh>600000){lastRefresh=Date.now();loadEvents()}
+});
+setInterval(refreshEventTime,30000);
 setInterval(()=>{if(!document.hidden){lastRefresh=Date.now();loadEvents()}},1200000);
 if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
 }
