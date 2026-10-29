@@ -170,3 +170,22 @@ body::before{content:"";height:4px;position:absolute;inset:0 0 auto;background:l
  .event-card:not(:first-child){grid-template-columns:110px minmax(0,1fr)}
 }
 @media(prefers-reduced-motion:reduce){.event-card,.ochea-filter-entry.dp-filter-entry{transition:none}.dp-loading .dp-loading-card{animation:none}}
+
+/* Final editorial fallback: event names live in the accessible card body,
+   and poster-free events receive a legible brand motif instead of fake images. */
+.event-card .photo .cover-fallback{position:absolute;inset:0!important;width:100%;height:100%!important;max-height:none!important;display:flex;background:#10364D;color:#fff!important}
+.event-card .photo .cover-fallback .fallback-event-title{display:none!important}
+.event-card.fallback-event .event-title{display:-webkit-box!important}
+.event-card .photo .cover-fallback .fallback-top,
+.event-card .photo .cover-fallback .fallback-bottom{color:#E6F6F6!important;opacity:1!important}
+.event-card .photo .cover-fallback .fallback-symbol{font-size:clamp(44px,7vw,82px);color:#B6E8EB!important;opacity:.96}
+.event-card:not(:first-child) .photo .cover-fallback .fallback-symbol{font-size:44px}
+.modal-photo .cover-fallback{color:#fff!important}
+.modal-photo .cover-fallback .fallback-event-title,
+.modal-photo .cover-fallback .fallback-bottom{color:#fff!important}
+.event-card .photo.no-official-cover{background:#10364D}
+.navtab{position:relative}
+@media(max-width:720px){
+ .event-card:not(:first-child) .photo .cover-fallback .fallback-symbol{font-size:34px}
+ .event-card:not(:first-child) .photo .cover-fallback .fallback-bottom{font-size:8px}
+}
