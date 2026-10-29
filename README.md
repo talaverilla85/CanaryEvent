@@ -925,3 +925,25 @@ SQLite), registradas en program_review_gc.json bajo
 source_venue_conflicts. Asi no se publican dias o escenarios falsos
 como la supuesta tercera funcion del 22 de noviembre de Escape Room.
 Los datos de fuentes ambiguas o fechas distintas no se deducen.
+
+### Fuente multisisla anotada: EcoEntradas (octubre de 2026)
+
+**No olvidar para la expansion a Tenerife, Lanzarote, Fuerteventura y
+resto de Canarias:** [EcoEntradas](https://www.ecoentradas.com/)
+publica espectaculos y entradas de recintos situados en distintas islas.
+Puede reutilizarse una vez exista el mapa de islas, municipios y
+recintos y se comprueben fechas y horas de cada funcion con la pagina
+de sesion y el selector de zona. La fuente esta anotada como
+`ecoentradas-interinsular` en `data/island_source_registry.json`.
+
+**Estado actual:** conector `scripts/aldea_ecoentradas.py` habilitado
+solo para Centro Municipal de Cultura de La Aldea (Gran Canaria),
+recinto EcoEntradas 132. El propio municipio tiene un error TLS en
+su web; por eso usamos la taquilla original, no ignoramos el aviso de
+certificado. La fuente confirma Kike Perez, 14/11/2026 a las 20:00,
+entradas desde 10 euros y coordenadas del recinto. Se respeta robots.txt
+y se exigen titulo, fecha completa, hora, isla, municipio y recinto.
+
+**Para otras islas:** fuente candidata para descubrimiento, NO importador
+activo. Ni la presencia de un recinto en EcoEntradas ni una cuenta
+de eventos es evidencia de cobertura integral de esa isla.

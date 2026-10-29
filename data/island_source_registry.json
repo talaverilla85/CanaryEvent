@@ -112,6 +112,28 @@
       "adapter": "seguimiento_de_creditos_en_agendas_oficiales",
       "status": "web_en_construccion_monitor_de_recintos",
       "note": "La productora aparece acreditada en la ficha oficial de Blancanieves, más allá del espejo de Agüimes de 7 de noviembre de 2026; RedEscena contiene su ficha de compañía. No usar su dominio como agenda activa."
+    },
+    {
+      "id": "ecoentradas-interinsular",
+      "name": "EcoEntradas ? Centro Municipal de Cultura de La Aldea",
+      "type": "taquilla_interinsular_sedes_y_sesiones",
+      "url": "https://www.ecoentradas.com/",
+      "islands": [
+        "Gran Canaria"
+      ],
+      "potential_islands_to_validate": [
+        "Tenerife",
+        "Lanzarote",
+        "Fuerteventura",
+        "La Palma",
+        "La Gomera",
+        "El Hierro",
+        "La Graciosa"
+      ],
+      "adapter": "aldea_ecoentradas",
+      "status": "activo_solo_recinto_la_aldea;_expansion_islena_pendiente",
+      "display_name": "EcoEntradas ? espectaculos y taquilla canaria",
+      "note": "Fuente multiprovincial/multisla identificada por el usuario durante el desarrollo (oct 2026). Su directorio de recintos y taquilla publica eventos de distintas islas. Conector activo validado SOLO para Centro Municipal de Cultura de La Aldea (recinto /ver-recinto/132); en otras islas debe hacerse inventario de recintos, mapa exacto de isla+municipio, verificacion cruzada de session y zona y deduplicacion; no activar importacion fuera de Gran Canaria hasta finalizar el despliegue insular. Nunca inferir isla por dominio o por cabecera compartida."
     }
   ],
   "island_bootstrap": {

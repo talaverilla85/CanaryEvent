@@ -46,6 +46,7 @@ on:
       - "scripts/refresh_municipal_pdf_index.py"
       - "scripts/municipal_pdf_auto.py"
       - "scripts/gc_documented_events.py"
+      - "scripts/aldea_ecoentradas.py"
       - "scripts/official_culture_calendars.py"
       - "scripts/coverage_gc.py"
       - "scripts/gc_source_radar.py"

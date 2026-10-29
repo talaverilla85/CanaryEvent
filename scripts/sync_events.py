@@ -49,6 +49,7 @@ import telde_pdf_auto
 import municipal_pdf_sources
 import municipal_pdf_auto
 import gc_documented_events
+import aldea_ecoentradas
 import municipal_listing_dedup
 import cinema_policy
 import event_occurrences
@@ -940,6 +941,36 @@ def run():
                         "error":dc_error})
         print(f"Documented municipal notices: {dc_found} verified, "
               f"{dc_collisions} existing listings preserved, error={dc_error[:80]}")
+        # Town not yet covered by a trusted municipal TLS feed: use the
+        # independent original EcoEntradas hall listing. Each future event
+        # requires venue + session + ticket-zone date/time agreement.
+        eco_found=eco_added=eco_changed=0
+        eco_error=""
+        eco_details={}
+        try:
+            eco_rows,eco_details=aldea_ecoentradas.fetch_and_extract(
+                TODAY,PLACES,category)
+            eco_found=len(eco_rows)
+            eco_error=eco_details.get("error","")
+            for entry in eco_rows:
+                action=upsert(conn,entry)
+                eco_added+=int(action=="added")
+                eco_changed+=int(action=="changed")
+            conn.commit()
+        except (ValueError,RuntimeError,PermissionError,requests.RequestException) as exc:
+            eco_error=type(exc).__name__+": "+str(exc)[:160]
+            print("WARN La Aldea box office source:",eco_error,file=sys.stderr)
+        conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+          VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+          checked_at=excluded.checked_at,found=excluded.found,
+          added=excluded.added,changed=excluded.changed,error=excluded.error""",
+          (aldea_ecoentradas.NAME,NOW,eco_found,eco_added,eco_changed,eco_error))
+        conn.commit()
+        results.append({"source":aldea_ecoentradas.NAME,"checked_at":NOW,
+             "found":eco_found,"added":eco_added,"changed":eco_changed,
+             "error":eco_error,"stats":eco_details})
+        print("La Aldea official hall ticket listings:",eco_found,
+              "added",eco_added,"error",eco_error[:90])
         # Official campaign posters are sources, not individual plans.
         youth=ingenio_juvenil_program
         youth_found=youth_added=youth_changed=0
