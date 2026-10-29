@@ -1,19 +1,31 @@
 {
-  "name": "Ochea · Las ocho islas. Infinitos planes.",
+  "name": "Ochea — Las ocho islas. Infinitos planes.",
   "short_name": "Ochea",
   "description": "Descubre qué hacer hoy y este fin de semana en Gran Canaria. Pronto en las ocho islas.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f5f9fc",
+  "background_color": "#f7fafc",
   "theme_color": "#082c48",
   "lang": "es",
   "icons": [
     {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
       "src": "/ochea-icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }
