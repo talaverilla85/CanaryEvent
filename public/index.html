@@ -612,7 +612,18 @@ function filtered(){let ev=(state.island==='Gran Canaria'?state.events:[]).filte
  if(state.query){const q=state.query.toLocaleLowerCase('es');ev=ev.filter(e=>[e.title,e.venue,e.municipality,e.details,e.category].join(' ').toLocaleLowerCase('es').includes(q))}
  if(state.tab==='saved')ev=ev.filter(e=>state.favorites.has(e.id));
  if(state.newOnly && state.tab==='explore')ev=ev.filter(e=>state.newEventIds.has(e.id));
- ev.sort((a,b)=>state.sort==='near'?(eventApprox(a)??99)-(eventApprox(b)??99)||a.start.localeCompare(b.start):state.sort==='time'?a.start.localeCompare(b.start):eventScore(a)-eventScore(b));return ev;
+ const now=localTimeKey();
+ ev.sort((a,b)=>{
+   const aUnknown=DParrandaTime.hasUnconfirmedHours(a,now),bUnknown=DParrandaTime.hasUnconfirmedHours(b,now);
+   if(aUnknown!==bUnknown)return aUnknown?1:-1;
+   if(state.sort==='near')return (eventApprox(a)??99)-(eventApprox(b)??99)||a.start.localeCompare(b.start);
+   if(state.sort==='time'){
+     const aNow=DParrandaTime.isInProgress(a,now),bNow=DParrandaTime.isInProgress(b,now);
+     if(aNow!==bNow)return aNow?-1:1;
+     return a.start.localeCompare(b.start);
+   }
+   return eventScore(a)-eventScore(b);
+ });return ev;
 }
 
 function sponsorUrl(value){
@@ -1046,12 +1057,15 @@ let lastRefresh=Date.now();
 let lastVisibleMinute=localTimeKey();
 function refreshEventTime(){
  if(document.hidden)return;
- const now=localTimeKey();
- if(now===lastVisibleMinute)return;
+ const now=localTimeKey(),before=lastVisibleMinute;
+ if(now===before)return;
  lastVisibleMinute=now;
- if(state.events.length){
+ if(!state.events.length)return;
+ const previousCount=state.events.filter(e=>!DParrandaTime.hasFinished(e,before)).length;
+ const currentCount=state.events.filter(e=>!DParrandaTime.hasFinished(e,now)).length;
+ if(previousCount!==currentCount||before.slice(0,10)!==now.slice(0,10)){
    render();
-   $('sourceStatus').dataset.clockChecked=now;
+   $('sourceStatus').textContent=$('sourceStatus').textContent.replace(/^\\d+ planes próximos/,currentCount+' planes próximos');
  }
 }
 document.addEventListener('visibilitychange',()=>{
