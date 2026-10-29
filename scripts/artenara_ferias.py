@@ -59,9 +59,15 @@ def extract(pages,today,places,categorize):
         words=section.get_text(" ",strip=True).casefold()
         if not all(t.casefold() in words for t in item["tokens"]):
             raise ValueError(f"Artenara announcement no longer verifies {item['title']}")
+        # Two independent event-matched references confirm 1 Nov 2026
+        # VI Feria de Tradiciones at Plaza de San Mat?as. This is NOT a
+        # blanket fallback for all Artenara markets/festivals.
+        verified_venue=("Plaza de San Mat?as" if item["date"]=="2026-11-01"
+                        and "Tradiciones" in item["title"] else
+                        "Consultar el recinto en la ficha oficial")
         events.append({
           "title":item["title"],"start":item["date"],"end":None,"municipality":"Artenara",
-          "venue":"Consultar el recinto en la ficha oficial",
+          "venue":verified_venue,
           "category":categorize(item["title"]),"free":None,"price":"",
           "details":item["details"],"source_name":NAME,"source_url":item["url"],
           "status":"approved"

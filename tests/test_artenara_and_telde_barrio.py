@@ -22,7 +22,8 @@ class ArtenaraOfficialAutumnTests(unittest.TestCase):
   self.assertEqual({x["start"] for x in e},{"2026-10-31","2026-11-01"})
   self.assertTrue(all(x["municipality"]=="Artenara" for x in e))
   self.assertTrue(all(x["free"] is None and x["price"]=="" for x in e))
-  self.assertTrue(all(x["venue"].startswith("Consultar el recinto") for x in e))
+  self.assertEqual(next(x["venue"] for x in e if x["start"]=="2026-11-01"),"Plaza de San Mat?as")
+  self.assertTrue(next(x["venue"] for x in e if x["start"]=="2026-10-31").startswith("Consultar el recinto"))
  def test_no_annual_recurrence(self):
   self.assertEqual(art.extract(self.pages,dt.date(2026,11,2),sync.PLACES,sync.category),[])
  def test_missing_publication_proof_blocks(self):

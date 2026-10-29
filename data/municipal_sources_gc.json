@@ -1,6 +1,6 @@
 {
   "source": "https://www.gobiernodecanarias.org/otros/ayuntamientos/ayto_grancanaria/",
-  "date_checked": "2026-10-27",
+  "date_checked": "2026-10-29",
   "scope": "Gran Canaria only",
   "notes": "21 ayuntamientos de Gran Canaria. La existencia de agenda o de noticias con actos comprobados no implica una cobertura exhaustiva ni publicar fichas sin fecha, hora, recinto y fuente confirmados.",
   "municipalities": [
@@ -21,7 +21,8 @@
       "municipality": "Artenara",
       "official_website": "https://www.artenara.es/",
       "agenda_url": "https://www.artenara.es/portal-ciudadano/category/eventos/",
-      "status": "conector_parcial"
+      "status": "conector_parcial_articulo_corrobora_plaza",
+      "note": "Feria de las Tradiciones 2026 verificada en la Plaza de San Matias: el Ayuntamiento confirma la feria y una ficha independiente confirma la sede. El mercadillo del 31/10 sigue pendiente por recinto."
     },
     {
       "municipality": "Arucas",
@@ -34,7 +35,7 @@
       "official_website": "https://www.villadefirgas.es/",
       "agenda_url": "https://www.villadefirgas.es/events/",
       "status": "agenda_localizada_sin_programacion_futura_verificada",
-      "note": "El portal oficial cambió de dominio. La agenda de eventos conserva anuncios de 2022/2025; no activarla hasta confirmar su actualización."
+      "note": "La agenda municipal publica contiene eventos antiguos 2022/2025. Se mantiene vigilancia, sin inventar actos de 2026. Noticias oficiales de cita DNI no se publican como ocio."
     },
     {
       "municipality": "Gáldar",
@@ -52,8 +53,8 @@
       "municipality": "La Aldea de San Nicolás",
       "official_website": "https://laaldeasanicolas.es/",
       "agenda_url": "https://laaldeasanicolas.es/noticias/",
-      "status": "fuente_oficial_localizada_tls_pendiente",
-      "note": "Dominio municipal actual confirmado en octubre de 2026, pero el cliente HTTPS del extractor no valida su cadena TLS. Se monitoriza el error y no se desactiva la comprobación SSL."
+      "status": "taquilla_recinto_verificada_tlsoficial_pendiente",
+      "note": "EcoEntradas Centro Municipal de Cultura con evento y coordenadas verificados. Web municipal sigue fallando la comprobacion TLS. Fuente de entradas no equivale a agenda municipal exhaustiva."
     },
     {
       "municipality": "Las Palmas de Gran Canaria",
@@ -65,13 +66,15 @@
       "municipality": "Mogán",
       "official_website": "https://www.mogan.es/",
       "agenda_url": "https://www.mogansc.es/",
-      "status": "programacion_por_verificar"
+      "status": "conector_parcial_noticia_2026_revisada",
+      "note": "Noticia oficial del 27 de octubre verifica Dia de la Infancia el 14 de noviembre en Plaza Perez Galdos a las 10:00. No hay inventario municipal completo."
     },
     {
       "municipality": "Moya",
       "official_website": "https://www.villademoya.es/",
       "agenda_url": null,
-      "status": "por_localizar"
+      "status": "conector_parcial_folleto_2026_revisado",
+      "note": "Folleto oficial Otono es Cultura 2026: siete fechas y recintos revisados manualmente. Robots.txt del sitio municipal bloquea descargas automatizadas; NO es un conector nuevo de anuncios de 2027."
     },
     {
       "municipality": "San Bartolomé de Tirajana",
@@ -124,8 +127,8 @@
       "municipality": "Valsequillo",
       "official_website": "https://www.valsequillogc.es/",
       "agenda_url": "https://www.valsequillogc.es/ayto3/calendario-de-eventos/",
-      "status": "conector_parcial_fuente_intermunicipal",
-      "note": "Agenda municipal pendiente por problema TLS. Por ahora se importa exclusivamente Alma de Medianías 2026 desde la Mancomunidad. No se considera conexión municipal completa.",
+      "status": "conector_parcial_calendario_2026_revisado",
+      "note": "Calendario municipal enlaza Google Calendar publico, revisado para un evento con recinto en octubre 2026. Google robots Disallow / impide rastreo automatico; solo ficha manual contrastada, no es calendario sincronizado en vivo.",
       "extra_source": "https://www.medianias.org/noticias/la-mancomunidad-de-medianias-invita-a-toda-la-isla-a-su-mesa-alma-de-medianias-del-31-de-octubre-al-1-de-noviembre-en-valsequillo/4307"
     },
     {

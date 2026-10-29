@@ -947,3 +947,36 @@ y se exigen titulo, fecha completa, hora, isla, municipio y recinto.
 **Para otras islas:** fuente candidata para descubrimiento, NO importador
 activo. Ni la presencia de un recinto en EcoEntradas ni una cuenta
 de eventos es evidencia de cobertura integral de esa isla.
+
+### Cierre de las lagunas de municipios de Gran Canaria (octubre 2026)
+
+Cada municipio de los 21 tiene una entrada en el registro municipal;
+esto NO implica una cobertura completa de todos sus eventos.
+
+- **Artenara**: VI Feria de las Tradiciones del 1/11/2026 en Plaza
+  de San Matias, cotejada con un anuncio del Ayuntamiento y una ficha
+  independiente del mismo acto. El mercadillo 31/10 sigue pendiente
+  por sede no demostrada.
+- **Moya**: siete actos de su folleto Otono es Cultura 2026 (31/10
+  al 27/11), revisados pagina a pagina con sus recintos, precios
+  por confirmar y horas solo donde aparecen. NO descargar
+  automaticamente: el robots.txt de villademoya.es proh?be / .
+- **Valsequillo**: actividad municipal de narracion oral 30/10/2026
+  en Biblioteca Municipal, confirmada en el ICS que el Ayuntamiento
+  enlaza. Los datos futuros de Google Calendar NO se rastrean: su
+  robots.txt marca Disallow /. Esta es una ficha 2026 revisada,
+  no un conector continuo.
+- **Mogan**: Dia de la Infancia el 14/11/2026 a las 10:00 en Plaza
+  Perez Galdos, confirmado en noticia municipal 27/10. No se supone
+  un feed completo por un solo articulo.
+- **La Aldea**: EcoEntradas permite importar sesiones del Centro
+  Municipal de Cultura; falta reparar la confianza TLS de la fuente
+  municipal, sin desactivar SSL.
+- **Firgas**: su agenda oficial publica no ofrece actos culturales
+  futuros confirmados en la revision actual. Mantener en radar y
+  NO confundir gestiones administrativas con ocio cultural.
+
+El objetivo es 21/21 municipios con eventos contrastados cuando
+existan y, de forma separada, fuentes municipales activas y
+actualizables. Las fuentes que proh?ben rastreo o tienen contenido
+caducado se declaran parciales, no completas.
