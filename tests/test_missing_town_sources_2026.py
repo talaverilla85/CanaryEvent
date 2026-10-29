@@ -14,6 +14,7 @@ sys.path.insert(0,str(ROOT/"scripts"))
 import moya_autumn_agenda as moya
 import valsequillo_calendar as vals
 import mogan_confirmed_news as mogan
+import firgas_local_confirmed as firgas
 import sync_events as app
 
 TODAY=dt.date(2026,10,29)
@@ -78,6 +79,17 @@ END:VCALENDAR"""
         self.assertEqual(rows[0]["price"],"Gratis")
         self.assertEqual(mogan.fetch_and_extract(dt.date(2027,11,14),app.PLACES)[0],[])
 
+    def test_firgas_independent_guides_not_mislabelled_municipal(self):
+        events,meta=firgas.fetch_and_extract(TODAY,app.PLACES)
+        self.assertEqual(len(events),1)
+        self.assertEqual(events[0]["start"],"2026-10-31T21:00:00")
+        self.assertEqual(events[0]["venue"],"Casa de los Mayores de Firgas")
+        self.assertEqual(events[0]["price"],"Gratis")
+        self.assertNotIn("Ayuntamiento",events[0]["source_name"])
+        self.assertEqual(meta["corroborating_sources"],3)
+        self.assertEqual(firgas.fetch_and_extract(dt.date(2026,11,1),app.PLACES)[0],[])
+        self.assertEqual(firgas.fetch_and_extract(dt.date(2027,10,31),app.PLACES)[0],[])
+
     def test_all_four_sources_require_a_canonical_municipality(self):
         for mod,name in ((moya,"Moya"),(vals,"Valsequillo"),(mogan,"Mogán")):
             places={key:value for key,value in app.PLACES.items() if key!=name}
@@ -86,7 +98,7 @@ END:VCALENDAR"""
     def test_sources_are_wired_into_daily_sync_and_agenda_watchpaths(self):
         program=(ROOT/"scripts/sync_events.py").read_text(encoding="utf8")
         workflow=(ROOT/".github/workflows/sync-events.yml").read_text(encoding="utf8")
-        for name in ("moya_autumn_agenda","valsequillo_calendar","mogan_confirmed_news"):
+        for name in ("moya_autumn_agenda","valsequillo_calendar","mogan_confirmed_news","firgas_local_confirmed"):
             self.assertIn(name+".py",workflow)
         self.assertIn("for municipal_module in (moya_autumn_agenda",program)
 
