@@ -56,6 +56,7 @@ import mogan_confirmed_news
 import firgas_local_confirmed
 import municipal_listing_dedup
 import municipal_connector_health
+import municipal_live_discovery
 import cinema_policy
 import event_occurrences
 import program_quality
@@ -703,6 +704,11 @@ def run():
         # They supplement rather than replace already-known Cabildo and ticket
         # events. Any source failure is isolated and recorded for transparency.
         new_municipal_sources=(
+            # Fresh official site discovery; errors logged independently by town.
+            *((municipal_live_discovery.PREFIX + town,
+               lambda town=town: municipal_live_discovery.fetch_and_extract(
+                   town,TODAY,PLACES,category,get_html))
+              for town in municipal_live_discovery.SITES),
             # Tejeda: automatically inspect new official agenda articles.
             # Publication date must support each explicit future event date.
             (tejeda_agenda.NAME,
