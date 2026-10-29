@@ -1,24 +1,18 @@
 {
-  "name": "¿Pa' Dónde? · Agenda de Gran Canaria",
-  "short_name": "Pa' Dónde",
-  "description": "Descubre qué hacer hoy en Gran Canaria. Preparados para sumar más islas.",
+  "name": "Ochea · Las ocho islas. Infinitos planes.",
+  "short_name": "Ochea",
+  "description": "Descubre qué hacer hoy y este fin de semana en Gran Canaria. Pronto en las ocho islas.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f7f8f4",
-  "theme_color": "#142c2a",
+  "background_color": "#f5f9fc",
+  "theme_color": "#082c48",
   "lang": "es",
   "icons": [
     {
-      "src": "/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "src": "/ochea-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ]
