@@ -1,22 +1,23 @@
-# ¿Pa' Dónde? · Agenda de Gran Canaria (repositorio CanaryEvent)
+# D’Parranda · Disfruta de tus islas
 
-Agenda visual de planes cercanos en Gran Canaria, optimizada para móvil y tablet y publicable como PWA.
+Agenda digital de ocio y cultura de las islas Canarias. En esta primera fase publica eventos verificados de Gran Canaria. La plataforma está optimizada para móvil y tablet y funciona como PWA instalable.
 
+## Marca y dominio · 29 de octubre de 2026
 
-## Marca y dominio: decisiones pendientes (24 de octubre de 2026)
+**Marca visible en la web:** D’Parranda. Identidad vectorial: D protagonista con olas turquesa y ocho islas de colores planos. Lema: «Disfruta de tus islas».
 
-Marca visible aprobada: **¿Pa' Dónde?** El repositorio técnico conserva el nombre CanaryEvent y la URL de producción sigue siendo https://canaryevent.vercel.app/ hasta que haya un dominio registrado. La aplicación opera por ahora exclusivamente en Gran Canaria, aunque su marca admite una expansión futura a las ocho islas.
+**Web actual:** https://canaryevent.vercel.app/ . El nombre técnico del repositorio sigue siendo CanaryEvent para mantener el historial y los despliegues.
 
-Pendiente de realizar — sin compras ni registros:
-- [ ] Reconfirmar disponibilidad y comprar padondecanarias.es como candidato principal. Consultar el buscador oficial de Red.es antes de pagar.
-- [ ] Considerar registrar también padondecanarias.com y padondecanarias.app como protección opcional, comprobando el coste de compra y renovación; no es necesario adquirir padonde.com.
-- [ ] Verificar posibles conflictos de marca (OEPM y EUIPO); ya existe otro servicio llamado Pa' Donde dedicado a ocio/experiencias fuera de España.
-- [ ] Verificar y, si procede, crear los perfiles de redes como @padondecanarias (su disponibilidad no está confirmada).
-- [ ] Una vez registrado el dominio y comprobada la marca: conectar el dominio propio, configurar canónicas, redirecciones e indexación SEO, manteniendo un solo dominio principal. El sitio de prueba de Vercel tiene actualmente noindex,nofollow para evitar su indexación prematura.
-- [ ] Revisar el plan de hosting antes de monetizar (el plan Hobby de Vercel está orientado a uso no comercial).
-- [ ] Planificar selector de islas e importadores específicos por isla, sin mostrar resultados de otras islas mientras solo cubrimos Gran Canaria.
+**Dominio propuesto:** `dparranda.es` (no se ha verificado su registro ni se ha comprado ni conectado). No publicar otro dominio o redireccionar hasta que el usuario confirme su compra y titularidad.
 
-Los candidatos .es fueron vistos como disponibles el 24/10/2026; eso no reserva los dominios ni garantiza su disponibilidad o precio futuro. El titular debe ser el usuario o su empresa, nunca el asistente.
+Pendientes de identidad comercial y distribución:
+- [ ] Comprobar titularidad, disponibilidad y posibles conflictos en OEPM y EUIPO para D’Parranda y nombres fonéticamente similares.
+- [ ] Confirmar disponibilidad y registrar `dparranda.es` a nombre del usuario o de su empresa si procede.
+- [ ] Tras registrar el dominio: conectar Vercel, configurar canónicas, redirecciones, indexación SEO y enlaces de la app. La versión técnica mantiene `noindex,nofollow` hasta tomar esa decisión.
+- [ ] Verificar el plan de alojamiento de Vercel antes de explotar comercialmente el producto.
+- [ ] Completar conectores de datos para las otras siete islas; el selector muestra las ocho, pero **solo Gran Canaria presenta eventos reales por ahora**.
+
+El frontend usa `public/brand/dparranda-theme.css` y recursos SVG/PNG en `public/brand/` y `public/icons/`. Al cambiar recursos de marca, actualizar el manifiesto PWA y la versión de la caché en `public/sw.js`. Los tests de `tests/test_homepage_dom_contract.py` comprueban la integridad del arranque, navegación, marca y recursos de instalación.
 
 ## Actualización automática y estado de fuentes
 
