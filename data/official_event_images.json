@@ -1042,6 +1042,126 @@
       "image_origin": "Ayuntamiento de Valleseco · actos documentados",
       "image_status": "official_remote",
       "method": "single-article-og"
+    },
+    {
+      "id": 661,
+      "title": "Mímesis. La familia",
+      "source_url": "https://teatroperezgaldos.es/evento/mimesis-la-familia",
+      "image_url": "https://teatroperezgaldos.es/_ipx/f_webp/https://api.auditorioteatrolaspalmasgc.es/storage/27085/conversions/ak7WpeOfa0Ea68tld6en-thumb.jpeg",
+      "image_alt": "Mímesis. La familia",
+      "image_origin": "Teatro Pérez Galdós · programación oficial",
+      "image_status": "official_remote",
+      "method": "venue-event-media"
+    },
+    {
+      "id": 676,
+      "title": "Mujeres y Hombres del 27",
+      "source_url": "https://teatroperezgaldos.es/evento/mujeres-y-hombres-del-27",
+      "image_url": "https://teatroperezgaldos.es/_ipx/f_webp/https://api.auditorioteatrolaspalmasgc.es/storage/27149/conversions/RFdcCaniUGL089g6iClU-thumb.jpg",
+      "image_alt": "Mujeres y Hombres del 27",
+      "image_origin": "Teatro Pérez Galdós · programación oficial",
+      "image_status": "official_remote",
+      "method": "venue-event-media"
+    },
+    {
+      "id": 666,
+      "title": "ZENICIENTA by Zalakadula",
+      "source_url": "https://teatroperezgaldos.es/evento/zenicienta-by-zalakadula",
+      "image_url": "https://teatroperezgaldos.es/_ipx/f_webp/https://api.auditorioteatrolaspalmasgc.es/storage/27153/conversions/s2mDzngq3tafKmxalvEl-thumb.png",
+      "image_alt": "ZENICIENTA by Zalakadula",
+      "image_origin": "Teatro Pérez Galdós · programación oficial",
+      "image_status": "official_remote",
+      "method": "venue-event-media"
+    },
+    {
+      "id": 667,
+      "title": "ZENICIENTA by Zalakadula",
+      "source_url": "https://teatroperezgaldos.es/evento/zenicienta-by-zalakadula",
+      "image_url": "https://teatroperezgaldos.es/_ipx/f_webp/https://api.auditorioteatrolaspalmasgc.es/storage/27153/conversions/s2mDzngq3tafKmxalvEl-thumb.png",
+      "image_alt": "ZENICIENTA by Zalakadula",
+      "image_origin": "Teatro Pérez Galdós · programación oficial",
+      "image_status": "official_remote",
+      "method": "venue-event-media"
+    },
+    {
+      "id": 668,
+      "title": "ZENICIENTA by Zalakadula",
+      "source_url": "https://teatroperezgaldos.es/evento/zenicienta-by-zalakadula",
+      "image_url": "https://teatroperezgaldos.es/_ipx/f_webp/https://api.auditorioteatrolaspalmasgc.es/storage/27153/conversions/s2mDzngq3tafKmxalvEl-thumb.png",
+      "image_alt": "ZENICIENTA by Zalakadula",
+      "image_origin": "Teatro Pérez Galdós · programación oficial",
+      "image_status": "official_remote",
+      "method": "venue-event-media"
+    },
+    {
+      "id": 736,
+      "title": "EN BUSCA DE LA MAGIA",
+      "source_url": "https://www.galdar.es/events/en-busca-de-la-magia/",
+      "image_url": "https://www.galdar.es/wp-content/uploads/2026/10/600x800TureservaGaldarEnBuscadelaMagia2026-preview.jpg",
+      "image_alt": "EN BUSCA DE LA MAGIA",
+      "image_origin": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
+      "image_status": "official_remote",
+      "method": "single-article-og"
+    },
+    {
+      "id": 621,
+      "title": "Casa del Terror de Maspaterror III",
+      "source_url": "https://www.maspalomas.com/mnunotjuventud/3060-2026-ju-maspaterror-regresa-al-parque-sur-los-dias-30-y-31-de-octubre-presentando-su-tercera-edicion",
+      "image_url": "https://www.maspalomas.com/images/stories/noticias/juventud/2026/20261019_JU_Maspaterror_2p.jpg",
+      "image_alt": "Casa del Terror de Maspaterror III",
+      "image_origin": "Ayuntamiento de San Bartolomé de Tirajana · actos documentados",
+      "image_status": "official_remote",
+      "method": "shared-article-filename-match"
+    },
+    {
+      "id": 622,
+      "title": "Casa del Terror de Maspaterror III",
+      "source_url": "https://www.maspalomas.com/mnunotjuventud/3060-2026-ju-maspaterror-regresa-al-parque-sur-los-dias-30-y-31-de-octubre-presentando-su-tercera-edicion",
+      "image_url": "https://www.maspalomas.com/images/stories/noticias/juventud/2026/20261019_JU_Maspaterror_2p.jpg",
+      "image_alt": "Casa del Terror de Maspaterror III",
+      "image_origin": "Ayuntamiento de San Bartolomé de Tirajana · actos documentados",
+      "image_status": "official_remote",
+      "method": "shared-article-filename-match"
+    },
+    {
+      "id": 743,
+      "title": "Festival Internacional de Magia · Víctor Jara",
+      "source_url": "https://www.santaluciagc.com/abubukaka-pablo-carbonel-alex-ubago-maria-pelae-talleres-cine-magia-y-exposiciones-en-la-programacion-de-cultura/",
+      "image_url": "https://www.santaluciagc.com/wp-content/uploads/2026/09/WhatsApp-Image-2026-09-29-at-14.40.12.jpeg",
+      "image_alt": "Festival Internacional de Magia · Víctor Jara",
+      "image_origin": "Ayuntamiento de Santa Lucía de Tirajana · actos documentados",
+      "image_status": "official_remote",
+      "method": "single-article-image"
+    },
+    {
+      "id": 574,
+      "title": "Pasacalles anunciador de San Gregorio · Telde",
+      "source_url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/fiestas-de-san-gregorio/",
+      "image_url": "https://www.telde.es/wp-content/uploads/2026/10/sangregorio26-1.jpg",
+      "image_alt": "Pasacalles anunciador de San Gregorio · Telde",
+      "image_origin": "Ayuntamiento de Telde · fiestas y cultura 2026",
+      "image_status": "official_remote",
+      "method": "shared-article-filename-match"
+    },
+    {
+      "id": 575,
+      "title": "Pregón de las fiestas de San Gregorio · Telde",
+      "source_url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/fiestas-de-san-gregorio/",
+      "image_url": "https://www.telde.es/wp-content/uploads/2026/10/sangregorio26-1.jpg",
+      "image_alt": "Pregón de las fiestas de San Gregorio · Telde",
+      "image_origin": "Ayuntamiento de Telde · fiestas y cultura 2026",
+      "image_status": "official_remote",
+      "method": "shared-article-filename-match"
+    },
+    {
+      "id": 588,
+      "title": "Máximo Huerta presenta «Mamá está dormida» · Telde",
+      "source_url": "https://www.telde.es/maximo-huerta-presenta-este-jueves-en-telde-su-nueva-novela-mama-esta-dormida/",
+      "image_url": "https://www.telde.es/wp-content/uploads/2026/10/noticia844-uai-258x323.jpg",
+      "image_alt": "Máximo Huerta presenta «Mamá está dormida» · Telde",
+      "image_origin": "Ayuntamiento de Telde · fiestas y cultura 2026",
+      "image_status": "official_remote",
+      "method": "single-article-image"
     }
   ]
 }
