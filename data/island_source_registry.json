@@ -115,7 +115,7 @@
     },
     {
       "id": "ecoentradas-interinsular",
-      "name": "EcoEntradas ? Centro Municipal de Cultura de La Aldea",
+      "name": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
       "type": "taquilla_interinsular_sedes_y_sesiones",
       "url": "https://www.ecoentradas.com/",
       "islands": [
@@ -132,7 +132,7 @@
       ],
       "adapter": "aldea_ecoentradas",
       "status": "activo_solo_recinto_la_aldea;_expansion_islena_pendiente",
-      "display_name": "EcoEntradas ? espectaculos y taquilla canaria",
+      "display_name": "EcoEntradas · espectaculos y taquilla canaria",
       "note": "Fuente multiprovincial/multisla identificada por el usuario durante el desarrollo (oct 2026). Su directorio de recintos y taquilla publica eventos de distintas islas. Conector activo validado SOLO para Centro Municipal de Cultura de La Aldea (recinto /ver-recinto/132); en otras islas debe hacerse inventario de recintos, mapa exacto de isla+municipio, verificacion cruzada de session y zona y deduplicacion; no activar importacion fuera de Gran Canaria hasta finalizar el despliegue insular. Nunca inferir isla por dominio o por cabecera compartida."
     }
   ],
