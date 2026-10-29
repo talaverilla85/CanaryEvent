@@ -440,7 +440,7 @@ body{background:var(--cream)}
  .filters-panel-body .date-toggle-label-long{display:inline}
 }
 </style>
-<link rel="stylesheet" href="/brand/dparranda-theme.css?v=7">
+<link rel="stylesheet" href="/brand/dparranda-theme.css?v=8">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>D’Parranda · Disfruta de tus islas | Planes en Canarias</title>
 </head><body>
@@ -634,15 +634,19 @@ function sponsorCardHtml(ad){
  if(!href)return '';
  const path=typeof ad.image==='string'&&/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(ad.image)?ad.image:'';
  const img=path?'<img src="'+escapeHTML(path)+'" alt="'+escapeHTML(ad.image_alt||'Imagen del anunciante')+'" loading="lazy" decoding="async">':'';
- return '<aside class="sponsor-card" aria-label="Publicidad de '+escapeHTML(ad.advertiser)+'">'+
+ return '<section class="sponsor-slot" aria-label="Espacio patrocinado">'+
+   '<div class="sponsor-slot-caption"><span class="sponsor-slot-heading">'+
+   '<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4c0 .8.7 1.5 1.5 1.5H7L9 20h3l-2-4.5 9-4.5V7L10 3.5 7 8.5H4.5C3.7 8.5 3 9.2 3 10z"/><path d="M22 9v4"/></svg>'+
+   ' ESPACIO PATROCINADO</span><span class="sponsor-slot-kind">PUBLICIDAD</span></div>'+
+   '<aside class="sponsor-card" aria-label="Publicidad de '+escapeHTML(ad.advertiser)+'">'+
    '<a class="sponsor-hit" href="'+escapeHTML(href)+'" target="_blank" rel="sponsored noopener noreferrer">'+
    '<div class="sponsor-media">'+img+'</div><div class="sponsor-content">'+
-   '<span class="sponsor-label">PUBLICIDAD · '+escapeHTML(ad.advertiser)+'</span>'+
+   '<span class="sponsor-label">'+escapeHTML(ad.advertiser)+' <span class="sponsor-label-divider" aria-hidden="true">·</span> COMERCIO LOCAL</span>'+
    '<h3 class="sponsor-heading">'+escapeHTML(ad.headline)+'</h3>'+
    '<p class="sponsor-copy">'+escapeHTML(ad.description)+'</p>'+
    '<div class="sponsor-bottom"><span class="sponsor-location">⌖ '+escapeHTML(ad.location)+'</span>'+
    '<span class="sponsor-button">'+escapeHTML(ad.button_text||'Descubrir')+' ↗</span></div>'+
-   '</div></a></aside>';
+   '</div></a></aside></section>';
 }
 function sponsorVisible(ad){
  if(!ad||ad.enabled!==true||!sponsorUrl(ad.button_url))return false;
