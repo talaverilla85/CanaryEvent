@@ -1,4 +1,4 @@
-"""Catch JavaScript startup regressions in Ochea's static homepage.
+"""Catch JavaScript startup regressions in D’Parranda's static homepage.
 
 In particular, event loading must not be blocked by a handler attached to an
 element removed during the homepage's responsive redesign.
@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 
 
-class OcheaHomepageContract(unittest.TestCase):
+class DParrandaHomepageContract(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.html = (PUBLIC / "index.html").read_text(encoding="utf-8-sig")
@@ -28,7 +28,7 @@ class OcheaHomepageContract(unittest.TestCase):
         self.assertIn('id="eventsGrid"', self.html)
 
     def test_brand_and_filter_modal(self):
-        for anchor in ('src="/ochea-logo.svg?v=4"', 'id="openFiltersBtn"',
+        for anchor in ('src="/brand/dparranda-logo.svg?v=5"', 'id="openFiltersBtn"',
                        'id="filtersPanel"', 'id="locationButton"',
                        'id="islandOptions"', 'id="applyFiltersBtn"'):
             self.assertIn(anchor, self.html)
@@ -38,11 +38,19 @@ class OcheaHomepageContract(unittest.TestCase):
 
     def test_manifest_icons_exist_and_are_versioned(self):
         manifest = json.loads((PUBLIC / "manifest.webmanifest").read_text(encoding="utf-8"))
-        self.assertEqual(manifest["short_name"], "Ochea")
+        self.assertEqual(manifest["short_name"], "D’Parranda")
         for icon in manifest["icons"]:
-            self.assertIn("?v=4", icon["src"])
+            self.assertIn("?v=5", icon["src"])
             self.assertTrue((PUBLIC / icon["src"].split("?", 1)[0].lstrip("/")).is_file())
         self.assertTrue((PUBLIC / "apple-touch-icon.png").is_file())
+        self.assertTrue((PUBLIC / "brand/dparranda-theme.css").is_file())
+        for filename in ("dparranda-logo.svg", "dparranda-compact.svg",
+                         "dparranda-monochrome.svg", "dparranda-negative.svg",
+                         "dparranda-icon.svg", "dparranda-favicon.svg"):
+            self.assertTrue((PUBLIC / "brand" / filename).is_file())
+        self.assertIn("Disfruta de tus islas.", self.html)
+        self.assertNotIn("Ochea", self.html)
+        self.assertIn('id="loadingGrid"', self.html)
 
 
 if __name__ == "__main__":
