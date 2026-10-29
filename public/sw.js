@@ -1,4 +1,4 @@
-const CACHE='dparranda-brand-v5';
+const CACHE='dparranda-brand-v6';
 const ASSETS=['/','/index.html','/reminders.js','/filter_ui.js','/manifest.webmanifest','/brand/dparranda-theme.css','/brand/dparranda-logo.svg','/brand/dparranda-compact.svg','/brand/dparranda-icon.svg','/brand/dparranda-favicon.svg','/icons/dparranda-192.png','/icons/dparranda-512.png','/apple-touch-icon.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
