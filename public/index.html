@@ -274,29 +274,104 @@
 .date-filter-wrap #customDateToggle.active{background:var(--green);color:#fff}
 @media(max-width:390px){.date-filter-wrap{gap:5px}.date-filter-wrap #customDateToggle{font-size:11px;padding:10px 9px}}
 
-/* OCHEA · ocean identity and responsive header */
-:root{--ink:#082c48;--muted:#607585;--green:#082c48;--mint:#00b4d1;--cream:#f5f9fc;--line:#dce8ef;--shadow:0 12px 40px #082c481a}
-body{background:#f5f9fc}
-.topbar{min-height:90px;height:auto;padding:9px 0}
+/* OCHEA V2 · discovery first, compact mobile layout */
+:root{--ink:#082c48;--muted:#657c89;--green:#082c48;--mint:#02b4d0;--cream:#f7fafc;--line:#dce8ef;--shadow:0 9px 28px #082c4812}
+body{background:var(--cream)}
+.topbar{height:78px;min-height:0;padding:5px 0}
 .brand{display:flex;align-items:center;min-width:0}
-.ochea-header-logo{width:190px;height:74px;object-fit:contain;object-position:left center;display:block}
-.hero{background:linear-gradient(105deg,rgba(6,35,62,.94),rgba(3,84,110,.81)),linear-gradient(135deg,#155a80,#092b49);color:white}
-.hero:after{background:radial-gradient(ellipse,#10c7df55,transparent 68%)}
-.hero h1 em{color:#8fe9f5}
-.hero-kicker{color:#bcecf6}
-.hero-cta{background:#00afd0;color:#fff}
-.hero-orbit{border-color:#bcecf644}
-.hero-star{color:#bcecf6}
-.online-dot{background:#00bed3}
-.searchwrap>span,.pin,.navtab.selected{color:#008fb1}
-.category-chip.active{background:#d9f2f7;color:#082c48}
-.date-chip.active{background:#082c48;border-color:#082c48}
-.price,.eyebrow{color:#007f9b}
+.ochea-header-logo{display:block;width:190px;height:auto;max-height:67px;object-fit:contain;object-position:left center}
+.location-btn{min-height:40px;border-color:#dae5ec;color:#0b344d;background:#fff;box-shadow:0 3px 12px #0b344d08}
+.pin{color:#008fac}
+.hero.ochea-intro{background:#fff;color:var(--ink);min-height:0;border:1px solid #e2edf3;border-radius:19px;overflow:visible;display:block;box-shadow:0 4px 18px #082c4806}
+.hero.ochea-intro:after{display:none}
+.hero.ochea-intro .hero-content{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto;align-items:center;gap:2px 14px;position:relative;padding:16px 22px;width:100%}
+.hero.ochea-intro .hero-kicker{grid-column:1/-1;color:#008ca6;font-size:10px;letter-spacing:1.4px;font-weight:800}
+.hero.ochea-intro .online-dot{background:#00b8ce;box-shadow:0 0 0 4px #d9f6fb}
+.hero.ochea-intro h1{grid-column:1;grid-row:2;font:800 clamp(27px,3vw,36px)/1.15 'Outfit',sans-serif;letter-spacing:-1.3px;margin:3px 0 0;color:#082c48}
+.hero.ochea-intro h1 em{font-style:normal;color:#0097b6}
+.hero.ochea-intro p{grid-column:1;grid-row:3;margin:2px 0 0;color:#637b89;font-size:12px;line-height:1.35;max-width:none}
+.hero.ochea-intro .hero-cta{grid-column:2;grid-row:2/4;display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;background:#e0f6fa;color:#036b83;border:1px solid #c9eaf1;border-radius:100px;min-height:38px;padding:9px 13px;font-size:12px;font-weight:800;box-shadow:none}
+.hero.ochea-intro .hero-cta span{font-size:17px}
+.discovery{padding-top:12px}
+.searchwrap{height:52px;border-color:#dce8ef;box-shadow:0 5px 20px #0b344d08}
+.searchwrap>span{color:#008fab;font-size:27px}
+.date-filter-wrap{margin-top:12px;align-items:center}
+.date-filter-wrap .top-filters{margin-top:0;gap:6px;padding-bottom:2px}
+.date-chip{min-height:40px;padding:9px 14px;color:#375769;border-color:#e0eaf0}
+.date-chip.active{background:#082c48;color:#fff;border-color:#082c48}
+.date-filter-wrap #customDateToggle{min-height:40px;padding:9px 12px;background:#e7f6f9;border:1px solid #c7e8ef;color:#06596e;font-weight:800}
+.date-filter-wrap #customDateToggle.active{background:#082c48;color:white}
+.date-toggle-label-short{display:none}
+.category-filter-heading{margin-top:12px;font-size:12px;color:#36576a}
+.category-filter-heading small{font-size:10px;color:#80929d}
+.categories-scroll{position:relative;min-width:0}
+.categories{margin-top:6px;gap:7px;padding:0 45px 4px 0;scroll-snap-type:x proximity}
+.category-chip{min-height:40px;padding:8px 10px;scroll-snap-align:start;border:1px solid transparent;color:#536d7b}
+.category-chip.active{border:1px solid #b3dce6;background:#ddf3f8;color:#063a56;padding:8px 10px}
+.category-selected-mark{color:#006a87!important}
+.category-next{display:none}
+.quick-toolbar{margin-top:12px;margin-bottom:7px;align-items:center}
+.eyebrow{font-size:9px;color:#087d98;letter-spacing:1.45px}
+.result-titles h2{margin-top:4px}
+.source-status{margin-bottom:10px}
+.events-grid{gap:11px}
+.event-card{border-color:#e0eaf0;box-shadow:0 2px 9px #0b344d08}
+.navtab.selected{color:#0088a6}
 .primary-btn,.modal-actions .primary-action{background:#082c48}
-.info-strip{background:#ddf4f9}
+.price{color:#027e98}
 .footer strong,.footer strong span{color:#082c48}
-@media(max-width:650px){.topbar{min-height:74px;padding:5px 0}.ochea-header-logo{width:143px;height:60px}.hero{min-height:265px}.hero-content{padding-left:23px;padding-right:18px}.hero h1{font-size:clamp(39px,11vw,55px)}.hero-star{opacity:.5}}
-@media(min-width:651px) and (max-width:999px){.ochea-header-logo{width:185px}.hero{min-height:320px}}
+@media(max-width:649px){
+ .topbar{height:69px;padding:3px 0}
+ .ochea-header-logo{width:156px;max-height:55px}
+ .location-btn{min-height:38px;padding:0 10px;font-size:11px;max-width:158px}
+ .topright{gap:4px}
+ .hero.ochea-intro{border-radius:17px}
+ .hero.ochea-intro .hero-content{padding:11px 14px;column-gap:6px}
+ .hero.ochea-intro .hero-kicker{font-size:9px;letter-spacing:1.05px}
+ .hero.ochea-intro h1{font-size:clamp(23px,6vw,27px);letter-spacing:-.85px}
+ .hero.ochea-intro p{font-size:11px;max-width:200px}
+ .hero.ochea-intro .hero-cta{font-size:11px;gap:3px;min-height:34px;padding:7px 9px}
+ .hero.ochea-intro .hero-cta span{font-size:13px}
+ .discovery{padding-top:9px}
+ .searchwrap{height:48px;border-radius:14px}
+ .searchwrap input{font-size:14px}
+ .date-filter-wrap{margin-top:9px;gap:6px}
+ .date-filter-wrap .top-filters{gap:5px}
+ .date-chip{min-height:37px;padding:8px 11px;font-size:11px}
+ .date-filter-wrap #customDateToggle{min-height:37px;padding:7px 9px;font-size:11px}
+ .date-toggle-label-long{display:none}
+ .date-toggle-label-short{display:inline}
+ .category-filter-heading{margin-top:10px}
+ .category-filter-heading small{font-size:9px}
+ .category-chip{min-height:37px;font-size:11px;padding:7px 9px}
+ .category-chip.active{padding:7px 9px}
+ .category-next{display:grid;place-items:center;position:absolute;z-index:3;right:0;top:4px;bottom:4px;width:31px;border:0;border-radius:13px;background:linear-gradient(90deg,#f7fafcdd,#fff);color:#007f9c;box-shadow:-5px 0 12px #f7fafc;font:800 29px/1 Arial}
+ .quick-toolbar{margin-top:8px;margin-bottom:4px}
+ .result-titles h2{font-size:clamp(22px,6.5vw,27px)}
+ .photo{height:160px}
+ .source-status{font-size:10px;margin-bottom:8px}
+}
+@media(max-width:405px){
+ .hero-extra{display:none}
+ .hero.ochea-intro h1{font-size:25px}
+ .hero.ochea-intro p{font-size:10.5px}
+ .category-filter-heading small{max-width:185px;text-align:right}
+}
+@media(max-width:350px){
+ .ochea-header-logo{width:137px}
+ .location-btn{font-size:10px;padding:0 7px}
+ .hero.ochea-intro h1{font-size:22px}
+ .hero.ochea-intro .hero-cta{padding:7px;font-size:10px}
+ .category-filter-heading small{font-size:8px}
+}
+@media(min-width:650px) and (max-width:999px){
+ .hero.ochea-intro .hero-content{padding:17px 24px}
+ .events-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(min-width:1000px){
+ .hero.ochea-intro .hero-content{padding:23px 28px}
+ .events-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>Ochea · Planes y eventos en Gran Canaria</title>
@@ -306,14 +381,17 @@ body{background:#f5f9fc}
     <div class="topright"><button class="location-btn" id="locationButton" aria-label="Cambiar ubicación"><span class="pin">⌖</span><span id="locationName">Toda Gran Canaria</span><span class="chev">⌄</span></button><button id="profileBtn" class="circle-btn" aria-label="Mi cuenta">♙</button></div>
   </header>
   <main class="shell">
-    <section class="hero" aria-labelledby="heroTitle">
-      <div class="hero-grain" aria-hidden="true"></div><div class="hero-orbit orbit-a" aria-hidden="true"></div><div class="hero-orbit orbit-b" aria-hidden="true"></div><div class="hero-star star-one" aria-hidden="true">✳</div><div class="hero-star star-two" aria-hidden="true">✧</div>
-      <div class="hero-content"><div class="hero-kicker"><span class="online-dot"></span> LAS OCHO ISLAS · INFINITOS PLANES</div><h1 id="heroTitle">¿Qué hacemos<br><em>hoy?</em></h1><p>Los mejores planes de la isla, a la vuelta de la esquina.</p><button class="hero-cta" id="surpriseBtn">Sorpréndeme <span>↗</span></button></div>
-      <div class="hero-tag">LOS PLANES NO ESPERAN <span>↘</span></div>
+    <section class="hero ochea-intro" aria-labelledby="heroTitle">
+      <div class="hero-content">
+        <div class="hero-kicker"><span class="online-dot" aria-hidden="true"></span> DESCUBRE GRAN CANARIA</div>
+        <h1 id="heroTitle">Encuentra tu <span class="hero-extra">próximo </span><em>plan</em></h1>
+        <p>Hoy, mañana o el fin de semana. Las ocho islas, nuestra meta.</p>
+        <button type="button" class="hero-cta" id="surpriseBtn" aria-label="Descubrir un plan al azar">Sorpréndeme <span aria-hidden="true">↗</span></button>
+      </div>
     </section>
     <section class="discovery" aria-label="Explorar planes">
       <div class="searchwrap"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Conciertos, ferias, talleres..." autocomplete="off" aria-label="Buscar actividades"><button id="clearSearch" class="clear-search hidden" aria-label="Borrar búsqueda">✕</button></div>
-      <div class="date-filter-wrap"><div class="top-filters" role="group" aria-label="Filtrar por fecha"><button class="date-chip active" data-when="today">Hoy</button><button class="date-chip" data-when="tomorrow">Mañana</button><button class="date-chip" data-when="weekend">Este finde</button><button class="date-chip" data-when="week">7 días</button><button class="date-chip" data-when="all">Próximamente</button></div><button class="date-chip" type="button" data-when="custom" id="customDateToggle" aria-controls="customDatePanel" aria-expanded="false">▦ Elegir fechas</button></div>
+      <div class="date-filter-wrap"><div class="top-filters" role="group" aria-label="Filtrar por fecha"><button class="date-chip active" data-when="today">Hoy</button><button class="date-chip" data-when="tomorrow">Mañana</button><button class="date-chip" data-when="weekend">Este finde</button><button class="date-chip" data-when="week">7 días</button><button class="date-chip" data-when="all">Próximamente</button></div><button class="date-chip" type="button" data-when="custom" id="customDateToggle" aria-controls="customDatePanel" aria-expanded="false"><span aria-hidden="true">▦</span> <span class="date-toggle-label-long">Elegir fechas</span><span class="date-toggle-label-short">Fechas</span></button></div>
  <form id="customDatePanel" class="custom-date-panel hidden" aria-label="Elegir fechas de actividades">
  <div class="custom-date-fields"><label>Mes completo<input type="month" id="filterMonth" aria-label="Mes de actividades"></label>
  <span class="custom-date-or">o elige un periodo</span>
@@ -321,7 +399,7 @@ body{background:#f5f9fc}
  <label>Hasta<input type="date" id="filterTo" aria-label="Fecha final"></label></div>
  <div class="custom-date-actions"><span id="customDateError" class="custom-date-error" role="alert" aria-live="polite"></span>
  <button type="button" id="customDateCancel" class="custom-date-clear">Cancelar</button><button type="submit" class="custom-date-apply">Ver planes</button></div></form>
-      <div class="category-filter-heading"><span>Categorías</span><small>Puedes elegir varias</small></div><div class="categories" id="categories" role="group" aria-label="Filtrar por categorías"></div>
+      <div class="category-filter-heading"><span>Categorías</span><small>Elige varias · Desliza para ver más →</small></div><div class="categories-scroll"><div class="categories" id="categories" role="group" aria-label="Filtrar por categorías. Desliza para ver más"></div><button type="button" id="categoryNextBtn" class="category-next" aria-label="Desplazar las categorías hacia la derecha">›</button></div>
       <div class="quick-toolbar"><div class="result-titles"><span class="eyebrow">ENCUENTRA TU PRÓXIMO PLAN</span><h2 id="sectionTitle">Para hoy <span class="count" id="eventCount">· …</span></h2></div>
         <div class="toolbar-actions"><select id="sortSelect" aria-label="Ordenar eventos"><option value="recommended">Para ti ↕</option><option value="time">Por hora ↑</option><option value="near">Más cerca ↑</option></select></div>
       </div>
@@ -822,6 +900,7 @@ $('customDateCancel').onclick=closeCustomDatePanel;
  $('eventsGrid').onkeydown=e=>{if(['Enter',' '].includes(e.key)&&e.target.matches('article[data-id]')){e.preventDefault();showEvent(e.target.dataset.id)}};
  $('resetFilters').onclick=()=>{state.when='all';state.categories.clear();state.dateRange=null;state.dateRangeLabel='';try{localStorage.removeItem('padonde_selected_categories')}catch{}state.query='';$('searchInput').value='';state.tab='explore';state.newOnly=false;render()};
  $('locationButton').onclick=locationDialog;$('profileBtn').onclick=()=>state.user?mineDialog():authDialog();$('publishCta').onclick=publishDialog;$('sourcesBtn').onclick=showSources;
+ $('categoryNextBtn').onclick=()=>{const c=$('categories');const remaining=c.scrollWidth-c.clientWidth-c.scrollLeft;if(remaining>12)c.scrollBy({left:Math.max(180,Math.round(c.clientWidth*.7)),behavior:'smooth'});else c.scrollTo({left:0,behavior:'smooth'})};
  $('surpriseBtn').onclick=()=>{let ev=filtered();if(!ev.length){state.when='all';render();ev=filtered()}if(ev.length)showEvent(ev[Math.floor(Math.random()*Math.min(10,ev.length))].id);else toast('No hay planes disponibles')};
  $('modalClose').onclick=()=>{closeModal();if(location.search)history.replaceState(null,'',location.pathname)};$('modalBackdrop').onclick=()=>{closeModal();if(location.search)history.replaceState(null,'',location.pathname)};
  $('closeMap').onclick=closeMap;
