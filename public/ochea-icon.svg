@@ -1,1 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Ochea"><rect width="512" height="512" rx="112" fill="#082c48"/><circle cx="256" cy="246" r="155" fill="none" stroke="#ffffff" stroke-width="73"/><path d="M105 282c70-70 114 7 173-10 62-18 91-83 131-37-7 102-78 174-155 174-65 0-121-46-149-127z" fill="#00a7cd"/><path d="M116 340c77-35 130 62 214 11 23-14 49-31 69-42-48 96-182 133-283 31z" fill="#0c6d9b"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title"><title id="title">Ochea, olas y las ocho islas</title><defs><linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0c4165"/><stop offset="1" stop-color="#071d34"/></linearGradient><linearGradient id="wave" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#12c6df"/><stop offset="1" stop-color="#008eb8"/></linearGradient></defs>
+<rect width="512" height="512" rx="108" fill="url(#sky)"/>
+<g transform="translate(62 78) scale(.95)">
+<path d="M19 38l8-8 9 4 4 11-8 8-11-4-5-6z" fill="#139aba"/>
+<path d="M53 28l11-12 11 5 2 13-11 10-12-7z" fill="#087f99"/>
+<path d="M91 17l7-12 13 4 6 15-6 16-12 5-8-12z" fill="#50b485"/>
+<path d="M131 24l19-14 17-5 9-3-4 19-14 13-4 13-12 4-12-10z" fill="#fb6a61"/>
+<path d="M189 23l13-10 17 2 10 14-5 15-15 6-16-9z" fill="#f5a31e"/>
+<path d="M244 38l9-14 13-12 13-6-2 17-8 18-15 14-13-4z" fill="#efae6d"/>
+<path d="M290 28l13-13 13-2 8 9-8 16-17 6-10-7z" fill="#e64e49"/>
+<path d="M318 7l7-6 7 5-2 10-9 2-5-5z" fill="#9349a0"/></g>
+<circle cx="256" cy="294" r="133" fill="none" stroke="#faffff" stroke-width="57"/>
+<path d="M117 305c48-45 83-29 125-7 46 25 80 7 124-19 13-7 29-14 40-18-8 94-66 166-151 166-75 0-129-46-138-122z" fill="url(#wave)"/>
+<path d="M132 367c45-25 94 23 141 17 46-5 80-42 112-45-29 58-81 88-131 88-53 0-99-22-122-60z" fill="#046488" opacity=".95"/>
+</svg>
