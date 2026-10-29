@@ -1,6 +1,5 @@
-const CACHE='ochea-brand-v4';
-const ASSETS=['/','/index.html','/reminders.js','/filter_ui.js','/manifest.webmanifest','/ochea-icon.svg','/ochea-logo.svg','/icons/icon-192.png','/icons/icon-512.png','/apple-touch-icon.png'];
+const CACHE='dparranda-brand-v5';
+const ASSETS=['/','/index.html','/reminders.js','/filter_ui.js','/manifest.webmanifest','/brand/dparranda-theme.css','/brand/dparranda-logo.svg','/brand/dparranda-compact.svg','/brand/dparranda-icon.svg','/brand/dparranda-favicon.svg','/icons/dparranda-192.png','/icons/dparranda-512.png','/apple-touch-icon.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
-self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const u=new URL(e.request.url);if(u.origin!==self.location.origin||u.pathname.startsWith('/api/'))return;if(e.request.mode==='navigate'){e.respondWith(fetch(e.request).catch(()=>caches.match('/index.html')));return}if(ASSETS.includes(u.pathname))e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));});
-
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;const u=new URL(e.request.url);if(u.origin!==self.location.origin||u.pathname.startsWith('/api/'))return;if(e.request.mode==='navigate'){e.respondWith(fetch(e.request).catch(()=>caches.match('/index.html')));return}if(ASSETS.includes(u.pathname))e.respondWith(fetch(e.request).then(r=>{if(r.ok){const clone=r.clone();caches.open(CACHE).then(c=>c.put(e.request,clone)).catch(()=>{})}return r}).catch(()=>caches.match(e.request)));});
