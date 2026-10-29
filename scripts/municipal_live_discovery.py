@@ -29,6 +29,14 @@ def discover(listing, host):
     links={}
     for a in listing.select("a[href]"):
         title=" ".join(a.get_text(" ",strip=True).split())
+        if title.casefold() in ("leer más", "read more", "más información", "ver más"):
+            for ancestor in list(a.parents)[:4]:
+                heading=ancestor.find(["h2","h3","h4","h5"])
+                if heading:
+                    candidate=" ".join(heading.get_text(" ",strip=True).split())
+                    if candidate and candidate.casefold()!=title.casefold():
+                        title=candidate
+                        break
         url=urljoin("https://"+host+"/",a["href"])
         p=urlsplit(url)
         if p.scheme!="https" or p.hostname not in (host,"www."+host,host.removeprefix("www.")):continue
