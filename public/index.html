@@ -1065,7 +1065,7 @@ function refreshEventTime(){
  const currentCount=state.events.filter(e=>!DParrandaTime.hasFinished(e,now)).length;
  if(previousCount!==currentCount||before.slice(0,10)!==now.slice(0,10)){
    render();
-   $('sourceStatus').textContent=$('sourceStatus').textContent.replace(/^\\d+ planes próximos/,currentCount+' planes próximos');
+   $('sourceStatus').textContent=$('sourceStatus').textContent.replace(/^[0-9]+ planes próximos/,currentCount+' planes próximos');
  }
 }
 document.addEventListener('visibilitychange',()=>{
