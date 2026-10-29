@@ -719,7 +719,7 @@ function render(){renderCategories();renderIslands();renderNewEventNotice();cons
  $('emptyMessage').textContent=otherIsland?'Todavía no publicamos planes verificados en '+state.island+'. Mientras tanto, descubre Gran Canaria.':'Prueba otras fechas o categorías para descubrir más.';
  if(otherIsland)$('sectionTitle').firstChild.textContent=state.island+' ';
  $('sourceStatus').classList.toggle('hidden',otherIsland);
- $('filterSummary').textContent=[state.island,({today:'Hoy',tomorrow:'Mañana',weekend:'Este finde',week:'7 días',all:'Próximamente',custom:state.dateRangeLabel||'Fechas personalizadas'})[state.when],state.categories.size?state.categories.size+' categorías':'Todas las categorías',state.query||null].filter(Boolean).join(' · ');
+ $('filterSummary').textContent=[state.island,state.originName==='Cerca de mí'?'⌖ Cerca de mí':(state.originName!=='Toda Gran Canaria'?state.originName:null),({today:'Hoy',tomorrow:'Mañana',weekend:'Este finde',week:'7 días',all:'Próximamente',custom:state.dateRangeLabel||'Fechas personalizadas'})[state.when],state.categories.size?state.categories.size+' categorías':'Todas las categorías',state.query||null].filter(Boolean).join(' · ');
  $('filterResultCount').textContent='('+events.length+')';
  document.querySelectorAll('.date-chip').forEach(b=>b.classList.toggle('active',b.dataset.when===state.when));
  
