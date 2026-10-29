@@ -774,14 +774,24 @@ const organizerAction=e=>{
  return '<a href="'+escapeHTML(url)+'" target="_blank" rel="noopener noreferrer">'+
    (ticketHost?'Consultar entradas ↗':'Web del organizador ↗')+'</a>';
 };
+function originalSourceInfo(e){
+ const link=String(e.source_url||''),plain=link.split('?')[0].toLowerCase();
+ const grouped=state.events.some(other=>other.id!==e.id&&other.source_url===link&&other.title!==e.title);
+ if(plain.endsWith('.pdf'))return {label:'Abrir programa oficial (PDF) ↗',note:'La fuente es un programa con varios actos; busca este evento por su nombre o fecha.'};
+ if(grouped)return {label:'Consultar programación oficial ↗',note:'La fuente reúne varios actos; no es una ficha individual de este evento.'};
+ if(plain.endsWith('/agenda')||plain.endsWith('/agenda/')||plain.endsWith('/calendario-de-eventos/')||plain.endsWith('/calendario-de-eventos'))
+   return {label:'Abrir agenda del organizador ↗',note:'Este enlace abre una agenda general. Quizá necesites buscar el nombre de la actividad.'};
+ if(e.source_name.startsWith('TuReservaOnline'))return {label:'Consultar entradas ↗',note:''};
+ return {label:'Abrir publicación original ↗',note:''};
+}
 function showEvent(id){const e=state.events.find(x=>x.id===+id);if(!e)return;
  const mapQuery=encodeURIComponent([venueName(e),e.municipality,'Gran Canaria'].join(', '));
- const approx=eventApprox(e);const extra=eventUsesMunicipality(e)?'Ubicación aproximada (centro del municipio). Consulta la fuente para encontrar el punto exacto.':'Ubicación indicada por el organizador.';
+ const approx=eventApprox(e),srcInfo=originalSourceInfo(e);const extra=eventUsesMunicipality(e)?'Ubicación aproximada (centro del municipio). Consulta la fuente para encontrar el punto exacto.':'Ubicación indicada por el organizador.';
  openModal(`<div class="modal-photo ${CLASSES[e.category]||'p-other'}">${coverHtml(e,true)}<span class="modal-photo-label">${escapeHTML(textForCat(e.category)).toUpperCase()} · GRAN CANARIA</span></div><div class="modal-body"><span class="eyebrow">PLAN Nº ${e.id} · ${escapeHTML(e.municipality).toUpperCase()}</span><h2 class="modal-title" id="modalHeading">${escapeHTML(e.title)}</h2>
  <div class="event-dateblock"><span class="ico">▦</span><div><strong>${escapeHTML(dateLabel(e))}</strong><small>${escapeHTML(timeLabel(e))}${e.end?.length===10?' · Hasta '+escapeHTML(e.end.slice(8,10)+'/'+e.end.slice(5,7)):e.end?.includes('T')?' – '+escapeHTML(e.end.slice(11,16)):''}</small></div></div>
  <div class="event-dateblock"><span class="ico">⌖</span><div><strong>${escapeHTML(venueName(e))}</strong><small>${escapeHTML(e.municipality)} · ${approx!==null?'aprox. '+approx+' km · ':''}${escapeHTML(extra)}</small></div></div>
  ${price(e)?`<div class="event-dateblock"><span class="ico">€</span><div><strong>${escapeHTML(price(e))}</strong><small>Comprueba las condiciones de acceso con la organización.</small></div></div>`:''}
- <p>${escapeHTML(e.details||'Información disponible en la fuente original del evento.')}</p><div class="modal-actions"><a class="primary-action" href="${safeUrl(e.source_url)}" target="_blank" rel="noopener noreferrer">${e.source_name.startsWith('TuReservaOnline')?'Ver entradas ↗':'Consultar fuente ↗'}</a><a href="https://www.google.com/maps/search/?api=1&query=${mapQuery}" target="_blank" rel="noopener noreferrer" class="${venueName(e)==='Recinto por confirmar'?'hidden':''}">Cómo llegar ↗</a>${organizerAction(e)}</div>
+ <p>${escapeHTML(e.details||'Información disponible en la fuente original del evento.')}</p>${srcInfo.note?'<p class="source-context-note">ⓘ '+escapeHTML(srcInfo.note)+'</p>':''}<div class="modal-actions"><a class="primary-action" href="${safeUrl(e.source_url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(srcInfo.label)}</a><a href="https://www.google.com/maps/search/?api=1&query=${mapQuery}" target="_blank" rel="noopener noreferrer" class="${venueName(e)==='Recinto por confirmar'?'hidden':''}">Cómo llegar ↗</a>${organizerAction(e)}</div>
  <div class="modal-actions"><button type="button" id="saveDetailBtn">${state.favorites.has(e.id)?'♥ Guardado':'♡ Guardar evento'}</button><button type="button" id="reminderDetailBtn">🔔 Recordarme</button><button type="button" id="shareDetailBtn">↗ Compartir</button></div><p class="footnote">Fuente: ${escapeHTML(e.source_name)}. ${verifiedImage(e)?'Portada publicada por '+escapeHTML(e.image_origin||e.source_name)+'; derechos de su autor/editor.':'Este evento no dispone de una portada oficial verificable.'} Datos sujetos a cambios.</p></div>`);
  $('saveDetailBtn').onclick=()=>{toggleFav(e.id);$('saveDetailBtn').textContent=state.favorites.has(e.id)?'♥ Guardado':'♡ Guardar evento'};
  $('reminderDetailBtn').onclick=()=>openReminderDialog(e);
