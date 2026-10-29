@@ -26,6 +26,10 @@ class DParrandaHomepageContract(unittest.TestCase):
         self.assertIn("loadEvents();", self.html)
         self.assertIn("'/api/events'", self.html)
         self.assertIn('id="eventsGrid"', self.html)
+        self.assertIn('<script src="/temporal.js?v=1"></script>', self.html)
+        self.assertTrue((PUBLIC / "temporal.js").is_file())
+        self.assertIn("DParrandaTime.hasFinished(e,localTimeKey())", self.html)
+        self.assertIn("setInterval(refreshEventTime,30000)", self.html)
 
     def test_brand_and_filter_modal(self):
         for anchor in ('src="/brand/dparranda-logo.svg?v=5"', 'id="openFiltersBtn"',
