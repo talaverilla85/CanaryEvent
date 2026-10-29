@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-10-29T00:10:37+00:00",
+  "checked_at": "2026-10-29T00:22:11+00:00",
   "quality_counts": {
-    "publicados": 509,
-    "recintos_sin_verificar": 76,
+    "publicados": 519,
+    "recintos_sin_verificar": 75,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 351,
-    "distancia_a_centro_municipal": 339,
-    "fuentes_con_error": 1,
+    "precios_sin_confirmar": 359,
+    "distancia_a_centro_municipal": 349,
+    "fuentes_con_error": 0,
     "duplicados_potenciales": 9
   },
   "sources": [
@@ -203,10 +203,10 @@
     {
       "source": "Ayuntamiento de Artenara · ferias tradicionales 2026",
       "estado": "operativa",
-      "publicados": 0,
-      "recinto_sin_verificar": 2,
-      "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 0,
+      "publicados": 1,
+      "recinto_sin_verificar": 1,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
       "fichas_leidas_en_esta_ejecucion": 2,
       "error": ""
     },
@@ -291,6 +291,46 @@
       "error": ""
     },
     {
+      "source": "Ayuntamiento de Moya · Otoño es Cultura 2026",
+      "estado": "operativa",
+      "publicados": 7,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 6,
+      "distancia_al_centro_municipal": 7,
+      "fichas_leidas_en_esta_ejecucion": 7,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Valsequillo · calendario municipal",
+      "estado": "operativa",
+      "publicados": 1,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 1,
+      "error": ""
+    },
+    {
+      "source": "Ayuntamiento de Mogán · actividades documentadas",
+      "estado": "operativa",
+      "publicados": 1,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 1,
+      "error": ""
+    },
+    {
+      "source": "Firgas · Finaos 2026 contrastados con fuentes locales",
+      "estado": "operativa",
+      "publicados": 1,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 1,
+      "error": ""
+    },
+    {
       "source": "Juventud de Ingenio · programa de otoño desglosado",
       "estado": "operativa",
       "publicados": 1,
@@ -302,21 +342,21 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "operativa",
+      "estado": "al_dia_sin_fichas_pendientes",
       "publicados": 253,
       "recinto_sin_verificar": 58,
       "precio_sin_confirmar": 208,
       "distancia_al_centro_municipal": 153,
-      "fichas_leidas_en_esta_ejecucion": 53,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 74,
+      "publicados": 73,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 73,
+      "distancia_al_centro_municipal": 72,
       "fichas_leidas_en_esta_ejecucion": 118,
       "error": ""
     },
@@ -372,21 +412,16 @@
     },
     {
       "source": "Recintos · carteles oficiales comprobados",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 9,
-      "error": "ValueError"
+      "error": ""
     }
   ],
-  "reported_errors": [
-    {
-      "source": "Recintos · carteles oficiales comprobados",
-      "error": "ValueError"
-    }
-  ],
+  "reported_errors": [],
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
@@ -405,11 +440,11 @@
       "count": 3
     },
     {
-      "source": "Ayuntamiento de Artenara · ferias tradicionales 2026",
-      "count": 2
+      "source": "Ayuntamiento de Agüimes",
+      "count": 1
     },
     {
-      "source": "Ayuntamiento de Agüimes",
+      "source": "Ayuntamiento de Artenara · ferias tradicionales 2026",
       "count": 1
     }
   ],

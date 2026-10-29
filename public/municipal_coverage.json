@@ -2,9 +2,9 @@
   "updated_on": "2026-10-29",
   "scope": "21 municipios de Gran Canaria",
   "municipalities_total": 21,
-  "municipalities_with_any_catalog_cards": 20,
-  "municipalities_with_official_municipal_cards": 15,
-  "municipalities_without_municipal_cards": 6,
+  "municipalities_with_any_catalog_cards": 21,
+  "municipalities_with_official_municipal_cards": 19,
+  "municipalities_without_municipal_cards": 2,
   "full_coverage_confirmed": false,
   "important": "Municipal coverage is NOT the same as having third-party events near that town. Partial official connectors do not guarantee every local event.",
   "municipalities": [
@@ -54,11 +54,11 @@
       "municipality": "Artenara",
       "official_website": "https://www.artenara.es/",
       "agenda_url": "https://www.artenara.es/portal-ciudadano/category/eventos/",
-      "original_connector_state": "conector_parcial",
+      "original_connector_state": "conector_parcial_articulo_corrobora_plaza",
       "coverage_level": "cobertura_parcial_o_en_revision",
-      "data_status": "conector_parcial",
-      "catalog_cards_total": 0,
-      "municipal_cards_total": 0,
+      "data_status": "conector_parcial_articulo_corrobora_plaza",
+      "catalog_cards_total": 1,
+      "municipal_cards_total": 1,
       "other_sources_cards_total": 0,
       "source_health": [
         {
@@ -95,10 +95,16 @@
       "original_connector_state": "agenda_localizada_sin_programacion_futura_verificada",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "agenda_localizada_sin_programacion_futura_verificada",
-      "catalog_cards_total": 1,
+      "catalog_cards_total": 2,
       "municipal_cards_total": 0,
-      "other_sources_cards_total": 1,
-      "source_health": [],
+      "other_sources_cards_total": 2,
+      "source_health": [
+        {
+          "source": "Firgas · Finaos 2026 contrastados con fuentes locales",
+          "found": 1,
+          "error": ""
+        }
+      ],
       "full_coverage_claim": false
     },
     {
@@ -153,9 +159,9 @@
       "municipality": "La Aldea de San Nicolás",
       "official_website": "https://laaldeasanicolas.es/",
       "agenda_url": "https://laaldeasanicolas.es/noticias/",
-      "original_connector_state": "fuente_oficial_localizada_tls_pendiente",
+      "original_connector_state": "taquilla_recinto_verificada_tlsoficial_pendiente",
       "coverage_level": "sin_extraccion_municipal_automatizada",
-      "data_status": "fuente_oficial_localizada_tls_pendiente",
+      "data_status": "taquilla_recinto_verificada_tlsoficial_pendiente",
       "catalog_cards_total": 1,
       "municipal_cards_total": 0,
       "other_sources_cards_total": 1,
@@ -185,26 +191,38 @@
       "municipality": "Mogán",
       "official_website": "https://www.mogan.es/",
       "agenda_url": "https://www.mogansc.es/",
-      "original_connector_state": "programacion_por_verificar",
+      "original_connector_state": "conector_parcial_noticia_2026_revisada",
       "coverage_level": "cobertura_parcial_o_en_revision",
-      "data_status": "programacion_por_verificar",
-      "catalog_cards_total": 3,
-      "municipal_cards_total": 0,
+      "data_status": "conector_parcial_noticia_2026_revisada",
+      "catalog_cards_total": 4,
+      "municipal_cards_total": 1,
       "other_sources_cards_total": 3,
-      "source_health": [],
+      "source_health": [
+        {
+          "source": "Ayuntamiento de Mogán · actividades documentadas",
+          "found": 1,
+          "error": ""
+        }
+      ],
       "full_coverage_claim": false
     },
     {
       "municipality": "Moya",
       "official_website": "https://www.villademoya.es/",
       "agenda_url": null,
-      "original_connector_state": "por_localizar",
-      "coverage_level": "sin_extraccion_municipal_automatizada",
-      "data_status": "por_localizar",
-      "catalog_cards_total": 6,
-      "municipal_cards_total": 0,
-      "other_sources_cards_total": 6,
-      "source_health": [],
+      "original_connector_state": "conector_parcial_folleto_2026_revisado",
+      "coverage_level": "cobertura_parcial_o_en_revision",
+      "data_status": "conector_parcial_folleto_2026_revisado",
+      "catalog_cards_total": 12,
+      "municipal_cards_total": 7,
+      "other_sources_cards_total": 5,
+      "source_health": [
+        {
+          "source": "Ayuntamiento de Moya · Otoño es Cultura 2026",
+          "found": 7,
+          "error": ""
+        }
+      ],
       "full_coverage_claim": false
     },
     {
@@ -341,16 +359,21 @@
       "municipality": "Valsequillo",
       "official_website": "https://www.valsequillogc.es/",
       "agenda_url": "https://www.valsequillogc.es/ayto3/calendario-de-eventos/",
-      "original_connector_state": "conector_parcial_fuente_intermunicipal",
+      "original_connector_state": "conector_parcial_calendario_2026_revisado",
       "coverage_level": "cobertura_parcial_o_en_revision",
-      "data_status": "conector_parcial_fuente_intermunicipal",
-      "catalog_cards_total": 2,
-      "municipal_cards_total": 0,
+      "data_status": "conector_parcial_calendario_2026_revisado",
+      "catalog_cards_total": 3,
+      "municipal_cards_total": 1,
       "other_sources_cards_total": 2,
       "source_health": [
         {
           "source": "Mancomunidad de Medianías · Alma de Medianías en Valsequillo",
           "found": 2,
+          "error": ""
+        },
+        {
+          "source": "Ayuntamiento de Valsequillo · calendario municipal",
+          "found": 1,
           "error": ""
         }
       ],

@@ -1,15 +1,15 @@
 {
-  "checked_on": "2026-10-29T00:14:22.381774+00:00",
-  "total_events": 509,
-  "known_price_or_free": 158,
+  "checked_on": "2026-10-29T00:24:49.416778+00:00",
+  "total_events": 519,
+  "known_price_or_free": 160,
   "classification": {
     "minimum_zero_ambiguous": 6,
-    "free": 23,
+    "free": 25,
     "minimum_positive": 122,
     "fixed_positive": 7
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 74,
+    "TuReservaOnline · agenda de Gran Canaria": 73,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 45,
     "Ayuntamiento de Telde · fiestas y cultura 2026": 1,
     "Ayuntamiento de Ingenio": 5,
@@ -17,9 +17,12 @@
     "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 1,
     "Ayuntamiento de Agüimes": 2,
     "Mancomunidad de Medianías · Alma de Medianías en Valsequillo": 2,
+    "Firgas · Finaos 2026 contrastados con fuentes locales": 1,
     "Ayuntamiento de Tejeda · agenda oficial": 1,
     "Ayuntamiento de Teror · programación del Auditorio": 10,
     "LPA Cultura · agenda municipal oficial": 5,
+    "Ayuntamiento de Moya · Otoño es Cultura 2026": 1,
+    "Ayuntamiento de Mogán · actividades documentadas": 1,
     "EcoEntradas · Centro Municipal de Cultura de La Aldea": 1
   },
   "issues": [

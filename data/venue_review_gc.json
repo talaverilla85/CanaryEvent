@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-29T00:10:37+00:00",
-  "not_published": 76,
+  "updated_at": "2026-10-29T00:22:11+00:00",
+  "not_published": 75,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -552,18 +552,6 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
       "source_url": "https://www.santaluciagc.com/braulio-los-gofiones-bejeque-los-coquillos-enac-ska-cristina-ramos-antonia-san-juan-y-matias-alonso-en-las-fiestas-de-san-rafael/",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 577,
-      "title": "VI Feria de las Tradiciones · Artenara",
-      "start": "2026-11-01",
-      "end": null,
-      "municipality": "Artenara",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Artenara · ferias tradicionales 2026",
-      "source_url": "https://www.artenara.es/portal-ciudadano/noticias/vi-feria-de-las-tradiciones-en-artenara/",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
