@@ -379,19 +379,39 @@ body{background:var(--cream)}
 <title>Ochea · Planes y eventos en Gran Canaria</title>
 </head><body>
 <div id="app">
-  <header class="topbar shell"><a href="/" class="brand" aria-label="Ochea — inicio"><img class="ochea-header-logo" src="/ochea-logo.svg" alt="Ochea · Las ocho islas. Infinitos planes." width="190" height="75"></a>
-    <div class="topright"><button class="location-btn" id="locationButton" aria-label="Cambiar ubicación"><span class="pin">⌖</span><span id="locationName">Toda Gran Canaria</span><span class="chev">⌄</span></button><button id="profileBtn" class="circle-btn" aria-label="Mi cuenta">♙</button></div>
-  </header>
+  <header class="ochea-brand-header shell">
+ <a href="/" class="ochea-brand-link" aria-label="Ochea, inicio"><img src="/ochea-logo.svg" class="ochea-brand-visual" alt="Ochea" width="400" height="120"></a>
+ <p class="ochea-brand-motto">Las ocho islas. Infinitos planes.</p>
+ </header>
   <main class="shell">
-    <section class="hero ochea-intro" aria-labelledby="heroTitle">
-      <div class="hero-content">
-        <div class="hero-kicker"><span class="online-dot" aria-hidden="true"></span> DESCUBRE GRAN CANARIA</div>
-        <h1 id="heroTitle">Encuentra tu <span class="hero-extra">próximo </span><em>plan</em></h1>
-        <p>Hoy, mañana o el fin de semana. Las ocho islas, nuestra meta.</p>
-        <button type="button" class="hero-cta" id="surpriseBtn" aria-label="Descubrir un plan al azar">Sorpréndeme <span aria-hidden="true">↗</span></button>
-      </div>
-    </section>
     <section class="discovery" aria-label="Explorar planes">
+ <button id="openFiltersBtn" class="ochea-filter-entry" type="button" aria-controls="filtersPanel" aria-haspopup="dialog" aria-expanded="false">
+ <span class="filter-entry-icon" aria-hidden="true">⌕</span><span class="filter-entry-copy"><strong>Buscar y filtrar planes</strong><small id="filterSummary">Gran Canaria · Hoy · Todas las categorías</small></span>
+ <span class="filter-entry-action">Filtros ☷</span></button>
+      <div class="quick-toolbar"><div class="result-titles"><span class="eyebrow">ENCUENTRA TU PRÓXIMO PLAN</span><h2 id="sectionTitle">Para hoy <span class="count" id="eventCount">· …</span></h2></div>
+        
+      </div>
+      <div id="sourceStatus" class="source-status">Consultando eventos…</div>
+      <div id="newEventNotice" class="new-event-notice hidden" role="status" aria-live="polite">
+        <div class="new-event-label"><span class="new-event-dot" aria-hidden="true"></span>
+          <strong id="newEventCount">Nuevos planes</strong><small> desde que los marcaste como vistos</small>
+        </div>
+        <div class="new-event-buttons"><button type="button" id="newEventSee">Ver novedades</button><button type="button" id="newEventDismiss">Marcar vistas</button></div>
+      </div>
+      <div id="eventsGrid" class="events-grid" aria-live="polite"></div><button type="button" id="loadMoreBtn" class="small-filter" style="margin:14px auto 24px;display:block;padding:12px 24px" hidden>Mostrar 48 planes más ↓</button>
+      <div id="emptyState" class="empty-state hidden"><div class="empty-icon">☀</div><h3 id="emptyTitle">No encontramos planes con estos filtros</h3><p id="emptyMessage">Prueba otra fecha o amplía la zona. La isla tiene mucho por descubrir.</p><button id="resetFilters" class="primary-btn">Ver todos los planes</button></div>
+    </section>
+    <section class="info-strip"><span class="info-orb">✳</span><div><h3>¿Organizas algo interesante?</h3><p>Da a conocer tus eventos a personas que buscan qué hacer cerca.</p></div><button id="publishCta" class="info-button">Publicar plan ↗</button></section>
+    <footer class="footer"><strong>Ochea</strong><p>Descubre planes en Gran Canaria. Próximamente, más islas. Comprueba siempre los detalles en la fuente oficial. Las fotografías de ambientación son ilustrativas.</p><div><button id="sourcesBtn" class="text-button">Fuentes y actualización</button><a href="mailto:contacto@example.invalid" class="hidden">Contacto</a></div></footer>
+  </main>
+  <nav class="bottom-nav" aria-label="Navegación principal"><button class="navtab selected" data-tab="explore"><span>⌕</span><small>Explorar</small></button><button class="navtab" data-tab="map"><span>♧</span><small>Mapa</small></button><button class="navtab" data-tab="saved"><span>♡</span><small>Guardados</small></button><button class="navtab" data-tab="publish"><span>＋</span><small>Publicar</small></button></nav>
+  <div id="mapPanel" class="map-panel hidden"><div class="panel-heading"><div><span class="eyebrow">CADA PLAN EN SU SITIO</span><h2>Mapa de eventos</h2><p>Los círculos agrupan planes por municipio. La posición es aproximada salvo que la fuente facilite coordenadas exactas.</p></div><button id="closeMap" class="circle-btn" aria-label="Cerrar mapa">✕</button></div><div class="map-info"><span id="mapSummary" role="status">Cargando municipios…</span><button type="button" class="map-reset hidden" id="mapReset">Ver todos los municipios</button></div><div id="mapCanvas" aria-label="Mapa interactivo de eventos de Gran Canaria"></div><div id="mapList" class="map-list" aria-label="Eventos del municipio seleccionado"></div><button type="button" id="mapMore" class="map-more hidden">Mostrar más eventos de esta zona</button></div>
+
+<div id="filtersBackdrop" class="ochea-filters-backdrop hidden"></div>
+<aside id="filtersPanel" class="ochea-filters-panel hidden" role="dialog" aria-modal="true" aria-labelledby="filtersHeading" tabindex="-1">
+<div class="filters-panel-top"><div><span class="eyebrow">EXPLORA A TU MANERA</span><h2 id="filtersHeading">Buscar y filtrar</h2></div><button type="button" id="closeFiltersBtn" class="filters-close" aria-label="Cerrar filtros">✕</button></div>
+<div class="filters-panel-body">
+<div class="filters-label">¿Qué plan te apetece?</div>
       <div class="searchwrap"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Conciertos, ferias, talleres..." autocomplete="off" aria-label="Buscar actividades"><button id="clearSearch" class="clear-search hidden" aria-label="Borrar búsqueda">✕</button></div>
       <div class="date-filter-wrap"><div class="top-filters" role="group" aria-label="Filtrar por fecha"><button class="date-chip active" data-when="today">Hoy</button><button class="date-chip" data-when="tomorrow">Mañana</button><button class="date-chip" data-when="weekend">Este finde</button><button class="date-chip" data-when="week">7 días</button><button class="date-chip" data-when="all">Próximamente</button></div><button class="date-chip" type="button" data-when="custom" id="customDateToggle" aria-controls="customDatePanel" aria-expanded="false"><span aria-hidden="true">▦</span> <span class="date-toggle-label-long">Elegir fechas</span><span class="date-toggle-label-short">Fechas</span></button></div>
  <form id="customDatePanel" class="custom-date-panel hidden" aria-label="Elegir fechas de actividades">
@@ -402,24 +422,17 @@ body{background:var(--cream)}
  <div class="custom-date-actions"><span id="customDateError" class="custom-date-error" role="alert" aria-live="polite"></span>
  <button type="button" id="customDateCancel" class="custom-date-clear">Cancelar</button><button type="submit" class="custom-date-apply">Ver planes</button></div></form>
       <div class="category-filter-heading"><span>Categorías</span><small>Elige varias · Desliza para ver más →</small></div><div class="categories-scroll"><div class="categories" id="categories" role="group" aria-label="Filtrar por categorías. Desliza para ver más"></div><button type="button" id="categoryNextBtn" class="category-next" aria-label="Desplazar las categorías hacia la derecha">›</button></div>
-      <div class="quick-toolbar"><div class="result-titles"><span class="eyebrow">ENCUENTRA TU PRÓXIMO PLAN</span><h2 id="sectionTitle">Para hoy <span class="count" id="eventCount">· …</span></h2></div>
-        <div class="toolbar-actions"><select id="sortSelect" aria-label="Ordenar eventos"><option value="recommended">Para ti ↕</option><option value="time">Por hora ↑</option><option value="near">Más cerca ↑</option></select></div>
-      </div>
-      <div id="sourceStatus" class="source-status">Consultando eventos…</div>
-      <div id="newEventNotice" class="new-event-notice hidden" role="status" aria-live="polite">
-        <div class="new-event-label"><span class="new-event-dot" aria-hidden="true"></span>
-          <strong id="newEventCount">Nuevos planes</strong><small> desde que los marcaste como vistos</small>
-        </div>
-        <div class="new-event-buttons"><button type="button" id="newEventSee">Ver novedades</button><button type="button" id="newEventDismiss">Marcar vistas</button></div>
-      </div>
-      <div id="eventsGrid" class="events-grid" aria-live="polite"></div><button type="button" id="loadMoreBtn" class="small-filter" style="margin:14px auto 24px;display:block;padding:12px 24px" hidden>Mostrar 48 planes más ↓</button>
-      <div id="emptyState" class="empty-state hidden"><div class="empty-icon">☀</div><h3>No encontramos planes con estos filtros</h3><p>Prueba otra fecha o amplía la zona. La isla tiene mucho por descubrir.</p><button id="resetFilters" class="primary-btn">Ver todos los planes</button></div>
-    </section>
-    <section class="info-strip"><span class="info-orb">✳</span><div><h3>¿Organizas algo interesante?</h3><p>Da a conocer tus eventos a personas que buscan qué hacer cerca.</p></div><button id="publishCta" class="info-button">Publicar plan ↗</button></section>
-    <footer class="footer"><strong>Ochea</strong><p>Descubre planes en Gran Canaria. Próximamente, más islas. Comprueba siempre los detalles en la fuente oficial. Las fotografías de ambientación son ilustrativas.</p><div><button id="sourcesBtn" class="text-button">Fuentes y actualización</button><a href="mailto:contacto@example.invalid" class="hidden">Contacto</a></div></footer>
-  </main>
-  <nav class="bottom-nav" aria-label="Navegación principal"><button class="navtab selected" data-tab="explore"><span>⌕</span><small>Explorar</small></button><button class="navtab" data-tab="map"><span>♧</span><small>Mapa</small></button><button class="navtab" data-tab="saved"><span>♡</span><small>Guardados</small></button><button class="navtab" data-tab="publish"><span>＋</span><small>Publicar</small></button></nav>
-  <div id="mapPanel" class="map-panel hidden"><div class="panel-heading"><div><span class="eyebrow">CADA PLAN EN SU SITIO</span><h2>Mapa de eventos</h2><p>Los círculos agrupan planes por municipio. La posición es aproximada salvo que la fuente facilite coordenadas exactas.</p></div><button id="closeMap" class="circle-btn" aria-label="Cerrar mapa">✕</button></div><div class="map-info"><span id="mapSummary" role="status">Cargando municipios…</span><button type="button" class="map-reset hidden" id="mapReset">Ver todos los municipios</button></div><div id="mapCanvas" aria-label="Mapa interactivo de eventos de Gran Canaria"></div><div id="mapList" class="map-list" aria-label="Eventos del municipio seleccionado"></div><button type="button" id="mapMore" class="map-more hidden">Mostrar más eventos de esta zona</button></div>
+
+<div class="filters-label">Las ocho islas</div>
+<div id="islandOptions" class="ochea-islands" role="group" aria-label="Elige isla"></div>
+<p id="islandAvailability" class="island-availability">Gran Canaria tiene su agenda activa; el resto, próximamente.</p>
+<div class="filters-label">Ubicación de referencia</div>
+<button type="button" class="location-btn filters-location" id="locationButton" aria-label="Cambiar ubicación"><span class="pin">⌖</span><span id="locationName">Cerca de mí</span><span class="chev">⌄</span></button>
+<p class="filters-help">Con permiso usaremos tu ubicación para calcular distancias. Si no, elige un municipio; no guardamos tus coordenadas.</p>
+<div class="filters-label">Ordenar</div><select id="sortSelect" class="filters-sort" aria-label="Ordenar eventos"><option value="recommended">Para ti</option><option value="time">Por fecha y hora</option><option value="near">Más cerca</option></select>
+<button type="button" class="filters-surprise" id="surpriseBtn">✧ Sorpréndeme</button>
+</div><div class="filters-panel-footer"><button type="button" id="clearAllFiltersBtn" class="filters-clear">Limpiar</button><button type="button" id="applyFiltersBtn" class="filters-apply">Ver planes <span id="filterResultCount"></span> ↗</button></div>
+</aside>
   <div id="modalBackdrop" class="backdrop hidden"></div><aside id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalHeading"><button id="modalClose" class="modal-close" aria-label="Cerrar">✕</button><div id="modalContent"></div></aside>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </div>
@@ -435,6 +448,8 @@ const state={events:[],when:'today',category:'all',query:'',sort:'recommended',o
 state.mapSelected=null;state.mapLimit=16;state.mapEntries=[];state.geoRequestSeq=0;state.geoLastAttempt=0;state.geoManualOverride=false;
 state.sponsorAds=[];state.sponsorPlacement={after_mobile:4,after_tablet:6,after_desktop:8};
 state.newEventIds=new Set();state.newOnly=false;state.categories=new Set();state.dateRange=null;state.dateRangeLabel='';
+const ISLANDS=['Gran Canaria','Tenerife','Lanzarote','Fuerteventura','La Palma','La Gomera','El Hierro','La Graciosa'];
+try{const chosen=localStorage.getItem('ochea_island_v1');state.island=ISLANDS.includes(chosen)?chosen:'Gran Canaria'}catch{state.island='Gran Canaria'}
 const CATS=[['all','✳','Todos'],['musica','♫','Música'],['familia','✿','Familia'],['gastronomia','♨','Gastronomía'],['cultura','◈','Cultura'],['deporte','⚑','Deporte'],['naturaleza','❋','Aire libre'],['ocio','☼','Ocio'],['otros','✺','Otros']];
 try{
  const saved=JSON.parse(localStorage.getItem('padonde_selected_categories')||'[]');
@@ -512,7 +527,7 @@ function inFilter(e){const today=todayKey(),start=e.start.slice(0,10),end=eventE
 function eventScore(e){const approx=eventApprox(e);const tod=todayKey(),days=Math.max(0,Math.round((Date.parse(e.start.slice(0,10)+'T00:00:00Z')-Date.parse(tod+'T00:00:00Z'))/86400000));const mins=e.start.length>10?(+e.start.slice(11,13)*60 + +e.start.slice(14,16)):600;const p=zoneParts();const current=(+p.hour*60)+(+p.minute);const delay=days*1440+mins-current;const elapsed=delay<0?Math.min(200,Math.abs(delay)/3):0;
  return (approx??20)*.75+Math.max(0,delay)/95+elapsed;
 }
-function filtered(){let ev=state.events.filter(e=>inFilter(e)&&(!state.categories.size||state.categories.has(e.category)));
+function filtered(){let ev=(state.island==='Gran Canaria'?state.events:[]).filter(e=>inFilter(e)&&(!state.categories.size||state.categories.has(e.category)));
  if(state.query){const q=state.query.toLocaleLowerCase('es');ev=ev.filter(e=>[e.title,e.venue,e.municipality,e.details,e.category].join(' ').toLocaleLowerCase('es').includes(q))}
  if(state.tab==='saved')ev=ev.filter(e=>state.favorites.has(e.id));
  if(state.newOnly && state.tab==='explore')ev=ev.filter(e=>state.newEventIds.has(e.id));
@@ -597,7 +612,7 @@ function renderNewEventNotice(){
  const el=$('newEventNotice');
  if(!el)return;
  const n=state.newEventIds.size;
- el.classList.toggle('hidden',n===0);
+ el.classList.toggle('hidden',n===0||state.island!=='Gran Canaria');
  if(!n)return;
  $('newEventCount').textContent=n+' '+(n===1?'plan nuevo':'planes nuevos');
  $('newEventSee').textContent=state.newOnly?'Mostrar todos':'Ver novedades';
@@ -618,20 +633,36 @@ function chooseCategory(k){
  try{localStorage.setItem('padonde_selected_categories',JSON.stringify([...state.categories]))}catch{}
  state.newOnly=false;render();
 }
-function render(){renderCategories();renderNewEventNotice();const events=filtered();const shown=events.slice(0,state.visibleLimit);const sponsor=(state.tab==='explore'&&!state.query&&shown.length>=2)?state.sponsorAds.find(sponsorVisible):null;const sponsorAt=Math.min(sponsorInsertAfter(),shown.length);$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente ',custom:state.dateRangeLabel+' '}[state.when]);
+
+function renderIslands(){const el=$('islandOptions');if(!el)return;
+ el.innerHTML=ISLANDS.map(name=>{const yes=name===state.island;return '<button type="button" data-island="'+escapeHTML(name)+'" class="island-option '+(yes?'selected':'')+'" aria-pressed="'+yes+'"><span class="island-check">'+(yes?'✓':'')+'</span><span>'+escapeHTML(name)+'</span><small>'+(name==='Gran Canaria'?'Activa':'Próximamente')+'</small></button>'}).join('');
+ $('islandAvailability').textContent=state.island==='Gran Canaria'?'Gran Canaria tiene su agenda activa. Ya puedes buscar sus planes.':'La agenda de '+state.island+' está en preparación. No mostramos eventos de otras islas.';
+}
+function openFilters(){$('filtersBackdrop').classList.remove('hidden');$('filtersPanel').classList.remove('hidden');$('openFiltersBtn').setAttribute('aria-expanded','true');document.body.style.overflow='hidden';$('filtersPanel').focus()}
+function closeFilters(){$('filtersBackdrop').classList.add('hidden');$('filtersPanel').classList.add('hidden');$('openFiltersBtn').setAttribute('aria-expanded','false');if($('modal').classList.contains('hidden'))document.body.style.overflow='';$('openFiltersBtn').focus()}
+function setIsland(name){if(!ISLANDS.includes(name))return;state.island=name;state.tab='explore';state.newOnly=false;state.visibleLimit=48;try{localStorage.setItem('ochea_island_v1',name)}catch{}render()}
+function resetOcheaFilters(){setIsland('Gran Canaria');state.when='all';state.dateRange=null;state.dateRangeLabel='';state.categories.clear();state.query='';state.sort='recommended';$('searchInput').value='';$('clearSearch').classList.add('hidden');$('sortSelect').value='recommended';try{localStorage.removeItem('padonde_selected_categories')}catch{}closeCustomDatePanel();render()}
+function render(){renderCategories();renderIslands();renderNewEventNotice();const events=filtered();const shown=events.slice(0,state.visibleLimit);const sponsor=(state.tab==='explore'&&!state.query&&shown.length>=2)?state.sponsorAds.find(sponsorVisible):null;const sponsorAt=Math.min(sponsorInsertAfter(),shown.length);$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente ',custom:state.dateRangeLabel+' '}[state.when]);
  $('eventsGrid').innerHTML=shown.map((e,i)=>{
   const approx=eventApprox(e);const liked=state.favorites.has(e.id);
   return `<article class="event-card ${verifiedImage(e)?'':'fallback-event'}" tabindex="0" role="button" data-id="${e.id}" aria-label="Ver ${escapeHTML(e.title)}">
   <div class="photo ${CLASSES[e.category]||'p-other'} ${verifiedImage(e)?'':'no-official-cover'}">${coverHtml(e)}<span class="photo-tag">${escapeHTML(textForCat(e.category))}</span><button class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button></div>
   <div class="event-info"><span class="event-date-chip">${escapeHTML(cardDateLabel(e))}</span><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span class="place-icon">⌖</span><span class="event-place"><strong class="place-venue">${escapeHTML(venueName(e))}</strong><small class="place-municipality">${escapeHTML(e.municipality)}</small></span></div><div class="event-bottom">${price(e)?`<span class="price">${escapeHTML(price(e))}</span>`:''}<span class="distance" title="${eventUsesMunicipality(e)?'Distancia aproximada en línea recta al centro del municipio':'Distancia aproximada en línea recta al recinto'}">${approx!==null?'⌖ ≈ '+approx+' km'+(eventUsesMunicipality(e)?' · municipio':''):'Distancia no disponible'}</span></div></div></article>`+(sponsor&&i+1===sponsorAt?sponsorCardHtml(sponsor):'')}).join('');
  $('emptyState').classList.toggle('hidden',events.length>0);$('eventsGrid').classList.toggle('hidden',events.length===0);
+ const otherIsland=state.island!=='Gran Canaria';
+ $('emptyTitle').textContent=otherIsland?'Muy pronto en '+state.island:'No encontramos planes con estos filtros';
+ $('emptyMessage').textContent=otherIsland?'Todavía no publicamos planes verificados en '+state.island+'. Mientras tanto, descubre Gran Canaria.':'Prueba otras fechas o categorías para descubrir más.';
+ if(otherIsland)$('sectionTitle').firstChild.textContent=state.island+' ';
+ $('sourceStatus').classList.toggle('hidden',otherIsland);
+ $('filterSummary').textContent=[state.island,({today:'Hoy',tomorrow:'Mañana',weekend:'Este finde',week:'7 días',all:'Próximamente',custom:state.dateRangeLabel||'Fechas personalizadas'})[state.when],state.categories.size?state.categories.size+' categorías':'Todas las categorías',state.query||null].filter(Boolean).join(' · ');
+ $('filterResultCount').textContent='('+events.length+')';
  document.querySelectorAll('.date-chip').forEach(b=>b.classList.toggle('active',b.dataset.when===state.when));
  
  document.querySelectorAll('.navtab').forEach(b=>b.classList.toggle('selected',b.dataset.tab===state.tab));
 }
 function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('visible'),3300)}
 function openModal(html){$('modalContent').innerHTML=html;$('modalBackdrop').classList.remove('hidden');$('modal').classList.remove('hidden');$('modal').scrollTop=0;document.body.style.overflow='hidden'}
-function closeModal(){$('modalBackdrop').classList.add('hidden');$('modal').classList.add('hidden');document.body.style.overflow=''}
+function closeModal(){$('modalBackdrop').classList.add('hidden');$('modal').classList.add('hidden');document.body.style.overflow=$('filtersPanel').classList.contains('hidden')?'':'hidden'}
 const safeUrl=url=>{try{let x=new URL(url);return x.protocol==='https:'?x.href:'#'}catch{return '#'}};
 const organizerAction=e=>{
  const url=safeUrl(e.organizer_url||'');
@@ -668,7 +699,7 @@ function requestCurrentLocation(notify=false){
  state.geoLastAttempt=Date.now();
  navigator.geolocation.getCurrentPosition(
   ({coords})=>{
-   if(seq!==state.geoRequestSeq)return; // The latest manual choice wins.
+   if(seq!==state.geoRequestSeq||(!notify&&state.geoManualOverride))return; // Respect a manually chosen municipality.
    if(!Number.isFinite(coords.latitude)||!Number.isFinite(coords.longitude))return;
    state.origin=[coords.latitude,coords.longitude];
    state.originName='Cerca de mí';
@@ -803,6 +834,7 @@ function drawMap({fit=false}={}){
 }
 
 function openMap(){
+ if(state.island!=='Gran Canaria'){toast('Mapa de '+state.island+': próximamente');return;}
  state.tab='map';render();
  $('mapPanel').classList.remove('hidden');
  if(!window.L){
@@ -880,7 +912,12 @@ function init(){
   render();$('eventsGrid').scrollIntoView({block:'start',behavior:'smooth'});
  };
  $('newEventDismiss').onclick=markNewEventsSeen;
- $('loadMoreBtn').onclick=()=>{state.visibleLimit+=48;render()};const m=localStorage.getItem('plangc_municipio');if(m&&PLACES[m]){state.origin=PLACES[m];state.originName=m;$('locationName').textContent=m}
+ $('loadMoreBtn').onclick=()=>{state.visibleLimit+=48;render()};const m=localStorage.getItem('plangc_municipio');if(m&&PLACES[m]){state.origin=PLACES[m];state.originName=m;state.geoManualOverride=true;$('locationName').textContent=m}
+ $('openFiltersBtn').onclick=openFilters;
+ $('closeFiltersBtn').onclick=closeFilters;$('filtersBackdrop').onclick=closeFilters;
+ $('applyFiltersBtn').onclick=()=>{closeFilters();$('eventsGrid').scrollIntoView({block:'start',behavior:'smooth'})};
+ $('clearAllFiltersBtn').onclick=resetOcheaFilters;
+ $('islandOptions').onclick=e=>{const b=e.target.closest('[data-island]');if(b)setIsland(b.dataset.island)};
  $('categories').addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(b){chooseCategory(b.dataset.category)}});
  document.querySelectorAll('[data-when]').forEach(b=>b.onclick=()=>{
  if(b.dataset.when==='custom'){
@@ -900,17 +937,17 @@ $('customDateCancel').onclick=closeCustomDatePanel;
  $('sortSelect').onchange=e=>{state.sort=e.target.value;render()};
  $('eventsGrid').onclick=e=>{const fav=e.target.closest('[data-fav]');if(fav){e.stopPropagation();toggleFav(fav.dataset.fav);return}const card=e.target.closest('[data-id]');if(card)showEvent(card.dataset.id)};
  $('eventsGrid').onkeydown=e=>{if(['Enter',' '].includes(e.key)&&e.target.matches('article[data-id]')){e.preventDefault();showEvent(e.target.dataset.id)}};
- $('resetFilters').onclick=()=>{state.when='all';state.categories.clear();state.dateRange=null;state.dateRangeLabel='';try{localStorage.removeItem('padonde_selected_categories')}catch{}state.query='';$('searchInput').value='';state.tab='explore';state.newOnly=false;render()};
+ $('resetFilters').onclick=resetOcheaFilters;
  $('locationButton').onclick=locationDialog;$('profileBtn').onclick=()=>state.user?mineDialog():authDialog();$('publishCta').onclick=publishDialog;$('sourcesBtn').onclick=showSources;
  $('categoryNextBtn').onclick=()=>{const c=$('categories');const remaining=c.scrollWidth-c.clientWidth-c.scrollLeft;if(remaining>12)c.scrollBy({left:Math.max(180,Math.round(c.clientWidth*.7)),behavior:'smooth'});else c.scrollTo({left:0,behavior:'smooth'})};
- $('surpriseBtn').onclick=()=>{let ev=filtered();if(!ev.length){state.when='all';render();ev=filtered()}if(ev.length)showEvent(ev[Math.floor(Math.random()*Math.min(10,ev.length))].id);else toast('No hay planes disponibles')};
+ $('surpriseBtn').onclick=()=>{closeFilters();let ev=filtered();if(!ev.length){state.when='all';render();ev=filtered()}if(ev.length)showEvent(ev[Math.floor(Math.random()*Math.min(10,ev.length))].id);else toast('No hay planes disponibles')};
  $('modalClose').onclick=()=>{closeModal();if(location.search)history.replaceState(null,'',location.pathname)};$('modalBackdrop').onclick=()=>{closeModal();if(location.search)history.replaceState(null,'',location.pathname)};
  $('closeMap').onclick=closeMap;
  $('mapReset').onclick=()=>{state.mapSelected=null;state.mapLimit=16;highlightMapSelection();renderMapList();$('mapList').scrollLeft=0};
  $('mapMore').onclick=()=>{state.mapLimit+=16;renderMapList()};
  $('mapList').onclick=e=>{const b=e.target.closest('[data-map-id]');if(b)showEvent(b.dataset.mapId)};
- document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{const tab=b.dataset.tab;if(tab==='map'){openMap();return}if(tab==='publish'){publishDialog();return}state.tab=tab;state.newOnly=false;closeMap();state.tab=tab;render();window.scrollTo({top:360,behavior:'smooth'})});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();if(!$('mapPanel').classList.contains('hidden'))closeMap()}});
+ document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{const tab=b.dataset.tab;if(tab==='map'){openMap();return}if(tab==='publish'){publishDialog();return}state.tab=tab;state.newOnly=false;closeMap();state.tab=tab;render();$('eventsGrid').scrollIntoView({block:'start',behavior:'smooth'})});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('filtersPanel').classList.contains('hidden'))closeFilters();else closeModal();if(!$('mapPanel').classList.contains('hidden'))closeMap()}});
  // Accounts and merchant panel are disabled in this public phase.
  loadEvents();
  loadSponsored();
