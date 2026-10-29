@@ -1,10 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 180" role="img" aria-label="Ochea. Las ocho islas, infinitos planes."><g transform="translate(25 4) scale(.96)"><g fill="none" stroke="none">
-<path fill="#139bb8" d="M24 71l11-8 10 5 5 13-9 12-14-3-7-10z"/>
-<path fill="#007d91" d="M69 59l11-15 16 4 7 14-11 14-17-2z"/>
-<path fill="#54b685" d="M118 37l14-22 18 5 9 24-10 23-16 11-13-17z"/>
-<path fill="#ff685e" d="M170 46l23-20 28-12 19-10-7 24-19 18-4 27-22 14-18-17z"/>
-<path fill="#f9a21c" d="M244 47l17-15 26 1 15 18-7 24-25 7-23-14z"/>
-<path fill="#efa65f" d="M311 69l15-24 14-16 18-14 1 23-11 27-22 22-15-4z"/>
-<path fill="#e44d4a" d="M366 35l15-18 17-2 12 13-13 19-21 9-12-9z"/>
-<path fill="#9342a1" d="M392 4l10-4 8 8-8 11-12-6z"/>
-</g></g><g fill="#082c48" font-family="Arial,Helvetica,sans-serif" font-weight="800" letter-spacing="-3"><text x="44" y="149" font-size="87">Ochea</text></g><path d="M58 122Q75 104 94 120T131 120Q115 151 88 145Q70 143 58 122Z" fill="#00afd0"/><text x="48" y="173" font-size="15.5" letter-spacing="1.3" fill="#082c48" font-family="Arial,Helvetica,sans-serif">Las ocho islas. Infinitos planes.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 394 126" role="img" aria-labelledby="title">
+<title id="title">Ochea — ocho islas, infinitos planes</title>
+<g transform="translate(1 0)">
+<path d="M19 38l8-8 9 4 4 11-8 8-11-4-5-6z" fill="#139aba"/>
+<path d="M53 28l11-12 11 5 2 13-11 10-12-7z" fill="#087f99"/>
+<path d="M91 17l7-12 13 4 6 15-6 16-12 5-8-12z" fill="#50b485"/>
+<path d="M131 24l19-14 17-5 9-3-4 19-14 13-4 13-12 4-12-10z" fill="#fb6a61"/>
+<path d="M189 23l13-10 17 2 10 14-5 15-15 6-16-9z" fill="#f5a31e"/>
+<path d="M244 38l9-14 13-12 13-6-2 17-8 18-15 14-13-4z" fill="#efae6d"/>
+<path d="M290 28l13-13 13-2 8 9-8 16-17 6-10-7z" fill="#e64e49"/>
+<path d="M318 7l7-6 7 5-2 10-9 2-5-5z" fill="#9349a0"/></g>
+<circle cx="47" cy="89" r="27.5" fill="none" stroke="#082c48" stroke-width="14.5"/>
+<path d="M19 92c14-17 28 4 41-5 7-5 10-10 15-12-1 23-18 40-33 40-12 0-20-8-23-23z" fill="#04acd0"/>
+<path d="M26 109c13-3 19 10 32 2l7-6c-11 12-29 17-39 4z" fill="#087c9c"/>
+<text x="81" y="115" font-size="91" font-weight="800" font-family="Arial,Helvetica,sans-serif" letter-spacing="-4.6" fill="#082c48">chea</text>
+</svg>
