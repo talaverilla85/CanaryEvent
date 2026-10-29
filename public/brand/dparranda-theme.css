@@ -346,3 +346,24 @@ body::before{content:"";height:4px;position:absolute;inset:0 0 auto;background:l
  .sponsor-slot-heading{font-size:9px}
 }
 @media(prefers-reduced-motion:reduce){.sponsor-slot .sponsor-hit{transition:none}}
+
+/* Publisher artwork: keep original vertical posters legible rather than
+   cropping their dates, cast lists or event-specific artwork. */
+.photo img.official-cover.poster-art,.modal-photo img.official-cover.poster-art{
+ object-fit:contain;
+ object-position:center;
+ background:#EBF2F2;
+}
+.photo:has(img.official-cover.poster-art),.modal-photo:has(img.official-cover.poster-art){
+ background:#EBF2F2;
+}
+.source-context-note{
+ border-left:3px solid #08A9B9;
+ border-radius:0 10px 10px 0;
+ background:#EDF7F8;
+ color:#365E6E;
+ font-size:12px;
+ line-height:1.5;
+ padding:11px 14px;
+ margin:10px 0 14px;
+}
