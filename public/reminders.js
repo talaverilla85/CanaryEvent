@@ -1,4 +1,4 @@
-/* ¿Pa' Dónde? · Recordatorios mediante calendario personal.
+/* D’Parranda · Recordatorios mediante calendario personal.
  * La agenda estática no envía push en segundo plano.
  * El usuario decide cuándo avisar y confirma la importación del .ics.
  */
@@ -88,7 +88,7 @@ function reminderICS(e,lead){
   'DTSTART;VALUE=DATE:'+startDate;
  const alarm=reminderAlarmTime(e,lead).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
  const lines=[
-  'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Pa Donde//Agenda Canaria//ES',
+  'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//DParranda//Agenda Canaria//ES',
   'CALSCALE:GREGORIAN','METHOD:PUBLISH',
   'BEGIN:VTIMEZONE','TZID:Atlantic/Canary','X-LIC-LOCATION:Atlantic/Canary',
   'BEGIN:STANDARD','TZOFFSETFROM:+0100','TZOFFSETTO:+0000','TZNAME:WET',
@@ -123,7 +123,7 @@ function openReminderDialog(e){
   '<button class="primary-btn" type="submit">Añadir al calendario</button></form>':
   '<p class="footnote">No hay una fecha futura confirmada o las opciones de aviso ya han pasado. Consulta la fuente del evento antes de programarlo.</p>')+
   (!reminderTimed(e)?'<p class="footnote">Este plan no tiene hora confirmada: se añadirá como evento de día completo.</p>':'')+
-  '<p class="footnote">Para recibir el aviso con la web cerrada, abre el archivo descargado e impórtalo en el calendario del móvil. El calendario gestiona las notificaciones; no son avisos push de ¿Pa’ Dónde?.</p>'+
+  '<p class="footnote">Para recibir el aviso con la web cerrada, abre el archivo descargado e impórtalo en el calendario del móvil. El calendario gestiona las notificaciones; no son avisos push de D’Parranda.</p>'+
   '<button type="button" id="reminderBack" class="inline-link">Volver al evento</button></div>');
  $('reminderBack').onclick=()=>showEvent(e.id);
  if(!valid)return;
@@ -134,7 +134,7 @@ function openReminderDialog(e){
    const ics=reminderICS(e,select);
    const url=URL.createObjectURL(new Blob([ics],{type:'text/calendar;charset=utf-8'}));
    const a=document.createElement('a');
-   a.href=url;a.download='recordatorio-padonde-'+e.id+'.ics';
+   a.href=url;a.download='recordatorio-dparranda-'+e.id+'.ics';
    document.body.appendChild(a);a.click();a.remove();
    setTimeout(()=>URL.revokeObjectURL(url),2000);
    if(!state.favorites.has(e.id))toggleFav(e.id);
