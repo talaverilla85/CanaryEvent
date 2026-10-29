@@ -1,5 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="¿Pa' Dónde?">
-<rect width="64" height="64" rx="17" fill="#183831"/>
-<circle cx="48" cy="15" r="6" fill="#a5e68c"/>
-<text x="28" y="49" font-family="Arial, sans-serif" font-size="50" font-weight="bold" text-anchor="middle" fill="#efffe9">¿</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ochea"><rect width="64" height="64" rx="15" fill="#082c48"/><circle cx="32" cy="30" r="18" fill="none" stroke="#fff" stroke-width="9"/><path d="M14 35c12-10 17 3 26-2 6-4 9-10 11-8-2 16-13 25-26 21-6-2-9-6-11-11Z" fill="#00b4d1"/></svg>
