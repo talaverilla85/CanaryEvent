@@ -189,3 +189,38 @@ body::before{content:"";height:4px;position:absolute;inset:0 0 auto;background:l
  .event-card:not(:first-child) .photo .cover-fallback .fallback-symbol{font-size:34px}
  .event-card:not(:first-child) .photo .cover-fallback .fallback-bottom{font-size:8px}
 }
+
+/* Dialogs, calendar, map and reminders complete the same identity system. */
+.modal{background:#fff;color:#10364D}
+.modal-close{border:1px solid #D9E7EA;background:#fff;color:#10364D}
+.form-panel{color:#10364D}
+.form-panel h2,.panel-heading h2,.modal-event-title{font-family:'Outfit',sans-serif;color:#10364D}
+.form-panel .eyebrow,.panel-heading .eyebrow{color:#098CA2}
+.form-panel .field label{color:#395F6F}
+.form-panel input,.form-panel select,.form-panel textarea{border-color:#D2E6E9;color:#10364D;background:#FBFDFD}
+.inline-link,.text-button{color:#087F9F}
+.primary-btn,.info-button,.modal-actions .primary-action{background:#10364D!important;color:#fff!important}
+.custom-date-panel{border:1px solid #CFE3E8;background:#fff;box-shadow:none}
+.custom-date-fields label{color:#365B6C}
+.custom-date-fields input{border-color:#D2E6E9;color:#10364D;background:#FAFDFD}
+.custom-date-apply{background:#10364D;border-color:#10364D;color:#fff}
+.custom-date-clear{border-color:#D2E6E9;color:#496A7B}
+.custom-date-error{color:#BA4545}
+.filters-label{color:#10364D}
+.filters-panel-body .category-chip{background:white;border-color:#D6E6E9;color:#426474}
+.filters-panel-body .category-chip.active{background:#E4F5F7;border-color:#80C8D1;color:#10364D}
+.map-panel{background:#F6F9F9}
+.map-panel .panel-heading h2{font-family:'Outfit',sans-serif}
+.map-info span{color:#33596A}
+.map-cluster{background:#087F9F;color:#fff;box-shadow:0 3px 12px #10364D4C}
+.map-cluster.is-active{background:#10364D}
+.map-reset,.map-more{background:#E4F5F7;border:1px solid #B8DFE5;color:#0B7286}
+.map-panel .leaflet-popup-content button{background:#10364D}
+.new-event-notice{border-color:#B3DFE4}
+.new-event-label strong{color:#10364D}
+.new-event-buttons button{background:#10364D}
+@media(max-width:720px){
+ .filters-panel-top h2{font-size:24px}
+ .filters-panel-top,.filters-panel-footer{padding-left:17px;padding-right:17px}
+ .filters-panel-body{padding-left:17px;padding-right:17px}
+}
