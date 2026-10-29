@@ -18,7 +18,8 @@ ALLOWED_IMAGE_HOSTS = frozenset({
     "eventos.santabrigida.es", "lpacultura.com",
     "cdn.prod.website-files.com", "tejeda.eu", "valleseco.es",
     "santamariadeguia.es", "api.sociedadfilarmonicalpgc.com",
-    "teror.es"
+    "teror.es", "www.galdar.es", "www.maspalomas.com",
+    "www.santaluciagc.com", "www.telde.es"
 })
 DISALLOWED = ("og-image.jpg", "cache_favicon", "favicon",
               "placeholder", "sin-imagen", "img-share", "/logos/", "/icons/")
