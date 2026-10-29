@@ -59,6 +59,7 @@ import municipal_connector_health
 import municipal_live_discovery
 import cinema_policy
 import event_occurrences
+import curated_official_images
 import program_quality
 import venue_quality
 import organizer_venues
@@ -1182,6 +1183,8 @@ def run():
         "updated_at":NOW,"not_published":len(venue_pending),
         "note":"Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
         "events":venue_pending})
+    media_filled=curated_official_images.apply(events)
+    print(f"Audited event-specific original images restored: {media_filled}")
     write_json(PUBLIC/"events.json",{"events":events,"generated_at":NOW,"timezone":"Atlantic/Canary",
                                     "verified_sources":len([r for r in results if not r["error"]])})
     write_json(PUBLIC/"meta.json",{"checked_at":NOW,"sources":results,
