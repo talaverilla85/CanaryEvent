@@ -492,7 +492,7 @@ body{background:var(--cream)}
 <div id="islandOptions" class="ochea-islands" role="group" aria-label="Elige isla"></div>
 <p id="islandAvailability" class="island-availability">Gran Canaria tiene su agenda activa; el resto, próximamente.</p>
 <div class="filters-label">Ubicación de referencia</div>
-<button type="button" class="location-btn filters-location" id="locationButton" aria-label="Cambiar ubicación"><span class="pin">⌖</span><span id="locationName">Cerca de mí</span><span class="chev">⌄</span></button>
+<button type="button" class="location-btn filters-location" id="locationButton" aria-label="Cambiar ubicación"><span class="pin">⌖</span><span id="locationName">Detectar mi ubicación</span><span class="chev">⌄</span></button>
 <p class="filters-help">Con permiso usaremos tu ubicación para calcular distancias. Si no, elige un municipio; no guardamos tus coordenadas.</p>
 <div class="filters-label">Ordenar</div><select id="sortSelect" class="filters-sort" aria-label="Ordenar eventos"><option value="recommended">Para ti</option><option value="time">Por fecha y hora</option><option value="near">Más cerca</option></select>
 <button type="button" class="filters-surprise" id="surpriseBtn">✧ Sorpréndeme</button>
@@ -506,7 +506,7 @@ body{background:var(--cream)}
 try{localStorage.setItem('plangc_check','ok');localStorage.removeItem('plangc_check')}catch(e){const mem={};Object.defineProperty(window,'localStorage',{value:{getItem:k=>mem[k]??null,setItem:(k,v)=>{mem[k]=String(v)},removeItem:k=>{delete mem[k]}}})}
 </script><script src="/reminders.js"></script>
 <script src="/filter_ui.js"></script>
-<script>/* ¿Pa Dónde? - Gran Canaria phase; legacy localStorage keys retain existing favorites */
+<script>/* Ochea · ocho-island selector, Gran Canaria events live; preserve legacy favorites */
 'use strict';
 const $=id=>document.getElementById(id);
 const state={events:[],when:'today',category:'all',query:'',sort:'recommended',origin:null,originName:'Toda Gran Canaria',favorites:new Set(JSON.parse(localStorage.getItem('plangc_favorites')||'[]')),user:null,tab:'explore',map:null,markers:null,seen:0,visibleLimit:48};
@@ -538,7 +538,7 @@ function verifiedImage(e){
 function coverHtml(e,large=false){
  const src=verifiedImage(e);
  const fallback='<div class="cover-fallback" aria-hidden="true">'+
-   '<div class="fallback-top"><span>¿PA\u0027 DÓNDE?</span><span>'+escapeHTML(textForCat(e.category))+' · '+(COVER_SYMBOLS[e.category]||'✳')+'</span></div>'+
+   '<div class="fallback-top"><span>OCHEA</span><span>'+escapeHTML(textForCat(e.category))+' · '+(COVER_SYMBOLS[e.category]||'✳')+'</span></div>'+
    '<div class="fallback-main"><span class="fallback-symbol">'+(COVER_SYMBOLS[e.category]||'✳')+'</span>'+
    '<strong class="fallback-event-title">'+escapeHTML(e.title)+'</strong></div>'+
    '<div class="fallback-bottom">'+escapeHTML(textForCat(e.category))+' · '+escapeHTML(e.municipality)+'</div></div>';
@@ -923,7 +923,7 @@ function closeMap(){
  state.tab='explore';render();
 }
 async function api(path,method='GET',body=null){const options={method,credentials:'same-origin',headers:{}};if(method==='GET')options.cache='no-store';if(method!=='GET'){options.headers['Content-Type']='application/json';if(state.user)options.headers['X-CSRF-Token']=state.user.csrf;options.body=JSON.stringify(body||{})}const url=path==='/api/events'?'/events.json':path==='/api/meta'?'/meta.json':path;const r=await fetch(url,options);let data=await r.json();if(!r.ok)throw Error(data.error||'No se pudo completar la operación');return data}
-function authDialog(mode='login'){openModal(`<div class="form-panel"><span class="eyebrow">BIENVENIDO A LA COMUNIDAD</span><h2 id="modalHeading">${mode==='register'?'Crear cuenta':'Entrar a ¿Pa\u0027 Dónde?'}</h2><p>${mode==='register'?'Publica tus actividades y descubre nuevos asistentes. Las propuestas se revisan antes de aparecer en el catálogo.':'Accede para proponer eventos y consultar tus publicaciones.'}</p><form class="stack-form" id="authForm"><div class="field"><label for="authEmail">Correo electrónico</label><input id="authEmail" type="email" required autocomplete="email" maxlength="254" placeholder="nombre@empresa.com"></div><div class="field"><label for="authPwd">Contraseña</label><input id="authPwd" type="password" required minlength="10" autocomplete="${mode==='register'?'new-password':'current-password'}" placeholder="Mínimo 10 caracteres"></div><button type="submit" class="primary-btn">${mode==='register'?'Crear cuenta':'Iniciar sesión'}</button></form><button id="toggleAuth" class="inline-link">${mode==='register'?'¿Ya tienes cuenta? Entrar':'¿No tienes cuenta? Regístrate gratis'}</button></div>`);
+function authDialog(mode='login'){openModal(`<div class="form-panel"><span class="eyebrow">BIENVENIDO A LA COMUNIDAD</span><h2 id="modalHeading">${mode==='register'?'Crear cuenta':'Entrar a Ochea'}</h2><p>${mode==='register'?'Publica tus actividades y descubre nuevos asistentes. Las propuestas se revisan antes de aparecer en el catálogo.':'Accede para proponer eventos y consultar tus publicaciones.'}</p><form class="stack-form" id="authForm"><div class="field"><label for="authEmail">Correo electrónico</label><input id="authEmail" type="email" required autocomplete="email" maxlength="254" placeholder="nombre@empresa.com"></div><div class="field"><label for="authPwd">Contraseña</label><input id="authPwd" type="password" required minlength="10" autocomplete="${mode==='register'?'new-password':'current-password'}" placeholder="Mínimo 10 caracteres"></div><button type="submit" class="primary-btn">${mode==='register'?'Crear cuenta':'Iniciar sesión'}</button></form><button id="toggleAuth" class="inline-link">${mode==='register'?'¿Ya tienes cuenta? Entrar':'¿No tienes cuenta? Regístrate gratis'}</button></div>`);
  $('toggleAuth').onclick=()=>authDialog(mode==='login'?'register':'login');$('authForm').onsubmit=async e=>{e.preventDefault();try{const r=await api('/api/auth/'+mode,'POST',{email:$('authEmail').value,password:$('authPwd').value});state.user=r.user;toast('Sesión iniciada');publishDialog()}catch(err){toast(err.message)}};
 }
 function publishDialog(){if(!state.user){authDialog();return}const municipalityOptions=Object.keys(PLACES).sort((a,b)=>a.localeCompare(b,'es')).map(m=>`<option value="${escapeHTML(m)}">${escapeHTML(m)}</option>`).join('');
