@@ -55,6 +55,7 @@ import valsequillo_calendar
 import mogan_confirmed_news
 import firgas_local_confirmed
 import municipal_listing_dedup
+import municipal_connector_health
 import cinema_policy
 import event_occurrences
 import program_quality
@@ -1178,6 +1179,7 @@ def run():
     write_json(PUBLIC/"events.json",{"events":events,"generated_at":NOW,"timezone":"Atlantic/Canary",
                                     "verified_sources":len([r for r in results if not r["error"]])})
     write_json(PUBLIC/"meta.json",{"checked_at":NOW,"sources":results,
+        "municipal_connector_health":municipal_connector_health.report(events,results,TODAY),
         "occurrences":occurrence_stats,
         "counts":{"approved":len(events),"candidate_events":valid_candidates,
                   "verified_source_events_before_daily_projection":source_events,
