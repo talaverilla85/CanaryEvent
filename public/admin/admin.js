@@ -1,6 +1,6 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id), apiUrl='/api/admin';
-let events=[], ads=[], pagination=0, filter='all', search='', section='events', current=null, toastTimer;
+let events=[], ads=[], leads=[], promotions=[], pagination=0, filter='all', search='', section='events', current=null, toastTimer;
 const escape=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const text=x=>String(x??'').trim();
 function message(m){const p=$('feedback');p.textContent=m;p.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>p.classList.remove('show'),3500)}
@@ -36,7 +36,7 @@ async function loadStats(){
  const s=await api('stats');$('statEvents').textContent=s.events;$('statReview').textContent=s.reviews;
  $('statHidden').textContent=s.hidden;$('statAds').textContent=s.active_ads;
 }
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds()])}
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions()])}
 function setSection(next){
  section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
  for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){
@@ -123,9 +123,10 @@ async function loadAds() {
 function renderAds(){
  if(!ads.length){$('adsList').innerHTML='<div class="empty">Todavía no hay campañas publicitarias.</div>';return}
  $('adsList').innerHTML=ads.map(a=>{
-  const image=/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(a.image||'')?
-    '<img src="'+escape(a.image)+'" alt="'+escape(a.image_alt||'Anuncio')+'" loading="lazy">':'Imagen pendiente';
-  const dates=a.permanent?'Permanente':(a.starts_at?String(a.starts_at).slice(0,10):'Desde ahora')+' – '+(a.ends_at?String(a.ends_at).slice(0,10):'Sin final');
+  const preview=a.enquiry_id?'/api/admin?op=leadimage&id='+Number(a.enquiry_id):a.image;
+  const image=/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(preview||'')||/^\/api\/admin\?op=leadimage&id=[0-9]+$/.test(preview)?
+    '<img src="'+escape(preview)+'" alt="'+escape(a.image_alt||'Anuncio')+'" loading="lazy">':'Imagen pendiente';
+  const dates=a.permanent?'Permanente':(a.starts_at?String(a.starts_at).slice(0,10):'Desde ahora')+' – '+(a.ends_at?String(a.ends_at).slice(0,10):'Sin final')+' · '+daysLeft(a.ends_at);
   return '<article class="ad-card"><div class="ad-media">'+image+'</div><div class="ad-content"><span class="pill '+(a.enabled?'':'off')+'">'+(a.enabled?'Activa':'Pausada')+'</span>'+
    '<h3>'+escape(a.headline)+'</h3><p>'+escape(a.description)+'</p><small class="muted">'+escape(a.advertiser)+' · '+escape(dates)+'</small>'+
    '<div class="ad-footer"><small class="muted">'+(Array.isArray(a.municipalities)&&a.municipalities.length?escape(a.municipalities.join(', ')):'Toda Gran Canaria')+'</small>'+
@@ -166,5 +167,81 @@ function editAd(ad){
   catch(err){message(err.message);b.disabled=false}
  };
 }
+
+function daysLeft(value){
+ if(!value)return 'Sin fecha de fin';
+ const key=String(value).slice(0,10);
+ const todayParts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Atlantic/Canary',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));
+ const today=[todayParts.year,todayParts.month,todayParts.day].join('-');
+ const days=Math.round((Date.parse(key+'T00:00:00Z')-Date.parse(today+'T00:00:00Z'))/86400000)+1;
+ return days<1?'Campaña finalizada':days===1?'Último día':days+' días restantes';
+}
+async function loadLeads(){
+ const list=$('leadsList');if(!list)return;
+ list.innerHTML='<div class="empty">Cargando solicitudes…</div>';
+ try{const data=await api('leads');leads=data.leads||[];renderLeads()}
+ catch(e){list.innerHTML='<div class="empty">'+escape(e.message)+'</div>'}
+}
+function renderLeads(){
+ if(!leads.length){$('leadsList').innerHTML='<div class="empty">No hay solicitudes comerciales registradas.</div>';return}
+ $('leadsList').innerHTML=leads.map(l=>{
+ const id=Number(l.id),eligible=!!(l.event_title&&l.event_start&&l.event_venue&&l.event_municipality);
+ return '<article class="event lead-item"><div class="event-info"><small>Solicitud #'+id+' · '+escape(String(l.created_at).slice(0,10))+
+  ' · '+escape(l.status)+'</small><strong>'+escape(l.company)+' · '+escape(l.campaign_name)+'</strong>'+
+  '<p>'+escape(l.format)+' · '+escape(l.municipality)+' · '+escape(l.email)+' · '+escape(l.telephone)+'</p>'+
+  '<div class="meta"><span class="pill">'+escape(l.campaign_days)+' días</span><span class="pill off">'+escape(l.campaign_start||'Sin fecha')+'</span></div>'+
+  '<details class="lead-detail"><summary>Ver propuesta, imagen y datos fiscales</summary>'+
+  '<p><strong>Contacto:</strong> '+escape(l.contact_name)+' · '+escape(l.email)+' · '+escape(l.telephone)+'</p>'+
+  '<p><strong>Facturar a:</strong> '+escape(l.legal_name)+' · '+escape(l.tax_id)+'</p>'+
+  '<p>'+escape(l.billing_address)+' · '+escape(l.billing_postal)+' '+escape(l.billing_city)+' · '+escape(l.billing_region)+' · '+escape(l.billing_country)+'</p>'+
+  '<p><strong>Email de facturas:</strong> '+escape(l.billing_email)+'</p>'+
+  '<p><strong>Evento:</strong> '+escape(l.event_title||'No aplica')+' · '+escape(l.event_start||'')+' · '+escape(l.event_municipality||'')+' · '+escape(l.event_venue||'')+'</p>'+
+  '<p><strong>Descripción:</strong> '+escape(l.message)+'</p>'+
+  '<p><a href="'+escape(l.action_url||'#')+'" target="_blank" rel="noopener noreferrer">Web o entradas ↗</a></p>'+
+  '<img class="lead-image" loading="lazy" src="/api/admin?op=leadimage&id='+id+'" alt="'+escape(l.creative_alt||'Imagen de propuesta')+'">'+
+  '</details></div><div class="actions lead-actions">'+
+  (eligible?'<button type="button" class="ghost mini" data-lead="'+id+'" data-mode="event">Crear evento</button>':'')+
+  '<button type="button" class="ghost mini" data-lead="'+id+'" data-mode="banner">Crear banner</button>'+
+  (l.status==='new'?'<button type="button" class="ghost mini" data-lead="'+id+'" data-mode="contact">Marcar contactado</button>':'')+
+  '</div></article>';
+ }).join('');
+}
+$('leadsList').onclick=async e=>{
+ const btn=e.target.closest('[data-lead]');if(!btn)return;
+ const id=Number(btn.dataset.lead),mode=btn.dataset.mode;btn.disabled=true;
+ try{
+  if(mode==='contact')await api('lead-status',{id,status:'contacted'});
+  else await api('promote',{id,placement:mode});
+  message(mode==='contact'?'Solicitud marcada como contactada':'Borrador creado. Revísalo antes de publicar.');
+  await Promise.allSettled([loadLeads(),loadPromotions(),loadAds(),loadStats()]);
+ }catch(err){message(err.message)}finally{btn.disabled=false}
+};
+async function loadPromotions(){
+ const list=$('promotionsList');if(!list)return;
+ list.innerHTML='<div class="empty">Cargando eventos promocionados…</div>';
+ try{const data=await api('promotions');promotions=data.promotions||[];renderPromotions()}
+ catch(e){list.innerHTML='<div class="empty">'+escape(e.message)+'</div>'}
+}
+function renderPromotions(){
+ if(!promotions.length){$('promotionsList').innerHTML='<div class="empty">No hay eventos patrocinados. Puedes crear uno desde una solicitud.</div>';return}
+ $('promotionsList').innerHTML=promotions.map(p=>{
+  const active=p.enabled&&p.review_status==='approved';
+  return '<article class="event"><div class="event-info"><small>Promoción #'+escape(p.id)+' · '+escape(p.start)+'</small>'+
+   '<strong>'+escape(p.title)+'</strong><p>'+escape(p.advertiser)+' · '+escape(p.municipality)+' · '+escape(p.venue)+'</p>'+
+   '<div class="meta"><span class="pill '+(active?'':'off')+'">'+(active?'Publicada':'Borrador / pausada')+'</span>'+
+   '<span class="pill warning">'+escape(daysLeft(p.campaign_ends_at))+'</span></div></div>'+
+   '<div class="actions"><button class="ghost mini" data-promotion="'+escape(p.id)+'" data-enable="'+(active?'false':'true')+'">'+(active?'Pausar':'Aprobar y publicar')+'</button></div></article>';
+ }).join('');
+}
+$('promotionsList').onclick=async e=>{
+ const b=e.target.closest('[data-promotion]');if(!b)return;
+ const approved=b.dataset.enable==='true';
+ if(approved&&!confirm('¿Has revisado el evento, sus fechas y el acuerdo comercial? Se publicará como patrocinado.'))return;
+ b.disabled=true;
+ try{await api('promotion-status',{id:Number(b.dataset.promotion),approved,enabled:approved});
+ message(approved?'Evento patrocinado publicado':'Evento patrocinado pausado');
+ await Promise.allSettled([loadPromotions(),loadStats()]);
+ }catch(err){message(err.message)}finally{b.disabled=false}
+};
 initialize();
 })();
