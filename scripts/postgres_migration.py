@@ -123,7 +123,7 @@ def import_snapshot(connection, rows, logs, catalogue, cards, campaigns):
             ],
         )
         cur.execute(
-            """INSERT INTO catalog_snapshots(id,generated_at,event_count)
+            """INSERT INTO catalog_sync(id,generated_at,event_count)
                VALUES(1,%s,%s)
                ON CONFLICT(id) DO UPDATE SET
                    generated_at=EXCLUDED.generated_at,
