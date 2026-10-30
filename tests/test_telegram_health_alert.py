@@ -62,6 +62,46 @@ class TelegramHealthTests(unittest.TestCase):
         self.assertIn("Wrong extra line",m)
         self.assertNotIn("Wrong\nextra",m)
 
+    def test_all_public_messages_use_new_brand(self):
+        messages=[
+            make(quality(("Telde", "TimeoutError"))),
+            make(quality_data={},metadata={},started="",finished="",
+                 conclusion="failure"),
+            make(quality_data=quality(),metadata={},finished=""),
+        ]
+        for msg in messages:
+            self.assertIn("DParranda",msg)
+            self.assertNotIn("Pa' Dónde",msg)
+
+    def test_bot_profile_update_sets_name_and_verifies_it(self):
+        actions=[]
+        class Response:
+            status_code=200
+            def __init__(self,payload):self.payload=payload
+            def json(self):return self.payload
+        class Session:
+            def post(self,url,**kw):
+                actions.append(("post",url.rsplit("/",1)[-1],kw["json"]))
+                return Response({"ok":True,"result":True})
+            def get(self,url,**kw):
+                actions.append(("get",url.rsplit("/",1)[-1],None))
+                return Response({"ok":True,"result":{"name":"DParranda"}})
+        self.assertTrue(notify.configure_bot_profile("fake-token",session=Session()))
+        self.assertEqual(actions[0][1],"setMyName")
+        self.assertEqual(actions[0][2],{"name":"DParranda"})
+        self.assertEqual(actions[1][1],"getMyName")
+
+    def test_bot_profile_rejects_name_not_persisted(self):
+        class Response:
+            status_code=200
+            def __init__(self,p):self.p=p
+            def json(self):return self.p
+        class Session:
+            def post(self,url,**kw):return Response({"ok":True,"result":True})
+            def get(self,url,**kw):return Response({"ok":True,"result":{"name":"OldName"}})
+        self.assertFalse(notify.configure_bot_profile("fake-token",session=Session()))
+        self.assertFalse(notify.configure_bot_profile("",session=Session()))
+
     def test_successful_telegram_delivery(self):
         sent={}
         class Response:
