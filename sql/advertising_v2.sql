@@ -72,3 +72,4 @@ ALTER TABLE sponsored_events ADD COLUMN IF NOT EXISTS enquiry_id BIGINT REFERENC
 ALTER TABLE ad_campaigns ADD COLUMN IF NOT EXISTS enquiry_id BIGINT REFERENCES advertising_enquiries(id);
 CREATE INDEX IF NOT EXISTS idx_dp_ads_enquiry ON ad_campaigns(enquiry_id);
 CREATE INDEX IF NOT EXISTS idx_dp_sponsored_enquiry ON sponsored_events(enquiry_id);
+ALTER TABLE advertising_enquiries ADD COLUMN IF NOT EXISTS event_municipality TEXT;
