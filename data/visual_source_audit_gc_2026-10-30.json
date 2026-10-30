@@ -2,11 +2,11 @@
   "schema_version": 1,
   "checked_at": "2026-10-30",
   "baseline_missing_images": 85,
-  "official_images_newly_verified": 5,
-  "links_fixed": 4,
-  "remaining_missing_images": 80,
+  "official_images_newly_verified": 6,
+  "links_fixed": 5,
+  "remaining_missing_images": 79,
   "why_not_automatic": "Website OG images are often generic site logos, unrelated posters or images from press releases; an actual event-specific image must be checked manually. Never auto-approve based only on matching page title.",
-  "unresolved_count": 80,
+  "unresolved_count": 79,
   "automated_scan_reasons": {
     "robots_error_SSLError": 1,
     "robots_disallow": 6,
@@ -126,8 +126,9 @@
       "source_status": 200,
       "source_title": "Cerebritos en juego | Eventos Gran Canaria",
       "source_title_match": 1,
-      "visual_status": "unresolved",
-      "reason": "no_event_specific_image"
+      "visual_status": "verified_and_published",
+      "reason": "official_organizer_poster_checked",
+      "candidate_url": "https://lpabibliotecas.com/wp-content/uploads/2026/09/1080x1080_resultado.jpg"
     },
     {
       "id": 173,
