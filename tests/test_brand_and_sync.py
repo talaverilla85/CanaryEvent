@@ -10,7 +10,7 @@ SW=(ROOT/"public/sw.js").read_text(encoding="utf-8")
 class BrandAndSyncContract(unittest.TestCase):
  def test_every_exposed_brand(self):
   self.assertIn("<title>D’Parranda",HTML)
-  self.assertIn('src="/brand/dparranda-logo.svg?v=5"',HTML)
+  self.assertIn('src="/brand/dparranda-logo.svg?v=6"',HTML)
   self.assertIn("Disfruta de tus islas.",HTML)
   self.assertNotIn("¿Pa' Dónde?",HTML)
   self.assertNotIn("Ochea",HTML)
