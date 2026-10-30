@@ -18,7 +18,7 @@ class VerifiedSourceLinks(unittest.TestCase):
         cls.images=json.loads((ROOT/"data/official_event_images.json").read_text(encoding="utf8"))["items"]
 
     def test_links_are_event_specific_and_live_in_published_catalog(self):
-        self.assertEqual(len(self.links),4)
+        self.assertEqual(len(self.links),5)
         for item in self.links:
             self.assertTrue(curated_official_links.validated(item),item)
             event=self.events.get(item["id"])
@@ -38,7 +38,7 @@ class VerifiedSourceLinks(unittest.TestCase):
             self.assertEqual(curated_official_links.apply([altered]),0)
 
     def test_verified_media_matches_source_and_images(self):
-        additions={530,560,633,634,635}
+        additions={105,530,560,633,634,635}
         curated={e["id"]:e for e in self.images if e["id"] in additions}
         self.assertEqual(set(curated),additions)
         for id,media in curated.items():
