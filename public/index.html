@@ -440,7 +440,7 @@ body{background:var(--cream)}
  .filters-panel-body .date-toggle-label-long{display:inline}
 }
 </style>
-<link rel="stylesheet" href="/brand/dparranda-theme.css?v=9">
+<link rel="stylesheet" href="/brand/dparranda-theme.css?v=10">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>D’Parranda · Disfruta de tus islas | Planes en Canarias</title>
 </head><body>
@@ -524,14 +524,14 @@ try{
  if(Array.isArray(saved))state.categories=new Set(saved.filter(x=>CATS.some(c=>c[0]===x&&x!=='all')));
 }catch{state.categories=new Set()}
 const PLACES={'Agaete':[28.100,-15.700],'Agüimes':[27.906,-15.445],'Artenara':[28.019,-15.647],'Arucas':[28.119,-15.523],'Firgas':[28.106,-15.563],'Gáldar':[28.145,-15.654],'Ingenio':[27.918,-15.436],'La Aldea de San Nicolás':[27.983,-15.780],'Las Palmas de Gran Canaria':[28.124,-15.436],'Mogán':[27.884,-15.723],'Moya':[28.108,-15.582],'San Bartolomé de Tirajana':[27.923,-15.573],'Santa Brígida':[28.035,-15.497],'Santa Lucía de Tirajana':[27.914,-15.542],'Santa María de Guía':[28.139,-15.632],'Tejeda':[27.996,-15.615],'Telde':[27.993,-15.416],'Teror':[28.060,-15.546],'Valleseco':[28.045,-15.579],'Valsequillo':[27.985,-15.497],'Vega de San Mateo':[28.010,-15.532]};
-const COVER_SYMBOLS={musica:'♫',gastronomia:'✦',familia:'☀',cultura:'✳',deporte:'➜',naturaleza:'❋',ocio:'✧',otros:'✳'};
+const COVER_SYMBOLS={musica:'♫',gastronomia:'♨',familia:'✿',cultura:'◈',deporte:'➜',naturaleza:'❋',ocio:'☼',otros:'✳'};
 const IMAGE_HOSTS=new Set(['ingenio.es','www.ingenio.es','eventos.aguimes.es',
  'actividadesjuventud.laspalmasgc.es','artesescenicasgrancanaria.com',
  'www.artesescenicasgrancanaria.com','www.eventosgrancanaria.com','www.tureservaonline.es',
  'auditorioalfredokraus.es','teatroperezgaldos.es','salainsulardeteatro.com','teatrocuyas.com',
  'eventos.santabrigida.es','lpacultura.com','cdn.prod.website-files.com',
  'tejeda.eu','valleseco.es','santamariadeguia.es','api.sociedadfilarmonicalpgc.com','teror.es',
- 'www.galdar.es','www.maspalomas.com','www.santaluciagc.com','www.telde.es']);
+ 'www.galdar.es','www.arucas.org','www.maspalomas.com','www.santaluciagc.com','www.telde.es']);
 const CLASSES={musica:'p-music',gastronomia:'p-food',familia:'p-family',cultura:'p-culture',deporte:'p-sports',naturaleza:'p-nature',ocio:'p-leisure',otros:'p-other'};
 const escapeHTML=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const textForCat=k=>CATS.find(c=>c[0]===k)?.[2]||'Actividad';
@@ -544,7 +544,7 @@ function verifiedImage(e){
 }
 function coverHtml(e,large=false){
  const src=verifiedImage(e);
- const poster=src&&(/\/plot\/event_/.test(src)||/https:\/\/(?:eventos\.santabrigida\.es|lpacultura\.com|teror\.es|tejeda\.eu|www\.galdar\.es|santamariadeguia\.es)\//.test(src));
+ const poster=src&&(/\/plot\/event_/.test(src)||/https:\/\/(?:eventos\.santabrigida\.es|lpacultura\.com|teror\.es|tejeda\.eu|www\.galdar\.es|www\.arucas\.org|santamariadeguia\.es)\//.test(src));
  const fallback='<div class="cover-fallback" aria-hidden="true">'+
    '<div class="fallback-top"><span>D’PARRANDA</span><span>'+escapeHTML(textForCat(e.category))+' · '+(COVER_SYMBOLS[e.category]||'✳')+'</span></div>'+
    '<div class="fallback-main"><span class="fallback-symbol">'+(COVER_SYMBOLS[e.category]||'✳')+'</span>'+
