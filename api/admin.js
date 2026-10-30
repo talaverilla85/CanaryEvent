@@ -241,7 +241,7 @@ export default async function handler(req,res){
     if(req.method==='GET'&&op==='events')return json(res,200,await events(sql,query));
     if(req.method==='GET'&&op==='ads'){
       const rows=await sql`SELECT id,enabled,advertiser,kind,permanent,starts_at,ends_at,
-        municipalities,headline,description,location,button_text,button_url,image,image_alt,
+        municipalities,headline,description,location,button_text,button_url,image,image_alt,enquiry_id,
         disclosure FROM ad_campaigns ORDER BY updated_at DESC,id LIMIT 250`;
       return json(res,200,{ads:rows});
     }
