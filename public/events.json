@@ -1178,7 +1178,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=ec657bf90039276aa2d881f396b59cea",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=8d1c085d5709306a4dab6c376d009a41",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1200,7 +1200,7 @@
       "accuracy": "venue",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=57b6a0cf41b192a56836c43ad58d57c3",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=8d1c085d5709306a4dab6c376d009a41",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1293,6 +1293,28 @@
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
       "organizer_url": "https://www.tureservaonline.es/es/events/graciela-conchalovsky-1"
+    },
+    {
+      "id": 764,
+      "title": "BODAS DE SANGRE ITINERANTE",
+      "start": "2026-10-30T20:00:00",
+      "end": null,
+      "municipality": "Valsequillo",
+      "venue": "PLAZA TIFARITI",
+      "category": "cultura",
+      "free": null,
+      "price": "",
+      "details": "Más información sobre el espectáculo en la ficha oficial.",
+      "lat": 27.985,
+      "lng": -15.497,
+      "accuracy": "municipality",
+      "source_name": "Circuito de Artes Escénicas GC",
+      "source_url": "https://artesescenicasgrancanaria.com/evento-910-bodas-de-sangre.html",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_910-1.jpg?fp=8d1c085d5709306a4dab6c376d009a41",
+      "image_alt": "BODAS DE SANGRE ITINERANTE",
+      "image_origin": "Circuito de Artes Escénicas GC",
+      "image_status": "official_remote",
+      "organizer_url": ""
     },
     {
       "id": 11,
@@ -1401,6 +1423,28 @@
       "image_url": "https://eventos.santabrigida.es/wp-content/uploads/2026/10/30.-Casa-de-Don-Alonso.jpg",
       "image_alt": "‘La Casa de Don Alonso’ en la Plaza de la Iglesia",
       "image_origin": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "image_status": "official_remote",
+      "organizer_url": ""
+    },
+    {
+      "id": 765,
+      "title": "ÚLTIMA LLAVE EN CONCIERTO",
+      "start": "2026-10-30T22:00:00",
+      "end": null,
+      "municipality": "Valsequillo",
+      "venue": "PLAZA TIFARITI",
+      "category": "musica",
+      "free": null,
+      "price": "",
+      "details": "Más información sobre el espectáculo en la ficha oficial.",
+      "lat": 27.985,
+      "lng": -15.497,
+      "accuracy": "municipality",
+      "source_name": "Circuito de Artes Escénicas GC",
+      "source_url": "https://artesescenicasgrancanaria.com/evento-913-ultima-llave-en.html",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_913-1.jpg?fp=8d1c085d5709306a4dab6c376d009a41",
+      "image_alt": "ÚLTIMA LLAVE EN CONCIERTO",
+      "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
       "organizer_url": ""
     },
@@ -1768,7 +1812,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=ec657bf90039276aa2d881f396b59cea",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=8d1c085d5709306a4dab6c376d009a41",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1790,7 +1834,7 @@
       "accuracy": "venue",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=57b6a0cf41b192a56836c43ad58d57c3",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=8d1c085d5709306a4dab6c376d009a41",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2076,7 +2120,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-878-german-lopez-alma.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_878-1.jpg?fp=57b6a0cf41b192a56836c43ad58d57c3",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_878-1.jpg?fp=8d1c085d5709306a4dab6c376d009a41",
       "image_alt": "Germán López - ALMA",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2378,7 +2422,7 @@
       "image_alt": "ENTRE REJAS - LA CASA DEL TERROR DE GÁLDAR",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/entre-rejas-la-casa-del-terror-de-galdar"
     },
     {
       "id": 679,
@@ -3393,6 +3437,28 @@
       "image_origin": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "image_status": "official_remote",
       "organizer_url": "https://www.casafrica.es/es/evento/conciertos-africa-vive-bridge-africa-john-kyffy-kyffyz"
+    },
+    {
+      "id": 766,
+      "title": "22ª MUESTRA DE CORTOMETRAJES SAN RAFAEL EN CORTO",
+      "start": "2026-11-07",
+      "end": "2026-11-13",
+      "municipality": "Santa Lucía de Tirajana",
+      "venue": "Teatro Víctor Jara.",
+      "category": "ocio",
+      "free": 0,
+      "price": "Desde 3 €",
+      "details": "Actividad con varias fechas. Consulta el calendario de sesiones y la disponibilidad en la web de entradas.",
+      "lat": 27.914,
+      "lng": -15.542,
+      "accuracy": "municipality",
+      "source_name": "TuReservaOnline · agenda de Gran Canaria",
+      "source_url": "https://www.tureservaonline.es/es/events/22a-muestra-de-cortometrajes-san-rafael-en-corto",
+      "image_url": "https://www.tureservaonline.es/storage/6576/20261029_TRO_SREC2026-(1).jpg",
+      "image_alt": "22ª MUESTRA DE CORTOMETRAJES SAN RAFAEL EN CORTO",
+      "image_origin": "TuReservaOnline",
+      "image_status": "official_remote",
+      "organizer_url": ""
     },
     {
       "id": 453,
@@ -7964,7 +8030,7 @@
       "image_alt": "VISITA GUIADA POR «GÁLDAR: CIUDAD NAVIDAD»",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/visita-guiada-por-galdar-ciudad-navidad"
     },
     {
       "id": 493,
@@ -11569,7 +11635,7 @@
       "organizer_url": "https://www.tureservaonline.es/es/events/no-me-toques-el-cuento-ingenio"
     }
   ],
-  "generated_at": "2026-10-30T14:34:34+00:00",
+  "generated_at": "2026-10-30T18:33:50+00:00",
   "timezone": "Atlantic/Canary",
-  "verified_sources": 43
+  "verified_sources": 45
 }

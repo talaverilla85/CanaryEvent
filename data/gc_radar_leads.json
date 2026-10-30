@@ -4,47 +4,48 @@
   "no_auto_publication": true,
   "inspected": [
     {
-      "municipality": "San Bartolomé de Tirajana",
+      "municipality": "Agaete",
       "outcome": "ok",
       "links": 0
     },
     {
-      "municipality": "Santa Lucía de Tirajana",
+      "municipality": "Artenara",
       "outcome": "ok",
-      "links": 3
+      "links": 0
     },
     {
-      "municipality": "Santa María de Guía",
+      "municipality": "Firgas",
+      "outcome": "ok",
+      "links": 4
+    },
+    {
+      "municipality": "Gáldar",
+      "outcome": "ok",
+      "links": 6
+    },
+    {
+      "municipality": "La Aldea de San Nicolás",
+      "outcome": "needs_review",
+      "error_type": "ConnectTimeout",
+      "links": 0
+    },
+    {
+      "municipality": "Las Palmas de Gran Canaria",
       "outcome": "needs_review",
       "error_type": "RuntimeError",
       "links": 0
     },
     {
-      "municipality": "Telde",
-      "outcome": "ok",
-      "links": 12
-    },
-    {
-      "municipality": "Teror",
+      "municipality": "Mogán",
       "outcome": "needs_review",
       "error_type": "RuntimeError",
       "links": 0
     },
     {
-      "municipality": "Valleseco",
-      "outcome": "ok",
-      "links": 0
-    },
-    {
-      "municipality": "Valsequillo",
+      "municipality": "Moya",
       "outcome": "needs_review",
-      "error_type": "SSLError",
+      "error_type": "PermissionError",
       "links": 0
-    },
-    {
-      "municipality": "Vega de San Mateo",
-      "outcome": "ok",
-      "links": 3
     }
   ],
   "scan_state": {
@@ -113,7 +114,7 @@
       "outcome": "ok"
     }
   },
-  "candidate_count": 38,
+  "candidate_count": 39,
   "leads": [
     {
       "url": "https://vegadesanmateo.es/areas/patrimonio-cultural-e-historico",
@@ -283,6 +284,15 @@
       "kind": "unverified_official_link",
       "municipality": "Gáldar",
       "first_seen": "2026-10-27",
+      "last_seen": "2026-10-30",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/galdar-aplaza-al-2-de-noviembre-la-noche-de-finaos-en-el-club-de-mayores/",
+      "label": "Mayor 30 de octubre de 2026 Gáldar aplaza al 2 de noviembre la Noche de Finaos en el Club de Mayores",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-30",
       "last_seen": "2026-10-30",
       "publication_status": "not_an_event"
     },

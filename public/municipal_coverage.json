@@ -131,8 +131,8 @@
       "source_health": [
         {
           "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-          "found": 0,
-          "error": "ReadTimeout"
+          "found": 6,
+          "error": ""
         },
         {
           "source": "Ayuntamiento de Gáldar · agenda de Cultura",
@@ -275,9 +275,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 28,
+      "catalog_cards_total": 29,
       "municipal_cards_total": 2,
-      "other_sources_cards_total": 26,
+      "other_sources_cards_total": 27,
       "source_health": [],
       "full_coverage_claim": false
     },
@@ -295,7 +295,7 @@
         {
           "source": "Municipio · descubrimiento oficial · Santa María de Guía",
           "found": 0,
-          "error": "No event links found in official listing; check layout"
+          "error": ""
         }
       ],
       "full_coverage_claim": false
@@ -379,9 +379,9 @@
       "original_connector_state": "conector_parcial_calendario_2026_revisado",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial_calendario_2026_revisado",
-      "catalog_cards_total": 3,
+      "catalog_cards_total": 5,
       "municipal_cards_total": 1,
-      "other_sources_cards_total": 2,
+      "other_sources_cards_total": 4,
       "source_health": [
         {
           "source": "Mancomunidad de Medianías · Alma de Medianías en Valsequillo",

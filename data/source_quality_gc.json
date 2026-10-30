@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-10-30T14:34:34+00:00",
+  "checked_at": "2026-10-30T18:33:50+00:00",
   "quality_counts": {
-    "publicados": 513,
+    "publicados": 516,
     "recintos_sin_verificar": 71,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 352,
-    "distancia_a_centro_municipal": 343,
-    "fuentes_con_error": 2,
+    "precios_sin_confirmar": 354,
+    "distancia_a_centro_municipal": 346,
+    "fuentes_con_error": 0,
     "duplicados_potenciales": 10
   },
   "sources": [
@@ -43,11 +43,11 @@
     {
       "source": "Circuito de Artes Escénicas GC",
       "estado": "operativa",
-      "publicados": 5,
+      "publicados": 7,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 5,
-      "distancia_al_centro_municipal": 3,
-      "fichas_leidas_en_esta_ejecucion": 5,
+      "precio_sin_confirmar": 7,
+      "distancia_al_centro_municipal": 5,
+      "fichas_leidas_en_esta_ejecucion": 7,
       "error": ""
     },
     {
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 15,
+      "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
     {
@@ -142,13 +142,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 1,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "ReadTimeout"
+      "fichas_leidas_en_esta_ejecucion": 6,
+      "error": ""
     },
     {
       "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
@@ -192,13 +192,13 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "estado": "error",
+      "estado": "sin_resultados_en_esta_revision",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "No event links found in official listing; check layout"
+      "error": ""
     },
     {
       "source": "Municipio · descubrimiento oficial · Agaete",
@@ -382,21 +382,21 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "operativa",
+      "estado": "al_dia_sin_fichas_pendientes",
       "publicados": 246,
       "recinto_sin_verificar": 54,
       "precio_sin_confirmar": 202,
       "distancia_al_centro_municipal": 146,
-      "fichas_leidas_en_esta_ejecucion": 33,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 76,
+      "publicados": 77,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 75,
+      "distancia_al_centro_municipal": 76,
       "fichas_leidas_en_esta_ejecucion": 117,
       "error": ""
     },
@@ -461,16 +461,7 @@
       "error": ""
     }
   ],
-  "reported_errors": [
-    {
-      "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-      "error": "ReadTimeout"
-    },
-    {
-      "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "error": "No event links found in official listing; check layout"
-    }
-  ],
+  "reported_errors": [],
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
