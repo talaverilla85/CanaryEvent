@@ -692,7 +692,7 @@ function sponsorInsertAfter(){
 }
 async function loadSponsored(){
  try{
-  const response=await fetch('/ads.json',{cache:'no-store'});
+  let response;try{response=await fetch('/api/ads',{cache:'no-store'});if(!response.ok)response=await fetch('/ads.json',{cache:'no-store'})}catch{response=await fetch('/ads.json',{cache:'no-store'})}
   if(!response.ok)throw new Error('Sin anuncios');
   const data=await response.json();
   state.sponsorPlacement=data.placement||state.sponsorPlacement;
@@ -1000,7 +1000,7 @@ function closeMap(){
  $('mapPanel').classList.add('hidden');
  state.tab='explore';render();
 }
-async function api(path,method='GET',body=null){const options={method,credentials:'same-origin',headers:{}};if(method==='GET')options.cache='no-store';if(method!=='GET'){options.headers['Content-Type']='application/json';if(state.user)options.headers['X-CSRF-Token']=state.user.csrf;options.body=JSON.stringify(body||{})}const url=path==='/api/events'?'/events.json':path==='/api/meta'?'/meta.json':path;const r=await fetch(url,options);let data=await r.json();if(!r.ok)throw Error(data.error||'No se pudo completar la operación');return data}
+async function api(path,method='GET',body=null){const options={method,credentials:'same-origin',headers:{}};if(method==='GET')options.cache='no-store';if(method!=='GET'){options.headers['Content-Type']='application/json';if(state.user)options.headers['X-CSRF-Token']=state.user.csrf;options.body=JSON.stringify(body||{})}const url=path==='/api/events'?'/api/catalog':path==='/api/meta'?'/meta.json':path;let r;try{r=await fetch(url,options);if(path==='/api/events'&&!r.ok)r=await fetch('/events.json',options)}catch(e){if(path!=='/api/events')throw e;r=await fetch('/events.json',options)}let data=await r.json();if(!r.ok)throw Error(data.error||'No se pudo completar la operación');return data}
 function authDialog(mode='login'){openModal(`<div class="form-panel"><span class="eyebrow">BIENVENIDO A LA COMUNIDAD</span><h2 id="modalHeading">${mode==='register'?'Crear cuenta':'Entrar a D’Parranda'}</h2><p>${mode==='register'?'Publica tus actividades y descubre nuevos asistentes. Las propuestas se revisan antes de aparecer en el catálogo.':'Accede para proponer eventos y consultar tus publicaciones.'}</p><form class="stack-form" id="authForm"><div class="field"><label for="authEmail">Correo electrónico</label><input id="authEmail" type="email" required autocomplete="email" maxlength="254" placeholder="nombre@empresa.com"></div><div class="field"><label for="authPwd">Contraseña</label><input id="authPwd" type="password" required minlength="10" autocomplete="${mode==='register'?'new-password':'current-password'}" placeholder="Mínimo 10 caracteres"></div><button type="submit" class="primary-btn">${mode==='register'?'Crear cuenta':'Iniciar sesión'}</button></form><button id="toggleAuth" class="inline-link">${mode==='register'?'¿Ya tienes cuenta? Entrar':'¿No tienes cuenta? Regístrate gratis'}</button></div>`);
  $('toggleAuth').onclick=()=>authDialog(mode==='login'?'register':'login');$('authForm').onsubmit=async e=>{e.preventDefault();try{const r=await api('/api/auth/'+mode,'POST',{email:$('authEmail').value,password:$('authPwd').value});state.user=r.user;toast('Sesión iniciada');publishDialog()}catch(err){toast(err.message)}};
 }
