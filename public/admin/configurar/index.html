@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'">
+<title>Configurar acceso · DParranda</title><link rel="stylesheet" href="/admin/admin.css?v=1">
+</head><body>
+<header class="top"><div class="brand"><div class="logo">D</div><div><strong>DParranda</strong><small>Activar acceso privado</small></div></div><a class="ghost" href="/admin/">Volver al panel</a></header>
+<main class="wrap">
+<section class="card login setup-card" id="stepOne">
+<span class="eyebrow">Configuración inicial · Paso 1 de 2</span>
+<h2>Elige tu contraseña</h2>
+<p class="muted setup-explain">Esta herramienta prepara las credenciales en tu dispositivo. La contraseña <strong>no se envía a ningún servidor</strong>; solo se genera una huella criptográfica para guardar en Vercel.</p>
+<form id="generator">
+<div class="field"><label for="pass">Contraseña del administrador (mínimo 16 caracteres)</label><input type="password" id="pass" required minlength="16" maxlength="256" autocomplete="new-password" spellcheck="false"></div>
+<div class="field"><label for="confirmPass">Repítela</label><input type="password" id="confirmPass" required minlength="16" maxlength="256" autocomplete="new-password" spellcheck="false"></div>
+<button class="primary" id="generate" type="submit">Generar credenciales seguras</button>
+</form><p class="notice error hidden" id="error" role="alert"></p>
+</section>
+<section class="card setup-card hidden" id="stepTwo">
+<span class="eyebrow">Configuración inicial · Paso 2 de 2</span><h2>Guarda dos variables en Vercel</h2>
+<p class="muted setup-explain">Abre <a href="https://vercel.com/noe-s-projects-deb823a5/canaryevent/settings/environment-variables" target="_blank" rel="noopener noreferrer">Configuración de DParranda en Vercel</a>. Crea cada variable seleccionando <strong>Production</strong> y <strong>Sensitive</strong>, y guarda su valor tal como aparece aquí. No reemplaces <code>DATABASE_URL</code>.</p>
+<div class="field"><label for="keyA">Nombre de la primera variable</label><input id="keyA" readonly value="DPARRANDA_ADMIN_PASSWORD_PBKDF2"></div>
+<div class="field"><label for="valA">Valor de la primera variable (huella de contraseña)</label><textarea rows="4" id="valA" readonly spellcheck="false"></textarea></div>
+<button type="button" class="ghost mini copy" data-copy="valA">Copiar primer valor</button>
+<div class="divider-gap"></div>
+<div class="field"><label for="keyB">Nombre de la segunda variable</label><input id="keyB" readonly value="DPARRANDA_SESSION_SECRET"></div>
+<div class="field"><label for="valB">Valor de la segunda variable (secreto de sesión)</label><textarea rows="3" id="valB" readonly spellcheck="false"></textarea></div>
+<button type="button" class="ghost mini copy" data-copy="valB">Copiar segundo valor</button>
+<p class="notice setup-notice">Recuerda tu contraseña original: es la que utilizarás para entrar en <strong>/admin/</strong>. Las dos cadenas de esta pantalla no son contraseñas para iniciar sesión. Si la olvidas, tendrás que generar una nueva configuración.</p>
+<button type="button" id="clear" class="ghost">Borrar los valores de esta pantalla</button>
+</section>
+</main><script src="/admin/generar-clave.js" defer></script></body></html>
