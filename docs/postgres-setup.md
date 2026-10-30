@@ -1,12 +1,21 @@
-# PostgreSQL DParranda
+# DParranda · PostgreSQL (Neon)
 
-Neon project: silent-forest-22181101, region aws-eu-central-1, database neondb.
-PostgreSQL was provisioned and the public catalog imported separately.
+Proyecto Neon creado: `silent-forest-22181101` (región europea, PostgreSQL 17).
 
-The production website **continues serving /events.json** until the API and protected admin console are tested.
-The sync mirroring script can import the full SQLite originals, source logs, published cards and seed ads.
-It does not remove original SQLite data, public JSON or manually edited ad campaigns and overrides.
+La primera copia del catálogo público está cargada en Neon; el sincronizador de originales de SQLite está preparado, **pero requiere autorización de conexión de GitHub Actions**. La web pública sigue leyendo `public/events.json`, por lo que no se interrumpen las visitas.
 
-To enable automatic mirroring set repository Actions secret DPARRANDA_DATABASE_URL with the Neon pooled connection URI, then run the workflow. Never commit or share credentials. The scheduled workflow will skip PostgreSQL safely when the secret is absent.
+## Una autorización pendiente de GitHub Actions
 
-Do not expose DATABASE_URL in the frontend or prefix it with NEXT_PUBLIC_. Protect future admin endpoints with server-side authentication and roles.
+En el repositorio `talaverilla85/CanaryEvent`, abre Settings > Secrets and variables > Actions > New repository secret.
+
+Nombre: `DPARRANDA_DATABASE_URL`
+
+Valor: copia la cadena de conexión PostgreSQL de Neon para el proyecto `dparranda`, sin publicarla ni subirla a Git. Usar una conexión TLS del proveedor.
+
+Tras guardarla, el workflow `Actualizar eventos oficiales` ejecutará `python scripts/postgres_migration.py --sync` después de publicar SQLite/JSON y verificará recuentos en una transacción. Los ajustes editoriales y campañas ya modificadas en Neon se conservan.
+
+## Limitaciones y siguiente fase
+
+No se ha activado todavía lectura directa de PostgreSQL en Vercel ni panel privado de administración. Habrá que configurar la conexión de servidor en Vercel y el acceso de administrador antes del cambio de fuente. No deben ponerse secretos en el frontend.
+
+Los extractores y el catálogo JSON siguen siendo el respaldo funcional.
