@@ -367,3 +367,61 @@ body::before{content:"";height:4px;position:absolute;inset:0 0 auto;background:l
  padding:11px 14px;
  margin:10px 0 14px;
 }
+
+/* Event art direction V10: when an official photograph does not exist,
+   show a distinct editorial illustration by category, never a fake photo. */
+.event-card .photo.p-music .cover-fallback,
+.modal-photo.p-music .cover-fallback{background:linear-gradient(142deg,#263A67,#1A3A56 78%)!important}
+.event-card .photo.p-culture .cover-fallback,
+.modal-photo.p-culture .cover-fallback{background:linear-gradient(142deg,#56406F,#273956 78%)!important}
+.event-card .photo.p-family .cover-fallback,
+.modal-photo.p-family .cover-fallback{background:linear-gradient(142deg,#096F75,#144851 80%)!important}
+.event-card .photo.p-food .cover-fallback,
+.modal-photo.p-food .cover-fallback{background:linear-gradient(142deg,#8B5948,#59455A 82%)!important}
+.event-card .photo.p-nature .cover-fallback,
+.modal-photo.p-nature .cover-fallback{background:linear-gradient(142deg,#2C725C,#1E4855 82%)!important}
+.event-card .photo.p-sports .cover-fallback,
+.modal-photo.p-sports .cover-fallback{background:linear-gradient(142deg,#176B8C,#183D60 80%)!important}
+.event-card .photo.p-leisure .cover-fallback,
+.modal-photo.p-leisure .cover-fallback{background:linear-gradient(142deg,#946B44,#634458 80%)!important}
+.event-card .photo.p-other .cover-fallback,
+.modal-photo.p-other .cover-fallback{background:linear-gradient(142deg,#435D70,#19364A 80%)!important}
+.event-card .photo .cover-fallback{isolation:isolate}
+.event-card .photo .cover-fallback::before{
+ content:"";position:absolute;inset:-30%;pointer-events:none;opacity:.26;
+ background:repeating-radial-gradient(circle at 79% 66%,transparent 0 24px,#FFFFFF22 25px 27px,transparent 28px 54px);
+ transform:rotate(-8deg);z-index:-1
+}
+.event-card .photo.p-family .cover-fallback::before,
+.event-card .photo.p-nature .cover-fallback::before{
+ background:repeating-linear-gradient(126deg,transparent 0 20px,#FFFFFF18 22px 24px,transparent 26px 48px);
+}
+.event-card .photo.p-music .cover-fallback::before{
+ background:repeating-linear-gradient(90deg,transparent 0 13px,#FFFFFF18 14px 17px,transparent 19px 33px);
+ transform:rotate(-21deg)
+}
+.event-card .photo .cover-fallback .fallback-top{position:relative;z-index:1}
+.event-card .photo .cover-fallback .fallback-main{position:relative;z-index:1}
+.event-card .photo .cover-fallback .fallback-symbol{
+ font-family:Arial,system-ui,sans-serif;
+ font-size:clamp(48px,6vw,80px);font-weight:300;
+ text-shadow:0 4px 12px #00000018;
+}
+.event-card .photo.p-music .cover-fallback .fallback-symbol{color:#CCDAFF!important}
+.event-card .photo.p-culture .cover-fallback .fallback-symbol{color:#E2CBF1!important}
+.event-card .photo.p-family .cover-fallback .fallback-symbol{color:#B5E6CF!important}
+.event-card .photo.p-food .cover-fallback .fallback-symbol{color:#FFE1B9!important}
+.event-card .photo.p-nature .cover-fallback .fallback-symbol{color:#C0F3C9!important}
+.event-card .photo.p-sports .cover-fallback .fallback-symbol{color:#ACDEF2!important}
+.event-card .photo.p-leisure .cover-fallback .fallback-symbol{color:#FFE6B0!important}
+.event-card .photo .cover-fallback .fallback-bottom{position:relative;z-index:1;border-top-color:#FFFFFF80}
+.event-card .official-cover.poster-art{object-fit:contain!important;background:#F3F6F6!important}
+.event-card .photo:has(> .official-cover.poster-art){background:#F3F6F6!important}
+@media(max-width:720px){
+ .event-card:not(:first-child) .photo .cover-fallback .fallback-symbol{
+   font-size:clamp(30px,8vw,47px)!important
+ }
+ .event-card:not(:first-child) .photo .cover-fallback .fallback-top span:last-child{
+   max-width:75px;overflow:hidden;text-overflow:ellipsis
+ }
+}
