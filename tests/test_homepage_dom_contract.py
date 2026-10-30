@@ -40,6 +40,25 @@ class DParrandaHomepageContract(unittest.TestCase):
                      "La Palma", "La Gomera", "El Hierro", "La Graciosa"):
             self.assertIn("'" + name + "'", self.html)
 
+    def test_mobile_install_entry_and_sponsor_branding(self):
+        anchors = (
+            'id="dpInstallDock"', 'id="dpInstallAction"', 'id="dpInstallDismiss"',
+            'id="dpInstallGuideOverlay"', 'id="dpInstallGuideClose"',
+            'id="dpInstallGuideDone"', 'id="dpInstallGuideSteps"',
+            '<script src="/install_prompt.js?v=1"></script>',
+            'class="sponsor-slot"', 'ESPACIO PATROCINADO',
+        )
+        for anchor in anchors:
+            self.assertIn(anchor, self.html)
+        self.assertTrue((PUBLIC / "install_prompt.js").is_file())
+        css = (PUBLIC / "brand/dparranda-theme.css").read_text(encoding="utf-8")
+        self.assertIn(".dp-install-dock{", css)
+        self.assertIn("position:fixed;", css)
+        self.assertIn("bottom:calc(82px + env(safe-area-inset-bottom,0px))", css)
+        self.assertIn("#D2ECF0", css)
+        sw = (PUBLIC / "sw.js").read_text(encoding="utf-8")
+        self.assertIn("'/install_prompt.js'", sw)
+
     def test_manifest_icons_exist_and_are_versioned(self):
         manifest = json.loads((PUBLIC / "manifest.webmanifest").read_text(encoding="utf-8"))
         self.assertEqual(manifest["short_name"], "D’Parranda")
