@@ -119,6 +119,85 @@ async function saveAd(sql, body) {
       image_alt=excluded.image_alt,disclosure=excluded.disclosure,updated_at=now()`;
   return {id,updated:true};
 }
+
+function leadId(value){const n=Number(value);return Number.isSafeInteger(n)&&n>0?n:null}
+async function listLeads(sql){
+ const rows=await sql`SELECT id,company,contact_name,email,telephone,legal_name,tax_id,
+   billing_type,billing_address,billing_postal,billing_city,billing_region,billing_country,
+   billing_email,format,municipality,event_municipality,campaign_name,campaign_start,campaign_days,
+   event_title,event_start,event_end,event_venue,category,event_price,action_url,message,
+   banner_text,creative_alt,image_name,dates_text,status,created_at
+   FROM advertising_enquiries ORDER BY created_at DESC LIMIT 120`;
+ return {leads:rows};
+}
+async function listPromotions(sql){
+ const rows=await sql`SELECT id,enquiry_id,enabled,review_status,advertiser,title,start,
+    "end",municipality,venue,category,details,price,source_url,campaign_starts_at,
+    campaign_ends_at,image_alt,updated_at
+   FROM sponsored_events ORDER BY created_at DESC LIMIT 120`;
+ return {promotions:rows};
+}
+async function leadImage(sql,res,id){
+ const [entry]=await sql`SELECT mime_type,image_data FROM advertising_enquiry_images WHERE enquiry_id=${id}`;
+ if(!entry)return json(res,404,{error:'Imagen no encontrada'});
+ const bytes=typeof entry.image_data==='string'
+   ?Buffer.from(entry.image_data.replace(/^\\x/,''),'hex'):Buffer.from(entry.image_data);
+ res.setHeader('Content-Type',entry.mime_type);
+ res.setHeader('Content-Disposition','inline');
+ res.setHeader('Cache-Control','private, no-store');
+ return res.status(200).end(bytes);
+}
+async function promoteLead(sql,body){
+ const id=leadId(body.id),placement=String(body.placement||'');
+ if(!id||!['event','banner'].includes(placement))throw new Error('Solicitud o formato inválido');
+ const [lead]=await sql`SELECT * FROM advertising_enquiries WHERE id=${id}`;
+ if(!lead)throw new Error('Solicitud no encontrada');
+ if(placement==='event'){
+  if(!lead.event_title||!lead.event_start||!lead.event_municipality||!lead.event_venue)
+     throw new Error('La propuesta necesita los datos completos del evento');
+  const [already]=await sql`SELECT id FROM sponsored_events WHERE enquiry_id=${id} ORDER BY id LIMIT 1`;
+  if(already)return {created:false,id:Number(already.id),placement};
+  const [created]=await sql`INSERT INTO sponsored_events
+   (enquiry_id,enabled,review_status,advertiser,title,start,"end",municipality,venue,
+     category,details,price,source_url,image_alt,campaign_starts_at,campaign_ends_at)
+    VALUES (${id},FALSE,'draft',${lead.company},${lead.event_title},${lead.event_start},
+      ${lead.event_end},${lead.event_municipality},${lead.event_venue},
+      ${lead.category||'ocio'},${lead.message||''},${lead.event_price||''},${lead.action_url},
+      ${lead.creative_alt||''},${lead.campaign_start},(${lead.campaign_start}::date+${Number(lead.campaign_days)-1})::date)
+    RETURNING id`;
+  return {created:true,id:Number(created.id),placement,status:'draft'};
+ }
+ const adId='promo-'+id;
+ const town=String(lead.municipality||'').trim();
+ const municipalities=/toda gran canaria/i.test(town)?[]:town.split(',').map(x=>x.trim()).filter(Boolean);
+ const [already]=await sql`SELECT id FROM ad_campaigns WHERE id=${adId}`;
+ if(already)return {created:false,id:adId,placement};
+ await sql`INSERT INTO ad_campaigns
+  (id,enquiry_id,enabled,advertiser,kind,permanent,starts_at,ends_at,municipalities,
+   headline,description,location,button_text,button_url,image,image_alt,disclosure)
+  VALUES(${adId},${id},FALSE,${lead.company},'paid',FALSE,
+    ${lead.campaign_start},(${lead.campaign_start}::date+${Number(lead.campaign_days)-1})::date,
+    ${JSON.stringify(municipalities)}::jsonb,${lead.campaign_name},${lead.banner_text||lead.message.slice(0,220)},
+    ${lead.municipality},'Más información',${lead.action_url},'',${lead.creative_alt||''},'Publicidad')`;
+ return {created:true,id:adId,placement,status:'paused'};
+}
+async function changePromotion(sql,body){
+ const id=leadId(body.id);if(!id)throw new Error('Identificador inválido');
+ const approved=body.approved===true,enabled=body.enabled===true;
+ const [old]=await sql`SELECT id FROM sponsored_events WHERE id=${id}`;
+ if(!old)throw new Error('Promoción no encontrada');
+ await sql`UPDATE sponsored_events SET review_status=${approved?'approved':'draft'},
+    enabled=${approved&&enabled},updated_at=now() WHERE id=${id}`;
+ return {id,approved,enabled:approved&&enabled};
+}
+async function changeLead(sql,body){
+ const id=leadId(body.id),status=String(body.status||'');
+ if(!id||!['new','contacted','closed'].includes(status))throw new Error('Estado inválido');
+ const [updated]=await sql`UPDATE advertising_enquiries SET status=${status} WHERE id=${id} RETURNING id`;
+ if(!updated)throw new Error('Solicitud no encontrada');
+ return {id,status};
+}
+
 export default async function handler(req,res){
   res.setHeader('Cache-Control','private, no-store, max-age=0');
   if(!['GET','POST'].includes(req.method))return json(res,405,{error:'Método no permitido'});
@@ -142,6 +221,14 @@ export default async function handler(req,res){
     }
     if(op==='session')return json(res,200,{authenticated:authenticated(req),configured:true});
     if(!authenticated(req))return json(res,401,{error:'Acceso reservado al administrador'});
+    if(req.method==='GET'&&op==='leads')return json(res,200,await listLeads(sql));
+    if(req.method==='GET'&&op==='promotions')return json(res,200,await listPromotions(sql));
+    if(req.method==='GET'&&op==='leadimage'){
+      const id=leadId(query.id);return id?await leadImage(sql,res,id):json(res,404,{error:'Imagen no encontrada'});
+    }
+    if(req.method==='POST'&&op==='promote')return json(res,200,await promoteLead(sql,data(req)));
+    if(req.method==='POST'&&op==='promotion-status')return json(res,200,await changePromotion(sql,data(req)));
+    if(req.method==='POST'&&op==='lead-status')return json(res,200,await changeLead(sql,data(req)));
     if(req.method==='GET'&&op==='stats'){
       const [s]=await sql`SELECT
         (SELECT count(*)::int FROM published_events WHERE active) AS events,
