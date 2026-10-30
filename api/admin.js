@@ -46,9 +46,9 @@ async function events(sql, query) {
     WHERE p.active AND
       (${q}='' OR p.payload->>'title' ILIKE '%'||${q}||'%' OR p.payload->>'municipality' ILIKE '%'||${q}||'%')
     ORDER BY p.payload->>'start' ASC,p.id
-    LIMIT 100 OFFSET ${offset}`;
+    LIMIT 3500`;
   const filtered = rows.filter(r => only==='all' || (only==='duplicates' ? r.possible_duplicate : only==='review' ? (r.review_status==='needs_review'||r.review_status==='unreviewed'||r.possible_duplicate) : true));
-  return {events:filtered.slice(0,60),has_more:rows.length===100,offset,next_offset:offset+100};
+  return {events:filtered.slice(offset,offset+60),has_more:filtered.length>offset+60,offset,next_offset:offset+60};
 }
 async function saveEvent(sql, body) {
   const id=validId(body.id);
