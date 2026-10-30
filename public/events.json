@@ -1441,11 +1441,11 @@
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0034/cerebritos-en-juego",
-      "image_url": "",
-      "image_alt": "",
-      "image_origin": "",
-      "image_status": "not_available",
+      "source_url": "https://lpabibliotecas.com/events/cerebritos-en-juego-301026/",
+      "image_url": "https://lpabibliotecas.com/wp-content/uploads/2026/09/1080x1080_resultado.jpg",
+      "image_alt": "Cartel oficial Cerebritos en juego del 30 de octubre de 2026",
+      "image_origin": "Bibliotecas Municipales Las Palmas de Gran Canaria",
+      "image_status": "official_remote",
       "organizer_url": "https://lpabibliotecas.com/events/cerebritos-en-juego-301026/"
     },
     {
