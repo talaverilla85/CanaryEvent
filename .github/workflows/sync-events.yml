@@ -8,6 +8,8 @@ on:
     branches: [main]
     paths:
       - "scripts/sync_events.py"
+      - "scripts/postgres_migration.py"
+      - "sql/postgres_schema.sql"
       - "scripts/cabildo_public.py"
       - "scripts/ulpgc_venue_facts.py"
       - "scripts/source_facts.py"
@@ -141,4 +143,13 @@ jobs:
       - name: Guardar base de datos y exportación
         shell: bash
         run: bash scripts/publish_synced_data.sh
-
+      - name: Sincronizar PostgreSQL si está conectado
+        shell: bash
+        env:
+          DATABASE_URL: ${{ secrets.DPARRANDA_DATABASE_URL }}
+        run: |
+          if [[ -n "$DATABASE_URL" ]]; then
+            python scripts/postgres_migration.py --sync
+          else
+            echo "PostgreSQL pendiente de conexión; SQLite/JSON sigue activo"
+          fi
