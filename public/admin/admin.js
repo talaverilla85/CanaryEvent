@@ -92,7 +92,7 @@ function editEvent(row){
  const original=escape(e.title||'')+' · '+escape(e.municipality||'')+' · '+escape(e.start||'');
  const link=/^https:\/\//i.test(e.source_url||'')?'<a href="'+escape(e.source_url)+'" target="_blank" rel="noopener noreferrer">Ver fuente oficial ↗</a>':'';
  const content='<div class="sheet-head"><div><span class="eyebrow">Revisión de evento #'+escape(row.id)+'</span><h2 id="dialogTitle">Editar ficha</h2></div><button class="ghost mini" type="button" data-close>✕</button></div>'+
- '<p class="muted" style="margin-bottom:16px">'+original+'</p><p style="font-size:13px;margin:-3px 0 17px">'+link+'</p>'+
+ '<p class="muted modal-intro">'+original+'</p><p class="modal-link">'+link+'</p>'+
  '<form id="eventForm"><div class="form-grid">'+
  field('title_override','Título corregido',row.title_override||'',e.title||'',true)+
  field('venue_override','Recinto corregido',row.venue_override||'',e.venue||'',true)+
