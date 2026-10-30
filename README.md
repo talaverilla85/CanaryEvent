@@ -776,10 +776,20 @@ Regla: fecha, isla, municipio, recinto y URL oficial verificables;
 no se inventan horas o precios. No se importan eventos pasados
 como si fueran futuros ni conciertos anunciados para otras islas.
 
-### Telegram: avisos automáticos de errores de importación
+### Telegram: avisos automáticos de DParranda
 
-El flujo independiente .github/workflows/telegram-sync-alerts.yml se
-activa al terminar Actualizar eventos oficiales, incluso si este falla.
+El bot muestra **DParranda** como nombre público y los avisos se identifican
+con esta misma marca. El cambio se confirmó a través de la API de Telegram
+el 30 de octubre de 2026, sin exponer el token almacenado en GitHub Actions.
+El **@username de Telegram** es distinto del nombre visible del bot y no se
+modifica mediante este procedimiento.
+
+El flujo independiente `.github/workflows/telegram-sync-alerts.yml` se
+activa al terminar **Actualizar eventos oficiales**, incluso si falla.
+Cuando se cambia el script o el flujo del bot en `main`, también ejecuta
+`scripts/telegram_health_alert.py --configure-profile`, que establece y
+verifica el nombre visible DParranda sin enviar avisos innecesarios.
+La prueba manual del workflow actualiza el nombre y envía el aviso de prueba.
 
 - Una sincronización fallida genera un aviso inmediato, también si el
   trabajo se inició por un cambio de código.
@@ -803,12 +813,13 @@ CONFIGURACIÓN PRIVADA UNA SOLA VEZ:
    Settings > Secrets and variables > Actions > New repository secret.
    Crea TELEGRAM_BOT_TOKEN con el token de BotFather y
    TELEGRAM_CHAT_ID con el ID del chat de destino.
-5. En Actions > Avisar por Telegram de incidencias de CanaryEvent >
-   Run workflow, ejecuta la prueba manual. Llegará una notificación
-   de prueba si las credenciales son correctas.
+5. En Actions > Avisos de DParranda por Telegram > Run workflow,
+   puedes ejecutar una prueba manual para actualizar el perfil y recibir
+   un aviso de prueba. **No compartas el token del bot**.
 
-La integración queda preparada, pero no se puede confirmar ningún
-envío de mensajes hasta configurar ambos secretos.
+El nombre visible DParranda ya se actualizó y verificó con las credenciales
+configuradas. El logo/foto del perfil del bot se diseñará cuando se cierre
+la identidad vectorial definitiva de D’Parranda.
 
 ### Recintos en el texto completo del Cabildo: recuperación de octubre 2026
 
