@@ -1,10 +1,10 @@
 {
-  "checked_on": "2026-10-30T18:58:27.104396+00:00",
+  "checked_on": "2026-10-30T20:46:35.064645+00:00",
   "total_events": 516,
-  "known_price_or_free": 162,
+  "known_price_or_free": 161,
   "classification": {
     "minimum_zero_ambiguous": 6,
-    "minimum_positive": 126,
+    "minimum_positive": 125,
     "free": 23,
     "fixed_positive": 7
   },
@@ -13,7 +13,6 @@
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 44,
     "Ayuntamiento de Ingenio": 5,
     "Juventud Las Palmas de Gran Canaria": 11,
-    "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 1,
     "Ayuntamiento de Agüimes": 2,
     "Mancomunidad de Medianías · Alma de Medianías en Valsequillo": 2,
     "Firgas · Finaos 2026 contrastados con fuentes locales": 1,
