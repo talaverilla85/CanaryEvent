@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'">
+<title>Administración · DParranda</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/admin/admin.css?v=1">
+</head><body>
+<header class="top"><div class="brand"><div class="logo" aria-hidden="true">D</div><div><strong>DParranda</strong><small>Centro de administración privado</small></div></div>
+<div><a class="ghost" href="/" target="_blank" rel="noopener noreferrer">Ver web pública ↗</a> <button class="ghost hidden" type="button" id="logout">Salir</button></div></header>
+<main class="wrap">
+<section id="login" class="card login" hidden><span class="eyebrow">Acceso restringido</span><h2>Administración</h2>
+<p class="muted small">Gestiona los eventos y anuncios de DParranda. Este espacio no admite registros de visitantes.</p>
+<form id="loginForm"><div class="field"><label for="password">Contraseña de administración</label>
+<input id="password" name="password" type="password" autocomplete="current-password" required minlength="12"></div>
+<button class="primary" type="submit">Entrar al panel</button></form>
+<p id="loginError" class="notice error hidden" role="alert"></p></section>
+<section id="setup" class="card login" hidden><span class="eyebrow">Configuración protegida</span><h2>Panel preparado</h2>
+<p class="muted" style="line-height:1.6">La interfaz está instalada, pero el acceso privado aún no se ha activado en Vercel. Deben configurarse la conexión de servidor con Neon y las credenciales de administración; hasta entonces no se permiten operaciones.</p>
+<p class="notice">La web pública y los eventos continúan funcionando. No introduzcas contraseñas ni datos de conexión en esta página.</p></section>
+<section id="dashboard" hidden>
+<div class="intro"><div><span class="eyebrow">DParranda · Gestión interna</span><h1>Centro de control</h1><p class="muted">Revisa las fichas y administra tu publicidad desde un único lugar.</p></div><span class="pill">Acceso de administrador</span></div>
+<div class="grid-stat"><div class="stat"><span>Eventos publicados</span><strong id="statEvents">—</strong></div>
+<div class="stat"><span>Revisiones pendientes</span><strong id="statReview">—</strong></div>
+<div class="stat"><span>Fichas ocultas</span><strong id="statHidden">—</strong></div>
+<div class="stat"><span>Campañas activas</span><strong id="statAds">—</strong></div></div>
+<div class="tabs" role="tablist" aria-label="Secciones"><button class="tab active" id="tabEvents" type="button" role="tab" aria-selected="true">Eventos</button>
+<button class="tab" id="tabAds" type="button" role="tab" aria-selected="false">Publicidad</button></div>
+<section id="eventsSection"><div class="toolbar"><div class="tools">
+<input class="search" id="searchEvents" type="search" placeholder="Buscar evento o municipio…" aria-label="Buscar eventos">
+<select id="eventFilter" aria-label="Filtrar eventos"><option value="all">Todos los eventos</option><option value="duplicates">Posibles duplicados</option><option value="review">Requieren revisión</option></select></div>
+<button class="ghost" id="refreshEvents" type="button">Actualizar</button></div>
+<div id="eventsList" class="results" aria-live="polite"></div>
+<p class="muted" style="margin-top:14px">Las ediciones se guardan separadas de los datos extraídos para que la sincronización automática no las borre.</p>
+<button id="moreEvents" class="ghost" style="margin-top:14px" type="button" hidden>Cargar más eventos</button></section>
+<section id="adsSection" hidden><div class="toolbar"><div><h2 style="margin:0 0 7px">Campañas publicitarias</h2><p class="muted">Solo tú puedes crear, modificar o pausar anuncios.</p></div>
+<button class="primary" id="newAd" type="button">+ Nueva campaña</button></div><div id="adsList" class="ad-grid" aria-live="polite"></div>
+<p class="muted" style="margin-top:16px">Las imágenes se referencian a archivos verificados alojados en /sponsors/. La subida de imágenes se incorporará después.</p></section>
+</section></main>
+<div id="dialog" class="dialog hidden" aria-hidden="true"><div class="shade" data-close="true"></div><div id="sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"></div></div>
+<div id="feedback" role="status" aria-live="polite"></div>
+<script src="/admin/admin.js?v=1" defer></script>
+</body></html>
