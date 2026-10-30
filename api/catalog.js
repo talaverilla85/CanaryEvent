@@ -18,6 +18,24 @@ export default async function handler(req,res) {
       if(o.free_override!==null&&o.free_override!==undefined)e.free=Number(o.free_override);
       return e;
     });
+    const sponsored=await sql`SELECT id,title,start,"end",municipality,venue,category,details,price,free,
+      source_url,image_url,image_alt,enquiry_id,advertiser
+      FROM sponsored_events WHERE enabled=TRUE AND review_status='approved'
+        AND (campaign_starts_at IS NULL OR campaign_starts_at<=((now() AT TIME ZONE 'Atlantic/Canary')::date))
+        AND (campaign_ends_at IS NULL OR campaign_ends_at>=((now() AT TIME ZONE 'Atlantic/Canary')::date))
+      ORDER BY start,id LIMIT 250`;
+    for(const item of sponsored){
+      events.push({
+        id:-9000000000-Number(item.id),title:item.title,start:item.start,end:item.end,
+        municipality:item.municipality,venue:item.venue,category:item.category,
+        details:item.details,price:item.price,free:item.free,lat:null,lng:null,
+        accuracy:'municipality',source_name:'Publicidad · '+item.advertiser,
+        source_url:item.source_url,image_url:item.enquiry_id?'/api/media?id='+item.enquiry_id:item.image_url,
+        image_alt:item.image_alt,image_status:'promotional',paid_promotion:true
+      });
+    }
+    events.sort((a,b)=>String(a.start).localeCompare(String(b.start)));
+
     res.setHeader('Cache-Control','public, s-maxage=45, stale-while-revalidate=120');
     return res.status(200).json({events,generated_at:new Date().toISOString(),timezone:'Atlantic/Canary',origin:'postgresql'});
   }catch(e){
