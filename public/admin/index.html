@@ -31,7 +31,12 @@
 <div id="eventsList" class="results" aria-live="polite"></div>
 <p class="muted spaced">Las ediciones se guardan separadas de los datos extraídos para que la sincronización automática no las borre.</p>
 <button id="moreEvents" class="ghost spaced" type="button" hidden>Cargar más eventos</button></section>
-<section id="adsSection" hidden><div class="toolbar"><div><h2 class="ad-title">Campañas publicitarias</h2><p class="muted">Solo tú puedes crear, modificar o pausar anuncios.</p></div>
+<section id="adsSection" hidden>
+<div class="card marketing-overview"><h2>Solicitudes de empresas</h2><p class="muted">Presupuestos pendientes, datos de facturación e imagen original. Nada se publica automáticamente.</p>
+<div id="leadsList" class="results" aria-live="polite"></div></div>
+<div class="card marketing-overview"><h2>Eventos patrocinados</h2><p class="muted">Actividades pagadas, con etiqueta de publicidad y contador de días de campaña.</p>
+<div id="promotionsList" class="results" aria-live="polite"></div></div>
+<div class="toolbar"><div><h2 class="ad-title">Campañas publicitarias</h2><p class="muted">Solo tú puedes crear, modificar o pausar anuncios.</p></div>
 <button class="primary" id="newAd" type="button">+ Nueva campaña</button></div><div id="adsList" class="ad-grid" aria-live="polite"></div>
 <p class="muted spaced">Las imágenes se referencian a archivos verificados alojados en /sponsors/. La subida de imágenes se incorporará después.</p></section>
 </section></main>
