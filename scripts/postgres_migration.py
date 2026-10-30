@@ -66,6 +66,8 @@ def import_snapshot(connection, rows, logs, catalogue, cards, campaigns):
 
     with connection.cursor() as cur:
         cur.execute(SCHEMA.read_text(encoding="utf-8"))
+        # Initialize commercial campaigns, private invoicing and image tables in a fresh database.
+        cur.execute((ROOT / "sql" / "advertising_v2.sql").read_text(encoding="utf-8"))
         event_update = ", ".join(
             '"' + col + '" = EXCLUDED."' + col + '"'
             for col in EVENT_COLUMNS if col not in ("id", "created_at")
