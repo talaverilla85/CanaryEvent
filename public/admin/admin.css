@@ -20,3 +20,6 @@ fieldset{border:0;margin:0;padding:0}.field{display:grid;gap:6px;margin-bottom:1
 @media(max-width:700px){.top{padding:14px}.top small{font-size:10px}.grid-stat{grid-template-columns:repeat(2,minmax(0,1fr))}.intro{margin-bottom:20px}.wrap{padding-top:18px}.tools{width:100%}.tools .search{max-width:unset;flex:1}.event{align-items:flex-start;flex-direction:column}.actions{align-self:stretch}.actions button{flex:1}.form-grid{grid-template-columns:1fr}.sheet{padding:18px}.login{margin:30px auto}.ad-grid{grid-template-columns:1fr}}
 
 .informative{line-height:1.6}.ad-title{margin:0 0 7px}.spaced{margin-top:14px}.modal-intro{margin-bottom:16px}.modal-link{font-size:13px;margin:-3px 0 17px}
+
+/* Setup assistant, all crypto runs in the visitor browser with no network requests. */
+.setup-card{max-width:670px;margin:35px auto;padding:30px}.setup-card h2{margin:10px 0 15px}.setup-explain{line-height:1.65;margin-bottom:22px}.setup-explain a{color:#047884;text-decoration:underline}.divider-gap{height:25px}.setup-notice{margin:20px 0}.setup-card .field textarea{min-height:85px;font-size:12px;word-break:break-all;line-height:1.6}.setup-card .copy{margin:0 0 5px}
