@@ -60,6 +60,7 @@ import municipal_live_discovery
 import cinema_policy
 import event_occurrences
 import curated_official_images
+import curated_official_links
 import program_quality
 import venue_quality
 import organizer_venues
@@ -1183,6 +1184,8 @@ def run():
         "updated_at":NOW,"not_published":len(venue_pending),
         "note":"Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
         "events":venue_pending})
+    link_fixed=curated_official_links.apply(events)
+    print(f"Verified direct event source links restored: {link_fixed}")
     media_filled=curated_official_images.apply(events)
     print(f"Audited event-specific original images restored: {media_filled}")
     write_json(PUBLIC/"events.json",{"events":events,"generated_at":NOW,"timezone":"Atlantic/Canary",
