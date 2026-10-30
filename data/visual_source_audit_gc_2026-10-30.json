@@ -1,0 +1,879 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-30",
+  "baseline_missing_images": 85,
+  "official_images_newly_verified": 5,
+  "links_fixed": 4,
+  "remaining_missing_images": 80,
+  "why_not_automatic": "Website OG images are often generic site logos, unrelated posters or images from press releases; an actual event-specific image must be checked manually. Never auto-approve based only on matching page title.",
+  "unresolved_count": 80,
+  "automated_scan_reasons": {
+    "robots_error_SSLError": 1,
+    "robots_disallow": 6,
+    "no_event_specific_image": 56,
+    "candidate_not_image_206": 2,
+    "source_title_differs": 9,
+    "large_source": 1,
+    "image_uncertain_title_match": 2
+  },
+  "items": [
+    {
+      "id": -57620261117,
+      "title": "Feria de Artesanía de San Gregorio · Telde",
+      "source_url": "https://www.telde.es/telde-abre-el-plazo-para-participar-en-la-feria-de-artesania-de-las-fiestas-de-san-gregorio-taumaturgo/",
+      "source_status": 200,
+      "source_title": "Telde abre el plazo para participar en la Feria de Artesanía de las fiestas de San Gregorio Taumaturgo – Ayuntamiento de Telde",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "unverified_candidate",
+      "candidate_url": "https://www.telde.es/wp-content/uploads/2026/10/noticia831-uai-258x194.jpg"
+    },
+    {
+      "id": -57620261116,
+      "title": "Feria de Artesanía de San Gregorio · Telde",
+      "source_url": "https://www.telde.es/telde-abre-el-plazo-para-participar-en-la-feria-de-artesania-de-las-fiestas-de-san-gregorio-taumaturgo/",
+      "source_status": 200,
+      "source_title": "Telde abre el plazo para participar en la Feria de Artesanía de las fiestas de San Gregorio Taumaturgo – Ayuntamiento de Telde",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "unverified_candidate",
+      "candidate_url": "https://www.telde.es/wp-content/uploads/2026/10/noticia831-uai-258x194.jpg"
+    },
+    {
+      "id": 57,
+      "title": "Taller de Poesía 'Viaje al centro del poema'",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261022-0022/taller-de-poesia-viaje-al-centro-del-poema",
+      "source_status": 200,
+      "source_title": "Taller de Poesía 'Viaje al centro del poema' | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 79,
+      "title": "Plazo de inscripción abierto: Curso de creación audiovisual `El sonido de la mirada´",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0003/plazo-de-inscripcion-abierto-curso-de-creacion-audiovisual-el-sonido-de-la-mirada",
+      "source_status": 200,
+      "source_title": "Plazo de inscripción abierto: Curso de creación audiovisual `El sonido de la mirada´ | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 88,
+      "title": "Concierto: Marta Bolaños en acústico",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0008/concierto-marta-bolanos-en-acustico",
+      "source_status": 200,
+      "source_title": "Concierto: Marta Bolaños en acústico | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 89,
+      "title": "Ciclo de cine Miradas Audiovisuales: Pensar y comprender América",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0009/ciclo-de-cine-miradas-audiovisuales-pensar-y-comprender-america",
+      "source_status": 200,
+      "source_title": "Ciclo de cine Miradas Audiovisuales: Pensar y comprender América | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 90,
+      "title": "Conferencia: `El enigma Arencibia: vidas paralelas de dos maestros de la pintura canaria´ por Fabio García Saleh",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0011/conferencia-el-enigma-arencibia-vidas-paralelas-de-dos-maestros-de-la-pintura-canaria-por-fabio-garcia-saleh",
+      "source_status": 200,
+      "source_title": "Conferencia: `El enigma Arencibia: vidas paralelas de dos maestros de la pintura canaria´ por Fabio García Saleh | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 91,
+      "title": "Presentación del libro: `Con sal en la memoria´ de Mar Zeraus",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0013/presentacion-del-libro-con-sal-en-la-memoria-de-mar-zeraus",
+      "source_status": 200,
+      "source_title": "Presentación del libro: `Con sal en la memoria´ de Mar Zeraus | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 93,
+      "title": "Entre páginas",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0017/entre-paginas",
+      "source_status": 200,
+      "source_title": "Entre páginas | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 103,
+      "title": "Taller infantil: `Repostería encantada´",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0030/taller-infantil-reposteria-encantada",
+      "source_status": 200,
+      "source_title": "Taller infantil: `Repostería encantada´ | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 105,
+      "title": "Cerebritos en juego",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0034/cerebritos-en-juego",
+      "source_status": 200,
+      "source_title": "Cerebritos en juego | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 173,
+      "title": "Nyeleni | Ecos del Hogar",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0012/nyeleni-ecos-del-hogar",
+      "source_status": 200,
+      "source_title": "Nyeleni | Ecos del Hogar | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 174,
+      "title": "Primera FEB - Inveready Askatuak Gipúzkoa",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0013/primera-feb-inveready-askatuak-gipuzkoa",
+      "source_status": 200,
+      "source_title": "Primera FEB - Inveready Askatuak Gipúzkoa | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 181,
+      "title": "Oliva Lara. Último pintor indigenista americano",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0036/oliva-lara-ultimo-pintor-indigenista-americano",
+      "source_status": 200,
+      "source_title": "Oliva Lara. Último pintor indigenista americano | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 191,
+      "title": "Dragan Ball Super: Broly",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261110-0000/dragan-ball-super-broly",
+      "source_status": 200,
+      "source_title": "Dragan Ball Super: Broly | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 192,
+      "title": "Dragon Ball Super: Broly",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261110-0002/dragon-ball-super-broly",
+      "source_status": 200,
+      "source_title": "Dragon Ball Super: Broly | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 199,
+      "title": "EL NIÑO DE LA MEDIA LUNA",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261112-0004/el-nino-de-la-media-luna",
+      "source_status": 200,
+      "source_title": "EL NIÑO DE LA MEDIA LUNA | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 251,
+      "title": "Oliva Lara. Último pintor indigenista americano",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261115-0003/oliva-lara-ultimo-pintor-indigenista-americano",
+      "source_status": 200,
+      "source_title": "Oliva Lara. Último pintor indigenista americano | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 262,
+      "title": "5 centímetros por segundo",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261117-0000/5-centimetros-por-segundo",
+      "source_status": 200,
+      "source_title": "5 centímetros por segundo | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 281,
+      "title": "THE VIOLIN BAND",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0007/the-violin-band",
+      "source_status": 200,
+      "source_title": "THE VIOLIN BAND | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 305,
+      "title": "Primera FEB - Bàsquet Menorca",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261122-0001/primera-feb-basquet-menorca",
+      "source_status": 200,
+      "source_title": "Primera FEB - Bàsquet Menorca | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 315,
+      "title": "EN BUSCA DE LA MAGIA",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261126-0001/en-busca-de-la-magia",
+      "source_status": 200,
+      "source_title": "EN BUSCA DE LA MAGIA | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 325,
+      "title": "ARISTIDES MORENO & 101 BRASS BAND",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261127-0007/aristides-moreno-101-brass-band",
+      "source_status": 200,
+      "source_title": "ARISTIDES MORENO & 101 BRASS BAND | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 332,
+      "title": "LOS COQUILLOS",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261128-0005/los-coquillos",
+      "source_status": 200,
+      "source_title": "LOS COQUILLOS | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 349,
+      "title": "IBAUTE",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261204-0004/ibaute",
+      "source_status": 200,
+      "source_title": "IBAUTE | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 364,
+      "title": "EL NIÑO DE LA MEDIA LUNA",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261211-0004/el-nino-de-la-media-luna",
+      "source_status": 200,
+      "source_title": "EL NIÑO DE LA MEDIA LUNA | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 372,
+      "title": "ULTIMA LLAVE EN CONCIERTO",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261212-0006/ultima-llave-en-concierto",
+      "source_status": 200,
+      "source_title": "ULTIMA LLAVE EN CONCIERTO | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 377,
+      "title": "Primera FEB - Fibwi Mallorca Basquet Palma",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261212-0012/primera-feb-fibwi-mallorca-basquet-palma",
+      "source_status": 200,
+      "source_title": "Primera FEB - Fibwi Mallorca Basquet Palma | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 383,
+      "title": "THE VIOLIN BAND",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261217-0000/the-violin-band",
+      "source_status": 200,
+      "source_title": "THE VIOLIN BAND | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 393,
+      "title": "BODAS DE SANGRE",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261218-0005/bodas-de-sangre",
+      "source_status": 200,
+      "source_title": "BODAS DE SANGRE | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 401,
+      "title": "Primera FEB - Grupo Alega Cantabria",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261219-0006/primera-feb-grupo-alega-cantabria",
+      "source_status": 200,
+      "source_title": "Primera FEB - Grupo Alega Cantabria | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 403,
+      "title": "RAFAELILLO CLOWN",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261220-0000/rafaelillo-clown",
+      "source_status": 200,
+      "source_title": "RAFAELILLO CLOWN | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 405,
+      "title": "BLANCANIEVES Y EL SECRETO DEL ESPEJO",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261221-0000/blancanieves-y-el-secreto-del-espejo",
+      "source_status": 200,
+      "source_title": "BLANCANIEVES Y EL SECRETO DEL ESPEJO | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 408,
+      "title": "1,0 CONEXION",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261223-0001/10-conexion",
+      "source_status": 200,
+      "source_title": "1,0 CONEXION | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 409,
+      "title": "CORAZON VALIENTE",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261226-0001/corazon-valiente",
+      "source_status": 200,
+      "source_title": "CORAZON VALIENTE | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 414,
+      "title": "HIPATIA Y EL ASTEROIDE B-612",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261227-0001/hipatia-y-el-asteroide-b-612",
+      "source_status": 200,
+      "source_title": "HIPATIA Y EL ASTEROIDE B-612 | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 418,
+      "title": "Primera FEB - Súper Agropal Palencia",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20270103-0001/primera-feb-super-agropal-palencia",
+      "source_status": 200,
+      "source_title": "Primera FEB - Súper Agropal Palencia | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 422,
+      "title": "Primera FEB - Coviran Granada",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20270113-0000/primera-feb-coviran-granada",
+      "source_status": 200,
+      "source_title": "Primera FEB - Coviran Granada | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 449,
+      "title": "Primera FEB - Caja Rural CB Zamora",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20270214-0000/primera-feb-caja-rural-cb-zamora",
+      "source_status": 200,
+      "source_title": "Primera FEB - Caja Rural CB Zamora | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 451,
+      "title": "Primera FEB - Cajasol Coto Córdoba",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20270220-0000/primera-feb-cajasol-coto-cordoba",
+      "source_status": 200,
+      "source_title": "Primera FEB - Cajasol Coto Córdoba | Eventos Gran Canaria",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 524,
+      "title": "Noche de Tapas · San Rafael",
+      "source_url": "https://www.santaluciagc.com/braulio-los-gofiones-bejeque-los-coquillos-enac-ska-cristina-ramos-antonia-san-juan-y-matias-alonso-en-las-fiestas-de-san-rafael/",
+      "source_status": 200,
+      "source_title": "Braulio, Los Gofiones, Bejeque, Los Coquillos, Enac Ska, Cristina Ramos, Antonia San Juan y Matías Alonso en las fiestas de San Rafael – Ayuntamiento Santa",
+      "source_title_match": 0.33,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 530,
+      "title": "EXPOSICIÓN GEOMETRÍA - THEOMETRÍA",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrME9RPT0=",
+      "source_status": 200,
+      "source_title": "Ayuntamiento de Arucas - EXPOSICIÓN GEOMETRÍA - THEOMETRÍA",
+      "source_title_match": 1,
+      "visual_status": "verified_and_published",
+      "reason": "official_artwork_checked"
+    },
+    {
+      "id": 553,
+      "title": "‘¿Hay Santitos?’ Pasacalle infantil",
+      "source_url": "https://eventos.santabrigida.es/eventos/hay-santitos-pasacalle-infantil/",
+      "source_status": 200,
+      "source_title": "‘¿Hay Santitos?’ Pasacalle infantil – Eventos",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "unverified_candidate",
+      "candidate_url": "https://eventos.santabrigida.es/wp-content/uploads/2026/10/30.-Cuentos-con-Chocolate.png"
+    },
+    {
+      "id": 560,
+      "title": "TEROR FILM FEST “MUNDO MONSTER”",
+      "source_url": "https://teror.es/el-auditorio-de-teror-presenta-la-programacion-para-el-proximo-cuatrimestre/",
+      "source_status": 200,
+      "source_title": "El Auditorio de Teror presenta la programación para el próximo cuatrimestre",
+      "source_title_match": 0.2,
+      "visual_status": "verified_and_published",
+      "reason": "official_artwork_checked"
+    },
+    {
+      "id": 563,
+      "title": "X CONCURSO INTERNACIONAL DE MÚSICA LÍRICA",
+      "source_url": "https://teror.es/el-auditorio-de-teror-presenta-la-programacion-para-el-proximo-cuatrimestre/",
+      "source_status": 200,
+      "source_title": "El Auditorio de Teror presenta la programación para el próximo cuatrimestre",
+      "source_title_match": 0,
+      "visual_status": "unresolved",
+      "reason": "source_title_differs"
+    },
+    {
+      "id": 564,
+      "title": "FESTIVAL FOLKLÓRICO EL LEBRILLO: IV PARRANDEANDO",
+      "source_url": "https://teror.es/el-auditorio-de-teror-presenta-la-programacion-para-el-proximo-cuatrimestre/",
+      "source_status": 200,
+      "source_title": "El Auditorio de Teror presenta la programación para el próximo cuatrimestre",
+      "source_title_match": 0,
+      "visual_status": "unresolved",
+      "reason": "source_title_differs"
+    },
+    {
+      "id": 566,
+      "title": "ALMA – GERMÁN LÓPEZ",
+      "source_url": "https://teror.es/el-auditorio-de-teror-presenta-la-programacion-para-el-proximo-cuatrimestre/",
+      "source_status": 200,
+      "source_title": "El Auditorio de Teror presenta la programación para el próximo cuatrimestre",
+      "source_title_match": 0,
+      "visual_status": "unresolved",
+      "reason": "source_title_differs"
+    },
+    {
+      "id": 570,
+      "title": "El legado de los Finaos · Telde",
+      "source_url": "https://www.telde.es/telde-celebrara-los-finaos-el-31-de-octubre-con-tradicion-cuentos-y-conciertos-en-la-plaza-de-san-juan/",
+      "source_status": 200,
+      "source_title": "Telde celebrará los Finaos el 31 de octubre con tradición, cuentos y conciertos en la plaza de San Juan – Ayuntamiento de Telde",
+      "source_title_match": 0.67,
+      "visual_status": "unresolved",
+      "reason": "unverified_candidate",
+      "candidate_url": "https://www.telde.es/wp-content/uploads/2026/10/noticia838-uai-258x194.jpg"
+    },
+    {
+      "id": 571,
+      "title": "Cuentos de Finaos · Telde",
+      "source_url": "https://www.telde.es/telde-celebrara-los-finaos-el-31-de-octubre-con-tradicion-cuentos-y-conciertos-en-la-plaza-de-san-juan/",
+      "source_status": 200,
+      "source_title": "Telde celebrará los Finaos el 31 de octubre con tradición, cuentos y conciertos en la plaza de San Juan – Ayuntamiento de Telde",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "unverified_candidate",
+      "candidate_url": "https://www.telde.es/wp-content/uploads/2026/10/noticia838-uai-258x194.jpg"
+    },
+    {
+      "id": 572,
+      "title": "El Último Que Cierre · Finaos Telde",
+      "source_url": "https://www.telde.es/telde-celebrara-los-finaos-el-31-de-octubre-con-tradicion-cuentos-y-conciertos-en-la-plaza-de-san-juan/",
+      "source_status": 200,
+      "source_title": "Telde celebrará los Finaos el 31 de octubre con tradición, cuentos y conciertos en la plaza de San Juan – Ayuntamiento de Telde",
+      "source_title_match": 0.5,
+      "visual_status": "unresolved",
+      "reason": "unverified_candidate",
+      "candidate_url": "https://www.telde.es/wp-content/uploads/2026/10/noticia838-uai-258x194.jpg"
+    },
+    {
+      "id": 573,
+      "title": "Arístides Moreno y 101 Brass Band · Finaos Telde",
+      "source_url": "https://www.telde.es/telde-celebrara-los-finaos-el-31-de-octubre-con-tradicion-cuentos-y-conciertos-en-la-plaza-de-san-juan/",
+      "source_status": 200,
+      "source_title": "Telde celebrará los Finaos el 31 de octubre con tradición, cuentos y conciertos en la plaza de San Juan – Ayuntamiento de Telde",
+      "source_title_match": 0.33,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 576,
+      "title": "Feria de Artesanía de San Gregorio · Telde",
+      "source_url": "https://www.telde.es/telde-abre-el-plazo-para-participar-en-la-feria-de-artesania-de-las-fiestas-de-san-gregorio-taumaturgo/",
+      "source_status": 200,
+      "source_title": "Telde abre el plazo para participar en la Feria de Artesanía de las fiestas de San Gregorio Taumaturgo – Ayuntamiento de Telde",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "unverified_candidate",
+      "candidate_url": "https://www.telde.es/wp-content/uploads/2026/10/noticia831-uai-258x194.jpg"
+    },
+    {
+      "id": 577,
+      "title": "VI Feria de las Tradiciones · Artenara",
+      "source_url": "https://www.artenara.es/portal-ciudadano/noticias/vi-feria-de-las-tradiciones-en-artenara/",
+      "source_status": 200,
+      "source_title": "¡VI FERIA DE LAS TRADICIONES EN ARTENARA! – Ayuntamiento de Artenara",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 584,
+      "title": "Alma de Medianías 2026 · Feria Regional de Vino, Queso y Miel",
+      "source_url": "https://www.medianias.org/noticias/la-mancomunidad-de-medianias-invita-a-toda-la-isla-a-su-mesa-alma-de-medianias-del-31-de-octubre-al-1-de-noviembre-en-valsequillo/4307",
+      "source_status": 200,
+      "source_title": "LA MANCOMUNIDAD DE MEDIANÍAS INVITA A TODA LA ISLA A SU MESA: ALMA DE MEDIANÍAS, DEL 31 DE OCTUBRE AL 1 DE NOVIEMBRE EN VALSEQUILLO.",
+      "source_title_match": 0.29,
+      "visual_status": "unresolved",
+      "reason": "image_uncertain_title_match"
+    },
+    {
+      "id": 585,
+      "title": "Alma de Medianías 2026 · Feria Regional de Vino, Queso y Miel",
+      "source_url": "https://www.medianias.org/noticias/la-mancomunidad-de-medianias-invita-a-toda-la-isla-a-su-mesa-alma-de-medianias-del-31-de-octubre-al-1-de-noviembre-en-valsequillo/4307",
+      "source_status": 200,
+      "source_title": "LA MANCOMUNIDAD DE MEDIANÍAS INVITA A TODA LA ISLA A SU MESA: ALMA DE MEDIANÍAS, DEL 31 DE OCTUBRE AL 1 DE NOVIEMBRE EN VALSEQUILLO.",
+      "source_title_match": 0.29,
+      "visual_status": "unresolved",
+      "reason": "image_uncertain_title_match"
+    },
+    {
+      "id": 587,
+      "title": "Iniciación al boxeo · Juventud de Ingenio",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20260924-0017/programacion-otono-2026-juventud-de-ingenio",
+      "source_status": 200,
+      "source_title": "Programación Otoño 2026 - Juventud de Ingenio | Eventos Gran Canaria",
+      "source_title_match": 0.5,
+      "visual_status": "unresolved",
+      "reason": "candidate_not_image_206"
+    },
+    {
+      "id": 595,
+      "title": "AJEDREZ EN LA GRADA",
+      "source_url": "https://actividadesjuventud.laspalmasgc.es/events/cf8aeefc3afd9fbebe0b9ffa6b13bd51621d3cdf",
+      "source_status": 200,
+      "source_title": "AJEDREZ EN LA GRADA | Actividades de Juventud Las Palmas G.C.",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 596,
+      "title": "AJEDREZ EN LA GRADA",
+      "source_url": "https://actividadesjuventud.laspalmasgc.es/events/cf8aeefc3afd9fbebe0b9ffa6b13bd51621d3cdf",
+      "source_status": 200,
+      "source_title": "AJEDREZ EN LA GRADA | Actividades de Juventud Las Palmas G.C.",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 597,
+      "title": "AJEDREZ EN LA GRADA",
+      "source_url": "https://actividadesjuventud.laspalmasgc.es/events/cf8aeefc3afd9fbebe0b9ffa6b13bd51621d3cdf",
+      "source_status": 200,
+      "source_title": "AJEDREZ EN LA GRADA | Actividades de Juventud Las Palmas G.C.",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 598,
+      "title": "AJEDREZ EN LA GRADA",
+      "source_url": "https://actividadesjuventud.laspalmasgc.es/events/cf8aeefc3afd9fbebe0b9ffa6b13bd51621d3cdf",
+      "source_status": 200,
+      "source_title": "AJEDREZ EN LA GRADA | Actividades de Juventud Las Palmas G.C.",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 599,
+      "title": "AJEDREZ EN LA GRADA",
+      "source_url": "https://actividadesjuventud.laspalmasgc.es/events/cf8aeefc3afd9fbebe0b9ffa6b13bd51621d3cdf",
+      "source_status": 200,
+      "source_title": "AJEDREZ EN LA GRADA | Actividades de Juventud Las Palmas G.C.",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 613,
+      "title": "Noche de Tapas",
+      "source_url": "https://www.santaluciagc.com/wp-content/uploads/2026/10/Programa_Fiestas-SanRafael_2026_web-1.pdf",
+      "source_status": 200,
+      "source_title": "",
+      "source_title_match": 0,
+      "visual_status": "unresolved",
+      "reason": "large_source"
+    },
+    {
+      "id": 614,
+      "title": "El Colegio del Terror",
+      "source_url": "https://www.agaete.es/noticias/el-colegio-del-terror",
+      "source_status": 200,
+      "source_title": "El Colegio del Terror | Ayuntamiento de Agaete",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 615,
+      "title": "El Colegio del Terror",
+      "source_url": "https://www.agaete.es/noticias/el-colegio-del-terror",
+      "source_status": 200,
+      "source_title": "El Colegio del Terror | Ayuntamiento de Agaete",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 616,
+      "title": "Fiesta de Finaos de Vega de San Mateo",
+      "source_url": "https://vegadesanmateo.es/noticia/vuelve-la-fiesta-de-finaos-vega-de-san-mateo",
+      "source_status": 200,
+      "source_title": "🍂🎉 ¡Vuelve la Fiesta de Finaos a Vega de San Mateo | Ayuntamiento de Vega de San Mateo",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 617,
+      "title": "III Mercado Navideño de Vega de San Mateo",
+      "source_url": "https://www.vegadesanmateo.es/noticia/se-abre-el-plazo-para-participar-en-el-iii-mercado-navideno-de-san-mateo",
+      "source_status": 200,
+      "source_title": "Se abre el plazo para participar en el III Mercado Navideño de San Mateo. | Ayuntamiento de Vega de San Mateo",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 618,
+      "title": "III Mercado Navideño de Vega de San Mateo",
+      "source_url": "https://www.vegadesanmateo.es/noticia/se-abre-el-plazo-para-participar-en-el-iii-mercado-navideno-de-san-mateo",
+      "source_status": 200,
+      "source_title": "Se abre el plazo para participar en el III Mercado Navideño de San Mateo. | Ayuntamiento de Vega de San Mateo",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 619,
+      "title": "III Mercado Navideño de Vega de San Mateo",
+      "source_url": "https://www.vegadesanmateo.es/noticia/se-abre-el-plazo-para-participar-en-el-iii-mercado-navideno-de-san-mateo",
+      "source_status": 200,
+      "source_title": "Se abre el plazo para participar en el III Mercado Navideño de San Mateo. | Ayuntamiento de Vega de San Mateo",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 623,
+      "title": "Concierto de Banda Sol y Arena · Maspaterror",
+      "source_url": "https://www.maspalomas.com/mnunotjuventud/3060-2026-ju-maspaterror-regresa-al-parque-sur-los-dias-30-y-31-de-octubre-presentando-su-tercera-edicion",
+      "source_status": 200,
+      "source_title": "Maspaterror regresa al Parque Sur los días 30 y 31 de octubre presentando su tercera edición.",
+      "source_title_match": 0.25,
+      "visual_status": "unresolved",
+      "reason": "source_title_differs"
+    },
+    {
+      "id": 624,
+      "title": "Cuentos para temblar · Maspaterror",
+      "source_url": "https://www.maspalomas.com/mnunotjuventud/3060-2026-ju-maspaterror-regresa-al-parque-sur-los-dias-30-y-31-de-octubre-presentando-su-tercera-edicion",
+      "source_status": 200,
+      "source_title": "Maspaterror regresa al Parque Sur los días 30 y 31 de octubre presentando su tercera edición.",
+      "source_title_match": 0.33,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 625,
+      "title": "Cine al aire libre: Casper · Maspaterror",
+      "source_url": "https://www.maspalomas.com/mnunotjuventud/3060-2026-ju-maspaterror-regresa-al-parque-sur-los-dias-30-y-31-de-octubre-presentando-su-tercera-edicion",
+      "source_status": 200,
+      "source_title": "Maspaterror regresa al Parque Sur los días 30 y 31 de octubre presentando su tercera edición.",
+      "source_title_match": 0.2,
+      "visual_status": "unresolved",
+      "reason": "source_title_differs"
+    },
+    {
+      "id": 633,
+      "title": "Todo pa' última hora · Jorge Ávila",
+      "source_url": "https://www.galdar.es/el-centro-cultural-guaires-prepara-una-amplia-programacion-de-espectaculos-para-los-proximos-meses/",
+      "source_status": 200,
+      "source_title": "El Centro Cultural Guaires prepara una amplia programación de espectáculos para los próximos meses",
+      "source_title_match": 0,
+      "visual_status": "verified_and_published",
+      "reason": "official_artwork_checked"
+    },
+    {
+      "id": 634,
+      "title": "Solo Palique · humor en directo",
+      "source_url": "https://www.galdar.es/el-centro-cultural-guaires-prepara-una-amplia-programacion-de-espectaculos-para-los-proximos-meses/",
+      "source_status": 200,
+      "source_title": "El Centro Cultural Guaires prepara una amplia programación de espectáculos para los próximos meses",
+      "source_title_match": 0,
+      "visual_status": "verified_and_published",
+      "reason": "official_artwork_checked"
+    },
+    {
+      "id": 635,
+      "title": "Más allá del Pasillo · Iván Torres",
+      "source_url": "https://www.galdar.es/el-centro-cultural-guaires-prepara-una-amplia-programacion-de-espectaculos-para-los-proximos-meses/",
+      "source_status": 200,
+      "source_title": "El Centro Cultural Guaires prepara una amplia programación de espectáculos para los próximos meses",
+      "source_title_match": 0,
+      "visual_status": "verified_and_published",
+      "reason": "official_artwork_checked"
+    },
+    {
+      "id": 717,
+      "title": "MARIPOSAS NEGRAS EN CONCIERTO",
+      "source_url": "https://www.icdcultural.org/espectaculos-fimc-2026/mariposas-negras",
+      "source_status": 200,
+      "source_title": "MARIPOSAS NEGRAS EN CONCIERTO Festival Internacional de música de Canarias",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 745,
+      "title": "Kike Pérez",
+      "source_url": "https://www.ecoentradas.com/elegirsesion/3405",
+      "source_status": 200,
+      "source_title": "Kike Pérez",
+      "source_title_match": 1,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 748,
+      "title": "Concierto del Cuarteto Parea",
+      "source_url": "https://www.villademoya.es/cmsAdmin/uploads/OTO_O_es_Cultura_2026.pdf",
+      "source_status": null,
+      "source_title": "",
+      "source_title_match": 0,
+      "visual_status": "unresolved",
+      "reason": "robots_disallow"
+    },
+    {
+      "id": 749,
+      "title": "Cuentacuentos del Circuito Insular de Narración Oral",
+      "source_url": "https://www.villademoya.es/cmsAdmin/uploads/OTO_O_es_Cultura_2026.pdf",
+      "source_status": null,
+      "source_title": "",
+      "source_title_match": 0,
+      "visual_status": "unresolved",
+      "reason": "robots_disallow"
+    },
+    {
+      "id": 750,
+      "title": "VII Concurso de Pintura Rápida SURCA 2026",
+      "source_url": "https://www.villademoya.es/cmsAdmin/uploads/OTO_O_es_Cultura_2026.pdf",
+      "source_status": null,
+      "source_title": "",
+      "source_title_match": 0,
+      "visual_status": "unresolved",
+      "reason": "robots_disallow"
+    },
+    {
+      "id": 751,
+      "title": "Exposición de obras del VII Concurso SURCA 2026",
+      "source_url": "https://www.villademoya.es/cmsAdmin/uploads/OTO_O_es_Cultura_2026.pdf",
+      "source_status": null,
+      "source_title": "",
+      "source_title_match": 0,
+      "visual_status": "unresolved",
+      "reason": "robots_disallow"
+    },
+    {
+      "id": 752,
+      "title": "Encuentro Insular de Bandas de Música de Gran Canaria",
+      "source_url": "https://www.villademoya.es/cmsAdmin/uploads/OTO_O_es_Cultura_2026.pdf",
+      "source_status": null,
+      "source_title": "",
+      "source_title_match": 0,
+      "visual_status": "unresolved",
+      "reason": "robots_disallow"
+    },
+    {
+      "id": 753,
+      "title": "Ananda · The Violin Band",
+      "source_url": "https://www.villademoya.es/cmsAdmin/uploads/OTO_O_es_Cultura_2026.pdf",
+      "source_status": null,
+      "source_title": "",
+      "source_title_match": 0,
+      "visual_status": "unresolved",
+      "reason": "robots_disallow"
+    },
+    {
+      "id": 754,
+      "title": "Circuito de narración oral",
+      "source_url": "https://www.valsequillogc.es/ayto3/calendario-de-eventos/",
+      "source_status": null,
+      "source_title": "",
+      "source_title_match": 0,
+      "visual_status": "unresolved",
+      "reason": "robots_error_SSLError"
+    },
+    {
+      "id": 755,
+      "title": "Día de la Infancia · Aventuras en el mar",
+      "source_url": "https://mogan.es/es/Noticias/mogan-celebrara-el-dia-de-la-infancia-con-una-aventura-marinera-llena-de-juegos-y-talleres",
+      "source_status": 200,
+      "source_title": "Mogán celebrará el Día de la Infancia con una aventura marinera llena de juegos y talleres | Web_Mogan",
+      "source_title_match": 0.5,
+      "visual_status": "unresolved",
+      "reason": "no_event_specific_image"
+    },
+    {
+      "id": 756,
+      "title": "Noche de los Finaos de Firgas · Tacande",
+      "source_url": "https://calendariodeeventos.com/evento/fiestas-noche-de-los-finaos-2026-firgas",
+      "source_status": 200,
+      "source_title": "Noche de los Finaos 2026 en Firgas",
+      "source_title_match": 0.75,
+      "visual_status": "unresolved",
+      "reason": "unverified_candidate",
+      "candidate_url": "https://calendariodeeventos.com/uploads/events/fiestas-noche-de-los-finaos-2026-firgas-mvgo0j0j-e766d7.webp"
+    }
+  ]
+}
