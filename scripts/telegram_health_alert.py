@@ -1,4 +1,4 @@
-"""Notify CanaryEvent operations through Telegram after the sync workflow ends.
+"""Notify DParranda operations through Telegram after the sync workflow ends.
 
 Never log or persist the bot token. The watcher runs separately via workflow_run,
 so a failed/timed-out importer can still trigger an alert.
@@ -62,17 +62,17 @@ def make_message(*,conclusion,event,url,started,finished,quality,meta):
     if not is_failure and not scheduled:
         return None
     if not is_failure and not fresh:
-        lines=["⚠️ ¿Pa' Dónde? · No se pudo validar el informe diario",
+        lines=["⚠️ DParranda · No se pudo validar el informe diario",
                "El flujo terminó correctamente, pero el informe de calidad no pertenece a esta ejecución."]
     elif not is_failure and not errors:
         return None
     elif is_failure:
-        lines=["🚨 ¿Pa' Dónde? · Falló la actualización automática",
+        lines=["🚨 DParranda · Falló la actualización automática",
                "Estado de GitHub: "+safe_line(status)]
         if fresh and errors:
             lines.append("Fuentes con incidencias: "+str(len(errors)))
     else:
-        lines=["⚠️ ¿Pa' Dónde? · Problemas con "+str(len(errors))+" fuentes",
+        lines=["⚠️ DParranda · Problemas con "+str(len(errors))+" fuentes",
                "La sincronización general terminó, pero algunos conectores fallaron."]
     if fresh and errors:
         for name,error in errors[:MAX_SOURCES]:
@@ -112,6 +112,40 @@ def send(bot_token,chat_id,message,*,session=requests):
         print("Error seguro enviando a Telegram: "+type(err).__name__)
         return False
 
+def configure_bot_profile(bot_token, *, session=requests):
+    """Set Telegram's public bot display name without exposing credentials.
+
+    Does not (and cannot) change the bot's @username: BotFather handles that.
+    """
+    if not bot_token:
+        print("Falta TELEGRAM_BOT_TOKEN: no se pudo cambiar el nombre visible del bot.")
+        return False
+    try:
+        response=session.post(
+            "https://api.telegram.org/bot"+bot_token+"/setMyName",
+            json={"name":"DParranda"},
+            timeout=15)
+        if response.status_code!=200 or response.json().get("ok") is not True:
+            # Avoid logging Telegram response content or a URL with the token.
+            print("Telegram rechazó el cambio de nombre (HTTP "+str(response.status_code)+").")
+            return False
+        # Verify the persisted name, without logging the account's identity.
+        current=session.get(
+            "https://api.telegram.org/bot"+bot_token+"/getMyName",
+            timeout=15)
+        if current.status_code!=200 or current.json().get("ok") is not True:
+            print("El nombre se solicitó, pero no pudo verificarse.")
+            return False
+        if current.json().get("result",{}).get("name")!="DParranda":
+            print("El nombre visible no coincide tras la actualización.")
+            return False
+        print("Nombre visible de Telegram verificado: DParranda.")
+        return True
+    except (requests.RequestException,ValueError,TypeError,AttributeError) as err:
+        print("Error seguro al configurar el bot: "+type(err).__name__)
+        return False
+
+
 def load_report(path):
     try:
         return json.loads(Path(path).read_text(encoding="utf8"))
@@ -123,7 +157,7 @@ def run(environ=None,*,test=False):
     token=env.get("TELEGRAM_BOT_TOKEN","").strip()
     chat=env.get("TELEGRAM_CHAT_ID","").strip()
     if test:
-        message=("✅ ¿Pa' Dónde? · Telegram conectado\n"
+        message=("✅ DParranda · Telegram conectado\n"
                  "Prueba enviada desde GitHub Actions. Los avisos reales se enviarán solo si hay incidencias.")
     else:
         quality=load_report(QUALITY)
@@ -148,5 +182,9 @@ def run(environ=None,*,test=False):
 if __name__=="__main__":
     parser=argparse.ArgumentParser()
     parser.add_argument("--test",action="store_true")
+    parser.add_argument("--configure-profile",action="store_true",
+                        help="Cambiar y verificar el nombre visible del bot a DParranda")
     args=parser.parse_args()
+    if args.configure_profile:
+        raise SystemExit(0 if configure_bot_profile(os.environ.get("TELEGRAM_BOT_TOKEN","").strip()) else 1)
     raise SystemExit(run(test=args.test))
