@@ -1,6 +1,6 @@
 {
-  "checked_on": "2026-10-30T20:46:35.064645+00:00",
-  "total_events": 516,
+  "checked_on": "2026-10-30T20:54:04.566008+00:00",
+  "total_events": 517,
   "known_price_or_free": 161,
   "classification": {
     "minimum_zero_ambiguous": 6,
@@ -10,8 +10,8 @@
   },
   "known_by_source": {
     "TuReservaOnline · agenda de Gran Canaria": 77,
-    "Portal oficial de Eventos Gran Canaria (Cabildo)": 44,
-    "Ayuntamiento de Ingenio": 5,
+    "Portal oficial de Eventos Gran Canaria (Cabildo)": 45,
+    "Ayuntamiento de Ingenio": 4,
     "Juventud Las Palmas de Gran Canaria": 11,
     "Ayuntamiento de Agüimes": 2,
     "Mancomunidad de Medianías · Alma de Medianías en Valsequillo": 2,

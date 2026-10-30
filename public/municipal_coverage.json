@@ -150,8 +150,8 @@
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
       "catalog_cards_total": 28,
-      "municipal_cards_total": 11,
-      "other_sources_cards_total": 17,
+      "municipal_cards_total": 10,
+      "other_sources_cards_total": 18,
       "source_health": [
         {
           "source": "Ayuntamiento de Ingenio",
@@ -275,8 +275,8 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 29,
-      "municipal_cards_total": 2,
+      "catalog_cards_total": 30,
+      "municipal_cards_total": 3,
       "other_sources_cards_total": 27,
       "source_health": [],
       "full_coverage_claim": false
