@@ -1,0 +1,10 @@
+{
+  "name": "dparranda",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "DParranda serverless admin and public catalog API",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.2.0"
+  }
+}
