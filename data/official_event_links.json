@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-30",
+  "description": "Reemplazos manuales de enlaces generales con fichas de fuentes oficiales; aplica solo con coincidencia exacta id, título y URL anterior.",
+  "items": [
+    {
+      "id": 633,
+      "title": "Todo pa' última hora · Jorge Ávila",
+      "source_url": "https://www.galdar.es/el-centro-cultural-guaires-prepara-una-amplia-programacion-de-espectaculos-para-los-proximos-meses/",
+      "verified_url": "https://www.galdar.es/events/todo-pa-ultima-hora/",
+      "evidence": "Ayuntamiento de Gáldar, ficha individual con cartel y fecha 14 noviembre 2026"
+    },
+    {
+      "id": 634,
+      "title": "Solo Palique · humor en directo",
+      "source_url": "https://www.galdar.es/el-centro-cultural-guaires-prepara-una-amplia-programacion-de-espectaculos-para-los-proximos-meses/",
+      "verified_url": "https://www.galdar.es/events/solo-palique/",
+      "evidence": "Ayuntamiento de Gáldar, ficha individual con cartel y fecha 20 noviembre 2026"
+    },
+    {
+      "id": 635,
+      "title": "Más allá del Pasillo · Iván Torres",
+      "source_url": "https://www.galdar.es/el-centro-cultural-guaires-prepara-una-amplia-programacion-de-espectaculos-para-los-proximos-meses/",
+      "verified_url": "https://www.galdar.es/events/mas-alla-del-pasillo/",
+      "evidence": "Ayuntamiento de Gáldar, ficha individual con cartel y fecha 28 noviembre 2026"
+    },
+    {
+      "id": 560,
+      "title": "TEROR FILM FEST “MUNDO MONSTER”",
+      "source_url": "https://teror.es/el-auditorio-de-teror-presenta-la-programacion-para-el-proximo-cuatrimestre/",
+      "verified_url": "https://teror.es/teror-celebrara-el-iii-festival-de-cine-de-terror-del-23-al-31-de-octubre/",
+      "evidence": "Ayuntamiento de Teror, publicación dedicada al III Festival de Cine de Terror 23-31 octubre 2026"
+    }
+  ]
+}
