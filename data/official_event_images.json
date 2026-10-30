@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-10-30",
   "notes": "Only event-specific visuals retrieved from the corresponding public event pages; never use generic site branding or search-result thumbnails.",
   "items": [
     {
@@ -1162,6 +1162,56 @@
       "image_origin": "Ayuntamiento de Telde · fiestas y cultura 2026",
       "image_status": "official_remote",
       "method": "single-article-image"
+    },
+    {
+      "id": 530,
+      "title": "EXPOSICIÓN GEOMETRÍA - THEOMETRÍA",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrME9RPT0=",
+      "image_url": "https://www.arucas.org/documentos/839663688_1006987882006435_5467295746770772209_n.jfif",
+      "image_alt": "Cartel o imagen oficial de EXPOSICIÓN GEOMETRÍA - THEOMETRÍA",
+      "image_origin": "Ayuntamiento de Arucas · cartel original de la exposición",
+      "image_status": "official_remote",
+      "method": "official-page-og-image-visual-check"
+    },
+    {
+      "id": 560,
+      "title": "TEROR FILM FEST “MUNDO MONSTER”",
+      "source_url": "https://teror.es/teror-celebrara-el-iii-festival-de-cine-de-terror-del-23-al-31-de-octubre/",
+      "image_url": "https://teror.es/wp-content/uploads/2026/10/06_TFF26.jpg",
+      "image_alt": "Cartel o imagen oficial de TEROR FILM FEST “MUNDO MONSTER”",
+      "image_origin": "Ayuntamiento de Teror · imagen oficial Teror Film Fest 2026",
+      "image_status": "official_remote",
+      "method": "official-dedicated-festival-og-image-visual-check"
+    },
+    {
+      "id": 633,
+      "title": "Todo pa' última hora · Jorge Ávila",
+      "source_url": "https://www.galdar.es/events/todo-pa-ultima-hora/",
+      "image_url": "https://www.galdar.es/wp-content/uploads/2026/06/Jorge-Avila.jpg",
+      "image_alt": "Cartel o imagen oficial de Todo pa' última hora · Jorge Ávila",
+      "image_origin": "Ayuntamiento de Gáldar · cartel Todo pa’ última hora",
+      "image_status": "official_remote",
+      "method": "official-individual-event-og-image-visual-check"
+    },
+    {
+      "id": 634,
+      "title": "Solo Palique · humor en directo",
+      "source_url": "https://www.galdar.es/events/solo-palique/",
+      "image_url": "https://www.galdar.es/wp-content/uploads/2026/10/600_800-4-preview.jpg",
+      "image_alt": "Cartel o imagen oficial de Solo Palique · humor en directo",
+      "image_origin": "Ayuntamiento de Gáldar · cartel Solo Palique",
+      "image_status": "official_remote",
+      "method": "official-individual-event-og-image-visual-check"
+    },
+    {
+      "id": 635,
+      "title": "Más allá del Pasillo · Iván Torres",
+      "source_url": "https://www.galdar.es/events/mas-alla-del-pasillo/",
+      "image_url": "https://www.galdar.es/wp-content/uploads/2026/10/Ivan-Torres_Galdar-preview.jpg",
+      "image_alt": "Cartel o imagen oficial de Más allá del Pasillo · Iván Torres",
+      "image_origin": "Ayuntamiento de Gáldar · cartel Más allá del Pasillo",
+      "image_status": "official_remote",
+      "method": "official-individual-event-og-image-visual-check"
     }
   ]
 }
