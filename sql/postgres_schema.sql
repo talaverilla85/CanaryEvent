@@ -111,3 +111,10 @@ ALTER TABLE event_overrides ADD COLUMN IF NOT EXISTS category_override TEXT;
 ALTER TABLE event_overrides ADD COLUMN IF NOT EXISTS reviewed_at TIMESTAMPTZ;
 -- Apply constraints to newly created records in the admin service.
 CREATE INDEX IF NOT EXISTS idx_dp_overrides_review ON event_overrides(review_status);
+
+-- Password login throttling: keyed HMAC fingerprints, never store plain IPs.
+CREATE TABLE IF NOT EXISTS admin_login_limits (
+ fingerprint TEXT PRIMARY KEY,
+ attempts INTEGER NOT NULL DEFAULT 0,
+ window_started_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
