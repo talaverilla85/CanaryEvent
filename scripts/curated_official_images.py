@@ -19,7 +19,7 @@ ALLOWED_IMAGE_HOSTS = frozenset({
     "cdn.prod.website-files.com", "tejeda.eu", "valleseco.es",
     "santamariadeguia.es", "api.sociedadfilarmonicalpgc.com",
     "teror.es", "www.galdar.es", "www.maspalomas.com",
-    "www.santaluciagc.com", "www.telde.es"
+    "www.santaluciagc.com", "www.telde.es", "www.arucas.org"
 })
 DISALLOWED = ("og-image.jpg", "cache_favicon", "favicon",
               "placeholder", "sin-imagen", "img-share", "/logos/", "/icons/")
