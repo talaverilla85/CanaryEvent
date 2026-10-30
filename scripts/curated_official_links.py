@@ -10,7 +10,8 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 AUDIT = ROOT / "data" / "official_event_links.json"
-HOSTS = frozenset({"www.galdar.es","teror.es"})
+HOSTS = frozenset({"www.galdar.es","teror.es","lpabibliotecas.com"})
+CROSS_PUBLISHER_LINKS = frozenset({("www.eventosgrancanaria.com","lpabibliotecas.com")})
 
 def validated(item):
     try:
@@ -19,7 +20,7 @@ def validated(item):
         return (isinstance(item["id"],int)
                 and bool(str(item["title"]).strip())
                 and old.scheme == new.scheme == "https"
-                and old.hostname == new.hostname
+                and (old.hostname == new.hostname or (old.hostname,new.hostname) in CROSS_PUBLISHER_LINKS)
                 and new.hostname in HOSTS
                 and bool(new.path and new.path != "/")
                 and not new.username and not new.password
