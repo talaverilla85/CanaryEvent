@@ -28,9 +28,15 @@ class SponsorTrialTests(unittest.TestCase):
 
     def test_separate_full_width_ad_not_event(self):
         self.assertIn("grid-column:1/-1",self.index)
-        self.assertIn("PUBLICIDAD · ",self.index)
+        self.assertIn('class="sponsor-slot"',self.index)
+        self.assertIn("ESPACIO PATROCINADO",self.index)
+        self.assertIn("PUBLICIDAD",self.index)
         self.assertIn("shown.map((e,i)",self.index)
         self.assertIn("state.tab==='explore'",self.index)
         self.assertIn("rel=\"sponsored noopener noreferrer\"",self.index)
+        theme=(ROOT/"public"/"brand/dparranda-theme.css").read_text(encoding="utf8")
+        self.assertIn(".events-grid > .sponsor-slot{",theme)
+        self.assertIn("background:linear-gradient(124deg,#D2ECF0",theme)
+        self.assertIn("border:2px solid #78BFC7",theme)
 
 if __name__=="__main__":unittest.main()

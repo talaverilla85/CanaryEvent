@@ -9,17 +9,21 @@ SW=(ROOT/"public/sw.js").read_text(encoding="utf-8")
 
 class BrandAndSyncContract(unittest.TestCase):
  def test_every_exposed_brand(self):
-  self.assertIn("¿Pa' Dónde?",HTML)
-  self.assertIn("¿Pa&#39; Dónde?",HTML)
-  self.assertIn("¿Pa&#39; ",HTML)
-  self.assertNotIn("<title>planGC",HTML)
-  self.assertNotIn("planGC inicio",HTML)
-  self.assertEqual(MANIFEST["short_name"],"Pa' Dónde")
+  self.assertIn("<title>D’Parranda",HTML)
+  self.assertIn('src="/brand/dparranda-logo.svg?v=5"',HTML)
+  self.assertIn("Disfruta de tus islas.",HTML)
+  self.assertNotIn("¿Pa' Dónde?",HTML)
+  self.assertNotIn("Ochea",HTML)
+  self.assertEqual(MANIFEST["short_name"],"D’Parranda")
  def test_favicon_and_pwa(self):
   r=ElementTree.parse(ROOT/"public/favicon.svg").getroot()
   self.assertEqual(r.tag,"{http://www.w3.org/2000/svg}svg")
-  self.assertIn("padonde-flexible-filters-v2",SW)
-  self.assertTrue((ROOT/"public/icons/icon-192.png").stat().st_size>1000)
+  self.assertIn("const CACHE='dparranda-",SW)
+  self.assertTrue((ROOT/"public/icons/dparranda-192.png").stat().st_size>1000)
+  self.assertTrue((ROOT/"public/icons/dparranda-512.png").stat().st_size>1000)
+  self.assertIn('/brand/dparranda-favicon.svg',HTML)
+  for asset in MANIFEST["icons"]:
+   self.assertTrue((ROOT/"public"/asset["src"].split("?")[0].lstrip("/")).is_file())
  def test_sync_status_user_facing(self):
   self.assertIn("Última revisión:",HTML)
   self.assertIn("Revisión atrasada",HTML)
@@ -35,9 +39,10 @@ class BrandAndSyncContract(unittest.TestCase):
   self.assertNotIn("git push --force",sh)
  def test_brand_plan_is_deferred_not_purchased(self):
   readme=(ROOT/"README.md").read_text(encoding="utf-8")
-  self.assertIn("padondecanarias.es",readme)
+  self.assertIn("dparranda.es",readme)
   self.assertIn("OEPM",readme)
-  self.assertIn("sin compras ni registros",readme)
+  self.assertIn("no se ha verificado",readme)
+  self.assertIn("no se ha comprado ni conectado",readme)
 
 if __name__=="__main__":unittest.main()
 

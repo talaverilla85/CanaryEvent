@@ -15,8 +15,10 @@ class HeroContractTests(unittest.TestCase):
         self.assertIn(".hero-tag{display:none}",HTML)
         self.assertIn("top:auto;bottom:18px;right:9px",HTML)
     def test_hero_accessible_decorations(self):
-        self.assertIn('class="hero-star star-one" aria-hidden="true"',HTML)
-        self.assertIn('id="heroTitle"',HTML)
+        self.assertIn('class="dp-masthead shell"',HTML)
+        self.assertIn('class="dp-mark" aria-label="D’Parranda, inicio"',HTML)
+        self.assertIn('alt="D’Parranda, las ocho islas"',HTML)
+        self.assertIn('class="dp-claim">Disfruta de tus islas.',HTML)
         self.assertIn('id="surpriseBtn"',HTML)
 
 if __name__=="__main__":unittest.main()

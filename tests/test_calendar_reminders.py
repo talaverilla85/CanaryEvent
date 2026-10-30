@@ -18,7 +18,7 @@ class ReminderTests(unittest.TestCase):
   self.assertIn("openReminderDialog(e)",self.html)
   self.assertIn("function openReminderDialog(e)",self.js)
   self.assertIn("id=\"reminderLead\"",self.js)
-  self.assertIn("recordatorio-padonde-",self.js)
+  self.assertIn("recordatorio-dparranda-",self.js)
 
  def test_no_false_native_push_promise(self):
   self.assertIn("no son avisos push",self.js.lower())
