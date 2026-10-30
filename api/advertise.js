@@ -53,11 +53,11 @@ export default async function handler(req,res){
     (company,contact_name,email,municipality,format,dates_text,message,
      billing_type,legal_name,tax_id,billing_address,billing_postal,billing_city,billing_region,billing_country,
      billing_email,telephone,campaign_name,campaign_start,campaign_days,category,event_start,event_end,
-     event_venue,event_price,action_url,banner_text,creative_alt,image_name,privacy_accepted_at)
+     event_venue,event_price,event_title,action_url,banner_text,creative_alt,image_name,privacy_accepted_at)
     VALUES (${company},${contact},${mail},${municipality},${format},${notes},${description},
       ${billingType},${legal},${tax},${address},${postal},${city},${province},${country},
       ${invoiceEmail},${phone},${campaign},${start},${days},${category},${eventStart},${eventEnd},
-      ${venue},${price},${link},${banner},${alt},${fileName},now())
+      ${venue},${price},${eventTitle},${link},${banner},${alt},${fileName},now())
     RETURNING id
   ) INSERT INTO advertising_enquiry_images(enquiry_id,mime_type,width,height,image_data)
     SELECT lead.id,${image.mime},1200,675,decode(${image.b64},'base64') FROM lead
