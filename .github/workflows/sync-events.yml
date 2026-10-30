@@ -140,16 +140,6 @@ jobs:
         run: python scripts/audit_price_provenance.py --output data/price_provenance_audit.json
       - name: Comprobar cobertura cultural y productoras de las ocho islas
         run: python scripts/island_source_intelligence.py
-      - name: Replicar catálogo y originales en PostgreSQL (opcional)
-        env:
-          DPARRANDA_DATABASE_URL: ${{ secrets.DPARRANDA_DATABASE_URL }}
-        shell: bash
-        run: |
-          if [[ -n "$DPARRANDA_DATABASE_URL" ]]; then
-            python scripts/postgres_mirror.py
-          else
-            echo "PostgreSQL sin conexión configurada; se conserva SQLite y JSON"
-          fi
       - name: Guardar base de datos y exportación
         shell: bash
         run: bash scripts/publish_synced_data.sh
