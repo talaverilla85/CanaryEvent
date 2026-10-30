@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS source_log (
 
 -- Editorial overrides survive all future automated source refreshes.
 CREATE TABLE IF NOT EXISTS event_overrides (
- event_id BIGINT PRIMARY KEY REFERENCES events(id),
+ event_id BIGINT PRIMARY KEY,
  hidden BOOLEAN NOT NULL DEFAULT FALSE,
  title_override TEXT,
  details_override TEXT,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS event_overrides (
  price_override TEXT,
  free_override SMALLINT,
  category_override TEXT,
- canonical_event_id BIGINT REFERENCES events(id),
+ canonical_event_id BIGINT,
  review_status TEXT NOT NULL DEFAULT 'unreviewed'
   CHECK(review_status IN ('unreviewed','approved','needs_review','rejected')),
  reviewed_at TIMESTAMPTZ,
@@ -98,9 +98,16 @@ CREATE TABLE IF NOT EXISTS ad_daily_stats (
  PRIMARY KEY(campaign_id,day)
 );
 
-CREATE TABLE IF NOT EXISTS catalog_snapshots (
+CREATE TABLE IF NOT EXISTS catalog_sync (
  id SMALLINT PRIMARY KEY DEFAULT 1 CHECK(id=1),
  generated_at TEXT,
  event_count INTEGER NOT NULL DEFAULT 0,
  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- Existing Neon tables may predate these editorial fields.
+ALTER TABLE event_overrides ADD COLUMN IF NOT EXISTS free_override SMALLINT;
+ALTER TABLE event_overrides ADD COLUMN IF NOT EXISTS category_override TEXT;
+ALTER TABLE event_overrides ADD COLUMN IF NOT EXISTS reviewed_at TIMESTAMPTZ;
+-- Apply constraints to newly created records in the admin service.
+CREATE INDEX IF NOT EXISTS idx_dp_overrides_review ON event_overrides(review_status);
