@@ -468,7 +468,7 @@ body{background:var(--cream)}
       <div id="loadingGrid" class="dp-loading" role="status" aria-live="polite" aria-label="Cargando planes"><div class="dp-loading-card"></div><div class="dp-loading-card"></div><div class="dp-loading-card"></div></div><div id="eventsGrid" class="events-grid" aria-live="polite"></div><button type="button" id="loadMoreBtn" class="small-filter" style="margin:14px auto 24px;display:block;padding:12px 24px" hidden>Mostrar 48 planes más ↓</button>
       <div id="emptyState" class="empty-state hidden"><div class="empty-icon">☀</div><h3 id="emptyTitle">No encontramos planes con estos filtros</h3><p id="emptyMessage">Prueba otra fecha o amplía la zona. La isla tiene mucho por descubrir.</p><button id="resetFilters" class="primary-btn">Ver todos los planes</button></div>
     </section>
-    <section class="info-strip"><span class="info-orb">✳</span><div><h3>¿Organizas algo interesante?</h3><p>Da a conocer tus eventos a personas que buscan qué hacer cerca.</p></div><button id="publishCta" class="info-button">Publicar plan ↗</button></section>
+    <section class="info-strip"><span class="info-orb">✳</span><div><h3>¿Organizas algo interesante?</h3><p>Da a conocer tus eventos a personas que buscan qué hacer cerca.</p></div><button id="publishCta" class="info-button">Anúnciate aquí ↗</button></section>
     <footer class="footer"><strong>D’Parranda</strong><p><b>Disfruta de tus islas.</b> Comenzamos en Gran Canaria y seguimos creciendo. Consulta la fuente oficial antes de asistir; las imágenes de ambientación son ilustrativas.</p><div><button id="sourcesBtn" class="text-button">Fuentes y actualización</button><a href="mailto:contacto@example.invalid" class="hidden">Contacto</a></div></footer>
   </main>
   <nav class="bottom-nav" aria-label="Navegación principal"><button class="navtab selected" data-tab="explore"><span><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.6"/><path d="m15.5 15.5 5 5"/></svg></span><small>Explorar</small></button><button class="navtab" data-tab="map"><span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14m6-12v14"/></svg></span><small>Mapa</small></button><button class="navtab" data-tab="saved"><span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.7 4.6a5.5 5.5 0 0 0-7.8 0L12 5.5l-.9-.9a5.5 5.5 0 0 0-7.8 7.8L12 21l8.7-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><small>Guardados</small></button><button class="navtab" data-tab="publish"><span>＋</span><small>Publicar</small></button></nav>
@@ -662,7 +662,7 @@ function sponsorUrl(value){
 function sponsorCardHtml(ad){
  const href=sponsorUrl(ad.button_url);
  if(!href)return '';
- const path=typeof ad.image==='string'&&/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(ad.image)?ad.image:'';
+ const path=typeof ad.image==='string'&&(/^(\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg))$/i.test(ad.image)||/^\/api\/media\?id=[0-9]+$/.test(ad.image))?ad.image:'';
  const img=path?'<img src="'+escapeHTML(path)+'" alt="'+escapeHTML(ad.image_alt||'Imagen del anunciante')+'" loading="lazy" decoding="async">':'';
  return '<section class="sponsor-slot" aria-label="Espacio patrocinado">'+
    '<div class="sponsor-slot-caption"><span class="sponsor-slot-heading">'+
@@ -1107,7 +1107,7 @@ $('customDateCancel').onclick=closeCustomDatePanel;
  $('eventsGrid').onclick=e=>{const fav=e.target.closest('[data-fav]');if(fav){e.stopPropagation();toggleFav(fav.dataset.fav);return}const card=e.target.closest('[data-id]');if(card)showEvent(card.dataset.id)};
  $('eventsGrid').onkeydown=e=>{if(['Enter',' '].includes(e.key)&&e.target.matches('article[data-id]')){e.preventDefault();showEvent(e.target.dataset.id)}};
  $('resetFilters').onclick=resetDParrandaFilters;
- $('locationButton').onclick=locationDialog;$('publishCta').onclick=publishDialog;$('sourcesBtn').onclick=showSources;
+ $('locationButton').onclick=locationDialog;$('publishCta').onclick=()=>{location.href='/anunciate/'};$('sourcesBtn').onclick=showSources;
  $('categoryNextBtn').onclick=()=>{const c=$('categories');const remaining=c.scrollWidth-c.clientWidth-c.scrollLeft;if(remaining>12)c.scrollBy({left:Math.max(180,Math.round(c.clientWidth*.7)),behavior:'smooth'});else c.scrollTo({left:0,behavior:'smooth'})};
  $('surpriseBtn').onclick=()=>{closeFilters();let ev=filtered();if(!ev.length){state.when='all';render();ev=filtered()}if(ev.length)showEvent(ev[Math.floor(Math.random()*Math.min(10,ev.length))].id);else toast('No hay planes disponibles')};
  $('modalClose').onclick=()=>{closeModal();if(location.search)history.replaceState(null,'',location.pathname)};$('modalBackdrop').onclick=()=>{closeModal();if(location.search)history.replaceState(null,'',location.pathname)};
