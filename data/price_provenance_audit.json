@@ -1,15 +1,15 @@
 {
-  "checked_on": "2026-10-30T11:39:49.732176+00:00",
-  "total_events": 509,
-  "known_price_or_free": 159,
+  "checked_on": "2026-10-30T14:39:18.866588+00:00",
+  "total_events": 513,
+  "known_price_or_free": 161,
   "classification": {
     "minimum_zero_ambiguous": 6,
-    "minimum_positive": 123,
+    "minimum_positive": 125,
     "free": 23,
     "fixed_positive": 7
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 74,
+    "TuReservaOnline · agenda de Gran Canaria": 76,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 44,
     "Ayuntamiento de Ingenio": 5,
     "Juventud Las Palmas de Gran Canaria": 11,

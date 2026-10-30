@@ -1,24 +1,24 @@
 {
-  "checked_at": "2026-10-30T11:34:41+00:00",
+  "checked_at": "2026-10-30T14:34:34+00:00",
   "quality_counts": {
-    "publicados": 509,
+    "publicados": 513,
     "recintos_sin_verificar": 71,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 350,
-    "distancia_a_centro_municipal": 340,
-    "fuentes_con_error": 3,
-    "duplicados_potenciales": 9
+    "precios_sin_confirmar": 352,
+    "distancia_a_centro_municipal": 343,
+    "fuentes_con_error": 2,
+    "duplicados_potenciales": 10
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 11,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 6,
       "distancia_al_centro_municipal": 11,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "HTTPSConnectionPool(host='ingenio.es', port=443): Read timed out. (read timeout=12)"
+      "fichas_leidas_en_esta_ejecucion": 11,
+      "error": ""
     },
     {
       "source": "Ayuntamiento de Agüimes",
@@ -43,11 +43,11 @@
     {
       "source": "Circuito de Artes Escénicas GC",
       "estado": "operativa",
-      "publicados": 4,
+      "publicados": 5,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 4,
-      "distancia_al_centro_municipal": 2,
-      "fichas_leidas_en_esta_ejecucion": 4,
+      "precio_sin_confirmar": 5,
+      "distancia_al_centro_municipal": 3,
+      "fichas_leidas_en_esta_ejecucion": 5,
       "error": ""
     },
     {
@@ -82,13 +82,13 @@
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 14,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "fichas_leidas_en_esta_ejecucion": 15,
+      "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -142,13 +142,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 1,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 6,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "ReadTimeout"
     },
     {
       "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
@@ -383,21 +383,21 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "operativa",
-      "publicados": 245,
+      "publicados": 246,
       "recinto_sin_verificar": 54,
-      "precio_sin_confirmar": 201,
+      "precio_sin_confirmar": 202,
       "distancia_al_centro_municipal": 146,
-      "fichas_leidas_en_esta_ejecucion": 23,
+      "fichas_leidas_en_esta_ejecucion": 33,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 74,
+      "publicados": 76,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 73,
-      "fichas_leidas_en_esta_ejecucion": 115,
+      "distancia_al_centro_municipal": 75,
+      "fichas_leidas_en_esta_ejecucion": 117,
       "error": ""
     },
     {
@@ -463,12 +463,8 @@
   ],
   "reported_errors": [
     {
-      "source": "Ayuntamiento de Ingenio",
-      "error": "HTTPSConnectionPool(host='ingenio.es', port=443): Read timed out. (read timeout=12)"
-    },
-    {
-      "source": "Auditorio Alfredo Kraus · programación oficial",
-      "error": "RuntimeError"
+      "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
+      "error": "ReadTimeout"
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
