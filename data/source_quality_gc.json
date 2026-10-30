@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-30T09:30:56+00:00",
+  "checked_at": "2026-10-30T11:34:41+00:00",
   "quality_counts": {
     "publicados": 509,
     "recintos_sin_verificar": 71,
@@ -12,13 +12,13 @@
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 11,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 6,
       "distancia_al_centro_municipal": 11,
-      "fichas_leidas_en_esta_ejecucion": 11,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "HTTPSConnectionPool(host='ingenio.es', port=443): Read timed out. (read timeout=12)"
     },
     {
       "source": "Ayuntamiento de Agüimes",
@@ -77,18 +77,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 26,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 11,
+      "fichas_leidas_en_esta_ejecucion": 27,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 14,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 15,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -122,13 +122,13 @@
     },
     {
       "source": "Ayuntamiento de Agüimes · programación de teatros",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "ReadTimeout"
+      "fichas_leidas_en_esta_ejecucion": 6,
+      "error": ""
     },
     {
       "source": "Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
@@ -387,7 +387,7 @@
       "recinto_sin_verificar": 54,
       "precio_sin_confirmar": 201,
       "distancia_al_centro_municipal": 146,
-      "fichas_leidas_en_esta_ejecucion": 19,
+      "fichas_leidas_en_esta_ejecucion": 23,
       "error": ""
     },
     {
@@ -452,27 +452,27 @@
     },
     {
       "source": "Recintos · carteles oficiales comprobados",
-      "estado": "error",
+      "estado": "sin_resultados_en_esta_revision",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 9,
-      "error": "ValueError"
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": ""
     }
   ],
   "reported_errors": [
     {
-      "source": "Ayuntamiento de Agüimes · programación de teatros",
-      "error": "ReadTimeout"
+      "source": "Ayuntamiento de Ingenio",
+      "error": "HTTPSConnectionPool(host='ingenio.es', port=443): Read timed out. (read timeout=12)"
+    },
+    {
+      "source": "Auditorio Alfredo Kraus · programación oficial",
+      "error": "RuntimeError"
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
       "error": "No event links found in official listing; check layout"
-    },
-    {
-      "source": "Recintos · carteles oficiales comprobados",
-      "error": "ValueError"
     }
   ],
   "missing_venue_by_source": [

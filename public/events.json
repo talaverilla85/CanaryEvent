@@ -1178,7 +1178,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=0027e4e1d9507f547e7d3bb6d14031a3",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=443e1719f4ec2081282d6e9023110c53",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1200,7 +1200,7 @@
       "accuracy": "venue",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=0027e4e1d9507f547e7d3bb6d14031a3",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=443e1719f4ec2081282d6e9023110c53",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1768,7 +1768,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-769-la-barraca-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=0027e4e1d9507f547e7d3bb6d14031a3",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_769-1.jpg?fp=443e1719f4ec2081282d6e9023110c53",
       "image_alt": "LA BARRACA de Vicente Blasco Ibáñez",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1790,7 +1790,7 @@
       "accuracy": "venue",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-815-residencias-sit1.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=0027e4e1d9507f547e7d3bb6d14031a3",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_815-1.jpg?fp=443e1719f4ec2081282d6e9023110c53",
       "image_alt": "RESIDENCIAS SIT1- SEÑORA TU MADRE de Raquel Ponce",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2290,7 +2290,7 @@
       "image_alt": "MARATON DE CORTOS REC72H TIFF",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/maraton-de-cortos-rec72h-tiff"
     },
     {
       "id": 128,
@@ -3576,11 +3576,11 @@
       "start": "2026-11-07T20:30:00",
       "end": "2026-11-07T22:00:00",
       "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Auditorio José Antonio Ramos El Auditorio José Antonio Ramos",
+      "venue": "auditorio que lleva su nombre",
       "category": "ocio",
       "free": null,
       "price": "",
-      "details": "Actividad en Las Palmas de Gran Canaria. Consulta el recinto, el programa y las condiciones con el organizador.",
+      "details": "Actividad en auditorio que lleva su nombre, Las Palmas de Gran Canaria. Consulta los detalles y posibles cambios con la organización.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
@@ -11481,7 +11481,7 @@
       "organizer_url": "https://www.tureservaonline.es/es/events/no-me-toques-el-cuento-ingenio"
     }
   ],
-  "generated_at": "2026-10-30T09:30:56+00:00",
+  "generated_at": "2026-10-30T11:34:41+00:00",
   "timezone": "Atlantic/Canary",
   "verified_sources": 42
 }

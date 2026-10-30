@@ -1,16 +1,11 @@
 {
-  "checked_at": "2026-10-30T09:30:56+00:00",
-  "checked": 9,
+  "checked_at": "2026-10-30T11:34:41+00:00",
+  "checked": 0,
   "manual_verified": 0,
-  "vision_verified": 1,
-  "rejected": 8,
-  "api_calls": 18,
-  "usage_usd": 0.0042482,
+  "vision_verified": 0,
+  "rejected": 0,
+  "api_calls": 0,
+  "usage_usd": 0.0,
   "deferred": 0,
-  "errors": [
-    {
-      "event_id": 116,
-      "error_type": "ValueError"
-    }
-  ]
+  "errors": []
 }

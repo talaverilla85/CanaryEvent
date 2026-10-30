@@ -102,8 +102,8 @@
       ],
       "status": "activo",
       "adapter": "island_eventon_agendas",
-      "found_last_run": 0,
-      "last_error": "ReadTimeout",
+      "found_last_run": 6,
+      "last_error": "",
       "published_cards": 0,
       "has_live_connector": true
     },
