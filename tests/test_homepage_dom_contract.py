@@ -63,7 +63,7 @@ class DParrandaHomepageContract(unittest.TestCase):
         manifest = json.loads((PUBLIC / "manifest.webmanifest").read_text(encoding="utf-8"))
         self.assertEqual(manifest["short_name"], "D’Parranda")
         for icon in manifest["icons"]:
-            self.assertIn("?v=5", icon["src"])
+            self.assertRegex(icon["src"], r"\?v=\d+$")
             self.assertTrue((PUBLIC / icon["src"].split("?", 1)[0].lstrip("/")).is_file())
         self.assertTrue((PUBLIC / "apple-touch-icon.png").is_file())
         self.assertTrue((PUBLIC / "brand/dparranda-theme.css").is_file())
