@@ -545,3 +545,15 @@ body.dp-install-guide-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
  .dp-install-dock,.dp-install-guide-panel{transition:none;animation:none}
 }
+
+/* DParranda marketing placements: paid banners and vacant inventory. */
+.sponsor-house .sponsor-card{border-style:dashed;border-color:#9fcbd1}
+.sponsor-house .sponsor-hit{background:linear-gradient(115deg,#f6fcfb,#ffffff)}
+.sponsor-house-art{display:flex!important;align-items:center;justify-content:center;background:linear-gradient(135deg,#0d4053,#12a2a8)!important;color:#fff}
+.sponsor-house-art span{font-size:clamp(48px,9vw,96px);font-weight:900;line-height:1}
+.promo-callout{display:block;text-decoration:none;color:inherit;outline-offset:4px;border:1.5px dashed #8bbac3!important}
+.promo-callout:hover{box-shadow:0 12px 29px #10364d24!important}
+.promo-callout .photo{background:linear-gradient(135deg,#d8f4ef,#f0f8fc)}
+.promo-callout .event-title{color:#0f687b}
+.promo-callout .price{color:#0b7a89;font-weight:800}
+.event-card .photo-tag{max-width:calc(100% - 60px)}
