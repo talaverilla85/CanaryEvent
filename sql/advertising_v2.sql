@@ -67,3 +67,8 @@ CREATE TABLE IF NOT EXISTS advertising_enquiry_images (
  image_data BYTEA NOT NULL,
  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+ALTER TABLE advertising_enquiries ADD COLUMN IF NOT EXISTS event_title TEXT;
+ALTER TABLE sponsored_events ADD COLUMN IF NOT EXISTS enquiry_id BIGINT REFERENCES advertising_enquiries(id);
+ALTER TABLE ad_campaigns ADD COLUMN IF NOT EXISTS enquiry_id BIGINT REFERENCES advertising_enquiries(id);
+CREATE INDEX IF NOT EXISTS idx_dp_ads_enquiry ON ad_campaigns(enquiry_id);
+CREATE INDEX IF NOT EXISTS idx_dp_sponsored_enquiry ON sponsored_events(enquiry_id);
