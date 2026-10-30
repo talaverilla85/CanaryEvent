@@ -21,7 +21,8 @@ class BrandAndSyncContract(unittest.TestCase):
   self.assertIn("const CACHE='dparranda-",SW)
   self.assertTrue((ROOT/"public/icons/dparranda-192.png").stat().st_size>1000)
   self.assertTrue((ROOT/"public/icons/dparranda-512.png").stat().st_size>1000)
-  self.assertIn('/brand/dparranda-favicon.svg',HTML)
+  self.assertIn('/favicon.png',HTML)
+  self.assertGreater((ROOT/'public/favicon.png').stat().st_size,1000)
   for asset in MANIFEST["icons"]:
    self.assertTrue((ROOT/"public"/asset["src"].split("?")[0].lstrip("/")).is_file())
  def test_sync_status_user_facing(self):
