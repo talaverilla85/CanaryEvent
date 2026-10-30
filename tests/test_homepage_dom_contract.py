@@ -32,7 +32,7 @@ class DParrandaHomepageContract(unittest.TestCase):
         self.assertIn("setInterval(refreshEventTime,30000)", self.html)
 
     def test_brand_and_filter_modal(self):
-        for anchor in ('src="/brand/dparranda-logo.svg?v=5"', 'id="openFiltersBtn"',
+        for anchor in ('src="/brand/dparranda-logo.svg?v=6"', 'id="openFiltersBtn"',
                        'id="filtersPanel"', 'id="locationButton"',
                        'id="islandOptions"', 'id="applyFiltersBtn"'):
             self.assertIn(anchor, self.html)
