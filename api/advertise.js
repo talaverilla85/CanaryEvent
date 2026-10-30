@@ -29,7 +29,7 @@ export default async function handler(req,res){
   const format=safeText(x.format,20),municipality=safeText(x.municipality,180);
   const campaign=safeText(x.campaign_name,180),start=safeText(x.campaign_start,10),days=Number(x.campaign_days);
   const eventTitle=safeText(x.event_title,200),eventStart=safeText(x.event_start,25),eventEnd=safeText(x.event_end,25);
-  const venue=safeText(x.event_venue,230),category=safeText(x.category,50),price=safeText(x.event_price,110);
+  const eventMunicipality=safeText(x.event_municipality,90),venue=safeText(x.event_venue,230),category=safeText(x.category,50),price=safeText(x.event_price,110);
   const description=safeText(x.message,2500),banner=safeText(x.banner_text,240);
   const link=url(x.action_url),alt=safeText(x.creative_alt,180),notes=safeText(x.notes,900);
   const fileName=safeText(x.image_name,160),image=imageCheck(x.image_data);
@@ -40,7 +40,7 @@ export default async function handler(req,res){
      Number(x.image_width)!==1200||Number(x.image_height)!==675||x.consent!==true)
      return json(res,400,{error:'Comprueba los datos de contacto, facturación, campaña e imagen'});
   if(['event','combined'].includes(format)&&(
-    !eventTitle||!venue||!CATS.has(category)||!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(eventStart)||
+    !eventTitle||!eventMunicipality||!venue||!CATS.has(category)||!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(eventStart)||
     (eventEnd && (!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(eventEnd)||eventEnd<eventStart))))
     return json(res,400,{error:'El evento necesita título, fecha, recinto y categoría válidos'});
   const sql=db();
@@ -53,11 +53,11 @@ export default async function handler(req,res){
     (company,contact_name,email,municipality,format,dates_text,message,
      billing_type,legal_name,tax_id,billing_address,billing_postal,billing_city,billing_region,billing_country,
      billing_email,telephone,campaign_name,campaign_start,campaign_days,category,event_start,event_end,
-     event_venue,event_price,event_title,action_url,banner_text,creative_alt,image_name,privacy_accepted_at)
+     event_venue,event_price,event_title,event_municipality,action_url,banner_text,creative_alt,image_name,privacy_accepted_at)
     VALUES (${company},${contact},${mail},${municipality},${format},${notes},${description},
       ${billingType},${legal},${tax},${address},${postal},${city},${province},${country},
       ${invoiceEmail},${phone},${campaign},${start},${days},${category},${eventStart},${eventEnd},
-      ${venue},${price},${eventTitle},${link},${banner},${alt},${fileName},now())
+      ${venue},${price},${eventTitle},${eventMunicipality},${link},${banner},${alt},${fileName},now())
     RETURNING id
   ) INSERT INTO advertising_enquiry_images(enquiry_id,mime_type,width,height,image_data)
     SELECT lead.id,${image.mime},1200,675,decode(${image.b64},'base64') FROM lead
