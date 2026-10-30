@@ -502,9 +502,9 @@ body{background:var(--cream)}
 <div class="filters-label">¿En qué isla?</div>
 <div id="islandOptions" class="ochea-islands" role="group" aria-label="Elige isla"></div>
 <p id="islandAvailability" class="island-availability">Gran Canaria tiene su agenda activa; el resto, próximamente.</p>
-<div class="filters-label">Ubicación de referencia</div>
+<div class="filters-label">Filtrar por municipio</div>
 <button type="button" class="location-btn filters-location" id="locationButton" aria-label="Cambiar ubicación"><span class="pin">⌖</span><span id="locationName">Detectar mi ubicación</span><span class="chev">⌄</span></button>
-<p class="filters-help">Con permiso usaremos tu ubicación para calcular distancias. Si no, elige un municipio; no guardamos tus coordenadas.</p>
+<p class="filters-help">Al elegir un municipio verás solo sus eventos. Con tu ubicación actual verás los planes de toda la isla y sus distancias; no guardamos tus coordenadas.</p>
 <div class="filters-label">Ordenar</div><select id="sortSelect" class="filters-sort" aria-label="Ordenar eventos"><option value="recommended">Para ti</option><option value="time">Por fecha y hora</option><option value="near">Más cerca</option></select>
 <button type="button" class="filters-surprise" id="surpriseBtn">✳ Sorpréndeme con un plan</button>
 </div><div class="filters-panel-footer"><button type="button" id="clearAllFiltersBtn" class="filters-clear">Limpiar</button><button type="button" id="applyFiltersBtn" class="filters-apply">Ver planes <span id="filterResultCount"></span> ↗</button></div>
@@ -537,7 +537,7 @@ const $=id=>document.getElementById(id);
 const state={events:[],when:'today',category:'all',query:'',sort:'recommended',origin:null,originName:'Toda Gran Canaria',favorites:new Set(JSON.parse(localStorage.getItem('plangc_favorites')||'[]')),user:null,tab:'explore',map:null,markers:null,seen:0,visibleLimit:48};
 state.mapSelected=null;state.mapLimit=16;state.mapEntries=[];state.geoRequestSeq=0;state.geoLastAttempt=0;state.geoManualOverride=false;
 state.sponsorAds=[];state.sponsorPlacement={after_mobile:4,after_tablet:6,after_desktop:8};
-state.newEventIds=new Set();state.newOnly=false;state.categories=new Set();state.dateRange=null;state.dateRangeLabel='';
+state.newEventIds=new Set();state.newOnly=false;state.categories=new Set();state.dateRange=null;state.dateRangeLabel='';state.municipality='';
 const ISLANDS=['Gran Canaria','Tenerife','Lanzarote','Fuerteventura','La Palma','La Gomera','El Hierro','La Graciosa'];
 try{const chosen=localStorage.getItem('dparranda_island_v1');state.island=ISLANDS.includes(chosen)?chosen:'Gran Canaria'}catch{state.island='Gran Canaria'}
 const CATS=[['all','✳','Todos'],['musica','♫','Música'],['familia','✿','Familia'],['gastronomia','♨','Gastronomía'],['cultura','◈','Cultura'],['deporte','⚑','Deporte'],['naturaleza','❋','Aire libre'],['ocio','☼','Ocio'],['otros','✺','Otros']];
@@ -636,6 +636,7 @@ function eventScore(e){
  return (approx??20)*.75+Math.max(0,delay)/95;
 }
 function filtered(){let ev=(state.island==='Gran Canaria'?state.events:[]).filter(e=>inFilter(e)&&(!state.categories.size||state.categories.has(e.category)));
+ if(state.municipality)ev=ev.filter(e=>e.municipality===state.municipality);
  if(state.query){const q=state.query.toLocaleLowerCase('es');ev=ev.filter(e=>[e.title,e.venue,e.municipality,e.details,e.category].join(' ').toLocaleLowerCase('es').includes(q))}
  if(state.tab==='saved')ev=ev.filter(e=>state.favorites.has(e.id));
  if(state.newOnly && state.tab==='explore')ev=ev.filter(e=>state.newEventIds.has(e.id));
@@ -764,8 +765,8 @@ function renderIslands(){const el=$('islandOptions');if(!el)return;
 function openFilters(){$('filtersBackdrop').classList.remove('hidden');$('filtersPanel').classList.remove('hidden');$('openFiltersBtn').setAttribute('aria-expanded','true');document.body.style.overflow='hidden';$('filtersPanel').focus()}
 function closeFilters(){$('filtersBackdrop').classList.add('hidden');$('filtersPanel').classList.add('hidden');$('openFiltersBtn').setAttribute('aria-expanded','false');if($('modal').classList.contains('hidden'))document.body.style.overflow='';$('openFiltersBtn').focus()}
 function setIsland(name){if(!ISLANDS.includes(name))return;state.island=name;state.tab='explore';state.newOnly=false;state.visibleLimit=48;try{localStorage.setItem('dparranda_island_v1',name)}catch{}render()}
-function resetDParrandaFilters(){setIsland('Gran Canaria');state.when='all';state.dateRange=null;state.dateRangeLabel='';state.categories.clear();state.query='';state.sort='recommended';$('searchInput').value='';$('clearSearch').classList.add('hidden');$('sortSelect').value='recommended';try{localStorage.removeItem('padonde_selected_categories')}catch{}closeCustomDatePanel();render()}
-function render(){renderCategories();renderIslands();renderNewEventNotice();const events=filtered();const shown=events.slice(0,state.visibleLimit);const sponsor=(state.tab==='explore'&&!state.query&&shown.length>=2)?state.sponsorAds.find(sponsorVisible):null;const sponsorAt=Math.min(sponsorInsertAfter(),shown.length);$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente ',custom:state.dateRangeLabel+' '}[state.when]);
+function resetDParrandaFilters(){setIsland('Gran Canaria');state.when=null;state.dateRange=null;state.dateRangeLabel='';state.categories.clear();state.query='';state.sort='recommended';state.municipality='';state.origin=null;state.originName='Toda Gran Canaria';state.geoManualOverride=true;state.geoRequestSeq++;$('locationName').textContent=state.originName;$('searchInput').value='';$('clearSearch').classList.add('hidden');$('sortSelect').value='recommended';try{localStorage.removeItem('padonde_selected_categories');localStorage.removeItem('plangc_municipio')}catch{}closeCustomDatePanel();render()}
+function render(){renderCategories();renderIslands();renderNewEventNotice();const events=filtered();const shown=events.slice(0,state.visibleLimit);const sponsor=(state.tab==='explore'&&!state.query&&shown.length>=2)?state.sponsorAds.find(sponsorVisible):null;const sponsorAt=Math.min(sponsorInsertAfter(),shown.length);$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente ',custom:state.dateRangeLabel+' '}[state.when]||'Todos los planes ');
  $('eventsGrid').innerHTML=shown.map((e,i)=>{
   const approx=eventApprox(e);const liked=state.favorites.has(e.id);
   return `<article class="event-card ${verifiedImage(e)?'':'fallback-event'}" tabindex="0" role="button" data-id="${e.id}" aria-label="Ver ${escapeHTML(e.title)}">
@@ -779,9 +780,9 @@ function render(){renderCategories();renderIslands();renderNewEventNotice();cons
  $('emptyMessage').textContent=otherIsland?'Todavía no publicamos planes verificados en '+state.island+'. Mientras tanto, descubre Gran Canaria.':'Prueba otras fechas o categorías para descubrir más.';
  if(otherIsland)$('sectionTitle').firstChild.textContent=state.island+' ';
  $('sourceStatus').classList.toggle('hidden',otherIsland);
- $('filterSummary').textContent=[state.island,state.originName==='Cerca de mí'?'⌖ Cerca de mí':(state.originName!=='Toda Gran Canaria'?state.originName:null),({today:'Hoy',tomorrow:'Mañana',weekend:'Este finde',week:'7 días',all:'Próximamente',custom:state.dateRangeLabel||'Fechas personalizadas'})[state.when],state.categories.size?state.categories.size+' categorías':'Todas las categorías',state.query||null].filter(Boolean).join(' · ');
+ $('filterSummary').textContent=[state.island,state.originName==='Cerca de mí'?'⌖ Cerca de mí':(state.originName!=='Toda Gran Canaria'?state.originName:null),({today:'Hoy',tomorrow:'Mañana',weekend:'Este finde',week:'7 días',all:'Próximamente',custom:state.dateRangeLabel||'Fechas personalizadas'})[state.when]||'Todas las fechas',state.categories.size?state.categories.size+' categorías':'Todas las categorías',state.query||null].filter(Boolean).join(' · ');
  $('filterResultCount').textContent='('+events.length+')';
- document.querySelectorAll('.date-chip').forEach(b=>b.classList.toggle('active',b.dataset.when===state.when));
+ document.querySelectorAll('.date-chip').forEach(b=>{const selected=b.dataset.when===state.when;b.classList.toggle('active',selected);b.setAttribute('aria-pressed',String(selected));});
  
  document.querySelectorAll('.navtab').forEach(b=>b.classList.toggle('selected',b.dataset.tab===state.tab));
 }
@@ -838,6 +839,7 @@ function requestCurrentLocation(notify=false){
    if(!Number.isFinite(coords.latitude)||!Number.isFinite(coords.longitude))return;
    state.origin=[coords.latitude,coords.longitude];
    state.originName='Cerca de mí';
+   state.municipality='';
    $('locationName').textContent='Cerca de mí';
    render();
    if(!$('mapPanel').classList.contains('hidden'))drawMap();
@@ -866,8 +868,8 @@ function locationDialog(){
   $('geolocateBtn').onclick=()=>requestCurrentLocation(true);
   return;
  }
- openModal(`<div class="form-panel"><span class="eyebrow">TU ISLA, TUS PLANES</span><h2 id="modalHeading">¿Desde dónde sales?</h2><p>Con tu permiso, usaremos tu ubicación al abrir la agenda para mostrar distancias aproximadas en línea recta. No la guardamos en el servidor.</p><form id="placeForm" class="stack-form"><div class="field"><label for="placeSelect">Municipio de referencia</label><select id="placeSelect"><option value="">Toda Gran Canaria</option>${Object.keys(PLACES).sort((a,b)=>a.localeCompare(b,'es')).map(n=>`<option value="${escapeHTML(n)}" ${n===state.originName?'selected':''}>${escapeHTML(n)}</option>`).join('')}</select></div><button type="submit" class="primary-btn">Usar este municipio</button></form><button class="inline-link" id="geolocateBtn">⌖ Utilizar mi ubicación actual</button><p class="footnote">El navegador solicitará permiso antes de acceder a tu ubicación. Puedes cambiarla cuando quieras.</p></div>`);
- $('placeForm').onsubmit=e=>{e.preventDefault();const n=$('placeSelect').value;state.geoManualOverride=true;state.geoRequestSeq++;state.origin=n?PLACES[n]:null;state.originName=n||'Toda Gran Canaria';$('locationName').textContent=state.originName;localStorage.setItem('plangc_municipio',n);closeModal();render();toast(n?'Planes ordenados desde '+n:'Mostrando toda la isla')};
+ openModal(`<div class="form-panel"><span class="eyebrow">TU ISLA, TUS PLANES</span><h2 id="modalHeading">¿Qué municipio quieres ver?</h2><p>Elige un municipio para ver solo sus eventos. Si usas tu ubicación actual, verás los planes de toda la isla y sus distancias aproximadas.</p><form id="placeForm" class="stack-form"><div class="field"><label for="placeSelect">Filtrar eventos por municipio</label><select id="placeSelect"><option value="">Toda Gran Canaria</option>${Object.keys(PLACES).sort((a,b)=>a.localeCompare(b,'es')).map(n=>`<option value="${escapeHTML(n)}" ${n===state.originName?'selected':''}>${escapeHTML(n)}</option>`).join('')}</select></div><button type="submit" class="primary-btn">Usar este municipio</button></form><button class="inline-link" id="geolocateBtn">⌖ Utilizar mi ubicación actual</button><p class="footnote">El navegador solicitará permiso antes de acceder a tu ubicación. Puedes cambiarla cuando quieras.</p></div>`);
+ $('placeForm').onsubmit=e=>{e.preventDefault();const n=$('placeSelect').value;state.geoManualOverride=true;state.geoRequestSeq++;state.origin=n?PLACES[n]:null;state.originName=n||'Toda Gran Canaria';state.municipality=n;state.tab='explore';state.newOnly=false;state.visibleLimit=48;$('locationName').textContent=state.originName;localStorage.setItem('plangc_municipio',n);closeModal();render();toast(n?'Mostrando eventos de '+n:'Mostrando toda la isla')};
  $('geolocateBtn').onclick=()=>requestCurrentLocation(true);
 }
 function mapIcon(count,selected=false){
@@ -1024,7 +1026,7 @@ async function showSources(){try{const d=await api('/api/meta');const rows=d.sou
 async function loadEvents(){try{const result=await api('/api/events');state.events=result.events||[];scanNewEventIds(state.events);
 if(!window.__gcFirstLoad){
   window.__gcFirstLoad=true;
-  if(!state.events.some(e=>inFilter(e))&&state.when!=='custom'){
+  if(state.when!==null&&!state.events.some(e=>inFilter(e))&&state.when!=='custom'){
     state.when='week';
     if(!state.events.some(e=>inFilter(e)))state.when='all';
     document.querySelectorAll('[data-when]').forEach(b=>b.classList.toggle('active',b.dataset.when===state.when));
@@ -1053,7 +1055,7 @@ function init(){
   render();$('eventsGrid').scrollIntoView({block:'start',behavior:'smooth'});
  };
  $('newEventDismiss').onclick=markNewEventsSeen;
- $('loadMoreBtn').onclick=()=>{state.visibleLimit+=48;render()};const m=localStorage.getItem('plangc_municipio');if(m&&PLACES[m]){state.origin=PLACES[m];state.originName=m;state.geoManualOverride=true;$('locationName').textContent=m}
+ $('loadMoreBtn').onclick=()=>{state.visibleLimit+=48;render()};const m=localStorage.getItem('plangc_municipio');if(m&&PLACES[m]){state.origin=PLACES[m];state.originName=m;state.municipality=m;state.geoManualOverride=true;$('locationName').textContent=m}
  $('openFiltersBtn').onclick=openFilters;
  $('closeFiltersBtn').onclick=closeFilters;$('filtersBackdrop').onclick=closeFilters;
  $('applyFiltersBtn').onclick=()=>{closeFilters();document.querySelector('.quick-toolbar').scrollIntoView({block:'start',behavior:'smooth'})};
@@ -1065,7 +1067,7 @@ function init(){
   $('customDatePanel').classList.contains('hidden')?openCustomDatePanel():closeCustomDatePanel();
   return;
  }
- state.when=b.dataset.when;state.tab='explore';state.newOnly=false;
+ state.when=state.when===b.dataset.when?null:b.dataset.when;state.tab='explore';state.newOnly=false;state.visibleLimit=48;
  state.dateRange=null;state.dateRangeLabel='';closeCustomDatePanel();render();
 });
 $('filterMonth').onchange=()=>{if($('filterMonth').value){$('filterFrom').value='';$('filterTo').value=''}};
