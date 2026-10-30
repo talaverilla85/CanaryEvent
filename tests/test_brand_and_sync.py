@@ -42,7 +42,7 @@ class BrandAndSyncContract(unittest.TestCase):
   self.assertIn("dparranda.es",readme)
   self.assertIn("OEPM",readme)
   self.assertIn("no se ha verificado",readme)
-  self.assertIn("no se ha comprado ni conectado",readme)
+  self.assertIn("ni se ha comprado ni conectado",readme)
 
 if __name__=="__main__":unittest.main()
 
