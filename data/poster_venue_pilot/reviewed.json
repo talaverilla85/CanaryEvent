@@ -134,7 +134,7 @@
       "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad1d2a3013a6268e07a641b",
       "status": "image_error",
       "error_type": "ValueError",
-      "retry_on": "2026-10-30"
+      "retry_on": "2026-11-01"
     },
     "https://www.eventosgrancanaria.com/event/E-20261023-0014/3-edicion-teror-film-fest": {
       "sha256": "f76a35c11359d0f40ad90fa0d9342b58051fa15962483448bde555aba7a4b091",
@@ -505,6 +505,73 @@
       "status": "image_error",
       "error_type": "ValueError",
       "retry_on": "2026-10-31"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261128-0003/i-congreso-internacional-de-formacion-senior": {
+      "sha256": "a5c70c945e5ad295934af346388e8cb5801c8655141a38c7d73b85903b68bb91",
+      "title": "I Congreso Internacional de Formación Sénior",
+      "event_date": "2026-11-28",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aa71d79013a6268e079a90b",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261128-0004/trofeo-rector-voley-playa-femenino-y-masculino": {
+      "sha256": "cd1209d6679d0a91a76d4625be85e0f320a8d22faf3e4b3ffd8c2abfeddb3a20",
+      "title": "Trofeo Rector - Vóley Playa femenino y masculino",
+      "event_date": "2026-11-28",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/698ccd5409e3917fd2acca2e",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20260925-0010/ii-campeonato-de-envite-pal-pie-villa-de-firgas": {
+      "sha256": "0546e7052d3ccb64f05274185ae7255740bafca61bed7e2fd431d9ccfd9d9e8d",
+      "title": "II Campeonato de Envite Pal’ Pie Villa de Firgas",
+      "event_date": "2026-09-25",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a955272013a6268e0795eee",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20260924-0017/programacion-otono-2026-juventud-de-ingenio": {
+      "sha256": "dd832e8afe1b8611032a2097d2110281f4d9e4841daeae27b7b4c4ff02f3918e",
+      "title": "Programación Otoño 2026 - Juventud de Ingenio",
+      "event_date": "2026-09-24",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aaf8ba0013a6268e079d56c",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20260923-0012/laboratorio-de-innovacion-social-feminista": {
+      "sha256": "1e5d072c24a6723cf6288e3ce580e8381c1755e4d79cba23dafedee21df75365",
+      "title": "Laboratorio de Innovación Social Feminista",
+      "event_date": "2026-09-23",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ab4eb36013a6268e079ebda",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261212-0000/teror-patea-por-gc-artenara-juncalillo-fagajesto": {
+      "sha256": "8507a4f2e6be4fdbeba57e3b1b3c5bf903b963985439611cf4cf109307168d48",
+      "title": "Teror Patea por GC: Artenara - Juncalillo - Fagajesto",
+      "event_date": "2026-12-12",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6961aba53ab37f1f315a0fb6",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20261219-0007/i-maraton-solidaria-de-envite-a-firgas": {
+      "sha256": "4e137ecafe8ced32a7e2d9453e8c37d5827e1fedffe4805dc53fe5c273ca3b90",
+      "title": "I Maratón Solidaria de Envite a Firgas",
+      "event_date": "2026-12-19",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad718ba013a6268e07a7bfe",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20270108-0001/exposicion-confluencia": {
+      "sha256": "80c05cfad3cdb5b36712d45fae8f0b6d7c96ea465a42fceee43710fda186148a",
+      "title": "Exposición \\\"CONFLUENCIA\\\"",
+      "event_date": "2027-01-08",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6ad9720b013a6268e07a860b",
+      "status": "reviewed_no_single_venue"
+    },
+    "https://www.eventosgrancanaria.com/event/E-20270122-0002/disparate": {
+      "sha256": "69cd39ef5b3bf7391eb06b315121645ca9acb88e3d1f31082542f5079ce41a89",
+      "title": "Disparate",
+      "event_date": "2027-01-22",
+      "status": "verified",
+      "verified": true,
+      "venue": "Centro Cultural Maspalomas",
+      "method": "two_independent_visual_passes",
+      "confirmed_on": "2026-10-30",
+      "image_url": "https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aae3a21013a6268e079cfad"
     }
   }
 }

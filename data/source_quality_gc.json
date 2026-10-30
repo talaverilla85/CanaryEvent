@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-10-29T00:44:56+00:00",
+  "checked_at": "2026-10-30T09:30:56+00:00",
   "quality_counts": {
-    "publicados": 519,
-    "recintos_sin_verificar": 75,
+    "publicados": 509,
+    "recintos_sin_verificar": 71,
     "programas_y_fichas_por_revisar": 13,
-    "precios_sin_confirmar": 359,
-    "distancia_a_centro_municipal": 349,
-    "fuentes_con_error": 0,
+    "precios_sin_confirmar": 350,
+    "distancia_a_centro_municipal": 340,
+    "fuentes_con_error": 3,
     "duplicados_potenciales": 9
   },
   "sources": [
@@ -77,7 +77,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 26,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 27,
+      "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
     {
@@ -122,13 +122,13 @@
     },
     {
       "source": "Ayuntamiento de Agüimes · programación de teatros",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 6,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "ReadTimeout"
     },
     {
       "source": "Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
@@ -153,21 +153,21 @@
     {
       "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
       "estado": "operativa",
-      "publicados": 1,
+      "publicados": 0,
       "recinto_sin_verificar": 3,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 5,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 4,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
       "publicados": 1,
-      "recinto_sin_verificar": 9,
+      "recinto_sin_verificar": 10,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 13,
+      "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
     {
@@ -192,13 +192,13 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "estado": "sin_resultados_en_esta_revision",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
-      "error": ""
+      "error": "No event links found in official listing; check layout"
     },
     {
       "source": "Municipio · descubrimiento oficial · Agaete",
@@ -254,10 +254,10 @@
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
       "publicados": 15,
-      "recinto_sin_verificar": 3,
+      "recinto_sin_verificar": 2,
       "precio_sin_confirmar": 15,
       "distancia_al_centro_municipal": 15,
-      "fichas_leidas_en_esta_ejecucion": 19,
+      "fichas_leidas_en_esta_ejecucion": 18,
       "error": ""
     },
     {
@@ -273,11 +273,11 @@
     {
       "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
       "estado": "operativa",
-      "publicados": 10,
+      "publicados": 9,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 9,
-      "distancia_al_centro_municipal": 10,
-      "fichas_leidas_en_esta_ejecucion": 8,
+      "distancia_al_centro_municipal": 9,
+      "fichas_leidas_en_esta_ejecucion": 7,
       "error": ""
     },
     {
@@ -302,12 +302,12 @@
     },
     {
       "source": "Ayuntamientos · programas PDF verificados",
-      "estado": "operativa",
+      "estado": "sin_resultados_en_esta_revision",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 1,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -382,22 +382,22 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 253,
-      "recinto_sin_verificar": 58,
-      "precio_sin_confirmar": 208,
-      "distancia_al_centro_municipal": 153,
-      "fichas_leidas_en_esta_ejecucion": 0,
+      "estado": "operativa",
+      "publicados": 245,
+      "recinto_sin_verificar": 54,
+      "precio_sin_confirmar": 201,
+      "distancia_al_centro_municipal": 146,
+      "fichas_leidas_en_esta_ejecucion": 19,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 73,
+      "publicados": 74,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 72,
-      "fichas_leidas_en_esta_ejecucion": 118,
+      "distancia_al_centro_municipal": 73,
+      "fichas_leidas_en_esta_ejecucion": 115,
       "error": ""
     },
     {
@@ -452,32 +452,45 @@
     },
     {
       "source": "Recintos · carteles oficiales comprobados",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 9,
-      "error": ""
+      "error": "ValueError"
     }
   ],
-  "reported_errors": [],
+  "reported_errors": [
+    {
+      "source": "Ayuntamiento de Agüimes · programación de teatros",
+      "error": "ReadTimeout"
+    },
+    {
+      "source": "Municipio · descubrimiento oficial · Santa María de Guía",
+      "error": "No event links found in official listing; check layout"
+    },
+    {
+      "source": "Recintos · carteles oficiales comprobados",
+      "error": "ValueError"
+    }
+  ],
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 58
+      "count": 54
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 9
-    },
-    {
-      "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "count": 3
+      "count": 10
     },
     {
       "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
       "count": 3
+    },
+    {
+      "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "count": 2
     },
     {
       "source": "Ayuntamiento de Agüimes",
@@ -602,14 +615,6 @@
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261009-0039/paqui-alvarez-monzon-presenta-donde-el-tiempo-se-detiene-en-las-casas-consistoriales"
     },
     {
-      "id": 137,
-      "title": "Charla + sesión de videojuegos: El Belingo club de videojuegos",
-      "start": "2026-10-14",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261014-0010/charla-sesion-de-videojuegos-el-belingo-club-de-videojuegos"
-    },
-    {
       "id": 544,
       "title": "«TALLER DE SOMBRERERÍA ARTESANAL EN FIELTRO»",
       "start": "2026-10-14",
@@ -624,14 +629,6 @@
       "municipality": "San Bartolomé de Tirajana",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0015/charlas-del-plan-mayor-consejos-de-seguridad-para-mayores"
-    },
-    {
-      "id": 133,
-      "title": "Talleres: `La palabra encendida´ Programa de mediación y creación cultural",
-      "start": "2026-10-15",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0020/talleres-la-palabra-encendida-programa-de-mediacion-y-creacion-cultural"
     },
     {
       "id": 134,
@@ -688,6 +685,22 @@
       "municipality": "Teror",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0014/3-edicion-teror-film-fest"
+    },
+    {
+      "id": 51,
+      "title": "DIVINA MUERTE 2026",
+      "start": "2026-10-23",
+      "municipality": "Arucas",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0037/divina-muerte-2026"
+    },
+    {
+      "id": 528,
+      "title": "DIVINA MUERTE 2026",
+      "start": "2026-10-23",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrM01BPT0="
     }
   ],
   "guidance": [

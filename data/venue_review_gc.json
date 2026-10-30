@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-29T00:44:56+00:00",
-  "not_published": 75,
+  "updated_at": "2026-10-30T09:30:56+00:00",
+  "not_published": 71,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -172,18 +172,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 137,
-      "title": "Charla + sesión de videojuegos: El Belingo club de videojuegos",
-      "start": "2026-10-14",
-      "end": "2026-10-29",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261014-0010/charla-sesion-de-videojuegos-el-belingo-club-de-videojuegos",
-      "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11161572",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 544,
       "title": "«TALLER DE SOMBRERERÍA ARTESANAL EN FIELTRO»",
       "start": "2026-10-14",
@@ -205,18 +193,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0015/charlas-del-plan-mayor-consejos-de-seguridad-para-mayores",
       "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 133,
-      "title": "Talleres: `La palabra encendida´ Programa de mediación y creación cultural",
-      "start": "2026-10-15",
-      "end": "2026-10-29",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0020/talleres-la-palabra-encendida-programa-de-mediacion-y-creacion-cultural",
-      "organizer_url": "https://cca.grancanaria.com",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
@@ -360,30 +336,6 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0002/expofuturo",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 92,
-      "title": "Presentación de trabajos artísticos: A medias con Padrón dos fotos, un cuerpo",
-      "start": "2026-10-29",
-      "end": null,
-      "municipality": "Gáldar",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261029-0014/presentacion-de-trabajos-artisticos-a-medias-con-padron-dos-fotos-un-cuerpo",
-      "organizer_url": "https://cabildo.grancanaria.com/agenda?calendarBooking=11227458",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 552,
-      "title": "XIX Festival Folk Canarias",
-      "start": "2026-10-29T08:00:00",
-      "end": "2026-10-29T21:00:00",
-      "municipality": "Santa Brígida",
-      "venue": "CENTRO CULTURAL",
-      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "source_url": "https://eventos.santabrigida.es/eventos/xix-festival-folk-canarias/",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
@@ -552,6 +504,18 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
       "source_url": "https://www.santaluciagc.com/braulio-los-gofiones-bejeque-los-coquillos-enac-ska-cristina-ramos-antonia-san-juan-y-matias-alonso-en-las-fiestas-de-san-rafael/",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 758,
+      "title": "DIVINA MUERTE - Dias 1 y 2 de noviembre",
+      "start": "2026-11-01",
+      "end": "2026-11-02",
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrNU1BPT0=",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
@@ -889,18 +853,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20270108-0001/exposicion-confluencia",
       "organizer_url": "https://www.ulpgc.es/agenda/2026/11/19/exposicion-confluencia",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 432,
-      "title": "Disparate",
-      "start": "2027-01-22T20:00:00",
-      "end": null,
-      "municipality": "San Bartolomé de Tirajana",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20270122-0002/disparate",
-      "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     }
   ]

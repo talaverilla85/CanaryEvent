@@ -23,12 +23,12 @@
       19
     ],
     "complete": false,
-    "checked_at": "2026-10-28",
+    "checked_at": "2026-10-30",
     "page_failures": {
       "16": {
-        "attempts": 2,
+        "attempts": 3,
         "last_error_type": "ValueError",
-        "retry_after": "2026-10-30"
+        "retry_after": "2026-11-02"
       }
     }
   }

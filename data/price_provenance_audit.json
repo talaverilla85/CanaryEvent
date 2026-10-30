@@ -1,17 +1,16 @@
 {
-  "checked_on": "2026-10-29T00:47:59.368785+00:00",
-  "total_events": 519,
-  "known_price_or_free": 160,
+  "checked_on": "2026-10-30T09:36:49.600080+00:00",
+  "total_events": 509,
+  "known_price_or_free": 159,
   "classification": {
     "minimum_zero_ambiguous": 6,
-    "free": 25,
-    "minimum_positive": 122,
+    "minimum_positive": 123,
+    "free": 23,
     "fixed_positive": 7
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 73,
-    "Portal oficial de Eventos Gran Canaria (Cabildo)": 45,
-    "Ayuntamiento de Telde · fiestas y cultura 2026": 1,
+    "TuReservaOnline · agenda de Gran Canaria": 74,
+    "Portal oficial de Eventos Gran Canaria (Cabildo)": 44,
     "Ayuntamiento de Ingenio": 5,
     "Juventud Las Palmas de Gran Canaria": 11,
     "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 1,
