@@ -9,9 +9,10 @@
  const dismiss=document.getElementById('dpInstallDismiss');
  const overlay=document.getElementById('dpInstallGuideOverlay');
  const close=document.getElementById('dpInstallGuideClose');
+ const done=document.getElementById('dpInstallGuideDone');
  const steps=document.getElementById('dpInstallGuideSteps');
  const description=document.getElementById('dpInstallGuideDescription');
- if(!dock||!action||!dismiss||!overlay||!close||!steps||!description)return;
+ if(!dock||!action||!dismiss||!overlay||!close||!done||!steps||!description)return;
  const DISMISS_KEY='dparranda_install_dismissed_until_v1';
  const INSTALLED_KEY='dparranda_install_installed_at_v1';
  const HIDE_DAYS=7;
@@ -94,9 +95,10 @@
  });
  dismiss.addEventListener('click',dismissDock);
  close.addEventListener('click',closeGuide);
+ done.addEventListener('click',closeGuide);
  overlay.addEventListener('click',e=>{if(e.target===overlay)closeGuide()});
  document.addEventListener('keydown',e=>{
-   if(e.key==='Escape'&&!overlay.classList.contains('hidden')){e.stopPropagation();closeGuide()}
+   if(e.key==='Escape'&&!overlay.classList.contains('hidden')){e.stopImmediatePropagation();closeGuide()}
  });
  window.addEventListener('beforeinstallprompt',e=>{
    e.preventDefault();
