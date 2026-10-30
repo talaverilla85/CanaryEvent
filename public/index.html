@@ -536,7 +536,7 @@ try{localStorage.setItem('plangc_check','ok');localStorage.removeItem('plangc_ch
 const $=id=>document.getElementById(id);
 const state={events:[],when:'today',category:'all',query:'',sort:'recommended',origin:null,originName:'Toda Gran Canaria',favorites:new Set(JSON.parse(localStorage.getItem('plangc_favorites')||'[]')),user:null,tab:'explore',map:null,markers:null,seen:0,visibleLimit:48};
 state.mapSelected=null;state.mapLimit=16;state.mapEntries=[];state.geoRequestSeq=0;state.geoLastAttempt=0;state.geoManualOverride=false;
-state.sponsorAds=[];state.sponsorPlacement={after_mobile:4,after_tablet:6,after_desktop:8};
+state.sponsorAds=[];state.sponsorPlacement={after_mobile:5,after_tablet:5,after_desktop:5};
 state.newEventIds=new Set();state.newOnly=false;state.categories=new Set();state.dateRange=null;state.dateRangeLabel='';state.municipality='';
 const ISLANDS=['Gran Canaria','Tenerife','Lanzarote','Fuerteventura','La Palma','La Gomera','El Hierro','La Graciosa'];
 try{const chosen=localStorage.getItem('dparranda_island_v1');state.island=ISLANDS.includes(chosen)?chosen:'Gran Canaria'}catch{state.island='Gran Canaria'}
@@ -558,6 +558,8 @@ const CLASSES={musica:'p-music',gastronomia:'p-food',familia:'p-family',cultura:
 const escapeHTML=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const textForCat=k=>CATS.find(c=>c[0]===k)?.[2]||'Actividad';
 function verifiedImage(e){
+ if(e.paid_promotion===true&&typeof e.image_url==='string'&&/^\/api\/media\?id=[0-9]+$/.test(e.image_url))return e.image_url;
+ if(e.paid_promotion===true&&typeof e.image_url==='string'&&/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpg|jpeg)$/i.test(e.image_url))return e.image_url;
  if(e.image_status!=='official_remote'||!e.image_url)return '';
  try{
   const url=new URL(e.image_url);
@@ -681,14 +683,37 @@ function sponsorVisible(ad){
  const today=todayKey();
  if(ad.starts_at&&ad.starts_at>today)return false;
  if(ad.ends_at&&ad.ends_at<today)return false;
- if(Array.isArray(ad.municipalities)&&ad.municipalities.length&&state.originName!=='Toda Gran Canaria'&&!ad.municipalities.includes(state.originName))return false;
+ const municipality=state.municipality||(PLACES[state.originName]?state.originName:'');
+ if(Array.isArray(ad.municipalities)&&ad.municipalities.length&&municipality&&!ad.municipalities.includes(municipality))return false;
  return true;
 }
-function sponsorInsertAfter(){
- const p=state.sponsorPlacement||{};
- const target=window.innerWidth>=1000?p.after_desktop:window.innerWidth>=650?p.after_tablet:p.after_mobile;
- const n=Number(target);
- return Math.max(2,Math.min(48,Number.isFinite(n)?Math.floor(n):4));
+function sponsorInsertAfter(){return 5}
+function houseBannerHtml(){
+ return '<section class="sponsor-slot sponsor-house" aria-label="Publicidad propia: anúnciate en DParranda">'+
+  '<div class="sponsor-slot-caption"><span class="sponsor-slot-heading">✳ ESPACIO PUBLICITARIO</span><span class="sponsor-slot-kind">ANÚNCIATE AQUÍ</span></div>'+
+  '<div class="sponsor-card"><a class="sponsor-hit" href="/anunciate/">'+
+  '<div class="sponsor-media sponsor-house-art" aria-hidden="true"><span>✳</span></div>'+
+  '<div class="sponsor-content"><span class="sponsor-label">D’PARRANDA · EMPRESAS</span>'+
+  '<h3 class="sponsor-heading">Tu evento o negocio puede estar aquí</h3>'+
+  '<p class="sponsor-copy">Promociona tu actividad con una ficha patrocinada o con anuncios entre los planes.</p>'+
+  '<div class="sponsor-bottom"><span class="sponsor-location">⌖ Gran Canaria</span><span class="sponsor-button">Conocer opciones ↗</span></div>'+
+  '</div></a></div></section>';
+}
+function sponsorForSlot(slot){
+ const active=state.sponsorAds.filter(sponsorVisible);
+ if(!active.length)return houseBannerHtml();
+ if(active.length===1)return slot%2===1?houseBannerHtml():sponsorCardHtml(active[0]);
+ if(active.length===2)return slot%3===2?houseBannerHtml():sponsorCardHtml(active[slot%3]);
+ return sponsorCardHtml(active[slot%active.length]);
+}
+function houseEventHtml(){
+ return '<a class="event-card promo-callout" href="/anunciate/" aria-label="Publicidad: anuncia tu evento o negocio">'+
+  '<div class="photo p-other"><div class="cover-fallback"><div class="fallback-top"><span>D’PARRANDA</span><span>PROMOCIÓN · ✳</span></div>'+
+  '<div class="fallback-main"><span class="fallback-symbol">✳</span><strong class="fallback-event-title">¿Tienes un evento?</strong></div>'+
+  '<div class="fallback-bottom">ANÚNCIATE AQUÍ</div></div><span class="photo-tag">Anúnciate</span></div>'+
+  '<div class="event-info"><span class="event-date-chip">PUBLICIDAD</span><h3 class="event-title">Da a conocer tu próximo evento</h3>'+
+  '<div class="event-meta"><span class="event-place"><strong class="place-venue">Eventos y promociones</strong><small class="place-municipality">Gran Canaria</small></span></div>'+
+  '<div class="event-bottom"><span class="distance">Descubre los formatos disponibles</span><span class="price">Ver opciones ↗</span></div></div></a>';
 }
 async function loadSponsored(){
  try{
@@ -766,12 +791,12 @@ function openFilters(){$('filtersBackdrop').classList.remove('hidden');$('filter
 function closeFilters(){$('filtersBackdrop').classList.add('hidden');$('filtersPanel').classList.add('hidden');$('openFiltersBtn').setAttribute('aria-expanded','false');if($('modal').classList.contains('hidden'))document.body.style.overflow='';$('openFiltersBtn').focus()}
 function setIsland(name){if(!ISLANDS.includes(name))return;state.island=name;state.tab='explore';state.newOnly=false;state.visibleLimit=48;try{localStorage.setItem('dparranda_island_v1',name)}catch{}render()}
 function resetDParrandaFilters(){setIsland('Gran Canaria');state.when=null;state.dateRange=null;state.dateRangeLabel='';state.categories.clear();state.query='';state.sort='recommended';state.municipality='';state.origin=null;state.originName='Toda Gran Canaria';state.geoManualOverride=true;state.geoRequestSeq++;$('locationName').textContent=state.originName;$('searchInput').value='';$('clearSearch').classList.add('hidden');$('sortSelect').value='recommended';try{localStorage.removeItem('padonde_selected_categories');localStorage.removeItem('plangc_municipio')}catch{}closeCustomDatePanel();render()}
-function render(){renderCategories();renderIslands();renderNewEventNotice();const events=filtered();const shown=events.slice(0,state.visibleLimit);const sponsor=(state.tab==='explore'&&!state.query&&shown.length>=2)?state.sponsorAds.find(sponsorVisible):null;const sponsorAt=Math.min(sponsorInsertAfter(),shown.length);$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente ',custom:state.dateRangeLabel+' '}[state.when]||'Todos los planes ');
+function render(){renderCategories();renderIslands();renderNewEventNotice();const events=filtered();const shown=events.slice(0,state.visibleLimit);const showPromotions=state.tab==='explore'&&!state.query&&state.island==='Gran Canaria';const sponsorAt=sponsorInsertAfter();$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente ',custom:state.dateRangeLabel+' '}[state.when]||'Todos los planes ');
  $('eventsGrid').innerHTML=shown.map((e,i)=>{
   const approx=eventApprox(e);const liked=state.favorites.has(e.id);
   return `<article class="event-card ${verifiedImage(e)?'':'fallback-event'}" tabindex="0" role="button" data-id="${e.id}" aria-label="Ver ${escapeHTML(e.title)}">
-  <div class="photo ${CLASSES[e.category]||'p-other'} ${verifiedImage(e)?'':'no-official-cover'}">${coverHtml(e)}<span class="photo-tag">${escapeHTML(textForCat(e.category))}</span><button class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button></div>
-  <div class="event-info"><span class="event-date-chip">${escapeHTML(cardDateLabel(e))}</span><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span class="place-icon">⌖</span><span class="event-place"><strong class="place-venue">${escapeHTML(venueName(e))}</strong><small class="place-municipality">${escapeHTML(e.municipality)}</small></span></div><div class="event-bottom">${price(e)?`<span class="price">${escapeHTML(price(e))}</span>`:''}<span class="distance" title="${eventUsesMunicipality(e)?'Distancia aproximada en línea recta al centro del municipio':'Distancia aproximada en línea recta al recinto'}">${approx!==null?'⌖ ≈ '+approx+' km'+(eventUsesMunicipality(e)?' · municipio':''):'Distancia no disponible'}</span></div></div></article>`+(sponsor&&i+1===sponsorAt?sponsorCardHtml(sponsor):'')}).join('');
+  <div class="photo ${CLASSES[e.category]||'p-other'} ${verifiedImage(e)?'':'no-official-cover'}">${coverHtml(e)}<span class="photo-tag">${e.paid_promotion===true?'Patrocinado · ':''}${escapeHTML(textForCat(e.category))}</span><button class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button></div>
+  <div class="event-info"><span class="event-date-chip">${escapeHTML(cardDateLabel(e))}</span><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span class="place-icon">⌖</span><span class="event-place"><strong class="place-venue">${escapeHTML(venueName(e))}</strong><small class="place-municipality">${escapeHTML(e.municipality)}</small></span></div><div class="event-bottom">${price(e)?`<span class="price">${escapeHTML(price(e))}</span>`:''}<span class="distance" title="${eventUsesMunicipality(e)?'Distancia aproximada en línea recta al centro del municipio':'Distancia aproximada en línea recta al recinto'}">${approx!==null?'⌖ ≈ '+approx+' km'+(eventUsesMunicipality(e)?' · municipio':''):'Distancia no disponible'}</span></div></div></article>`+(showPromotions&&(i+1)%sponsorAt===0?sponsorForSlot(Math.floor((i+1)/sponsorAt)-1):'')+(showPromotions&&i===11?houseEventHtml():'')}).join('');
  $('emptyState').classList.toggle('hidden',events.length>0);$('eventsGrid').classList.toggle('hidden',events.length===0);
  $('loadingGrid').classList.add('hidden');
  const otherIsland=state.island!=='Gran Canaria';
@@ -799,6 +824,7 @@ const organizerAction=e=>{
    (ticketHost?'Consultar entradas ↗':'Web del organizador ↗')+'</a>';
 };
 function originalSourceInfo(e){
+ if(e.paid_promotion===true)return {label:'Ver información del organizador ↗',note:'Este evento es publicidad patrocinada y no procede de la extracción automática de fuentes.'};
  const link=String(e.source_url||''),plain=link.split('?')[0].toLowerCase();
  const grouped=state.events.some(other=>other.id!==e.id&&other.source_url===link&&other.title!==e.title);
  if(plain.endsWith('.pdf'))return {label:'Abrir programa oficial (PDF) ↗',note:'La fuente es un programa con varios actos; busca este evento por su nombre o fecha.'};
@@ -811,7 +837,7 @@ function originalSourceInfo(e){
 function showEvent(id){const e=state.events.find(x=>x.id===+id);if(!e)return;
  const mapQuery=encodeURIComponent([venueName(e),e.municipality,'Gran Canaria'].join(', '));
  const approx=eventApprox(e),srcInfo=originalSourceInfo(e);const extra=eventUsesMunicipality(e)?'Ubicación aproximada (centro del municipio). Consulta la fuente para encontrar el punto exacto.':'Ubicación indicada por el organizador.';
- openModal(`<div class="modal-photo ${CLASSES[e.category]||'p-other'}">${coverHtml(e,true)}<span class="modal-photo-label">${escapeHTML(textForCat(e.category)).toUpperCase()} · GRAN CANARIA</span></div><div class="modal-body"><span class="eyebrow">PLAN Nº ${e.id} · ${escapeHTML(e.municipality).toUpperCase()}</span><h2 class="modal-title" id="modalHeading">${escapeHTML(e.title)}</h2>
+ openModal(`<div class="modal-photo ${CLASSES[e.category]||'p-other'}">${coverHtml(e,true)}<span class="modal-photo-label">${e.paid_promotion===true?'PATROCINADO · ':''}${escapeHTML(textForCat(e.category)).toUpperCase()} · GRAN CANARIA</span></div><div class="modal-body"><span class="eyebrow">PLAN Nº ${e.id} · ${escapeHTML(e.municipality).toUpperCase()}</span><h2 class="modal-title" id="modalHeading">${escapeHTML(e.title)}</h2>
  <div class="event-dateblock"><span class="ico">▦</span><div><strong>${escapeHTML(dateLabel(e))}</strong><small>${escapeHTML(timeLabel(e))}${e.end?.length===10?' · Hasta '+escapeHTML(e.end.slice(8,10)+'/'+e.end.slice(5,7)):e.end?.includes('T')?' – '+escapeHTML(e.end.slice(11,16)):''}</small></div></div>
  <div class="event-dateblock"><span class="ico">⌖</span><div><strong>${escapeHTML(venueName(e))}</strong><small>${escapeHTML(e.municipality)} · ${approx!==null?'aprox. '+approx+' km · ':''}${escapeHTML(extra)}</small></div></div>
  ${price(e)?`<div class="event-dateblock"><span class="ico">€</span><div><strong>${escapeHTML(price(e))}</strong><small>Comprueba las condiciones de acceso con la organización.</small></div></div>`:''}
