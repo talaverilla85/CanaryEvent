@@ -1212,6 +1212,16 @@
       "image_origin": "Ayuntamiento de Gáldar · cartel Más allá del Pasillo",
       "image_status": "official_remote",
       "method": "official-individual-event-og-image-visual-check"
+    },
+    {
+      "id": 105,
+      "title": "Cerebritos en juego",
+      "source_url": "https://lpabibliotecas.com/events/cerebritos-en-juego-301026/",
+      "image_url": "https://lpabibliotecas.com/wp-content/uploads/2026/09/1080x1080_resultado.jpg",
+      "image_alt": "Cartel oficial Cerebritos en juego, 30 de octubre de 2026, Biblioteca Municipal Jane Millares Sall",
+      "image_origin": "Bibliotecas Municipales Las Palmas de Gran Canaria · cartel original",
+      "image_status": "official_remote",
+      "method": "official-organizer-og-image-visual-check"
     }
   ]
 }
