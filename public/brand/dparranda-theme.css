@@ -425,3 +425,123 @@ body::before{content:"";height:4px;position:absolute;inset:0 0 auto;background:l
    max-width:75px;overflow:hidden;text-overflow:ellipsis
  }
 }
+
+
+/* Sponsor / v12: clearly a paid placement rather than an additional event. */
+.events-grid > .sponsor-slot{
+  background:linear-gradient(124deg,#D2ECF0 0%,#DDF2F2 58%,#EAF8F6 100%);
+  border:2px solid #78BFC7;
+  margin:22px 0 27px;
+  box-shadow:0 12px 26px rgba(16,54,77,.10);
+}
+.events-grid > .sponsor-slot::before{width:5px;background:#0C8698}
+.sponsor-slot-caption{
+  border:1px solid #B6DDE0;
+  border-radius:11px;
+  background:rgba(255,255,255,.49);
+  padding:8px 10px;
+  margin-bottom:13px;
+}
+.sponsor-slot-heading{color:#0B6678;font-weight:900}
+.sponsor-slot-kind{background:#D2EBED;border-color:#ACD3D8;color:#265863}
+.sponsor-slot .sponsor-card{
+  border:1px solid #A9D2D7;
+  box-shadow:0 4px 14px rgba(17,78,91,.075);
+}
+.sponsor-slot .sponsor-content{background:#FEFFFF}
+@media(max-width:720px){
+ .events-grid > .sponsor-slot{margin:21px 0 25px;padding:13px 12px 15px;border-width:2px}
+ .sponsor-slot-caption{padding:7px 8px;margin-bottom:11px}
+}
+
+/* Floating, user-dismissible installation invitation. Always stays in the
+   same place relative to the viewport, just above the mobile navigation. */
+.dp-install-dock{
+ position:fixed;
+ right:max(12px,env(safe-area-inset-right,0px));
+ bottom:calc(82px + env(safe-area-inset-bottom,0px));
+ z-index:21;
+ display:flex;align-items:center;gap:3px;
+ padding:5px 6px 5px 5px;
+ background:#FFFFFF;
+ border:1px solid #9ECBD1;
+ border-radius:16px;
+ box-shadow:0 7px 25px rgba(16,54,77,.20);
+ max-width:calc(100vw - 24px);
+}
+.dp-install-action{
+ display:inline-flex;align-items:center;justify-content:center;gap:8px;
+ min-height:43px;
+ border:0;border-radius:11px;
+ padding:9px 13px 9px 11px;
+ background:#10364D;color:#FFFFFF;
+ font-family:inherit;font-weight:800;font-size:13px;
+ letter-spacing:.1px;white-space:nowrap;
+ cursor:pointer;
+}
+.dp-install-action svg{width:19px;height:19px;flex:none}
+.dp-install-action:hover,.dp-install-action:focus-visible{background:#087F9F}
+.dp-install-dismiss{
+ border:0;background:transparent;color:#68838B;
+ width:36px;height:43px;min-width:36px;
+ display:grid;place-items:center;
+ border-radius:10px;cursor:pointer;
+}
+.dp-install-dismiss:hover,.dp-install-dismiss:focus-visible{color:#10364D;background:#E7F2F3}
+.dp-install-dismiss svg{width:17px;height:17px}
+.dp-install-action:focus-visible,.dp-install-dismiss:focus-visible,
+.dp-install-guide-close:focus-visible,.dp-install-guide-done:focus-visible{
+ outline:3px solid #21B7C5;outline-offset:2px
+}
+@media(min-width:721px){.dp-install-dock{display:none!important}}
+@media(max-width:375px){
+ .dp-install-dock{right:11px;bottom:calc(80px + env(safe-area-inset-bottom,0px))}
+ .dp-install-action{font-size:12px;padding:8px 10px;gap:6px}
+}
+body:has(#filtersPanel:not(.hidden)) .dp-install-dock,
+body:has(#modal:not(.hidden)) .dp-install-dock,
+body:has(#mapPanel:not(.hidden)) .dp-install-dock,
+body.dp-install-guide-open .dp-install-dock{display:none!important}
+.dp-install-guide-overlay{
+ position:fixed;inset:0;z-index:70;
+ display:flex;align-items:center;justify-content:center;
+ background:rgba(5,28,42,.70);
+ padding:calc(16px + env(safe-area-inset-top,0px)) 18px calc(16px + env(safe-area-inset-bottom,0px));
+}
+.dp-install-guide-panel{
+ width:min(380px,100%);max-height:calc(100dvh - 36px);overflow-y:auto;
+ padding:23px 22px 20px;
+ background:#FFF;color:#10364D;
+ border:1px solid #D7EAED;border-radius:23px;
+ box-shadow:0 20px 50px #03152366;
+ position:relative;
+}
+.dp-install-guide-kicker{
+ color:#087F9F;font-size:10px;letter-spacing:1.5px;font-weight:900;margin-bottom:8px;
+}
+.dp-install-guide-panel h2{
+ font-family:'Outfit',system-ui,sans-serif;
+ color:#10364D;font-size:26px;line-height:1.1;letter-spacing:-.65px;
+ padding-right:30px;margin:0 0 10px;
+}
+.dp-install-guide-panel p{color:#526F79;font-size:13px;line-height:1.55;margin:0 0 13px}
+.dp-install-guide-panel ol{
+ padding-left:22px;margin:0 0 20px;
+ font-size:13px;line-height:1.6;color:#284E60;
+}
+.dp-install-guide-panel li{margin-bottom:9px;padding-left:3px}
+.dp-install-guide-close{
+ position:absolute;top:13px;right:13px;
+ display:grid;place-items:center;width:34px;height:34px;
+ color:#536E7C;background:#EDF5F6;border:0;border-radius:50%;cursor:pointer;
+}
+.dp-install-guide-close svg{width:19px;height:19px}
+.dp-install-guide-done{
+ width:100%;min-height:43px;background:#10364D;color:#FFF;
+ border:0;border-radius:12px;font:800 13px inherit;cursor:pointer;
+ font-family:inherit;font-size:13px;font-weight:800;
+}
+body.dp-install-guide-open{overflow:hidden}
+@media(prefers-reduced-motion:reduce){
+ .dp-install-dock,.dp-install-guide-panel{transition:none;animation:none}
+}
