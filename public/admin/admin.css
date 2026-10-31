@@ -23,3 +23,15 @@ fieldset{border:0;margin:0;padding:0}.field{display:grid;gap:6px;margin-bottom:1
 
 /* Setup assistant, all crypto runs in the visitor browser with no network requests. */
 .setup-card{max-width:670px;margin:35px auto;padding:30px}.setup-card h2{margin:10px 0 15px}.setup-explain{line-height:1.65;margin-bottom:22px}.setup-explain a{color:#047884;text-decoration:underline}.divider-gap{height:25px}.setup-notice{margin:20px 0}.setup-card .field textarea{min-height:85px;font-size:12px;word-break:break-all;line-height:1.6}.setup-card .copy{margin:0 0 5px}
+
+/* Reversible duplicate moderation: clearly separated from normal editing. */
+.actions .remove-duplicate{border-color:#E5B8B8;color:#9C3333;background:#FFF5F5;font-weight:800}
+.actions .remove-duplicate:hover{background:#FFE9E9;border-color:#CF8282}
+.actions .restore-action{border-color:#9ECFCC;color:#086966;background:#EAF8F5;font-weight:800}
+.actions .restore-action:hover{background:#D7F1EA}
+.actions button:focus-visible{outline:3px solid #47A9A9;outline-offset:2px}
+#eventFilter{min-width:162px}
+@media(max-width:700px){
+ .actions{width:100%;flex-wrap:wrap}
+ .actions button{min-height:42px}
+}
