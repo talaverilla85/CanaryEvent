@@ -67,7 +67,7 @@ class DParrandaHomepageContract(unittest.TestCase):
             'data-quick-free',
             'state.freeOnly=false;',
             "(!state.freeOnly||e.free===1)",
-            "data-share=\"\\${e.id}\"",
+            'data-share="${e.id}"',
             "function shareEvent(id)",
             "function eventShareUrl(id)",
             "function clearEventUrl()",
