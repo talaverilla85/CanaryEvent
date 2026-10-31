@@ -2,7 +2,7 @@
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'">
-<title>Administración · DParranda</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/admin/admin.css?v=1">
+<title>Administración · DParranda</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/admin/admin.css?v=2">
 </head><body>
 <header class="top"><div class="brand"><div class="logo" aria-hidden="true">D</div><div><strong>DParranda</strong><small>Centro de administración privado</small></div></div>
 <div><a class="ghost" href="/" target="_blank" rel="noopener noreferrer">Ver web pública ↗</a> <button class="ghost hidden" type="button" id="logout">Salir</button></div></header>
@@ -26,10 +26,10 @@
 <button class="tab" id="tabAds" type="button" role="tab" aria-selected="false">Publicidad</button></div>
 <section id="eventsSection"><div class="toolbar"><div class="tools">
 <input class="search" id="searchEvents" type="search" placeholder="Buscar evento o municipio…" aria-label="Buscar eventos">
-<select id="eventFilter" aria-label="Filtrar eventos"><option value="all">Todos los eventos</option><option value="duplicates">Posibles duplicados</option><option value="review">Requieren revisión</option></select></div>
+<select id="eventFilter" aria-label="Filtrar eventos"><option value="all">Todos los eventos</option><option value="duplicates">Posibles duplicados</option><option value="review">Requieren revisión</option><option value="hidden">Ocultos · restaurables</option></select></div>
 <button class="ghost" id="refreshEvents" type="button">Actualizar</button></div>
 <div id="eventsList" class="results" aria-live="polite"></div>
-<p class="muted spaced">Las ediciones se guardan separadas de los datos extraídos para que la sincronización automática no las borre.</p>
+<p class="muted spaced">Los posibles duplicados se pueden retirar de la web con «Quitar duplicado». No se borra la ficha original: podrás recuperarla en «Ocultos · restaurables». Las correcciones se conservan tras las sincronizaciones automáticas.</p>
 <button id="moreEvents" class="ghost spaced" type="button" hidden>Cargar más eventos</button></section>
 <section id="adsSection" hidden>
 <div class="card marketing-overview"><h2>Solicitudes de empresas</h2><p class="muted">Presupuestos pendientes, datos de facturación e imagen original. Nada se publica automáticamente.</p>
@@ -42,5 +42,5 @@
 </section></main>
 <div id="dialog" class="dialog hidden" aria-hidden="true"><div class="shade" data-close="true"></div><div id="sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"></div></div>
 <div id="feedback" role="status" aria-live="polite"></div>
-<script src="/admin/admin.js?v=1" defer></script>
+<script src="/admin/admin.js?v=2" defer></script>
 </body></html>
