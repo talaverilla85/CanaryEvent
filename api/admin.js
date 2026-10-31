@@ -106,6 +106,34 @@ async function setEventVisibility(sql, body) {
       hidden=excluded.hidden,updated_at=now()`;
   return {id,hidden:body.hidden,updated:true};
 }
+function adminImageData(value) {
+  if(value===undefined||value===null||value==='')return null;
+  if(typeof value!=='string'||value.length>1150000)
+    throw new Error('Imagen inválida: utiliza un archivo JPG, PNG o WebP de hasta 800 KB optimizados');
+  const match=/^data:image\/(jpeg|png|webp);base64,([A-Za-z0-9+/=]+)$/.exec(value);
+  if(!match)throw new Error('Imagen inválida: formato no permitido');
+  const mime='image/'+match[1],base64=match[2],bytes=Buffer.from(base64,'base64');
+  if(bytes.length<1000||bytes.length>800000||Number(value.length)>1150000)
+    throw new Error('Imagen inválida: tamaño fuera del límite');
+  const valid=mime==='image/jpeg'?bytes.subarray(0,3).toString('hex')==='ffd8ff':
+    mime==='image/png'?bytes.subarray(0,8).toString('hex')==='89504e470d0a1a0a':
+    bytes.toString('ascii',0,4)==='RIFF'&&bytes.toString('ascii',8,12)==='WEBP';
+  if(!valid)throw new Error('Imagen inválida: comprueba el archivo');
+  return {mime,base64};
+}
+// Dimensions are checked by the browser before encoding; the server also
+// validates file signatures and size to reject unexpected file contents.
+async function adminAdImage(sql,res,id){
+  if(typeof id!=='string'||! /^[a-zA-Z0-9_-]{2,90}$/.test(id))return json(res,404,{error:'Imagen no encontrada'});
+  const [asset]=await sql`SELECT mime_type,image_data FROM ad_campaign_images WHERE ad_id=${id}`;
+  if(!asset)return json(res,404,{error:'Imagen no encontrada'});
+  const bytes=typeof asset.image_data==='string'?
+    Buffer.from(asset.image_data.replace(/^\\x/,''),'hex'):Buffer.from(asset.image_data);
+  res.setHeader('Content-Type',asset.mime_type);
+  res.setHeader('Content-Disposition','inline');
+  res.setHeader('Cache-Control','private, no-store');
+  return res.status(200).end(bytes);
+}
 async function saveAd(sql, body) {
   const id=typeof body.id==='string' && /^[a-zA-Z0-9_-]{2,90}$/.test(body.id) ? body.id : 'anuncio-'+randomUUID();
   const advertiser=safeText(body.advertiser,100), headline=safeText(body.headline,160);
@@ -117,12 +145,18 @@ async function saveAd(sql, body) {
   if(image && !/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(image))
     throw new Error('Por ahora, la imagen debe existir en /sponsors/ del proyecto');
   const starts=body.starts_at||null, ends=body.ends_at||null;
-  if(!validLocalDate(starts)||!validLocalDate(ends)||starts&&ends&&starts>ends)
-    throw new Error('Fechas inválidas');
+  if(!starts||!ends||!validLocalDate(starts)||!validLocalDate(ends)||starts>ends)
+    throw new Error('Indica una fecha de inicio y una duración de 1 a 60 días');
+  const duration=Math.round((Date.parse(ends+'T00:00:00Z')-Date.parse(starts+'T00:00:00Z'))/86400000)+1;
+  if(duration<1||duration>60)throw new Error('La campaña no puede superar 60 días. Puedes renovarla después.');
+  const asset=adminImageData(body.image_data);
+  if(asset && (Number(body.image_width)!==1200||Number(body.image_height)!==675))
+    throw new Error('La imagen debe prepararse en formato horizontal 1200 × 675');
+
   const kind=kinds.has(body.kind)?body.kind:'paid';
   const municipalities=Array.isArray(body.municipalities)?
     [...new Set(body.municipalities.filter(x=>typeof x==='string').map(x=>safeText(x,75)).filter(Boolean))].slice(0,25):[];
-  const enabled=body.enabled===true,permanent=body.permanent===true;
+  const enabled=body.enabled===true,permanent=false;
   const description=safeText(body.description,400), location=safeText(body.location,120);
   const buttonText=safeText(body.button_text,70)||'Descubrir',imageAlt=safeText(body.image_alt,160);
   const disclosure='Publicidad';
@@ -138,7 +172,14 @@ async function saveAd(sql, body) {
       headline=excluded.headline,description=excluded.description,location=excluded.location,
       button_text=excluded.button_text,button_url=excluded.button_url,image=excluded.image,
       image_alt=excluded.image_alt,disclosure=excluded.disclosure,updated_at=now()`;
-  return {id,updated:true};
+  if(asset){
+    await sql`INSERT INTO ad_campaign_images(ad_id,mime_type,width,height,image_data,updated_at)
+      VALUES(${id},${asset.mime},1200,675,decode(${asset.base64},'base64'),now())
+      ON CONFLICT(ad_id) DO UPDATE SET mime_type=excluded.mime_type,
+        width=excluded.width,height=excluded.height,image_data=excluded.image_data,
+        updated_at=excluded.updated_at`;
+  }
+  return {id,updated:true,has_uploaded_image:!!asset};
 }
 
 function leadId(value){const n=Number(value);return Number.isSafeInteger(n)&&n>0?n:null}
@@ -247,6 +288,7 @@ export default async function handler(req,res){
     if(req.method==='GET'&&op==='leadimage'){
       const id=leadId(query.id);return id?await leadImage(sql,res,id):json(res,404,{error:'Imagen no encontrada'});
     }
+    if(req.method==='GET'&&op==='adimage')return adminAdImage(sql,res,String(query.id||''));
     if(req.method==='POST'&&op==='promote')return json(res,200,await promoteLead(sql,data(req)));
     if(req.method==='POST'&&op==='promotion-status')return json(res,200,await changePromotion(sql,data(req)));
     if(req.method==='POST'&&op==='lead-status')return json(res,200,await changeLead(sql,data(req)));
@@ -263,7 +305,8 @@ export default async function handler(req,res){
     if(req.method==='GET'&&op==='ads'){
       const rows=await sql`SELECT id,enabled,advertiser,kind,permanent,starts_at,ends_at,
         municipalities,headline,description,location,button_text,button_url,image,image_alt,enquiry_id,
-        disclosure FROM ad_campaigns ORDER BY updated_at DESC,id LIMIT 250`;
+        disclosure, EXISTS(SELECT 1 FROM ad_campaign_images ai WHERE ai.ad_id=ad_campaigns.id)
+        AS has_uploaded_image FROM ad_campaigns ORDER BY updated_at DESC,id LIMIT 250`;
       return json(res,200,{ads:rows});
     }
     if(req.method==='POST'&&op==='event')return json(res,200,await saveEvent(sql,data(req)));
