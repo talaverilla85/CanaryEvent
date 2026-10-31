@@ -13,9 +13,10 @@
  const steps=document.getElementById('dpInstallGuideSteps');
  const description=document.getElementById('dpInstallGuideDescription');
  if(!dock||!action||!dismiss||!overlay||!close||!done||!steps||!description)return;
- const DISMISS_KEY='dparranda_install_dismissed_until_v1';
- const INSTALLED_KEY='dparranda_install_installed_at_v1';
- const HIDE_DAYS=7;
+ // Do not use a persisted multi-day suppression: a dismissed or removed PWA
+ // must remain discoverable during development and on future visits.
+ let dismissedForVisit=false;
+ let installedInThisVisit=false;
  let nativePrompt=null;
  let focusBeforeDialog=null;
  const isStandalone=()=>(
@@ -24,30 +25,25 @@
    navigator.standalone===true
  );
  const narrowScreen=()=>window.matchMedia('(max-width: 720px)').matches;
- function readTime(key){
-   try{return Number(window.localStorage.getItem(key))||0}catch{return 0}
- }
- function saveTime(key,value){
-   try{window.localStorage.setItem(key,String(value))}catch{}
- }
  function shouldShow(){
-   const now=Date.now();
+   // Only an actual standalone window means that the current context is
+   // installed. Historical localStorage flags may outlive an uninstallation.
    return narrowScreen() && !isStandalone() &&
-     readTime(DISMISS_KEY)<now &&
-     // appinstalled fires while still in the browser tab: don't ask to install twice.
-     !(readTime(INSTALLED_KEY)>now-90*86400000);
+     !dismissedForVisit && !installedInThisVisit;
  }
  function update(){
    dock.classList.toggle('hidden',!shouldShow());
  }
  function markInstalled(){
-   saveTime(INSTALLED_KEY,Date.now());
+   installedInThisVisit=true;
    nativePrompt=null;
    closeGuide();
    update();
  }
  function dismissDock(){
-   saveTime(DISMISS_KEY,Date.now()+HIDE_DAYS*86400000);
+   // The X hides the invitation for this page view only. A reload restores
+   // the option if the visitor still uses DParranda in the browser.
+   dismissedForVisit=true;
    update();
  }
  function closeGuide(){
