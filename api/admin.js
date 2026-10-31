@@ -36,7 +36,10 @@ async function events(sql, query) {
     SELECT p.id,p.payload,o.hidden,o.title_override,o.details_override,
            o.venue_override,o.price_override,o.free_override,o.category_override,
            o.canonical_event_id,o.review_status,
-    EXISTS(SELECT 1 FROM published_events r WHERE r.active AND r.id<>p.id
+    EXISTS(SELECT 1 FROM published_events r
+        LEFT JOIN event_overrides r_override ON r_override.event_id=r.id
+        WHERE r.active AND r.id<>p.id AND COALESCE(r_override.hidden,FALSE)=FALSE
+        AND r_override.canonical_event_id IS NULL
         AND r.payload->>'municipality'=p.payload->>'municipality'
         AND left(r.payload->>'start',10)=left(p.payload->>'start',10)
         AND regexp_replace(lower(r.payload->>'title'),'[^[:alnum:]]','','g')
@@ -47,7 +50,11 @@ async function events(sql, query) {
       (${q}='' OR p.payload->>'title' ILIKE '%'||${q}||'%' OR p.payload->>'municipality' ILIKE '%'||${q}||'%')
     ORDER BY p.payload->>'start' ASC,p.id
     LIMIT 3500`;
-  const filtered = rows.filter(r => only==='all' || (only==='duplicates' ? r.possible_duplicate : only==='review' ? (r.review_status==='needs_review'||r.review_status==='unreviewed'||r.possible_duplicate) : true));
+  const filtered = rows.filter(r => only==='all' ||
+    (only==='duplicates' ? (r.possible_duplicate && !r.hidden && !r.canonical_event_id) :
+     only==='hidden' ? (r.hidden===true) :
+     only==='review' ? (!r.hidden && !r.canonical_event_id &&
+       (r.review_status==='needs_review'||r.review_status==='unreviewed'||r.possible_duplicate)) : true));
   return {events:filtered.slice(offset,offset+60),has_more:filtered.length>offset+60,offset,next_offset:offset+60};
 }
 async function saveEvent(sql, body) {
@@ -84,6 +91,20 @@ async function saveEvent(sql, body) {
       category_override=excluded.category_override,canonical_event_id=excluded.canonical_event_id,
       review_status=excluded.review_status,updated_at=now()`;
   return {id,updated:true};
+}
+// Reversible moderation: keep the original imported event and all manual
+// corrections. Subsequent source syncs must not republish a hidden duplicate.
+async function setEventVisibility(sql, body) {
+  const id=validId(body.id);
+  if(id===null)throw new Error('Identificador de evento inválido');
+  if(typeof body.hidden!=='boolean')throw new Error('Indica si quieres ocultar o restaurar la ficha');
+  const [row]=await sql`SELECT id FROM published_events WHERE id=${id} AND active`;
+  if(!row)throw new Error('Evento no encontrado');
+  await sql`INSERT INTO event_overrides(event_id,hidden,updated_at)
+    VALUES(${id},${body.hidden},now())
+    ON CONFLICT(event_id) DO UPDATE SET
+      hidden=excluded.hidden,updated_at=now()`;
+  return {id,hidden:body.hidden,updated:true};
 }
 async function saveAd(sql, body) {
   const id=typeof body.id==='string' && /^[a-zA-Z0-9_-]{2,90}$/.test(body.id) ? body.id : 'anuncio-'+randomUUID();
@@ -246,6 +267,7 @@ export default async function handler(req,res){
       return json(res,200,{ads:rows});
     }
     if(req.method==='POST'&&op==='event')return json(res,200,await saveEvent(sql,data(req)));
+    if(req.method==='POST'&&op==='visibility')return json(res,200,await setEventVisibility(sql,data(req)));
     if(req.method==='POST'&&op==='ad')return json(res,200,await saveAd(sql,data(req)));
     return json(res,404,{error:'Operación desconocida'});
   }catch(err){
