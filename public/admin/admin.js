@@ -81,12 +81,12 @@ async function changeEventVisibility(row,hidden,button){
  if(hidden){
   if(!row.possible_duplicate || row.hidden || row.canonical_event_id)return;
   const e=row.payload||{};
-  if(!window.confirm('¿Quitar de la web pública este posible duplicado?\\n\\n'+
+  if(!window.confirm('¿Quitar de la web pública este posible duplicado?\n\n'+
     (e.title||'Evento #'+row.id)+' · '+(e.municipality||'')+
-    '\\n\\nLa ficha quedará oculta, pero podrás restaurarla desde el filtro «Ocultos». No se borrará de la fuente.'))return;
+    '\n\nLa ficha quedará oculta, pero podrás restaurarla desde el filtro «Ocultos». No se borrará de la fuente.'))return;
  }else{
   if(!row.hidden || row.canonical_event_id)return;
-  if(!window.confirm('¿Restaurar esta ficha en la web pública?\\n\\nSi sigue duplicada, volverá a aparecer entre los posibles duplicados.'))return;
+  if(!window.confirm('¿Restaurar esta ficha en la web pública?\n\nSi sigue duplicada, volverá a aparecer entre los posibles duplicados.'))return;
  }
  button.disabled=true;
  try{
