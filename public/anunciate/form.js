@@ -1,7 +1,9 @@
 (()=>{'use strict';
 const form=document.getElementById('leadForm');
 const status=document.getElementById('result');
-const button=document.getElementById('submit');
+const previewButton=document.getElementById('submit');
+const sendButton=document.getElementById('sendProposal');
+const demo=document.getElementById('advertiserDemo');
 const consent=form.elements.consent,format=form.elements.format;
 const creative=form.elements.creative,preview=document.getElementById('creativePreview');
 let enabled=false,previewUrl=null;
@@ -77,14 +79,18 @@ async function configuration(){
    consent.closest('label').querySelector('span').append(' ',link);
   }
  }catch{enabled=false}
- button.disabled=!enabled;
- if(!enabled)status.textContent='La recepción de solicitudes todavía está en preparación: falta activar el aviso de privacidad y el envío seguro. Puedes revisar todos los datos que solicitaremos, pero no enviarlos aún.';
+ sendButton.hidden=!enabled;
+ sendButton.disabled=!enabled;
+ document.getElementById('submissionInfo').textContent=enabled?
+  'Puedes previsualizar tu anuncio sin enviar datos. Si deseas solicitar su revisión, completa todos los campos y utiliza «Enviar propuesta para revisión».':
+  'El botón «Ver cómo quedaría mi anuncio» funciona sin datos personales ni facturación. La recepción real de solicitudes sigue desactivada hasta contar con el aviso de privacidad.';
+ if(!enabled)status.textContent='Modo de prueba disponible. Previsualiza tu anuncio sin enviar nada ni introducir datos fiscales.';
 }
 form.addEventListener('submit',async e=>{
  e.preventDefault();if(!enabled)return;
  if(!form.reportValidity())return;
  const selected=creative.files&&creative.files[0];if(!selected){status.textContent='Añade una imagen promocional';return}
- button.disabled=true;status.classList.remove('error');status.textContent='Preparando la imagen y registrando la solicitud…';
+ sendButton.disabled=true;status.classList.remove('error');status.textContent='Preparando la imagen y registrando la solicitud…';
  try{
   const fields=Object.fromEntries(new FormData(form).entries());
   delete fields.creative;fields.consent=consent.checked;
@@ -98,7 +104,56 @@ form.addEventListener('submit',async e=>{
   form.reset();form.elements.billing_country.value='España';refreshFields();refreshDays();
   preview.hidden=true;if(previewUrl)URL.revokeObjectURL(previewUrl);
  }catch(err){status.classList.add('error');status.textContent=err.message}
- finally{button.disabled=!enabled}
+ finally{sendButton.disabled=!enabled}
 });
+function previewAdvertiser(){
+ // A self-contained demonstration. Do not read, store or transmit contact,
+ // billing, consent, or other personal information.
+ const f=form.elements, fmt=f.format.value;
+ const isEvent=fmt==='event'||fmt==='combined';
+ const title=(isEvent?f.event_title.value:f.campaign_name.value).trim()||
+   f.campaign_name.value.trim();
+ if(!fmt){
+  status.textContent='Para ver la vista previa, selecciona primero «Formato publicitario».';
+  status.classList.add('error');f.format.focus();return;
+ }
+ if(!title){
+  status.textContent='Escribe el nombre de la campaña o del evento para crear la vista previa.';
+  status.classList.add('error');(isEvent?f.event_title:f.campaign_name).focus();return;
+ }
+ const kind={event:'Evento patrocinado',banner:'Banner entre eventos',
+  combined:'Evento y banner',other:'Propuesta personalizada'};
+ const desc=f.banner_text.value.trim()||f.message.value.trim()||
+  'Tu promoción se mostrará aquí cuando añadas la descripción.';
+ document.getElementById('demoFormat').textContent=kind[fmt]||'Publicidad';
+ document.getElementById('demoTitle').textContent=title;
+ document.getElementById('demoDescription').textContent=desc;
+ document.getElementById('demoLocation').textContent='⌖ '+(
+  (isEvent&&f.event_municipality.value.trim())||f.municipality.value.trim()||'Gran Canaria');
+ const from=f.campaign_start.value,days=Number(f.campaign_days.value);
+ let windowText='Fechas por concretar';
+ if(from&&Number.isFinite(days)&&days>0&&days<=60){
+  const to=new Date(from+'T12:00:00Z');to.setUTCDate(to.getUTCDate()+days-1);
+  windowText=from.split('-').reverse().join('/')+' – '+
+    to.toISOString().slice(0,10).split('-').reverse().join('/')+' · '+days+' días';
+ }
+ document.getElementById('demoDates').textContent='◷ '+windowText;
+ const target=f.action_url.value.trim();
+ document.getElementById('demoDestination').textContent=target&&/^https:\/\//i.test(target)?
+   'Más información: '+target:'Botón: Más información';
+ const artwork=document.getElementById('demoArtwork');
+ const chosen=creative.files&&creative.files[0];
+ const validImage=!!chosen&&['image/jpeg','image/png','image/webp'].includes(chosen.type)&&
+   chosen.size<=12000000&&!creative.validationMessage&&!!previewUrl;
+ artwork.hidden=!validImage;
+ if(validImage)artwork.src=previewUrl;
+ else artwork.removeAttribute('src');
+ document.getElementById('demoArtworkFallback').hidden=validImage;
+ demo.hidden=false;status.classList.remove('error');
+ status.textContent='Vista previa creada en este dispositivo. No se ha enviado ninguna solicitud.';
+ demo.scrollIntoView({behavior:'smooth',block:'start'});
+}
+previewButton.addEventListener('click',previewAdvertiser);
+document.getElementById('closeAdvertiserDemo').addEventListener('click',()=>{demo.hidden=true;previewButton.focus()});
 configuration();
 })();
