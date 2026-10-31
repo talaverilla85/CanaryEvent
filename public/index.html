@@ -1138,7 +1138,7 @@ $('customDateCancel').onclick=closeCustomDatePanel;
  $('mapMore').onclick=()=>{state.mapLimit+=16;renderMapList()};
  $('mapList').onclick=e=>{const b=e.target.closest('[data-map-id]');if(b)showEvent(b.dataset.mapId)};
  document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{const tab=b.dataset.tab;if(tab==='map'){openMap();return}if(tab==='publish'){publishDialog();return}state.tab=tab;state.newOnly=false;closeMap();state.tab=tab;render();$('eventsGrid').scrollIntoView({block:'start',behavior:'smooth'})});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('filtersPanel').classList.contains('hidden'))closeFilters();else closeModal();if(!$('mapPanel').classList.contains('hidden'))closeMap()}});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('filtersPanel').classList.contains('hidden'))closeFilters();else if(!$('modal').classList.contains('hidden')){closeModal();clearEventUrl()}if(!$('mapPanel').classList.contains('hidden'))closeMap()}});
  // Accounts and merchant panel are disabled in this public phase.
  loadEvents();
  loadSponsored();
