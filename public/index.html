@@ -440,7 +440,7 @@ body{background:var(--cream)}
  .filters-panel-body .date-toggle-label-long{display:inline}
 }
 </style>
-<link rel="stylesheet" href="/brand/dparranda-theme.css?v=12">
+<link rel="stylesheet" href="/brand/dparranda-theme.css?v=13">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>D’Parranda · Disfruta de tus islas | Planes en Canarias</title>
 </head><body>
@@ -455,6 +455,7 @@ body{background:var(--cream)}
  <button id="openFiltersBtn" class="ochea-filter-entry dp-filter-entry" type="button" aria-controls="filtersPanel" aria-haspopup="dialog" aria-expanded="false">
  <span class="filter-entry-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.6"/><path d="m15.5 15.5 5 5"/></svg></span><span class="filter-entry-copy"><strong>¿Qué te apetece hacer?</strong><small id="filterSummary">Gran Canaria · Hoy · Todas las categorías</small></span>
  <span class="filter-entry-action">Explorar <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 7h16M7 12h10M10 17h4"/></svg></span></button>
+      <div class="dp-shortcuts" aria-label="Descubre planes rápidamente"><span class="dp-shortcuts-label">ENCUENTRA TU PLAN</span><div class="dp-shortcuts-scroll" role="group" aria-label="Accesos rápidos a los eventos"><button type="button" class="dp-shortcut" data-quick-when="today" aria-pressed="true">☀ Hoy</button><button type="button" class="dp-shortcut" data-quick-when="tomorrow" aria-pressed="false">↗ Mañana</button><button type="button" class="dp-shortcut" data-quick-when="weekend" aria-pressed="false">✳ Este finde</button><button type="button" class="dp-shortcut" data-quick-when="week" aria-pressed="false">▦ 7 días</button><button type="button" class="dp-shortcut dp-shortcut-free" data-quick-free aria-pressed="false">€ Gratis</button><button type="button" class="dp-shortcut" data-quick-when="all" aria-pressed="false">Todos los planes</button></div></div>
       <div class="quick-toolbar"><div class="result-titles"><span class="eyebrow">TU AGENDA, A TU MANERA</span><h2 id="sectionTitle">Para hoy <span class="count" id="eventCount">· …</span></h2></div>
         
       </div>
@@ -536,6 +537,7 @@ try{localStorage.setItem('plangc_check','ok');localStorage.removeItem('plangc_ch
 const $=id=>document.getElementById(id);
 const state={events:[],when:'today',category:'all',query:'',sort:'recommended',origin:null,originName:'Toda Gran Canaria',favorites:new Set(JSON.parse(localStorage.getItem('plangc_favorites')||'[]')),user:null,tab:'explore',map:null,markers:null,seen:0,visibleLimit:48};
 state.mapSelected=null;state.mapLimit=16;state.mapEntries=[];state.geoRequestSeq=0;state.geoLastAttempt=0;state.geoManualOverride=false;
+state.freeOnly=false;
 state.sponsorAds=[];state.sponsorPlacement={after_mobile:5,after_tablet:5,after_desktop:5};
 state.newEventIds=new Set();state.newOnly=false;state.categories=new Set();state.dateRange=null;state.dateRangeLabel='';state.municipality='';
 const ISLANDS=['Gran Canaria','Tenerife','Lanzarote','Fuerteventura','La Palma','La Gomera','El Hierro','La Graciosa'];
@@ -637,7 +639,7 @@ function eventScore(e){
  const p=zoneParts(),current=+p.hour*60+(+p.minute),delay=days*1440+mins-current;
  return (approx??20)*.75+Math.max(0,delay)/95;
 }
-function filtered(){let ev=(state.island==='Gran Canaria'?state.events:[]).filter(e=>inFilter(e)&&(!state.categories.size||state.categories.has(e.category)));
+function filtered(){let ev=(state.island==='Gran Canaria'?state.events:[]).filter(e=>inFilter(e)&&(!state.freeOnly||e.free===1)&&(!state.categories.size||state.categories.has(e.category)));
  if(state.municipality)ev=ev.filter(e=>e.municipality===state.municipality);
  if(state.query){const q=state.query.toLocaleLowerCase('es');ev=ev.filter(e=>[e.title,e.venue,e.municipality,e.details,e.category].join(' ').toLocaleLowerCase('es').includes(q))}
  if(state.tab==='saved')ev=ev.filter(e=>state.favorites.has(e.id));
@@ -790,12 +792,14 @@ function renderIslands(){const el=$('islandOptions');if(!el)return;
 function openFilters(){$('filtersBackdrop').classList.remove('hidden');$('filtersPanel').classList.remove('hidden');$('openFiltersBtn').setAttribute('aria-expanded','true');document.body.style.overflow='hidden';$('filtersPanel').focus()}
 function closeFilters(){$('filtersBackdrop').classList.add('hidden');$('filtersPanel').classList.add('hidden');$('openFiltersBtn').setAttribute('aria-expanded','false');if($('modal').classList.contains('hidden'))document.body.style.overflow='';$('openFiltersBtn').focus()}
 function setIsland(name){if(!ISLANDS.includes(name))return;state.island=name;state.tab='explore';state.newOnly=false;state.visibleLimit=48;try{localStorage.setItem('dparranda_island_v1',name)}catch{}render()}
-function resetDParrandaFilters(){setIsland('Gran Canaria');state.when=null;state.dateRange=null;state.dateRangeLabel='';state.categories.clear();state.query='';state.sort='recommended';state.municipality='';state.origin=null;state.originName='Toda Gran Canaria';state.geoManualOverride=true;state.geoRequestSeq++;$('locationName').textContent=state.originName;$('searchInput').value='';$('clearSearch').classList.add('hidden');$('sortSelect').value='recommended';try{localStorage.removeItem('padonde_selected_categories');localStorage.removeItem('plangc_municipio')}catch{}closeCustomDatePanel();render()}
+function resetDParrandaFilters(){setIsland('Gran Canaria');state.when=null;state.freeOnly=false;state.dateRange=null;state.dateRangeLabel='';state.categories.clear();state.query='';state.sort='recommended';state.municipality='';state.origin=null;state.originName='Toda Gran Canaria';state.geoManualOverride=true;state.geoRequestSeq++;$('locationName').textContent=state.originName;$('searchInput').value='';$('clearSearch').classList.add('hidden');$('sortSelect').value='recommended';try{localStorage.removeItem('padonde_selected_categories');localStorage.removeItem('plangc_municipio')}catch{}closeCustomDatePanel();render()}
 function render(){renderCategories();renderIslands();renderNewEventNotice();const events=filtered();const shown=events.slice(0,state.visibleLimit);const showPromotions=state.tab==='explore'&&!state.query&&state.island==='Gran Canaria';const sponsorAt=sponsorInsertAfter();$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente ',custom:state.dateRangeLabel+' '}[state.when]||'Todos los planes ');
+ document.querySelectorAll('[data-quick-when]').forEach(b=>{const active=state.when===b.dataset.quickWhen;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
+ const freeShortcut=document.querySelector('[data-quick-free]');freeShortcut.classList.toggle('active',state.freeOnly);freeShortcut.setAttribute('aria-pressed',String(state.freeOnly));
  $('eventsGrid').innerHTML=shown.map((e,i)=>{
   const approx=eventApprox(e);const liked=state.favorites.has(e.id);
   return `<article class="event-card ${verifiedImage(e)?'':'fallback-event'}" tabindex="0" role="button" data-id="${e.id}" aria-label="Ver ${escapeHTML(e.title)}">
-  <div class="photo ${CLASSES[e.category]||'p-other'} ${verifiedImage(e)?'':'no-official-cover'}">${coverHtml(e)}<span class="photo-tag">${e.paid_promotion===true?'Patrocinado · ':''}${escapeHTML(textForCat(e.category))}</span><button class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button></div>
+  <div class="photo ${CLASSES[e.category]||'p-other'} ${verifiedImage(e)?'':'no-official-cover'}">${coverHtml(e)}<span class="photo-tag">${e.paid_promotion===true?'Patrocinado · ':''}${escapeHTML(textForCat(e.category))}</span><button type="button" class="card-share-btn" data-share="${e.id}" aria-label="Compartir ${escapeHTML(e.title)}" title="Compartir este plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.3 10.8 7.5-4.4m-7.5 6.8 7.5 4.3"/></svg></button><button type="button" class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button></div>
   <div class="event-info"><span class="event-date-chip">${escapeHTML(cardDateLabel(e))}</span><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span class="place-icon">⌖</span><span class="event-place"><strong class="place-venue">${escapeHTML(venueName(e))}</strong><small class="place-municipality">${escapeHTML(e.municipality)}</small></span></div><div class="event-bottom">${price(e)?`<span class="price">${escapeHTML(price(e))}</span>`:''}<span class="distance" title="${eventUsesMunicipality(e)?'Distancia aproximada en línea recta al centro del municipio':'Distancia aproximada en línea recta al recinto'}">${approx!==null?'⌖ ≈ '+approx+' km'+(eventUsesMunicipality(e)?' · municipio':''):'Distancia no disponible'}</span></div></div></article>`+(showPromotions&&(i+1)%sponsorAt===0?sponsorForSlot(Math.floor((i+1)/sponsorAt)-1):'')+(showPromotions&&i===11?houseEventHtml():'')}).join('');
  $('emptyState').classList.toggle('hidden',events.length>0);$('eventsGrid').classList.toggle('hidden',events.length===0);
  $('loadingGrid').classList.add('hidden');
@@ -805,11 +809,27 @@ function render(){renderCategories();renderIslands();renderNewEventNotice();cons
  $('emptyMessage').textContent=otherIsland?'Todavía no publicamos planes verificados en '+state.island+'. Mientras tanto, descubre Gran Canaria.':'Prueba otras fechas o categorías para descubrir más.';
  if(otherIsland)$('sectionTitle').firstChild.textContent=state.island+' ';
  $('sourceStatus').classList.toggle('hidden',otherIsland);
- $('filterSummary').textContent=[state.island,state.originName==='Cerca de mí'?'⌖ Cerca de mí':(state.originName!=='Toda Gran Canaria'?state.originName:null),({today:'Hoy',tomorrow:'Mañana',weekend:'Este finde',week:'7 días',all:'Próximamente',custom:state.dateRangeLabel||'Fechas personalizadas'})[state.when]||'Todas las fechas',state.categories.size?state.categories.size+' categorías':'Todas las categorías',state.query||null].filter(Boolean).join(' · ');
+ $('filterSummary').textContent=[state.island,state.originName==='Cerca de mí'?'⌖ Cerca de mí':(state.originName!=='Toda Gran Canaria'?state.originName:null),({today:'Hoy',tomorrow:'Mañana',weekend:'Este finde',week:'7 días',all:'Próximamente',custom:state.dateRangeLabel||'Fechas personalizadas'})[state.when]||'Todas las fechas',state.categories.size?state.categories.size+' categorías':'Todas las categorías',state.freeOnly?'Solo gratis':null,state.query||null].filter(Boolean).join(' · ');
  $('filterResultCount').textContent='('+events.length+')';
  document.querySelectorAll('.date-chip').forEach(b=>{const selected=b.dataset.when===state.when;b.classList.toggle('active',selected);b.setAttribute('aria-pressed',String(selected));});
  
  document.querySelectorAll('.navtab').forEach(b=>b.classList.toggle('selected',b.dataset.tab===state.tab));
+}
+function eventShareUrl(id){const url=new URL('/',location.href);url.searchParams.set('evento',String(id));return url.toString()}
+function clearEventUrl(){const url=new URL(location.href);if(!url.searchParams.has('evento'))return;url.searchParams.delete('evento');history.replaceState(null,'',url.pathname+url.search+url.hash)}
+async function shareEvent(id){
+ const e=state.events.find(x=>x.id===Number(id));if(!e)return;
+ const url=eventShareUrl(e.id);
+ const data={title:e.title,text:'Mira este plan en D’Parranda: '+e.title,url};
+ if(typeof navigator.share==='function'){
+  try{await navigator.share(data);return}catch(err){if(err&&err.name==='AbortError')return}
+ }
+ try{
+  if(!navigator.clipboard||!navigator.clipboard.writeText)throw Error('Clipboard unavailable');
+  await navigator.clipboard.writeText(url);toast('Enlace del evento copiado. ¡Compártelo!');
+ }catch{
+  window.prompt('Copia este enlace para compartir el plan:',url);
+ }
 }
 function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('visible'),3300)}
 function openModal(html){$('modalContent').innerHTML=html;$('modalBackdrop').classList.remove('hidden');$('modal').classList.remove('hidden');$('modal').scrollTop=0;document.body.style.overflow='hidden'}
@@ -845,8 +865,8 @@ function showEvent(id){const e=state.events.find(x=>x.id===+id);if(!e)return;
  <div class="modal-actions"><button type="button" id="saveDetailBtn">${state.favorites.has(e.id)?'♥ Guardado':'♡ Guardar evento'}</button><button type="button" id="reminderDetailBtn">🔔 Recordarme</button><button type="button" id="shareDetailBtn">↗ Compartir</button></div><p class="footnote">Fuente: ${escapeHTML(e.source_name)}. ${verifiedImage(e)?'Portada publicada por '+escapeHTML(e.image_origin||e.source_name)+'; derechos de su autor/editor.':'Este evento no dispone de una portada oficial verificable.'} Datos sujetos a cambios.</p></div>`);
  $('saveDetailBtn').onclick=()=>{toggleFav(e.id);$('saveDetailBtn').textContent=state.favorites.has(e.id)?'♥ Guardado':'♡ Guardar evento'};
  $('reminderDetailBtn').onclick=()=>openReminderDialog(e);
- $('shareDetailBtn').onclick=async()=>{const url=new URL(location.href);url.searchParams.set('evento',e.id);try{if(navigator.share)await navigator.share({title:e.title,url:url.toString()});else{await navigator.clipboard.writeText(url.toString());toast('Enlace copiado')}}catch{}};
- history.replaceState(null,'',`?evento=${e.id}`);
+ $('shareDetailBtn').onclick=()=>shareEvent(e.id);
+ const detailUrl=new URL(location.href);detailUrl.searchParams.set('evento',String(e.id));history.replaceState(null,'',detailUrl.pathname+detailUrl.search+detailUrl.hash);
 }
 function toggleFav(id){id=+id;if(state.favorites.has(id))state.favorites.delete(id);else state.favorites.add(id);localStorage.setItem('plangc_favorites',JSON.stringify([...state.favorites]));render();toast(state.favorites.has(id)?'Añadido a favoritos':'Eliminado de favoritos')}
 
@@ -1088,6 +1108,8 @@ function init(){
  $('clearAllFiltersBtn').onclick=resetDParrandaFilters;
  $('islandOptions').onclick=e=>{const b=e.target.closest('[data-island]');if(b)setIsland(b.dataset.island)};
  $('categories').addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(b){chooseCategory(b.dataset.category)}});
+ document.querySelectorAll('[data-quick-when]').forEach(b=>b.onclick=()=>{state.when=state.when===b.dataset.quickWhen?null:b.dataset.quickWhen;state.tab='explore';state.newOnly=false;state.visibleLimit=48;state.dateRange=null;state.dateRangeLabel='';render()});
+ document.querySelector('[data-quick-free]').onclick=()=>{state.freeOnly=!state.freeOnly;state.tab='explore';state.newOnly=false;state.visibleLimit=48;render()};
  document.querySelectorAll('[data-when]').forEach(b=>b.onclick=()=>{
  if(b.dataset.when==='custom'){
   $('customDatePanel').classList.contains('hidden')?openCustomDatePanel():closeCustomDatePanel();
@@ -1104,13 +1126,13 @@ $('customDateCancel').onclick=closeCustomDatePanel;
 
  $('searchInput').oninput=e=>{state.query=e.target.value.trim();state.newOnly=false;$('clearSearch').classList.toggle('hidden',!state.query);render()};$('clearSearch').onclick=()=>{$('searchInput').value='';state.query='';$('clearSearch').classList.add('hidden');render()};
  $('sortSelect').onchange=e=>{state.sort=e.target.value;render()};
- $('eventsGrid').onclick=e=>{const fav=e.target.closest('[data-fav]');if(fav){e.stopPropagation();toggleFav(fav.dataset.fav);return}const card=e.target.closest('[data-id]');if(card)showEvent(card.dataset.id)};
+ $('eventsGrid').onclick=e=>{const share=e.target.closest('[data-share]');if(share){e.stopPropagation();shareEvent(share.dataset.share);return}const fav=e.target.closest('[data-fav]');if(fav){e.stopPropagation();toggleFav(fav.dataset.fav);return}const card=e.target.closest('[data-id]');if(card)showEvent(card.dataset.id)};
  $('eventsGrid').onkeydown=e=>{if(['Enter',' '].includes(e.key)&&e.target.matches('article[data-id]')){e.preventDefault();showEvent(e.target.dataset.id)}};
  $('resetFilters').onclick=resetDParrandaFilters;
  $('locationButton').onclick=locationDialog;$('publishCta').onclick=()=>{location.href='/anunciate/'};$('sourcesBtn').onclick=showSources;
  $('categoryNextBtn').onclick=()=>{const c=$('categories');const remaining=c.scrollWidth-c.clientWidth-c.scrollLeft;if(remaining>12)c.scrollBy({left:Math.max(180,Math.round(c.clientWidth*.7)),behavior:'smooth'});else c.scrollTo({left:0,behavior:'smooth'})};
  $('surpriseBtn').onclick=()=>{closeFilters();let ev=filtered();if(!ev.length){state.when='all';render();ev=filtered()}if(ev.length)showEvent(ev[Math.floor(Math.random()*Math.min(10,ev.length))].id);else toast('No hay planes disponibles')};
- $('modalClose').onclick=()=>{closeModal();if(location.search)history.replaceState(null,'',location.pathname)};$('modalBackdrop').onclick=()=>{closeModal();if(location.search)history.replaceState(null,'',location.pathname)};
+ $('modalClose').onclick=()=>{closeModal();clearEventUrl()};$('modalBackdrop').onclick=()=>{closeModal();clearEventUrl()};
  $('closeMap').onclick=closeMap;
  $('mapReset').onclick=()=>{state.mapSelected=null;state.mapLimit=16;highlightMapSelection();renderMapList();$('mapList').scrollLeft=0};
  $('mapMore').onclick=()=>{state.mapLimit+=16;renderMapList()};
