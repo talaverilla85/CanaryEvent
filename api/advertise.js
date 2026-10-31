@@ -36,7 +36,7 @@ export default async function handler(req,res){
   if(!company||!contact||!mail||!phone||!['individual','company'].includes(billingType)||
      !legal||!tax||!address||!postal||!city||!province||!country||!invoiceEmail||
      !TYPES.has(format)||!municipality||!campaign||!validLocalDate(start)||start===''||
-     !Number.isInteger(days)||days<1||days>90||!link||description.length<15||!alt||!image||
+     !Number.isInteger(days)||days<1||days>60||!link||description.length<15||!alt||!image||
      Number(x.image_width)!==1200||Number(x.image_height)!==675||x.consent!==true)
      return json(res,400,{error:'Comprueba los datos de contacto, facturación, campaña e imagen'});
   if(['event','combined'].includes(format)&&(
