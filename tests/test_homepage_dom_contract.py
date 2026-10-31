@@ -45,7 +45,7 @@ class DParrandaHomepageContract(unittest.TestCase):
             'id="dpInstallDock"', 'id="dpInstallAction"', 'id="dpInstallDismiss"',
             'id="dpInstallGuideOverlay"', 'id="dpInstallGuideClose"',
             'id="dpInstallGuideDone"', 'id="dpInstallGuideSteps"',
-            '<script src="/install_prompt.js?v=1"></script>',
+            '<script src="/install_prompt.js?v=2"></script>',
             'class="sponsor-slot"', 'ESPACIO PATROCINADO',
         )
         for anchor in anchors:
@@ -77,6 +77,18 @@ class DParrandaHomepageContract(unittest.TestCase):
         css = (PUBLIC / "brand/dparranda-theme.css").read_text(encoding="utf-8")
         self.assertIn(".dp-shortcut.active", css)
         self.assertIn(".event-card .card-share-btn", css)
+
+    def test_install_invitation_recovers_after_revisit(self):
+        """A stale browser flag must not hide install indefinitely."""
+        js = (PUBLIC / "install_prompt.js").read_text(encoding="utf-8")
+        self.assertIn("let dismissedForVisit=false;", js)
+        self.assertIn("let installedInThisVisit=false;", js)
+        self.assertIn("!dismissedForVisit && !installedInThisVisit", js)
+        self.assertIn("!isStandalone()", js)
+        self.assertNotIn("HIDE_DAYS=7", js)
+        self.assertNotIn("readTime(DISMISS_KEY)", js)
+        self.assertNotIn("readTime(INSTALLED_KEY)", js)
+        self.assertIn('title="Ocultar por ahora"', self.html)
 
     def test_manifest_icons_exist_and_are_versioned(self):
         manifest = json.loads((PUBLIC / "manifest.webmanifest").read_text(encoding="utf-8"))
