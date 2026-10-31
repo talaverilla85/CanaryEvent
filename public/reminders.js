@@ -1,6 +1,7 @@
-/* D’Parranda · Recordatorios mediante calendario personal.
+/* D’Parranda · Recordatorios en Google Calendar y en otros calendarios.
  * La agenda estática no envía push en segundo plano.
- * El usuario decide cuándo avisar y confirma la importación del .ics.
+ * Google Calendar abre el evento precargado, sin descargar .ics.
+ * Otros calendarios conservan la exportación .ics con alarma configurable.
  */
 'use strict';
 function reminderTimed(e){
@@ -109,24 +110,91 @@ function reminderICS(e,lead){
  ];
  return lines.join('\r\n')+'\r\n';
 }
+// Google Calendar accepts local wall-clock times with the event's IANA timezone.
+ // All-day events use an exclusive end day. Never invent a precise end time
+ // without making the provisional duration explicit to the visitor.
+function reminderGoogleDates(e){
+ const start=String(e.start||'');
+ const day=start.slice(0,10);
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(day))throw Error('Fecha incorrecta');
+ const compact=s=>s.replace(/-/g,'').replace(/:/g,'');
+ function nextDay(d){
+  const date=new Date(d+'T12:00:00Z');
+  if(Number.isNaN(date.getTime()))throw Error('Fecha incorrecta');
+  date.setUTCDate(date.getUTCDate()+1);
+  return date.toISOString().slice(0,10);
+ }
+ if(!reminderTimed(e)){
+  const rawEnd=String(e.end||'').slice(0,10);
+  const endDay=/^\d{4}-\d{2}-\d{2}$/.test(rawEnd)&&rawEnd>=day?rawEnd:day;
+  return {dates:compact(day)+'/'+compact(nextDay(endDay)),provisional:false};
+ }
+ const startKey=compact(start.slice(0,16))+'00';
+ const rawEnd=String(e.end||'');
+ if(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(rawEnd)&&rawEnd.slice(0,16)>start.slice(0,16)){
+  return {dates:startKey+'/'+compact(rawEnd.slice(0,16))+'00',provisional:false};
+ }
+ // A one-hour placeholder is needed by Google Calendar; never present it as
+ // the organizer's confirmed end time.
+ const [y,m,d]=day.split('-').map(Number);
+ const [h,min]=start.slice(11,16).split(':').map(Number);
+ const provisionalEnd=new Date(Date.UTC(y,m-1,d,h,min)+60*60000)
+   .toISOString().slice(0,16);
+ return {dates:startKey+'/'+compact(provisionalEnd)+'00',provisional:true};
+}
+function reminderGoogleUrl(e){
+ const times=reminderGoogleDates(e);
+ const venue=venueName(e);
+ const locationText=(venue&&venue!=='Recinto por confirmar'?venue+', ':'')+
+   (e.municipality||'Gran Canaria')+', Canarias';
+ const description=[
+  String(e.details||'').trim().slice(0,1000),
+  times.provisional?'La hora de finalización es orientativa (1 hora). Confirma la duración con la organización.':'',
+  'Consulta posibles cambios de fecha y hora en la fuente oficial.',
+  String(e.source_url||'').trim()
+ ].filter(Boolean).join('\n\n');
+ const params=new URLSearchParams({
+  action:'TEMPLATE',
+  text:String(e.title||'Plan de DParranda'),
+  dates:times.dates,
+  details:description,
+  location:locationText,
+  ctz:'Atlantic/Canary'
+ });
+ return 'https://calendar.google.com/calendar/render?'+params.toString();
+}
+function reminderCalendarCanAdd(e){
+ const start=String(e.start||'');
+ const day=start.slice(0,10);
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(day)||day<todayKey())return false;
+ return !reminderTimed(e)||reminderEventTime(e).getTime()>Date.now();
+}
 function openReminderDialog(e){
  const choices=reminderChoices(e);
- const valid=reminderCanSchedule(e);
+ const validICS=reminderCanSchedule(e);
+ const validGoogle=reminderCalendarCanAdd(e);
  const options=choices.map(c=>'<option value="'+c[0]+'">'+c[1]+'</option>').join('');
+ const googleUrl=validGoogle?reminderGoogleUrl(e):'';
  openModal('<div class="form-panel"><span class="eyebrow">MIS FAVORITOS · RECORDATORIOS</span>'+
-  '<h2 id="modalHeading">🔔 Recordar este plan</h2>'+
+  '<h2 id="modalHeading">📅 Guardar este plan</h2>'+
   '<p><strong>'+escapeHTML(e.title)+'</strong></p>'+
   '<p>'+escapeHTML(cardDateLabel(e))+' · '+escapeHTML(e.municipality)+'</p>'+
-  (valid?'<form id="reminderForm" class="stack-form"><div class="field">'+
-  '<label for="reminderLead">¿Cuándo quieres que te avisen?</label>'+
+  (validGoogle?'<div class="modal-actions"><a class="primary-action" id="reminderGoogleLink" href="'+escapeHTML(googleUrl)+'" target="_blank" rel="noopener noreferrer">📅 Añadir a Google Calendar ↗</a></div>'+
+  '<p class="footnote">Se abrirá Google Calendar con el evento preparado. Pulsa Guardar allí y configura el aviso que prefieras en Google Calendar.</p>'+
+  (reminderGoogleDates(e).provisional?'<p class="footnote">La hora de finalización no está confirmada: se propone una duración orientativa de una hora, que puedes editar antes de guardar.</p>':''):'')+
+  (validICS?'<form id="reminderForm" class="stack-form"><div class="field">'+
+  '<label for="reminderLead">Para otros calendarios: ¿cuándo quieres que te avisen?</label>'+
   '<select id="reminderLead">'+options+'</select></div>'+
-  '<button class="primary-btn" type="submit">Añadir al calendario</button></form>':
-  '<p class="footnote">No hay una fecha futura confirmada o las opciones de aviso ya han pasado. Consulta la fuente del evento antes de programarlo.</p>')+
-  (!reminderTimed(e)?'<p class="footnote">Este plan no tiene hora confirmada: se añadirá como evento de día completo.</p>':'')+
-  '<p class="footnote">Para recibir el aviso con la web cerrada, abre el archivo descargado e impórtalo en el calendario del móvil. El calendario gestiona las notificaciones; no son avisos push de D’Parranda.</p>'+
+  '<button class="primary-btn" type="submit">Descargar archivo para otro calendario (.ics)</button></form>':'')+
+  (!validGoogle&&!validICS?'<p class="footnote">No hay una fecha futura confirmada o el evento ya ha comenzado. Consulta la fuente oficial antes de programarlo.</p>':'')+
+  (!reminderTimed(e)?'<p class="footnote">El organizador no ha confirmado una hora: este plan se añadirá como evento de día completo.</p>':'')+
+  (validICS?'<p class="footnote">Para otros calendarios, abre el archivo .ics descargado e impórtalo para activar el aviso elegido.</p>':'')+
   '<button type="button" id="reminderBack" class="inline-link">Volver al evento</button></div>');
  $('reminderBack').onclick=()=>showEvent(e.id);
- if(!valid)return;
+ if(validGoogle)$('reminderGoogleLink').onclick=()=>{
+  if(!state.favorites.has(e.id))toggleFav(e.id);
+ };
+ if(!validICS)return;
  $('reminderForm').onsubmit=ev=>{
   ev.preventDefault();
   const select=$('reminderLead').value;
