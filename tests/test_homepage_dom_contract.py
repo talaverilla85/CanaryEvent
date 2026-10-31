@@ -59,6 +59,25 @@ class DParrandaHomepageContract(unittest.TestCase):
         sw = (PUBLIC / "sw.js").read_text(encoding="utf-8")
         self.assertIn("'/install_prompt.js'", sw)
 
+    def test_quick_discovery_and_event_sharing(self):
+        """Quick filters and share buttons must remain wired into catalog state."""
+        for fragment in (
+            'data-quick-when="today"',
+            'data-quick-when="weekend"',
+            'data-quick-free',
+            'state.freeOnly=false;',
+            "(!state.freeOnly||e.free===1)",
+            "data-share=\"\\${e.id}\"",
+            "function shareEvent(id)",
+            "function eventShareUrl(id)",
+            "function clearEventUrl()",
+            "document.querySelector('[data-quick-free]').onclick",
+        ):
+            self.assertIn(fragment, self.html)
+        css = (PUBLIC / "brand/dparranda-theme.css").read_text(encoding="utf-8")
+        self.assertIn(".dp-shortcut.active", css)
+        self.assertIn(".event-card .card-share-btn", css)
+
     def test_manifest_icons_exist_and_are_versioned(self):
         manifest = json.loads((PUBLIC / "manifest.webmanifest").read_text(encoding="utf-8"))
         self.assertEqual(manifest["short_name"], "D’Parranda")
