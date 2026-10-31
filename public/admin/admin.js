@@ -67,14 +67,45 @@ function renderEvents(){
   return '<article class="event"><div class="event-info"><small>#'+escape(id)+' · '+escape(dateLabel(e))+'</small>'+
     '<strong>'+escape(row.title_override||e.title||'Sin título')+'</strong>'+
     '<p>'+escape(row.venue_override||e.venue||'Recinto por confirmar')+' · '+escape(e.municipality||'')+'</p>'+
-    '<div class="meta">'+labels+'</div></div><div class="actions"><button class="ghost mini" data-event="'+escape(id)+'" type="button">Revisar ficha</button></div></article>';
+    '<div class="meta">'+labels+'</div></div><div class="actions"><button class="ghost mini" data-event="'+escape(id)+'" type="button">Revisar ficha</button>'+
+    (row.hidden&&!row.canonical_event_id?'<button class="ghost mini restore-action" data-restore-event="'+escape(id)+'" type="button" aria-label="Restaurar evento '+escape(id)+'">Restaurar</button>':
+     row.possible_duplicate&&!row.canonical_event_id?'<button class="ghost mini warn remove-duplicate" data-hide-duplicate="'+escape(id)+'" type="button" aria-label="Quitar duplicado '+escape(id)+' de la web">Quitar duplicado</button>':'')+
+    '</div></article>';
  }).join('');
 }
 $('refreshEvents').onclick=()=>loadEvents(true);
 let searchTimer;$('searchEvents').addEventListener('input',e=>{clearTimeout(searchTimer);searchTimer=setTimeout(()=>{search=e.target.value.trim();loadEvents(true)},350)});
 $('eventFilter').onchange=e=>{filter=e.target.value;loadEvents(true)};
 $('moreEvents').onclick=()=>loadEvents(false);
-$('eventsList').onclick=e=>{const b=e.target.closest('[data-event]');if(!b)return;const row=events.find(x=>String(x.id)===b.dataset.event);if(row)editEvent(row)};
+async function changeEventVisibility(row,hidden,button){
+ if(hidden){
+  if(!row.possible_duplicate || row.hidden || row.canonical_event_id)return;
+  const e=row.payload||{};
+  if(!window.confirm('¿Quitar de la web pública este posible duplicado?\\n\\n'+
+    (e.title||'Evento #'+row.id)+' · '+(e.municipality||'')+
+    '\\n\\nLa ficha quedará oculta, pero podrás restaurarla desde el filtro «Ocultos». No se borrará de la fuente.'))return;
+ }else{
+  if(!row.hidden || row.canonical_event_id)return;
+  if(!window.confirm('¿Restaurar esta ficha en la web pública?\\n\\nSi sigue duplicada, volverá a aparecer entre los posibles duplicados.'))return;
+ }
+ button.disabled=true;
+ try{
+  await api('visibility',{id:row.id,hidden});
+  message(hidden?'Duplicado retirado de la web. Puedes restaurarlo.':'Evento restaurado en la web pública.');
+  await Promise.allSettled([loadEvents(true),loadStats()]);
+ }catch(err){message(err.message);button.disabled=false}
+}
+$('eventsList').onclick=e=>{
+ const removal=e.target.closest('[data-hide-duplicate]');
+ const restoration=e.target.closest('[data-restore-event]');
+ if(removal||restoration){
+  const button=removal||restoration, row=events.find(x=>String(x.id)===button.dataset.hideDuplicate||String(x.id)===button.dataset.restoreEvent);
+  if(row)changeEventVisibility(row,!!removal,button);
+  return;
+ }
+ const b=e.target.closest('[data-event]');if(!b)return;
+ const row=events.find(x=>String(x.id)===b.dataset.event);if(row)editEvent(row);
+};
 function closeDialog(){$('dialog').classList.add('hidden');$('dialog').setAttribute('aria-hidden','true');$('sheet').innerHTML='';current=null}
 $('dialog').addEventListener('click',e=>{if(e.target.matches('[data-close]'))closeDialog()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDialog()});
