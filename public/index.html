@@ -441,7 +441,7 @@ body{background:var(--cream)}
 }
 </style>
 <link rel="stylesheet" href="/brand/dparranda-theme.css?v=13">
-<link rel="stylesheet" href="/brand/dparranda-editorial.css?v=3">
+<link rel="stylesheet" href="/brand/dparranda-editorial.css?v=4">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>D’Parranda · Disfruta de tus islas | Planes en Canarias</title>
 </head><body>
@@ -957,6 +957,7 @@ function render(){renderCategories();renderIslands();renderNewEventNotice();cons
  document.querySelectorAll('.date-chip').forEach(b=>{const selected=b.dataset.when===state.when;b.classList.toggle('active',selected);b.setAttribute('aria-pressed',String(selected));});
  
  document.querySelectorAll('.navtab').forEach(b=>b.classList.toggle('selected',b.dataset.tab===state.tab));
+ document.querySelectorAll('.dp-top-nav button').forEach(b=>b.classList.toggle('is-active',b.id===(state.tab==='saved'?'dpTopSaved':'dpTopExplore')));
 }
 function eventShareUrl(id){const url=new URL('/',location.href);url.searchParams.set('evento',String(id));return url.toString()}
 function clearEventUrl(){const url=new URL(location.href);if(!url.searchParams.has('evento'))return;url.searchParams.delete('evento');history.replaceState(null,'',url.pathname+url.search+url.hash)}
