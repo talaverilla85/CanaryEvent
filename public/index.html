@@ -893,7 +893,49 @@ function renderEditorial(visible){
   media.append(img);
  }
 }
-function render(){renderCategories();renderIslands();renderNewEventNotice();const events=filtered();renderEditorial(events);const shown=events.slice(0,state.visibleLimit);const showPromotions=state.tab==='explore'&&!state.query&&state.island==='Gran Canaria';const sponsorAt=sponsorInsertAfter();$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente ',custom:state.dateRangeLabel+' '}[state.when]||'Todos los planes ');
+let weekendShelfFingerprint='';
+function renderWeekendShelf(){
+ const shelf=$('dpWeekendShelf'),track=$('dpShelfTrack');
+ const enabled=state.island==='Gran Canaria'&&state.tab==='explore'&&
+  !state.query&&state.when!=='weekend'&&!state.categories.size&&!state.freeOnly;
+ if(!enabled||!state.events.length){shelf.hidden=true;return}
+ const date=new Date(todayKey()+'T12:00:00Z');
+ const dow=date.getUTCDay();
+ const offset=dow===6?-1:dow===0?-2:(5-dow+7)%7;
+ date.setUTCDate(date.getUTCDate()+offset);
+ const friday=date.toISOString().slice(0,10);
+ date.setUTCDate(date.getUTCDate()+2);
+ const sunday=date.toISOString().slice(0,10);
+ const items=state.events.filter(e=>e&&e.id!==undefined&&e.title&&
+  !e.paid_promotion&&typeof e.start==='string'&&
+  e.start.slice(0,10)<=sunday&&
+  (e.end||e.start).slice(0,10)>=friday&&
+  !DParrandaTime.hasFinished(e,localTimeKey())&&
+  (!state.municipality||e.municipality===state.municipality))
+  .sort((a,b)=>a.start.localeCompare(b.start)).slice(0,10);
+ if(!items.length){shelf.hidden=true;return}
+ shelf.hidden=false;
+ $('dpShelfDate').textContent='Del '+friday.slice(8,10)+' al '+sunday.slice(8,10)+' de '+
+  new Intl.DateTimeFormat('es-ES',{month:'long',timeZone:'UTC'}).format(date);
+ const fingerprint=friday+'|'+state.municipality+'|'+items.map(e=>e.id).join(',');
+ if(fingerprint===weekendShelfFingerprint)return;
+ weekendShelfFingerprint=fingerprint;
+ track.innerHTML=items.map(e=>{
+  const cover=verifiedImage(e);
+  const photo=cover?
+    '<img src="'+escapeHTML(cover)+'" alt="'+escapeHTML('Cartel del evento: '+e.title)+
+      '" loading="lazy" decoding="async" referrerpolicy="strict-origin-when-cross-origin"'+
+      (/\/plot\/event_|eventos\.santabrigida\.es|lpacultura\.com|teror\.es|tejeda\.eu|www\.galdar\.es|www\.arucas\.org|santamariadeguia\.es/.test(cover)?' class="poster-art"':'')+'>':
+    '<span class="dp-shelf-motif" aria-hidden="true">✳</span>';
+  return '<button type="button" class="dp-shelf-card" data-shelf-id="'+escapeHTML(String(e.id))+
+   '" aria-label="Ver '+escapeHTML(e.title)+'">'+
+   '<span class="dp-shelf-art">'+photo+'</span>'+
+   '<span class="dp-shelf-body"><span class="dp-shelf-day">'+escapeHTML(dayName(e.start))+'</span>'+
+   '<strong>'+escapeHTML(e.title)+'</strong><span class="dp-shelf-town">'+
+   escapeHTML(e.municipality||'Gran Canaria')+'</span></span></button>';
+ }).join('');
+}
+function render(){renderCategories();renderIslands();renderNewEventNotice();const events=filtered();renderEditorial(events);renderWeekendShelf();const shown=events.slice(0,state.visibleLimit);const showPromotions=state.tab==='explore'&&!state.query&&state.island==='Gran Canaria';const sponsorAt=sponsorInsertAfter();$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente ',custom:state.dateRangeLabel+' '}[state.when]||'Todos los planes ');
  document.querySelectorAll('[data-quick-when]').forEach(b=>{const active=state.when===b.dataset.quickWhen;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
  const freeShortcut=document.querySelector('[data-quick-free]');freeShortcut.classList.toggle('active',state.freeOnly);freeShortcut.setAttribute('aria-pressed',String(state.freeOnly));
  $('eventsGrid').innerHTML=shown.map((e,i)=>{
@@ -1194,6 +1236,12 @@ api('/api/meta').then(meta=>{
     (errors?' · '+errors+' fuente(s) con incidencias':'');
 }).catch(()=>{$('sourceStatus').textContent=count+' planes próximos · Fecha de revisión no disponible';});render();if(!$('mapPanel').classList.contains('hidden'))drawMap();const id=new URLSearchParams(location.search).get('evento');if(id&&state.events.some(e=>e.id===+id)&&!state.seen){state.seen=1;showEvent(id)}}catch(error){try{const saved=JSON.parse(localStorage.getItem('plangc_event_cache'));if(saved.events?.length){state.events=saved.events;$('sourceStatus').textContent='Sin conexión · Mostrando datos guardados (pueden estar desactualizados)';render();return}}catch{}$('sourceStatus').textContent='No se ha podido conectar con el catálogo';toast('Error de conexión con la agenda')}}
 function init(){
+ $('dpShelfTrack').onclick=e=>{
+  const button=e.target.closest('[data-shelf-id]');
+  if(button)showEvent(button.dataset.shelfId);
+ };
+ $('dpShelfPrev').onclick=()=>$('dpShelfTrack').scrollBy({left:-480,behavior:'smooth'});
+ $('dpShelfNext').onclick=()=>$('dpShelfTrack').scrollBy({left:480,behavior:'smooth'});
  const jumpToPlans=()=>document.querySelector('.discovery')?.scrollIntoView({block:'start',behavior:'smooth'});
  $('dpHeroToday').onclick=()=>{
   document.querySelector('[data-quick-when="today"]')?.click();
