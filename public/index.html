@@ -488,6 +488,13 @@ body{background:var(--cream)}
  <span class="filter-entry-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.6"/><path d="m15.5 15.5 5 5"/></svg></span><span class="filter-entry-copy"><strong>¿Qué te apetece hacer?</strong><small id="filterSummary">Gran Canaria · Hoy · Todas las categorías</small></span>
  <span class="filter-entry-action">Explorar <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 7h16M7 12h10M10 17h4"/></svg></span></button>
       <div class="dp-shortcuts" aria-label="Descubre planes rápidamente"><span class="dp-shortcuts-label">ENCUENTRA TU PLAN</span><div class="dp-shortcuts-scroll" role="group" aria-label="Accesos rápidos a los eventos"><button type="button" class="dp-shortcut" data-quick-when="today" aria-pressed="true">☀ Hoy</button><button type="button" class="dp-shortcut" data-quick-when="tomorrow" aria-pressed="false">↗ Mañana</button><button type="button" class="dp-shortcut" data-quick-when="weekend" aria-pressed="false">✳ Este finde</button><button type="button" class="dp-shortcut" data-quick-when="week" aria-pressed="false">▦ 7 días</button><button type="button" class="dp-shortcut dp-shortcut-free" data-quick-free aria-pressed="false">€ Gratis</button><button type="button" class="dp-shortcut" data-quick-when="all" aria-pressed="false">Todos los planes</button></div></div>
+      <section id="dpWeekendShelf" class="dp-weekend-shelf" aria-labelledby="dpWeekendHeading" hidden>
+        <div class="dp-shelf-heading">
+          <div class="dp-shelf-heading-copy"><span class="dp-shelf-kicker">UN PLAN LLEVA A OTRO</span><h2 id="dpWeekendHeading">Tu próximo <em>finde.</em></h2><p id="dpShelfDate">Planes del fin de semana</p></div>
+          <div class="dp-shelf-controls"><button id="dpShelfPrev" type="button" aria-label="Ver planes anteriores">←</button><button id="dpShelfNext" type="button" aria-label="Ver más planes">→</button></div>
+        </div>
+        <div id="dpShelfTrack" class="dp-shelf-track" aria-label="Planes del fin de semana"></div>
+      </section>
       <div class="quick-toolbar"><div class="result-titles"><span class="eyebrow">TU AGENDA, A TU MANERA</span><h2 id="sectionTitle">Para hoy <span class="count" id="eventCount">· …</span></h2></div>
         
       </div>
