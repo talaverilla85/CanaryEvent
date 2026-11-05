@@ -103,15 +103,12 @@ footer{padding:24px 0 36px;color:#687f89;font-size:12px;border-top:1px solid var
       <div id="eventDetails" class="wide form-grid" hidden><div class="field wide"><label for="eventVenue">Lugar del evento</label><input id="eventVenue" maxlength="200" placeholder="Ej. Centro cultural municipal"></div><div class="field"><label for="eventDate">Fecha y hora del evento</label><input id="eventDate" type="datetime-local"></div><div class="field"><label for="eventTown">Municipio del evento</label><select id="eventTown"></select></div></div>
       <div class="field wide"><label for="advertImage">Imagen o cartel</label><input id="advertImage" type="file" accept="image/jpeg,image/png,image/webp"><small class="tag-line">JPG, PNG o WebP · formato horizontal</small><div id="imagePreview" class="creative-preview" hidden><img id="previewImg" alt="Vista previa de la imagen seleccionada"></div></div>
     </div>
-    <div class="step-title"><span class="num">4</span>Vista previa</div>
-    <div class="actions"><button type="button" class="btn" id="showPreview">Ver mi anuncio</button><button type="button" class="btn secondary" id="resetDraft">Borrar</button></div>
-    <div id="previewSection" hidden>
-      <div class="preview-card"><div class="preview-media" id="previewMedia"><span id="noImage">Imagen del anuncio</span><img id="reviewImage" alt="Creatividad promocional" hidden></div><div class="preview-content"><span class="preview-badge">Publicidad</span><h3 id="reviewTitle"></h3><p id="reviewDescription"></p><small id="reviewBrand"></small><small id="reviewArea"></small><small id="reviewTime"></small><small id="reviewEvent" hidden></small><small id="reviewUrl"></small></div></div>
-      <div class="checkout"><strong id="checkoutSummary">Resumen de tu campaña</strong><p>Contratación disponible próximamente. La vista previa no publica ni cobra nada.</p><button type="button" class="btn" id="checkoutButton" disabled>Pago no disponible</button><div id="checkoutInfo" class="tag-line" role="status"></div></div>
-    </div>
+    <div class="step-title"><span class="num">4</span>Vista previa final</div>
+    <div class="actions"><button type="button" class="btn" id="showPreview">Ver en DParranda</button><button type="button" class="btn secondary" id="resetDraft">Borrar</button></div>
+    <p class="notice">Verás tu anuncio en una simulación con eventos de la agenda. No se publicará ni se cobrará nada.</p>
     <p id="formFeedback" class="notice" role="status" aria-live="polite"></p>
   </section>
 </main>
 <footer><div class="wrap">D’Parranda · Disfruta de tus islas.</div></footer>
-<script src="/anunciate/landing.js?v=3" defer></script>
+<script src="/anunciate/landing.js?v=4" defer></script>
 </body></html>
