@@ -8,6 +8,8 @@ const TOWNS=['Agaete','Agüimes','Artenara','Arucas','Firgas','Gáldar','Ingenio
  'Santa María de Guía de Gran Canaria','Tejeda','Telde','Teror','Valleseco',
  'Valsequillo de Gran Canaria','Vega de San Mateo'];
 let plan='local',days=30,chosen=[],imageUrl=null;
+for(const town of TOWNS){const o=document.createElement('option');o.value=town;o.textContent=town;$('eventTown').append(o)}
+$('formatType').addEventListener('change',()=>{$('eventDetails').hidden=$('formatType').value!=='evento';resetPreview()});
 function showPanel(which){
  const info=which==='info';
  $('infoPanel').hidden=!info;$('createPanel').hidden=info;
@@ -113,6 +115,8 @@ $('advertImage').addEventListener('change',()=>{
 $('showPreview').addEventListener('click',()=>{
  const name=$('advertiser').value.trim(),title=$('headline').value.trim(),
   description=$('description').value.trim(),target=$('destination').value.trim(),start=$('campaignStart').value;
+ const isEvent=$('formatType').value==='evento';
+ const eventVenue=$('eventVenue').value.trim(),eventDate=$('eventDate').value,eventTown=$('eventTown').value;
  const problems=[];
  if(plan!=='insular'&&chosen.length===0)problems.push('elige al menos un municipio');
  if(!start||!utcEnd(start,days))problems.push('indica la fecha de inicio');
@@ -121,6 +125,11 @@ $('showPreview').addEventListener('click',()=>{
  if(!title)problems.push('escribe el título del anuncio');
  if(!description)problems.push('añade una descripción corta');
  if(!target||!/^https:\/\/[^/\s?#]+/i.test(target))problems.push('indica una web que empiece por https://');
+ if(isEvent){
+  if(!eventVenue)problems.push('indica el lugar del evento');
+  if(!eventDate)problems.push('indica la fecha y hora del evento');
+  if(!eventTown)problems.push('selecciona el municipio del evento');
+ }
  if(unsupportedImage)problems.push('corrige el archivo de imagen');
  if(problems.length){
   $('formFeedback').textContent='Para ver el resumen: '+problems.join('; ')+'.';
@@ -135,6 +144,8 @@ $('showPreview').addEventListener('click',()=>{
  $('reviewArea').textContent='Cobertura: '+(plan==='insular'?'toda Gran Canaria':chosen.join(', '));
  $('reviewTime').textContent='Del '+showDate(start)+' al '+showDate(utcEnd(start,days));
  $('reviewUrl').textContent='Destino: '+target;
+ $('reviewEvent').hidden=!isEvent;
+ $('reviewEvent').textContent=isEvent?'Evento: '+eventTown+' · '+eventVenue+' · '+eventDate.replace('T',' '):'';
  $('reviewImage').hidden=!imageUrl;
  $('noImage').hidden=!!imageUrl;
  if(imageUrl)$('reviewImage').src=imageUrl;
@@ -149,7 +160,8 @@ $('checkoutButton').addEventListener('click',()=>{
  $('checkoutInfo').textContent='Todavía no está disponible el pago. Falta conectar Stripe, la comprobación de cupos y el aviso legal. No se ha creado ni cobrado ninguna campaña.';
 });
 $('resetDraft').addEventListener('click',()=>{
- ['advertiser','headline','description','destination','campaignStart'].forEach(id=>$(id).value='');
+ ['advertiser','headline','description','destination','campaignStart','eventVenue','eventDate'].forEach(id=>$(id).value='');
+ $('formatType').value='banner';$('eventDetails').hidden=true;
  $('advertImage').value='';
  if(imageUrl){URL.revokeObjectURL(imageUrl);imageUrl=null}
  $('imagePreview').hidden=true;$('previewImg').removeAttribute('src');
