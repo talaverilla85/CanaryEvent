@@ -18,7 +18,7 @@ class AdvertiserPreviewContracts(unittest.TestCase):
         self.assertIn('id="createPanel"', self.html)
         self.assertIn('id="infoToCreate"', self.html)
         self.assertIn('id="showPreview"', self.html)
-        self.assertIn('/anunciate/landing.js?v=2', self.html)
+        self.assertIn('/anunciate/landing.js?v=3', self.html)
 
     def test_prices_and_limit(self):
         for price in ('19 €','49 €','99 €'):
@@ -40,7 +40,8 @@ class AdvertiserPreviewContracts(unittest.TestCase):
         self.assertIn("id=\"eventVenue\"", self.html)
         self.assertIn("id=\"reviewEvent\"", self.html)
         self.assertIn("resetPreview()", self.js)
-        self.assertIn("No se ha creado ni cobrado ninguna campaña.", self.js)
+        self.assertIn('id="checkoutButton" disabled', self.html)
+        self.assertIn("Vista previa lista. No se ha publicado.", self.js)
         self.assertNotIn("fetch(", self.js)
         self.assertNotIn("XMLHttpRequest", self.js)
 
@@ -48,7 +49,11 @@ class AdvertiserPreviewContracts(unittest.TestCase):
         self.assertIn("if(!enabled())return json(res,503", self.api)
         self.assertNotIn('name="tax_id"', self.html)
         self.assertNotIn('name="billing_address"', self.html)
-        self.assertIn("Los pagos online todavía no están habilitados.", self.html)
+        self.assertIn("Pago no disponible", self.html)
+        self.assertNotIn("Stripe", self.html)
+        self.assertNotIn("AriMar", self.html)
+        self.assertIn("Librería La Esquina", self.html)
+        self.assertNotIn("comprobación automática de plazas", self.html)
 
 if __name__ == "__main__":
     unittest.main()
