@@ -15,10 +15,15 @@ class HeroContractTests(unittest.TestCase):
         self.assertIn(".hero-tag{display:none}",HTML)
         self.assertIn("top:auto;bottom:18px;right:9px",HTML)
     def test_hero_accessible_decorations(self):
-        self.assertIn('class="dp-masthead shell"',HTML)
-        self.assertIn('class="dp-mark" aria-label="D’Parranda, inicio"',HTML)
-        self.assertIn('alt="D’Parranda, las ocho islas"',HTML)
-        self.assertIn('class="dp-claim">Disfruta de tus islas.',HTML)
+        # New editorial cover preserves named navigation and discoverability.
+        self.assertIn('class="dp-masthead shell" aria-label="Portada de DParranda"',HTML)
+        self.assertIn('class="dp-mark" aria-label="DParranda, volver al inicio"',HTML)
+        self.assertIn('alt="DParranda"',HTML)
+        self.assertIn('class="dp-stage"',HTML)
+        self.assertIn('id="dpHeroToday"',HTML)
+        self.assertIn('id="dpHeroWeekend"',HTML)
+        self.assertIn('id="dpFeaturedOpen" aria-label="Ver evento destacado"',HTML)
+        self.assertIn('id="dpPulseSurprise"',HTML)
         self.assertIn('id="surpriseBtn"',HTML)
 
 if __name__=="__main__":unittest.main()
