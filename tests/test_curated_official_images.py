@@ -32,16 +32,22 @@ class OfficialEventImageTests(unittest.TestCase):
             if event is None:
                 continue
             self.assertEqual(item["title"], event["title"])
-            self.assertEqual(item["source_url"], event["source_url"])
-            # The committed export can precede an audited title correction.
-            # Verify the curation applies the right official image at the
-            # next sync without treating a temporarily blank cover as a mismatch.
+            if item["source_url"] != event["source_url"]:
+                # The verified event may now have an even more direct official
+                # organizer link and its own official image. A curated poster
+                # from the former source must never override that new identity.
+                candidate=dict(event,image_url="")
+                self.assertEqual(media.apply([candidate]),0)
+                self.assertEqual(candidate["image_url"],"")
+                continue
+            # A source title correction may precede the next committed export.
+            # Verify the curated image attaches to the exact original listing.
             if event.get("image_url"):
                 self.assertEqual(item["image_url"], event["image_url"])
             else:
                 candidate=dict(event)
                 self.assertEqual(media.apply([candidate]),1)
-                self.assertEqual(item["image_url"], candidate["image_url"])
+                self.assertEqual(item["image_url"],candidate["image_url"])
 
     def test_wont_override_a_different_source_or_official_image(self):
         original = self.dataset["items"][0]
