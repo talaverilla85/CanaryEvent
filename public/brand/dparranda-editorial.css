@@ -795,3 +795,76 @@ body::before{height:5px;position:fixed;z-index:40}
  .dp-shelf-card{transition:none}
  .dp-shelf-card:hover{transform:none}
 }
+
+
+/* Final editorial typography pass: Outfit's glyphs need room to breathe. */
+.dp-stage h1{
+ font-size:clamp(54px,5.8vw,77px);
+ letter-spacing:-1.35px;
+ line-height:.98;
+ margin:24px 0 18px;
+}
+.dp-stage h1 em{
+ letter-spacing:-1.8px;
+}
+.dp-feature-title{
+ font-size:clamp(21px,2vw,29px);
+ letter-spacing:-.4px;
+ overflow-wrap:break-word;
+}
+.dp-top-nav{
+ display:none;
+ align-items:center;
+ gap:4px;
+ margin:0 auto;
+ padding:4px;
+ border:1px solid #D1DFD8;
+ border-radius:11px;
+ background:#FFF;
+}
+.dp-top-nav button{
+ border:0;
+ background:transparent;
+ padding:9px 15px;
+ border-radius:7px;
+ color:#365B60;
+ font:800 12px 'DM Sans',system-ui,sans-serif;
+ cursor:pointer;
+}
+.dp-top-nav button:hover,.dp-top-nav button:focus-visible{
+ color:#103E50;
+ background:#EDF4F0;
+}
+.dp-top-nav #dpTopExplore{
+ background:#153E50;
+ color:#fff;
+}
+@media(min-width:900px){
+ .dp-top-nav{display:flex}
+ .bottom-nav{display:none!important}
+ .dp-brand-row{min-height:90px}
+ .dp-stage-copy{padding:36px 43px 34px}
+ .dp-stage-signoff{padding-top:22px}
+ .dp-feature-content{padding:25px 25px 28px}
+ .footer{padding-bottom:35px}
+}
+@media(max-width:720px){
+ .dp-top-nav{display:none!important}
+ .dp-stage-copy{padding:21px 21px 18px}
+ .dp-stage h1{
+  font-size:clamp(44px,11vw,53px);
+  letter-spacing:-.8px;
+  line-height:1.01;
+  margin:18px 0 13px;
+ }
+ .dp-stage h1 em{letter-spacing:-1px}
+ .dp-stage-copy > p{font-size:12.5px;line-height:1.45;margin-bottom:15px}
+ .dp-stage-signoff{display:none}
+ .dp-stage-actions button{min-height:40px;padding:9px 13px}
+ .dp-feature-card{min-height:172px}
+ .dp-feature-media{min-height:172px}
+ .dp-feature-content{padding:12px 13px;gap:5px}
+ .dp-feature-title{font-size:clamp(17px,4.95vw,22px);line-height:1.15}
+ .dp-feature-kicker{font-size:8px}
+ .dp-feature-link{margin-top:2px}
+}
