@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#f8faf7">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="icon" href="/favicon.svg">
+<title>Simulador de publicidad · D’Parranda</title>
+<style>
+:root{font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:#203b30;background:#f8faf7}
+*{box-sizing:border-box}body{margin:0;min-height:100vh}a{color:inherit;text-decoration:none}button{font:inherit}
+[hidden]{display:none!important}.shell{width:min(1050px,calc(100% - 32px));margin:auto}
+.preview-toolbar{position:sticky;top:0;z-index:10;background:#123d36;color:#fff;border-bottom:1px solid #164d42;box-shadow:0 4px 18px #0d2c231c}
+.preview-toolbar .shell{display:flex;justify-content:space-between;align-items:center;gap:14px;min-height:57px}
+.preview-mark{font-size:12px;font-weight:850;letter-spacing:.3px}.preview-mark small{font-size:10px;font-weight:650;opacity:.75;display:block}
+.return{background:#fff;border:1px solid #fff;color:#123d36;font-weight:800;border-radius:100px;padding:8px 13px;white-space:nowrap;font-size:12px}.return:hover{background:#eaf9ef}
+.dp-masthead{background:linear-gradient(145deg,#edf4e8,#fbfdf9);border-bottom:1px solid #e2ece3;text-align:center;padding:21px 0 17px}
+.dp-masthead img{display:block;width:225px;max-width:70%;height:80px;object-fit:contain;margin:auto}.dp-claim{font-size:12px;color:#547760;font-weight:700;letter-spacing:.25px;margin:0}
+.dp-discovery-bar{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:23px 0 11px}
+.discover-label{font-size:10px;color:#5e886b;letter-spacing:1.5px;font-weight:850}.live-island{font-size:10px;background:#e8f3e9;border-radius:100px;padding:7px 10px;color:#39714e;font-weight:800}
+.search-bar{display:flex;align-items:center;gap:13px;border-radius:19px;background:#fff;border:1px solid #e1e9e2;padding:14px 16px;box-shadow:0 4px 14px #1e49310a}
+.search-icon{font-size:23px;color:#39745b}.search-bar strong{font-size:15px;color:#1d4734;display:block}.search-bar small{display:block;color:#7b8c81;margin-top:2px}
+.shortcut-row{display:flex;gap:9px;overflow:auto;padding:15px 0 12px}.chip{display:inline-block;background:#fff;border:1px solid #e0e9df;border-radius:100px;padding:8px 14px;font-size:11px;font-weight:800;color:#5b7c66;white-space:nowrap}.chip.active{background:#dff2df;border-color:#b9d9bd;color:#2e6c48}
+.list-heading{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:7px 0 15px}.list-heading h2{margin:0;font-size:23px;letter-spacing:-.75px;color:#244a35}.list-heading small{color:#85978b;font-weight:700;font-size:11px}
+.events-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:stretch;margin-bottom:27px}
+.event-card{background:#fff;border:1px solid #dce6df;box-shadow:0 4px 17px rgba(23,55,41,.065);border-radius:19px;overflow:hidden;min-width:0}
+.photo{position:relative;height:175px;overflow:hidden;background:linear-gradient(145deg,#678779,#acc8ad);display:grid;place-items:center}
+.photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;display:block}
+.photo:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#0005,transparent 42%,#142a2d19);pointer-events:none}
+.fallback{font-weight:900;color:#f6fff7;max-width:85%;font-size:24px;line-height:1.15;letter-spacing:-.6px;text-align:center;overflow-wrap:anywhere}
+.photo-tag{position:absolute;z-index:2;top:11px;left:11px;padding:7px 10px;border-radius:100px;background:#fffffff0;font-size:10px;font-weight:800;color:#274c3c;max-width:calc(100% - 22px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.photo-tag.sponsored{background:#fff7df;color:#805522;border:1px solid #f8dfa7}
+.event-info{padding:13px 13px 15px;display:flex;flex-direction:column;min-height:127px}
+.event-date-chip{display:inline-flex;align-self:flex-start;max-width:100%;padding:6px 9px;border-radius:8px;background:#edf4ec;font-size:11px;font-weight:800;color:#37714e;margin-bottom:8px}
+.event-title{font-weight:800;font-size:clamp(14px,2vw,16px);line-height:1.32;letter-spacing:-.2px;margin:1px 0 7px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.event-meta{font-size:11px;color:#718379;display:flex;gap:5px;align-items:flex-start;margin-top:auto}
+.event-meta strong{display:block;color:#586c60;overflow-wrap:anywhere}.event-meta small{display:block;color:#8c9e91}
+.event-bottom{border-top:1px solid #eef1ec;margin-top:11px;padding-top:9px;display:flex;gap:8px;align-items:center;justify-content:space-between;color:#758c7a;font-size:11px}
+.event-price{font-weight:800;color:#296a48}
+.sponsor-slot{grid-column:1/-1;min-width:0}
+.sponsor-caption{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;color:#317c8a;font-size:10px;letter-spacing:1px;font-weight:850}
+.sponsor-card{background:#ebf7f9;border:1px solid #a7d9e2;border-radius:19px;overflow:hidden;display:flex;min-height:178px;box-shadow:0 8px 24px #1a666f14}
+.sponsor-media{position:relative;width:32%;min-height:178px;background:#d2e7e6;flex:none;display:grid;place-items:center}
+.sponsor-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sponsor-media span{font-size:17px;font-weight:900;color:#527d80;text-align:center;padding:10px}
+.sponsor-content{flex:1;display:flex;flex-direction:column;justify-content:center;padding:17px 22px;gap:5px;min-width:0}
+.sponsor-label{font-size:10px;font-weight:900;letter-spacing:.07em;color:#277e8c;text-transform:uppercase}
+.sponsor-heading{font-size:clamp(17px,2.4vw,24px);font-weight:850;letter-spacing:-.4px;margin:0;line-height:1.17}
+.sponsor-copy{font-size:13px;color:#466a70;margin:0;line-height:1.4;overflow-wrap:anywhere;max-width:560px}
+.sponsor-bottom{display:flex;gap:13px;flex-wrap:wrap;align-items:center;margin-top:6px}
+.sponsor-location{font-size:11px;color:#527780;font-weight:700}.sponsor-button{background:#147e94;border-radius:100px;color:#fff;font-size:12px;font-weight:850;padding:10px 15px;display:inline-flex}
+.sim-note{margin:0 0 22px;border-radius:12px;background:#e8f4ee;padding:12px 14px;color:#426d54;font-size:12px}
+.status{text-align:center;padding:28px 12px;color:#637b6b}.summary{border-top:1px solid #e1e9e2;margin:12px 0 35px;padding:17px 2px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.summary strong{font-size:18px;color:#244a35}.summary span{font-weight:800;color:#2c7050}
+footer{text-align:center;color:#7c9283;padding:16px 0 33px;font-size:11px}
+@media(max-width:649px){.dp-masthead{padding:12px 0 10px}.dp-masthead img{height:65px}.dp-discovery-bar{margin-top:15px}.live-island{font-size:9px}.discover-label{font-size:9px}.events-grid{grid-template-columns:1fr}.list-heading h2{font-size:21px}.sponsor-card{min-height:169px}.sponsor-media{width:34%;min-height:169px}.sponsor-content{padding:12px}.sponsor-heading{font-size:16px}.sponsor-copy{font-size:11px}.sponsor-location{font-size:10px}.sponsor-button{padding:8px 12px;font-size:11px}.preview-mark{font-size:11px}.return{padding:8px 10px}}
+</style>
+</head>
+<body>
+<div class="preview-toolbar"><div class="shell"><div class="preview-mark">VISTA PREVIA · NO PUBLICADO<small>Simulador de D’Parranda</small></div><a class="return" href="/anunciate/#crear">← Volver a editar</a></div></div>
+<header class="dp-masthead"><a href="/anunciate/#crear" aria-label="Volver a crear anuncio"><img src="/brand/dparranda-logo.svg?v=6" alt="D’Parranda"></a><p class="dp-claim">Disfruta de tus islas.</p></header>
+<main class="shell">
+ <div class="dp-discovery-bar"><span class="discover-label">UN MUNDO DE PLANES CERCA DE TI</span><span class="live-island">GRAN CANARIA · AGENDA ACTIVA</span></div>
+ <div class="search-bar" aria-label="Vista de la búsqueda de planes"><span class="search-icon" aria-hidden="true">⌕</span><span><strong>¿Qué te apetece hacer?</strong><small id="searchDescription">Gran Canaria · Todos los eventos</small></span></div>
+ <div class="shortcut-row" aria-label="Filtros ilustrativos"><span class="chip active">✳ Explorar</span><span class="chip">☀ Hoy</span><span class="chip">↗ Mañana</span><span class="chip">✳ Este finde</span><span class="chip">▦ 7 días</span></div>
+ <div class="list-heading"><h2>Planes para disfrutar</h2><small id="feedCount"></small></div>
+ <p id="simNote" class="sim-note" hidden></p>
+ <div id="simStatus" class="status" role="status">Cargando agenda…</div>
+ <div id="simFeed" class="events-grid" aria-label="Simulación de eventos y publicidad"></div>
+ <div class="summary" id="simSummary" hidden><strong id="simPlan"></strong><span id="simTotal"></span></div>
+</main>
+<footer>D’Parranda · Disfruta de tus islas.</footer>
+<script src="/anunciate/simulador/simulator.js?v=1" defer></script>
+</body></html>
