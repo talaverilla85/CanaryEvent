@@ -643,3 +643,155 @@ body::before{height:5px;position:fixed;z-index:40}
  .dp-feature-meta{font-size:10px;line-height:1.35}
  .dp-feature-link{font-size:11px;margin-top:6px;gap:9px}
 }
+
+
+/* The next-weekend shelf: an actual evolving collection, not marketing art. */
+.dp-weekend-shelf{
+ margin:24px 0 2px;
+ padding:24px 24px 25px;
+ background:#143D50;
+ border-radius:17px;
+ color:#F6FBF9;
+ overflow:hidden;
+}
+.dp-weekend-shelf[hidden]{display:none!important}
+.dp-shelf-heading{
+ display:flex;
+ align-items:flex-end;
+ justify-content:space-between;
+ gap:20px;
+ margin-bottom:15px;
+}
+.dp-shelf-kicker{
+ color:#93D7D0;
+ font-weight:900;
+ font-size:10px;
+ letter-spacing:1.9px;
+}
+.dp-shelf-heading h2{
+ font:850 clamp(28px,3.3vw,38px)/1.1 'Outfit',sans-serif;
+ letter-spacing:-1px;
+ margin:4px 0 4px;
+ color:#fff;
+}
+.dp-shelf-heading h2 em{
+ font:italic 600 1.13em Georgia,serif;
+ color:#F6C59B;
+ letter-spacing:-.7px;
+}
+.dp-shelf-heading p{
+ color:#B2D1D1;
+ font-size:12px;
+ margin:0;
+}
+.dp-shelf-controls{display:flex;gap:7px}
+.dp-shelf-controls button{
+ border:1px solid #7B9AA5;
+ color:#F7FBF9;
+ background:#FFFFFF0B;
+ width:38px;height:38px;
+ display:grid;place-items:center;
+ border-radius:50%;
+ font-size:18px;
+}
+.dp-shelf-controls button:hover{
+ background:#FFFFFF1A;
+ border-color:#CEDDDF;
+}
+.dp-shelf-track{
+ display:flex;
+ gap:12px;
+ overflow-x:auto;
+ overscroll-behavior-x:contain;
+ scroll-snap-type:x mandatory;
+ scrollbar-width:none;
+ -webkit-overflow-scrolling:touch;
+ padding:3px 2px 6px;
+}
+.dp-shelf-track::-webkit-scrollbar{display:none}
+.dp-shelf-card{
+ display:flex;
+ flex-direction:column;
+ flex:0 0 clamp(185px,19vw,226px);
+ text-align:left;
+ border:1px solid #335A67;
+ background:#F9FAF7;
+ color:#164154;
+ border-radius:11px;
+ padding:0;
+ overflow:hidden;
+ scroll-snap-align:start;
+ cursor:pointer;
+ transition:transform .15s,border-color .15s;
+}
+.dp-shelf-card:hover{
+ transform:translateY(-3px);
+ border-color:#F6BF8E;
+}
+.dp-shelf-art{
+ height:115px;
+ width:100%;
+ background:#2B7880;
+ display:grid;place-items:center;
+ color:#C8EBE9;
+ overflow:hidden;
+ position:relative;
+}
+.dp-shelf-art img{
+ width:100%;height:100%;
+ object-fit:cover;
+ display:block;
+}
+.dp-shelf-art img.poster-art{object-fit:contain;background:#213D4D}
+.dp-shelf-art .dp-shelf-motif{
+ font:60px Georgia,serif;
+ opacity:.65;
+ transform:rotate(-13deg);
+}
+.dp-shelf-body{padding:12px 12px 14px;display:flex;flex-direction:column;gap:5px;flex:1;min-height:100px}
+.dp-shelf-day{
+ color:#117D82;
+ font-size:10px;
+ font-weight:900;
+ letter-spacing:.25px;
+}
+.dp-shelf-body strong{
+ font:800 15px/1.26 'Outfit',sans-serif;
+ letter-spacing:-.2px;
+ color:#143C4D;
+ display:-webkit-box;
+ -webkit-line-clamp:2;
+ -webkit-box-orient:vertical;
+ overflow:hidden;
+}
+.dp-shelf-town{
+ color:#72888B;
+ font-size:11px;
+ font-weight:700;
+ margin-top:auto;
+ overflow:hidden;
+ white-space:nowrap;
+ text-overflow:ellipsis;
+}
+.dp-shelf-card:focus-visible{outline:3px solid #F6BF8E;outline-offset:2px}
+@media(max-width:720px){
+ .dp-weekend-shelf{
+  margin:17px -13px 0;
+  padding:19px 14px 17px;
+  border-radius:0;
+ }
+ .dp-shelf-heading{margin-bottom:12px}
+ .dp-shelf-heading h2{font-size:30px}
+ .dp-shelf-heading p{font-size:11px}
+ .dp-shelf-kicker{font-size:9px}
+ .dp-shelf-controls button{width:33px;height:33px;font-size:17px}
+ .dp-shelf-track{margin-right:-14px;padding-right:14px;gap:10px}
+ .dp-shelf-card{flex-basis:184px}
+ .dp-shelf-art{height:100px}
+ .dp-shelf-body{min-height:99px}
+ .dp-shelf-body strong{font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){
+ .dp-shelf-card{transition:none}
+ .dp-shelf-card:hover{transform:none}
+}
