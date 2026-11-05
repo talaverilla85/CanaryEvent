@@ -591,3 +591,55 @@ body::before{height:5px;position:fixed;z-index:40}
  .dp-feature-media img,.dp-stage-primary,.dp-stage-secondary,.dp-pulse-action{transition:none!important}
  .dp-feature-card:hover .dp-feature-media img,.dp-stage-primary:hover,.dp-stage-secondary:hover{transform:none!important}
 }
+
+
+/* The main feature works like a magazine spread: artwork and legible copy
+   live in separate panels. Many official posters contain large embedded text. */
+.dp-feature-card{
+ display:grid;
+ grid-template-columns:minmax(0,43%) minmax(0,57%);
+ background:#16485B;
+ align-items:stretch;
+}
+.dp-feature-media{
+ position:relative;inset:auto;
+ min-height:360px;
+ background:#173E50;
+}
+.dp-feature-media::after{
+ background:linear-gradient(90deg,transparent,#0D35422E);
+}
+.dp-feature-content{
+ background:#16485B;
+ min-width:0;
+ display:flex;
+ flex-direction:column;
+ justify-content:flex-end;
+ gap:11px;
+ padding:clamp(24px,2.7vw,37px);
+}
+.dp-feature-title{
+ max-width:100%;
+ font-size:clamp(23px,2.8vw,35px);
+ -webkit-line-clamp:4;
+}
+.dp-feature-meta{font-size:12px}
+.dp-feature-link{margin-top:10px}
+@media(max-width:720px){
+ .dp-feature-card{
+  grid-template-columns:minmax(0,39%) minmax(0,61%);
+  min-height:214px;
+ }
+ .dp-feature-media{min-height:214px;height:100%}
+ .dp-feature-media img{object-position:center}
+ .dp-feature-content{padding:16px 15px 15px;gap:6px}
+ .dp-feature-kicker{font-size:8px;letter-spacing:1px}
+ .dp-feature-title{
+  font-size:clamp(18px,5.15vw,24px);
+  line-height:1.15;
+  letter-spacing:-.4px;
+  -webkit-line-clamp:4;
+ }
+ .dp-feature-meta{font-size:10px;line-height:1.35}
+ .dp-feature-link{font-size:11px;margin-top:6px;gap:9px}
+}
