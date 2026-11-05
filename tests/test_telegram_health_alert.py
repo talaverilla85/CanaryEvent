@@ -29,6 +29,53 @@ def make(quality_data=None,metadata=None,**overrides):
     return notify.make_message(**kw)
 
 class TelegramHealthTests(unittest.TestCase):
+    def test_successful_daily_sync_summarizes_real_catalog_changes(self):
+        current=meta()
+        current["changes"]={"available":True,"new":7,"updated":3,"removed":2}
+        current["counts"]["needs_review"]=4
+        message=make(metadata=current)
+        self.assertIn("✅ DParranda · Actualización completada",message)
+        self.assertIn("Eventos incorporados: 7",message)
+        self.assertIn("Eventos actualizados: 3",message)
+        self.assertIn("Eventos retirados del catálogo: 2",message)
+        self.assertIn("Pendientes de revisión: 4",message)
+        self.assertIn("Eventos en el catálogo: 492",message)
+        self.assertIn("https://canaryevent.vercel.app/admin/",message)
+        self.assertNotIn("Revisar: "+LINK,message)
+
+    def test_daily_digest_silent_without_changes(self):
+        current=meta()
+        current["changes"]={"available":True,"new":0,"updated":0,"removed":0}
+        self.assertIsNone(make(metadata=current))
+        self.assertIsNone(make(metadata=current,event="push"))
+        current["changes"]["new"]=2
+        self.assertIsNone(make(metadata=current,event="push"))
+        self.assertIsNotNone(make(metadata=current,event="schedule"))
+
+    def test_empty_baseline_cannot_inflate_new_event_count(self):
+        current=meta()
+        current["changes"]={"available":False,"new":400,"updated":0,"removed":0}
+        self.assertIsNone(make(metadata=current))
+        current["changes"]={"available":True,"new":"400","updated":0,"removed":0}
+        self.assertIsNone(make(metadata=current))
+
+    def test_daily_warning_includes_changes_and_sources_once(self):
+        current=meta()
+        current["changes"]={"available":True,"new":1,"updated":0,"removed":0}
+        message=make(quality(("Cuyás","TimeoutError")),metadata=current)
+        self.assertIn("Eventos incorporados: 1",message)
+        self.assertIn("Fuentes con incidencias: 1",message)
+        self.assertIn("Cuyás",message)
+        self.assertIn("Revisar: "+LINK,message)
+
+    def test_stale_reports_cannot_report_new_events(self):
+        current=meta()
+        current["changes"]={"available":True,"new":7,"updated":3,"removed":0}
+        current["checked_at"]="2026-10-27T22:01:37+00:00"
+        message=make(metadata=current)
+        self.assertIn("No se pudo validar",message)
+        self.assertNotIn("Eventos incorporados: 7",message)
+
     def test_clean_daily_sync_sends_no_message(self):
         self.assertIsNone(make())
         self.assertIsNone(make(event="push",quality_data=quality(("Site","Error"))))
