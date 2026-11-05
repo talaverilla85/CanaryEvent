@@ -48,6 +48,19 @@ def normalize_errors(quality):
         for row in entries if row.get("source") and row.get("error")
     ))
 
+def _valid_count(number):
+    return type(number) is int and 0<=number<=1000000
+
+
+def _changes(meta):
+    """Only trust true public-export diffs recorded by this sync run."""
+    report=meta.get("changes",{})
+    if not isinstance(report,dict) or report.get("available") is not True:
+        return None
+    counts=(report.get("new"),report.get("updated"),report.get("removed"))
+    return counts if all(_valid_count(value) for value in counts) else None
+
+
 def make_message(*,conclusion,event,url,started,finished,quality,meta):
     status=str(conclusion or "").lower()
     if status not in ("success","failure","cancelled","timed_out","action_required","skipped","neutral","stale"):
@@ -57,33 +70,46 @@ def make_message(*,conclusion,event,url,started,finished,quality,meta):
     fresh=(same_run(quality.get("checked_at"),started,finished)
            and same_run(meta.get("checked_at"),started,finished))
     errors=normalize_errors(quality) if fresh else []
-    # A push that completed but has noncritical source warnings is suppressed
-    # to avoid repeating the same message while editing the application.
+    changes=_changes(meta) if fresh else None
+    has_changes=changes is not None and any(changes)
+    # Successful developer pushes never generate a daily digest.
     if not is_failure and not scheduled:
         return None
-    if not is_failure and not fresh:
-        lines=["⚠️ DParranda · No se pudo validar el informe diario",
-               "El flujo terminó correctamente, pero el informe de calidad no pertenece a esta ejecución."]
-    elif not is_failure and not errors:
-        return None
-    elif is_failure:
+    if is_failure:
         lines=["🚨 DParranda · Falló la actualización automática",
                "Estado de GitHub: "+safe_line(status)]
-        if fresh and errors:
-            lines.append("Fuentes con incidencias: "+str(len(errors)))
+    elif not fresh:
+        lines=["⚠️ DParranda · No se pudo validar el informe diario",
+               "El flujo terminó correctamente, pero el informe de calidad no pertenece a esta ejecución."]
+    elif not errors and not has_changes:
+        return None
+    elif has_changes:
+        lines=["✅ DParranda · Actualización completada",
+               "🆕 Eventos incorporados: "+str(changes[0]),
+               "✏️ Eventos actualizados: "+str(changes[1])]
+        if changes[2]:
+            lines.append("🗂 Eventos retirados del catálogo: "+str(changes[2]))
     else:
         lines=["⚠️ DParranda · Problemas con "+str(len(errors))+" fuentes",
                "La sincronización general terminó, pero algunos conectores fallaron."]
     if fresh and errors:
+        lines.append("⚠️ Fuentes con incidencias: "+str(len(errors)))
         for name,error in errors[:MAX_SOURCES]:
             lines.append("• "+name+" — "+error[:60])
         if len(errors)>MAX_SOURCES:
             lines.append("• Y "+str(len(errors)-MAX_SOURCES)+" más")
     if fresh:
-        count=meta.get("counts",{}).get("approved")
-        if isinstance(count,int):
-            lines.append("Eventos públicos: "+str(count))
-    if url.startswith("https://github.com/") and "/actions/runs/" in url:
+        counts=meta.get("counts",{})
+        if isinstance(counts,dict):
+            count=counts.get("approved")
+            pending=counts.get("needs_review")
+            if _valid_count(count):
+                lines.append("📅 Eventos en el catálogo: "+str(count))
+            if has_changes and _valid_count(pending):
+                lines.append("🔎 Pendientes de revisión: "+str(pending))
+    if has_changes and not is_failure:
+        lines.append("Gestionar eventos: https://canaryevent.vercel.app/admin/")
+    if (is_failure or errors or not fresh) and url.startswith("https://github.com/") and "/actions/runs/" in url:
         lines.append("Revisar: "+url[:240])
     return "\n".join(lines)[:3800]
 
@@ -158,7 +184,7 @@ def run(environ=None,*,test=False):
     chat=env.get("TELEGRAM_CHAT_ID","").strip()
     if test:
         message=("✅ DParranda · Telegram conectado\n"
-                 "Prueba enviada desde GitHub Actions. Los avisos reales se enviarán solo si hay incidencias.")
+                 "Prueba enviada desde GitHub Actions. Recibirás un resumen diario cuando haya cambios o incidencias.")
     else:
         quality=load_report(QUALITY)
         meta=load_report(META)
