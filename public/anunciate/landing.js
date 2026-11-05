@@ -81,7 +81,7 @@ function updateSummary(){
  });
  renderTowns();
 }
-function resetPreview(){$('previewSection').hidden=true;$('checkoutInfo').textContent=''}
+function resetPreview(){$('formFeedback').textContent=''}
 document.querySelectorAll('[data-plan]').forEach(b=>b.addEventListener('click',()=>{
  const next=b.dataset.plan;if(!Object.hasOwn(PRICES,next))return;
  plan=next;if(plan==='local')chosen=chosen.slice(0,1);
@@ -112,10 +112,42 @@ $('advertImage').addEventListener('change',()=>{
  }
  resetPreview();
 });
-$('showPreview').addEventListener('click',()=>{
+// Keep the draft only in this browser tab. Nothing is sent to the server.
+// Compress artwork before using sessionStorage so mobile browsers can open the
+// simulator even when an original camera image is much larger.
+async function draftImage(file){
+ if(!file)return null;
+ const objectUrl=URL.createObjectURL(file);
+ try{
+  const img=new Image();
+  img.src=objectUrl;
+  await img.decode();
+  if(img.naturalWidth<200||img.naturalHeight<150)throw Error('La imagen es demasiado pequeña.');
+  const canvas=document.createElement('canvas');canvas.width=1000;canvas.height=563;
+  const ctx=canvas.getContext('2d',{alpha:false});
+  if(!ctx)throw Error('No se puede preparar la imagen.');
+  ctx.fillStyle='#e9f4f0';ctx.fillRect(0,0,1000,563);
+  // Match the public event and banner artwork crop.
+  const ratio=Math.max(1000/img.naturalWidth,563/img.naturalHeight);
+  const w=img.naturalWidth*ratio,h=img.naturalHeight*ratio;
+  ctx.drawImage(img,(1000-w)/2,(563-h)/2,w,h);
+  let blob=null;
+  for(const quality of [0.79,0.65,0.5,0.38]){
+   blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/webp',quality));
+   if(blob&&blob.size<620000)break;
+  }
+  if(!blob||blob.size>620000)throw Error('No se ha podido optimizar la imagen.');
+  return await new Promise((resolve,reject)=>{
+   const reader=new FileReader();reader.onload=()=>resolve(reader.result);
+   reader.onerror=()=>reject(Error('No se pudo leer la imagen.'));
+   reader.readAsDataURL(blob);
+  });
+ }finally{URL.revokeObjectURL(objectUrl)}
+}
+$('showPreview').addEventListener('click',async()=>{
  const name=$('advertiser').value.trim(),title=$('headline').value.trim(),
-  description=$('description').value.trim(),target=$('destination').value.trim(),start=$('campaignStart').value;
- const isEvent=$('formatType').value==='evento';
+  description=$('description').value.trim(),target=$('destination').value.trim(),
+  start=$('campaignStart').value,isEvent=$('formatType').value==='evento';
  const eventVenue=$('eventVenue').value.trim(),eventDate=$('eventDate').value,eventTown=$('eventTown').value;
  const problems=[];
  if(plan!=='insular'&&chosen.length===0)problems.push('elige al menos un municipio');
@@ -132,30 +164,29 @@ $('showPreview').addEventListener('click',()=>{
  }
  if(unsupportedImage)problems.push('corrige el archivo de imagen');
  if(problems.length){
-  $('formFeedback').textContent='Para ver el resumen: '+problems.join('; ')+'.';
-  $('previewSection').hidden=true;
+  $('formFeedback').textContent='Para continuar: '+problems.join('; ')+'.';
   $('formFeedback').scrollIntoView({behavior:'smooth',block:'center'});
   return;
  }
- const total=PRICES[plan]*(days/30);
- $('reviewTitle').textContent=title;
- $('reviewDescription').textContent=description;
- $('reviewBrand').textContent=name;
- $('reviewArea').textContent='Cobertura: '+(plan==='insular'?'toda Gran Canaria':chosen.join(', '));
- $('reviewTime').textContent='Del '+showDate(start)+' al '+showDate(utcEnd(start,days));
- $('reviewUrl').textContent='Destino: '+target;
- $('reviewEvent').hidden=!isEvent;
- $('reviewEvent').textContent=isEvent?'Evento: '+eventTown+' · '+eventVenue+' · '+eventDate.replace('T',' '):'';
- $('reviewImage').hidden=!imageUrl;
- $('noImage').hidden=!!imageUrl;
- if(imageUrl)$('reviewImage').src=imageUrl;
- else $('reviewImage').removeAttribute('src');
- $('checkoutSummary').textContent=LABELS[plan]+' · '+days+' días · '+total+' €';
- $('previewSection').hidden=false;
- $('checkoutInfo').textContent='';
- $('formFeedback').textContent='Vista previa lista. No se ha publicado.';
- $('previewSection').scrollIntoView({behavior:'smooth',block:'start'});
+ const button=$('showPreview');button.disabled=true;button.textContent='Preparando simulador…';
+ try{
+  const file=$('advertImage').files?.[0]||null;
+  const image=await draftImage(file);
+  const payload={
+   version:1,createdAt:Date.now(),kind:isEvent?'evento':'banner',
+   advertiser:name,title,description,destination:target,
+   plan,days,municipalities:plan==='insular'?[]:[...chosen],
+   start,end:utcEnd(start,days),total:PRICES[plan]*(days/30),
+   eventVenue:isEvent?eventVenue:'',eventDate:isEvent?eventDate:'',
+   eventTown:isEvent?eventTown:'',image:image||null
+  };
+  sessionStorage.setItem('dp_ad_simulator_v1',JSON.stringify(payload));
+  window.location.assign('/anunciate/simulador/');
+ }catch(e){
+  $('formFeedback').textContent=e instanceof Error?e.message:'No se puede abrir el simulador.';
+ }finally{button.disabled=false;button.textContent='Ver en DParranda'}
 });
+
 $('resetDraft').addEventListener('click',()=>{
  ['advertiser','headline','description','destination','campaignStart','eventVenue','eventDate'].forEach(id=>$(id).value='');
  $('formatType').value='banner';$('eventDetails').hidden=true;
