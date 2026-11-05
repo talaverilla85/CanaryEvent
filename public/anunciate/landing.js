@@ -153,11 +153,8 @@ $('showPreview').addEventListener('click',()=>{
  $('checkoutSummary').textContent=LABELS[plan]+' · '+days+' días · '+total+' €';
  $('previewSection').hidden=false;
  $('checkoutInfo').textContent='';
- $('formFeedback').textContent='Vista previa generada en tu dispositivo. Sin registro, envío de datos ni cobro.';
+ $('formFeedback').textContent='Vista previa lista. No se ha publicado.';
  $('previewSection').scrollIntoView({behavior:'smooth',block:'start'});
-});
-$('checkoutButton').addEventListener('click',()=>{
- $('checkoutInfo').textContent='Todavía no está disponible el pago. Falta conectar Stripe, la comprobación de cupos y el aviso legal. No se ha creado ni cobrado ninguna campaña.';
 });
 $('resetDraft').addEventListener('click',()=>{
  ['advertiser','headline','description','destination','campaignStart','eventVenue','eventDate'].forEach(id=>$(id).value='');
@@ -167,7 +164,7 @@ $('resetDraft').addEventListener('click',()=>{
  $('imagePreview').hidden=true;$('previewImg').removeAttribute('src');
  unsupportedImage=false;$('advertImage').setCustomValidity('');
  plan='local';days=30;chosen=[];
- updateSummary();resetPreview();$('formFeedback').textContent='Borrador reiniciado. No se ha guardado ni enviado nada.';
+ updateSummary();resetPreview();$('formFeedback').textContent='Formulario borrado.';
 });
 window.addEventListener('pagehide',()=>{if(imageUrl)URL.revokeObjectURL(imageUrl)});
 updateSummary();
