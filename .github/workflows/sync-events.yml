@@ -8,6 +8,9 @@ on:
     branches: [main]
     paths:
       - "scripts/sync_events.py"
+      - "scripts/catalog_changes.py"
+      - "scripts/curated_official_images.py"
+      - "data/official_event_images.json"
       - "scripts/postgres_migration.py"
       - "sql/postgres_schema.sql"
       - "scripts/cabildo_public.py"
