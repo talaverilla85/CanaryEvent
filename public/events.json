@@ -588,10 +588,10 @@
       "accuracy": "municipality",
       "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "source_url": "https://eventos.santabrigida.es/eventos/atartufados-teatro-de-calle-en-los-barrios/",
-      "image_url": "",
-      "image_alt": "",
-      "image_origin": "",
-      "image_status": "",
+      "image_url": "https://eventos.santabrigida.es/wp-content/uploads/2026/10/Atartufados-Noviembre.jpg",
+      "image_alt": "‘Atartufados’: teatro de calle en los barrios",
+      "image_origin": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "image_status": "official_remote",
       "organizer_url": ""
     },
     {
@@ -868,7 +868,7 @@
       "image_alt": "CASA DEL TERROR DE TEROR - APOCALIPSIS ZOMBIE",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": "",
+      "organizer_url": "https://www.tureservaonline.es/es/events/casa-del-terror-de-teror-apocalipsis-zombie",
       "series_id": 811,
       "series_start": "2026-11-06",
       "series_end": "2026-11-08",
@@ -1068,7 +1068,7 @@
       "accuracy": "venue",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-816-jazz-otono-2026.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_816-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_816-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "JAZZ OTOÑO 2026 - ROBERT KESSLER TRIO",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1182,7 +1182,7 @@
       "image_alt": "CASA DEL TERROR DE TEROR - APOCALIPSIS ZOMBIE",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": "",
+      "organizer_url": "https://www.tureservaonline.es/es/events/casa-del-terror-de-teror-apocalipsis-zombie",
       "series_id": 811,
       "series_start": "2026-11-06",
       "series_end": "2026-11-08",
@@ -1464,7 +1464,7 @@
       "image_alt": "SENDERISMOS CRUZ DE TEJEDA - FONTANALES (POR VALSENDERO)",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/senderismos-cruz-de-tejeda-fontanales-por-valsendero"
     },
     {
       "id": 453,
@@ -1592,7 +1592,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-770-jazz-otono-2026.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_770-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_770-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "JAZZ OTOÑO 2026- JUDITH HILL QUARTET",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1768,7 +1768,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-894-ananda.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_894-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_894-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "ANANDA",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1812,7 +1812,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-902-los-coquillos-gira.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_902-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_902-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "LOS COQUILLOS GIRA 30 ANIVERSARIO",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -1838,7 +1838,7 @@
       "image_alt": "CASA DEL TERROR DE TEROR - APOCALIPSIS ZOMBIE",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": "",
+      "organizer_url": "https://www.tureservaonline.es/es/events/casa-del-terror-de-teror-apocalipsis-zombie",
       "series_id": 811,
       "series_start": "2026-11-06",
       "series_end": "2026-11-08",
@@ -2466,7 +2466,7 @@
       "image_alt": "XVIII MUESTRA INSULAR CORTOMETRAJES DE PERSONAS CON DISCAPACIDAD",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/xviii-muestra-insular-cortometrajes-de-personas-con-discapacidad"
     },
     {
       "id": 802,
@@ -2528,7 +2528,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-848-el-nino-de-la.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_848-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_848-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "EL NIÑO DE LA MEDIA LUNA",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2782,7 +2782,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-900-corazon-valiente.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_900-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_900-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "CORAZÓN VALIENTE",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -2848,7 +2848,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-771-flamenc-oh-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_771-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_771-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "FLAMENC OH! de YLLANA",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3272,7 +3272,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-771-flamenc-oh-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_771-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_771-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "FLAMENC OH! de YLLANA",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3294,7 +3294,7 @@
       "accuracy": "venue",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-817-festival-fex-2026.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_817-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_817-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "FESTIVAL FEX 2026- Good Franco",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -3684,7 +3684,7 @@
       "image_alt": "PROYECCIÓN \"NO ESTÁS LOCA. LA VERDAD SOBRE LA VIOLENCIA VICARIA\"",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/proyeccion-no-estas-loca-la-verdad-sobre-la-violencia-vicaria"
     },
     {
       "id": -57620261117,
@@ -4094,7 +4094,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-851-mi-sueno-de-invierno.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_851-1.png?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_851-1.png?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "Mi sueño de invierno",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -4232,7 +4232,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-772-escape-room-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_772-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_772-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "ESCAPE ROOM de Joel Joan y Hèctor Claramunt",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -4320,7 +4320,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-872-ananda.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_872-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_872-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "ANANDA",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -4650,7 +4650,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-772-escape-room-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_772-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_772-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "ESCAPE ROOM de Joel Joan y Hèctor Claramunt",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -4666,13 +4666,13 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Más información sobre el espectáculo en la ficha oficial.",
+      "details": "La nueva edición del Festival En Conexión (FEX) ofrece dos de los proyectos más destacados de la escena local canaria: la baterista y compositora Xerach y la banda Good Franco.",
       "lat": 28.1073434,
       "lng": -15.420872,
       "accuracy": "venue",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-818-festival-fex-2026.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_818-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_818-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "FESTIVAL FEX 2026 - Xerach",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -5156,7 +5156,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-849-en-busca-de-la.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_849-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_849-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "En Busca De La Magia - Un musical Fantastico",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -5304,13 +5304,13 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Más información sobre el espectáculo en la ficha oficial.",
+      "details": "Una coproducción de Centro Dramático Nacional y Teatro kamikaze con la participación de Crea SGR.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-773-el-entusiasmo-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_773-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_773-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "EL ENTUSIASMO de Pablo Remón",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -5354,7 +5354,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-842-la-local-jazz-band.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_842-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_842-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "LA LOCAL JAZZ BAND - TEATRO KOREA",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -5398,7 +5398,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-853-aristides-moreno.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_853-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_853-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "Arístides Moreno & 101 Brass Band - aBRASSongs, canciones que aBRASSan",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -5420,6 +5420,28 @@
       "accuracy": "municipality",
       "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "source_url": "https://eventos.santabrigida.es/eventos/noche-de-vinos-2026/",
+      "image_url": "",
+      "image_alt": "",
+      "image_origin": "",
+      "image_status": "",
+      "organizer_url": ""
+    },
+    {
+      "id": 823,
+      "title": "Tres Voces del siglo XX",
+      "start": "2026-11-27T20:00:00",
+      "end": null,
+      "municipality": "Las Palmas de Gran Canaria",
+      "venue": "Auditorio Alfredo Kraus",
+      "category": "musica",
+      "free": null,
+      "price": "",
+      "details": "Programación oficial de Auditorio Alfredo Kraus.",
+      "lat": 28.1302128,
+      "lng": -15.4490139,
+      "accuracy": "venue",
+      "source_name": "Auditorio Alfredo Kraus · programación oficial",
+      "source_url": "https://auditorioalfredokraus.es/evento/tres-voces-del-siglo-xx",
       "image_url": "",
       "image_alt": "",
       "image_origin": "",
@@ -5634,13 +5656,13 @@
       "category": "cultura",
       "free": null,
       "price": "",
-      "details": "Más información sobre el espectáculo en la ficha oficial.",
+      "details": "Una coproducción de Centro Dramático Nacional y Teatro kamikaze con la participación de Crea SGR.",
       "lat": 28.124,
       "lng": -15.436,
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-773-el-entusiasmo-de.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_773-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_773-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "EL ENTUSIASMO de Pablo Remón",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -5794,7 +5816,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-859-los-coquillos-gira.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_859-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_859-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "LOS COQUILLOS GIRA 30 ANIVERSARIO",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -5882,7 +5904,7 @@
       "accuracy": "municipality",
       "source_name": "Circuito de Artes Escénicas GC",
       "source_url": "https://artesescenicasgrancanaria.com/evento-901-bodas-de-sangre.html",
-      "image_url": "https://artesescenicasgrancanaria.com/plot/event_901-1.jpg?fp=7a12c5ce902bfad6bfc492075b09aea0",
+      "image_url": "https://artesescenicasgrancanaria.com/plot/event_901-1.jpg?fp=9ff7bc9599b8d766d726073599220468",
       "image_alt": "BODAS DE SANGRE ITINERANTE",
       "image_origin": "Circuito de Artes Escénicas GC",
       "image_status": "official_remote",
@@ -7110,7 +7132,7 @@
       "image_alt": "CHAMPAGNE GIRLS",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/champagne-girls"
     },
     {
       "id": 368,
@@ -8334,7 +8356,7 @@
       "image_alt": "SWINGSTAR EN TELDE 2026",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/swingstar-en-telde-2026"
     },
     {
       "id": 668,
@@ -8494,7 +8516,7 @@
       "image_alt": "CORAZÓN VALIENTE, EL SOLDADITO DE PLOMO - GÁLDAR",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/corazon-valiente-el-soldadito-de-plomo-galdar"
     },
     {
       "id": 417,
@@ -8780,7 +8802,7 @@
       "image_alt": "SALIDA CULTURAL AL TEATRO PÉREZ GALDÓS - EL FANTASMA DE LA ÓPERA",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/salida-cultural-al-teatro-perez-galdos-el-fantasma-de-la-opera"
     },
     {
       "id": 715,
@@ -10402,7 +10424,7 @@
       "image_alt": "SHOW PATÉTICO - ABIÁN DÍAZ - GÁLDAR",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/show-patetico-abian-diaz-galdar"
     },
     {
       "id": 607,
@@ -10490,7 +10512,7 @@
       "image_alt": "GOOL, UN ESPECTÁCULO DE YLLANA - INGENIO",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/gool-un-espectaculo-de-yllana-ingenio"
     },
     {
       "id": 821,
@@ -10512,7 +10534,7 @@
       "image_alt": "FLAMENC OH!!",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/flamenc-oh"
     },
     {
       "id": 822,
@@ -10534,10 +10556,10 @@
       "image_alt": "GOOL, UN ESPECTÁCULO DE YLLANA",
       "image_origin": "TuReservaOnline",
       "image_status": "official_remote",
-      "organizer_url": ""
+      "organizer_url": "https://www.tureservaonline.es/es/events/gool-un-espectaculo-de-yllana"
     }
   ],
-  "generated_at": "2026-11-05T21:08:23+00:00",
+  "generated_at": "2026-11-05T21:32:11+00:00",
   "timezone": "Atlantic/Canary",
-  "verified_sources": 38
+  "verified_sources": 40
 }

@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-05T21:07:50.907556+00:00",
+  "checked_at": "2026-11-05T21:31:48.850787+00:00",
   "mode": "api",
   "model": "gpt-6-luna",
   "api_calls": 0,
@@ -7,7 +7,7 @@
   "documents": [],
   "errors": [],
   "deferred": [],
-  "archived_this_run": 13,
+  "archived_this_run": 0,
   "pending_review_count": 0,
   "auto_verified_count": 0,
   "archived_count": 63

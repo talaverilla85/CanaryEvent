@@ -1515,5 +1515,505 @@
       "total_tokens": 1060
     },
     "measured_cost_usd": 0.0001256
+  },
+  "ecd40a83e9f845b2bda3522e9b0e87d20cf8047b3d75224d456c5b19b16f25c9/4/gpt-6-luna/text-fallback-vision-v3/ai_text": {
+    "output": {
+      "events": [
+        {
+          "title": "Izada de la Bandera Canaria",
+          "date": "2026-09-04",
+          "time": "20:00",
+          "venue": "Plaza de La Garita",
+          "evidence": "VIERNES, DÍA 4 DE SEPTIEMBRE; 20: 00 horas; Izada de la BANDERA CANARIA",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Pregón a cargo de Doña Marta Cristina Marcuso Díaz",
+          "date": "2026-09-04",
+          "time": "20:30",
+          "venue": "Plaza de La Garita",
+          "evidence": "VIERNES, DÍA 4 DE SEPTIEMBRE; 20:30 horas: Pregón a cargo de Doña Marta Cristina Marcuso Díaz.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Actuación del grupo “Lazos Musicales”",
+          "date": "2026-09-04",
+          "time": "21:00",
+          "venue": "Plaza de La Garita",
+          "evidence": "VIERNES, DÍA 4 DE SEPTIEMBRE; 21:00 horas: Actuación del grupo “Lazos Musicales”.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Zonal de Folklore Anzar",
+          "date": "2026-09-04",
+          "time": "21:30",
+          "venue": "Plaza de La Garita",
+          "evidence": "VIERNES, DÍA 4 DE SEPTIEMBRE; 21:30 horas: Zonal de Folklore Anzar.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "GARITEQUE",
+          "date": "2026-09-05",
+          "time": "21:00",
+          "venue": "Plaza de La Garita",
+          "evidence": "SÁBADO, DÍA 5 DE SEPTIEMBRE; 21: 00 horas: \" GARITEQUE”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Actuaciones infantiles",
+          "date": "2026-09-06",
+          "time": "18:30",
+          "venue": "Plaza de La Garita",
+          "evidence": "DOMINGO, DÍA 6 DE SEPTIEMBRE; 18:30 horas: Actuaciones infantiles.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "GARITA´S ROCK",
+          "date": "2026-09-07",
+          "time": "20:30",
+          "venue": "Plaza de La Garita",
+          "evidence": "LUNES, DÍA 7 DE SEPTIEMBRE; 20: 30 horas: “GARITA´S ROCK”.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Levantamiento del Arado, por Juanfra, hijo de Pepe el Arado",
+          "date": "2026-09-08",
+          "time": "19:30",
+          "venue": "Plaza de La Garita",
+          "evidence": "MARTES, DÍA 8 DE SEPTIEMBRE; 19: 30 horas: “Levantamiento del Arado”, por Juanfra, hijo de Pepe el Arado.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Karaoke para todas las edades",
+          "date": "2026-09-08",
+          "time": "20:00",
+          "venue": "Plaza de La Garita",
+          "evidence": "MARTES, DÍA 8 DE SEPTIEMBRE; 20:00 horas: “Karaoke” para todas las edades.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 847,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1016,
+      "output_tokens_details": {
+        "reasoning_tokens": 220
+      },
+      "total_tokens": 1863
+    },
+    "measured_cost_usd": 0.0005927
+  },
+  "ecd40a83e9f845b2bda3522e9b0e87d20cf8047b3d75224d456c5b19b16f25c9/5/gpt-6-luna/text-fallback-vision-v3/ai_text": {
+    "output": {
+      "events": [
+        {
+          "title": "Talleres Infantiles, pintura dibujo, juguetes",
+          "date": "2026-09-09",
+          "time": "19:00",
+          "venue": "Plaza de La Garita",
+          "evidence": "MIÉRCOLES, DÍA 9 DE SEPTIEMBRE — 19:00 horas: Talleres Infantiles",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Taller de Defensa Personal",
+          "date": "2026-09-10",
+          "time": "19:00",
+          "venue": "Plaza de La Garita",
+          "evidence": "JUEVES, DÍA 10 DE SEPTIEMBRE — 19:00 horas: Taller de Defensa Personal.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Actuación Homenaje: Elías Uche Ruano actuará con los Mariachis y artistas amigos en recuerdo de Elías Ruano Suárez",
+          "date": "2026-09-11",
+          "time": "21:00",
+          "venue": "Plaza La Garita",
+          "evidence": "VIERNES, DÍA 11 DE SEPTIEMBRE — 21:00 horas: Actuación Homenaje",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "DJ AIRÁN VEGA",
+          "date": "2026-09-12",
+          "time": "22:00",
+          "venue": "Plaza La Garita",
+          "evidence": "SÁBADO, DÍA 12 DE SEPTIEMBRE — 22:00 horas: “DJ AIRÁN VEGA”.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Actividades infantiles con espectáculo",
+          "date": "2026-09-13",
+          "time": "Desde las 10:30 hasta las 13:00",
+          "venue": "Plaza de la Garita",
+          "evidence": "DOMINGO, DÍA 13 DE SEPTIEMBRE — Desde las 10:30 hasta las 13:00 horas: Actividades infantiles con espectáculo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Juego del Parchís",
+          "date": "2026-09-13",
+          "time": "19:00",
+          "venue": "Plaza de la Garita",
+          "evidence": "DOMINGO, DÍA 13 DE SEPTIEMBRE — 19:00 horas: Juego del Parchís.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Jugando a la “Lotería de la Abuela”",
+          "date": "2026-09-14",
+          "time": "19:00",
+          "venue": "Plaza de La Garita",
+          "evidence": "LUNES, DÍA 14 DE SEPTIEMBRE — 19:00 horas: Jugando a la “Lotería de la Abuela”.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Exposición de trabajos “Tejedoras de Telde”",
+          "date": "2026-09-15",
+          "time": "18:30",
+          "venue": "Plaza de La Garita",
+          "evidence": "MARTES, DÍA 15 DE SEPTIEMBRE — 18:30 horas: Exposición de trabajos “Tejedoras de Telde”.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "“Rastrillo Solidario”",
+          "date": "2026-09-16",
+          "time": "De 11:00 a 20:00",
+          "venue": "Plaza de La Garita",
+          "evidence": "MIÉRCOLES, DÍA 16 DE SEPTIEMBRE — De 11:00 a 20:00 horas: “Rastrillo Solidario”.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 913,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1061,
+      "output_tokens_details": {
+        "reasoning_tokens": 234
+      },
+      "total_tokens": 1974
+    },
+    "measured_cost_usd": 0.0006218
+  },
+  "ecd40a83e9f845b2bda3522e9b0e87d20cf8047b3d75224d456c5b19b16f25c9/6/gpt-6-luna/text-fallback-vision-v3/ai_text": {
+    "output": {
+      "events": [
+        {
+          "title": "I Torneo de Ajedrez",
+          "date": "2026-09-17",
+          "time": null,
+          "venue": "Plaza de La Garita",
+          "evidence": "JUEVES, DÍA 17 DE SEPTIEMBRE: “I Torneo de Ajedrez”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Reconocimiento cívico ciudadano a los vecinos",
+          "date": "2026-09-18",
+          "time": "20:00",
+          "venue": "Plaza de La Garita",
+          "evidence": "VIERNES, DÍA 18 DE SEPTIEMBRE: 20:00 horas: Reconocimiento cívico ciudadano a los vecinos",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Actuación de la Parranda “La Sal”",
+          "date": "2026-09-18",
+          "time": null,
+          "venue": "Plaza de La Garita",
+          "evidence": "VIERNES, DÍA 18 DE SEPTIEMBRE: Actuación de la Parranda “La Sal”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Romería - Ofrenda",
+          "date": "2026-09-19",
+          "time": "20:00",
+          "venue": "C/ Bunganvilla, Avenida Marítima, C/ Palmera, Subida Fresno - Iglesia",
+          "evidence": "SÁBADO, DÍA 19 DE SEPTIEMBRE: 20:00 horas: Romería - Ofrenda",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "DJSERCY",
+          "date": "2026-09-20",
+          "time": "12:00–14:00",
+          "venue": "Plaza de La Garita",
+          "evidence": "DOMINGO, DÍA 20 DE SEPTIEMBRE: De 12:00 a 14:00 h.: DJSERCY",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Batalla del agua",
+          "date": "2026-09-20",
+          "time": "12:00–14:00",
+          "venue": "Plaza de La Garita",
+          "evidence": "DOMINGO, DÍA 20 DE SEPTIEMBRE: De 12:00 a 14:00 h.: “Batalla del agua”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Degustación de una paella",
+          "date": "2026-09-20",
+          "time": "14:30",
+          "venue": "Plaza de La Garita",
+          "evidence": "DOMINGO, DÍA 20 DE SEPTIEMBRE: 14:30 horas: Degustación de una paella",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 803,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 972,
+      "output_tokens_details": {
+        "reasoning_tokens": 352
+      },
+      "total_tokens": 1775
+    },
+    "measured_cost_usd": 0.0005663
+  },
+  "d3ca33fe8115fe61a986ca83a628752a5c77cc7e436d9f42d526f81df58dfacd/1/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Ornamentación de calles con puesta de banderas",
+          "date": "2026-09-09",
+          "time": null,
+          "venue": null,
+          "evidence": "Miércoles, 09 de septiembre — Ornamentación de calles con puesta de banderas",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Pasacalles anunciador",
+          "date": "2026-09-10",
+          "time": null,
+          "venue": null,
+          "evidence": "Jueves, 10 de septiembre — Pasacalles anunciador",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Pregón de las fiestas a cargo de D. Antonio Manuel Acosta Felipe",
+          "date": "2026-09-10",
+          "time": "20:00",
+          "venue": null,
+          "evidence": "Jueves, 10 de septiembre — 20.00 Pregón de las fiestas a cargo de D. Antonio Manuel Acosta Felipe",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "IV Encuentro Nany Jiménez",
+          "date": "2026-09-10",
+          "time": "21:00",
+          "venue": null,
+          "evidence": "Jueves, 10 de septiembre — 21:00 IV Encuentro Nany Jiménez",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Juegos Infantiles y Chocolatada “Neno Manzón”",
+          "date": "2026-09-11",
+          "time": "17:00",
+          "venue": null,
+          "evidence": "Viernes, 11 de septiembre — 17.00 Juegos Infantiles y Chocolatada “Neno Manzón”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Actuación musical “Cremita de Coco”",
+          "date": "2026-09-11",
+          "time": "21:00",
+          "venue": null,
+          "evidence": "Viernes, 11 de septiembre — 21:00 Actuación musical “Cremita de Coco”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Actuación musical “Los Sarrantontones”",
+          "date": "2026-09-11",
+          "time": "22:30",
+          "venue": null,
+          "evidence": "Viernes, 11 de septiembre — 22:30 Actuación musical “Los Sarrantontones”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Competiciones deportivas Torneo Paco Laceres",
+          "date": "2026-09-12",
+          "time": null,
+          "venue": null,
+          "evidence": "Sábado, 12 de septiembre — Competiciones deportivas Torneo Paco Laceres",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Talleres Infantiles",
+          "date": "2026-09-12",
+          "time": "11:00–13:00",
+          "venue": null,
+          "evidence": "Sábado, 12 de septiembre — 11.00 a 13.00 Talleres Infantiles",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Espectáculo familiar",
+          "date": "2026-09-12",
+          "time": "12:00",
+          "venue": null,
+          "evidence": "Sábado, 12 de septiembre — 12.00 Espectáculo familiar",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Fiesta de la espuma",
+          "date": "2026-09-12",
+          "time": "13:00",
+          "venue": null,
+          "evidence": "Sábado, 12 de septiembre — 13.00 Fiesta de la espuma",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Escala en Hifi",
+          "date": "2026-09-12",
+          "time": "20:30",
+          "venue": null,
+          "evidence": "Sábado, 12 de septiembre — 20.30 Escala en Hifi",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Disco familiar con Dj Ruyman",
+          "date": "2026-09-12",
+          "time": null,
+          "venue": null,
+          "evidence": "Sábado, 12 de septiembre — A continuación Disco familiar con Dj Ruyman",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Tradicionales alfombras de sal",
+          "date": "2026-09-13",
+          "time": "08:00",
+          "venue": null,
+          "evidence": "Domingo, 13 de septiembre — 08:00 Tradicionales alfombras de sal",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Misa en honor al Santo Cristo",
+          "date": "2026-09-13",
+          "time": "12:30",
+          "venue": null,
+          "evidence": "Domingo, 13 de septiembre — 12:30 Misa en honor al Santo Cristo",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Procesión marítimo terrestre por las calles del barrio",
+          "date": "2026-09-13",
+          "time": "13:30",
+          "venue": null,
+          "evidence": "Domingo, 13 de septiembre — 13:30 Procesión marítimo terrestre por las calles del barrio",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Fin de fiestas con Batucada Piratas del Caribe",
+          "date": "2026-09-13",
+          "time": null,
+          "venue": null,
+          "evidence": "Domingo, 13 de septiembre — Fin de fiestas con Batucada Piratas del Caribe",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3397,
+      "input_tokens_details": {
+        "cache_write_tokens": 3394,
+        "cached_tokens": 0
+      },
+      "output_tokens": 2437,
+      "output_tokens_details": {
+        "reasoning_tokens": 1212
+      },
+      "total_tokens": 5834
+    },
+    "measured_cost_usd": 0.0015582
   }
 }
