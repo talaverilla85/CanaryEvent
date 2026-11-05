@@ -825,7 +825,68 @@ function openFilters(){$('filtersBackdrop').classList.remove('hidden');$('filter
 function closeFilters(){$('filtersBackdrop').classList.add('hidden');$('filtersPanel').classList.add('hidden');$('openFiltersBtn').setAttribute('aria-expanded','false');if($('modal').classList.contains('hidden'))document.body.style.overflow='';$('openFiltersBtn').focus()}
 function setIsland(name){if(!ISLANDS.includes(name))return;state.island=name;state.tab='explore';state.newOnly=false;state.visibleLimit=48;try{localStorage.setItem('dparranda_island_v1',name)}catch{}render()}
 function resetDParrandaFilters(){setIsland('Gran Canaria');state.when=null;state.freeOnly=false;state.dateRange=null;state.dateRangeLabel='';state.categories.clear();state.query='';state.sort='recommended';state.municipality='';state.origin=null;state.originName='Toda Gran Canaria';state.geoManualOverride=true;state.geoRequestSeq++;$('locationName').textContent=state.originName;$('searchInput').value='';$('clearSearch').classList.add('hidden');$('sortSelect').value='recommended';try{localStorage.removeItem('padonde_selected_categories');localStorage.removeItem('plangc_municipio')}catch{}closeCustomDatePanel();render()}
-function render(){renderCategories();renderIslands();renderNewEventNotice();const events=filtered();const shown=events.slice(0,state.visibleLimit);const showPromotions=state.tab==='explore'&&!state.query&&state.island==='Gran Canaria';const sponsorAt=sponsorInsertAfter();$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente ',custom:state.dateRangeLabel+' '}[state.when]||'Todos los planes ');
+/* A live magazine cover based only on published, actual events. */
+let editorialFeatureId=null;
+function renderEditorial(visible){
+ const dateElement=$('dpBrandDate');
+ if(dateElement){
+  const label=new Intl.DateTimeFormat('es-ES',{
+   timeZone:'Atlantic/Canary',weekday:'long',day:'numeric',month:'long'
+  }).format(new Date());
+  dateElement.textContent=label.charAt(0).toUpperCase()+label.slice(1);
+ }
+ const countEl=$('dpPulseCount'),newEl=$('dpPulseNewText');
+ const newCount=state.newEventIds instanceof Set?state.newEventIds.size:0;
+ newEl.textContent=newCount?newCount+(newCount===1?' plan nuevo':' planes nuevos'):'Ver próximos';
+ if(state.island!=='Gran Canaria'){
+  countEl.textContent='Próximamente en '+state.island;
+  $('dpFeaturedOpen').disabled=true;
+  $('dpFeatureTitle').textContent='Muy pronto, más islas';
+  $('dpFeatureMeta').textContent='Descubre los planes de Gran Canaria';
+  $('dpFeatureMedia').replaceChildren();
+  editorialFeatureId=null;
+  return;
+ }
+ const upcoming=state.events.filter(e=>e&&e.start&&
+  !DParrandaTime.hasFinished(e,localTimeKey()));
+ countEl.textContent=upcoming.length===1?'1 plan próximo en Gran Canaria':
+  upcoming.length.toLocaleString('es-ES')+' planes próximos en Gran Canaria';
+ const eligible=(visible.length?visible:upcoming)
+  .filter(e=>e&&e.id!==undefined&&!e.paid_promotion&&e.title);
+ const next=eligible.find(e=>verifiedImage(e))||eligible[0]||null;
+ if(!next){
+  $('dpFeaturedOpen').disabled=true;
+  $('dpFeatureTitle').textContent='La agenda se está preparando';
+  $('dpFeatureMeta').textContent='Explora los planes de Gran Canaria';
+  $('dpFeatureMedia').replaceChildren();
+  editorialFeatureId=null;
+  return;
+ }
+ $('dpFeaturedOpen').disabled=false;
+ $('dpFeaturedOpen').dataset.eventId=String(next.id);
+ $('dpFeaturedOpen').setAttribute('aria-label','Ver ficha: '+next.title);
+ $('dpFeatureTitle').textContent=next.title;
+ $('dpFeatureMeta').textContent=dayName(next.start)+' · '+next.municipality;
+ const image=verifiedImage(next);
+ const key=String(next.id)+'|'+image;
+ if(key===editorialFeatureId)return;
+ editorialFeatureId=key;
+ const media=$('dpFeatureMedia');
+ media.replaceChildren();
+ const motif=document.createElement('span');
+ motif.className='dp-feature-fallback';motif.setAttribute('aria-hidden','true');motif.textContent='✳';
+ media.append(motif);
+ if(image){
+  const img=document.createElement('img');
+  img.src=image;img.alt='Imagen del evento '+next.title;
+  img.decoding='async';img.loading='eager';img.referrerPolicy='strict-origin-when-cross-origin';
+  if(/\/plot\/event_|eventos\.santabrigida\.es|lpacultura\.com|teror\.es|tejeda\.eu|www\.galdar\.es|www\.arucas\.org|santamariadeguia\.es/i.test(image))
+    img.classList.add('poster-art');
+  img.addEventListener('error',()=>img.remove(),{once:true});
+  media.append(img);
+ }
+}
+function render(){renderCategories();renderIslands();renderNewEventNotice();const events=filtered();renderEditorial(events);const shown=events.slice(0,state.visibleLimit);const showPromotions=state.tab==='explore'&&!state.query&&state.island==='Gran Canaria';const sponsorAt=sponsorInsertAfter();$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente ',custom:state.dateRangeLabel+' '}[state.when]||'Todos los planes ');
  document.querySelectorAll('[data-quick-when]').forEach(b=>{const active=state.when===b.dataset.quickWhen;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
  const freeShortcut=document.querySelector('[data-quick-free]');freeShortcut.classList.toggle('active',state.freeOnly);freeShortcut.setAttribute('aria-pressed',String(state.freeOnly));
  $('eventsGrid').innerHTML=shown.map((e,i)=>{
@@ -1126,6 +1187,36 @@ api('/api/meta').then(meta=>{
     (errors?' · '+errors+' fuente(s) con incidencias':'');
 }).catch(()=>{$('sourceStatus').textContent=count+' planes próximos · Fecha de revisión no disponible';});render();if(!$('mapPanel').classList.contains('hidden'))drawMap();const id=new URLSearchParams(location.search).get('evento');if(id&&state.events.some(e=>e.id===+id)&&!state.seen){state.seen=1;showEvent(id)}}catch(error){try{const saved=JSON.parse(localStorage.getItem('plangc_event_cache'));if(saved.events?.length){state.events=saved.events;$('sourceStatus').textContent='Sin conexión · Mostrando datos guardados (pueden estar desactualizados)';render();return}}catch{}$('sourceStatus').textContent='No se ha podido conectar con el catálogo';toast('Error de conexión con la agenda')}}
 function init(){
+ const jumpToPlans=()=>document.querySelector('.discovery')?.scrollIntoView({block:'start',behavior:'smooth'});
+ $('dpHeroToday').onclick=()=>{
+  document.querySelector('[data-quick-when="today"]')?.click();
+  jumpToPlans();
+ };
+ $('dpHeroWeekend').onclick=()=>{
+  document.querySelector('[data-quick-when="weekend"]')?.click();
+  jumpToPlans();
+ };
+ $('dpFeaturedOpen').onclick=()=>{
+  const id=$('dpFeaturedOpen').dataset.eventId;
+  if(id)showEvent(id);
+ };
+ $('dpPulseNew').onclick=()=>{
+  if(state.newEventIds instanceof Set && state.newEventIds.size){
+   $('newEventSee').click();
+  }else{
+   document.querySelector('[data-quick-when="week"]')?.click();
+   jumpToPlans();
+  }
+ };
+ $('dpPulseSaved').onclick=()=>document.querySelector('.navtab[data-tab="saved"]')?.click();
+ $('dpPulseSurprise').onclick=()=>{
+  const plans=state.events.filter(e=>e&&e.title&&!e.paid_promotion&&
+    e.start&&!DParrandaTime.hasFinished(e,localTimeKey())&&
+    (state.municipality?e.municipality===state.municipality:true));
+  if(!plans.length){toast('No encontramos planes disponibles con estos filtros');return}
+  const selected=plans[Math.floor(Math.random()*plans.length)];
+  showEvent(selected.id);
+ };
  $('newEventSee').onclick=()=>{
   state.newOnly=!state.newOnly;
   state.when='all';state.categories.clear();state.dateRange=null;state.dateRangeLabel='';try{localStorage.removeItem('padonde_selected_categories')}catch{}state.query='';state.tab='explore';
