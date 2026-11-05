@@ -1274,7 +1274,9 @@ function init(){
     e.start&&!DParrandaTime.hasFinished(e,localTimeKey())&&
     (state.municipality?e.municipality===state.municipality:true));
   if(!plans.length){toast('No encontramos planes disponibles con estos filtros');return}
-  const selected=plans[Math.floor(Math.random()*plans.length)];
+  const soon=plans.filter(e=>e.start.slice(0,10)<=plusDays(todayKey(),14));
+  const choices=soon.length?soon:plans;
+  const selected=choices[Math.floor(Math.random()*choices.length)];
   showEvent(selected.id);
  };
  $('newEventSee').onclick=()=>{
