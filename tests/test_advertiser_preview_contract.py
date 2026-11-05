@@ -1,59 +1,64 @@
-"""Contracts for DParranda's simple, no-login advertiser paths."""
+"""Contracts for the two advertiser paths and full-page preview simulator."""
 import unittest
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT=Path(__file__).resolve().parents[1]
 
-class AdvertiserPreviewContracts(unittest.TestCase):
+class AdvertiserSimulatorContracts(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.html = (ROOT / "public/anunciate/index.html").read_text(encoding="utf-8")
-        cls.js = (ROOT / "public/anunciate/landing.js").read_text(encoding="utf-8")
-        cls.api = (ROOT / "api/advertise.js").read_text(encoding="utf-8")
+        cls.html=(ROOT/"public/anunciate/index.html").read_text(encoding="utf-8")
+        cls.builder=(ROOT/"public/anunciate/landing.js").read_text(encoding="utf-8")
+        cls.sim_html=(ROOT/"public/anunciate/simulador/index.html").read_text(encoding="utf-8")
+        cls.sim_js=(ROOT/"public/anunciate/simulador/simulator.js").read_text(encoding="utf-8")
+        cls.api=(ROOT/"api/advertise.js").read_text(encoding="utf-8")
 
-    def test_two_clear_starting_routes(self):
-        self.assertIn('id="chooseInfo"', self.html)
-        self.assertIn('id="chooseCreate"', self.html)
-        self.assertIn('id="infoPanel"', self.html)
-        self.assertIn('id="createPanel"', self.html)
-        self.assertIn('id="infoToCreate"', self.html)
-        self.assertIn('id="showPreview"', self.html)
-        self.assertIn('/anunciate/landing.js?v=3', self.html)
+    def test_two_public_advertiser_paths(self):
+        self.assertIn('id="chooseInfo"',self.html)
+        self.assertIn('id="chooseCreate"',self.html)
+        self.assertIn('id="infoPanel"',self.html)
+        self.assertIn('id="createPanel"',self.html)
+        self.assertIn('id="showPreview"',self.html)
+        self.assertIn('Ver en DParranda',self.html)
 
-    def test_prices_and_limit(self):
+    def test_prices_and_sponsor_type_selector(self):
+        self.assertIn('data-plan="local"',self.html)
+        self.assertIn('data-plan="zona"',self.html)
+        self.assertIn('data-plan="insular"',self.html)
         for price in ('19 €','49 €','99 €'):
-            self.assertIn(price, self.html)
-        self.assertIn('data-days="30"', self.html)
-        self.assertIn('data-days="60"', self.html)
-        self.assertNotIn('data-days="90"', self.html)
-        self.assertIn("const PRICES={local:19,zona:49,insular:99}", self.js)
-        self.assertIn("days<1||days>60", self.api)
-        self.assertNotIn("days>90", self.api)
-        self.assertIn("chosen.length<(plan==='local'?1:4)", self.js)
+            self.assertIn(price,self.html)
+        self.assertIn('data-days="30"',self.html)
+        self.assertIn('data-days="60"',self.html)
+        self.assertNotIn('data-days="90"',self.html)
+        self.assertIn("const PRICES={local:19,zona:49,insular:99}",self.builder)
+        self.assertIn("days<1||days>60",self.api)
+        self.assertIn('value="banner"',self.html)
+        self.assertIn('value="evento"',self.html)
 
-    def test_ad_preview_does_not_submit_or_charge(self):
-        self.assertIn("function showPanel(which)", self.js)
-        self.assertIn("id=\"checkoutInfo\"", self.html)
-        self.assertIn("id=\"previewSection\"", self.html)
-        self.assertIn("id=\"eventDetails\"", self.html)
-        self.assertIn("id=\"eventDate\"", self.html)
-        self.assertIn("id=\"eventVenue\"", self.html)
-        self.assertIn("id=\"reviewEvent\"", self.html)
-        self.assertIn("resetPreview()", self.js)
-        self.assertIn('id="checkoutButton" disabled', self.html)
-        self.assertIn("Vista previa lista. No se ha publicado.", self.js)
-        self.assertNotIn("fetch(", self.js)
-        self.assertNotIn("XMLHttpRequest", self.js)
+    def test_preview_is_new_page_with_real_events(self):
+        self.assertIn("window.location.assign('/anunciate/simulador/')",self.builder)
+        self.assertIn("sessionStorage.setItem('dp_ad_simulator_v1'",self.builder)
+        self.assertIn('id="simFeed"',self.sim_html)
+        self.assertIn('id="simSummary"',self.sim_html)
+        self.assertIn("'/api/catalog'"," ".join(self.sim_js.split()))
+        self.assertIn("'/events.json'",self.sim_js)
+        self.assertIn("Patrocinado",self.sim_js)
+        self.assertIn("i===4",self.sim_js)
+        self.assertIn("GRID.append(eventCard({",self.sim_js)
+        self.assertIn("GRID.append(sponsorBanner(draft))",self.sim_js)
+        self.assertIn('href="/anunciate/#crear"',self.sim_html)
+        self.assertIn('function restoreDraft()',self.builder)
+        self.assertIn("storedArtwork=d.image",self.builder)
 
-    def test_customer_data_still_gated_by_privacy(self):
-        self.assertIn("if(!enabled())return json(res,503", self.api)
-        self.assertNotIn('name="tax_id"', self.html)
-        self.assertNotIn('name="billing_address"', self.html)
-        self.assertIn("Pago no disponible", self.html)
-        self.assertNotIn("Stripe", self.html)
-        self.assertNotIn("AriMar", self.html)
-        self.assertIn("Librería La Esquina", self.html)
-        self.assertNotIn("comprobación automática de plazas", self.html)
+    def test_preview_is_private_no_payment_or_publication(self):
+        self.assertNotIn("fetch(",self.builder)
+        self.assertNotIn("POST",self.sim_js)
+        self.assertIn("cache:'no-store'",self.sim_js)
+        self.assertIn("VISTA PREVIA · NO PUBLICADO",self.sim_html)
+        self.assertNotIn("name=\"tax_id\"",self.html)
+        self.assertNotIn("AriMar",self.html)
+        self.assertIn("Librería La Esquina",self.html)
+        self.assertIn("if(!enabled())return json(res,503",self.api)
 
-if __name__ == "__main__":
+if __name__=="__main__":
     unittest.main()
