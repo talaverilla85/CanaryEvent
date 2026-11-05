@@ -441,14 +441,46 @@ body{background:var(--cream)}
 }
 </style>
 <link rel="stylesheet" href="/brand/dparranda-theme.css?v=13">
+<link rel="stylesheet" href="/brand/dparranda-editorial.css?v=1">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <title>D’Parranda · Disfruta de tus islas | Planes en Canarias</title>
 </head><body>
 <div id="app">
-  <header class="dp-masthead shell"><div class="dp-masthead-inner">
- <p class="dp-pretitle">LA AGENDA QUE TE LLEVA A DISFRUTAR</p>
- <a href="/" class="dp-mark" aria-label="D’Parranda, inicio"><img src="/brand/dparranda-logo.svg?v=6" alt="D’Parranda, las ocho islas" width="845" height="294" fetchpriority="high"></a>
- <p class="dp-claim">Disfruta de tus islas.</p></div></header>
+  <header class="dp-masthead shell" aria-label="Portada de DParranda">
+    <div class="dp-brand-row">
+      <a href="/" class="dp-mark" aria-label="DParranda, volver al inicio"><img src="/brand/dparranda-logo.svg?v=6" alt="DParranda" width="845" height="294" fetchpriority="high"></a>
+      <div class="dp-brand-aside"><span class="dp-edition">UNA ISLA. MIL PLANES.</span><span class="dp-brand-date" id="dpBrandDate">Gran Canaria · Agenda actualizada</span></div>
+    </div>
+    <div class="dp-stage">
+      <div class="dp-stage-copy">
+        <span class="dp-stage-kicker"><span class="dp-live-dot" aria-hidden="true"></span> GRAN CANARIA ESTÁ PASANDO</span>
+        <h1>El plan está <em>fuera.</em></h1>
+        <p>Conciertos, mercados, teatro, fiestas y mucho más. Descubre qué hacer hoy y vuelve mañana a por otro plan.</p>
+        <div class="dp-stage-actions">
+          <button type="button" class="dp-stage-primary" id="dpHeroToday">Descubre hoy <span aria-hidden="true">↘</span></button>
+          <button type="button" class="dp-stage-secondary" id="dpHeroWeekend">Este finde <span aria-hidden="true">↗</span></button>
+        </div>
+        <span class="dp-stage-signoff">DParranda <span aria-hidden="true">✳</span> Disfruta de tus islas</span>
+      </div>
+      <button type="button" class="dp-feature-card" id="dpFeaturedOpen" aria-label="Ver evento destacado" disabled>
+        <div class="dp-feature-media" id="dpFeatureMedia"><span class="dp-feature-fallback" aria-hidden="true">✳</span></div>
+        <div class="dp-feature-content">
+          <span class="dp-feature-kicker">EN LA AGENDA <span aria-hidden="true">—</span> GRAN CANARIA</span>
+          <strong class="dp-feature-title" id="dpFeatureTitle">Planes para salir de la rutina</strong>
+          <span class="dp-feature-meta" id="dpFeatureMeta">Explorando la agenda…</span>
+          <span class="dp-feature-link">Ver este plan <span aria-hidden="true">↗</span></span>
+        </div>
+      </button>
+    </div>
+    <div class="dp-pulse" aria-label="Tu punto de partida">
+      <div class="dp-pulse-head"><span class="dp-pulse-label">LA ISLA NO PARA</span><strong id="dpPulseCount">Buscando nuevos planes…</strong></div>
+      <div class="dp-pulse-actions">
+        <button type="button" class="dp-pulse-action dp-pulse-news" id="dpPulseNew"><span aria-hidden="true">✳</span><span id="dpPulseNewText">Ver novedades</span></button>
+        <button type="button" class="dp-pulse-action" id="dpPulseSaved"><span aria-hidden="true">♡</span> Tus guardados</button>
+        <button type="button" class="dp-pulse-action dp-pulse-surprise" id="dpPulseSurprise"><span aria-hidden="true">↗</span> Sorpréndeme</button>
+      </div>
+    </div>
+  </header>
   <main class="shell">
     <section class="discovery" aria-label="Explorar planes">
     <div class="dp-discovery-bar"><span class="dp-discovery-label">UN MUNDO DE PLANES CERCA DE TI</span><span class="dp-live-island" id="liveIsland">GRAN CANARIA · AGENDA ACTIVA</span></div>
