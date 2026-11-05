@@ -7,7 +7,7 @@ const TOWNS=['Agaete','Agüimes','Artenara','Arucas','Firgas','Gáldar','Ingenio
  'San Bartolomé de Tirajana','Santa Brígida','Santa Lucía de Tirajana',
  'Santa María de Guía de Gran Canaria','Tejeda','Telde','Teror','Valleseco',
  'Valsequillo de Gran Canaria','Vega de San Mateo'];
-let plan='local',days=30,chosen=[],imageUrl=null;
+let plan='local',days=30,chosen=[],imageUrl=null,storedArtwork=null;
 for(const town of TOWNS){const o=document.createElement('option');o.value=town;o.textContent=town;$('eventTown').append(o)}
 $('formatType').addEventListener('change',()=>{$('eventDetails').hidden=$('formatType').value!=='evento';resetPreview()});
 function showPanel(which){
@@ -96,6 +96,7 @@ $('campaignStart').min=localDay();
 $('campaignStart').addEventListener('change',()=>{updateSummary();resetPreview()});
 let unsupportedImage=false;
 $('advertImage').addEventListener('change',()=>{
+ storedArtwork=null;
  if(imageUrl){URL.revokeObjectURL(imageUrl);imageUrl=null}
  const file=$('advertImage').files?.[0];
  unsupportedImage=Boolean(file&&(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>12_000_000));
@@ -171,7 +172,7 @@ $('showPreview').addEventListener('click',async()=>{
  const button=$('showPreview');button.disabled=true;button.textContent='Preparando simulador…';
  try{
   const file=$('advertImage').files?.[0]||null;
-  const image=await draftImage(file);
+  const image=file?await draftImage(file):storedArtwork;
   const payload={
    version:1,createdAt:Date.now(),kind:isEvent?'evento':'banner',
    advertiser:name,title,description,destination:target,
@@ -190,7 +191,8 @@ $('showPreview').addEventListener('click',async()=>{
 $('resetDraft').addEventListener('click',()=>{
  ['advertiser','headline','description','destination','campaignStart','eventVenue','eventDate'].forEach(id=>$(id).value='');
  $('formatType').value='banner';$('eventDetails').hidden=true;
- $('advertImage').value='';
+ $('advertImage').value='';storedArtwork=null;
+ try{sessionStorage.removeItem('dp_ad_simulator_v1')}catch{}
  if(imageUrl){URL.revokeObjectURL(imageUrl);imageUrl=null}
  $('imagePreview').hidden=true;$('previewImg').removeAttribute('src');
  unsupportedImage=false;$('advertImage').setCustomValidity('');
@@ -198,6 +200,34 @@ $('resetDraft').addEventListener('click',()=>{
  updateSummary();resetPreview();$('formFeedback').textContent='Formulario borrado.';
 });
 window.addEventListener('pagehide',()=>{if(imageUrl)URL.revokeObjectURL(imageUrl)});
+function restoreDraft(){
+ try{
+  const text=sessionStorage.getItem('dp_ad_simulator_v1');
+  if(!text)return;
+  const d=JSON.parse(text);
+  if(d.version!==1||!Number.isFinite(d.createdAt)||
+     Math.abs(Date.now()-d.createdAt)>7200000||
+     !['local','zona','insular'].includes(d.plan)||
+     ![30,60].includes(d.days)||!Array.isArray(d.municipalities))return;
+  plan=d.plan;days=d.days;
+  chosen=d.municipalities.filter(x=>TOWNS.includes(x)).slice(0,plan==='local'?1:4);
+  $('advertiser').value=String(d.advertiser||'').slice(0,120);
+  $('headline').value=String(d.title||'').slice(0,160);
+  $('description').value=String(d.description||'').slice(0,350);
+  $('destination').value=String(d.destination||'');
+  $('campaignStart').value=String(d.start||'');
+  $('formatType').value=d.kind==='evento'?'evento':'banner';
+  $('eventDetails').hidden=d.kind!=='evento';
+  $('eventVenue').value=String(d.eventVenue||'');
+  $('eventDate').value=String(d.eventDate||'');
+  if(TOWNS.includes(d.eventTown))$('eventTown').value=d.eventTown;
+  if(typeof d.image==='string'&&/^data:image\/webp;base64,/.test(d.image)&&d.image.length<1600000){
+   storedArtwork=d.image;
+   $('previewImg').src=storedArtwork;$('imagePreview').hidden=false;
+  }
+ }catch{}
+}
+restoreDraft();
 updateSummary();
 if(location.hash==='#crear'||location.hash==='#crear-anuncio')showPanel('create');
 if(location.hash==='#informacion')showPanel('info');
