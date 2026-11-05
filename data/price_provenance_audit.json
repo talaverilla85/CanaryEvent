@@ -1,25 +1,23 @@
 {
-  "checked_on": "2026-10-30T21:30:58.716815+00:00",
-  "total_events": 517,
-  "known_price_or_free": 161,
+  "checked_on": "2026-11-05T21:13:21.446851+00:00",
+  "total_events": 468,
+  "known_price_or_free": 150,
   "classification": {
-    "minimum_zero_ambiguous": 6,
-    "minimum_positive": 125,
-    "free": 23,
-    "fixed_positive": 7
+    "minimum_zero_ambiguous": 7,
+    "minimum_positive": 119,
+    "fixed_positive": 7,
+    "free": 17
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 77,
-    "Portal oficial de Eventos Gran Canaria (Cabildo)": 45,
-    "Ayuntamiento de Ingenio": 4,
-    "Juventud Las Palmas de Gran Canaria": 11,
-    "Ayuntamiento de Agüimes": 2,
-    "Mancomunidad de Medianías · Alma de Medianías en Valsequillo": 2,
-    "Firgas · Finaos 2026 contrastados con fuentes locales": 1,
-    "Ayuntamiento de Tejeda · agenda oficial": 1,
+    "TuReservaOnline · agenda de Gran Canaria": 76,
     "Ayuntamiento de Teror · programación del Auditorio": 10,
+    "Ayuntamiento de Ingenio": 6,
+    "Juventud Las Palmas de Gran Canaria": 11,
+    "Portal oficial de Eventos Gran Canaria (Cabildo)": 37,
+    "Circuito de Artes Escénicas GC": 1,
     "LPA Cultura · agenda municipal oficial": 5,
     "Ayuntamiento de Moya · Otoño es Cultura 2026": 1,
+    "Ayuntamiento de Agüimes": 1,
     "Ayuntamiento de Mogán · actividades documentadas": 1,
     "EcoEntradas · Centro Municipal de Cultura de La Aldea": 1
   },
@@ -34,13 +32,13 @@
       "url": "https://www.tureservaonline.es/es/events/copa-hipica-san-vicente-2627-carrera-de-caballo"
     },
     {
-      "id": 5,
-      "title": "🏚️ LA CASONA DEL TERROR 2026: LAS TRES AUSENTES 👻",
-      "source": "Ayuntamiento de Ingenio",
+      "id": 813,
+      "title": "XVIII MUESTRA INSULAR CORTOMETRAJES DE PERSONAS CON DISCAPACIDAD",
+      "source": "TuReservaOnline · agenda de Gran Canaria",
       "label": "Desde 0 €",
       "free": 0,
       "category": "minimum_zero_ambiguous",
-      "url": "https://ingenio.es/events/%f0%9f%8f%9a%ef%b8%8f-la-casona-del-terror-2026-las-tres-ausentes-%f0%9f%91%bb/"
+      "url": "https://www.tureservaonline.es/es/events/xviii-muestra-insular-cortometrajes-de-personas-con-discapacidad"
     },
     {
       "id": 466,
@@ -52,9 +50,18 @@
       "url": "https://www.tureservaonline.es/es/events/corazon-valiente-el-soldadito-de-plomo-valleseco"
     },
     {
+      "id": 814,
+      "title": "PROYECCIÓN \"NO ESTÁS LOCA. LA VERDAD SOBRE LA VIOLENCIA VICARIA\"",
+      "source": "TuReservaOnline · agenda de Gran Canaria",
+      "label": "Desde 0 €",
+      "free": 0,
+      "category": "minimum_zero_ambiguous",
+      "url": "https://www.tureservaonline.es/es/events/proyeccion-no-estas-loca-la-verdad-sobre-la-violencia-vicaria"
+    },
+    {
       "id": 473,
       "title": "HILOS DEL ATLÁNTICO",
-      "source": "TuReservaOnline · agenda de Gran Canaria",
+      "source": "Ayuntamiento de Ingenio",
       "label": "Desde 0 €",
       "free": 0,
       "category": "minimum_zero_ambiguous",

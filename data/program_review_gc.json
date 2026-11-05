@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-30T21:28:26+00:00",
+  "updated_at": "2026-11-05T21:08:23+00:00",
   "note": "Fichas pendientes de desglose o sin un evento identificable; no publicarlas como planes.",
   "pending_programs": [
     {
@@ -33,16 +33,6 @@
       "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
     },
     {
-      "id": 258,
-      "title": "Programación La Grada Creativa Octubre 2026",
-      "start": "2026-10-01",
-      "end": "2026-10-31",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261001-0037/programacion-la-grada-creativa-octubre-2026",
-      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
-    },
-    {
       "id": 543,
       "title": "«TALLERES DE BIENESTAR EMOCIONAL Y ENVEJECIMIENTO ACTIVO»",
       "start": "2026-10-06",
@@ -63,16 +53,6 @@
       "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
     },
     {
-      "id": 521,
-      "title": "Fiestas de San Rafael 2026 · Vecindario",
-      "start": "2026-10-16",
-      "end": "2026-11-01",
-      "municipality": "Santa Lucía de Tirajana",
-      "source_name": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
-      "source_url": "https://www.santaluciagc.com/fiestas-san-rafael-2026/",
-      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
-    },
-    {
       "id": 129,
       "title": "Programación La Grada Creativa Noviembre 2026",
       "start": "2026-11-01",
@@ -80,16 +60,6 @@
       "municipality": "Las Palmas de Gran Canaria",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261101-0005/programacion-la-grada-creativa-noviembre-2026",
-      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
-    },
-    {
-      "id": 139,
-      "title": "El Ayuntamiento de Agaete pone en marcha el programa de talleres Cuida de tu Bienestar",
-      "start": "2026-11-03",
-      "end": null,
-      "municipality": "Agaete",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261103-0001/el-ayuntamiento-de-agaete-pone-en-marcha-el-programa-de-talleres-cuida-de-tu-bienestar",
       "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
     },
     {
@@ -124,14 +94,6 @@
     }
   ],
   "source_venue_conflicts": [
-    {
-      "id": 215,
-      "title": "LA BARRACA de Vicente Blasco Ibáñez",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261030-0012/la-barraca-de-vicente-blasco-ibanez",
-      "claimed_venue": "Sala Insular de Teatro",
-      "verified_venue": "Teatro Cuyás",
-      "reason": "conflicting_sister_theatre"
-    },
     {
       "id": 165,
       "title": "JAZZ OTOÑO 2026- JUDITH HILL QUARTET",

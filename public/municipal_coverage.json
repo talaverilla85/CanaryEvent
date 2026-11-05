@@ -1,10 +1,10 @@
 {
-  "updated_on": "2026-10-30",
+  "updated_on": "2026-11-05",
   "scope": "21 municipios de Gran Canaria",
   "municipalities_total": 21,
-  "municipalities_with_any_catalog_cards": 21,
-  "municipalities_with_official_municipal_cards": 19,
-  "municipalities_without_municipal_cards": 2,
+  "municipalities_with_any_catalog_cards": 19,
+  "municipalities_with_official_municipal_cards": 13,
+  "municipalities_without_municipal_cards": 8,
   "full_coverage_confirmed": false,
   "important": "Municipal coverage is NOT the same as having third-party events near that town. Partial official connectors do not guarantee every local event.",
   "municipalities": [
@@ -13,11 +13,11 @@
       "official_website": "https://agaete.es/",
       "agenda_url": "https://agaete.es/ciudadano",
       "original_connector_state": "conector_parcial_articulos_verificados",
-      "coverage_level": "cobertura_parcial_o_en_revision",
-      "data_status": "conector_parcial_articulos_contrastados",
-      "catalog_cards_total": 4,
-      "municipal_cards_total": 2,
-      "other_sources_cards_total": 2,
+      "coverage_level": "sin_extraccion_municipal_automatizada",
+      "data_status": "fuente_oficial_contrastada_sin_actos_futuros",
+      "catalog_cards_total": 1,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 1,
       "source_health": [
         {
           "source": "Municipio · descubrimiento oficial · Agaete",
@@ -34,13 +34,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 19,
-      "municipal_cards_total": 2,
-      "other_sources_cards_total": 17,
+      "catalog_cards_total": 15,
+      "municipal_cards_total": 1,
+      "other_sources_cards_total": 14,
       "source_health": [
         {
           "source": "Ayuntamiento de Agüimes",
-          "found": 3,
+          "found": 2,
           "error": ""
         },
         {
@@ -50,8 +50,8 @@
         },
         {
           "source": "Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
-          "found": 1,
-          "error": ""
+          "found": 0,
+          "error": "ValueError"
         }
       ],
       "full_coverage_claim": false
@@ -63,13 +63,13 @@
       "original_connector_state": "conector_parcial_articulo_corrobora_plaza",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial_articulo_corrobora_plaza",
-      "catalog_cards_total": 1,
-      "municipal_cards_total": 1,
+      "catalog_cards_total": 0,
+      "municipal_cards_total": 0,
       "other_sources_cards_total": 0,
       "source_health": [
         {
           "source": "Ayuntamiento de Artenara · ferias tradicionales 2026",
-          "found": 2,
+          "found": 0,
           "error": ""
         }
       ],
@@ -83,12 +83,12 @@
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
       "catalog_cards_total": 11,
-      "municipal_cards_total": 1,
-      "other_sources_cards_total": 10,
+      "municipal_cards_total": 2,
+      "other_sources_cards_total": 9,
       "source_health": [
         {
           "source": "Ayuntamiento de Arucas · agenda municipal",
-          "found": 11,
+          "found": 12,
           "error": ""
         }
       ],
@@ -101,9 +101,9 @@
       "original_connector_state": "agenda_localizada_sin_programacion_futura_verificada",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "agenda_localizada_sin_programacion_futura_verificada",
-      "catalog_cards_total": 2,
+      "catalog_cards_total": 1,
       "municipal_cards_total": 0,
-      "other_sources_cards_total": 2,
+      "other_sources_cards_total": 1,
       "source_health": [
         {
           "source": "Municipio · descubrimiento oficial · Firgas",
@@ -112,7 +112,7 @@
         },
         {
           "source": "Firgas · Finaos 2026 contrastados con fuentes locales",
-          "found": 1,
+          "found": 0,
           "error": ""
         }
       ],
@@ -125,19 +125,19 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 31,
+      "catalog_cards_total": 29,
       "municipal_cards_total": 4,
-      "other_sources_cards_total": 27,
+      "other_sources_cards_total": 25,
       "source_health": [
         {
           "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-          "found": 6,
-          "error": ""
+          "found": 0,
+          "error": "ReadTimeout"
         },
         {
           "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-          "found": 2,
-          "error": ""
+          "found": 0,
+          "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
         }
       ],
       "full_coverage_claim": false
@@ -149,13 +149,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 28,
+      "catalog_cards_total": 26,
       "municipal_cards_total": 10,
-      "other_sources_cards_total": 18,
+      "other_sources_cards_total": 16,
       "source_health": [
         {
           "source": "Ayuntamiento de Ingenio",
-          "found": 11,
+          "found": 10,
           "error": ""
         },
         {
@@ -173,9 +173,9 @@
       "original_connector_state": "taquilla_recinto_verificada_tlsoficial_pendiente",
       "coverage_level": "sin_extraccion_municipal_automatizada",
       "data_status": "taquilla_recinto_verificada_tlsoficial_pendiente",
-      "catalog_cards_total": 1,
+      "catalog_cards_total": 5,
       "municipal_cards_total": 0,
-      "other_sources_cards_total": 1,
+      "other_sources_cards_total": 5,
       "source_health": [],
       "full_coverage_claim": false
     },
@@ -186,13 +186,13 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 259,
-      "municipal_cards_total": 12,
-      "other_sources_cards_total": 247,
+      "catalog_cards_total": 234,
+      "municipal_cards_total": 11,
+      "other_sources_cards_total": 223,
       "source_health": [
         {
           "source": "Juventud Las Palmas de Gran Canaria",
-          "found": 10,
+          "found": 8,
           "error": ""
         }
       ],
@@ -224,13 +224,13 @@
       "original_connector_state": "conector_parcial_folleto_2026_revisado",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial_folleto_2026_revisado",
-      "catalog_cards_total": 11,
-      "municipal_cards_total": 7,
-      "other_sources_cards_total": 4,
+      "catalog_cards_total": 12,
+      "municipal_cards_total": 6,
+      "other_sources_cards_total": 6,
       "source_health": [
         {
           "source": "Ayuntamiento de Moya · Otoño es Cultura 2026",
-          "found": 7,
+          "found": 6,
           "error": ""
         }
       ],
@@ -241,11 +241,11 @@
       "official_website": "https://www.maspalomas.com/",
       "agenda_url": "https://www.maspalomas.com/mnunotjuventud",
       "original_connector_state": "conector_parcial_articulos_verificados",
-      "coverage_level": "cobertura_parcial_o_en_revision",
-      "data_status": "conector_parcial_articulos_contrastados",
-      "catalog_cards_total": 16,
-      "municipal_cards_total": 5,
-      "other_sources_cards_total": 11,
+      "coverage_level": "sin_extraccion_municipal_automatizada",
+      "data_status": "fuente_oficial_contrastada_sin_actos_futuros",
+      "catalog_cards_total": 13,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 13,
       "source_health": [],
       "full_coverage_claim": false
     },
@@ -256,13 +256,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 18,
-      "municipal_cards_total": 15,
-      "other_sources_cards_total": 3,
+      "catalog_cards_total": 25,
+      "municipal_cards_total": 23,
+      "other_sources_cards_total": 2,
       "source_health": [
         {
           "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-          "found": 18,
+          "found": 28,
           "error": ""
         }
       ],
@@ -275,9 +275,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 30,
-      "municipal_cards_total": 3,
-      "other_sources_cards_total": 27,
+      "catalog_cards_total": 25,
+      "municipal_cards_total": 1,
+      "other_sources_cards_total": 24,
       "source_health": [],
       "full_coverage_claim": false
     },
@@ -286,16 +286,16 @@
       "official_website": "https://www.santamariadeguia.es/",
       "agenda_url": "https://santamariadeguia.es/guia-inicia-las-celebraciones-de-su-v-centenario-con-un-acto-que-une-historia-y-musica/",
       "original_connector_state": "conector_parcial_articulos_verificados",
-      "coverage_level": "cobertura_parcial_o_en_revision",
-      "data_status": "conector_parcial_articulos_contrastados",
-      "catalog_cards_total": 3,
-      "municipal_cards_total": 1,
-      "other_sources_cards_total": 2,
+      "coverage_level": "sin_extraccion_municipal_automatizada",
+      "data_status": "fuente_oficial_contrastada_sin_actos_futuros",
+      "catalog_cards_total": 4,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 4,
       "source_health": [
         {
           "source": "Municipio · descubrimiento oficial · Santa María de Guía",
           "found": 0,
-          "error": ""
+          "error": "No event links found in official listing; check layout"
         }
       ],
       "full_coverage_claim": false
@@ -307,14 +307,14 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 4,
-      "municipal_cards_total": 4,
+      "catalog_cards_total": 1,
+      "municipal_cards_total": 1,
       "other_sources_cards_total": 0,
       "source_health": [
         {
           "source": "Ayuntamiento de Tejeda · agenda oficial",
-          "found": 4,
-          "error": ""
+          "found": 0,
+          "error": "Tejeda robots HTTP 301"
         }
       ],
       "full_coverage_claim": false
@@ -326,13 +326,13 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 34,
-      "municipal_cards_total": 9,
-      "other_sources_cards_total": 25,
+      "catalog_cards_total": 28,
+      "municipal_cards_total": 5,
+      "other_sources_cards_total": 23,
       "source_health": [
         {
           "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
-          "found": 7,
+          "found": 3,
           "error": ""
         },
         {
@@ -347,7 +347,7 @@
         },
         {
           "source": "Telde Cultura · funciones vinculadas a recintos oficiales",
-          "found": 5,
+          "found": 0,
           "error": ""
         }
       ],
@@ -360,13 +360,13 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 27,
-      "municipal_cards_total": 14,
-      "other_sources_cards_total": 13,
+      "catalog_cards_total": 24,
+      "municipal_cards_total": 13,
+      "other_sources_cards_total": 11,
       "source_health": [
         {
           "source": "Ayuntamiento de Teror · programación del Auditorio",
-          "found": 14,
+          "found": 13,
           "error": ""
         }
       ],
@@ -379,18 +379,18 @@
       "original_connector_state": "conector_parcial_calendario_2026_revisado",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial_calendario_2026_revisado",
-      "catalog_cards_total": 5,
-      "municipal_cards_total": 1,
-      "other_sources_cards_total": 4,
+      "catalog_cards_total": 0,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 0,
       "source_health": [
         {
           "source": "Mancomunidad de Medianías · Alma de Medianías en Valsequillo",
-          "found": 2,
+          "found": 0,
           "error": ""
         },
         {
           "source": "Ayuntamiento de Valsequillo · calendario municipal",
-          "found": 1,
+          "found": 0,
           "error": ""
         }
       ],
@@ -403,9 +403,9 @@
       "original_connector_state": "agenda_localizada_por_validar_datos",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "agenda_localizada_por_validar_datos",
-      "catalog_cards_total": 5,
-      "municipal_cards_total": 1,
-      "other_sources_cards_total": 4,
+      "catalog_cards_total": 7,
+      "municipal_cards_total": 0,
+      "other_sources_cards_total": 7,
       "source_health": [],
       "full_coverage_claim": false
     },
@@ -416,8 +416,8 @@
       "original_connector_state": "conector_parcial_articulos_verificados",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial_articulos_contrastados",
-      "catalog_cards_total": 4,
-      "municipal_cards_total": 4,
+      "catalog_cards_total": 3,
+      "municipal_cards_total": 3,
       "other_sources_cards_total": 0,
       "source_health": [
         {

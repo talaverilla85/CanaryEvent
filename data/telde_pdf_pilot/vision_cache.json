@@ -1348,5 +1348,172 @@
       "total_tokens": 4615
     },
     "measured_cost_usd": 0.0009499
+  },
+  "0f3a936c3b4b736e6e7e2a6afa873e0b7b0fb8af81bef873a2cea01df5b096dd/3/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Inscripciones en el Torneo de zanga",
+          "date": "2026-09-25",
+          "time": "19:00",
+          "venue": "Local social de Cazadores",
+          "evidence": "VIERNES, 25 DE SEPTIEMBRE — 19:00 horas — Inscripciones en el Torneo de zanga",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Inicio del Torneo de zanga",
+          "date": "2026-09-25",
+          "time": "20:00",
+          "venue": "Local social de Cazadores",
+          "evidence": "VIERNES, 25 DE SEPTIEMBRE — 20:00 horas — Inicio del Torneo de zanga",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Eucaristía",
+          "date": "2026-09-26",
+          "time": "18:00",
+          "venue": "Iglesia de Cazadores",
+          "evidence": "SÁBADO, 26 DE SEPTIEMBRE — 18:00 horas — Eucaristía",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Teatro · Pregón",
+          "date": "2026-09-26",
+          "time": "19:30",
+          "venue": "Iglesia de Cazadores",
+          "evidence": "SÁBADO, 26 DE SEPTIEMBRE — 19.30 horas — Teatro · Pregón",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Encuentro Parrandero, música tradicional canaria",
+          "date": "2026-09-26",
+          "time": "20:30",
+          "venue": "Local social de Cazadores",
+          "evidence": "SÁBADO, 26 DE SEPTIEMBRE — 20.30 horas — Encuentro Parrandero, música tradicional canaria",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Romería – Ofrenda",
+          "date": "2026-10-03",
+          "time": "17:30",
+          "venue": "El Duraznillo hasta la Plaza de Cazadores",
+          "evidence": "SÁBADO, 3 DE OCTUBRE — 17:30 horas — Romería – Ofrenda",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Verbena con Armonía Show y D’Music",
+          "date": "2026-10-03",
+          "time": "23:00",
+          "venue": "Plaza de Cazadores",
+          "evidence": "SÁBADO, 3 DE OCTUBRE — 23:00 horas — Verbena con Armonía Show y D’Music",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Actividades Infantiles",
+          "date": "2026-10-04",
+          "time": "11:30",
+          "venue": "Plaza de Cazadores",
+          "evidence": "DOMINGO, 4 DE OCTUBRE — 11:30 horas — Actividades Infantiles",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Solemne Eucaristía y posterior Procesión en honor de San Francisco de Asís, Nuestra Señora del Rosario y San Isidro Labrador",
+          "date": "2026-10-04",
+          "time": "12:30",
+          "venue": null,
+          "evidence": "DOMINGO, 4 DE OCTUBRE — 12:30 horas — Solemne Eucaristía en honor de San Francisco de Asís, Nuestra Señora del Rosario y San Isidro Labrador y posterior Procesión",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3402,
+      "input_tokens_details": {
+        "cache_write_tokens": 3399,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1333,
+      "output_tokens_details": {
+        "reasoning_tokens": 540
+      },
+      "total_tokens": 4735
+    },
+    "measured_cost_usd": 0.0010067
+  },
+  "0f3a936c3b4b736e6e7e2a6afa873e0b7b0fb8af81bef873a2cea01df5b096dd/4/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3402,
+      "input_tokens_details": {
+        "cache_write_tokens": 3399,
+        "cached_tokens": 0
+      },
+      "output_tokens": 41,
+      "output_tokens_details": {
+        "reasoning_tokens": 19
+      },
+      "total_tokens": 3443
+    },
+    "measured_cost_usd": 0.0003607
+  },
+  "0f3a936c3b4b736e6e7e2a6afa873e0b7b0fb8af81bef873a2cea01df5b096dd/5/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3402,
+      "input_tokens_details": {
+        "cache_write_tokens": 3399,
+        "cached_tokens": 0
+      },
+      "output_tokens": 41,
+      "output_tokens_details": {
+        "reasoning_tokens": 19
+      },
+      "total_tokens": 3443
+    },
+    "measured_cost_usd": 0.0003607
+  },
+  "ecd40a83e9f845b2bda3522e9b0e87d20cf8047b3d75224d456c5b19b16f25c9/3/gpt-6-luna/text-fallback-vision-v3/ai_text": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 1011,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 49,
+      "output_tokens_details": {
+        "reasoning_tokens": 27
+      },
+      "total_tokens": 1060
+    },
+    "measured_cost_usd": 0.0001256
   }
 }
