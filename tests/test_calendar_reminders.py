@@ -21,8 +21,11 @@ class ReminderTests(unittest.TestCase):
   self.assertIn("recordatorio-dparranda-",self.js)
 
  def test_no_false_native_push_promise(self):
-  self.assertIn("no son avisos push",self.js.lower())
-  self.assertIn("en el calendario del móvil",self.js)
+  # Los recordatorios se gestionan desde el calendario del usuario; la
+  # aplicación no promete notificaciones push que no tiene implementadas.
+  self.assertIn("no envía push en segundo plano",self.js.lower())
+  self.assertIn("impórtalo para activar el aviso elegido",self.js)
+  self.assertIn("Pulsa Guardar allí y configura el aviso",self.js)
   self.assertIn("TRIGGER;VALUE=DATE-TIME:",self.js)
   self.assertNotIn("new Notification(",self.js)
   self.assertNotIn("pushManager.subscribe(",self.js)
