@@ -868,3 +868,8 @@ body::before{height:5px;position:fixed;z-index:40}
  .dp-feature-kicker{font-size:8px}
  .dp-feature-link{margin-top:2px}
 }
+
+/* Desktop tabs follow the same selection state as the application. */
+.dp-top-nav #dpTopExplore{background:transparent;color:#365B60}
+.dp-top-nav button.is-active{background:#153E50!important;color:#fff!important}
+.dp-filter-entry .filter-entry-copy strong{letter-spacing:-.15px}
