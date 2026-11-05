@@ -66,6 +66,7 @@ import venue_quality
 import organizer_venues
 import ingenio_juvenil_program
 from event_images import listing_image,image_fields
+from catalog_changes import compare_public_catalogs, read_published
 
 ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "events.sqlite"
@@ -1188,9 +1189,13 @@ def run():
     print(f"Verified direct event source links restored: {link_fixed}")
     media_filled=curated_official_images.apply(events)
     print(f"Audited event-specific original images restored: {media_filled}")
+    previous_public=read_published(PUBLIC/"events.json")
+    public_changes=compare_public_catalogs(previous_public,events)
+    print(f"Public catalog changes: {public_changes}")
     write_json(PUBLIC/"events.json",{"events":events,"generated_at":NOW,"timezone":"Atlantic/Canary",
                                     "verified_sources":len([r for r in results if not r["error"]])})
     write_json(PUBLIC/"meta.json",{"checked_at":NOW,"sources":results,
+        "changes":public_changes,
         "municipal_connector_health":municipal_connector_health.report(events,results,TODAY),
         "occurrences":occurrence_stats,
         "counts":{"approved":len(events),"candidate_events":valid_candidates,
