@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-05T21:32:11+00:00",
+  "updated_at": "2026-11-06T13:12:10+00:00",
   "note": "Fichas pendientes de desglose o sin un evento identificable; no publicarlas como planes.",
   "pending_programs": [
     {
@@ -20,16 +20,6 @@
       "municipality": "Ingenio",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260924-0017/programacion-otono-2026-juventud-de-ingenio",
-      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
-    },
-    {
-      "id": 261,
-      "title": "Programación Día de las Bibliotecas 2026",
-      "start": "2026-09-30",
-      "end": "2026-11-05",
-      "municipality": "San Bartolomé de Tirajana",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260930-0022/programacion-dia-de-las-bibliotecas-2026",
       "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
     },
     {

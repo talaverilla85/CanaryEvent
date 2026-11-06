@@ -1,13 +1,13 @@
 {
-  "checked_at": "2026-11-05T21:32:11+00:00",
+  "checked_at": "2026-11-06T13:12:10+00:00",
   "quality_counts": {
-    "publicados": 469,
-    "recintos_sin_verificar": 51,
-    "programas_y_fichas_por_revisar": 10,
-    "precios_sin_confirmar": 319,
-    "distancia_a_centro_municipal": 311,
-    "fuentes_con_error": 5,
-    "duplicados_potenciales": 7
+    "publicados": 466,
+    "recintos_sin_verificar": 49,
+    "programas_y_fichas_por_revisar": 9,
+    "precios_sin_confirmar": 316,
+    "distancia_a_centro_municipal": 308,
+    "fuentes_con_error": 4,
+    "duplicados_potenciales": 6
   },
   "sources": [
     {
@@ -167,7 +167,7 @@
       "recinto_sin_verificar": 7,
       "precio_sin_confirmar": 2,
       "distancia_al_centro_municipal": 2,
-      "fichas_leidas_en_esta_ejecucion": 12,
+      "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
     {
@@ -192,13 +192,13 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "estado": "error",
-      "publicados": 0,
+      "estado": "operativa",
+      "publicados": 1,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "HTTPSConnectionPool(host='santamariadeguia.es', port=443): Read timed out. (read timeout=12)"
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 1,
+      "error": ""
     },
     {
       "source": "Municipio · descubrimiento oficial · Agaete",
@@ -223,10 +223,10 @@
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "estado": "error",
-      "publicados": 1,
+      "publicados": 0,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 1,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": "Tejeda robots HTTP 301"
     },
@@ -383,11 +383,11 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "operativa",
-      "publicados": 213,
-      "recinto_sin_verificar": 39,
-      "precio_sin_confirmar": 176,
-      "distancia_al_centro_municipal": 126,
-      "fichas_leidas_en_esta_ejecucion": 32,
+      "publicados": 210,
+      "recinto_sin_verificar": 37,
+      "precio_sin_confirmar": 173,
+      "distancia_al_centro_municipal": 123,
+      "fichas_leidas_en_esta_ejecucion": 10,
       "error": ""
     },
     {
@@ -471,10 +471,6 @@
       "error": "ValueError"
     },
     {
-      "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "error": "HTTPSConnectionPool(host='santamariadeguia.es', port=443): Read timed out. (read timeout=12)"
-    },
-    {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda robots HTTP 301"
     },
@@ -486,7 +482,7 @@
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 39
+      "count": 37
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
@@ -591,14 +587,6 @@
       "source_url": "https://eventos.santabrigida.es/eventos/taller-de-sombrereria-artesanal-en-fieltro/"
     },
     {
-      "id": 130,
-      "title": "Charlas del Plan Mayor: Consejos de seguridad para mayores",
-      "start": "2026-10-15",
-      "municipality": "San Bartolomé de Tirajana",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0015/charlas-del-plan-mayor-consejos-de-seguridad-para-mayores"
-    },
-    {
       "id": 134,
       "title": "Exposición fotográfica: Barreras de la visión de Tim Parchikov",
       "start": "2026-10-15",
@@ -671,14 +659,6 @@
       "source_url": "https://eventos.santabrigida.es/eventos/santa-brigida-con-vinos-2026-programa/"
     },
     {
-      "id": 149,
-      "title": "La Pantalla Inversa: Matrix",
-      "start": "2026-11-05T19:00:00",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261105-0004/la-pantalla-inversa-matrix"
-    },
-    {
       "id": 150,
       "title": "Fashion & Friend",
       "start": "2026-11-06",
@@ -701,6 +681,22 @@
       "municipality": "Las Palmas de Gran Canaria",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261111-0001/curso-basico-de-cocina-canaria-saludable"
+    },
+    {
+      "id": 228,
+      "title": "Gran Gala de Mogán Talent 2026",
+      "start": "2026-11-13",
+      "municipality": "Mogán",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0015/gran-gala-de-mogan-talent-2026"
+    },
+    {
+      "id": 225,
+      "title": "I Encuentro con el Teatro Chino: Perspectivas Interculturales",
+      "start": "2026-11-13T16:00:00",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0012/i-encuentro-con-el-teatro-chino-perspectivas-interculturales"
     }
   ],
   "guidance": [

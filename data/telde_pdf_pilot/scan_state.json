@@ -72,10 +72,11 @@
       3,
       4,
       5,
-      6
+      6,
+      7
     ],
-    "complete": false,
-    "checked_at": "2026-11-05"
+    "complete": true,
+    "checked_at": "2026-11-06"
   },
   "3b0f93c5c82eefed": {
     "sha": "d3ca33fe8115fe61a986ca83a628752a5c77cc7e436d9f42d526f81df58dfacd",
@@ -102,5 +103,15 @@
     "checked_at": "2026-10-28",
     "defer_until": "2026-11-04",
     "defer_reason": "only_old_acts_seen_so_far_unread_pages_remain"
+  },
+  "c59a81eae36dce2f": {
+    "sha": "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df",
+    "done_pages": [
+      0,
+      1,
+      2
+    ],
+    "complete": false,
+    "checked_at": "2026-11-06"
   }
 }

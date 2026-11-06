@@ -1,11 +1,53 @@
 {
-  "checked_at": "2026-11-05T21:30:51.741729+00:00",
+  "checked_at": "2026-11-06T13:11:05.329885+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
   "api_calls": 4,
-  "usage_usd": 0.003339,
+  "usage_usd": 0.0011866,
   "docs": [
+    {
+      "name": "Fiestas en honor a San Gregorio Taumaturgo",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/11/sangregorio26.pdf",
+      "sha256": "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df",
+      "pages": 16,
+      "bytes": 2979368,
+      "inspected": [
+        {
+          "page": 1,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 0
+        },
+        {
+          "page": 2,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 0
+        },
+        {
+          "page": 3,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 0
+        }
+      ]
+    },
     {
       "name": "Fiestas patronales en honor al Sagrado Corazón de Jesús en el barrio de La Garita",
       "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/lagarita26.pdf",
@@ -14,46 +56,11 @@
       "bytes": 3779392,
       "inspected": [
         {
-          "page": 5,
-          "native_text_chars": 869,
+          "page": 8,
+          "native_text_chars": 1277,
           "route": "ai_text",
           "status": "new_api_result",
           "candidates_pending_review": 0
-        },
-        {
-          "page": 6,
-          "native_text_chars": 1033,
-          "route": "ai_text",
-          "status": "new_api_result",
-          "candidates_pending_review": 0
-        },
-        {
-          "page": 7,
-          "native_text_chars": 758,
-          "route": "ai_text",
-          "status": "new_api_result",
-          "candidates_pending_review": 0
-        }
-      ]
-    },
-    {
-      "name": "Fiestas de la Exaltación de la Cruz en honor al Santo Cristo en Playa de Ojos de Garza",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/playaojosdegarza26.pdf",
-      "sha256": "d3ca33fe8115fe61a986ca83a628752a5c77cc7e436d9f42d526f81df58dfacd",
-      "pages": 2,
-      "bytes": 222232,
-      "inspected": [
-        {
-          "page": 2,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1853,
-            1309
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 16,
-          "verification": "expired_acts_no_second_api_pass"
         }
       ]
     }
@@ -62,6 +69,6 @@
   "pending_review_count": 0,
   "auto_verified_count": 0,
   "archived_count": 89,
-  "archived_this_run": 16,
+  "archived_this_run": 0,
   "notes": "Future events require independent date, time and venue verification. Expired records move to the historic archive; incomplete past-only PDFs are temporarily deferred."
 }

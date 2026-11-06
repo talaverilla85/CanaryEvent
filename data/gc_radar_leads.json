@@ -1,83 +1,84 @@
 {
-  "checked_on": "2026-11-05",
+  "checked_on": "2026-11-06",
   "scope": "Gran Canaria (official candidate links only)",
   "no_auto_publication": true,
   "inspected": [
     {
-      "municipality": "San Bartolomé de Tirajana",
+      "municipality": "Agaete",
       "outcome": "ok",
       "links": 0
     },
     {
-      "municipality": "Santa Lucía de Tirajana",
+      "municipality": "Artenara",
       "outcome": "ok",
-      "links": 3
+      "links": 0
     },
     {
-      "municipality": "Santa María de Guía",
+      "municipality": "Firgas",
+      "outcome": "ok",
+      "links": 4
+    },
+    {
+      "municipality": "Gáldar",
+      "outcome": "ok",
+      "links": 6
+    },
+    {
+      "municipality": "La Aldea de San Nicolás",
       "outcome": "needs_review",
-      "error_type": "ReadTimeout",
+      "error_type": "ConnectTimeout",
       "links": 0
     },
     {
-      "municipality": "Telde",
-      "outcome": "ok",
-      "links": 12
-    },
-    {
-      "municipality": "Teror",
+      "municipality": "Las Palmas de Gran Canaria",
       "outcome": "needs_review",
       "error_type": "RuntimeError",
       "links": 0
     },
     {
-      "municipality": "Valleseco",
-      "outcome": "ok",
-      "links": 0
-    },
-    {
-      "municipality": "Valsequillo",
+      "municipality": "Mogán",
       "outcome": "needs_review",
-      "error_type": "SSLError",
+      "error_type": "RuntimeError",
       "links": 0
     },
     {
-      "municipality": "Vega de San Mateo",
-      "outcome": "ok",
-      "links": 3
+      "municipality": "Moya",
+      "outcome": "needs_review",
+      "error_type": "PermissionError",
+      "links": 0
     }
   ],
   "scan_state": {
     "Agaete": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-06",
       "outcome": "ok"
     },
     "Artenara": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-06",
       "outcome": "ok"
     },
     "Firgas": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-06",
       "outcome": "ok"
     },
     "Gáldar": {
-      "checked_on": "2026-11-05",
-      "outcome": "needs_review"
+      "checked_on": "2026-11-06",
+      "outcome": "ok"
     },
     "La Aldea de San Nicolás": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-06",
       "outcome": "needs_review"
     },
     "Las Palmas de Gran Canaria": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-06",
       "outcome": "needs_review"
     },
     "Mogán": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-06",
       "outcome": "needs_review"
     },
     "Moya": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-06",
       "outcome": "needs_review"
     },
     "San Bartolomé de Tirajana": {
@@ -113,8 +114,98 @@
       "outcome": "ok"
     }
   },
-  "candidate_count": 42,
+  "candidate_count": 44,
   "leads": [
+    {
+      "url": "https://www.galdar.es/mercado/",
+      "label": "Mercado Municipal \"La Recova\"",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-06",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/galdar-logra-para-canarias-una-ayuda-excepcional-del-2-cultural-para-restaurar-la-ermita-de-san-jose-de-caideros/",
+      "label": "Patrimonio Histórico e Identidad 4 de noviembre de 2026 Gáldar, único municipio de Canarias que consigue el 2% Cultural del Estado para restaurar la Ermita de San José de Caideros",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-11-06",
+      "last_seen": "2026-11-06",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/eventos/",
+      "label": "Agenda de Eventos",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-06",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/el-ayuntamiento-detalla-en-sardina-los-proyectos-ejecutados-y-las-actuaciones-futuras-para-la-costa-de-galdar/",
+      "label": "Participación Ciudadana 6 de noviembre de 2026 El Ayuntamiento detalla en Sardina los proyectos ejecutados y las actuaciones futuras para la costa de Gáldar",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-11-06",
+      "last_seen": "2026-11-06",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/culturayfiestas/#ert_pane1-1",
+      "label": "Festejos",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-06",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/bandamunicipal/",
+      "label": "Banda Municipal de Música",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-06",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/firgas-celebra-el-19-de-septiembre-una-jornada-de-naturaleza-gastronomia-y-musica-con-motivo-del-dia-mundial-del-turismo/",
+      "label": "Firgas celebra el Día Mundial del Turismo con senderismo, gastronomía y música en la Plaza de San Roque",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-06",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/taller-de-teatro/",
+      "label": "TALLER DE TEATRO",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-06",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/categories/festival/",
+      "label": "Festival",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-06",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/categories/casa-cultura/",
+      "label": "Casa Cultura",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-06",
+      "publication_status": "not_an_event"
+    },
     {
       "url": "https://vegadesanmateo.es/areas/patrimonio-cultural-e-historico",
       "label": "Patrimonio Cultural e Histórico",
@@ -278,42 +369,6 @@
       "publication_status": "not_an_event"
     },
     {
-      "url": "https://www.villadefirgas.es/firgas-celebra-el-19-de-septiembre-una-jornada-de-naturaleza-gastronomia-y-musica-con-motivo-del-dia-mundial-del-turismo/",
-      "label": "Firgas celebra el Día Mundial del Turismo con senderismo, gastronomía y música en la Plaza de San Roque",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/events/taller-de-teatro/",
-      "label": "TALLER DE TEATRO",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/events/categories/festival/",
-      "label": "Festival",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/events/categories/casa-cultura/",
-      "label": "Casa Cultura",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
       "url": "https://www.telde.es/telde-recuerda-que-continua-abierto-el-plazo-para-solicitar-autorizaciones-de-food-trucks-en-las-fiestas-de-san-gregorio/",
       "label": "Telde recuerda que continúa abierto el plazo para solicitar autorizaciones de food trucks en las fiestas de San Gregorio",
       "kind": "unverified_official_link",
@@ -341,15 +396,6 @@
       "publication_status": "not_an_event"
     },
     {
-      "url": "https://www.galdar.es/mercado/",
-      "label": "Mercado Municipal \"La Recova\"",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-10-30",
-      "publication_status": "not_an_event"
-    },
-    {
       "url": "https://www.galdar.es/galdar-aplaza-al-2-de-noviembre-la-noche-de-finaos-en-el-club-de-mayores/",
       "label": "Mayor 30 de octubre de 2026 Gáldar aplaza al 2 de noviembre la Noche de Finaos en el Club de Mayores",
       "kind": "unverified_official_link",
@@ -368,38 +414,11 @@
       "publication_status": "not_an_event"
     },
     {
-      "url": "https://www.galdar.es/eventos/",
-      "label": "Agenda de Eventos",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-10-30",
-      "publication_status": "not_an_event"
-    },
-    {
       "url": "https://www.galdar.es/el-ayuntamiento-de-galdar-organizan-un-taller-de-belenismo-en-la-av-el-bermejal/",
       "label": "Cultura y Fiestas 29 de octubre de 2026 El Ayuntamiento de Gáldar organizan un Taller de Belenismo en la AV El Bermejal",
       "kind": "unverified_official_link",
       "municipality": "Gáldar",
       "first_seen": "2026-10-30",
-      "last_seen": "2026-10-30",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.galdar.es/culturayfiestas/#ert_pane1-1",
-      "label": "Festejos",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-10-30",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.galdar.es/bandamunicipal/",
-      "label": "Banda Municipal de Música",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-10-27",
       "last_seen": "2026-10-30",
       "publication_status": "not_an_event"
     },

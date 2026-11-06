@@ -1,8 +1,8 @@
 {
-  "checked_at": "2026-11-05T21:32:11+00:00",
+  "checked_at": "2026-11-06T13:12:10+00:00",
   "source_name": "Ayuntamiento de Telde · índice de programas PDF",
   "source_url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/relacion-de-fiestas-ano-2026/",
-  "program_count": 34,
+  "program_count": 35,
   "events_imported": 0,
   "note": "PDFs descubiertos, no eventos. Cada actividad requiere comprobación independiente.",
   "programs": [
@@ -277,6 +277,14 @@
       "event_date_verified": false,
       "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
       "first_seen_at": "2026-10-25T09:01:21+00:00"
+    },
+    {
+      "title": "Fiestas en honor a San Gregorio Taumaturgo",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/11/sangregorio26.pdf",
+      "year": 2026,
+      "event_date_verified": false,
+      "note": "Programa detectado: fechas y actividades interiores pendientes de lectura validada",
+      "first_seen_at": "2026-11-06T13:11:04.018161+00:00"
     }
   ]
 }

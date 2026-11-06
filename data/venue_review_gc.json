@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-05T21:32:11+00:00",
-  "not_published": 51,
+  "updated_at": "2026-11-06T13:12:10+00:00",
+  "not_published": 49,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -136,18 +136,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 130,
-      "title": "Charlas del Plan Mayor: Consejos de seguridad para mayores",
-      "start": "2026-10-15",
-      "end": "2026-11-05",
-      "municipality": "San Bartolomé de Tirajana",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0015/charlas-del-plan-mayor-consejos-de-seguridad-para-mayores",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 134,
       "title": "Exposición fotográfica: Barreras de la visión de Tim Parchikov",
       "start": "2026-10-15",
@@ -252,18 +240,6 @@
       "venue": "Santa Brígida",
       "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "source_url": "https://eventos.santabrigida.es/eventos/santa-brigida-con-vinos-2026-programa/",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 149,
-      "title": "La Pantalla Inversa: Matrix",
-      "start": "2026-11-05T19:00:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261105-0004/la-pantalla-inversa-matrix",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
