@@ -83,7 +83,8 @@ concurrency:
 jobs:
   update-events:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    # Official source scans and a conflict-safe rebase can require a second full pass.
+    timeout-minutes: 25
     steps:
       - name: Obtener código
         uses: actions/checkout@v4
