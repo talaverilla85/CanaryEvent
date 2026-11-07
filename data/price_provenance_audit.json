@@ -1,15 +1,15 @@
 {
-  "checked_on": "2026-11-07T11:59:18.366493+00:00",
-  "total_events": 458,
-  "known_price_or_free": 144,
+  "checked_on": "2026-11-07T12:28:58.145393+00:00",
+  "total_events": 467,
+  "known_price_or_free": 145,
   "classification": {
-    "minimum_zero_ambiguous": 7,
+    "minimum_zero_ambiguous": 8,
     "minimum_positive": 113,
     "free": 18,
     "fixed_positive": 6
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 70,
+    "TuReservaOnline · agenda de Gran Canaria": 71,
     "Juventud Las Palmas de Gran Canaria": 12,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 37,
     "Ayuntamiento de Ingenio": 6,
@@ -48,6 +48,15 @@
       "free": 0,
       "category": "minimum_zero_ambiguous",
       "url": "https://www.tureservaonline.es/es/events/corazon-valiente-el-soldadito-de-plomo-valleseco"
+    },
+    {
+      "id": 848,
+      "title": "PREMIOS TASATE 2026",
+      "source": "TuReservaOnline · agenda de Gran Canaria",
+      "label": "Desde 0 €",
+      "free": 0,
+      "category": "minimum_zero_ambiguous",
+      "url": "https://www.tureservaonline.es/es/events/premios-tasate-2026"
     },
     {
       "id": 814,

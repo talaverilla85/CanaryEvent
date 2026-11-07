@@ -2309,5 +2309,385 @@
       "total_tokens": 4009
     },
     "measured_cost_usd": 0.0007029
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/6/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Celebración de la Eucaristía",
+          "date": "2026-11-17",
+          "time": "09:30",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "17 NOV · MARTES · FIESTA PRINCIPAL; 09:30 h Celebración de la Eucaristía.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Celebración de la Eucaristía presidida por el padre D. Rayco Rodríguez Reyes",
+          "date": "2026-11-17",
+          "time": "19:00",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "17 NOV · MARTES · FIESTA PRINCIPAL; 19:00 h Celebración de la Eucaristía presidida por el padre D. Rayco Rodríguez Reyes.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Procesión de la venerada imagen de San Gregorio Taumaturgo",
+          "date": "2026-11-17",
+          "time": "20:00",
+          "venue": "Plaza de San Gregorio – Juan Diego de la Fuente – Ruiz – Avenida de la Constitución – Plaza de San Gregorio",
+          "evidence": "17 NOV · MARTES · FIESTA PRINCIPAL; 20:00 h Procesión de la venerada imagen de San Gregorio Taumaturgo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Bendición de los campos",
+          "date": "2026-11-17",
+          "time": null,
+          "venue": "Inicio de la calle Juan Diego de Fuente, con intersección calle Ruiz",
+          "evidence": "17 NOV · MARTES · FIESTA PRINCIPAL; tradicional Bendición de los campos.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía de despedida de la Virgen del Carmen",
+          "date": "2026-11-22",
+          "time": "19:00",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "22 NOV · DOMINGO; 19:00 h Eucaristía de despedida de la Virgen del Carmen.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3386,
+      "input_tokens_details": {
+        "cache_write_tokens": 3383,
+        "cached_tokens": 0
+      },
+      "output_tokens": 922,
+      "output_tokens_details": {
+        "reasoning_tokens": 426
+      },
+      "total_tokens": 4308
+    },
+    "measured_cost_usd": 0.0007996
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/6/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "Celebración de la Eucaristía",
+          "date": "2026-11-17",
+          "time": "09:30",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "09:30 h Celebración de la Eucaristía. Templo de San Gregorio Taumaturgo",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Celebración de la Eucaristía presidida por el padre D. Rayco Rodríguez Reyes",
+          "date": "2026-11-17",
+          "time": "19:00",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "19:00 h Celebración de la Eucaristía presidida por el padre D. Rayco Rodríguez Reyes",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Procesión de la venerada imagen de San Gregorio Taumaturgo",
+          "date": "2026-11-17",
+          "time": "20:00",
+          "venue": "Plaza de San Gregorio – Juan Diego de la Fuente – Ruiz – Avenida de la Constitución – Plaza de San Gregorio",
+          "evidence": "20:00 h Procesión de la venerada imagen de San Gregorio Taumaturgo; recorrido: Plaza de San Gregorio – Juan Diego de la Fuente – Ruiz – Avenida de la Constitución",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía de despedida de la Virgen del Carmen",
+          "date": "2026-11-22",
+          "time": "19:00",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "19:00 h Eucaristía de despedida de la Virgen del Carmen. Templo de San Gregorio Taumaturgo",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3254,
+      "input_tokens_details": {
+        "cache_write_tokens": 3251,
+        "cached_tokens": 0
+      },
+      "output_tokens": 780,
+      "output_tokens_details": {
+        "reasoning_tokens": 367
+      },
+      "total_tokens": 4034
+    },
+    "measured_cost_usd": 0.0007154
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/7/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Pasacalles anunciador de las fiestas",
+          "date": "2026-11-06",
+          "time": "19:00",
+          "venue": "Desde el Parque Franchy Roca hasta la Plaza de San Gregorio",
+          "evidence": "6 NOV · VIERNES; 19:00 h Pasacalles anunciador de las fiestas.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Lectura del Pregón de las fiestas a cargo de Mari Carmen Hernández Domínguez",
+          "date": "2026-11-06",
+          "time": "20:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "6 NOV · VIERNES; 20:00 h Lectura del Pregón de las fiestas a cargo de Mari Carmen Hernández Domínguez.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Izado de la bandera de San Gregorio con la actuación de D. Heriberto Zerpa",
+          "date": "2026-11-06",
+          "time": null,
+          "venue": "Plaza de San Gregorio",
+          "evidence": "6 NOV · VIERNES; A continuación izado de la bandera de San Gregorio con la actuación de D. Heriberto Zerpa.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Sesión musical con DJ Abián Reyes",
+          "date": "2026-11-06",
+          "time": "22:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "6 NOV · VIERNES; 22:00 h Sesión musical con DJ Abián Reyes.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Verbena con Leyenda Joven",
+          "date": "2026-11-06",
+          "time": "00:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "6 NOV · VIERNES; 00:00 h Verbena con Leyenda Joven.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Campeonato de Canarias de OCR",
+          "date": "2026-11-07",
+          "time": "08:00",
+          "venue": "El Hornillo-Parque de San Juan",
+          "evidence": "7 NOV · SÁBADO; 08:00 h Campeonato de Canarias de OCR.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "VIII Open Canario Petanca Gerardo Rodríguez",
+          "date": "2026-11-07",
+          "time": "09:00",
+          "venue": "La Hoya de San Juan",
+          "evidence": "7 NOV · SÁBADO; 09:00 h VIII Open Canario Petanca Gerardo Rodríguez.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "IV Mercado Vecinal de Segunda Mano",
+          "date": "2026-11-07",
+          "time": "09:00–18:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "7 NOV · SÁBADO; 09:00 a 18:00 h IV Mercado Vecinal de Segunda Mano.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Entrega de Honores y Distinciones de la Ciudad de Telde 2026",
+          "date": "2026-11-07",
+          "time": "20:00",
+          "venue": "Plaza de San Juan",
+          "evidence": "7 NOV · SÁBADO; 20:00 h Entrega de Honores y Distinciones de la Ciudad de Telde 2026.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Sesión musical con Pronova DJ Juanjo",
+          "date": "2026-11-07",
+          "time": "22:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "7 NOV · SÁBADO; 22:00 h Sesión musical con Pronova DJ Juanjo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Verbena con Furia Joven",
+          "date": "2026-11-07",
+          "time": "00:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "7 NOV · SÁBADO; 00:00 h Verbena con Furia Joven.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3386,
+      "input_tokens_details": {
+        "cache_write_tokens": 3383,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1439,
+      "output_tokens_details": {
+        "reasoning_tokens": 499
+      },
+      "total_tokens": 4825
+    },
+    "measured_cost_usd": 0.0010581
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/7/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "Pasacalles anunciador de las fiestas",
+          "date": "2026-11-06",
+          "time": "19:00",
+          "venue": "Desde el Parque Franchy Roca hasta la Plaza de San Gregorio",
+          "evidence": "19:00 h Pasacalles anunciador de las fiestas.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Lectura del Pregón de las fiestas a cargo de Mari Carmen Hernández Domínguez",
+          "date": "2026-11-06",
+          "time": "20:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "20:00 h Lectura del Pregón de las fiestas a cargo de Mari Carmen Hernández Domínguez.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Sesión musical con DJ Abián Reyes",
+          "date": "2026-11-06",
+          "time": "22:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "22:00 h Sesión musical con DJ Abián Reyes.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Verbena con Leyenda Joven",
+          "date": "2026-11-06",
+          "time": "00:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "00:00 h Verbena con Leyenda Joven.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Campeonato de Canarias de OCR",
+          "date": "2026-11-07",
+          "time": "08:00",
+          "venue": "El Hornillo-Parque de San Juan",
+          "evidence": "08:00 h Campeonato de Canarias de OCR.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "VIII Open Canario Petanca Gerardo Rodríguez",
+          "date": "2026-11-07",
+          "time": "09:00",
+          "venue": "La Hoya de San Juan",
+          "evidence": "09:00 h VIII Open Canario Petanca Gerardo Rodríguez.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "IV Mercado Vecinal de Segunda Mano",
+          "date": "2026-11-07",
+          "time": "09:00-18:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "09:00 a 18:00 h IV Mercado Vecinal de Segunda Mano.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Entrega de Honores y Distinciones de la Ciudad de Telde 2026",
+          "date": "2026-11-07",
+          "time": "20:00",
+          "venue": "Plaza de San Juan",
+          "evidence": "20:00 h Entrega de Honores y Distinciones de la Ciudad de Telde 2026.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Sesión musical con Pronova DJ Juanjo",
+          "date": "2026-11-07",
+          "time": "22:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "22:00 h Sesión musical con Pronova DJ Juanjo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Verbena con Furia Joven",
+          "date": "2026-11-07",
+          "time": "00:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "00:00 h Verbena con Furia Joven.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3254,
+      "input_tokens_details": {
+        "cache_write_tokens": 3251,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1275,
+      "output_tokens_details": {
+        "reasoning_tokens": 516
+      },
+      "total_tokens": 4529
+    },
+    "measured_cost_usd": 0.0009629
   }
 }
