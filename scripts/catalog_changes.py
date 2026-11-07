@@ -44,7 +44,7 @@ def _indexed(rows):
 
 def _day(value):
     text=str(value or "")[:10]
-    return text if re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}",text) else None
+    return text if re.fullmatch(r"\d{4}-\d{2}-\d{2}",text) else None
 
 
 def _normalized(value):
