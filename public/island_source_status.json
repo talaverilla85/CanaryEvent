@@ -104,7 +104,7 @@
       "adapter": "island_eventon_agendas",
       "found_last_run": 6,
       "last_error": "",
-      "published_cards": 0,
+      "published_cards": 6,
       "has_live_connector": true
     },
     {
@@ -117,9 +117,9 @@
       ],
       "status": "activo",
       "adapter": "island_eventon_agendas",
-      "found_last_run": 0,
-      "last_error": "ValueError",
-      "published_cards": 0,
+      "found_last_run": 2,
+      "last_error": "",
+      "published_cards": 2,
       "has_live_connector": true
     },
     {
@@ -169,7 +169,15 @@
     }
   ],
   "producer_observations": {
-    "Camino Viejo Producciones": [],
+    "Camino Viejo Producciones": [
+      {
+        "title": "BLANCANIEVES, MÁS ALLÁ DEL ESPEJO",
+        "date": "2026-11-07",
+        "venue": "Teatro Auditorio Agüimes",
+        "municipality": "Agüimes",
+        "official_url": "https://aguimes.es/events/blancanieves-mas-alla-del-espejo/"
+      }
+    ],
     "method": "Credit explicitly present in an official venue listing, not assumed from production title"
   },
   "next_island_requirements": [

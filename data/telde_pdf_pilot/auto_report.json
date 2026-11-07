@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-11-07T12:23:50.144292+00:00",
+  "checked_at": "2026-11-07T15:12:05.785123+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
   "api_calls": 4,
-  "usage_usd": 0.003536,
+  "usage_usd": 0.0040976,
   "docs": [
     {
       "name": "Fiestas en honor a San Gregorio Taumaturgo",
@@ -14,36 +14,40 @@
       "bytes": 2979368,
       "inspected": [
         {
-          "page": 7,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 5,
-          "verification": "new_independent_visual_read",
-          "auto_verified": 4
-        },
-        {
-          "page": 8,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 10,
-          "verification": "new_independent_visual_read",
-          "auto_verified": 4
-        },
-        {
           "page": 9,
           "native_text_chars": 0,
           "route": "ai_vision",
-          "status": "skipped_api_budget"
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 12,
+          "verification": "new_independent_visual_read",
+          "auto_verified": 11
+        },
+        {
+          "page": 10,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 0
+        },
+        {
+          "page": 11,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 12,
+          "verification": "pending_second_read_budget"
         }
       ]
     },
@@ -76,9 +80,9 @@
     }
   ],
   "deferred_docs": [],
-  "pending_review_count": 17,
-  "auto_verified_count": 15,
+  "pending_review_count": 41,
+  "auto_verified_count": 26,
   "archived_count": 94,
-  "archived_this_run": 5,
+  "archived_this_run": 0,
   "notes": "Future events require independent date, time and venue verification. Expired records move to the historic archive; incomplete past-only PDFs are temporarily deferred."
 }

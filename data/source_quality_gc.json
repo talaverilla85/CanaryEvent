@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-07T13:06:28+00:00",
+  "checked_at": "2026-11-07T15:13:42+00:00",
   "quality_counts": {
-    "publicados": 473,
+    "publicados": 484,
     "recintos_sin_verificar": 47,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 328,
-    "distancia_a_centro_municipal": 318,
-    "fuentes_con_error": 6,
+    "precios_sin_confirmar": 339,
+    "distancia_a_centro_municipal": 329,
+    "fuentes_con_error": 3,
     "duplicados_potenciales": 5
   },
   "sources": [
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 13,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 5,
+      "fichas_leidas_en_esta_ejecucion": 14,
       "error": ""
     },
     {
@@ -123,22 +123,22 @@
     {
       "source": "Ayuntamiento de Agüimes · programación de teatros",
       "estado": "operativa",
-      "publicados": 0,
+      "publicados": 6,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 0,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 6,
       "fichas_leidas_en_esta_ejecucion": 6,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
-      "estado": "error",
-      "publicados": 0,
+      "estado": "operativa",
+      "publicados": 2,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "ValueError"
+      "distancia_al_centro_municipal": 2,
+      "fichas_leidas_en_esta_ejecucion": 2,
+      "error": ""
     },
     {
       "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
@@ -172,13 +172,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
+      "fichas_leidas_en_esta_ejecucion": 2,
+      "error": ""
     },
     {
       "source": "Municipio · descubrimiento oficial · Firgas",
@@ -293,11 +293,11 @@
     {
       "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
       "estado": "operativa",
-      "publicados": 15,
+      "publicados": 26,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 15,
-      "distancia_al_centro_municipal": 15,
-      "fichas_leidas_en_esta_ejecucion": 15,
+      "precio_sin_confirmar": 26,
+      "distancia_al_centro_municipal": 26,
+      "fichas_leidas_en_esta_ejecucion": 26,
       "error": ""
     },
     {
@@ -312,13 +312,13 @@
     },
     {
       "source": "Ayuntamientos · actos individualmente contrastados",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 7,
-      "error": "Gáldar: ReadTimeout"
+      "fichas_leidas_en_esta_ejecucion": 10,
+      "error": ""
     },
     {
       "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
@@ -383,10 +383,10 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "operativa",
-      "publicados": 203,
+      "publicados": 195,
       "recinto_sin_verificar": 35,
-      "precio_sin_confirmar": 166,
-      "distancia_al_centro_municipal": 118,
+      "precio_sin_confirmar": 165,
+      "distancia_al_centro_municipal": 110,
       "fichas_leidas_en_esta_ejecucion": 38,
       "error": ""
     },
@@ -463,24 +463,12 @@
   ],
   "reported_errors": [
     {
-      "source": "Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
-      "error": "ValueError"
-    },
-    {
-      "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
-    },
-    {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
       "error": "No event links found in official listing; check layout"
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda robots HTTP 301"
-    },
-    {
-      "source": "Ayuntamientos · actos individualmente contrastados",
-      "error": "Gáldar: ReadTimeout"
     },
     {
       "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",

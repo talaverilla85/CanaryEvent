@@ -2689,5 +2689,645 @@
       "total_tokens": 4529
     },
     "measured_cost_usd": 0.0009629
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/8/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "XXXIII Crono Escalada Memorial Tito Cabrera y Circuito de Escuelas de Ciclismo 2026",
+          "date": "2026-11-08",
+          "time": "08:00",
+          "venue": "Vial Costero-San Gregorio",
+          "evidence": "“8 NOV • DOMINGO”; “08:00 h XXXIII Crono Escalada Memorial Tito Cabrera y Circuito de Escuelas de Ciclismo 2026.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Torneo de Fútbol San Gregorio Cup",
+          "date": "2026-11-08",
+          "time": "08:45",
+          "venue": "El Hornillo",
+          "evidence": "“8 NOV • DOMINGO”; “08:45 h Torneo de Fútbol San Gregorio Cup.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Ludo-parque infantil Gregorito Parque",
+          "date": "2026-11-08",
+          "time": "10:00 a 14:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "“8 NOV • DOMINGO”; “10:00 a 14:00 h Ludo-parque infantil Gregorito Parque.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Batalla pistolas láser",
+          "date": "2026-11-08",
+          "time": "12:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "“8 NOV • DOMINGO”; “12:00 h Batalla pistolas láser.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Ludo-Parque Infantil Gregorito Parque",
+          "date": "2026-11-08",
+          "time": "17:00 a 19:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "“8 NOV • DOMINGO”; “17:00 a 19:00 h Ludo-Parque Infantil Gregorito Parque.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Gala Los Diver",
+          "date": "2026-11-08",
+          "time": "17:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“8 NOV • DOMINGO”; “17:00 h Gala Los Diver.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Música y baile",
+          "date": "2026-11-08",
+          "time": "17:00",
+          "venue": "Centro de Mayores",
+          "evidence": "“8 NOV • DOMINGO”; “17:00 h Música y baile.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Reconocimiento Institucional a los turroneros tradicionales por sus años de trayectoria en nuestras fiestas patronales",
+          "date": "2026-11-09",
+          "time": "11:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“9 NOV • LUNES”; “11:00 h Reconocimiento Institucional a los turroneros tradicionales”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Encuentro de Academias de Baile",
+          "date": "2026-11-10",
+          "time": "17:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“10 NOV • MARTES”; “17:00 h Encuentro de Academias de Baile.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Recorrido Histórico-Etnográfico “Recordando Los Llanos de San Gregorio”",
+          "date": "2026-11-11",
+          "time": "20:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“11 NOV • MIÉRCOLES”; “20:00 h Recorrido Histórico-Etnográfico ‘Recordando Los Llanos de San Gregorio’.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Exhibición Artes Marciales",
+          "date": "2026-11-12",
+          "time": "17:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“12 NOV • JUEVES”; “17:00 h Exhibición Artes Marciales.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Actuación musical de Los Salaitos",
+          "date": "2026-11-12",
+          "time": "20:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“12 NOV • JUEVES”; “20:00 h Actuación musical de Los Salaitos.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Comedia a cargo de Maestro Florido",
+          "date": "2026-11-12",
+          "time": "21:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“12 NOV • JUEVES”; “21:00 h Comedia a cargo de Maestro Florido.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Espectáculo de humor a cargo de Kike Pérez",
+          "date": "2026-11-12",
+          "time": "22:30",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“12 NOV • JUEVES”; “22:30 h Espectáculo de humor a cargo de Kike Pérez.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3386,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 3383
+      },
+      "output_tokens": 1667,
+      "output_tokens_details": {
+        "reasoning_tokens": 481
+      },
+      "total_tokens": 5053
+    },
+    "measured_cost_usd": 0.0008676
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/8/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "XXXIII Crono Escalada Memorial Tito Cabrera y Circuito de Escuelas de Ciclismo 2026",
+          "date": "2026-11-08",
+          "time": "08:00",
+          "venue": "Vial Costero-San Gregorio",
+          "evidence": "“08:00 h XXXIII Crono Escalada…”, “VIAL COSTERO-SAN GREGORIO”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Torneo de Fútbol San Gregorio Cup",
+          "date": "2026-11-08",
+          "time": "08:45",
+          "venue": "El Hornillo",
+          "evidence": "“EL HORNILLO”, “08:45 h Torneo de Fútbol San Gregorio Cup”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Ludo-parque infantil Gregorito Parque",
+          "date": "2026-11-08",
+          "time": "10:00-14:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "“PARQUE FRANCHY ROCA”, “10:00 a 14:00 h Ludo-parque infantil Gregorito Parque”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Batalla pistolas láser",
+          "date": "2026-11-08",
+          "time": "12:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "“PARQUE FRANCHY ROCA”, “12:00 h Batalla pistolas láser”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Ludo-Parque Infantil Gregorito Parque",
+          "date": "2026-11-08",
+          "time": "17:00-19:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "“17:00 a 19:00 h Ludo-Parque Infantil Gregorito Parque”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Gala Los Diver",
+          "date": "2026-11-08",
+          "time": "17:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“PLAZA DE SAN GREGORIO”, “17:00 h Gala Los Diver”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Música y baile",
+          "date": "2026-11-08",
+          "time": "17:00",
+          "venue": "Centro de Mayores",
+          "evidence": "“CENTRO DE MAYORES”, “17:00 h Música y baile”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Reconocimiento institucional a los turroneros tradicionales",
+          "date": "2026-11-09",
+          "time": "11:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“PLAZA DE SAN GREGORIO”, “11:00 h Reconocimiento Institucional a los turroneros tradicionales”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Encuentro de Academias de Baile",
+          "date": "2026-11-10",
+          "time": "17:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“PLAZA DE SAN GREGORIO”, “17:00 h Encuentro de Academias de Baile”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Recorrido Histórico-Etnográfico “Recordando Los Llanos de San Gregorio”",
+          "date": "2026-11-11",
+          "time": "20:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“PLAZA DE SAN GREGORIO”, “20:00 h Recorrido Histórico-Etnográfico”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Exhibición Artes Marciales",
+          "date": "2026-11-12",
+          "time": "17:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“PLAZA DE SAN GREGORIO”, “17:00 h Exhibición Artes Marciales”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Actuación musical de Los Salaitos",
+          "date": "2026-11-12",
+          "time": "20:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“PLAZA DE SAN GREGORIO”, “20:00 h Actuación musical de Los Salaitos”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Comedia a cargo de Maestro Florido",
+          "date": "2026-11-12",
+          "time": "21:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“PLAZA DE SAN GREGORIO”, “21:00 h Comedia a cargo de Maestro Florido”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Espectáculo de humor a cargo de Kike Pérez",
+          "date": "2026-11-12",
+          "time": "22:30",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“PLAZA DE SAN GREGORIO”, “22:30 h Espectáculo de humor a cargo de Kike Pérez”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3254,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 3251
+      },
+      "output_tokens": 1681,
+      "output_tokens_details": {
+        "reasoning_tokens": 516
+      },
+      "total_tokens": 4935
+    },
+    "measured_cost_usd": 0.0008733
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/9/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Encuentro de Tradiciones y Convivencia “Mayores con Raíces”",
+          "date": "2026-11-13",
+          "time": "10:00 h",
+          "venue": "Centro de Mayores",
+          "evidence": "13 NOV · VIERNES — 10:00 h Encuentro de Tradiciones y Convivencia “Mayores con Raíces”.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Inauguración XIII Muestra de Fotografía Enfoques",
+          "date": "2026-11-13",
+          "time": "19:00 h",
+          "venue": "Círculo Cultural de Telde",
+          "evidence": "13 NOV · VIERNES — 19:00 h Inauguración XIII Muestra de Fotografía Enfoques.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Festival de la A.F. Atacayte",
+          "date": "2026-11-13",
+          "time": "20:00 h",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "13 NOV · VIERNES — 20:00 h Festival de la A.F. Atacayte.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Actuación de la banda Belice",
+          "date": "2026-11-13",
+          "time": "22:00 h",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "13 NOV · VIERNES — 22:00 h Actuación de la banda Belice.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Actuación de la banda Enkassette",
+          "date": "2026-11-13",
+          "time": "23:30 h",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "13 NOV · VIERNES — 23:30 h Actuación de la banda Enkassette.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Actuación del grupo Chicas Melodía",
+          "date": "2026-11-13",
+          "time": "01:00 h",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "13 NOV · VIERNES — 01:00 h Actuación del grupo Chicas Melodía.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "XI Exposición de vehículos antiguos y clásicos de Telde",
+          "date": "2026-11-14",
+          "time": "8:00 a 16:00 h",
+          "venue": "Plaza Anna Vicente y Ferrer",
+          "evidence": "14 NOV · SÁBADO — 8:00 a 16:00 h XI Exposición de vehículos antiguos y clásicos de Telde.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "XXVII Torneo de Ajedrez Memorial Juan Martín de la Nuez",
+          "date": "2026-11-14",
+          "time": "09:00 h",
+          "venue": "CEIP San Juan",
+          "evidence": "14 NOV · SÁBADO — 09:00 h XXVII Torneo de Ajedrez Memorial Juan Martín de la Nuez.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Ludo-parque infantil Gregorito Parque",
+          "date": "2026-11-14",
+          "time": "10:00 a 14.00 h",
+          "venue": "Parque Franchy Roca",
+          "evidence": "14 NOV · SÁBADO — 10:00 a 14.00 h Ludo-parque infantil Gregorito Parque.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Actuación del Mago Giovanni",
+          "date": "2026-11-14",
+          "time": "12:00 h",
+          "venue": "Parque Franchy Roca",
+          "evidence": "14 NOV · SÁBADO — 12:00 h Actuación del Mago Giovanni.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Ludo-Parque Infantil Gregorito Parque",
+          "date": "2026-11-14",
+          "time": "17:00 h 19:00 h",
+          "venue": "Parque Franchy Roca",
+          "evidence": "14 NOV · SÁBADO — 17:00 h 19:00 h Ludo-Parque Infantil Gregorito Parque.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "XV Festival Folclórico de la A.F. Cendro",
+          "date": "2026-11-14",
+          "time": "20:00 h",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "14 NOV · SÁBADO — 20:00 h XV Festival Folclórico de la A.F. Cendro.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Sesión musical con DJ Aroa Luján",
+          "date": "2026-11-14",
+          "time": "22:00 h",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "14 NOV · SÁBADO — 22:00 h Sesión musical con DJ Aroa Luján.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Verbena con Mekanica by Tamarindos",
+          "date": "2026-11-14",
+          "time": "00:00 h",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "14 NOV · SÁBADO — 00:00 h Verbena con Mekanica by Tamarindos.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3386,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 3383
+      },
+      "output_tokens": 1963,
+      "output_tokens_details": {
+        "reasoning_tokens": 739
+      },
+      "total_tokens": 5349
+    },
+    "measured_cost_usd": 0.0010156
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/10/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Inauguración de La Feria de Artesanía",
+          "date": "2026-11-15",
+          "time": "10:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“15 NOV · DOMINGO”; “10:00 h Inauguración de La Feria de Artesanía.”; “PLAZA DE SAN GREGORIO”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Muestra fotográfica Enfoques",
+          "date": "2026-11-15",
+          "time": "10:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“15 NOV · DOMINGO”; “10:00 h Muestra fotográfica Enfoques.”; “PLAZA DE SAN GREGORIO”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Ludo-parque infantil Gregorito Parque",
+          "date": "2026-11-15",
+          "time": "10:00 a 14:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "“15 NOV · DOMINGO”; “10:00 a 14.00 h Ludo-parque infantil Gregorito Parque.”; “PARQUE FRANCHY ROCA”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "KDD Benéfica de coches y motos “Kilómetros por sonrisas”",
+          "date": "2026-11-15",
+          "time": "10:30",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "“15 NOV · DOMINGO”; “10:30 h KDD Benéfica de coches y motos ‘Kilómetros por sonrisas’.”; “RECINTO FERIAL DE ARAUZ”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Actuación del Payaso Pepón",
+          "date": "2026-11-15",
+          "time": "12:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "“15 NOV · DOMINGO”; “12:00 h Actuación del Payaso Pepón.”; “PARQUE FRANCHY ROCA”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Ludo-Parque Infantil Gregorito Parque",
+          "date": "2026-11-15",
+          "time": "17:00 a 19:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "“15 NOV · DOMINGO”; “17:00 a 19:00 h Ludo-Parque Infantil Gregorito Parque.”; “PARQUE FRANCHY ROCA”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Feria de Artesanía",
+          "date": "2026-11-16",
+          "time": "10:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“16 NOV · LUNES”; “10:00 h Feria de Artesanía.”; “PLAZA DE SAN GREGORIO”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Muestra fotográfica Enfoques",
+          "date": "2026-11-16",
+          "time": "10:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“16 NOV · LUNES”; “10:00 h Muestra fotográfica Enfoques.”; “PLAZA DE SAN GREGORIO”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Inauguración de la III Feria Comercial",
+          "date": "2026-11-16",
+          "time": "10:00",
+          "venue": "Zona Comercial Abierta de San Gregorio",
+          "evidence": "“16 NOV · LUNES”; “10:00 h Inauguración de la III Feria Comercial.”; “ZONA COMERCIAL ABIERTA DE SAN GREGORIO”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Romería-Ofrenda a San Gregorio",
+          "date": "2026-11-16",
+          "time": "19:00",
+          "venue": "Desde la Barranquera hasta la Plaza de San Gregorio",
+          "evidence": "“16 NOV · LUNES”; “19:00 h Romería-Ofrenda a San Gregorio.”; “DESDE LA BARRANQUERA HASTA LA PLAZA DE SAN GREGORIO”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Sesión musical con DJ Promaster",
+          "date": "2026-11-16",
+          "time": "21:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "“16 NOV · LUNES”; “21:00 h Sesión musical con DJ Promaster.”; “RECINTO FERIAL DE ARAUZ”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Parrandeando por San Gregorio con las parranderas, Palante, El Volumen y Yemaya",
+          "date": "2026-11-16",
+          "time": "22:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“16 NOV · LUNES”; “22:00 h Parrandeando por San Gregorio con las parranderas, Palante, El Volumen y Yemaya.”; “PLAZA DE SAN GREGORIO”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Actuación del grupo Star Music",
+          "date": "2026-11-16",
+          "time": "22:30",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "“16 NOV · LUNES”; “22:30 h Actuación del grupo Star Music.”; “RECINTO FERIAL DE ARAUZ”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Verbena con Armonía Show",
+          "date": "2026-11-16",
+          "time": "00:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "“16 NOV · LUNES”; “00:00 h Verbena con Armonía Show.”; “RECINTO FERIAL DE ARAUZ”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3386,
+      "input_tokens_details": {
+        "cache_write_tokens": 3383,
+        "cached_tokens": 0
+      },
+      "output_tokens": 2005,
+      "output_tokens_details": {
+        "reasoning_tokens": 642
+      },
+      "total_tokens": 5391
+    },
+    "measured_cost_usd": 0.0013411
   }
 }

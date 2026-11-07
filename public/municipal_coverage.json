@@ -35,8 +35,8 @@
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
       "catalog_cards_total": 16,
-      "municipal_cards_total": 1,
-      "other_sources_cards_total": 15,
+      "municipal_cards_total": 9,
+      "other_sources_cards_total": 7,
       "source_health": [
         {
           "source": "Ayuntamiento de Agüimes",
@@ -50,8 +50,8 @@
         },
         {
           "source": "Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
-          "found": 0,
-          "error": "ValueError"
+          "found": 2,
+          "error": ""
         }
       ],
       "full_coverage_claim": false
@@ -136,8 +136,8 @@
         },
         {
           "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-          "found": 0,
-          "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
+          "found": 2,
+          "error": ""
         }
       ],
       "full_coverage_claim": false
@@ -326,8 +326,8 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 41,
-      "municipal_cards_total": 18,
+      "catalog_cards_total": 52,
+      "municipal_cards_total": 29,
       "other_sources_cards_total": 23,
       "source_health": [
         {
@@ -342,7 +342,7 @@
         },
         {
           "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
-          "found": 15,
+          "found": 26,
           "error": ""
         },
         {
