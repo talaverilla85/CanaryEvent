@@ -31,15 +31,16 @@ class OfficialEventImageTests(unittest.TestCase):
             # Expired events can disappear from the public export.
             if event is None:
                 continue
-            self.assertEqual(item["title"], event["title"])
             if item["source_url"] != event["source_url"]:
-                # The verified event may now have an even more direct official
-                # organizer link and its own official image. A curated poster
-                # from the former source must never override that new identity.
+                # A different verified source may publish an event under a
+                # different name or capitalization. The older curated poster
+                # must never replace artwork linked to this new identity.
                 candidate=dict(event,image_url="")
                 self.assertEqual(media.apply([candidate]),0)
                 self.assertEqual(candidate["image_url"],"")
                 continue
+            # Only for an unchanged original source must titles match exactly.
+            self.assertEqual(item["title"], event["title"])
             # A source title correction may precede the next committed export.
             # Verify the curated image attaches to the exact original listing.
             if event.get("image_url"):
