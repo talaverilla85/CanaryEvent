@@ -14,6 +14,8 @@ MUNICIPAL_PREFIXES=(
  "Ayuntamiento de Teror",
  "Ayuntamiento de Artenara",
  "Ayuntamiento de Telde",
+ "Ayuntamiento de Agüimes · programación de teatros",
+ "Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
 )
 CABILDO_PREFIX="Portal oficial de Eventos Gran Canaria"
 def is_known_venue(text):
@@ -85,7 +87,9 @@ def reconcile(events,norm):
         "Auditorio Alfredo Kraus · programación oficial",
         "Sociedad Filarmónica de Las Palmas · conciertos",
         "Teatro Cuyás · agenda oficial",
-        "Sala Insular de Teatro · agenda oficial"
+        "Sala Insular de Teatro · agenda oficial",
+        "Ayuntamiento de Agüimes · programación de teatros",
+        "Ayuntamiento de Agüimes · Teatro Cruce de Culturas"
     }
     for group in groups.values():
         originals=[e for e in group
@@ -103,7 +107,8 @@ def reconcile(events,norm):
                 # Keep legacy priority of original cultural organizers.
                 # For new stage feeds, different confirmed showtimes may
                 # represent separate performances and must remain distinct.
-                if (str(originals[0]["source_name"]).startswith(("Teatro Cuy", "Sala Insular"))
+                if (str(originals[0]["source_name"]).startswith(
+                    ("Teatro Cuy", "Sala Insular", "Ayuntamiento de Agüimes"))
                     and is_clock(copied.get("start"))
                     and is_clock(originals[0].get("start"))
                     and copied["start"][11:16]!=originals[0]["start"][11:16]):
