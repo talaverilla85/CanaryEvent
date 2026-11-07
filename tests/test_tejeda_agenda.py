@@ -10,6 +10,34 @@ def page(body,published="2026-10-21"):
  return BeautifulSoup('<html><head><meta property="article:published_time" content="'+published+'T10:00:00+00:00"></head><body><div class="entry-content">'+body+'</div></body></html>',"html.parser")
 
 class TejedaOfficialAgendaTest(unittest.TestCase):
+ def test_broken_hosting_redirect_blocks_crawl_with_clear_diagnostic(self):
+  from unittest.mock import Mock
+  wrong=Mock(status_code=301,headers={},content=b"<meta http-equiv='refresh' content='3'>")
+  client=Mock()
+  client.get.return_value=wrong
+  with self.assertRaisesRegex(RuntimeError,"301 sin destino de redirección"):
+   tej.fetch_and_extract(dt.date(2026,11,7),sync.PLACES,sync.category,client=client)
+  # No listing or individual article is requested before robots authorizes it.
+  self.assertEqual(client.get.call_count,1)
+  self.assertTrue(client.get.call_args.args[0].endswith("/robots.txt"))
+
+ def test_broken_redirect_on_article_never_parsed_as_event(self):
+  from unittest.mock import Mock
+  response=Mock(status_code=301,headers={},content=b"refresh")
+  client=Mock()
+  client.get.return_value=response
+  with self.assertRaisesRegex(RuntimeError,"301 sin destino"):
+   tej._html(client,"https://tejeda.eu/agenda-eventos/")
+
+ def test_explicit_robots_disallow_still_blocks_source(self):
+  from unittest.mock import Mock
+  robot=Mock(status_code=200,text="User-agent: *\\nDisallow: /agenda-eventos/\\n")
+  client=Mock()
+  client.get.return_value=robot
+  with self.assertRaises(PermissionError):
+   tej.fetch_and_extract(dt.date(2026,11,7),sync.PLACES,sync.category,client=client)
+  self.assertEqual(client.get.call_count,1)
+
  def test_one_verified_future_schedule(self):
   body="El sábado 31 de octubre, a partir de las 20:00 horas, en el Club de Pensionistas y Simpatizantes Texeda."
   r=tej.parse_article(page(body),"Noche de Baile – Noche de los Finaos 2026",
