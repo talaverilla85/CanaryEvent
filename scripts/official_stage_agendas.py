@@ -118,7 +118,7 @@ def extract_wordpress(soup,source,today):
                     "performances":len(records)}
 
 def extract(soup,source,today):
-    if source["site"]=="https://teatrocuyas.com":
+    if source["site"]=="https://teatrocuyas.com" and soup.select(".cy-tarjeta"):
         return extract_wordpress(soup,source,today)
     records=[]
     checked=skipped=0
