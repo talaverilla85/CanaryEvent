@@ -195,4 +195,45 @@ def reconcile(events,norm):
                 and ("shostakovich" in title and "mussorgs" in title)
                 and ("shostakovich" in second and "mussorgs" in second)):
                 eliminated.add(other["id"])
+    # The Cuyás website migrated from /evento-... to /espectaculo/ in 2026.
+    # The official Circuito feed and former Cuyás feed may retain longer
+    # titles for exactly the same show. Match ONLY verified origins, identical
+    # named hall, exact minute and an unambiguous title prefix or suffix.
+    groups_by_session=defaultdict(list)
+    for e in events:
+        if e["id"] in eliminated or not is_clock(e.get("start")):
+            continue
+        if not is_known_venue(e.get("venue")):
+            continue
+        key=(str(e["start"])[:16],norm(e["municipality"]),norm(e["venue"]))
+        groups_by_session[key].append(e)
+    for group in groups_by_session.values():
+        wp=[e for e in group if e["id"] not in eliminated
+            and str(e.get("source_name"))=="Teatro Cuyás · agenda oficial"
+            and str(e.get("source_url") or "").startswith(
+                "https://teatrocuyas.com/espectaculo/")]
+        existing=[e for e in group if e["id"] not in eliminated
+            and ((str(e.get("source_name"))=="Circuito de Artes Escénicas GC"
+                  and str(e.get("source_url") or "").startswith(
+                      "https://artesescenicasgrancanaria.com/evento-"))
+                 or (str(e.get("source_name"))=="Teatro Cuyás · agenda oficial"
+                     and str(e.get("source_url") or "").startswith(
+                         "https://teatrocuyas.com/evento-")))]
+        for current in wp:
+            if current["id"] in eliminated:continue
+            title=norm(current["title"])
+            for previous in existing:
+                if previous["id"] in eliminated:continue
+                prior=norm(previous["title"])
+                shorter,longer=sorted((title,prior),key=len)
+                if len(shorter)<9 or not (
+                    shorter==longer or longer.startswith(shorter+"-")
+                    or longer.endswith("-"+shorter)):
+                    continue
+                # Keep the older descriptive listing when its image has
+                # a verified original source; otherwise prefer new primary.
+                keep_old=bool(previous.get("image_url")) and (
+                    not current.get("image_url") or len(prior)>len(title))
+                eliminated.add(current["id"] if keep_old else previous["id"])
+                if current["id"] in eliminated:break
     return [e for e in events if e["id"] not in eliminated]
