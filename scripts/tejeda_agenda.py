@@ -32,9 +32,25 @@ WEEKDAYS = {"lunes":0,"martes":1,"miercoles":2,"miércoles":2,
             "jueves":3,"viernes":4,"sabado":5,"sábado":5,
             "domingo":6}
 
+def _unavailable(response,resource):
+    """Fail closed on the municipality's broken domain-hosting landing page.
+
+    A 301 without Location is not an actionable redirect. The current
+    tejeda.eu server returns such a response with an HTML loading screen
+    for robots.txt *and* the public agenda. Never treat it as empty events,
+    an official listing, or permission to bypass robots.
+    """
+    status=response.status_code
+    if status in (301,302,307,308) and not response.headers.get("Location"):
+        return RuntimeError(
+            "Tejeda: web oficial no disponible; HTTP "
+            +str(status)+" sin destino de redirección al consultar "+resource)
+    return RuntimeError("Tejeda "+resource+" HTTP "+str(status))
+
+
 def _html(client,url):
     resp=client.get(url,headers=HEADERS,timeout=20,allow_redirects=False)
-    if resp.status_code!=200:raise RuntimeError("Tejeda HTTP "+str(resp.status_code))
+    if resp.status_code!=200:raise _unavailable(resp,"agenda")
     if len(resp.content)>1_600_000:raise ValueError("Tejeda response too large")
     return BeautifulSoup(resp.content,"html.parser")
 
@@ -122,7 +138,7 @@ def parse_article(soup,title,url,today,categorize):
 def fetch_and_extract(today,places,categorize,client=requests):
     if "Tejeda" not in places:return []
     robot=client.get(BASE+"/robots.txt",headers=HEADERS,timeout=12,allow_redirects=False)
-    if robot.status_code!=200:raise RuntimeError("Tejeda robots HTTP "+str(robot.status_code))
+    if robot.status_code!=200:raise _unavailable(robot,"robots.txt")
     policy=RobotFileParser();policy.parse(robot.text.splitlines())
     if not policy.can_fetch(AGENT,LISTING):raise PermissionError("Tejeda disallows agenda")
     listing=_html(client,LISTING)
