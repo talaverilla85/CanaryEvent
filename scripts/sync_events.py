@@ -140,7 +140,18 @@ def allowed(url):
 
 def get_html(url):
     allowed(url)
-    r=requests.get(url,headers=HEADERS,timeout=23,allow_redirects=False)
+    # Some Gáldar venue pages intermittently exceed the read timeout.
+    # One bounded retry is permitted *after* the robots-policy check;
+    # do not retry a 403, 404, 5xx or a disallowed resource.
+    attempts=2 if urlparse(url).hostname=="www.galdar.es" else 1
+    for attempt in range(attempts):
+        try:
+            r=requests.get(url,headers=HEADERS,timeout=23,allow_redirects=False)
+            break
+        except requests.exceptions.Timeout:
+            if attempt+1==attempts:
+                raise
+            time.sleep(1)
     r.raise_for_status()
     if len(r.content)>2_500_000:raise ValueError("document too big")
     return BeautifulSoup(r.content,"html.parser")
