@@ -87,8 +87,18 @@ def make_message(*,conclusion,event,url,started,finished,quality,meta):
         lines=["✅ DParranda · Actualización completada",
                "🆕 Eventos incorporados: "+str(changes[0]),
                "✏️ Eventos actualizados: "+str(changes[1])]
-        if changes[2]:
-            lines.append("🗂 Eventos retirados del catálogo: "+str(changes[2]))
+        report=meta.get("changes",{})
+        categories=(report.get("finished"),report.get("replaced"),report.get("review_removed"))
+        if all(_valid_count(v) for v in categories) and sum(categories)==changes[2]:
+            if categories[0]:
+                lines.append("📅 Eventos finalizados: "+str(categories[0]))
+            if categories[1]:
+                lines.append("🔁 Fichas sustituidas por otra fuente: "+str(categories[1]))
+            if categories[2]:
+                lines.append("⚠️ Fichas retiradas para revisar: "+str(categories[2]))
+        elif changes[2]:
+            # Legacy reports may not yet include the three classifications.
+            lines.append("🗂 Eventos que salieron del catálogo: "+str(changes[2]))
     else:
         lines=["⚠️ DParranda · Problemas con "+str(len(errors))+" fuentes",
                "La sincronización general terminó, pero algunos conectores fallaron."]
