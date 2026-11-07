@@ -71,6 +71,40 @@ class IslandImporterTests(unittest.TestCase):
     self.assertEqual(rows[0]["municipality"],"Agüimes")
     self.assertIn("Camino Viejo Producciones",rows[0]["details"])
     self.assertEqual(stats["rejected"],2)
+ def test_cruce_de_arinaga_official_calendar_and_venue_alias(self):
+    source=municipal.SOURCES[1]
+    self.assertEqual(source["url"],
+        "https://aguimes.es/event-location/teatro-cruce-de-culturas-cruce-de-arinaga/")
+    self.assertIn("Teatro Cruce de Culturas - Cruce de Arinaga",source["venues"])
+    raw=[
+      {"@type":"Event","name":"FLAMENCO JAZZ FUSIÓN",
+       "url":"https://aguimes.es/events/flamenco-jazz-fusion/",
+       "startDate":"2026-11-21T20:00+0:00",
+       "eventStatus":"https://schema.org/EventScheduled",
+       "location":{"@type":"Place","name":"Teatro Cruce de Culturas - Cruce de Arinaga"}},
+      {"@type":"Event","name":"GRITO DE HOVIK KEUCHKERIAN",
+       "url":"https://aguimes.es/events/grito-de-hovik-keuchkerian/",
+       "startDate":"2027-1-23T20:00+0:00",
+       "location":[{"@type":"Place","name":"Teatro Cruce de Culturas - Cruce de Arinaga"}]},
+      {"@type":"Event","name":"Evento en otro recinto",
+       "url":"https://aguimes.es/events/otro-recinto/",
+       "startDate":"2026-11-25T20:00+0:00",
+       "location":{"name":"Centro Cultural Guaires"}},
+      {"@type":"Event","name":"Evento pasado",
+       "url":"https://aguimes.es/events/evento-pasado/",
+       "startDate":"2026-10-01T19:00+0:00",
+       "location":{"name":"Teatro Cruce de Culturas - Cruce de Arinaga"}}]
+    html="".join('<div class="eventon_list_event"><script type="application/ld+json">'+
+        json.dumps(item,ensure_ascii=False)+'</script></div>' for item in raw)
+    rows,stats=municipal.parse(BeautifulSoup(html,"html.parser"),
+                              source,dt.date(2026,11,7))
+    self.assertEqual([r["start"] for r in rows],
+       ["2026-11-21T20:00:00","2027-01-23T20:00:00"])
+    self.assertTrue(all(r["venue"]=="Teatro Cruce de Culturas - Cruce de Arinaga" for r in rows))
+    self.assertTrue(all(r["source_name"]==source["name"] for r in rows))
+    self.assertEqual(stats["cards"],4)
+    self.assertEqual(stats["rejected"],1)
+
  def test_only_supported_island_publishes_and_tracks_producer(self):
     registry=json.loads((ROOT/"data/island_source_registry.json").read_text(encoding="utf8"))
     report=intelligence.build(registry,{"events":[{
