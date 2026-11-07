@@ -1,24 +1,24 @@
 {
-  "checked_at": "2026-11-07T12:25:09+00:00",
+  "checked_at": "2026-11-07T13:06:28+00:00",
   "quality_counts": {
-    "publicados": 467,
+    "publicados": 473,
     "recintos_sin_verificar": 47,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 322,
-    "distancia_a_centro_municipal": 312,
-    "fuentes_con_error": 7,
+    "precios_sin_confirmar": 328,
+    "distancia_a_centro_municipal": 318,
+    "fuentes_con_error": 6,
     "duplicados_potenciales": 5
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 11,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 5,
       "distancia_al_centro_municipal": 11,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "HTTPSConnectionPool(host='ingenio.es', port=443): Read timed out. (read timeout=12)"
+      "fichas_leidas_en_esta_ejecucion": 10,
+      "error": ""
     },
     {
       "source": "Ayuntamiento de Agüimes",
@@ -82,23 +82,23 @@
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 13,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 13,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "fichas_leidas_en_esta_ejecucion": 5,
+      "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
-      "estado": "error",
-      "publicados": 2,
+      "estado": "operativa",
+      "publicados": 8,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 2,
-      "distancia_al_centro_municipal": 2,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "precio_sin_confirmar": 8,
+      "distancia_al_centro_municipal": 8,
+      "fichas_leidas_en_esta_ejecucion": 16,
+      "error": ""
     },
     {
       "source": "Sala Insular de Teatro · agenda oficial",
@@ -172,13 +172,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 2,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
     },
     {
       "source": "Municipio · descubrimiento oficial · Firgas",
@@ -312,13 +312,13 @@
     },
     {
       "source": "Ayuntamientos · actos individualmente contrastados",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 10,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 7,
+      "error": "Gáldar: ReadTimeout"
     },
     {
       "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
@@ -387,7 +387,7 @@
       "recinto_sin_verificar": 35,
       "precio_sin_confirmar": 166,
       "distancia_al_centro_municipal": 118,
-      "fichas_leidas_en_esta_ejecucion": 32,
+      "fichas_leidas_en_esta_ejecucion": 38,
       "error": ""
     },
     {
@@ -463,20 +463,12 @@
   ],
   "reported_errors": [
     {
-      "source": "Ayuntamiento de Ingenio",
-      "error": "HTTPSConnectionPool(host='ingenio.es', port=443): Read timed out. (read timeout=12)"
-    },
-    {
-      "source": "Auditorio Alfredo Kraus · programación oficial",
-      "error": "RuntimeError"
-    },
-    {
-      "source": "Teatro Cuyás · agenda oficial",
-      "error": "RuntimeError"
-    },
-    {
       "source": "Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
       "error": "ValueError"
+    },
+    {
+      "source": "Ayuntamiento de Gáldar · agenda de Cultura",
+      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
@@ -485,6 +477,10 @@
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda robots HTTP 301"
+    },
+    {
+      "source": "Ayuntamientos · actos individualmente contrastados",
+      "error": "Gáldar: ReadTimeout"
     },
     {
       "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
