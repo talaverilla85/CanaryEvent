@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-07T16:49:44+00:00",
+  "checked_at": "2026-11-07T17:01:47+00:00",
   "quality_counts": {
-    "publicados": 475,
+    "publicados": 481,
     "recintos_sin_verificar": 47,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 331,
-    "distancia_a_centro_municipal": 320,
-    "fuentes_con_error": 3,
+    "precios_sin_confirmar": 337,
+    "distancia_a_centro_municipal": 321,
+    "fuentes_con_error": 2,
     "duplicados_potenciales": 4
   },
   "sources": [
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 13,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 5,
+      "fichas_leidas_en_esta_ejecucion": 14,
       "error": ""
     },
     {
@@ -192,13 +192,13 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "estado": "error",
-      "publicados": 1,
+      "estado": "operativa",
+      "publicados": 2,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "No event links found in official listing; check layout"
+      "precio_sin_confirmar": 2,
+      "distancia_al_centro_municipal": 2,
+      "fichas_leidas_en_esta_ejecucion": 2,
+      "error": ""
     },
     {
       "source": "Municipio · descubrimiento oficial · Agaete",
@@ -383,11 +383,11 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "operativa",
-      "publicados": 190,
+      "publicados": 195,
       "recinto_sin_verificar": 35,
-      "precio_sin_confirmar": 160,
+      "precio_sin_confirmar": 165,
       "distancia_al_centro_municipal": 105,
-      "fichas_leidas_en_esta_ejecucion": 32,
+      "fichas_leidas_en_esta_ejecucion": 37,
       "error": ""
     },
     {
@@ -462,10 +462,6 @@
     }
   ],
   "reported_errors": [
-    {
-      "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "error": "No event links found in official listing; check layout"
-    },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda robots HTTP 301"
