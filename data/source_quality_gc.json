@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-07T17:01:47+00:00",
+  "checked_at": "2026-11-07T17:13:26+00:00",
   "quality_counts": {
     "publicados": 481,
     "recintos_sin_verificar": 47,
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 13,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 14,
+      "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
     {
@@ -228,7 +228,7 @@
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "Tejeda robots HTTP 301"
+      "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
     },
     {
       "source": "Mancomunidad de Medianías · Alma de Medianías en Valsequillo",
@@ -382,12 +382,12 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "operativa",
+      "estado": "al_dia_sin_fichas_pendientes",
       "publicados": 195,
       "recinto_sin_verificar": 35,
       "precio_sin_confirmar": 165,
       "distancia_al_centro_municipal": 105,
-      "fichas_leidas_en_esta_ejecucion": 37,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -464,7 +464,7 @@
   "reported_errors": [
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
-      "error": "Tejeda robots HTTP 301"
+      "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
     },
     {
       "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",

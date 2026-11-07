@@ -314,7 +314,7 @@
         {
           "source": "Ayuntamiento de Tejeda · agenda oficial",
           "found": 0,
-          "error": "Tejeda robots HTTP 301"
+          "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
         }
       ],
       "full_coverage_claim": false
