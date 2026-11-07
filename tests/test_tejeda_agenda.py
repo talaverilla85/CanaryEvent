@@ -31,7 +31,7 @@ class TejedaOfficialAgendaTest(unittest.TestCase):
 
  def test_explicit_robots_disallow_still_blocks_source(self):
   from unittest.mock import Mock
-  robot=Mock(status_code=200,text="User-agent: *\\nDisallow: /agenda-eventos/\\n")
+  robot=Mock(status_code=200,text="User-agent: *\nDisallow: /agenda-eventos/\n")
   client=Mock()
   client.get.return_value=robot
   with self.assertRaises(PermissionError):
