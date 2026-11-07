@@ -52,6 +52,19 @@ def same_verified_venue(a,b,norm,municipality):
         return True
     return False
 
+# Only these independently documented Gáldar Guaires productions have
+# different display titles on the municipal, Cabildo and ticket listings.
+# Never fuzzy-match unrelated productions simply because they share a day.
+GALDAR_GUIARES_TITLE_ALIASES=(
+ {"todo-pa-ultima-hora","todo-pa-ultima-hora-jorge-avila"},
+ {"solo-palique","solo-palique-galdar","solo-palique-humor-en-directo"},
+ {"mas-alla-del-pasillo","mas-alla-del-pasillo-ivan-torres",
+  "mas-alla-del-pasillo-ivan-torres-galdar"},
+ {"en-busca-de-la-magia","en-busca-de-la-magia-galdar"},
+ {"eureka","eureka-un-show-de-mikel-bermejo"},
+)
+
+
 def score(e):
     return (
         int(is_clock(e.get("start")))*8+
@@ -241,4 +254,36 @@ def reconcile(events,norm):
                     not current.get("image_url") or len(prior)>len(title))
                 eliminated.add(current["id"] if keep_old else previous["id"])
                 if current["id"] in eliminated:break
+    # Gáldar Guaires first-party/ticket/Cabildo announcements can use an
+    # expanded show title. Match only reviewed exact aliases, a *single*
+    # calendar date and a proven hall, never incompatible session times.
+    guaires_groups=defaultdict(list)
+    galdar=norm("Gáldar")
+    hall_aliases={norm("Centro Cultural Guaire"),norm("Centro Cultural Guaires")}
+    for e in events:
+        if e["id"] in eliminated or norm(e.get("municipality"))!=galdar:
+            continue
+        if norm(e.get("venue")) not in hall_aliases:
+            continue
+        title=norm(e.get("title"))
+        canonical=next((sorted(aliases,key=len)[0]
+                        for aliases in GALDAR_GUIARES_TITLE_ALIASES
+                        if title in aliases),None)
+        if canonical:
+            guaires_groups[(canonical,str(e.get("start") or "")[:10])].append(e)
+    for group in guaires_groups.values():
+        for i,a in enumerate(group):
+            if a["id"] in eliminated:continue
+            for b in group[i+1:]:
+                if b["id"] in eliminated:continue
+                if (is_clock(a.get("start")) and is_clock(b.get("start"))
+                    and a["start"][11:16]!=b["start"][11:16]):
+                    continue
+                if not same_verified_venue(a["venue"],b["venue"],norm,"Gáldar"):
+                    continue
+                winner=max((a,b),key=lambda e:(score(e),
+                    int(str(e.get("source_name") or "").startswith("Ayuntamiento de Gáldar")),
+                    -int(e["id"])))
+                eliminated.add(b["id"] if winner is a else a["id"])
+                if a["id"] in eliminated:break
     return [e for e in events if e["id"] not in eliminated]
