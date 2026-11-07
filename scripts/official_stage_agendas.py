@@ -8,6 +8,7 @@ Historical/marketing entries and unnamed locations are excluded.
 from __future__ import annotations
 import datetime as dt
 import re
+import unicodedata
 from urllib.parse import urljoin,urlsplit
 from urllib.robotparser import RobotFileParser
 
@@ -17,7 +18,7 @@ import venue_quality
 
 SOURCES=(
  {"name":"Teatro Cuyás · agenda oficial","site":"https://teatrocuyas.com",
-  "url":"https://teatrocuyas.com/agenda.html","venue":"Teatro Cuyás"},
+  "url":"https://teatrocuyas.com/programacion/","venue":"Teatro Cuyás"},
  {"name":"Sala Insular de Teatro · agenda oficial","site":"https://salainsulardeteatro.com",
   "url":"https://salainsulardeteatro.com/agenda.html","venue":"Sala Insular de Teatro"},
 )
@@ -36,7 +37,89 @@ def expected_url(url,base,path_pattern):
             and re.fullmatch(path_pattern,p.path))
     except (ValueError,TypeError):return False
 
+# WordPress/Elementor programme used by Teatro Cuyás since November 2026.
+# Sala Insular de Teatro still uses the older .agenda_evento markup.
+WP_DETAIL=r"/espectaculo/[a-z0-9-]+/"
+WP_IMAGE=r"/wp-content/uploads/[0-9]{4}/[0-9]{2}/[a-zA-Z0-9._%-]+\.(?:jpg|jpeg|png|webp|avif)"
+WP_DATE=re.compile(r"(?<!\d)([0-3]?\d)/([01]?\d)(?!\d)")
+WP_TIME=re.compile(r"(?<!\d)((?:[01]?\d|2[0-3]):[0-5]\d)(?!\d)")
+WEEKDAYS={"lun":0,"mar":1,"mie":2,"jue":3,"vie":4,"sab":5,"dom":6}
+
+def normalized(value):
+    text=unicodedata.normalize("NFKD",str(value or "").casefold())
+    return "".join(c for c in text if not unicodedata.combining(c))
+
+def wp_session_day(day,month,weekday,today):
+    """Dates on the new cards omit the year: accept only a corroborated
+    weekday and the unique date in the next 180 days; never guess otherwise."""
+    week=WEEKDAYS.get(normalized(weekday).strip()[:3])
+    if week is None:return None
+    candidates=[]
+    for year in (today.year,today.year+1):
+        try:date=dt.date(year,month,day)
+        except ValueError:continue
+        if today<=date<=today+dt.timedelta(days=180) and date.weekday()==week:
+            candidates.append(date)
+    return candidates[0] if len(candidates)==1 else None
+
+def wp_image(card,site):
+    node=card.select_one(".cy-tarjeta__imagen img[src]")
+    if not node:return ""
+    url=urljoin(site+"/",node.get("src",""))
+    return url if expected_url(url,site,WP_IMAGE) and len(url)<750 else ""
+
+def extract_wordpress(soup,source,today):
+    records=[]
+    checked=skipped=0
+    for card in soup.select(".cy-tarjeta"):
+        checked+=1
+        # The category is in the official WordPress post's class list:
+        # never advertise a different room as Teatro Cuyás.
+        ancestor=card.find_parent(class_=re.compile(r"\be-loop-item\b"))
+        css=ancestor.get("class",[]) if ancestor else []
+        hall="sala-"+("teatro-cuyas" if source["venue"]=="Teatro Cuyás" else "sala-insular-de-teatro")
+        title_el=card.select_one(".cy-tarjeta__titulo a[href]")
+        title=" ".join(title_el.get_text(" ",strip=True).split()) if title_el else ""
+        url=urljoin(source["site"]+"/",title_el.get("href","")) if title_el else ""
+        if (hall not in css or len(title)<6
+            or not expected_url(url,source["site"],WP_DETAIL)
+            or "venta de entradas" in title.casefold()):
+            skipped+=1
+            continue
+        sessions={}
+        for li in card.select(".cuyas-mini-funciones li"):
+            spans=li.find_all("span",recursive=False)
+            if len(spans)<2:continue
+            raw=" ".join(spans[0].get_text(" ",strip=True).split())
+            match=WP_DATE.search(raw)
+            time=WP_TIME.search(spans[1].get_text(" ",strip=True))
+            if not match or not time:continue
+            weekday=raw[:match.start()].strip()
+            day=wp_session_day(int(match.group(1)),int(match.group(2)),weekday,today)
+            if day:
+                sessions.setdefault(day,set()).add(time.group(1).zfill(5))
+        if not sessions:
+            skipped+=1
+            continue
+        image=wp_image(card,source["site"])
+        kind=("musica" if "genero-musica" in css else "cultura")
+        for day,times in sorted(sessions.items()):
+            seq=sorted(times)
+            details="Funciones: "+", ".join(seq) if len(seq)>1 else ""
+            records.append({"title":title[:180],"start":day.isoformat()+"T"+seq[0]+":00",
+                "end":None,"municipality":MUNI,"venue":source["venue"],
+                "category":kind,"free":None,"price":"",
+                "details":details,"source_name":source["name"],
+                "source_url":url,"status":"approved",
+                "image_url":image,"image_alt":title[:180] if image else "",
+                "image_origin":source["name"] if image else "",
+                "image_status":"official_remote" if image else "not_available"})
+    return records,{"cards_checked":checked,"cards_skipped":skipped,
+                    "performances":len(records)}
+
 def extract(soup,source,today):
+    if source["site"]=="https://teatrocuyas.com":
+        return extract_wordpress(soup,source,today)
     records=[]
     checked=skipped=0
     for card in soup.select(".agenda_evento"):
