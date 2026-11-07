@@ -1155,11 +1155,20 @@ def run():
         rows=conn.execute("""SELECT * FROM events WHERE status='approved' AND substr(COALESCE("end",start),1,10)>=?
              ORDER BY start ASC LIMIT 3500""",(TODAY.isoformat(),)).fetchall()
         events=[]
+        invalid_guia_legacy=0
         for row in rows:
             e={k:row[k] for k in ("id","title","start","end","municipality","venue","category",
                                   "free","price","details","lat","lng","accuracy","source_name","source_url",
                                   "image_url","image_alt","image_origin","image_status","organizer_url")}
+            # Keep original SQLite evidence but never republish an old Guía
+            # news-card summary as an event. Such cards may carry the festival
+            # closing date instead of the individual concert's performance date.
+            if municipal_live_discovery.invalid_legacy_guia(e):
+                invalid_guia_legacy+=1
+                continue
             events.append(ulpgc_venue_facts.enhance(e))
+        if invalid_guia_legacy:
+            print("Guía legacy news metadata withheld from export:",invalid_guia_legacy)
         # Apply the policy to old SQLite records, not only future imports.
         events,cinema_excluded=cinema_policy.remove_commercial_screenings(events)
         print(f"Routine commercial cinema excluded from public agenda: {len(cinema_excluded)}")
