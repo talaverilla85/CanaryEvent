@@ -37,11 +37,29 @@ class TelegramHealthTests(unittest.TestCase):
         self.assertIn("✅ DParranda · Actualización completada",message)
         self.assertIn("Eventos incorporados: 7",message)
         self.assertIn("Eventos actualizados: 3",message)
-        self.assertIn("Eventos retirados del catálogo: 2",message)
+        self.assertIn("Eventos que salieron del catálogo: 2",message)
         self.assertIn("Pendientes de revisión: 4",message)
         self.assertIn("Eventos en el catálogo: 492",message)
         self.assertIn("https://canaryevent.vercel.app/admin/",message)
         self.assertNotIn("Revisar: "+LINK,message)
+
+    def test_digest_explains_expired_and_source_replacements(self):
+        current=meta()
+        current["changes"]={"available":True,"new":13,"updated":23,"removed":21,
+                            "finished":20,"replaced":1,"review_removed":0}
+        message=make(metadata=current)
+        self.assertIn("Eventos incorporados: 13",message)
+        self.assertIn("Eventos finalizados: 20",message)
+        self.assertIn("Fichas sustituidas por otra fuente: 1",message)
+        self.assertNotIn("Fichas retiradas para revisar",message)
+        self.assertNotIn("Eventos retirados del catálogo: 21",message)
+
+    def test_unexpected_future_removal_still_warns(self):
+        current=meta()
+        current["changes"]={"available":True,"new":0,"updated":0,"removed":1,
+                            "finished":0,"replaced":0,"review_removed":1}
+        message=make(metadata=current)
+        self.assertIn("Fichas retiradas para revisar: 1",message)
 
     def test_daily_digest_silent_without_changes(self):
         current=meta()
