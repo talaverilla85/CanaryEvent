@@ -63,3 +63,40 @@ class IngenioCabildoDedupRegression(unittest.TestCase):
   b=dict(a,id=502,start="2026-11-29T20:00:00",source_name="Ayuntamiento de Ingenio",
          source_url="https://ingenio.es/events/concierto/")
   self.assertEqual(len(de.reconcile([a,b],sync.norm)),2)
+
+
+class CuyasMigrationDedupTests(unittest.TestCase):
+ def _show(self,id,kind,title,time="2026-11-13T19:30:00",
+           hall="Teatro Cuyás",image="https://example.org/poster.jpg"):
+  spec={
+   "new":("Teatro Cuyás · agenda oficial",
+          "https://teatrocuyas.com/espectaculo/flamenc-oh-de-yllana/"),
+   "old":("Teatro Cuyás · agenda oficial",
+          "https://teatrocuyas.com/evento-771-flamenc-oh.html"),
+   "circuito":("Circuito de Artes Escénicas GC",
+          "https://artesescenicasgrancanaria.com/evento-771-flamenc-oh.html")
+  }
+  source,url=spec[kind]
+  return event(id,source,title,start=time,venue=hall,
+               municipality="Las Palmas de Gran Canaria",image=image)|{"source_url":url}
+
+ def test_same_show_different_old_and_new_titles_keeps_one(self):
+  old=self._show(693,"circuito","FLAMENC OH! de YLLANA")
+  new=self._show(900,"new","Flamenc Oh!")
+  result=de.reconcile([old,new],sync.norm)
+  self.assertEqual([x["id"] for x in result],[693])
+
+ def test_no_fuzzy_merges_for_different_hour_or_hall(self):
+  old=self._show(693,"circuito","FLAMENC OH! de YLLANA")
+  new=self._show(900,"new","Flamenc Oh!",time="2026-11-13T21:30:00")
+  self.assertEqual(len(de.reconcile([old,new],sync.norm)),2)
+  other=self._show(901,"new","Flamenc Oh!",hall="Sala Cuarterías del Teatro Cuyás")
+  self.assertEqual(len(de.reconcile([old,other],sync.norm)),2)
+
+ def test_newer_show_without_old_image_wins_and_unrelated_title_survives(self):
+  old=self._show(693,"circuito","FLAMENC OH! de YLLANA",image="")
+  new=self._show(900,"new","Flamenc Oh!")
+  different=self._show(901,"new","Concierto de jazz del viernes")
+  result=de.reconcile([old,new,different],sync.norm)
+  self.assertEqual({x["id"] for x in result},{900,901})
+
