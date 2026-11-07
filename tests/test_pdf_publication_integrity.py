@@ -26,8 +26,25 @@ CACHE={
 
 class PdfPublicationSecurity(unittest.TestCase):
  def test_live_repository_has_no_fake_approval(self):
+  # The pilot now publishes real, independently verified activities. An
+  # empty-list assertion would reject legitimate results and stop daily sync.
+  # Verify each live record against the official PDF index, its exact hash
+  # and both saved, independent page attestations instead.
   records=json.loads((ROOT/"data/telde_pdf_pilot/verified_events.json").read_text(encoding="utf8"))
-  self.assertEqual(records,[])
+  programs=json.loads((ROOT/"public/municipal_programs.json").read_text(encoding="utf8"))
+  urls={x["pdf_url"] for x in programs.get("programs",[]) if x.get("pdf_url")}
+  state=json.loads((ROOT/"data/telde_pdf_pilot/scan_state.json").read_text(encoding="utf8"))
+  cache=json.loads((ROOT/"data/telde_pdf_pilot/vision_cache.json").read_text(encoding="utf8"))
+  ids=set()
+  for record in records:
+   self.assertNotIn(record.get("id"),ids)
+   ids.add(record.get("id"))
+   self.assertIn(record.get("pdf_url"),urls)
+   checked=dt.date.fromisoformat(record["verified_at"])
+   self.assertTrue(integrity.trusted(record,urls,state,cache,checked,auto.tv.MODEL,auto.VERSION),
+                   f"PDF without independently verifiable evidence: {record.get('id')}")
+   self.assertFalse(integrity.trusted({**record,"pdf_sha256":"0"*64},urls,state,cache,
+                                      checked,auto.tv.MODEL,auto.VERSION))
 
  def test_actual_digest_and_two_attestations_required(self):
   today=dt.date(2026,10,27)
