@@ -94,6 +94,49 @@ class AguimesOriginalProgrammeTests(unittest.TestCase):
   self.assertEqual(len(de.reconcile([official,another],sync.norm)),2)
 
 
+class GaldarGuairesDedupTests(unittest.TestCase):
+ def _show(self,id,title,time="2026-11-20T20:30:00",venue="Centro Cultural Guaires",
+           source="Ayuntamiento de Gáldar · actos documentados",price=""):
+  return event(id,source,title=title,start=time,venue=venue,
+               municipality="Gáldar",price=price,image="https://www.galdar.es/show.jpg")
+
+ def test_matching_official_show_and_ticket_use_single_card(self):
+  cab=self._show(285,"Solo Palique",venue="Centro Cultural Guaire",
+                 source=C)
+  paid=self._show(476,"SOLO PALIQUE - GÁLDAR",
+                  source="TuReservaOnline · agenda de Gran Canaria",price="Desde 18 €")
+  official=self._show(634,"Solo Palique · humor en directo")
+  result=de.reconcile([cab,paid,official],sync.norm)
+  self.assertEqual(len(result),1)
+  self.assertEqual(result[0]["price"],"Desde 18 €")
+
+ def test_a_confirmed_second_hour_is_never_removed(self):
+  known=self._show(285,"Solo Palique",venue="Centro Cultural Guaire",source=C)
+  later=self._show(634,"Solo Palique · humor en directo",time="2026-11-20T22:30:00")
+  self.assertEqual(len(de.reconcile([known,later],sync.norm)),2)
+
+ def test_distinct_halls_and_dates_are_not_merged(self):
+  base=self._show(374,"EN BUSCA DE LA MAGIA",time="2026-12-12",
+                  venue="Centro Cultural Guaire",source=C)
+  official=self._show(736,"EN BUSCA DE LA MAGIA",time="2026-12-12T18:30:00")
+  next_day=self._show(737,"EN BUSCA DE LA MAGIA",time="2026-12-13",
+                      venue="Centro Cultural Guaire",source=C)
+  different_hall=self._show(738,"EN BUSCA DE LA MAGIA",time="2026-12-12T18:30:00",
+                            venue="Teatro Consistorial",source=C)
+  selected=de.reconcile([base,official,next_day,different_hall],sync.norm)
+  self.assertEqual({e["id"] for e in selected},{736,737,738})
+
+ def test_only_exact_reviewed_aliases_are_eligible(self):
+  show=self._show(439,"Eureka",time="2027-01-29T20:30:00",
+                  venue="Centro Cultural Guaire",source=C)
+  alternate=self._show(513,"EUREKA - UN SHOW DE MIKEL BERMEJO",
+                      time="2027-01-29T20:30:00")
+  unrelated=self._show(514,"Eureka infantil: taller de ciencia",
+                      time="2027-01-29T20:30:00")
+  selected=de.reconcile([show,alternate,unrelated],sync.norm)
+  self.assertEqual(len(selected),2)
+  self.assertIn(514,{e["id"] for e in selected})
+
 class CuyasMigrationDedupTests(unittest.TestCase):
  def _show(self,id,kind,title,time="2026-11-13T19:30:00",
            hall="Teatro Cuyás",image="https://example.org/poster.jpg"):
