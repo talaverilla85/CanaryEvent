@@ -66,6 +66,11 @@ def make_message(*,conclusion,event,url,started,finished,quality,meta):
     if status not in ("success","failure","cancelled","timed_out","action_required","skipped","neutral","stale"):
         status="unknown"
     scheduled=event in ("schedule","workflow_dispatch")
+    # GitHub retains only one pending run for the same concurrency group.
+    # Editing several files can cancel an older queued *push* without any
+    # broken catalogue or extraction. These are not operational outages.
+    if status=="cancelled" and event=="push":
+        return None
     is_failure=status!="success"
     fresh=(same_run(quality.get("checked_at"),started,finished)
            and same_run(meta.get("checked_at"),started,finished))
