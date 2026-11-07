@@ -78,6 +78,16 @@ class MunicipalLiveDiscoveryTests(unittest.TestCase):
                     "https://santamariadeguia.es/circus-frances-en-guia/",
                     "Santa María de Guía",dt.date(2026,11,7),lambda x:"familia"))
 
+    def test_quarantine_wrongly_dated_old_guia_news_card(self):
+        old={"source_name":"Municipio · descubrimiento oficial · Santa María de Guía",
+             "title":"Noticias,Cultura | 03/11/2026 Guía reúne a seis agrupaciones en el IX Festival Internacional de Música Coral",
+             "start":"2026-11-28"}
+        self.assertTrue(connector.invalid_legacy_guia(old))
+        good=dict(old,title="Guía celebra este sábado la V Noche de Finaos")
+        self.assertFalse(connector.invalid_legacy_guia(good))
+        unrelated=dict(old,source_name="Ayuntamiento de Telde · noticias oficiales")
+        self.assertFalse(connector.invalid_legacy_guia(unrelated))
+
     def test_guia_does_not_guess_year_from_crawl_time(self):
         html='''<article><div class="entry-content">
         La Noche de Finaos se celebrará el 7 de noviembre, a las 20:00
