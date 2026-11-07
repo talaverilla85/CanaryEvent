@@ -65,6 +65,35 @@ class IngenioCabildoDedupRegression(unittest.TestCase):
   self.assertEqual(len(de.reconcile([a,b],sync.norm)),2)
 
 
+class AguimesOriginalProgrammeTests(unittest.TestCase):
+ def _record(self,id,source,title,day,hour,venue):
+  return event(id,source,title=title,start=day+"T"+hour+":00",
+               venue=venue,municipality="Agüimes")|{"source_url":(
+      "https://aguimes.es/events/flamenco-jazz-fusion/" if source.startswith("Ayuntamiento")
+      else "https://www.eventosgrancanaria.com/event/E-20261121-0011/flamenco-jazz")}
+
+ def test_official_cruce_venue_wins_over_cabildo_copy(self):
+  name="FLAMENCO JAZZ FUSIÓN"
+  official=self._record(800,"Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
+      name,"2026-11-21","20:00","Teatro Cruce de Culturas - Cruce de Arinaga")
+  cabildo=self._record(600,C,name,"2026-11-21","20:00","Teatro Cruce de Cultura")
+  result=de.reconcile([cabildo,official],sync.norm)
+  self.assertEqual([x["id"] for x in result],[800])
+
+ def test_distinct_showtimes_are_never_merged(self):
+  name="GRITO DE HOVIK KEUCHKERIAN"
+  official=self._record(801,"Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
+      name,"2027-01-23","20:00","Teatro Cruce de Culturas - Cruce de Arinaga")
+  other=self._record(601,C,name,"2027-01-23","21:30","Otro recinto")
+  self.assertEqual({x["id"] for x in de.reconcile([official,other],sync.norm)},{801,601})
+
+ def test_unrelated_same_day_theatre_show_is_preserved(self):
+  official=self._record(801,"Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
+      "FLAMENCO JAZZ FUSIÓN","2026-11-21","20:00","Teatro Cruce de Culturas - Cruce de Arinaga")
+  another=self._record(802,C,"Concierto de guitarras","2026-11-21","20:00","Teatro Auditorio Agüimes")
+  self.assertEqual(len(de.reconcile([official,another],sync.norm)),2)
+
+
 class CuyasMigrationDedupTests(unittest.TestCase):
  def _show(self,id,kind,title,time="2026-11-13T19:30:00",
            hall="Teatro Cuyás",image="https://example.org/poster.jpg"):
