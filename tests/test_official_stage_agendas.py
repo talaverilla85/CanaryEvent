@@ -44,6 +44,34 @@ SAMPLE="""<section>
 </div>
 </section>"""
 
+
+WP_SAMPLE="""<section class="programacion">
+ <div class="e-loop-item sala-teatro-cuyas genero-teatro"><div class="cy-tarjeta">
+  <div class="cy-tarjeta__imagen"><img src="https://teatrocuyas.com/wp-content/uploads/2026/10/event_771-1-768x432.jpg"></div>
+  <div class="cy-tarjeta__titulo"><h3><a href="https://teatrocuyas.com/espectaculo/flamenc-oh-de-yllana/">Flamenc Oh!</a></h3></div>
+  <ul class="cuyas-mini-funciones">
+   <li><span>Vie 13/11</span><span>19:30 h</span><span>1 h 30 min</span></li>
+   <li><span>Sáb 14/11</span><span>19:30 h</span><span>1 h 30 min</span></li>
+  </ul>
+ </div></div>
+ <div class="e-loop-item sala-teatro-cuyas genero-teatro"><div class="cy-tarjeta">
+  <div class="cy-tarjeta__titulo"><h3><a href="https://teatrocuyas.com/espectaculo/largo-viaje-hacia-la-noche-de-eugene-oneill/">Largo viaje hacia la noche</a></h3></div>
+  <ul class="cuyas-mini-funciones"><li><span>Vie 15/1</span><span>19:30 h</span></li></ul>
+ </div></div>
+ <div class="e-loop-item sala-teatro-cuyas genero-teatro"><div class="cy-tarjeta">
+  <div class="cy-tarjeta__titulo"><h3><a href="https://evil.example/espectaculo/inventado/">Inventado fuera del teatro</a></h3></div>
+  <ul class="cuyas-mini-funciones"><li><span>Vie 20/11</span><span>19:30 h</span></li></ul>
+ </div></div>
+ <div class="e-loop-item sala-insular-de-teatro genero-teatro"><div class="cy-tarjeta">
+  <div class="cy-tarjeta__titulo"><h3><a href="https://teatrocuyas.com/espectaculo/otro-hall/">Acto de otra sala</a></h3></div>
+  <ul class="cuyas-mini-funciones"><li><span>Vie 20/11</span><span>19:30 h</span></li></ul>
+ </div></div>
+ <div class="e-loop-item sala-teatro-cuyas genero-teatro"><div class="cy-tarjeta">
+  <div class="cy-tarjeta__titulo"><h3><a href="https://teatrocuyas.com/espectaculo/hora-incorrecta/">Hora incorrecta</a></h3></div>
+  <ul class="cuyas-mini-funciones"><li><span>Dom 20/11</span><span>19:30 h</span></li></ul>
+ </div></div>
+</section>"""
+
 class StageConnectorTests(unittest.TestCase):
  def test_extract_individual_future_shows_skip_marketing_and_wrong_hall(self):
     rows,stats=stages.extract(BeautifulSoup(SAMPLE,"html.parser"),
@@ -57,6 +85,34 @@ class StageConnectorTests(unittest.TestCase):
     rows,_=stages.extract(BeautifulSoup(SAMPLE,"html.parser"),
         stages.SOURCES[0],dt.date(2027,1,1))
     self.assertEqual(rows,[])
+
+ def test_new_wordpress_cuyas_agenda_with_year_rollover_and_original_images(self):
+    self.assertEqual(stages.SOURCES[0]["url"],"https://teatrocuyas.com/programacion/")
+    rows,stats=stages.extract(BeautifulSoup(WP_SAMPLE,"html.parser"),
+        stages.SOURCES[0],dt.date(2026,11,7))
+    self.assertEqual(stats["cards_checked"],5)
+    self.assertEqual(stats["cards_skipped"],3)
+    self.assertEqual([e["start"] for e in rows],
+        ["2026-11-13T19:30:00","2026-11-14T19:30:00","2027-01-15T19:30:00"])
+    self.assertTrue(all(e["source_name"]=="Teatro Cuyás · agenda oficial" for e in rows))
+    self.assertTrue(all(e["venue"]=="Teatro Cuyás" for e in rows))
+    self.assertEqual(rows[0]["image_url"],
+        "https://teatrocuyas.com/wp-content/uploads/2026/10/event_771-1-768x432.jpg")
+    self.assertEqual(rows[0]["image_status"],"official_remote")
+    self.assertEqual(rows[2]["image_url"],"")
+
+ def test_cuyas_wordpress_rejects_bad_weekday_and_out_of_window(self):
+    self.assertIsNone(stages.wp_session_day(20,11,"Dom",dt.date(2026,11,7)))
+    self.assertIsNone(stages.wp_session_day(30,2,"Lun",dt.date(2026,11,7)))
+    self.assertIsNone(stages.wp_session_day(20,11,"Vie",dt.date(2027,1,1)))
+    self.assertEqual(stages.wp_session_day(15,1,"Vie",dt.date(2026,11,7)),
+                     dt.date(2027,1,15))
+    self.assertFalse(stages.expected_url(
+        "https://teatrocuyas.com/espectaculo/obra/?utm_source=ad",
+        "https://teatrocuyas.com",stages.WP_DETAIL))
+    self.assertFalse(stages.expected_url(
+        "https://teatrocuyas.com/other/obra/",
+        "https://teatrocuyas.com",stages.WP_DETAIL))
 
  def test_first_party_stage_precedence_only_for_same_title_day_and_hour(self):
     def event(id,name,start,venue,source,url):
