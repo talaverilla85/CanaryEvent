@@ -18,9 +18,13 @@ SOURCES=(
   "host":"aguimes.es","municipality":"Agüimes",
   "venues":{"Teatro Auditorio Agüimes"}},
  {"name":"Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
-  "url":"https://aguimes.es/event-location/teatro-cruce-de-culturas/",
+  # The venue's public calendar is split across two WordPress archives.
+  # Only the Cruce de Arinaga listing currently provides the dated Event
+  # schema; the generic /teatro-cruce-de-culturas/ archive has no Event JSON-LD.
+  "url":"https://aguimes.es/event-location/teatro-cruce-de-culturas-cruce-de-arinaga/",
   "host":"aguimes.es","municipality":"Agüimes",
-  "venues":{"Teatro Cruce de Culturas"}},
+  "venues":{"Teatro Cruce de Culturas",
+            "Teatro Cruce de Culturas - Cruce de Arinaga"}},
  {"name":"Ayuntamiento de Gáldar · Centro Cultural Guaires",
   "url":"https://www.galdar.es/event-location/centro-cultural-guaires/",
   "host":"www.galdar.es","municipality":"Gáldar",
