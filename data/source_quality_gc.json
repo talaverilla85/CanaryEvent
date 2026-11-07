@@ -1,22 +1,22 @@
 {
-  "checked_at": "2026-11-06T13:12:10+00:00",
+  "checked_at": "2026-11-07T11:55:05+00:00",
   "quality_counts": {
-    "publicados": 466,
-    "recintos_sin_verificar": 49,
+    "publicados": 458,
+    "recintos_sin_verificar": 47,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 316,
-    "distancia_a_centro_municipal": 308,
-    "fuentes_con_error": 4,
-    "duplicados_potenciales": 6
+    "precios_sin_confirmar": 314,
+    "distancia_a_centro_municipal": 303,
+    "fuentes_con_error": 7,
+    "duplicados_potenciales": 5
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 10,
+      "publicados": 11,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 4,
-      "distancia_al_centro_municipal": 10,
+      "precio_sin_confirmar": 5,
+      "distancia_al_centro_municipal": 11,
       "fichas_leidas_en_esta_ejecucion": 10,
       "error": ""
     },
@@ -33,21 +33,21 @@
     {
       "source": "Juventud Las Palmas de Gran Canaria",
       "estado": "operativa",
-      "publicados": 11,
+      "publicados": 12,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 11,
+      "distancia_al_centro_municipal": 12,
       "fichas_leidas_en_esta_ejecucion": 8,
       "error": ""
     },
     {
       "source": "Circuito de Artes Escénicas GC",
       "estado": "operativa",
-      "publicados": 22,
+      "publicados": 21,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 21,
+      "precio_sin_confirmar": 20,
       "distancia_al_centro_municipal": 19,
-      "fichas_leidas_en_esta_ejecucion": 26,
+      "fichas_leidas_en_esta_ejecucion": 25,
       "error": ""
     },
     {
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 13,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 12,
+      "fichas_leidas_en_esta_ejecucion": 14,
       "error": ""
     },
     {
@@ -107,7 +107,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 11,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 14,
+      "fichas_leidas_en_esta_ejecucion": 13,
       "error": ""
     },
     {
@@ -142,13 +142,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 1,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 6,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "ReadTimeout"
     },
     {
       "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
@@ -164,10 +164,10 @@
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
       "publicados": 2,
-      "recinto_sin_verificar": 7,
+      "recinto_sin_verificar": 6,
       "precio_sin_confirmar": 2,
       "distancia_al_centro_municipal": 2,
-      "fichas_leidas_en_esta_ejecucion": 11,
+      "fichas_leidas_en_esta_ejecucion": 10,
       "error": ""
     },
     {
@@ -192,13 +192,13 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 1,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 1,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "No event links found in official listing; check layout"
     },
     {
       "source": "Municipio · descubrimiento oficial · Agaete",
@@ -253,31 +253,31 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 23,
-      "recinto_sin_verificar": 4,
-      "precio_sin_confirmar": 23,
-      "distancia_al_centro_municipal": 23,
-      "fichas_leidas_en_esta_ejecucion": 28,
+      "publicados": 24,
+      "recinto_sin_verificar": 5,
+      "precio_sin_confirmar": 24,
+      "distancia_al_centro_municipal": 24,
+      "fichas_leidas_en_esta_ejecucion": 30,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Teror · programación del Auditorio",
       "estado": "operativa",
-      "publicados": 13,
+      "publicados": 12,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 3,
-      "distancia_al_centro_municipal": 13,
-      "fichas_leidas_en_esta_ejecucion": 13,
+      "distancia_al_centro_municipal": 12,
+      "fichas_leidas_en_esta_ejecucion": 12,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
       "estado": "operativa",
-      "publicados": 5,
+      "publicados": 3,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 5,
-      "distancia_al_centro_municipal": 5,
-      "fichas_leidas_en_esta_ejecucion": 3,
+      "precio_sin_confirmar": 3,
+      "distancia_al_centro_municipal": 3,
+      "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
     {
@@ -292,12 +292,12 @@
     },
     {
       "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
-      "estado": "sin_resultados_en_esta_revision",
-      "publicados": 0,
+      "estado": "operativa",
+      "publicados": 7,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
+      "precio_sin_confirmar": 7,
+      "distancia_al_centro_municipal": 7,
+      "fichas_leidas_en_esta_ejecucion": 7,
       "error": ""
     },
     {
@@ -312,13 +312,13 @@
     },
     {
       "source": "Ayuntamientos · actos individualmente contrastados",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 10,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 7,
+      "error": "Gáldar: ReadTimeout"
     },
     {
       "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
@@ -333,11 +333,11 @@
     {
       "source": "Ayuntamiento de Moya · Otoño es Cultura 2026",
       "estado": "operativa",
-      "publicados": 6,
+      "publicados": 5,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 5,
-      "distancia_al_centro_municipal": 6,
-      "fichas_leidas_en_esta_ejecucion": 6,
+      "precio_sin_confirmar": 4,
+      "distancia_al_centro_municipal": 5,
+      "fichas_leidas_en_esta_ejecucion": 5,
       "error": ""
     },
     {
@@ -383,21 +383,21 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "operativa",
-      "publicados": 210,
-      "recinto_sin_verificar": 37,
-      "precio_sin_confirmar": 173,
-      "distancia_al_centro_municipal": 123,
-      "fichas_leidas_en_esta_ejecucion": 10,
+      "publicados": 203,
+      "recinto_sin_verificar": 35,
+      "precio_sin_confirmar": 166,
+      "distancia_al_centro_municipal": 118,
+      "fichas_leidas_en_esta_ejecucion": 22,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 76,
+      "publicados": 70,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 75,
-      "fichas_leidas_en_esta_ejecucion": 120,
+      "distancia_al_centro_municipal": 69,
+      "fichas_leidas_en_esta_ejecucion": 117,
       "error": ""
     },
     {
@@ -471,8 +471,20 @@
       "error": "ValueError"
     },
     {
+      "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
+      "error": "ReadTimeout"
+    },
+    {
+      "source": "Municipio · descubrimiento oficial · Santa María de Guía",
+      "error": "No event links found in official listing; check layout"
+    },
+    {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda robots HTTP 301"
+    },
+    {
+      "source": "Ayuntamientos · actos individualmente contrastados",
+      "error": "Gáldar: ReadTimeout"
     },
     {
       "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
@@ -482,15 +494,15 @@
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 37
+      "count": 35
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 7
+      "count": 6
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "count": 4
+      "count": 5
     },
     {
       "source": "Ayuntamiento de Agüimes",
@@ -529,22 +541,6 @@
       "municipality": "Las Palmas de Gran Canaria",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260930-0003/costura-creativa"
-    },
-    {
-      "id": 260,
-      "title": "ARTE EN FEMENINO",
-      "start": "2026-09-30",
-      "municipality": "Arucas",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260930-0007/arte-en-femenino"
-    },
-    {
-      "id": 529,
-      "title": "ARTE EN FEMENINO",
-      "start": "2026-09-30",
-      "municipality": "Arucas",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RreE5BPT0="
     },
     {
       "id": 253,
@@ -601,14 +597,6 @@
       "municipality": "Las Palmas de Gran Canaria",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0008/microcredencial-en-propiedad-intelectual-y-derechos-de-autor"
-    },
-    {
-      "id": 82,
-      "title": "Espejos y Ventanas",
-      "start": "2026-10-19",
-      "municipality": "Santa Lucía de Tirajana",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0007/espejos-y-ventanas"
     },
     {
       "id": 452,
@@ -697,6 +685,30 @@
       "municipality": "Las Palmas de Gran Canaria",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0012/i-encuentro-con-el-teatro-chino-perspectivas-interculturales"
+    },
+    {
+      "id": 226,
+      "title": "Semana de la Cultura ULPGC",
+      "start": "2026-11-13T20:00:00",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0013/semana-de-la-cultura-ulpgc"
+    },
+    {
+      "id": 233,
+      "title": "Ruta Astronómica: Degollada del Salao - Garañón",
+      "start": "2026-11-14",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0002/ruta-astronomica-degollada-del-salao-garanon"
+    },
+    {
+      "id": 237,
+      "title": "Trofeo Rector - Vóley Playa Mixto",
+      "start": "2026-11-14",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0006/trofeo-rector-voley-playa-mixto"
     }
   ],
   "guidance": [

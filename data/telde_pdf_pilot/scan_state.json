@@ -34,7 +34,7 @@
       1
     ],
     "complete": false,
-    "checked_at": "2026-10-27"
+    "checked_at": "2026-11-07"
   },
   "ba2c79d07839ce40": {
     "sha": "9c649c6cb7e63fd1530dbe48c0426d2699c69c15db8e569976ec59121a389a66",
@@ -109,9 +109,12 @@
     "done_pages": [
       0,
       1,
-      2
+      2,
+      3,
+      4,
+      5
     ],
     "complete": false,
-    "checked_at": "2026-11-06"
+    "checked_at": "2026-11-07"
   }
 }

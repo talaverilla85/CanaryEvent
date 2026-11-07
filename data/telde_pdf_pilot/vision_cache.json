@@ -2091,5 +2091,223 @@
       "total_tokens": 928
     },
     "measured_cost_usd": 0.0001128
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/3/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3386,
+      "input_tokens_details": {
+        "cache_write_tokens": 3383,
+        "cached_tokens": 0
+      },
+      "output_tokens": 55,
+      "output_tokens_details": {
+        "reasoning_tokens": 33
+      },
+      "total_tokens": 3441
+    },
+    "measured_cost_usd": 0.0003661
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/4/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3386,
+      "input_tokens_details": {
+        "cache_write_tokens": 3383,
+        "cached_tokens": 0
+      },
+      "output_tokens": 43,
+      "output_tokens_details": {
+        "reasoning_tokens": 21
+      },
+      "total_tokens": 3429
+    },
+    "measured_cost_usd": 0.0003601
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/5/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Rezo del Santo Rosario",
+          "date": "2026-11-14",
+          "time": "18:15",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "14 NOV · SÁBADO — 18:15 h Rezo del Santo Rosario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Celebración de la Eucaristía",
+          "date": "2026-11-14",
+          "time": "19:00",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "14 NOV · SÁBADO — 19:00 h Celebración de la Eucaristía.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Rezo del Santo Rosario",
+          "date": "2026-11-15",
+          "time": "18:15",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "15 NOV · DOMINGO — 18:15 h Rezo del Santo Rosario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Celebración de la Eucaristía",
+          "date": "2026-11-15",
+          "time": "19:00",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "15 NOV · DOMINGO — 19:00 h Celebración de la Eucaristía.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Rezo del Santo Rosario",
+          "date": "2026-11-16",
+          "time": "18:15",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "16 NOV · LUNES — 18:15 h Rezo del Santo Rosario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Celebración de la Eucaristía",
+          "date": "2026-11-16",
+          "time": "19:00",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "16 NOV · LUNES — 19:00 h Celebración de la Eucaristía.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Recepción de la ofrenda en honor a San Gregorio Taumaturgo",
+          "date": "2026-11-16",
+          "time": "20:00",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "16 NOV · LUNES — 20:00 h Recepción de la ofrenda en honor a San Gregorio Taumaturgo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3386,
+      "input_tokens_details": {
+        "cache_write_tokens": 3383,
+        "cached_tokens": 0
+      },
+      "output_tokens": 775,
+      "output_tokens_details": {
+        "reasoning_tokens": 190
+      },
+      "total_tokens": 4161
+    },
+    "measured_cost_usd": 0.0007261
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/5/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "Rezo del Santo Rosario",
+          "date": "2026-11-14",
+          "time": "18:15",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "14 NOV · SÁBADO; 18:15 h Rezo del Santo Rosario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Celebración de la Eucaristía",
+          "date": "2026-11-14",
+          "time": "19:00",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "14 NOV · SÁBADO; 19:00 h Celebración de la Eucaristía.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Rezo del Santo Rosario",
+          "date": "2026-11-15",
+          "time": "18:15",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "15 NOV · DOMINGO; 18:15 h Rezo del Santo Rosario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Celebración de la Eucaristía",
+          "date": "2026-11-15",
+          "time": "19:00",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "15 NOV · DOMINGO; 19:00 h Celebración de la Eucaristía.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Rezo del Santo Rosario",
+          "date": "2026-11-16",
+          "time": "18:15",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "16 NOV · LUNES; 18:15 h Rezo del Santo Rosario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Celebración de la Eucaristía",
+          "date": "2026-11-16",
+          "time": "19:00",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "16 NOV · LUNES; 19:00 h Celebración de la Eucaristía.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Recepción de la ofrenda en honor a San Gregorio Taumaturgo",
+          "date": "2026-11-16",
+          "time": "20:00",
+          "venue": "Templo de San Gregorio Taumaturgo",
+          "evidence": "16 NOV · LUNES; 20:00 h Recepción de la ofrenda en honor a San Gregorio Taumaturgo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3254,
+      "input_tokens_details": {
+        "cache_write_tokens": 3251,
+        "cached_tokens": 0
+      },
+      "output_tokens": 755,
+      "output_tokens_details": {
+        "reasoning_tokens": 170
+      },
+      "total_tokens": 4009
+    },
+    "measured_cost_usd": 0.0007029
   }
 }

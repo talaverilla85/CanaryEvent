@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-11-06T13:11:05.329885+00:00",
+  "checked_at": "2026-11-07T11:54:23.357318+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
   "api_calls": 4,
-  "usage_usd": 0.0011866,
+  "usage_usd": 0.0021552,
   "docs": [
     {
       "name": "Fiestas en honor a San Gregorio Taumaturgo",
@@ -14,7 +14,7 @@
       "bytes": 2979368,
       "inspected": [
         {
-          "page": 1,
+          "page": 4,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
@@ -25,7 +25,7 @@
           "candidates_pending_review": 0
         },
         {
-          "page": 2,
+          "page": 5,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
@@ -36,7 +36,7 @@
           "candidates_pending_review": 0
         },
         {
-          "page": 3,
+          "page": 6,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
@@ -44,30 +44,43 @@
             1853
           ],
           "status": "new_api_result",
-          "candidates_pending_review": 0
+          "candidates_pending_review": 7,
+          "verification": "new_independent_visual_read",
+          "auto_verified": 7
         }
       ]
     },
     {
-      "name": "Fiestas patronales en honor al Sagrado Corazón de Jesús en el barrio de La Garita",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/lagarita26.pdf",
-      "sha256": "ecd40a83e9f845b2bda3522e9b0e87d20cf8047b3d75224d456c5b19b16f25c9",
-      "pages": 8,
-      "bytes": 3779392,
+      "name": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Valle los Nueve Alto",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/vallelosnuevealto26.pdf",
+      "sha256": "e2d30f587c32e3d4846943ff14e69428f8f3f068ed5641e365711d0687d63898",
+      "pages": 5,
+      "bytes": 1062090,
       "inspected": [
         {
-          "page": 8,
-          "native_text_chars": 1277,
-          "route": "ai_text",
-          "status": "new_api_result",
-          "candidates_pending_review": 0
+          "page": 3,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "status": "skipped_api_budget"
+        },
+        {
+          "page": 4,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "status": "skipped_api_budget"
+        },
+        {
+          "page": 5,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "status": "skipped_api_budget"
         }
       ]
     }
   ],
   "deferred_docs": [],
-  "pending_review_count": 0,
-  "auto_verified_count": 0,
+  "pending_review_count": 7,
+  "auto_verified_count": 7,
   "archived_count": 89,
   "archived_this_run": 0,
   "notes": "Future events require independent date, time and venue verification. Expired records move to the historic archive; incomplete past-only PDFs are temporarily deferred."

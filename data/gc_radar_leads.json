@@ -1,51 +1,50 @@
 {
-  "checked_on": "2026-11-06",
+  "checked_on": "2026-11-07",
   "scope": "Gran Canaria (official candidate links only)",
   "no_auto_publication": true,
   "inspected": [
     {
-      "municipality": "Agaete",
+      "municipality": "San Bartolomé de Tirajana",
       "outcome": "ok",
       "links": 0
     },
     {
-      "municipality": "Artenara",
+      "municipality": "Santa Lucía de Tirajana",
       "outcome": "ok",
-      "links": 0
+      "links": 3
     },
     {
-      "municipality": "Firgas",
-      "outcome": "ok",
-      "links": 4
-    },
-    {
-      "municipality": "Gáldar",
-      "outcome": "ok",
-      "links": 6
-    },
-    {
-      "municipality": "La Aldea de San Nicolás",
-      "outcome": "needs_review",
-      "error_type": "ConnectTimeout",
-      "links": 0
-    },
-    {
-      "municipality": "Las Palmas de Gran Canaria",
+      "municipality": "Santa María de Guía",
       "outcome": "needs_review",
       "error_type": "RuntimeError",
       "links": 0
     },
     {
-      "municipality": "Mogán",
+      "municipality": "Telde",
+      "outcome": "ok",
+      "links": 14
+    },
+    {
+      "municipality": "Teror",
       "outcome": "needs_review",
       "error_type": "RuntimeError",
       "links": 0
     },
     {
-      "municipality": "Moya",
-      "outcome": "needs_review",
-      "error_type": "PermissionError",
+      "municipality": "Valleseco",
+      "outcome": "ok",
       "links": 0
+    },
+    {
+      "municipality": "Valsequillo",
+      "outcome": "needs_review",
+      "error_type": "SSLError",
+      "links": 0
+    },
+    {
+      "municipality": "Vega de San Mateo",
+      "outcome": "ok",
+      "links": 3
     }
   ],
   "scan_state": {
@@ -82,40 +81,220 @@
       "outcome": "needs_review"
     },
     "San Bartolomé de Tirajana": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-07",
       "outcome": "ok"
     },
     "Santa Lucía de Tirajana": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-07",
       "outcome": "ok"
     },
     "Santa María de Guía": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-07",
       "outcome": "needs_review"
     },
     "Telde": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-07",
       "outcome": "ok"
     },
     "Teror": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-07",
       "outcome": "needs_review"
     },
     "Valleseco": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-07",
       "outcome": "ok"
     },
     "Valsequillo": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-07",
       "outcome": "needs_review"
     },
     "Vega de San Mateo": {
-      "checked_on": "2026-11-05",
+      "checked_on": "2026-11-07",
       "outcome": "ok"
     }
   },
-  "candidate_count": 44,
+  "candidate_count": 48,
   "leads": [
+    {
+      "url": "https://vegadesanmateo.es/areas/patrimonio-cultural-e-historico",
+      "label": "Patrimonio Cultural e Histórico",
+      "kind": "unverified_official_link",
+      "municipality": "Vega de San Mateo",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://vegadesanmateo.es/areas/mercado-municipal",
+      "label": "Mercado Municipal",
+      "kind": "unverified_official_link",
+      "municipality": "Vega de San Mateo",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://vegadesanmateo.es/areas/ferias-y-eventos",
+      "label": "Ferias y Eventos",
+      "kind": "unverified_official_link",
+      "municipality": "Vega de San Mateo",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/tramites-presenciales/mercados/",
+      "label": "Mercados",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/telde-presenta-las-fiestas-de-san-gregorio-taumaturgo-que-comienzan-esta-noche-con-el-pregon-de-mari-carmen-hernandez/",
+      "label": "Telde presenta las fiestas de San Gregorio Taumaturgo, que comienzan esta noche con el pregón de Mari Carmen Hernández",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-11-07",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/telde-invita-a-los-productores-locales-de-citricos-a-participar-en-la-feria-de-la-naranja-2026/",
+      "label": "Telde invita a los productores locales de cítricos a participar en la Feria de la Naranja 2026",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-11-07",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/el-teatro-municipal-de-telde-acoge-una-exposicion-de-esculturas-creadas-con-metal-reciclado-por-antonio-perez-rodriguez/",
+      "label": "El Teatro Municipal de Telde acoge una exposición de esculturas creadas con metal reciclado por Antonio Pérez Rodríguez",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-11-05",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/pymes-comercio-y-consumo/mercados/",
+      "label": "Mercados",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/juventud/",
+      "label": "Juventud",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/fiestas-de-san-gregorio/",
+      "label": "Noticias",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-11-07",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/",
+      "label": "Festejos y ferias",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/cultura/programacion-cultural/",
+      "label": "Noticias",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/cultura/escuela-municipal-de-folclore/",
+      "label": "Noticias",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-11-05",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/bibliotecas/",
+      "label": "Bibliotecas",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/",
+      "label": "Ocio, cultura y juventud",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/agricultura-ganaderia-y-pesca/",
+      "label": "Agricultura, Ganadería y Pesca",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/arauz-se-estrena-como-nuevo-recinto-ferial-de-las-fiestas-de-san-gregorio-taumaturgo-2026/",
+      "label": "Arauz se estrena como nuevo recinto ferial de las fiestas de San Gregorio Taumaturgo 2026",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-11-07",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.santaluciagc.com/areas/desarrollo-economico/mercados-mercado-agricola-sabados-y-mercadillo/",
+      "label": "Mercados Municipales",
+      "kind": "unverified_official_link",
+      "municipality": "Santa Lucía de Tirajana",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.santaluciagc.com/areas/desarrollo-economico/agricultura-y-ganaderia/",
+      "label": "Agricultura y Ganadería",
+      "kind": "unverified_official_link",
+      "municipality": "Santa Lucía de Tirajana",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.santaluciagc.com/agenda/",
+      "label": "Agenda / eventos",
+      "kind": "unverified_official_link",
+      "municipality": "Santa Lucía de Tirajana",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-07",
+      "publication_status": "not_an_event"
+    },
     {
       "url": "https://www.galdar.es/mercado/",
       "label": "Mercado Municipal \"La Recova\"",
@@ -207,42 +386,6 @@
       "publication_status": "not_an_event"
     },
     {
-      "url": "https://vegadesanmateo.es/areas/patrimonio-cultural-e-historico",
-      "label": "Patrimonio Cultural e Histórico",
-      "kind": "unverified_official_link",
-      "municipality": "Vega de San Mateo",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://vegadesanmateo.es/areas/mercado-municipal",
-      "label": "Mercado Municipal",
-      "kind": "unverified_official_link",
-      "municipality": "Vega de San Mateo",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://vegadesanmateo.es/areas/ferias-y-eventos",
-      "label": "Ferias y Eventos",
-      "kind": "unverified_official_link",
-      "municipality": "Vega de San Mateo",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/tramites-presenciales/mercados/",
-      "label": "Mercados",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
       "url": "https://www.telde.es/telde-convoca-este-jueves-un-encuentro-con-las-personas-interesadas-en-ocupar-los-21-puestos-disponibles-del-mercado-municipal/",
       "label": "Telde convoca este jueves un encuentro con las personas interesadas en ocupar los 21 puestos disponibles del Mercado Municipal",
       "kind": "unverified_official_link",
@@ -252,118 +395,10 @@
       "publication_status": "not_an_event"
     },
     {
-      "url": "https://www.telde.es/el-teatro-municipal-de-telde-acoge-una-exposicion-de-esculturas-creadas-con-metal-reciclado-por-antonio-perez-rodriguez/",
-      "label": "El Teatro Municipal de Telde acoge una exposición de esculturas creadas con metal reciclado por Antonio Pérez Rodríguez",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-11-05",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/pymes-comercio-y-consumo/mercados/",
-      "label": "Mercados",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/juventud/",
-      "label": "Juventud",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
       "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/relacion-de-fiestas-ano-2026/",
       "label": "Noticias",
       "kind": "unverified_official_link",
       "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/",
-      "label": "Festejos y ferias",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/cultura/programacion-cultural/",
-      "label": "Noticias",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/cultura/escuela-municipal-de-folclore/",
-      "label": "Noticias",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-11-05",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/bibliotecas/",
-      "label": "Bibliotecas",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/",
-      "label": "Ocio, cultura y juventud",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/agricultura-ganaderia-y-pesca/",
-      "label": "Agricultura, Ganadería y Pesca",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.santaluciagc.com/areas/desarrollo-economico/mercados-mercado-agricola-sabados-y-mercadillo/",
-      "label": "Mercados Municipales",
-      "kind": "unverified_official_link",
-      "municipality": "Santa Lucía de Tirajana",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.santaluciagc.com/areas/desarrollo-economico/agricultura-y-ganaderia/",
-      "label": "Agricultura y Ganadería",
-      "kind": "unverified_official_link",
-      "municipality": "Santa Lucía de Tirajana",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-05",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.santaluciagc.com/agenda/",
-      "label": "Agenda / eventos",
-      "kind": "unverified_official_link",
-      "municipality": "Santa Lucía de Tirajana",
       "first_seen": "2026-10-27",
       "last_seen": "2026-11-05",
       "publication_status": "not_an_event"

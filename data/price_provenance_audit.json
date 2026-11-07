@@ -1,20 +1,20 @@
 {
-  "checked_on": "2026-11-06T13:16:09.359071+00:00",
-  "total_events": 466,
-  "known_price_or_free": 150,
+  "checked_on": "2026-11-07T11:59:18.366493+00:00",
+  "total_events": 458,
+  "known_price_or_free": 144,
   "classification": {
     "minimum_zero_ambiguous": 7,
-    "minimum_positive": 119,
-    "fixed_positive": 7,
-    "free": 17
+    "minimum_positive": 113,
+    "free": 18,
+    "fixed_positive": 6
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 76,
-    "Ayuntamiento de Teror · programación del Auditorio": 10,
-    "Ayuntamiento de Ingenio": 6,
-    "Juventud Las Palmas de Gran Canaria": 11,
+    "TuReservaOnline · agenda de Gran Canaria": 70,
+    "Juventud Las Palmas de Gran Canaria": 12,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 37,
+    "Ayuntamiento de Ingenio": 6,
     "Circuito de Artes Escénicas GC": 1,
+    "Ayuntamiento de Teror · programación del Auditorio": 9,
     "LPA Cultura · agenda municipal oficial": 5,
     "Ayuntamiento de Moya · Otoño es Cultura 2026": 1,
     "Ayuntamiento de Agüimes": 1,
