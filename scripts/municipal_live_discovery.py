@@ -45,6 +45,18 @@ GUIA_PRIMARY_TIME=re.compile(
  r"se\s+celebra|comenzar[áa]|comienza|se\s+iniciar[áa]|arrancar[áa])"
  r"\b.{0,145}?\ba\s+las\s+([01]?\d|2[0-3]):([0-5]\d)\b",re.I)
 
+# Before the dedicated reader, the generic extractor inadvertently used the
+# entire news card as a title ("Noticias,Cultura | 03/11/2026 ...") and, for
+# the municipal coral festival, dated a *6 Nov* concert as *28 Nov* (the
+# closing day of the larger festival). Exclude only these broken legacy cards
+# from export; retain SQLite originals for traceability and manual review.
+GUIA_LEGACY_CARD=re.compile(r"^Noticias(?:,[^|]+)?\s*\|\s*\d{2}/\d{2}/20\d{2}\s",re.I)
+
+def invalid_legacy_guia(event):
+    return (event.get("source_name")==PREFIX+"Santa María de Guía"
+            and bool(GUIA_LEGACY_CARD.match(str(event.get("title") or ""))))
+
+
 def discover_guia(listing):
     """Read verified article *headings* from Guía's official home page."""
     links={}
@@ -115,7 +127,8 @@ def parse_guia_article(soup,title,url,today,categorize):
     return {"title":title,"start":next(iter(days)).isoformat()+
             f"T{hour:02d}:{minute:02d}:00","end":None,
             "municipality":"Santa María de Guía","venue":venue,
-            "category":categorize(title),"free":None,"price":"",
+            "category":("deporte" if re.search(r"\b(?:correr|carrera)\b",title,re.I)
+                        else categorize(title)),"free":None,"price":"",
             "details":"Actividad confirmada en una noticia del Ayuntamiento de Guía.",
             "source_name":PREFIX+"Santa María de Guía","source_url":url,
             "status":"approved"}
