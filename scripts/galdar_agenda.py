@@ -5,6 +5,7 @@ Uses HTML EventON schema.org date/time/location fields, not inferred text.
 from __future__ import annotations
 import datetime as dt
 import re
+import time
 import requests
 from urllib.parse import urlsplit
 from urllib.robotparser import RobotFileParser
@@ -23,12 +24,23 @@ def parse_schema_date(value):
     try:return dt.datetime(*(int(v) for v in m.groups()))
     except ValueError:return None
 
+def _request(client,url,**kwargs):
+    """Retry one transient timeout; never bypass robots or HTTP restrictions."""
+    for attempt in range(2):
+        try:
+            return client.get(url,**kwargs)
+        except requests.exceptions.Timeout:
+            if attempt:
+                raise
+            time.sleep(1)
+
+
 def fetch_listing(client=requests):
-    r=client.get("https://www.galdar.es/robots.txt",headers=HEADERS,timeout=12)
+    r=_request(client,"https://www.galdar.es/robots.txt",headers=HEADERS,timeout=12)
     if r.status_code!=200:raise RuntimeError(f"Galdar robots HTTP {r.status_code}")
     rp=RobotFileParser();rp.parse(r.text.splitlines())
     if not rp.can_fetch(AGENT,URL):raise PermissionError("Galdar disallows calendar")
-    response=client.get(URL,headers=HEADERS,timeout=22,allow_redirects=False)
+    response=_request(client,URL,headers=HEADERS,timeout=22,allow_redirects=False)
     response.raise_for_status()
     if len(response.content)>1_500_000:raise ValueError("Galdar response too large")
     return BeautifulSoup(response.content,"html.parser")
