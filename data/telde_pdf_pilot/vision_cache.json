@@ -3329,5 +3329,565 @@
       "total_tokens": 5391
     },
     "measured_cost_usd": 0.0013411
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/10/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "Inauguración de La Feria de Artesanía",
+          "date": "2026-11-15",
+          "time": "10:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "15 NOV · 10:00 h Inauguración de La Feria de Artesanía; PLAZA DE SAN GREGORIO",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Muestra fotográfica Enfoques",
+          "date": "2026-11-15",
+          "time": "10:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "15 NOV · 10:00 h Muestra fotográfica Enfoques; PLAZA DE SAN GREGORIO",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Ludo-parque infantil Gregorito Parque",
+          "date": "2026-11-15",
+          "time": "10:00-14:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "PARQUE FRANCHY ROCA · 10:00 a 14:00 h Ludo-parque infantil Gregorito Parque",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "KDD Benéfica de coches y motos “Kilómetros por sonrisas”",
+          "date": "2026-11-15",
+          "time": "10:30",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "RECINTO FERIAL DE ARAUZ · 10:30 h KDD Benéfica de coches y motos “Kilómetros por sonrisas”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Actuación del Payaso Pepón",
+          "date": "2026-11-15",
+          "time": "12:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "PARQUE FRANCHY ROCA · 12:00 h Actuación del Payaso Pepón",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Ludo-Parque Infantil Gregorito Parque",
+          "date": "2026-11-15",
+          "time": "17:00-19:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "PARQUE FRANCHY ROCA · 17:00 a 19:00 h Ludo-Parque Infantil Gregorito Parque",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Feria de Artesanía",
+          "date": "2026-11-16",
+          "time": "10:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "16 NOV · PLAZA DE SAN GREGORIO · 10:00 h Feria de Artesanía",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Muestra fotográfica Enfoques",
+          "date": "2026-11-16",
+          "time": "10:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "16 NOV · PLAZA DE SAN GREGORIO · 10:00 h Muestra fotográfica Enfoques",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Inauguración de la III Feria Comercial",
+          "date": "2026-11-16",
+          "time": "10:00",
+          "venue": "Zona Comercial Abierta de San Gregorio",
+          "evidence": "ZONA COMERCIAL ABIERTA DE SAN GREGORIO · 10:00 h Inauguración de la III Feria Comercial",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Romería-Ofrenda a San Gregorio",
+          "date": "2026-11-16",
+          "time": "19:00",
+          "venue": "Desde la Barranquera hasta la plaza de San Gregorio",
+          "evidence": "DESDE LA BARRANQUERA HASTA LA PLAZA DE SAN GREGORIO · 19:00 h Romería-Ofrenda a San Gregorio",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Parrandeando por San Gregorio con las parrandas Palante, El Volumen y Yemaya",
+          "date": "2026-11-16",
+          "time": "22:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "PLAZA DE SAN GREGORIO · 22:00 h Parrandeando por San Gregorio con las parrandas, Palante, El Volumen y Yemaya",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Sesión musical con DJ Promaster",
+          "date": "2026-11-16",
+          "time": "21:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "RECINTO FERIAL DE ARAUZ · 21:00 h Sesión musical con DJ Promaster",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Actuación del grupo Star Music",
+          "date": "2026-11-16",
+          "time": "22:30",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "RECINTO FERIAL DE ARAUZ · 22:30 h Actuación del grupo Star Music",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Verbena con Armonía Show",
+          "date": "2026-11-16",
+          "time": "00:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "RECINTO FERIAL DE ARAUZ · 00:00 h Verbena con Armonía Show",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3254,
+      "input_tokens_details": {
+        "cache_write_tokens": 3251,
+        "cached_tokens": 0
+      },
+      "output_tokens": 2016,
+      "output_tokens_details": {
+        "reasoning_tokens": 802
+      },
+      "total_tokens": 5270
+    },
+    "measured_cost_usd": 0.0013334
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/11/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Diana floreada",
+          "date": "2026-11-17",
+          "time": "08:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "“17 NOV · MARTES”; “08:00 h Diana floreada.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Muestra de ganado",
+          "date": "2026-11-17",
+          "time": "09:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "“17 NOV · MARTES”; “09:00 h Muestra de ganado.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Feria de Artesanía",
+          "date": "2026-11-17",
+          "time": "09:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“17 NOV · MARTES”; “09:00 h Feria de Artesanía.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "Juegos tradicionales",
+          "date": "2026-11-17",
+          "time": "10:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“17 NOV · MARTES”; “10:00 h Juegos tradicionales.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Muestra fotográfica Enfoques",
+          "date": "2026-11-17",
+          "time": "10:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“17 NOV · MARTES”; “10:00 h Muestra fotográfica Enfoques.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "III Feria Comercial",
+          "date": "2026-11-17",
+          "time": "10:00",
+          "venue": "Zona Comercial Abierta de San Gregorio",
+          "evidence": "“17 NOV · MARTES”; “10:00 h III Feria Comercial.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Ludo-Parque Infantil Gregorito Parque",
+          "date": "2026-11-17",
+          "time": "10:00–14:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "“17 NOV · MARTES”; “10:00 a 14:00 h Ludo-Parque Infantil Gregorito Parque.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Exhibición de juego del garrote tradicional por parte de la Escuela de Palo Canario Maestro Paquito Santana",
+          "date": "2026-11-17",
+          "time": "11:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“17 NOV · MARTES”; “11:00 h Exhibición de juego del garrote tradicional”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Actuación del Grupo Yoni y Aya",
+          "date": "2026-11-17",
+          "time": "11:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“17 NOV · MARTES”; “11:00 h Actuación del Grupo Yoni y Aya.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Exhibición de perros presa",
+          "date": "2026-11-17",
+          "time": "12:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“17 NOV · MARTES”; “12:00 h Exhibición de perros presa.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Encuentro de tejedoras",
+          "date": "2026-11-17",
+          "time": "12:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“17 NOV · MARTES”; “12:00 h Encuentro de tejedoras.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Desfile de ganado",
+          "date": "2026-11-17",
+          "time": "13:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“17 NOV · MARTES”; “13:00 h Desfile de ganado.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Degustación del tradicional potaje canario",
+          "date": "2026-11-17",
+          "time": "14:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "“17 NOV · MARTES”; “14:00 h Degustación del tradicional potaje canario.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "Ludo-Parque Infantil Gregorito Parque",
+          "date": "2026-11-17",
+          "time": "17:00–19:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "“17 NOV · MARTES”; “17:00 a 19:00 h Ludo-Parque Infantil Gregorito Parque.”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3386,
+      "input_tokens_details": {
+        "cache_write_tokens": 3383,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1695,
+      "output_tokens_details": {
+        "reasoning_tokens": 614
+      },
+      "total_tokens": 5081
+    },
+    "measured_cost_usd": 0.0011861
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/11/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "Diana floreada",
+          "date": "2026-11-17",
+          "time": "08:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "«17 NOV · MARTES»; «08:00 h Diana floreada»; «PARQUE FRANCHY ROCA»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Muestra de ganado",
+          "date": "2026-11-17",
+          "time": "09:00",
+          "venue": "Recinto Ferial de Arauz",
+          "evidence": "«17 NOV · MARTES»; «09:00 h Muestra de ganado»; «RECINTO FERIAL DE ARAUZ»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Feria de Artesanía",
+          "date": "2026-11-17",
+          "time": "09:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "«09:00 h Feria de Artesanía»; «PLAZA DE SAN GREGORIO»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Juegos tradicionales",
+          "date": "2026-11-17",
+          "time": "10:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "«10:00 h Juegos tradicionales»; «PLAZA DE SAN GREGORIO»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Muestra fotográfica Enfoques",
+          "date": "2026-11-17",
+          "time": "10:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "«10:00 h Muestra fotográfica Enfoques»; «PLAZA DE SAN GREGORIO»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "III Feria Comercial",
+          "date": "2026-11-17",
+          "time": "10:00",
+          "venue": "Zona Comercial Abierta de San Gregorio",
+          "evidence": "«10:00 h III Feria Comercial»; «ZONA COMERCIAL ABIERTA DE SAN GREGORIO»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Ludo-Parque Infantil Gregorito Parque",
+          "date": "2026-11-17",
+          "time": "10:00-14:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "«10:00 a 14:00 h Ludo-Parque Infantil Gregorito Parque»; «PARQUE FRANCHY ROCA»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Exhibición de juego del garrote tradicional por parte de la Escuela de Palo Canario Maestro Paquito Santana",
+          "date": "2026-11-17",
+          "time": "11:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "«11:00 h Exhibición de juego del garrote tradicional»; «PLAZA DE SAN GREGORIO»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Actuación del Grupo Yoni y Aya",
+          "date": "2026-11-17",
+          "time": "11:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "«11:00 h Actuación del Grupo Yoni y Aya»; «PLAZA DE SAN GREGORIO»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Exhibición de perros presa",
+          "date": "2026-11-17",
+          "time": "12:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "«12:00 h Exhibición de perros presa»; «PLAZA DE SAN GREGORIO»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Encuentro de tejedoras",
+          "date": "2026-11-17",
+          "time": "12:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "«12:00 h Encuentro de tejedoras»; «PLAZA DE SAN GREGORIO»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Desfile de ganado",
+          "date": "2026-11-17",
+          "time": "13:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "«13:00 h Desfile de ganado»; «PLAZA DE SAN GREGORIO»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Degustación del tradicional potaje canario",
+          "date": "2026-11-17",
+          "time": "14:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "«14:00 h Degustación del tradicional potaje canario»; «PLAZA DE SAN GREGORIO»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "Ludo-Parque Infantil Gregorito Parque",
+          "date": "2026-11-17",
+          "time": "17:00-19:00",
+          "venue": "Parque Franchy Roca",
+          "evidence": "«17:00 a 19:00 h Ludo-Parque Infantil Gregorito Parque»; «PARQUE FRANCHY ROCA»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3254,
+      "input_tokens_details": {
+        "cache_write_tokens": 3251,
+        "cached_tokens": 0
+      },
+      "output_tokens": 2061,
+      "output_tokens_details": {
+        "reasoning_tokens": 898
+      },
+      "total_tokens": 5315
+    },
+    "measured_cost_usd": 0.0013559
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/12/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "III Feria del Motor Ciudad de Telde 2026",
+          "date": "2026-11-19",
+          "time": "10:00",
+          "venue": "Zona Comercial La Mareta",
+          "evidence": "19 NOV · JUEVES — 10:00 h III Feria del Motor Ciudad de Telde 2026.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Exhibición de Taekwondo",
+          "date": "2026-11-19",
+          "time": "17:00-19:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "19 NOV · JUEVES — 17:00 a 19:00 h Exhibición de Taekwondo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Hemodonación “Cada gota suma San Gregorio”",
+          "date": "2026-11-20",
+          "time": "09:15-13:45",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "20 NOV · VIERNES — 09:15 a 13:45 h Hemodonación “Cada gota suma San Gregorio”.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "III Feria del Motor Ciudad de Telde 2026",
+          "date": "2026-11-20",
+          "time": "10:00",
+          "venue": "Zona Comercial La Mareta",
+          "evidence": "20 NOV · VIERNES — 10:00 h III Feria del Motor Ciudad de Telde 2026.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Hemodonación “Cada gota suma San Gregorio”",
+          "date": "2026-11-20",
+          "time": "16:00-20:45",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "20 NOV · VIERNES — 16:00 a 20:45 h Hemodonación “Cada gota suma San Gregorio”.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Pasarela San Gregorio con Estilo",
+          "date": "2026-11-20",
+          "time": "20:00",
+          "venue": "Casa de la Juventud",
+          "evidence": "20 NOV · VIERNES — 20:00 h Pasarela San Gregorio con Estilo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3386,
+      "input_tokens_details": {
+        "cache_write_tokens": 3383,
+        "cached_tokens": 0
+      },
+      "output_tokens": 815,
+      "output_tokens_details": {
+        "reasoning_tokens": 291
+      },
+      "total_tokens": 4201
+    },
+    "measured_cost_usd": 0.0007461
   }
 }

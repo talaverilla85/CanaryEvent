@@ -162,8 +162,8 @@
       ],
       "status": "activo_solo_recinto_la_aldea;_expansion_islena_pendiente",
       "adapter": "aldea_ecoentradas",
-      "found_last_run": 0,
-      "last_error": "RuntimeError: EcoEntradas robots unavailable",
+      "found_last_run": 1,
+      "last_error": "",
       "published_cards": 1,
       "has_live_connector": true
     }
