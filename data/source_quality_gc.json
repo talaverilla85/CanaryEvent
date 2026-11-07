@@ -1,13 +1,13 @@
 {
-  "checked_at": "2026-11-07T15:13:42+00:00",
+  "checked_at": "2026-11-07T16:49:44+00:00",
   "quality_counts": {
-    "publicados": 484,
+    "publicados": 475,
     "recintos_sin_verificar": 47,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 339,
-    "distancia_a_centro_municipal": 329,
+    "precios_sin_confirmar": 331,
+    "distancia_a_centro_municipal": 320,
     "fuentes_con_error": 3,
-    "duplicados_potenciales": 5
+    "duplicados_potenciales": 4
   },
   "sources": [
     {
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 13,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 14,
+      "fichas_leidas_en_esta_ejecucion": 5,
       "error": ""
     },
     {
@@ -383,20 +383,20 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "operativa",
-      "publicados": 195,
+      "publicados": 190,
       "recinto_sin_verificar": 35,
-      "precio_sin_confirmar": 165,
-      "distancia_al_centro_municipal": 110,
-      "fichas_leidas_en_esta_ejecucion": 38,
+      "precio_sin_confirmar": 160,
+      "distancia_al_centro_municipal": 105,
+      "fichas_leidas_en_esta_ejecucion": 32,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 71,
+      "publicados": 70,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 70,
+      "distancia_al_centro_municipal": 69,
       "fichas_leidas_en_esta_ejecucion": 118,
       "error": ""
     },

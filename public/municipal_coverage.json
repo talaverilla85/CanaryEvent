@@ -125,9 +125,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 29,
-      "municipal_cards_total": 4,
-      "other_sources_cards_total": 25,
+      "catalog_cards_total": 20,
+      "municipal_cards_total": 1,
+      "other_sources_cards_total": 19,
       "source_health": [
         {
           "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",

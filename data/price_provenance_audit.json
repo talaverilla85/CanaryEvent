@@ -1,15 +1,15 @@
 {
-  "checked_on": "2026-11-07T15:17:17.886364+00:00",
-  "total_events": 484,
-  "known_price_or_free": 145,
+  "checked_on": "2026-11-07T16:53:21.076520+00:00",
+  "total_events": 475,
+  "known_price_or_free": 144,
   "classification": {
     "minimum_zero_ambiguous": 8,
-    "minimum_positive": 113,
+    "minimum_positive": 112,
     "free": 18,
     "fixed_positive": 6
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 71,
+    "TuReservaOnline · agenda de Gran Canaria": 70,
     "Juventud Las Palmas de Gran Canaria": 12,
     "Ayuntamiento de Agüimes · programación de teatros": 5,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 30,
