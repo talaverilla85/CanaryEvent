@@ -115,6 +115,14 @@ class TelegramHealthTests(unittest.TestCase):
         self.assertIn(LINK,m)
         self.assertNotIn("492",m)
 
+    def test_superseded_push_cancellation_does_not_alert(self):
+        self.assertIsNone(make(conclusion="cancelled",event="push",
+                               quality_data={},metadata={},
+                               started="",finished=""))
+        self.assertIsNotNone(make(conclusion="cancelled",event="schedule",
+                                  quality_data={},metadata={},
+                                  started="",finished=""))
+
     def test_no_stale_incidences_attributed_to_current_run(self):
         old=quality(("Previous source","ExpiredError"))
         old["checked_at"]="2026-10-27T22:01:37+00:00"
