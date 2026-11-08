@@ -1,26 +1,25 @@
 {
-  "checked_on": "2026-11-07T17:25:01.082277+00:00",
-  "total_events": 503,
-  "known_price_or_free": 144,
+  "checked_on": "2026-11-08T12:13:23.167499+00:00",
+  "total_events": 468,
+  "known_price_or_free": 133,
   "classification": {
     "minimum_zero_ambiguous": 8,
-    "minimum_positive": 112,
-    "free": 18,
-    "fixed_positive": 6
+    "minimum_positive": 103,
+    "free": 17,
+    "fixed_positive": 5
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 70,
-    "Juventud Las Palmas de Gran Canaria": 12,
-    "Ayuntamiento de Agüimes · programación de teatros": 5,
-    "Portal oficial de Eventos Gran Canaria (Cabildo)": 30,
-    "Ayuntamiento de Ingenio": 6,
-    "Circuito de Artes Escénicas GC": 1,
-    "Ayuntamiento de Teror · programación del Auditorio": 9,
+    "TuReservaOnline · agenda de Gran Canaria": 66,
     "LPA Cultura · agenda municipal oficial": 5,
+    "Juventud Las Palmas de Gran Canaria": 11,
     "Ayuntamiento de Moya · Otoño es Cultura 2026": 1,
+    "Ayuntamiento de Ingenio": 6,
     "Ayuntamiento de Agüimes": 1,
     "Ayuntamiento de Mogán · actividades documentadas": 1,
+    "Portal oficial de Eventos Gran Canaria (Cabildo)": 27,
     "EcoEntradas · Centro Municipal de Cultura de La Aldea": 1,
+    "Ayuntamiento de Teror · programación del Auditorio": 8,
+    "Ayuntamiento de Agüimes · programación de teatros": 4,
     "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 2
   },
   "issues": [

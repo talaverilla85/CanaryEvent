@@ -3889,5 +3889,85 @@
       "total_tokens": 4201
     },
     "measured_cost_usd": 0.0007461
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/12/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "III Feria del Motor Ciudad de Telde 2026",
+          "date": "2026-11-19",
+          "time": "10:00",
+          "venue": "Zona Comercial La Mareta",
+          "evidence": "ZONA COMERCIAL LA MARETA · 10:00 h III Feria del Motor Ciudad de Telde 2026.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Exhibición de Taekwondo",
+          "date": "2026-11-19",
+          "time": "17:00-19:00",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "PLAZA DE SAN GREGORIO · 17:00 a 19:00 h Exhibición de Taekwondo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Hemodonación “Cada gota suma San Gregorio”",
+          "date": "2026-11-20",
+          "time": "09:15-13:45",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "PLAZA DE SAN GREGORIO · 09:15 a 13:45 h Hemodonación “Cada gota suma San Gregorio”.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "III Feria del Motor Ciudad de Telde 2026",
+          "date": "2026-11-20",
+          "time": "10:00",
+          "venue": "Zona Comercial La Mareta",
+          "evidence": "ZONA COMERCIAL LA MARETA · 10:00 h III Feria del Motor Ciudad de Telde 2026.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Hemodonación “Cada gota suma San Gregorio”",
+          "date": "2026-11-20",
+          "time": "16:00-20:45",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "PLAZA DE SAN GREGORIO · 16:00 a 20:45 h Hemodonación “Cada gota suma San Gregorio”.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Pasarela San Gregorio con Estilo",
+          "date": "2026-11-20",
+          "time": "20:00",
+          "venue": "Casa de la Juventud",
+          "evidence": "CASA DE LA JUVENTUD · 20:00 h Pasarela San Gregorio con Estilo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3254,
+      "input_tokens_details": {
+        "cache_write_tokens": 3251,
+        "cached_tokens": 0
+      },
+      "output_tokens": 927,
+      "output_tokens_details": {
+        "reasoning_tokens": 389
+      },
+      "total_tokens": 4181
+    },
+    "measured_cost_usd": 0.0007889
   }
 }

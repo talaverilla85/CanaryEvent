@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-11-07",
+  "checked_on": "2026-11-08",
   "scope": "Gran Canaria (official candidate links only)",
   "no_auto_publication": true,
   "inspected": [
@@ -50,35 +50,35 @@
   ],
   "scan_state": {
     "Agaete": {
-      "checked_on": "2026-11-07",
+      "checked_on": "2026-11-08",
       "outcome": "ok"
     },
     "Artenara": {
-      "checked_on": "2026-11-07",
+      "checked_on": "2026-11-08",
       "outcome": "ok"
     },
     "Firgas": {
-      "checked_on": "2026-11-07",
+      "checked_on": "2026-11-08",
       "outcome": "ok"
     },
     "Gáldar": {
-      "checked_on": "2026-11-07",
+      "checked_on": "2026-11-08",
       "outcome": "ok"
     },
     "La Aldea de San Nicolás": {
-      "checked_on": "2026-11-07",
+      "checked_on": "2026-11-08",
       "outcome": "needs_review"
     },
     "Las Palmas de Gran Canaria": {
-      "checked_on": "2026-11-07",
+      "checked_on": "2026-11-08",
       "outcome": "needs_review"
     },
     "Mogán": {
-      "checked_on": "2026-11-07",
+      "checked_on": "2026-11-08",
       "outcome": "needs_review"
     },
     "Moya": {
-      "checked_on": "2026-11-07",
+      "checked_on": "2026-11-08",
       "outcome": "needs_review"
     },
     "San Bartolomé de Tirajana": {
@@ -116,6 +116,96 @@
   },
   "candidate_count": 49,
   "leads": [
+    {
+      "url": "https://www.galdar.es/mercado/",
+      "label": "Mercado Municipal \"La Recova\"",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-08",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/eventos/",
+      "label": "Agenda de Eventos",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-08",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/el-centro-cultural-guaires-proyectara-el-documental-no-estas-loca-la-verdad-sobre-la-violencia-vicaria/",
+      "label": "Servicios Sociales 6 de noviembre de 2026 El Centro Cultural Guaires proyectará el documental ‘No estás loca. La verdad sobre la violencia vicaria’",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-11-07",
+      "last_seen": "2026-11-08",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/el-ayuntamiento-detalla-en-sardina-los-proyectos-ejecutados-y-las-actuaciones-futuras-para-la-costa-de-galdar/",
+      "label": "Participación Ciudadana 6 de noviembre de 2026 El Ayuntamiento detalla en Sardina los proyectos ejecutados y las actuaciones futuras para la costa de Gáldar",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-11-06",
+      "last_seen": "2026-11-08",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/culturayfiestas/#ert_pane1-1",
+      "label": "Festejos",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-08",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/bandamunicipal/",
+      "label": "Banda Municipal de Música",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-08",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/firgas-celebra-el-19-de-septiembre-una-jornada-de-naturaleza-gastronomia-y-musica-con-motivo-del-dia-mundial-del-turismo/",
+      "label": "Firgas celebra el Día Mundial del Turismo con senderismo, gastronomía y música en la Plaza de San Roque",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-08",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/taller-de-teatro/",
+      "label": "TALLER DE TEATRO",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-08",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/categories/festival/",
+      "label": "Festival",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-08",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/categories/casa-cultura/",
+      "label": "Casa Cultura",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-08",
+      "publication_status": "not_an_event"
+    },
     {
       "url": "https://vegadesanmateo.es/areas/patrimonio-cultural-e-historico",
       "label": "Patrimonio Cultural e Histórico",
@@ -292,96 +382,6 @@
       "label": "Agenda / eventos",
       "kind": "unverified_official_link",
       "municipality": "Santa Lucía de Tirajana",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-07",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.galdar.es/mercado/",
-      "label": "Mercado Municipal \"La Recova\"",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-07",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.galdar.es/eventos/",
-      "label": "Agenda de Eventos",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-07",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.galdar.es/el-centro-cultural-guaires-proyectara-el-documental-no-estas-loca-la-verdad-sobre-la-violencia-vicaria/",
-      "label": "Servicios Sociales 6 de noviembre de 2026 El Centro Cultural Guaires proyectará el documental ‘No estás loca. La verdad sobre la violencia vicaria’",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-11-07",
-      "last_seen": "2026-11-07",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.galdar.es/el-ayuntamiento-detalla-en-sardina-los-proyectos-ejecutados-y-las-actuaciones-futuras-para-la-costa-de-galdar/",
-      "label": "Participación Ciudadana 6 de noviembre de 2026 El Ayuntamiento detalla en Sardina los proyectos ejecutados y las actuaciones futuras para la costa de Gáldar",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-11-06",
-      "last_seen": "2026-11-07",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.galdar.es/culturayfiestas/#ert_pane1-1",
-      "label": "Festejos",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-07",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.galdar.es/bandamunicipal/",
-      "label": "Banda Municipal de Música",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-07",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/firgas-celebra-el-19-de-septiembre-una-jornada-de-naturaleza-gastronomia-y-musica-con-motivo-del-dia-mundial-del-turismo/",
-      "label": "Firgas celebra el Día Mundial del Turismo con senderismo, gastronomía y música en la Plaza de San Roque",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-07",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/events/taller-de-teatro/",
-      "label": "TALLER DE TEATRO",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-07",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/events/categories/festival/",
-      "label": "Festival",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-07",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/events/categories/casa-cultura/",
-      "label": "Casa Cultura",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
       "first_seen": "2026-10-27",
       "last_seen": "2026-11-07",
       "publication_status": "not_an_event"

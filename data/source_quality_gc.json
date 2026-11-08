@@ -1,22 +1,22 @@
 {
-  "checked_at": "2026-11-07T17:22:47+00:00",
+  "checked_at": "2026-11-08T12:09:13+00:00",
   "quality_counts": {
-    "publicados": 503,
+    "publicados": 468,
     "recintos_sin_verificar": 47,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 359,
-    "distancia_a_centro_municipal": 343,
-    "fuentes_con_error": 1,
-    "duplicados_potenciales": 4
+    "precios_sin_confirmar": 335,
+    "distancia_a_centro_municipal": 313,
+    "fuentes_con_error": 2,
+    "duplicados_potenciales": 3
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 11,
+      "publicados": 10,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 5,
-      "distancia_al_centro_municipal": 11,
+      "precio_sin_confirmar": 4,
+      "distancia_al_centro_municipal": 10,
       "fichas_leidas_en_esta_ejecucion": 10,
       "error": ""
     },
@@ -33,21 +33,21 @@
     {
       "source": "Juventud Las Palmas de Gran Canaria",
       "estado": "operativa",
-      "publicados": 12,
+      "publicados": 11,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 12,
+      "distancia_al_centro_municipal": 11,
       "fichas_leidas_en_esta_ejecucion": 8,
       "error": ""
     },
     {
       "source": "Circuito de Artes Escénicas GC",
       "estado": "operativa",
-      "publicados": 21,
+      "publicados": 18,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 20,
-      "distancia_al_centro_municipal": 19,
-      "fichas_leidas_en_esta_ejecucion": 25,
+      "precio_sin_confirmar": 18,
+      "distancia_al_centro_municipal": 16,
+      "fichas_leidas_en_esta_ejecucion": 22,
       "error": ""
     },
     {
@@ -77,18 +77,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 26,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 27,
+      "fichas_leidas_en_esta_ejecucion": 10,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 13,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 13,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 1,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -97,7 +97,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 8,
       "distancia_al_centro_municipal": 8,
-      "fichas_leidas_en_esta_ejecucion": 16,
+      "fichas_leidas_en_esta_ejecucion": 15,
       "error": ""
     },
     {
@@ -123,11 +123,11 @@
     {
       "source": "Ayuntamiento de Agüimes · programación de teatros",
       "estado": "operativa",
-      "publicados": 6,
+      "publicados": 5,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 6,
-      "fichas_leidas_en_esta_ejecucion": 6,
+      "distancia_al_centro_municipal": 5,
+      "fichas_leidas_en_esta_ejecucion": 5,
       "error": ""
     },
     {
@@ -147,7 +147,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 6,
+      "fichas_leidas_en_esta_ejecucion": 5,
       "error": ""
     },
     {
@@ -163,11 +163,11 @@
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
-      "publicados": 2,
+      "publicados": 1,
       "recinto_sin_verificar": 6,
-      "precio_sin_confirmar": 2,
-      "distancia_al_centro_municipal": 2,
-      "fichas_leidas_en_esta_ejecucion": 10,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 9,
       "error": ""
     },
     {
@@ -177,7 +177,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 2,
+      "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
     {
@@ -193,11 +193,11 @@
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
       "estado": "operativa",
-      "publicados": 2,
+      "publicados": 1,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 2,
-      "distancia_al_centro_municipal": 2,
-      "fichas_leidas_en_esta_ejecucion": 2,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
     {
@@ -253,21 +253,21 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 24,
+      "publicados": 22,
       "recinto_sin_verificar": 5,
-      "precio_sin_confirmar": 24,
-      "distancia_al_centro_municipal": 24,
-      "fichas_leidas_en_esta_ejecucion": 30,
+      "precio_sin_confirmar": 22,
+      "distancia_al_centro_municipal": 22,
+      "fichas_leidas_en_esta_ejecucion": 28,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Teror · programación del Auditorio",
       "estado": "operativa",
-      "publicados": 12,
+      "publicados": 11,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 3,
-      "distancia_al_centro_municipal": 12,
-      "fichas_leidas_en_esta_ejecucion": 12,
+      "distancia_al_centro_municipal": 11,
+      "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
     {
@@ -293,11 +293,11 @@
     {
       "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
       "estado": "operativa",
-      "publicados": 48,
+      "publicados": 44,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 48,
-      "distancia_al_centro_municipal": 48,
-      "fichas_leidas_en_esta_ejecucion": 48,
+      "precio_sin_confirmar": 44,
+      "distancia_al_centro_municipal": 44,
+      "fichas_leidas_en_esta_ejecucion": 44,
       "error": ""
     },
     {
@@ -382,22 +382,22 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 195,
+      "estado": "operativa",
+      "publicados": 179,
       "recinto_sin_verificar": 35,
-      "precio_sin_confirmar": 165,
-      "distancia_al_centro_municipal": 105,
-      "fichas_leidas_en_esta_ejecucion": 0,
+      "precio_sin_confirmar": 152,
+      "distancia_al_centro_municipal": 94,
+      "fichas_leidas_en_esta_ejecucion": 33,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 70,
+      "publicados": 66,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 69,
-      "fichas_leidas_en_esta_ejecucion": 118,
+      "distancia_al_centro_municipal": 65,
+      "fichas_leidas_en_esta_ejecucion": 110,
       "error": ""
     },
     {
@@ -462,6 +462,10 @@
     }
   ],
   "reported_errors": [
+    {
+      "source": "Auditorio Alfredo Kraus · programación oficial",
+      "error": "RuntimeError"
+    },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"

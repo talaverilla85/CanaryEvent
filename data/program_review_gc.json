@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-07T17:22:47+00:00",
+  "updated_at": "2026-11-08T12:09:13+00:00",
   "note": "Fichas pendientes de desglose o sin un evento identificable; no publicarlas como planes.",
   "pending_programs": [
     {
@@ -84,14 +84,6 @@
     }
   ],
   "source_venue_conflicts": [
-    {
-      "id": 165,
-      "title": "JAZZ OTOÑO 2026- JUDITH HILL QUARTET",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261107-0003/jazz-otono-2026-judith-hill-quartet",
-      "claimed_venue": "Sala Insular de Teatro",
-      "verified_venue": "Teatro Cuyás",
-      "reason": "conflicting_sister_theatre"
-    },
     {
       "id": 282,
       "title": "ESCAPE ROOM de Joel Joan y Hèctor Claramunt",

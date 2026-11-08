@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-11-07",
+  "updated_on": "2026-11-08",
   "scope": "21 municipios de Gran Canaria",
   "municipalities_total": 21,
   "municipalities_with_any_catalog_cards": 18,
@@ -34,8 +34,8 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 16,
-      "municipal_cards_total": 9,
+      "catalog_cards_total": 15,
+      "municipal_cards_total": 8,
       "other_sources_cards_total": 7,
       "source_health": [
         {
@@ -45,7 +45,7 @@
         },
         {
           "source": "Ayuntamiento de Agüimes · programación de teatros",
-          "found": 6,
+          "found": 5,
           "error": ""
         },
         {
@@ -82,13 +82,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 11,
-      "municipal_cards_total": 2,
-      "other_sources_cards_total": 9,
+      "catalog_cards_total": 9,
+      "municipal_cards_total": 1,
+      "other_sources_cards_total": 8,
       "source_health": [
         {
           "source": "Ayuntamiento de Arucas · agenda municipal",
-          "found": 10,
+          "found": 9,
           "error": ""
         }
       ],
@@ -125,18 +125,18 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 20,
+      "catalog_cards_total": 19,
       "municipal_cards_total": 1,
-      "other_sources_cards_total": 19,
+      "other_sources_cards_total": 18,
       "source_health": [
         {
           "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-          "found": 6,
+          "found": 5,
           "error": ""
         },
         {
           "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-          "found": 2,
+          "found": 1,
           "error": ""
         }
       ],
@@ -149,9 +149,9 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 26,
-      "municipal_cards_total": 11,
-      "other_sources_cards_total": 15,
+      "catalog_cards_total": 24,
+      "municipal_cards_total": 10,
+      "other_sources_cards_total": 14,
       "source_health": [
         {
           "source": "Ayuntamiento de Ingenio",
@@ -186,9 +186,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 237,
-      "municipal_cards_total": 12,
-      "other_sources_cards_total": 225,
+      "catalog_cards_total": 223,
+      "municipal_cards_total": 11,
+      "other_sources_cards_total": 212,
       "source_health": [
         {
           "source": "Juventud Las Palmas de Gran Canaria",
@@ -224,9 +224,9 @@
       "original_connector_state": "conector_parcial_folleto_2026_revisado",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial_folleto_2026_revisado",
-      "catalog_cards_total": 9,
+      "catalog_cards_total": 6,
       "municipal_cards_total": 5,
-      "other_sources_cards_total": 4,
+      "other_sources_cards_total": 1,
       "source_health": [
         {
           "source": "Ayuntamiento de Moya · Otoño es Cultura 2026",
@@ -256,13 +256,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 26,
-      "municipal_cards_total": 24,
+      "catalog_cards_total": 24,
+      "municipal_cards_total": 22,
       "other_sources_cards_total": 2,
       "source_health": [
         {
           "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-          "found": 30,
+          "found": 28,
           "error": ""
         }
       ],
@@ -288,13 +288,13 @@
       "original_connector_state": "conector_parcial_articulos_verificados",
       "coverage_level": "sin_extraccion_municipal_automatizada",
       "data_status": "fuente_oficial_contrastada_sin_actos_futuros",
-      "catalog_cards_total": 6,
+      "catalog_cards_total": 5,
       "municipal_cards_total": 0,
-      "other_sources_cards_total": 6,
+      "other_sources_cards_total": 5,
       "source_health": [
         {
           "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-          "found": 2,
+          "found": 1,
           "error": ""
         }
       ],
@@ -326,8 +326,8 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 74,
-      "municipal_cards_total": 51,
+      "catalog_cards_total": 70,
+      "municipal_cards_total": 47,
       "other_sources_cards_total": 23,
       "source_health": [
         {
@@ -342,7 +342,7 @@
         },
         {
           "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
-          "found": 48,
+          "found": 44,
           "error": ""
         },
         {
@@ -360,13 +360,13 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 21,
-      "municipal_cards_total": 12,
-      "other_sources_cards_total": 9,
+      "catalog_cards_total": 18,
+      "municipal_cards_total": 11,
+      "other_sources_cards_total": 7,
       "source_health": [
         {
           "source": "Ayuntamiento de Teror · programación del Auditorio",
-          "found": 12,
+          "found": 11,
           "error": ""
         }
       ],
@@ -403,9 +403,9 @@
       "original_connector_state": "agenda_localizada_por_validar_datos",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "agenda_localizada_por_validar_datos",
-      "catalog_cards_total": 7,
+      "catalog_cards_total": 5,
       "municipal_cards_total": 0,
-      "other_sources_cards_total": 7,
+      "other_sources_cards_total": 5,
       "source_health": [],
       "full_coverage_claim": false
     },
