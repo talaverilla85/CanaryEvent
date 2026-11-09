@@ -5,11 +5,20 @@ export default async function handler(req,res) {
   const sql=db();
   if(!sql){res.status(503).json({error:'Base de datos no configurada'});return;}
   try {
-    const rows=await sql`SELECT p.payload,o.hidden,o.title_override,o.details_override,
+    // Independent public queries run concurrently to reduce cold-start latency.
+    const [rows,sponsored]=await Promise.all([
+      sql`SELECT p.payload,o.hidden,o.title_override,o.details_override,
       o.venue_override,o.price_override,o.free_override,o.category_override,o.canonical_event_id
       FROM published_events p LEFT JOIN event_overrides o ON o.event_id=p.id
       WHERE p.active AND COALESCE(o.hidden,FALSE)=FALSE AND o.canonical_event_id IS NULL
-      ORDER BY p.payload->>'start',p.id LIMIT 3500`;
+      ORDER BY p.payload->>'start',p.id LIMIT 3500`;,
+      sql`SELECT id,title,start,"end",municipality,venue,category,details,price,free,
+      source_url,image_url,image_alt,enquiry_id,advertiser
+      FROM sponsored_events WHERE enabled=TRUE AND review_status='approved'
+        AND (campaign_starts_at IS NULL OR campaign_starts_at<=((now() AT TIME ZONE 'Atlantic/Canary')::date))
+        AND (campaign_ends_at IS NULL OR campaign_ends_at>=((now() AT TIME ZONE 'Atlantic/Canary')::date))
+      ORDER BY start,id LIMIT 250`;
+    ]);
     const events=rows.map(({payload,...o})=>{
       const e={...payload};
       for(const [source,dest] of [['title_override','title'],['details_override','details'],
@@ -18,12 +27,6 @@ export default async function handler(req,res) {
       if(o.free_override!==null&&o.free_override!==undefined)e.free=Number(o.free_override);
       return e;
     });
-    const sponsored=await sql`SELECT id,title,start,"end",municipality,venue,category,details,price,free,
-      source_url,image_url,image_alt,enquiry_id,advertiser
-      FROM sponsored_events WHERE enabled=TRUE AND review_status='approved'
-        AND (campaign_starts_at IS NULL OR campaign_starts_at<=((now() AT TIME ZONE 'Atlantic/Canary')::date))
-        AND (campaign_ends_at IS NULL OR campaign_ends_at>=((now() AT TIME ZONE 'Atlantic/Canary')::date))
-      ORDER BY start,id LIMIT 250`;
     for(const item of sponsored){
       events.push({
         id:-9000000000-Number(item.id),title:item.title,start:item.start,end:item.end,
