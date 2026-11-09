@@ -224,15 +224,15 @@ function renderLeads(){
   '<details class="lead-detail"><summary>'+(interest?'Ver contacto y tarifa elegida':'Ver propuesta, imagen y datos fiscales')+'</summary>'+
   '<p><strong>Contacto:</strong> '+escape(l.contact_name)+' · '+escape(l.email)+' · '+escape(l.telephone)+'</p>'+
   (interest?'':'<p><strong>Facturar a:</strong> '+escape(l.legal_name)+' · '+escape(l.tax_id)+'</p>')+
-  '<p>'+escape(l.billing_address)+' · '+escape(l.billing_postal)+' '+escape(l.billing_city)+' · '+escape(l.billing_region)+' · '+escape(l.billing_country)+'</p>'+
+  (interest?'':'<p>'+escape(l.billing_address)+' · '+escape(l.billing_postal)+' '+escape(l.billing_city)+' · '+escape(l.billing_region)+' · '+escape(l.billing_country)+'</p>')+
   (interest?'':'<p><strong>Email de facturas:</strong> '+escape(l.billing_email)+'</p>')+
   '<p><strong>Evento:</strong> '+escape(l.event_title||'No aplica')+' · '+escape(l.event_start||'')+' · '+escape(l.event_municipality||'')+' · '+escape(l.event_venue||'')+'</p>'+
   '<p><strong>Descripción:</strong> '+escape(l.message)+'</p>'+
   '<p><a href="'+escape(l.action_url||'#')+'" target="_blank" rel="noopener noreferrer">Web o entradas ↗</a></p>'+
-  '<img class="lead-image" loading="lazy" src="/api/admin?op=leadimage&id='+id+'" alt="'+escape(l.creative_alt||'Imagen de propuesta')+'">'+
+  (interest?'':'<img class="lead-image" loading="lazy" src="/api/admin?op=leadimage&id='+id+'" alt="'+escape(l.creative_alt||'Imagen de propuesta')+'">')+
   '</details></div><div class="actions lead-actions">'+
   (eligible?'<button type="button" class="ghost mini" data-lead="'+id+'" data-mode="event">Crear evento</button>':'')+
-  '<button type="button" class="ghost mini" data-lead="'+id+'" data-mode="banner">Crear banner</button>'+
+  (interest?'':'<button type="button" class="ghost mini" data-lead="'+id+'" data-mode="banner">Crear banner</button>')+
   (l.status==='new'?'<button type="button" class="ghost mini" data-lead="'+id+'" data-mode="contact">Marcar contactado</button>':'')+
   '</div></article>';
  }).join('');
