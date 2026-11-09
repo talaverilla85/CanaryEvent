@@ -873,3 +873,18 @@ body::before{height:5px;position:fixed;z-index:40}
 .dp-top-nav #dpTopExplore{background:transparent;color:#365B60}
 .dp-top-nav button.is-active{background:#153E50!important;color:#fff!important}
 .dp-filter-entry .filter-entry-copy strong{letter-spacing:-.15px}
+
+
+/* PageSpeed accessibility: strong ink on paper without changing brand palette. */
+.dp-brand-date{color:#365A58}
+.dp-pulse-label{color:#075A64}
+.dp-shelf-town{color:#36585F}
+.dp-shelf-day{color:#075D65}
+.dp-filter-entry .filter-entry-copy small{color:#385B64}
+.event-card .event-place .place-municipality{color:#365864}
+.event-card .event-bottom .distance{color:#365C55}
+.source-status{color:#36595E!important}
+.result-titles .eyebrow{color:#075B69}
+.result-titles .count{color:#37585F}
+.dp-feature-kicker{color:#D1F1F0}
+.footer,.footer p{color:#3B5B61}
