@@ -608,7 +608,7 @@ function posterVariants(e){
   const entry=window.DParrandaPosterThumbs?.[url.href];
   if(!entry||typeof entry!=='object'||Array.isArray(entry))return null;
   const id='[a-f0-9]{24}';
-  const pattern=(suffix)=>new RegExp('^/posters/'+id+suffix+'\\.webp$');
+  const pattern=suffix=>new RegExp('^/posters/'+id+suffix+'\\.webp$');
   if(pattern('-320').test(entry.thumb)&&pattern('-480').test(entry.retina)&&pattern('').test(entry.detail)&&
      entry.thumb.slice(9,33)===entry.retina.slice(9,33)&&entry.thumb.slice(9,33)===entry.detail.slice(9,33)){
    return entry;
@@ -617,8 +617,8 @@ function posterVariants(e){
  return null;
 }
 function verifiedImage(e,large=false){
- if(e.paid_promotion===true&&typeof e.image_url==='string'&&/^\\/api\\/media\\?id=[0-9]+$/.test(e.image_url))return e.image_url;
- if(e.paid_promotion===true&&typeof e.image_url==='string'&&/^\\/sponsors\\/[a-z0-9._/-]+\\.(webp|png|jpg|jpeg)$/i.test(e.image_url))return e.image_url;
+ if(e.paid_promotion===true&&typeof e.image_url==='string'&&/^\/api\/media\?id=[0-9]+$/.test(e.image_url))return e.image_url;
+ if(e.paid_promotion===true&&typeof e.image_url==='string'&&/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpg|jpeg)$/i.test(e.image_url))return e.image_url;
  if(e.paid_promotion===true)return '';
  if(e.image_status!=='official_remote'||!e.image_url)return '';
  try{
@@ -626,9 +626,8 @@ function verifiedImage(e,large=false){
   if(url.protocol!=='https:'||!IMAGE_HOSTS.has(url.hostname))return '';
   const variants=posterVariants(e);
   if(variants)return large?variants.detail:variants.thumb;
-  // Old manifest format remains usable until the workflow regenerates the files.
   const existing=window.DParrandaPosterThumbs?.[url.href];
-  if(typeof existing==='string'&&/^\\/posters\\/[a-f0-9]{24}\\.webp$/.test(existing))return existing;
+  if(typeof existing==='string'&&/^\/posters\/[a-f0-9]{24}\.webp$/.test(existing))return existing;
   return url.href;
  }catch{return ''}
 }
@@ -636,7 +635,7 @@ function coverHtml(e,large=false){
  const src=verifiedImage(e,large);
  const variants=posterVariants(e);
  const srcset=variants&&!large?' srcset="'+escapeHTML(variants.thumb)+' 320w, '+escapeHTML(variants.retina)+' 480w" sizes="(max-width: 600px) 45vw, 220px"':'';
- const poster=src&&(/\\/plot\\/event_/.test(src)||/https:\\/\\/(?:eventos\\.santabrigida\\.es|lpacultura\\.com|teror\\.es|tejeda\\.eu|www\\.galdar\\.es|www\\.arucas\\.org|santamariadeguia\\.es)\\//.test(src));
+ const poster=src&&(/\/plot\/event_/.test(src)||/https:\/\/(?:eventos\.santabrigida\.es|lpacultura\.com|teror\.es|tejeda\.eu|www\.galdar\.es|www\.arucas\.org|santamariadeguia\.es)\//.test(src));
  const fallback='<div class="cover-fallback" aria-hidden="true">'+
    '<div class="fallback-top"><span>D’PARRANDA</span><span>'+escapeHTML(textForCat(e.category))+' · '+(COVER_SYMBOLS[e.category]||'✳')+'</span></div>'+
    '<div class="fallback-main"><span class="fallback-symbol">'+(COVER_SYMBOLS[e.category]||'✳')+'</span>'+
