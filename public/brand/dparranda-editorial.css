@@ -897,3 +897,13 @@ body::before{height:5px;position:fixed;z-index:40}
  border:0;padding:0;margin:0;background:transparent;cursor:pointer}
 .event-card-open:focus-visible{outline:3px solid #067B91;outline-offset:-3px;border-radius:12px}
 .event-card .card-share-btn,.event-card .fav-btn{z-index:5}
+
+/* Accessibility audit, mobile 2026-11-09: match the actual computed selectors.
+   These overrides supersede earlier pale editorial rules, while preserving
+   DParranda's navy and turquoise branding. Small type requires >= 4.5:1. */
+.result-titles h2 .count{color:#36545E!important}
+.footer #sourcesBtn.text-button{color:#07536C!important;text-decoration:underline;text-underline-offset:2px}
+.bottom-nav .navtab:not(.selected),.bottom-nav .navtab:not(.selected) small{color:#334F5F}
+.bottom-nav .navtab.selected,.bottom-nav .navtab.selected small{color:#075D74!important}
+#openFiltersBtn.dp-filter-entry{color:#173E4E}
+#openFiltersBtn.dp-filter-entry .filter-entry-copy small{color:#334F59}
