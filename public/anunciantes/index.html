@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#10364d">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'">
+<title>Mi publicidad · DParranda</title>
+<link rel="icon" href="/favicon.svg">
+<style>
+:root{font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;color:#16384b;background:#f5f9fa;--navy:#10364d;--teal:#087f8c;--line:#d7e7ea;--muted:#607986}
+*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}[hidden]{display:none!important}
+a{color:#067d8b}.wrap{width:min(1060px,calc(100% - 32px));margin:auto}
+header{background:var(--navy);color:white;padding:13px 0}.top{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none;font-weight:850;font-size:21px;letter-spacing:-.6px}
+.brand-mark{padding:4px 13px;background:#078d9a;border-radius:12px;font-size:22px}
+.top aside{display:flex;align-items:center;gap:15px;font-size:12px}header a{color:#d9f3f2}
+main{padding:35px 0 80px}.eyebrow{font-size:11px;font-weight:850;letter-spacing:1.6px;color:#087f8c;text-transform:uppercase}
+h1{font-size:clamp(30px,5vw,43px);letter-spacing:-1.5px;line-height:1.1;margin:10px 0 8px}
+h2{font-size:24px;letter-spacing:-.5px;margin:0 0 10px}h3{margin:0;font-size:18px}
+.muted{color:var(--muted)}.small{font-size:12px}.intro{margin-bottom:28px;max-width:750px}
+.card{background:#fff;border:1px solid var(--line);padding:clamp(17px,3vw,27px);border-radius:19px;box-shadow:0 7px 22px #12475909;margin-bottom:19px}
+.status{font-size:13px;padding:12px 14px;border:1px solid #d9e8e5;background:#eff8f6;border-radius:11px;color:#325a60}
+.strong-status{color:#9c5412;background:#fff6e7;border-color:#f3dfb7}
+.primary,.secondary{border-radius:11px;border:0;padding:11px 17px;min-height:43px;cursor:pointer;font-weight:800}
+.primary{background:var(--navy);color:white}.secondary{background:#f3f9fa;border:1px solid #bddee2;color:var(--navy)}
+.primary:disabled,.secondary:disabled{opacity:.55;cursor:not-allowed}.actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:15px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.field{display:grid;gap:6px;min-width:0}.field label{font-size:12px;font-weight:800;color:#365966}
+input,select,textarea{border:1px solid #c1d7dd;border-radius:10px;background:white;padding:10px 12px;min-height:43px;width:100%;color:#173e4e}
+textarea{resize:vertical;min-height:88px}.wide{grid-column:1/-1}
+.plan{border:1.5px solid #c8dfe3;border-radius:13px;text-align:left;padding:14px;background:white;cursor:pointer}
+.plan.active{border-color:#078d9a;background:#edf9f7;box-shadow:0 0 0 2px #078d9a13}.plan strong{display:block;font-size:15px}.plan small{color:var(--muted);font-size:11px}.plan .price{font-size:25px;display:block;letter-spacing:-.6px;font-weight:900}
+.towns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-height:205px;overflow:auto;padding:10px;background:#f5faf9;border:1px solid var(--line);border-radius:11px}
+.towns label{display:flex;align-items:center;gap:7px;font-size:12px;cursor:pointer}.towns input{min-height:0;width:auto;flex:none}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.campaign-list{display:grid;gap:13px}.campaign{border:1px solid #d4e6e8;border-radius:14px;padding:16px;background:#fff}
+.campaign-row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.tag{background:#eaf3f5;color:#225d65;border-radius:40px;padding:5px 10px;font-size:11px;font-weight:850;display:inline-block}
+.tag.active{background:#e4f7eb;color:#1e7849}.tag.pending{background:#fff2dc;color:#885012}
+.progress{height:8px;background:#d9e7ea;border-radius:50px;overflow:hidden;margin:12px 0}.progress>span{height:100%;background:#0b8b98;display:block}
+.campaign-meta{color:#647d88;font-size:12px;margin-top:7px}
+.summary{background:#eff9f7;border:1px solid #bee1dc;padding:15px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.summary strong{font-size:24px}
+.preview{width:min(410px,100%);border-radius:11px;overflow:hidden;border:1px solid #d4e6e8;margin-top:10px}.preview img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.note{font-size:12px;color:#5e7780}.links{display:flex;gap:11px;flex-wrap:wrap;margin-top:10px;font-size:12px}
+footer{text-align:center;border-top:1px solid var(--line);padding:25px 15px;color:#77909a;font-size:12px}
+@media(max-width:650px){.grid,.grid3{grid-template-columns:1fr}.towns{grid-template-columns:repeat(2,minmax(0,1fr))}main{padding-top:25px}.card{padding:17px}}
+</style>
+</head>
+<body>
+<header><div class="wrap top"><a href="/" class="brand"><span class="brand-mark">D</span>DParranda</a><aside><span>Portal privado de anunciantes</span><button id="logout" class="secondary" type="button" hidden>Salir</button></aside></div></header>
+<main class="wrap">
+<div id="loading" class="card" role="status">Comprobando tu acceso privado…</div>
+<section id="noAccess" class="card" hidden>
+ <span class="eyebrow">Acceso por invitación</span>
+ <h1>Área de anunciantes</h1>
+ <p id="loginMessage" class="muted">Para acceder necesitas el enlace privado que te ha facilitado DParranda.</p>
+ <p class="note">Si has perdido el acceso, contacta con DParranda para solicitar un enlace nuevo.</p>
+</section>
+<div id="dashboard" hidden>
+ <div class="intro"><span class="eyebrow">TU ESPACIO PRIVADO</span><h1 id="greeting">Mi publicidad</h1><p class="muted">Gestiona tus anuncios y consulta el estado de las campañas desde un único lugar.</p></div>
+ <section class="card">
+  <div class="heading-row"><h2>Mis campañas</h2><button class="primary" id="newDraft" type="button">+ Crear anuncio</button></div>
+  <p id="campaignLoading" class="muted small" role="status">Cargando campañas…</p>
+  <div id="campaigns" class="campaign-list"></div>
+ </section>
+ <section id="editor" class="card" hidden aria-labelledby="editorTitle">
+  <div class="heading-row"><h2 id="editorTitle">Preparar nuevo anuncio</h2><button id="cancelEditor" class="secondary" type="button">Cerrar</button></div>
+  <p class="note">Tu campaña se guardará como borrador privado. El pago y el envío definitivo a revisión no están habilitados todavía.</p>
+  <form id="draftForm">
+   <div class="field"><label>1. Cobertura y tarifa</label>
+    <div class="grid3" id="plans">
+     <button type="button" class="plan active" data-plan="local"><strong>Local</strong><small>1 municipio</small><span class="price">19 €</span><small>30 días</small></button>
+     <button type="button" class="plan" data-plan="zona"><strong>Zona</strong><small>Hasta 4 municipios</small><span class="price">49 €</span><small>30 días</small></button>
+     <button type="button" class="plan" data-plan="insular"><strong>Insular</strong><small>Gran Canaria</small><span class="price">99 €</span><small>30 días</small></button>
+    </div>
+   </div>
+   <div class="field" id="regionRow" style="margin:14px 0"><label>Municipios de la campaña</label><div id="towns" class="towns"></div><small id="townHint" class="note"></small></div>
+   <div class="grid">
+    <div class="field"><label for="duration">Duración</label><select id="duration" name="duration"><option value="30">30 días</option><option value="60">60 días</option></select></div>
+    <div class="field"><label for="campaignStart">Fecha de inicio solicitada</label><input id="campaignStart" type="date"></div>
+    <div class="field wide"><label for="placement">2. ¿Qué vas a promocionar?</label><select id="placement"><option value="banner">Un negocio o marca (banner)</option><option value="evento">Un evento patrocinado</option></select></div>
+    <div class="field wide"><label for="advertiser">Nombre del negocio o anunciante</label><input id="advertiser" maxlength="120" required></div>
+    <div class="field wide"><label for="title">Título del anuncio</label><input id="title" maxlength="160" required></div>
+    <div class="field wide"><label for="description">Descripción</label><textarea id="description" maxlength="350" minlength="12" required></textarea></div>
+    <div class="field wide"><label for="destination">Enlace de destino (HTTPS)</label><input id="destination" type="url" required placeholder="https://ejemplo.com"></div>
+    <div id="eventFields" class="grid wide" hidden>
+     <div class="field"><label for="eventStart">Fecha y hora del evento</label><input id="eventStart" type="datetime-local"></div>
+     <div class="field"><label for="eventTown">Municipio del evento</label><select id="eventTown"></select></div>
+     <div class="field wide"><label for="eventVenue">Lugar del evento</label><input id="eventVenue" maxlength="200"></div>
+    </div>
+    <div class="field wide"><label for="artwork">Imagen o cartel horizontal (opcional mientras preparas el borrador)</label>
+     <input id="artwork" type="file" accept="image/webp,image/png,image/jpeg">
+     <small class="note">JPG, PNG o WebP. Se optimizará a 1200 × 675 píxeles.</small>
+     <div class="preview" id="imagePreview" hidden><img id="imagePreviewImg" alt="Vista previa de tu creatividad"></div>
+    </div>
+    <div class="field wide"><label for="imageAlt">Descripción accesible de la imagen</label><input id="imageAlt" maxlength="160"></div>
+   </div>
+   <div class="summary" style="margin-top:17px"><div><strong id="summaryPlan">Local · 30 días</strong><div class="note">Precio orientativo. Sin compra ni reserva.</div></div><strong id="summaryTotal">19 €</strong></div>
+   <div class="actions"><button id="saveDraft" type="submit" class="primary">Guardar borrador</button><button type="button" class="secondary" disabled title="Pendiente de habilitar el pago">Pagar y enviar a revisión · próximamente</button></div>
+   <p id="editorFeedback" class="status" role="status" aria-live="polite" hidden></p>
+  </form>
+ </section>
+ <section class="card">
+  <h3>Seguimiento y estadísticas</h3>
+  <p class="muted">Aquí aparecerán las campañas aprobadas, su duración restante y las estadísticas verificadas cuando activemos el servicio. No mostramos impresiones ni clics ficticios.</p>
+ </section>
+</div>
+</main>
+<footer>DParranda · Disfruta de tus islas · Acceso privado</footer>
+<script src="/anunciantes/portal.js?v=1" defer></script>
+</body></html>
