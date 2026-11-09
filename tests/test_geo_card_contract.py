@@ -28,7 +28,7 @@ class GeoCardContract(unittest.TestCase):
         self.assertIn("if(document.hidden||state.geoManualOverride",self.js)
     def test_card_date_and_distance_in_content(self):
         self.assertIn('event-date-chip',self.html)
-        self.assertIn("function cardDateLabel(e){",self.js)
+        self.assertIn("function cardDateLabel(e,now=localTimeKey()){",self.js)
         self.assertIn("'En curso · hasta '",self.js)
         self.assertIn("line-clamp:3",self.html)
         self.assertIn("≈ '+approx+' km",self.js)
