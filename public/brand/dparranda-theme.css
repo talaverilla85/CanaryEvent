@@ -105,7 +105,7 @@ body::before{content:"";height:4px;position:absolute;inset:0 0 auto;background:l
 .dp-loading{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding:12px 0}
 .dp-loading .dp-loading-card{height:290px;background:linear-gradient(110deg,#E7F1F2 8%,#F5F9F9 18%,#E7F1F2 33%);background-size:220% 100%;border-radius:18px;animation:dp-shimmer 1.4s linear infinite}
 .dp-loading .dp-loading-card:first-child{grid-column:span 2}
-@keyframes dp-shimmer{to{background-position-x:-200%}}
+@keyframes dp-shimmer{0%,100%{opacity:1}50%{opacity:.66}}
 @media(min-width:800px) and (max-width:1100px){
  .events-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
  .event-card:first-child{grid-column:span 2}
