@@ -21,6 +21,11 @@ function privacyUrl(){
 }
 function enabled(){return process.env.DPARRANDA_LEADS_ENABLED==='true'&&
  !!process.env.DATABASE_URL&&!!privacyUrl();}
+function todayCanary(){
+ const pieces=new Intl.DateTimeFormat('en-GB',{timeZone:'Atlantic/Canary',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+ const parts=Object.fromEntries(pieces.filter(p=>p.type!=='literal').map(p=>[p.type,p.value]));
+ return parts.year+'-'+parts.month+'-'+parts.day;
+}
 const asUrl=v=>{
  try{const url=new URL(safeText(v,850));return url.protocol==='https:'&&!url.username&&!url.password?url.href:''}
  catch{return ''}
@@ -55,9 +60,7 @@ export default async function handler(req,res){
      (plan==='local'&&area.length!==1)||
      (plan==='zona'&&(area.length<1||area.length>4))||
      (plan==='insular'&&area.length!==0)||
-     (start!==''&&(!validLocalDate(start)||start<new Intl.DateTimeFormat('en-CA',{
-       timeZone:'Atlantic/Canary',year:'numeric',month:'2-digit',day:'2-digit'
-     }).format(new Date()))))
+     (start!==''&&(!validLocalDate(start)||start<todayCanary())))
     return json(res,400,{error:'Revisa el contacto y la campaña seleccionada'});
   const sql=db();
   if(!sql)return json(res,503,{error:'El registro de interesados no está disponible'});
