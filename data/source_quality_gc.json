@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-09T20:02:37+00:00",
+  "checked_at": "2026-11-09T20:17:29+00:00",
   "quality_counts": {
     "publicados": 455,
     "recintos_sin_verificar": 46,
     "programas_y_fichas_por_revisar": 9,
     "precios_sin_confirmar": 322,
     "distancia_a_centro_municipal": 302,
-    "fuentes_con_error": 3,
+    "fuentes_con_error": 2,
     "duplicados_potenciales": 3
   },
   "sources": [
@@ -77,18 +77,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 26,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 17,
+      "fichas_leidas_en_esta_ejecucion": 27,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 14,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "fichas_leidas_en_esta_ejecucion": 15,
+      "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -382,12 +382,12 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "operativa",
+      "estado": "al_dia_sin_fichas_pendientes",
       "publicados": 174,
       "recinto_sin_verificar": 33,
       "precio_sin_confirmar": 147,
       "distancia_al_centro_municipal": 92,
-      "fichas_leidas_en_esta_ejecucion": 36,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -462,10 +462,6 @@
     }
   ],
   "reported_errors": [
-    {
-      "source": "Auditorio Alfredo Kraus · programación oficial",
-      "error": "RuntimeError"
-    },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
       "error": "HTTPSConnectionPool(host='santamariadeguia.es', port=443): Read timed out. (read timeout=12)"
