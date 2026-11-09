@@ -39,6 +39,36 @@ class FrontendPerformanceContract(unittest.TestCase):
         self.assertIn("function chooseCategory(k)",HTML)
         self.assertIn("state.newOnly=false;render();",HTML)
 
+    def test_catalog_filters_and_sort_are_bounded(self):
+        self.assertIn("function inFilter(e,today=todayKey(),now=localTimeKey())",HTML)
+        self.assertIn("function eventScore(e,now=localTimeKey())",HTML)
+        self.assertIn("const now=localTimeKey(),today=now.slice(0,10)",HTML)
+        self.assertIn("inFilter(e,today,now)",HTML)
+        self.assertIn("unknownCache=new Map(),nearCache=new Map(),scoreCache=new Map()",HTML)
+        self.assertIn("return score(a)-score(b)",HTML)
+
+    def test_cards_survive_unrelated_render_without_reloading_posters(self):
+        self.assertIn("let lastGridMarkup=null",HTML)
+        self.assertIn("const nextGridMarkup=shown.map((e,i)=>",HTML)
+        self.assertIn("if(nextGridMarkup!==lastGridMarkup)",HTML)
+        self.assertIn("lastGridMarkup=nextGridMarkup",HTML)
+        self.assertIn("loading=\"'+(large?'eager':'lazy')",HTML)
+        self.assertIn("img.fetchPriority='high'",HTML)
+        self.assertIn('fetchpriority="high"',HTML)
+        self.assertIn("verifiedImage(e)",HTML)
+
+    def test_catalog_cache_warms_page_safely_without_persisting_campaigns(self):
+        self.assertIn("function showCachedCatalog()",HTML)
+        self.assertIn("showCachedCatalog();\n loadEvents();",HTML)
+        self.assertIn("function readCachedCatalog(maxAgeMs)",HTML)
+        self.assertIn("EVENT_CACHE_WARM_MAX_AGE=24*60*60*1000",HTML)
+        self.assertIn("EVENT_CACHE_OFFLINE_MAX_AGE=7*24*60*60*1000",HTML)
+        self.assertIn("e.paid_promotion!==true",HTML)
+        self.assertIn("requestIdleCallback(write,{timeout:1800})",HTML)
+        self.assertIn("scheduleCatalogCache(state.events)",HTML)
+        self.assertIn("path==='/api/events'?'default':'no-store'",HTML)
+        self.assertIn("cache:'no-cache'",HTML)
+
     def test_no_features_or_prelaunch_controls_were_removed(self):
         self.assertIn('name="robots" content="noindex,nofollow"',HTML)
         for marker in ("<div id=\"app\"", "function openMap()", "function closeMap()",
