@@ -131,8 +131,8 @@
       "source_health": [
         {
           "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-          "found": 0,
-          "error": "ReadTimeout"
+          "found": 5,
+          "error": ""
         },
         {
           "source": "Ayuntamiento de Gáldar · agenda de Cultura",
