@@ -25,7 +25,7 @@ function selectCustomDate(range,label){
  state.when='custom';
  state.tab='explore';
  state.newOnly=false;
- state.visibleLimit=48;
+ state.visibleLimit=24;
  closeCustomDatePanel();
  render();
 }
