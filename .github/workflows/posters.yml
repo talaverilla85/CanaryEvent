@@ -40,7 +40,7 @@ jobs:
       - name: Generar miniaturas WebP con fuentes oficiales permitidas
         run: python scripts/build_poster_thumbnails.py --max-new 80
       - name: Optimizar otros carteles oficiales permitidos como WebP
-        run: python scripts/build_remote_poster_thumbnails.py --max-new 12
+        run: python scripts/build_remote_poster_thumbnails.py --max-new 24
       - name: Optimizar imagen publicitaria de ejemplo sin servicios externos
         run: python scripts/optimize_static_sponsors.py
       - name: Guardar imágenes estáticas y mapa de URLs
