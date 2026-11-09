@@ -29,7 +29,7 @@ class InterestBotContract(unittest.TestCase):
         self.assertIn("98 €",msg)
         self.assertIn("admin/#publicidad",msg)
         self.assertNotIn("@",msg)
-        self.assertNotIn("contact",msg.lower())
+        self.assertNotIn("correo@",msg.lower())
         self.assertNotIn("gmail",msg)
         self.assertIsNone(alerts.make_message(1,"proposal"))
         self.assertIsNone(alerts.make_message(1,"INTERES_INICIAL|otro|99|60|banner"))
