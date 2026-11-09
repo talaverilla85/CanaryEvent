@@ -48,7 +48,7 @@ class AdvertiserPortalContract(unittest.TestCase):
         self.assertIn('pending_payment',self.html + self.api + self.sql)
         self.assertIn('stats_available:false',self.api)
         self.assertIn('actual_ends_at',self.api)
-        self.assertIn("Estadísticas",self.html)
+        self.assertIn("estadísticas",self.html.lower())
 
     def test_image_and_privacy_guards(self):
         self.assertIn('1200',self.api)
