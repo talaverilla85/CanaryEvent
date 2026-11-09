@@ -73,3 +73,64 @@ ALTER TABLE ad_campaigns ADD COLUMN IF NOT EXISTS enquiry_id BIGINT REFERENCES a
 CREATE INDEX IF NOT EXISTS idx_dp_ads_enquiry ON ad_campaigns(enquiry_id);
 CREATE INDEX IF NOT EXISTS idx_dp_sponsored_enquiry ON sponsored_events(enquiry_id);
 ALTER TABLE advertising_enquiries ADD COLUMN IF NOT EXISTS event_municipality TEXT;
+
+
+-- Private, individually invited advertiser workspaces. The invite's raw token is
+-- returned to the administrator once and is never stored in plaintext.
+CREATE TABLE IF NOT EXISTS advertiser_accounts (
+ id BIGSERIAL PRIMARY KEY,
+ lead_id BIGINT UNIQUE REFERENCES advertising_enquiries(id) ON DELETE SET NULL,
+ company TEXT NOT NULL,
+ contact_name TEXT NOT NULL DEFAULT '',
+ email TEXT NOT NULL,
+ token_hash TEXT NOT NULL UNIQUE,
+ access_version INTEGER NOT NULL DEFAULT 1,
+ active BOOLEAN NOT NULL DEFAULT TRUE,
+ created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+ updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_dp_advertiser_accounts_lead ON advertiser_accounts(lead_id);
+
+-- Advertisers only prepare unpublished drafts until a confirmed payment flow
+-- exists. Payment and editorial state are separate to avoid accidental go-live.
+CREATE TABLE IF NOT EXISTS advertiser_campaign_drafts (
+ id BIGSERIAL PRIMARY KEY,
+ advertiser_id BIGINT NOT NULL REFERENCES advertiser_accounts(id) ON DELETE CASCADE,
+ plan TEXT NOT NULL CHECK(plan IN ('local','zona','insular')),
+ days INTEGER NOT NULL CHECK(days IN (30,60)),
+ price_cents INTEGER NOT NULL CHECK(price_cents>0),
+ municipalities JSONB NOT NULL DEFAULT '[]'::jsonb,
+ placement TEXT NOT NULL CHECK(placement IN ('banner','evento')),
+ advertiser TEXT NOT NULL,
+ title TEXT NOT NULL,
+ description TEXT NOT NULL DEFAULT '',
+ destination TEXT NOT NULL,
+ campaign_start DATE,
+ event_start TEXT,
+ event_town TEXT,
+ event_venue TEXT,
+ image_alt TEXT,
+ status TEXT NOT NULL DEFAULT 'draft'
+   CHECK(status IN ('draft','pending_payment','paid_review','changes_requested','approved','active','finished','rejected','cancelled')),
+ payment_status TEXT NOT NULL DEFAULT 'unavailable'
+   CHECK(payment_status IN ('unavailable','pending','paid','refunded')),
+ actual_starts_at DATE,
+ actual_ends_at DATE,
+ published_ad_id TEXT REFERENCES ad_campaigns(id),
+ published_event_id BIGINT REFERENCES sponsored_events(id),
+ review_note TEXT,
+ created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+ updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+ CHECK (actual_starts_at IS NULL OR actual_ends_at IS NULL OR actual_starts_at<=actual_ends_at)
+);
+CREATE INDEX IF NOT EXISTS idx_dp_advertiser_drafts_account ON advertiser_campaign_drafts(advertiser_id,updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_dp_advertiser_drafts_review ON advertiser_campaign_drafts(status,payment_status);
+
+CREATE TABLE IF NOT EXISTS advertiser_campaign_draft_images (
+ draft_id BIGINT PRIMARY KEY REFERENCES advertiser_campaign_drafts(id) ON DELETE CASCADE,
+ mime_type TEXT NOT NULL CHECK(mime_type IN ('image/webp','image/jpeg','image/png')),
+ width INTEGER NOT NULL CHECK(width=1200),
+ height INTEGER NOT NULL CHECK(height=675),
+ image_data BYTEA NOT NULL,
+ updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
