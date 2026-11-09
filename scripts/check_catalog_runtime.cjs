@@ -39,7 +39,12 @@ const ctx={
  }
 };
 vm.createContext(ctx);
-vm.runInContext(section('function inFilter(e,today=', '\nfunction sponsorUrl('),ctx);
+ctx.nextWeekendDates=today=>[plusDays(today,4),plusDays(today,5),plusDays(today,6)];
+vm.runInContext(section('let dateBoundsKey=', '\nfunction sponsorUrl('),ctx);
+// Boundaries are reused while filtering the same Canary day.
+const bounds1=vm.runInContext("dateBounds('2026-11-09')",ctx);
+const bounds2=vm.runInContext("dateBounds('2026-11-09')",ctx);
+assert.strictEqual(bounds1,bounds2,'Date ranges must be memoized per day');
 function ids(){return Array.from(vm.runInContext('filtered()',ctx),e=>e.id)}
 assert.deepEqual(ids(),[2,1,3]);
 assert.equal(clockCalls,1,'One timezone lookup per sort');
@@ -57,6 +62,12 @@ ctx.state.tab='saved';
 ctx.state.favorites=new Set([1]);
 assert.deepEqual(ids(),[1]);
 assert.equal(clockCalls,5);
+ctx.state.tab='explore';
+ctx.state.when='tomorrow';
+assert.deepEqual(ids(),[3],'Tomorrow must still select actual upcoming sessions');
+ctx.state.when='week';
+assert.deepEqual(ids(),[2,1,3],'Week filter must stay stable with memoized bounds');
+ctx.state.when='all';
 const stored=new Map();
 const page={textContent:''};
 let renders=0;
