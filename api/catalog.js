@@ -11,13 +11,13 @@ export default async function handler(req,res) {
       o.venue_override,o.price_override,o.free_override,o.category_override,o.canonical_event_id
       FROM published_events p LEFT JOIN event_overrides o ON o.event_id=p.id
       WHERE p.active AND COALESCE(o.hidden,FALSE)=FALSE AND o.canonical_event_id IS NULL
-      ORDER BY p.payload->>'start',p.id LIMIT 3500`;,
+      ORDER BY p.payload->>'start',p.id LIMIT 3500`,
       sql`SELECT id,title,start,"end",municipality,venue,category,details,price,free,
       source_url,image_url,image_alt,enquiry_id,advertiser
       FROM sponsored_events WHERE enabled=TRUE AND review_status='approved'
         AND (campaign_starts_at IS NULL OR campaign_starts_at<=((now() AT TIME ZONE 'Atlantic/Canary')::date))
         AND (campaign_ends_at IS NULL OR campaign_ends_at>=((now() AT TIME ZONE 'Atlantic/Canary')::date))
-      ORDER BY start,id LIMIT 250`;
+      ORDER BY start,id LIMIT 250`
     ]);
     const events=rows.map(({payload,...o})=>{
       const e={...payload};
