@@ -72,7 +72,7 @@ class FrontendPerformanceContract(unittest.TestCase):
     def test_no_features_or_prelaunch_controls_were_removed(self):
         self.assertIn('name="robots" content="noindex,nofollow"',HTML)
         for marker in ("<div id=\"app\"", "function openMap()", "function closeMap()",
-                       "function showEvent(", "function toggleFav(", "function renderWeekendShelf()",
+                       "function showEvent(", "function toggleFav(", "function renderWeekendShelf(now=localTimeKey())",
                        "function loadSponsored(", "const sponsorAt=sponsorInsertAfter()",
                        "function requestCurrentLocation(", "function loadEvents()",
                        "'/reminders.js'", "dparranda-editorial.css"):
