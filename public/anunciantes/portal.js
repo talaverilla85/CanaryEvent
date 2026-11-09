@@ -133,6 +133,7 @@ async function boot(){
  try{
   const config=await api('config');
   if(!config.enabled){showError('Estamos preparando el acceso privado a las campañas. El enlace todavía no está activado.');return}
+  if(typeof config.privacy_url==='string')$('privacyLink').href=config.privacy_url;
   const token=new URLSearchParams(location.hash.replace(/^#/,'')).get('acceso');
   if(token){
    await api('exchange',{token});
@@ -202,6 +203,7 @@ $('draftForm').onsubmit=async event=>{
  try{
   const file=$('artwork').files?.[0];
   const payload={
+   consent:$('portalConsent').checked,
    id:editing?.id,plan,days:Number($('duration').value),
    placement:kind,municipalities:plan==='insular'?[]:selected,
    campaign_start:$('campaignStart').value,
