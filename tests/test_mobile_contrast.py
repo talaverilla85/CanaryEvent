@@ -42,7 +42,7 @@ class MobileContrastTests(unittest.TestCase):
                 self.assertGreaterEqual(contrast(fg,bg),4.5)
 
     def test_updated_stylesheet_is_requested(self):
-        self.assertIn('/brand/dparranda-editorial.css?v=5',HTML)
+        self.assertIn('id="dparranda-brand-styles"',HTML)
         self.assertIn('meta name="robots" content="noindex,nofollow"',HTML)
 
 if __name__=="__main__":
