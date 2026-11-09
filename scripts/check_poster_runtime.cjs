@@ -13,7 +13,7 @@ const local='/posters/6a955c6a013a6268e0795f4b.webp';
 const map={};
 map[expected]={thumb:local.replace('.webp','-320.webp'),retina:local.replace('.webp','-480.webp'),detail:local};
 const ctx={URL,window:{DParrandaPosterThumbs:map},IMAGE_HOSTS:new Set([
- 'www.eventosgrancanaria.com','ingenio.es'
+ 'www.eventosgrancanaria.com','ingenio.es','eventos.santabrigida.es'
 ])};
 vm.createContext(ctx);
 vm.runInContext(html.slice(first,last),ctx);
@@ -40,9 +40,29 @@ assert.equal(vm.runInContext('verifiedImage(event,true)',Object.assign(ctx,{even
 ctx.window.DParrandaPosterThumbs[expected]='https://evil.invalid/stolen.webp';
 assert.equal(verify({image_url:expected,image_status:'official_remote'}),expected,
  'Invalid manifest path falls back to the verified original');
+const santa='https://eventos.santabrigida.es/wp-content/uploads/2026/09/WhatsApp-Image-2026-09-28-at-09.36.38.jpeg';
+const digest='aabbccddeeff001122334455';
+const santaDetail='/posters/r-'+digest+'.webp';
+ctx.window.DParrandaExtraPosterThumbs={
+ [santa]:{thumb:santaDetail.replace('.webp','-320.webp'),
+          retina:santaDetail.replace('.webp','-480.webp'),detail:santaDetail}
+};
+assert.equal(verify({image_url:santa,image_status:'official_remote'}),
+ ctx.window.DParrandaExtraPosterThumbs[santa].thumb,
+ 'Allowed external official images use static cached WebP');
+assert.equal(vm.runInContext('verifiedImage(event,true)',Object.assign(ctx,{
+ event:{image_url:santa,image_status:'official_remote'}})),santaDetail,
+ 'Detail uses cached high-resolution official poster');
+ctx.window.DParrandaExtraPosterThumbs[santa].thumb='/posters/../../../wrong.webp';
+assert.equal(verify({image_url:santa,image_status:'official_remote'}),santa,
+ 'Tampered remote poster paths must fall back to source');
+delete ctx.window.DParrandaExtraPosterThumbs;
+assert.equal(verify({image_url:santa,image_status:'official_remote'}),santa,
+ 'If remote manifest is unavailable, show original official poster');
 delete ctx.window.DParrandaPosterThumbs;
 assert.equal(verify({image_url:expected,image_status:'official_remote'}),expected,
  'If the manifest script fails, the public catalog must still show official posters');
 assert.ok(html.indexOf('/posters/manifest.js')<first,'Load manifest before choosing images');
+assert.ok(html.indexOf('/posters/remote-manifest.js')<first,'Load remote manifest before choosing images');
 assert.ok(html.includes('name="robots" content="noindex,nofollow"'));
 console.log('Poster selection OK: static WebP, fallback official poster, unchanged sponsored media');
