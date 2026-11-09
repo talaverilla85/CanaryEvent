@@ -13,7 +13,7 @@ class GeoCardContract(unittest.TestCase):
         cls.soup=BeautifulSoup(cls.html,"html.parser")
         cls.js=cls.soup.find_all("script")[-1].get_text()
     def test_auto_geolocation_and_browser_permission(self):
-        self.assertIn("requestCurrentLocation(false);",self.js)
+        self.assertIn("refreshLocationIfAllowed();",self.js)
         self.assertIn("navigator.geolocation.getCurrentPosition(",self.js)
         self.assertIn("navigator.permissions.query({name:'geolocation'})",self.js)
         self.assertIn("window.isSecureContext",self.js)
