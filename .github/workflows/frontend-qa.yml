@@ -1,0 +1,40 @@
+name: Verificar rendimiento e interfaz DParranda
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "public/**"
+      - "tests/**"
+      - "scripts/check_frontend_syntax.cjs"
+      - ".github/workflows/frontend-qa.yml"
+  push:
+    branches: [main]
+    paths:
+      - "public/index.html"
+      - "public/filter_ui.js"
+      - "tests/test_frontend_performance_contract.py"
+      - "scripts/check_frontend_syntax.cjs"
+      - ".github/workflows/frontend-qa.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  frontend-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Obtener código
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependencias de pruebas
+        run: python -m pip install -r scripts/requirements.txt
+      - name: Validar JavaScript del sitio
+        run: node scripts/check_frontend_syntax.cjs
+      - name: Pruebas de la interfaz y compatibilidad
+        run: python -m unittest discover -s tests -q
