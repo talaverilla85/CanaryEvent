@@ -24,7 +24,7 @@ assert.equal(verify({
 assert.equal(verify({
  image_url:expected,image_status:'official_remote',
  paid_promotion:true
-}),local,'Promotional flag without a promo URL still validates the official URL');
+}),'','Unregistered promotional image may not borrow a thumbnail');
 assert.equal(verify({
  image_url:'/sponsors/approved.webp',paid_promotion:true
 }),'/sponsors/approved.webp','Sponsor image must remain original');
