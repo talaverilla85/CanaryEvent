@@ -2101,6 +2101,7 @@ body::before{height:5px;position:fixed;z-index:40}
 <script>
 try{localStorage.setItem('plangc_check','ok');localStorage.removeItem('plangc_check')}catch(e){const mem={};Object.defineProperty(window,'localStorage',{value:{getItem:k=>mem[k]??null,setItem:(k,v)=>{mem[k]=String(v)},removeItem:k=>{delete mem[k]}}})}
 </script><script src="/posters/manifest.js"></script>
+<script src="/posters/remote-manifest.js"></script>
 <script src="/reminders.js"></script>
 <script src="/filter_ui.js"></script>
 <script src="/temporal.js?v=1"></script>
@@ -2137,9 +2138,9 @@ function posterVariants(e){
  try{
   const url=new URL(e.image_url);
   if(url.protocol!=='https:'||!IMAGE_HOSTS.has(url.hostname))return null;
-  const entry=window.DParrandaPosterThumbs?.[url.href];
+  const entry=window.DParrandaPosterThumbs?.[url.href]||window.DParrandaExtraPosterThumbs?.[url.href];
   if(!entry||typeof entry!=='object'||Array.isArray(entry))return null;
-  const id='[a-f0-9]{24}';
+  const id='(?:r-)?[a-f0-9]{24}';
   const pattern=suffix=>new RegExp('^/posters/'+id+suffix+'\\.webp$');
   if(pattern('-320').test(entry.thumb)&&pattern('-480').test(entry.retina)&&pattern('').test(entry.detail)&&
      entry.thumb.slice(9,33)===entry.retina.slice(9,33)&&entry.thumb.slice(9,33)===entry.detail.slice(9,33)){
@@ -2158,7 +2159,7 @@ function verifiedImage(e,large=false){
   if(url.protocol!=='https:'||!IMAGE_HOSTS.has(url.hostname))return '';
   const variants=posterVariants(e);
   if(variants)return large?variants.detail:variants.thumb;
-  const existing=window.DParrandaPosterThumbs?.[url.href];
+  const existing=window.DParrandaPosterThumbs?.[url.href]||window.DParrandaExtraPosterThumbs?.[url.href];
   if(typeof existing==='string'&&/^\/posters\/[a-f0-9]{24}\.webp$/.test(existing))return existing;
   return url.href;
  }catch{return ''}
