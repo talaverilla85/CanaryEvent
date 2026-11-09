@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#10364d">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'">
 <title>Mi publicidad · DParranda</title>
 <link rel="icon" href="/favicon.svg">
 <style>
@@ -99,6 +99,10 @@ footer{text-align:center;border-top:1px solid var(--line);padding:25px 15px;colo
     </div>
     <div class="field wide"><label for="imageAlt">Descripción accesible de la imagen</label><input id="imageAlt" maxlength="160"></div>
    </div>
+   <label style="display:flex;align-items:flex-start;gap:10px;margin-top:18px;font-size:12px">
+    <input id="portalConsent" type="checkbox" required style="width:auto;min-height:0;margin-top:4px">
+    <span>He leído la <a id="privacyLink" href="" target="_blank" rel="noopener noreferrer">información sobre privacidad</a> y autorizo el tratamiento de los datos de esta propuesta para gestionar mi publicidad.</span>
+   </label>
    <div class="summary" style="margin-top:17px"><div><strong id="summaryPlan">Local · 30 días</strong><div class="note">Precio orientativo. Sin compra ni reserva.</div></div><strong id="summaryTotal">19 €</strong></div>
    <div class="actions"><button id="saveDraft" type="submit" class="primary">Guardar borrador</button><button type="button" class="secondary" disabled title="Pendiente de habilitar el pago">Pagar y enviar a revisión · próximamente</button></div>
    <p id="editorFeedback" class="status" role="status" aria-live="polite" hidden></p>
