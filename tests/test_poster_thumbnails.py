@@ -81,6 +81,17 @@ class PosterThumbnailTests(unittest.TestCase):
                 self.assertFalse(posters.valid_official_url(url))
         self.assertEqual(posters.poster_filename(URL),"6a955c6a013a6268e0795f4b.webp")
 
+    def test_long_running_programmes_get_thumbnails_until_verified_end(self):
+        ongoing={**event(URL,date="2026-09-11"),"end":"2026-12-11"}
+        finished={**event(URL2,date="2026-09-11"),"end":"2026-10-25"}
+        upcoming={**event(URL2,date="2026-11-13"),"end":None}
+        self.assertEqual(posters.candidates([finished,ongoing,upcoming],self.now),
+                         [URL,URL2])
+
+    def test_program_without_confirmed_end_is_not_assumed_active(self):
+        previous=event(URL,date="2026-09-11")
+        self.assertEqual(posters.candidates([previous],self.now),[])
+
     def test_no_sponsored_past_unconfirmed_or_other_host_poster(self):
         cases=[
             event(date="2026-11-10"),
