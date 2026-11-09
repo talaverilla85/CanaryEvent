@@ -14,6 +14,7 @@ from hashlib import sha256
 from pathlib import Path
 from urllib.parse import urlsplit
 from urllib.robotparser import RobotFileParser
+from PIL import UnidentifiedImageError
 from zoneinfo import ZoneInfo
 import json
 import re
@@ -28,7 +29,7 @@ CATALOG=ROOT/"public"/"events.json"
 MANIFEST=POSTERS/"remote-manifest.js"
 HOSTS=("eventos.santabrigida.es","ingenio.es")
 PATH_RE=re.compile(
-    r"/wp-content/uploads/20[0-9]{2}/(?:0[1-9]|1[0-2])/[A-Za-z0-9_.-]+\\.(?:jpeg|jpg|png|webp)\\Z",re.I
+    r"/wp-content/uploads/20[0-9]{2}/(?:0[1-9]|1[0-2])/[A-Za-z0-9_.-]+\.(?:jpeg|jpg|png|webp)\Z",re.I
 )
 MAX_NEW=12
 MAX_CANDIDATES=120
@@ -149,7 +150,6 @@ def generate(events,out_dir,session=None,now=None,max_new=MAX_NEW,delay=0.15):
         if not rules or not rules.can_fetch(poster.AGENT,url):
             continue  # No robots permission -> never fetch or show a new local copy.
         names=filenames(url)
-        detail=out_dir/names["detail"]
         existing=all((out_dir/name).is_file() and 0<(out_dir/name).stat().st_size<=
                      (poster.MAX_WEBP_BYTES if key=="detail" else poster.MAX_CARD_BYTES)
                      for key,name in names.items())
@@ -157,7 +157,7 @@ def generate(events,out_dir,session=None,now=None,max_new=MAX_NEW,delay=0.15):
             continue
         try:
             if not existing:
-                source=poster.download_original(session,url,rules) if False else download_official(session,url)
+                source=download_official(session,url)
                 encoded=poster.compress_webp(source)
                 if len(encoded)>=len(source):
                     raise ValueError("Optimized image would not save bytes")
@@ -176,15 +176,14 @@ def generate(events,out_dir,session=None,now=None,max_new=MAX_NEW,delay=0.15):
                           "detail":"/posters/"+names["detail"]}
             retained.update(names.values())
         except (requests.RequestException,RuntimeError,PermissionError,ValueError,
-                OSError) as exc:
+                OSError,UnidentifiedImageError) as exc:
             failures+=1
             print("External poster deferred:",poster_id(url),type(exc).__name__,
                   str(exc)[:75],flush=True)
         if delay:
             time.sleep(delay)
-    for old in out_dir.glob("r-*.webp"):
-        if old.name not in retained and re.fullmatch(r"r-[a-f0-9]{24}(?:-(?:320|480))?\\.webp",old.name):
-            old.unlink()
+    # Keep old immutable derivatives on a transient robots/server outage.
+    # Do not delete working media merely because the host could not be reached.
     (out_dir/"remote-manifest.js").write_text(manifest_content(mapping),encoding="utf8")
     return {"candidates":len(targets),"available":len(mapping),"new":created,
             "deferred":failures,"original_bytes":bytes_before,
@@ -205,10 +204,11 @@ def download_official(session,url):
         size_header=response.headers.get("Content-Length")
         if size_header:
             try:
-                if int(size_header)>poster.MAX_BYTES:
-                    raise ValueError("Image too large")
+                stated=int(size_header)
             except (TypeError,ValueError) as exc:
-                raise ValueError("Invalid or excessive Content-Length") from exc
+                raise ValueError("Invalid Content-Length") from exc
+            if stated>poster.MAX_BYTES or stated<0:
+                raise ValueError("Image too large")
         chunks=[]
         total=0
         for chunk in response.iter_content(chunk_size=131072):
