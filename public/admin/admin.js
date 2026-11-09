@@ -36,7 +36,7 @@ async function loadStats(){
  const s=await api('stats');$('statEvents').textContent=s.events;$('statReview').textContent=s.reviews;
  $('statHidden').textContent=s.hidden;$('statAds').textContent=s.active_ads;
 }
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions()])}
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions()]);if(location.hash==='#publicidad')setSection('ads')}
 function setSection(next){
  section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
  for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){
@@ -216,9 +216,9 @@ async function loadLeads(){
 function renderLeads(){
  if(!leads.length){$('leadsList').innerHTML='<div class="empty">No hay solicitudes comerciales registradas.</div>';return}
  $('leadsList').innerHTML=leads.map(l=>{
- const id=Number(l.id),eligible=!!(l.event_title&&l.event_start&&l.event_venue&&l.event_municipality);
+ const id=Number(l.id),interest=String(l.dates_text||'').startsWith('INTERES_INICIAL|'),eligible=!interest&&!!(l.event_title&&l.event_start&&l.event_venue&&l.event_municipality);
  return '<article class="event lead-item"><div class="event-info"><small>Solicitud #'+id+' · '+escape(String(l.created_at).slice(0,10))+
-  ' · '+escape(l.status)+'</small><strong>'+escape(l.company)+' · '+escape(l.campaign_name)+'</strong>'+
+  ' · '+escape(l.status)+(interest?' · INTERESADO':'')+'</small><strong>'+escape(l.company)+' · '+escape(l.campaign_name)+'</strong>'+
   '<p>'+escape(l.format)+' · '+escape(l.municipality)+' · '+escape(l.email)+' · '+escape(l.telephone)+'</p>'+
   '<div class="meta"><span class="pill">'+escape(l.campaign_days)+' días</span><span class="pill off">'+escape(l.campaign_start||'Sin fecha')+'</span></div>'+
   '<details class="lead-detail"><summary>Ver propuesta, imagen y datos fiscales</summary>'+
