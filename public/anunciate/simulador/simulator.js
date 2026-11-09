@@ -153,6 +153,61 @@ function render(draft,events){
  $('simTotal').textContent=(Number(draft.total)||0)+' €';
  $('simSummary').hidden=false;
 }
+function initInterestForm(draft){
+ const section=$('interestSection'),form=$('interestForm');
+ const availability=$('interestAvailability'),feedback=$('interestFeedback');
+ section.hidden=false;
+ fetch('/api/advertise-interest',{cache:'no-store'}).then(async response=>{
+  if(!response.ok)throw Error('Configuración no disponible');
+  return response.json();
+ }).then(config=>{
+  if(config.enabled!==true||typeof config.privacy_url!=='string'||!config.privacy_url.startsWith('https://')){
+   availability.textContent='Estamos preparando la recepción de solicitudes. Puedes usar la vista previa mientras tanto.';
+   return;
+  }
+  $('interestPrivacy').href=config.privacy_url;
+  availability.hidden=true;
+  form.hidden=false;
+ }).catch(()=>{
+  availability.textContent='El registro de interesados no está disponible en este momento.';
+ });
+ form.addEventListener('submit',async event=>{
+  event.preventDefault();
+  if(!form.reportValidity())return;
+  const button=$('interestSubmit');button.disabled=true;
+  feedback.textContent='Registrando tu interés…';
+  const values=new FormData(form);
+  // Only a small verified campaign summary is sent, never the preview image
+  // or any fiscal/payment information. Server rechecks price and coverage.
+  const payload={
+   company:String(values.get('company')||''),
+   contact:String(values.get('contact')||''),
+   email:String(values.get('email')||''),
+   telephone:String(values.get('telephone')||''),
+   website:String(values.get('website')||''),
+   consent:values.get('consent')==='on',
+   campaign:{
+    kind:draft.kind,plan:draft.plan,days:draft.days,
+    municipalities:draft.municipalities,start:draft.start,
+    advertiser:draft.advertiser,title:draft.title,destination:draft.destination,
+    eventDate:draft.eventDate,eventVenue:draft.eventVenue,eventTown:draft.eventTown
+   }
+  };
+  try{
+   const response=await fetch('/api/advertise-interest',{
+    method:'POST',credentials:'same-origin',
+    headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)
+   });
+   const result=await response.json();
+   if(!response.ok||result.received!==true)throw Error(result.error||'No se ha podido registrar');
+   form.hidden=true;
+   availability.hidden=false;
+   availability.textContent='Interés registrado (solicitud #'+Number(result.request_id)+'). ¡Gracias! Nos pondremos en contacto cuando podamos ofrecer este servicio. No has contratado ni pagado nada.';
+  }catch(err){
+   feedback.textContent=err instanceof Error?err.message:'No se ha podido registrar tu interés.';
+  }finally{button.disabled=false}
+ });
+}
 let draft=null;
 try{
  const raw=sessionStorage.getItem(KEY);
@@ -178,5 +233,6 @@ if(!draft){
 }else{
  loadEvents().then(events=>render(draft,events))
  .catch(()=>render(draft,[]));
+ initInterestForm(draft);
 }
 })();

@@ -57,6 +57,20 @@
 .summary strong{font-size:18px;color:#244a35}.summary span{font-weight:800;color:#2c7050}
 footer{text-align:center;color:#7c9283;padding:16px 0 33px;font-size:11px}
 @media(max-width:649px){.dp-masthead{padding:12px 0 10px}.dp-masthead img{height:65px}.dp-discovery-bar{margin-top:15px}.live-island{font-size:9px}.discover-label{font-size:9px}.events-grid{grid-template-columns:1fr}.list-heading h2{font-size:21px}.sponsor-card{min-height:169px}.sponsor-media{width:34%;min-height:169px}.sponsor-content{padding:12px}.sponsor-heading{font-size:16px}.sponsor-copy{font-size:11px}.sponsor-location{font-size:10px}.sponsor-button{padding:8px 12px;font-size:11px}.preview-mark{font-size:11px}.return{padding:8px 10px}}
+.interest-section{margin:10px 0 35px;padding:22px 23px;background:#fff;border:1px solid #c5e2e0;border-radius:17px;box-shadow:0 7px 22px #1a666f0a}
+.interest-section h2{font-size:clamp(21px,3vw,27px);margin:6px 0;letter-spacing:-.7px;color:#164458}
+.interest-section p{font-size:13px;line-height:1.55;color:#50727b}
+.interest-kicker{font-size:10px;letter-spacing:1.2px;color:#0c7e8d;font-weight:850}
+.interest-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:16px 0}
+.interest-fields label{display:grid;gap:5px;font-weight:700;color:#264e57;font-size:12px}
+.interest-fields input{width:100%;border:1px solid #c4dcdd;border-radius:10px;padding:11px 12px;font:inherit;min-height:43px}
+.interest-consent{display:flex;align-items:flex-start;gap:9px;color:#486770;font-size:12px;line-height:1.5}
+.interest-consent input{margin-top:3px;flex:none}
+.interest-send{display:inline-flex;border:0;border-radius:10px;background:#10364d;color:#fff;font-size:13px;font-weight:800;padding:12px 20px;margin-top:17px;cursor:pointer}
+.interest-send:disabled{opacity:.6;cursor:wait}
+.interest-feedback{min-height:14px;margin:9px 0}
+.interest-trap{position:absolute!important;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+@media(max-width:649px){.interest-section{padding:18px}.interest-fields{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -71,7 +85,25 @@ footer{text-align:center;color:#7c9283;padding:16px 0 33px;font-size:11px}
  <div id="simStatus" class="status" role="status">Cargando agenda…</div>
  <div id="simFeed" class="events-grid" aria-label="Simulación de eventos y publicidad"></div>
  <div class="summary" id="simSummary" hidden><strong id="simPlan"></strong><span id="simTotal"></span></div>
+ <section id="interestSection" class="interest-section" hidden aria-labelledby="interestTitle">
+  <span class="interest-kicker">PRÓXIMAMENTE EN DPARRANDA</span>
+  <h2 id="interestTitle">¿Te gustaría anunciarte?</h2>
+  <p>Déjanos tus datos si esta campaña te interesa. Te contactaremos cuando podamos ofrecer publicidad. No estás contratando nada ni realizando un pago.</p>
+  <p id="interestAvailability" role="status" aria-live="polite">Comprobando disponibilidad del registro de interesados…</p>
+  <form id="interestForm" hidden>
+   <div class="interest-fields">
+    <label>Nombre del negocio<input name="company" maxlength="120" required autocomplete="organization" placeholder="Tu empresa o proyecto"></label>
+    <label>Persona de contacto<input name="contact" maxlength="100" required autocomplete="name" placeholder="Nombre y apellidos"></label>
+    <label>Correo electrónico<input name="email" type="email" maxlength="180" required autocomplete="email" placeholder="hola@empresa.es"></label>
+    <label>Teléfono (opcional)<input name="telephone" type="tel" maxlength="35" autocomplete="tel" placeholder="Número de contacto"></label>
+   </div>
+   <div class="interest-trap" aria-hidden="true"><label>Dejar vacío<input name="website" tabindex="-1" autocomplete="off"></label></div>
+   <label class="interest-consent"><input name="consent" type="checkbox" required><span>He leído la <a id="interestPrivacy" href="" target="_blank" rel="noopener noreferrer">información de privacidad</a> y acepto el uso de mis datos para responder a esta solicitud.</span></label>
+   <button id="interestSubmit" type="submit" class="interest-send">Me interesa esta campaña</button>
+   <p id="interestFeedback" class="interest-feedback" role="status" aria-live="polite"></p>
+  </form>
+ </section>
 </main>
 <footer>D’Parranda · Disfruta de tus islas.</footer>
-<script src="/anunciate/simulador/simulator.js?v=1" defer></script>
+<script src="/anunciate/simulador/simulator.js?v=2" defer></script>
 </body></html>
