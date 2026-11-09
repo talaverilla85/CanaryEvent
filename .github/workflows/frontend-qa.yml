@@ -3,6 +3,7 @@ on:
   pull_request:
     branches: [main]
     paths:
+      - "api/catalog.js"
       - "public/**"
       - "tests/**"
       - "scripts/check_frontend_syntax.cjs"
@@ -12,6 +13,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "api/catalog.js"
       - "public/index.html"
       - "public/filter_ui.js"
       - "tests/test_frontend_performance_contract.py"
@@ -40,6 +42,7 @@ jobs:
         run: python -m pip install -r scripts/requirements.txt
       - name: Validar JavaScript del sitio
         run: |
+          node --check api/catalog.js
           node scripts/check_frontend_syntax.cjs
           node scripts/check_catalog_runtime.cjs
           node scripts/check_poster_runtime.cjs
