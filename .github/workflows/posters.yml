@@ -8,6 +8,8 @@ on:
     branches: [main]
     paths:
       - "scripts/build_poster_thumbnails.py"
+      - "scripts/build_remote_poster_thumbnails.py"
+      - "tests/test_remote_poster_thumbnails.py"
       - "scripts/optimize_static_sponsors.py"
       - ".github/workflows/posters.yml"
 
@@ -34,9 +36,11 @@ jobs:
       - name: Dependencias de cartelería
         run: python -m pip install "pillow>=10,<13" "requests>=2.31,<3"
       - name: Comprobar rutas y conversiones sin red
-        run: python -m unittest -v tests.test_poster_thumbnails
+        run: python -m unittest -v tests.test_poster_thumbnails tests.test_remote_poster_thumbnails
       - name: Generar miniaturas WebP con fuentes oficiales permitidas
         run: python scripts/build_poster_thumbnails.py --max-new 80
+      - name: Optimizar otros carteles oficiales permitidos como WebP
+        run: python scripts/build_remote_poster_thumbnails.py --max-new 12
       - name: Optimizar imagen publicitaria de ejemplo sin servicios externos
         run: python scripts/optimize_static_sponsors.py
       - name: Guardar imágenes estáticas y mapa de URLs
