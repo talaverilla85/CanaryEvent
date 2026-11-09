@@ -48,9 +48,9 @@ class FakeSession:
     def get(self,url,**kwargs):
         self.calls.append((url,kwargs))
         if url.endswith("/robots.txt"):
-            rule=b"User-agent: *\\nAllow: /wp-content/uploads/\\n"
+            rule=b"User-agent: *\nAllow: /wp-content/uploads/\n"
             if not self.allow:
-                rule=b"User-agent: *\\nDisallow: /wp-content/uploads/\\n"
+                rule=b"User-agent: *\nDisallow: /wp-content/uploads/\n"
             return FakeResponse(rule,mime="text/plain")
         return FakeResponse(self.source)
 
