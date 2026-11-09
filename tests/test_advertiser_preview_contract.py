@@ -52,7 +52,13 @@ class AdvertiserSimulatorContracts(unittest.TestCase):
 
     def test_preview_is_private_no_payment_or_publication(self):
         self.assertNotIn("fetch(",self.builder)
-        self.assertNotIn("POST",self.sim_js)
+        self.assertIn("method:'POST'",self.sim_js)
+        self.assertIn("'/api/advertise-interest'",self.sim_js)
+        self.assertIn('id="interestForm"',self.sim_html)
+        self.assertIn('id="interestPrivacy"',self.sim_html)
+        self.assertIn("campaign:{",self.sim_js)
+        self.assertNotIn("image:draft.image",self.sim_js)
+        self.assertNotIn("tax_id",self.sim_html)
         self.assertIn("cache:'no-store'",self.sim_js)
         self.assertIn("VISTA PREVIA · NO PUBLICADO",self.sim_html)
         self.assertNotIn("name=\"tax_id\"",self.html)
