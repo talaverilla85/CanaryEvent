@@ -360,9 +360,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 17,
+      "catalog_cards_total": 18,
       "municipal_cards_total": 11,
-      "other_sources_cards_total": 6,
+      "other_sources_cards_total": 7,
       "source_health": [
         {
           "source": "Ayuntamiento de Teror · programación del Auditorio",

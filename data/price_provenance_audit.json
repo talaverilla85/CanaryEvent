@@ -1,15 +1,15 @@
 {
-  "checked_on": "2026-11-09T15:43:24.836467+00:00",
-  "total_events": 454,
-  "known_price_or_free": 132,
+  "checked_on": "2026-11-09T19:31:19.865508+00:00",
+  "total_events": 455,
+  "known_price_or_free": 133,
   "classification": {
-    "minimum_zero_ambiguous": 8,
+    "minimum_zero_ambiguous": 9,
     "minimum_positive": 103,
     "free": 16,
     "fixed_positive": 5
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 66,
+    "TuReservaOnline · agenda de Gran Canaria": 67,
     "Juventud Las Palmas de Gran Canaria": 11,
     "LPA Cultura · agenda municipal oficial": 4,
     "Ayuntamiento de Moya · Otoño es Cultura 2026": 1,
@@ -76,6 +76,15 @@
       "free": 0,
       "category": "minimum_zero_ambiguous",
       "url": "https://www.tureservaonline.es/es/events/hilos-del-atlantico"
+    },
+    {
+      "id": 909,
+      "title": "X CONCURSO INTERNACIONAL DE MÚSICA LÍRICA",
+      "source": "TuReservaOnline · agenda de Gran Canaria",
+      "label": "Desde 0 €",
+      "free": 0,
+      "category": "minimum_zero_ambiguous",
+      "url": "https://www.tureservaonline.es/es/events/x-concurso-internacional-de-musica-lirica"
     },
     {
       "id": 478,
