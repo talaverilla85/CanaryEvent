@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-09T13:04:21+00:00",
+  "checked_at": "2026-11-09T14:24:20+00:00",
   "quality_counts": {
     "publicados": 454,
     "recintos_sin_verificar": 46,
@@ -12,13 +12,13 @@
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 10,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 4,
       "distancia_al_centro_municipal": 10,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "HTTPSConnectionPool(host='ingenio.es', port=443): Read timed out. (read timeout=12)"
+      "fichas_leidas_en_esta_ejecucion": 10,
+      "error": ""
     },
     {
       "source": "Ayuntamiento de Agüimes",
@@ -83,11 +83,11 @@
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
       "estado": "operativa",
-      "publicados": 12,
+      "publicados": 14,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 12,
+      "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 13,
+      "fichas_leidas_en_esta_ejecucion": 15,
       "error": ""
     },
     {
@@ -142,13 +142,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 1,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 5,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "ReadTimeout"
     },
     {
       "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
@@ -383,11 +383,11 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "operativa",
-      "publicados": 176,
+      "publicados": 174,
       "recinto_sin_verificar": 33,
-      "precio_sin_confirmar": 149,
+      "precio_sin_confirmar": 147,
       "distancia_al_centro_municipal": 92,
-      "fichas_leidas_en_esta_ejecucion": 28,
+      "fichas_leidas_en_esta_ejecucion": 30,
       "error": ""
     },
     {
@@ -463,8 +463,8 @@
   ],
   "reported_errors": [
     {
-      "source": "Ayuntamiento de Ingenio",
-      "error": "HTTPSConnectionPool(host='ingenio.es', port=443): Read timed out. (read timeout=12)"
+      "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
+      "error": "ReadTimeout"
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
