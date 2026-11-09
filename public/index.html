@@ -618,7 +618,7 @@ function coverHtml(e,large=false){
    '<div class="fallback-bottom">'+escapeHTML(textForCat(e.category))+' · '+escapeHTML(e.municipality)+'</div></div>';
  return fallback+(src?'<img class="official-cover'+(poster?' poster-art':'')+'" src="'+escapeHTML(src)+'" alt="'+
     escapeHTML(e.image_alt||('Cartel del evento: '+e.title))+'" loading="'+(large?'eager':'lazy')+
-    '" decoding="async" referrerpolicy="strict-origin-when-cross-origin">':'');
+    '" decoding="async"'+(large?' fetchpriority="high"':'')+' referrerpolicy="strict-origin-when-cross-origin">':'');
 }
 document.addEventListener('error',event=>{
  const img=event.target;
@@ -664,11 +664,11 @@ const venueName=e=>{
 const price=e=>e.free===1?'Gratis':(e.price||'').trim();
 const eventEndDate=e=>(e.end||e.start).slice(0,10);
 const activeToday=e=>e.start.slice(0,10)<=todayKey()&&eventEndDate(e)>=todayKey()&&!DParrandaTime.hasFinished(e,localTimeKey());
-function inFilter(e){
- const today=todayKey(),start=e.start.slice(0,10),end=eventEndDate(e),tom=plusDays(today,1);
+function inFilter(e,today=todayKey(),now=localTimeKey()){
+ const start=e.start.slice(0,10),end=eventEndDate(e),tom=plusDays(today,1);
  // This runs for EVERY search mode: today, weekend, custom ranges, saved and all.
  // Don't surface a concert whose 19:00 start is past when no finish is verified.
- if(DParrandaTime.hasFinished(e,localTimeKey()))return false;
+ if(DParrandaTime.hasFinished(e,now))return false;
  if(state.when==='custom'){const r=state.dateRange;return !!r&&start<=r.end&&end>=r.start;}
  if(state.when==='today')return start<=today&&end>=today;
  if(state.when==='tomorrow')return start<=tom&&end>=tom;
@@ -680,33 +680,59 @@ function inFilter(e){
  }
  return true;
 }
-function eventScore(e){
- const approx=eventApprox(e),now=localTimeKey(),tod=now.slice(0,10);
+function eventScore(e,now=localTimeKey()){
+ const approx=eventApprox(e),tod=now.slice(0,10);
  if(DParrandaTime.isInProgress(e,now))return -500+(approx??20)*.75;
  const days=Math.max(0,Math.round((Date.parse(e.start.slice(0,10)+'T00:00:00Z')-Date.parse(tod+'T00:00:00Z'))/86400000));
  // Entries without a confirmed session time should never displace timed plans.
  if(DParrandaTime.hasUnconfirmedHours(e,now))return 100000+days*15+(approx??20)*.75;
  const mins=+e.start.slice(11,13)*60+(+e.start.slice(14,16));
- const p=zoneParts(),current=+p.hour*60+(+p.minute),delay=days*1440+mins-current;
+ const current=+now.slice(11,13)*60+(+now.slice(14,16)),delay=days*1440+mins-current;
  return (approx??20)*.75+Math.max(0,delay)/95;
 }
-function filtered(){let ev=(state.island==='Gran Canaria'?state.events:[]).filter(e=>inFilter(e)&&(!state.freeOnly||e.free===1)&&(!state.categories.size||state.categories.has(e.category)));
+function filtered(){
+ // Calculate local time once per user action, not for every sort comparison.
+ const now=localTimeKey(),today=now.slice(0,10);
+ let ev=(state.island==='Gran Canaria'?state.events:[])
+  .filter(e=>inFilter(e,today,now)&&(!state.freeOnly||e.free===1)&&
+    (!state.categories.size||state.categories.has(e.category)));
  if(state.municipality)ev=ev.filter(e=>e.municipality===state.municipality);
- if(state.query){const q=state.query.toLocaleLowerCase('es');ev=ev.filter(e=>[e.title,e.venue,e.municipality,e.details,e.category].join(' ').toLocaleLowerCase('es').includes(q))}
+ if(state.query){
+  const q=state.query.toLocaleLowerCase('es');
+  ev=ev.filter(e=>[e.title,e.venue,e.municipality,e.details,e.category]
+   .join(' ').toLocaleLowerCase('es').includes(q));
+ }
  if(state.tab==='saved')ev=ev.filter(e=>state.favorites.has(e.id));
- if(state.newOnly && state.tab==='explore')ev=ev.filter(e=>state.newEventIds.has(e.id));
- const now=localTimeKey();
+ if(state.newOnly&&state.tab==='explore')ev=ev.filter(e=>state.newEventIds.has(e.id));
+ const unknownCache=new Map(),nearCache=new Map(),scoreCache=new Map(),progressCache=new Map();
+ const unknown=e=>{
+  if(!unknownCache.has(e))unknownCache.set(e,DParrandaTime.hasUnconfirmedHours(e,now));
+  return unknownCache.get(e);
+ };
+ const near=e=>{
+  if(!nearCache.has(e))nearCache.set(e,eventApprox(e)??99);
+  return nearCache.get(e);
+ };
+ const score=e=>{
+  if(!scoreCache.has(e))scoreCache.set(e,eventScore(e,now));
+  return scoreCache.get(e);
+ };
+ const inProgress=e=>{
+  if(!progressCache.has(e))progressCache.set(e,DParrandaTime.isInProgress(e,now));
+  return progressCache.get(e);
+ };
  ev.sort((a,b)=>{
-   const aUnknown=DParrandaTime.hasUnconfirmedHours(a,now),bUnknown=DParrandaTime.hasUnconfirmedHours(b,now);
+   const aUnknown=unknown(a),bUnknown=unknown(b);
    if(aUnknown!==bUnknown)return aUnknown?1:-1;
-   if(state.sort==='near')return (eventApprox(a)??99)-(eventApprox(b)??99)||a.start.localeCompare(b.start);
+   if(state.sort==='near')return near(a)-near(b)||a.start.localeCompare(b.start);
    if(state.sort==='time'){
-     const aNow=DParrandaTime.isInProgress(a,now),bNow=DParrandaTime.isInProgress(b,now);
+     const aNow=inProgress(a),bNow=inProgress(b);
      if(aNow!==bNow)return aNow?-1:1;
      return a.start.localeCompare(b.start);
    }
-   return eventScore(a)-eventScore(b);
- });return ev;
+   return score(a)-score(b);
+ });
+ return ev;
 }
 
 function sponsorUrl(value){
@@ -898,7 +924,7 @@ function renderEditorial(visible){
  if(image){
   const img=document.createElement('img');
   img.src=image;img.alt='Imagen del evento '+next.title;
-  img.decoding='async';img.loading='eager';img.referrerPolicy='strict-origin-when-cross-origin';
+  img.decoding='async';img.loading='eager';img.fetchPriority='high';img.referrerPolicy='strict-origin-when-cross-origin';
   if(/\/plot\/event_|eventos\.santabrigida\.es|lpacultura\.com|teror\.es|tejeda\.eu|www\.galdar\.es|www\.arucas\.org|santamariadeguia\.es/i.test(image))
     img.classList.add('poster-art');
   img.addEventListener('error',()=>img.remove(),{once:true});
@@ -933,7 +959,8 @@ function renderWeekendShelf(){
  shelf.hidden=false;
  $('dpShelfDate').textContent='Del '+friday.slice(8,10)+' al '+sunday.slice(8,10)+' de '+
   new Intl.DateTimeFormat('es-ES',{month:'long',timeZone:'UTC'}).format(date);
- const fingerprint=friday+'|'+state.municipality+'|'+items.map(e=>e.id).join(',');
+ const fingerprint=friday+'|'+state.municipality+'|'+items
+  .map(e=>[e.id,e.title,e.start,verifiedImage(e)].join(':')).join(',');
  if(fingerprint===weekendShelfFingerprint)return;
  weekendShelfFingerprint=fingerprint;
  track.innerHTML=items.map(e=>{
@@ -951,14 +978,19 @@ function renderWeekendShelf(){
    escapeHTML(e.municipality||'Gran Canaria')+'</span></span></button>';
  }).join('');
 }
+let lastGridMarkup=null;
 function render(){renderCategories();renderIslands();renderNewEventNotice();const events=filtered();renderEditorial(events);renderWeekendShelf();const shown=events.slice(0,state.visibleLimit);const showPromotions=state.tab==='explore'&&!state.query&&state.island==='Gran Canaria';const sponsorAt=sponsorInsertAfter();$('loadMoreBtn').hidden=events.length<=state.visibleLimit;$('eventCount').textContent=`· ${events.length} planes`;$('sectionTitle').firstChild.textContent=state.tab==='saved'?'Tus favoritos ':({today:'Para hoy ',tomorrow:'Para mañana ',weekend:'Este fin de semana ',week:'Próximos 7 días ',all:'Próximamente ',custom:state.dateRangeLabel+' '}[state.when]||'Todos los planes ');
  document.querySelectorAll('[data-quick-when]').forEach(b=>{const active=state.when===b.dataset.quickWhen;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
  const freeShortcut=document.querySelector('[data-quick-free]');freeShortcut.classList.toggle('active',state.freeOnly);freeShortcut.setAttribute('aria-pressed',String(state.freeOnly));
- $('eventsGrid').innerHTML=shown.map((e,i)=>{
+ const nextGridMarkup=shown.map((e,i)=>{
   const approx=eventApprox(e);const liked=state.favorites.has(e.id);
   return `<article class="event-card ${verifiedImage(e)?'':'fallback-event'}" tabindex="0" role="button" data-id="${e.id}" aria-label="Ver ${escapeHTML(e.title)}">
   <div class="photo ${CLASSES[e.category]||'p-other'} ${verifiedImage(e)?'':'no-official-cover'}">${coverHtml(e)}<span class="photo-tag">${e.paid_promotion===true?'Patrocinado · ':''}${escapeHTML(textForCat(e.category))}</span><button type="button" class="card-share-btn" data-share="${e.id}" aria-label="Compartir ${escapeHTML(e.title)}" title="Compartir este plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.3 10.8 7.5-4.4m-7.5 6.8 7.5 4.3"/></svg></button><button type="button" class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button></div>
   <div class="event-info"><span class="event-date-chip">${escapeHTML(cardDateLabel(e))}</span><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span class="place-icon">⌖</span><span class="event-place"><strong class="place-venue">${escapeHTML(venueName(e))}</strong><small class="place-municipality">${escapeHTML(e.municipality)}</small></span></div><div class="event-bottom">${price(e)?`<span class="price">${escapeHTML(price(e))}</span>`:''}<span class="distance" title="${eventUsesMunicipality(e)?'Distancia aproximada en línea recta al centro del municipio':'Distancia aproximada en línea recta al recinto'}">${approx!==null?'⌖ ≈ '+approx+' km'+(eventUsesMunicipality(e)?' · municipio':''):'Distancia no disponible'}</span></div></div></article>`+(showPromotions&&(i+1)%sponsorAt===0?sponsorForSlot(Math.floor((i+1)/sponsorAt)-1):'')+(showPromotions&&i===11?houseEventHtml():'')}).join('');
+ if(nextGridMarkup!==lastGridMarkup){
+  $('eventsGrid').innerHTML=nextGridMarkup;
+  lastGridMarkup=nextGridMarkup;
+ }
  $('emptyState').classList.toggle('hidden',events.length>0);$('eventsGrid').classList.toggle('hidden',events.length===0);
  $('loadingGrid').classList.add('hidden');
  const otherIsland=state.island!=='Gran Canaria';
@@ -1234,7 +1266,7 @@ function closeMap(){
  $('mapPanel').classList.add('hidden');
  state.tab='explore';render();
 }
-async function api(path,method='GET',body=null){const options={method,credentials:'same-origin',headers:{}};if(method==='GET')options.cache='no-store';if(method!=='GET'){options.headers['Content-Type']='application/json';if(state.user)options.headers['X-CSRF-Token']=state.user.csrf;options.body=JSON.stringify(body||{})}const url=path==='/api/events'?'/api/catalog':path==='/api/meta'?'/meta.json':path;let r;try{r=await fetch(url,options);if(path==='/api/events'&&!r.ok)r=await fetch('/events.json',options)}catch(e){if(path!=='/api/events')throw e;r=await fetch('/events.json',options)}let data=await r.json();if(!r.ok)throw Error(data.error||'No se pudo completar la operación');return data}
+async function api(path,method='GET',body=null){const options={method,credentials:'same-origin',headers:{}};if(method==='GET')options.cache=path==='/api/events'?'default':'no-store';if(method!=='GET'){options.headers['Content-Type']='application/json';if(state.user)options.headers['X-CSRF-Token']=state.user.csrf;options.body=JSON.stringify(body||{})}const url=path==='/api/events'?'/api/catalog':path==='/api/meta'?'/meta.json':path;let r;try{r=await fetch(url,options);if(path==='/api/events'&&!r.ok)r=await fetch('/events.json',{...options,cache:'no-cache'})}catch(e){if(path!=='/api/events')throw e;r=await fetch('/events.json',{...options,cache:'no-cache'})}let data=await r.json();if(!r.ok)throw Error(data.error||'No se pudo completar la operación');return data}
 function authDialog(mode='login'){openModal(`<div class="form-panel"><span class="eyebrow">BIENVENIDO A LA COMUNIDAD</span><h2 id="modalHeading">${mode==='register'?'Crear cuenta':'Entrar a D’Parranda'}</h2><p>${mode==='register'?'Publica tus actividades y descubre nuevos asistentes. Las propuestas se revisan antes de aparecer en el catálogo.':'Accede para proponer eventos y consultar tus publicaciones.'}</p><form class="stack-form" id="authForm"><div class="field"><label for="authEmail">Correo electrónico</label><input id="authEmail" type="email" required autocomplete="email" maxlength="254" placeholder="nombre@empresa.com"></div><div class="field"><label for="authPwd">Contraseña</label><input id="authPwd" type="password" required minlength="10" autocomplete="${mode==='register'?'new-password':'current-password'}" placeholder="Mínimo 10 caracteres"></div><button type="submit" class="primary-btn">${mode==='register'?'Crear cuenta':'Iniciar sesión'}</button></form><button id="toggleAuth" class="inline-link">${mode==='register'?'¿Ya tienes cuenta? Entrar':'¿No tienes cuenta? Regístrate gratis'}</button></div>`);
  $('toggleAuth').onclick=()=>authDialog(mode==='login'?'register':'login');$('authForm').onsubmit=async e=>{e.preventDefault();try{const r=await api('/api/auth/'+mode,'POST',{email:$('authEmail').value,password:$('authPwd').value});state.user=r.user;toast('Sesión iniciada');publishDialog()}catch(err){toast(err.message)}};
 }
@@ -1257,6 +1289,46 @@ async function adminDialog(){if(!state.user||state.user.role!=='admin')return;tr
  $('manualSync').onclick=async()=>{try{await api('/api/admin/sync','POST',{});toast('Actualización de fuentes iniciada')}catch(e){toast(e.message)}};
  document.querySelectorAll('[data-review]').forEach(b=>b.onclick=async()=>{try{await api('/api/admin/review','POST',{id:+b.dataset.review,status:b.dataset.status});toast('Revisión guardada');await loadEvents();adminDialog()}catch(e){toast(e.message)}})}catch(err){toast(err.message)}}
 async function showSources(){try{const d=await api('/api/meta');const rows=d.sources.map(s=>`<div class="mine-item"><div><strong>${escapeHTML(s.source)}</strong><small>${escapeHTML(s.checked_at)} · ${s.found} candidatos · ${s.added} nuevos ${s.error?'· Error: '+escapeHTML(s.error):''}</small></div></div>`).join('');openModal(`<div class="form-panel"><span class="eyebrow">TRANSPARENCIA Y FUENTES</span><h2 id="modalHeading">Cómo se actualiza la agenda</h2><p><strong>Última revisión:</strong> ${escapeHTML(d.checked_at||'No disponible')}</p><p>D’Parranda consulta periódicamente las agendas municipales, el Cabildo y las fuentes de entradas disponibles para Gran Canaria. Los datos pueden cambiar: comprueba siempre el enlace original del evento.</p><div class="mine-list">${rows||'<p>Aún no se ha realizado ninguna sincronización.</p>'}</div><p><strong>${d.counts.approved||0}</strong> planes con recinto identificado · <strong>${d.counts.excluded_missing_venue||0}</strong> fichas no publicadas por ubicación sin verificar · <strong>${(d.counts.pending||0)+(d.counts.needs_review||0)}</strong> otras pendientes</p><p class="footnote">Sincronización automática una vez al día con GitHub Actions. La ejecución puede retrasarse. Una fuente con incidencias conserva el último catálogo válido hasta poder revisarla.</p></div>`)}catch(e){toast(e.message)}}
+// Warm-start with a bounded public-only snapshot while the live catalogue loads.
+// Never persist paid campaigns; their visibility must always be verified live.
+const EVENT_CACHE_KEY='plangc_event_cache';
+const EVENT_CACHE_WARM_MAX_AGE=24*60*60*1000;
+const EVENT_CACHE_OFFLINE_MAX_AGE=7*24*60*60*1000;
+let pendingCatalogCache=null,cacheWriteScheduled=false;
+function readCachedCatalog(maxAgeMs){
+ try{
+  const saved=JSON.parse(localStorage.getItem(EVENT_CACHE_KEY)||'null');
+  if(!saved||!Number.isFinite(saved.at)||
+     Date.now()<saved.at||Date.now()-saved.at>maxAgeMs||
+     !Array.isArray(saved.events)||saved.events.length>3500)return null;
+  const events=saved.events.filter(e=>e&&typeof e.title==='string'&&
+    typeof e.start==='string'&&Number.isSafeInteger(Number(e.id))&&
+    e.paid_promotion!==true);
+  return events.length?events:null;
+ }catch{return null}
+}
+function showCachedCatalog(){
+ if(state.events.length)return;
+ const cached=readCachedCatalog(EVENT_CACHE_WARM_MAX_AGE);
+ if(!cached)return;
+ state.events=cached;
+ $('sourceStatus').textContent='Agenda guardada · Comprobando novedades…';
+ render();
+}
+function scheduleCatalogCache(events){
+ pendingCatalogCache=events.filter(e=>e&&e.paid_promotion!==true);
+ if(cacheWriteScheduled)return;
+ cacheWriteScheduled=true;
+ const write=()=>{
+  cacheWriteScheduled=false;
+  const payload=pendingCatalogCache;pendingCatalogCache=null;
+  try{localStorage.setItem(EVENT_CACHE_KEY,
+    JSON.stringify({at:Date.now(),events:payload}))}catch{}
+ };
+ if(typeof requestIdleCallback==='function')requestIdleCallback(write,{timeout:1800});
+ else setTimeout(write,80);
+}
+
 async function loadEvents(){try{const result=await api('/api/events');state.events=result.events||[];scanNewEventIds(state.events);
 if(!window.__gcFirstLoad){
   window.__gcFirstLoad=true;
@@ -1266,7 +1338,7 @@ if(!window.__gcFirstLoad){
     document.querySelectorAll('[data-when]').forEach(b=>b.classList.toggle('active',b.dataset.when===state.when));
   }
 }
-localStorage.setItem('plangc_event_cache',JSON.stringify({at:Date.now(),events:state.events}));const count=state.events.filter(e=>!DParrandaTime.hasFinished(e,localTimeKey())).length;
+scheduleCatalogCache(state.events);const count=state.events.filter(e=>!DParrandaTime.hasFinished(e,localTimeKey())).length;
 $('sourceStatus').textContent=count+' planes próximos · Gran Canaria · Comprobando última revisión…';
 api('/api/meta').then(meta=>{
   const checked=Date.parse(meta.checked_at||'');
@@ -1280,7 +1352,16 @@ api('/api/meta').then(meta=>{
   }
   $('sourceStatus').textContent=count+' planes próximos · '+label+
     (errors?' · '+errors+' fuente(s) con incidencias':'');
-}).catch(()=>{$('sourceStatus').textContent=count+' planes próximos · Fecha de revisión no disponible';});render();if(!$('mapPanel').classList.contains('hidden'))drawMap();const id=new URLSearchParams(location.search).get('evento');if(id&&state.events.some(e=>e.id===+id)&&!state.seen){state.seen=1;showEvent(id)}}catch(error){try{const saved=JSON.parse(localStorage.getItem('plangc_event_cache'));if(saved.events?.length){state.events=saved.events;$('sourceStatus').textContent='Sin conexión · Mostrando datos guardados (pueden estar desactualizados)';render();return}}catch{}$('sourceStatus').textContent='No se ha podido conectar con el catálogo';toast('Error de conexión con la agenda')}}
+}).catch(()=>{$('sourceStatus').textContent=count+' planes próximos · Fecha de revisión no disponible';});render();if(!$('mapPanel').classList.contains('hidden'))drawMap();const id=new URLSearchParams(location.search).get('evento');if(id&&state.events.some(e=>e.id===+id)&&!state.seen){state.seen=1;showEvent(id)}}catch(error){
+  const cached=state.events.length?state.events:readCachedCatalog(EVENT_CACHE_OFFLINE_MAX_AGE);
+  if(cached?.length){
+   state.events=cached;
+   $('sourceStatus').textContent='Sin conexión · Mostrando datos guardados (pueden estar desactualizados)';
+   render();return;
+  }
+  $('sourceStatus').textContent='No se ha podido conectar con el catálogo';
+  toast('Error de conexión con la agenda');
+}}
 let searchRenderTimer=null;
 function init(){
  $('dpTopExplore').onclick=()=>document.querySelector('.navtab[data-tab="explore"]')?.click();
@@ -1380,6 +1461,7 @@ $('customDateCancel').onclick=closeCustomDatePanel;
  document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{const tab=b.dataset.tab;if(tab==='map'){openMap();return}if(tab==='publish'){publishDialog();return}state.tab=tab;state.newOnly=false;closeMap();state.tab=tab;render();$('eventsGrid').scrollIntoView({block:'start',behavior:'smooth'})});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('filtersPanel').classList.contains('hidden'))closeFilters();else if(!$('modal').classList.contains('hidden')){closeModal();clearEventUrl()}if(!$('mapPanel').classList.contains('hidden'))closeMap()}});
  // Accounts and merchant panel are disabled in this public phase.
+ showCachedCatalog();
  loadEvents();
  loadSponsored();
  requestCurrentLocation(false);

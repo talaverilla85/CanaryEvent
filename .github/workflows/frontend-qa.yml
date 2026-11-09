@@ -6,6 +6,7 @@ on:
       - "public/**"
       - "tests/**"
       - "scripts/check_frontend_syntax.cjs"
+      - "scripts/check_catalog_runtime.cjs"
       - ".github/workflows/frontend-qa.yml"
   push:
     branches: [main]
@@ -14,6 +15,7 @@ on:
       - "public/filter_ui.js"
       - "tests/test_frontend_performance_contract.py"
       - "scripts/check_frontend_syntax.cjs"
+      - "scripts/check_catalog_runtime.cjs"
       - ".github/workflows/frontend-qa.yml"
 
 permissions:
@@ -35,6 +37,8 @@ jobs:
       - name: Instalar dependencias de pruebas
         run: python -m pip install -r scripts/requirements.txt
       - name: Validar JavaScript del sitio
-        run: node scripts/check_frontend_syntax.cjs
+        run: |
+          node scripts/check_frontend_syntax.cjs
+          node scripts/check_catalog_runtime.cjs
       - name: Pruebas de la interfaz y compatibilidad
         run: python -m unittest discover -s tests -q
