@@ -210,9 +210,9 @@ def manifest_content(mapping):
     for url,local in sorted(mapping.items()):
         base=r"/posters/[a-f0-9]{24}"
         if (valid_official_url(url) and isinstance(local,dict) and
-            re.fullmatch(base+r"-320\\.webp",str(local.get("thumb",""))) and
-            re.fullmatch(base+r"-480\\.webp",str(local.get("retina",""))) and
-            re.fullmatch(base+r"\\.webp",str(local.get("detail","")))):
+            re.fullmatch(base+r"-320\.webp",str(local.get("thumb",""))) and
+            re.fullmatch(base+r"-480\.webp",str(local.get("retina",""))) and
+            re.fullmatch(base+r"\.webp",str(local.get("detail","")))):
             clean[url]=local
     return ("// Auto-generated static thumbnails. Official source URLs remain in events.json.\n"+
             "window.DParrandaPosterThumbs=Object.freeze("+
@@ -267,7 +267,7 @@ def generate(events,out_dir,session=None,now=None,max_new=MAX_IMAGES_PER_PASS,
               for p in variants.values()}
     for old in out_dir.glob("*.webp"):
         if old.name not in retained and re.fullmatch(
-            r"[a-f0-9]{24}(?:-(?:320|480))?\\.webp",old.name):
+            r"[a-f0-9]{24}(?:-(?:320|480))?\.webp",old.name):
             old.unlink()
     (out_dir/"manifest.js").write_text(manifest_content(mapping),encoding="utf-8")
     return {"candidates":len(urls),"available":len(mapping),"new":added,
