@@ -37,6 +37,8 @@ IMAGE_URL=re.compile(
 MAX_BYTES=12*1024*1024
 MAX_PIXELS=36_000_000
 MAX_WEBP_BYTES=200*1024
+MAX_CARD_BYTES=80*1024
+CARD_WIDTHS=(320,480)
 MAX_IMAGES_PER_PASS=80
 MAX_SCANNED_POSTERS=350
 HORIZON_DAYS=120
@@ -162,12 +164,55 @@ def compress_webp(data):
     raise ValueError("Thumbnail would exceed 200 KiB")
 
 
+def card_filename(url,width):
+    if width not in CARD_WIDTHS:
+        raise ValueError("Unsupported card width")
+    return poster_filename(url).replace(".webp",f"-{width}.webp")
+
+
+def compress_card(data,width):
+    """Small responsive version of an existing verified poster."""
+    if width not in CARD_WIDTHS or len(data)>MAX_WEBP_BYTES:
+        raise ValueError("Invalid optimized poster")
+    with Image.open(BytesIO(data)) as original:
+        if original.format!="WEBP" or original.width*original.height>MAX_PIXELS:
+            raise ValueError("Invalid optimized poster image")
+        image=ImageOps.exif_transpose(original)
+        image.thumbnail((width,width*3),Image.Resampling.LANCZOS)
+        if image.mode not in ("RGB","RGBA"):
+            image=image.convert("RGBA" if "A" in image.getbands() else "RGB")
+        for quality in (67,55,43,34):
+            out=BytesIO()
+            image.save(out,format="WEBP",quality=quality,method=5)
+            if len(out.getvalue())<=MAX_CARD_BYTES:
+                return out.getvalue()
+    raise ValueError("Card image exceeds 80 KiB")
+
+
+def create_card_variants(url,out_dir,full):
+    paths={}
+    for width in CARD_WIDTHS:
+        name=card_filename(url,width)
+        target=out_dir/name
+        if not target.exists() or not 0<target.stat().st_size<=MAX_CARD_BYTES:
+            encoded=compress_card(full,width)
+            temporary=target.with_suffix(".tmp")
+            temporary.write_bytes(encoded)
+            temporary.replace(target)
+        paths[width]="/posters/"+name
+    return {"thumb":paths[320],"retina":paths[480],
+            "detail":"/posters/"+poster_filename(url)}
+
+
 def manifest_content(mapping):
     """JavaScript only contains local verified paths and allowlisted source URLs."""
     clean={}
     for url,local in sorted(mapping.items()):
-        if (valid_official_url(url) and
-            re.fullmatch(r"/posters/[a-f0-9]{24}\.webp",str(local))):
+        base=r"/posters/[a-f0-9]{24}"
+        if (valid_official_url(url) and isinstance(local,dict) and
+            re.fullmatch(base+r"-320\\.webp",str(local.get("thumb",""))) and
+            re.fullmatch(base+r"-480\\.webp",str(local.get("retina",""))) and
+            re.fullmatch(base+r"\\.webp",str(local.get("detail","")))):
             clean[url]=local
     return ("// Auto-generated static thumbnails. Official source URLs remain in events.json.\n"+
             "window.DParrandaPosterThumbs=Object.freeze("+
@@ -191,23 +236,24 @@ def generate(events,out_dir,session=None,now=None,max_new=MAX_IMAGES_PER_PASS,
     for url in urls:
         filename=poster_filename(url)
         target=out_dir/filename
-        if target.exists() and 0<target.stat().st_size<=MAX_WEBP_BYTES:
-            mapping[url]="/posters/"+filename
-            optimized_bytes+=target.stat().st_size
-            continue
-        if added>=max_new:
+        valid_existing=target.exists() and 0<target.stat().st_size<=MAX_WEBP_BYTES
+        if not valid_existing and added>=max_new:
             continue
         try:
-            source=download_original(session,url,policy)
-            thumb=compress_webp(source)
-            if len(thumb)>=len(source):
-                raise ValueError("No compression benefit")
-            temp=target.with_suffix(".tmp")
-            temp.write_bytes(thumb)
-            temp.replace(target)
-            mapping[url]="/posters/"+filename
-            added+=1
-            source_bytes+=len(source)
+            if valid_existing:
+                # Backfill previously converted posters locally, without fetching again.
+                thumb=target.read_bytes()
+            else:
+                source=download_original(session,url,policy)
+                thumb=compress_webp(source)
+                if len(thumb)>=len(source):
+                    raise ValueError("No compression benefit")
+                temp=target.with_suffix(".tmp")
+                temp.write_bytes(thumb)
+                temp.replace(target)
+                added+=1
+                source_bytes+=len(source)
+            mapping[url]=create_card_variants(url,out_dir,thumb)
             optimized_bytes+=len(thumb)
         except (requests.RequestException,RuntimeError,PermissionError,ValueError,
                 OSError,UnidentifiedImageError) as error:
@@ -217,9 +263,11 @@ def generate(events,out_dir,session=None,now=None,max_new=MAX_IMAGES_PER_PASS,
             time.sleep(delay)
     # Keep any valid thumbnail already built for current records and safely
     # discard old posters that no longer appear in the rolling official catalog.
-    retained={p.rsplit("/",1)[1] for p in mapping.values()}
+    retained={p.rsplit("/",1)[1] for variants in mapping.values()
+              for p in variants.values()}
     for old in out_dir.glob("*.webp"):
-        if old.name not in retained and re.fullmatch(r"[a-f0-9]{24}\.webp",old.name):
+        if old.name not in retained and re.fullmatch(
+            r"[a-f0-9]{24}(?:-(?:320|480))?\\.webp",old.name):
             old.unlink()
     (out_dir/"manifest.js").write_text(manifest_content(mapping),encoding="utf-8")
     return {"candidates":len(urls),"available":len(mapping),"new":added,
