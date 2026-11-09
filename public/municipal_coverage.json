@@ -155,8 +155,8 @@
       "source_health": [
         {
           "source": "Ayuntamiento de Ingenio",
-          "found": 10,
-          "error": ""
+          "found": 0,
+          "error": "HTTPSConnectionPool(host='ingenio.es', port=443): Read timed out. (read timeout=12)"
         },
         {
           "source": "Juventud de Ingenio · programa de otoño desglosado",
@@ -192,7 +192,7 @@
       "source_health": [
         {
           "source": "Juventud Las Palmas de Gran Canaria",
-          "found": 10,
+          "found": 8,
           "error": ""
         }
       ],
