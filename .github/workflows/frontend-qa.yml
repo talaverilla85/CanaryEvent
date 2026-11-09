@@ -9,6 +9,7 @@ on:
       - "scripts/check_frontend_syntax.cjs"
       - "scripts/check_catalog_runtime.cjs"
       - "scripts/check_grid_batches.cjs"
+      - "scripts/check_feature_lcp.cjs"
       - "scripts/check_poster_runtime.cjs"
       - "scripts/sync_inline_brand_css.cjs"
       - ".github/workflows/frontend-qa.yml"
@@ -22,6 +23,7 @@ on:
       - "scripts/check_frontend_syntax.cjs"
       - "scripts/check_catalog_runtime.cjs"
       - "scripts/check_grid_batches.cjs"
+      - "scripts/check_feature_lcp.cjs"
       - "scripts/check_poster_runtime.cjs"
       - "scripts/sync_inline_brand_css.cjs"
       - ".github/workflows/frontend-qa.yml"
@@ -50,6 +52,7 @@ jobs:
           node scripts/check_frontend_syntax.cjs
           node scripts/check_catalog_runtime.cjs
           node scripts/check_grid_batches.cjs
+          node scripts/check_feature_lcp.cjs
           node scripts/check_poster_runtime.cjs
           node scripts/sync_inline_brand_css.cjs --check
       - name: Pruebas de la interfaz y compatibilidad
