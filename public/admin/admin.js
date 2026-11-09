@@ -36,7 +36,7 @@ async function loadStats(){
  const s=await api('stats');$('statEvents').textContent=s.events;$('statReview').textContent=s.reviews;
  $('statHidden').textContent=s.hidden;$('statAds').textContent=s.active_ads;
 }
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions()]);if(location.hash==='#publicidad')setSection('ads')}
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts()]);if(location.hash==='#publicidad')setSection('ads')}
 function setSection(next){
  section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
  for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){
@@ -233,6 +233,7 @@ function renderLeads(){
   '</details></div><div class="actions lead-actions">'+
   (eligible?'<button type="button" class="ghost mini" data-lead="'+id+'" data-mode="event">Crear evento</button>':'')+
   (interest?'':'<button type="button" class="ghost mini" data-lead="'+id+'" data-mode="banner">Crear banner</button>')+
+  '<button type="button" class="ghost mini" data-lead="'+id+'" data-mode="invite">Crear acceso privado</button>'+ 
   (l.status==='new'?'<button type="button" class="ghost mini" data-lead="'+id+'" data-mode="contact">Marcar contactado</button>':'')+
   '</div></article>';
  }).join('');
@@ -241,10 +242,14 @@ $('leadsList').onclick=async e=>{
  const btn=e.target.closest('[data-lead]');if(!btn)return;
  const id=Number(btn.dataset.lead),mode=btn.dataset.mode;btn.disabled=true;
  try{
-  if(mode==='contact')await api('lead-status',{id,status:'contacted'});
-  else await api('promote',{id,placement:mode});
-  message(mode==='contact'?'Solicitud marcada como contactada':'Borrador creado. Revísalo antes de publicar.');
-  await Promise.allSettled([loadLeads(),loadPromotions(),loadAds(),loadStats()]);
+  if(mode==='invite'){
+   await createAdvertiserInvite(id);
+  }else{
+   if(mode==='contact')await api('lead-status',{id,status:'contacted'});
+   else await api('promote',{id,placement:mode});
+   message(mode==='contact'?'Solicitud marcada como contactada':'Borrador creado. Revísalo antes de publicar.');
+   await Promise.allSettled([loadLeads(),loadPromotions(),loadAds(),loadStats()]);
+  }
  }catch(err){message(err.message)}finally{btn.disabled=false}
 };
 async function loadPromotions(){
@@ -273,6 +278,117 @@ $('promotionsList').onclick=async e=>{
  message(approved?'Evento patrocinado publicado':'Evento patrocinado pausado');
  await Promise.allSettled([loadPromotions(),loadStats()]);
  }catch(err){message(err.message)}finally{b.disabled=false}
+};
+
+const advertStatus={
+ draft:'Borrador',pending_payment:'Pendiente de pago',paid_review:'Pago confirmado · en revisión',
+ changes_requested:'Cambios solicitados',approved:'Aprobado',active:'Publicado',
+ finished:'Finalizado',rejected:'Rechazado',cancelled:'Cancelado'
+};
+function showAdvertiserLink(url){
+ // Show only once. We never store plaintext invitation tokens or send email.
+ if(!/^https:\/\/[^\/]+\/anunciantes\/#acceso=[0-9a-f]{64}$/.test(url||'')){
+  message('La invitación no tiene un formato válido');return;
+ }
+ const html='<div class="sheet-head"><div><span class="eyebrow">Área de anunciantes</span><h2 id="dialogTitle">Enlace personal generado</h2></div>'+
+ '<button class="ghost mini" type="button" data-close>✕</button></div>'+
+ '<p>Este enlace da acceso privado a la empresa. Cópialo ahora y envíalo tú por correo. No lo publiques en redes ni lo compartas con terceros.</p>'+
+ '<div class="field"><label for="privateInvite">Enlace de acceso</label><textarea id="privateInvite" readonly rows="4">'+escape(url)+'</textarea></div>'+
+ '<div class="actions"><button id="copyAdvertiserInvite" type="button" class="primary">Copiar enlace</button>'+
+ '<button type="button" class="ghost" data-close>Cerrar</button></div>'+
+ '<p class="notice">Si regeneras este enlace, los anteriores dejarán de funcionar y se cerrarán las sesiones previas.</p>';
+ openDialog(html);
+ $('copyAdvertiserInvite').onclick=async()=>{
+  const value=$('privateInvite').value;
+  try{await navigator.clipboard.writeText(value);message('Enlace copiado. Puedes enviarlo por correo.')}
+  catch{$('privateInvite').focus();$('privateInvite').select();message('Selecciona el enlace y cópialo manualmente')}
+ };
+}
+async function createAdvertiserInvite(leadId,rotate=false){
+ try{
+  const result=await api('advertiser-invite',{lead_id:leadId,rotate});
+  showAdvertiserLink(result.invitation_url);
+  await loadAdvertiserAccounts();
+ }catch(err){
+  if(!rotate&&/ya tiene acceso/i.test(err.message)&&
+     confirm('Este anunciante ya tiene acceso. ¿Regenerar el enlace e invalidar el anterior?')){
+   return createAdvertiserInvite(leadId,true);
+  }
+  throw err;
+ }
+}
+async function loadAdvertiserAccounts(){
+ const root=$('advertiserAccountsList');if(!root)return;
+ root.innerHTML='<div class="empty">Cargando accesos…</div>';
+ try{
+  const result=await api('advertiser-accounts'),accounts=result.accounts||[];
+  if(!accounts.length){root.innerHTML='<div class="empty">Todavía no hay invitaciones. Utiliza «Crear acceso privado» desde una solicitud de empresa.</div>';return}
+  root.innerHTML=accounts.map(a=>
+   '<article class="event"><div class="event-info"><strong>'+escape(a.company)+'</strong>'+
+   '<p>'+escape(a.email)+' · '+escape(a.contact_name||'')+'</p>'+
+   '<div class="meta"><span class="pill '+(a.active?'':'off')+'">'+(a.active?'Acceso habilitado':'Acceso revocado')+'</span>'+
+   '<span class="pill">'+escape(a.campaigns)+' anuncios</span></div></div>'+
+   '<div class="actions"><button class="ghost mini" type="button" data-ad-account="'+Number(a.id)+'" data-mode="access" data-active="'+String(!a.active)+'">'+(a.active?'Revocar acceso':'Restaurar acceso')+'</button>'+
+   (a.lead_id?'<button class="ghost mini" type="button" data-ad-account="'+Number(a.id)+'" data-mode="rotate" data-lead-id="'+Number(a.lead_id)+'">Nuevo enlace</button>':'')+
+   '</div></article>').join('');
+ }catch(err){root.innerHTML='<div class="empty">'+escape(err.message)+'</div>'}
+}
+$('advertiserAccountsList').onclick=async event=>{
+ const btn=event.target.closest('[data-ad-account]');if(!btn)return;
+ const mode=btn.dataset.mode;btn.disabled=true;
+ try{
+  if(mode==='rotate'){
+   if(confirm('¿Generar un enlace nuevo? El anterior dejará de funcionar.')){
+    await createAdvertiserInvite(Number(btn.dataset.leadId),true);
+   }
+  }else if(mode==='access'){
+   const active=btn.dataset.active==='true';
+   if(confirm(active?'¿Restaurar el acceso privado de este anunciante?':'¿Revocar su acceso y cerrar sus sesiones?')){
+    await api('advertiser-access',{id:Number(btn.dataset.adAccount),active});
+    await loadAdvertiserAccounts();
+   }
+  }
+ }catch(err){message(err.message)}finally{btn.disabled=false}
+};
+async function loadAdvertiserDrafts(){
+ const root=$('advertiserDraftsList');if(!root)return;
+ root.innerHTML='<div class="empty">Cargando campañas privadas…</div>';
+ try{
+  const result=await api('advertiser-drafts'),drafts=result.drafts||[];
+  if(!drafts.length){root.innerHTML='<div class="empty">Ningún anunciante ha creado campañas todavía.</div>';return}
+  root.innerHTML=drafts.map(d=>{
+   const status=advertStatus[d.status]||d.status;
+   return '<article class="event"><div class="event-info">'+
+    '<small>Anuncio #'+Number(d.id)+' · '+escape(d.account_company)+' · '+escape(status)+'</small>'+
+    '<strong>'+escape(d.title)+'</strong>'+
+    '<p>'+escape(d.placement)+' · '+escape(d.plan)+' · '+escape(d.days)+' días · '+escape(Number(d.price_cents)/100)+' €</p>'+
+    '<div class="meta"><span class="pill off">'+escape(d.payment_status==='paid'?'Pagado':'Sin pago confirmado')+'</span></div>'+
+    '<details class="lead-detail"><summary>Ver creatividad y detalles del borrador</summary>'+
+    '<p>'+escape(d.description)+'</p>'+
+    '<p>Zona: '+escape(Array.isArray(d.municipalities)&&d.municipalities.length?d.municipalities.join(', '):'Toda Gran Canaria')+'</p>'+
+    '<p>Inicio solicitado: '+escape(String(d.campaign_start||'Por confirmar').slice(0,10))+'</p>'+
+    '<p>Evento: '+escape(d.event_start||'No aplica')+' · '+escape(d.event_town||'')+' · '+escape(d.event_venue||'')+'</p>'+
+    (d.has_image?'<img class="lead-image" loading="lazy" src="/api/admin?op=advertiser-draft-image&id='+Number(d.id)+'" alt="'+escape(d.image_alt||'Cartel publicitario')+'">':'<p>Imagen pendiente de subir</p>')+
+    '</details></div><div class="actions">'+
+    (d.status==='paid_review'&&d.payment_status==='paid'?'<button type="button" class="ghost mini" data-ad-draft="'+Number(d.id)+'" data-review="approved">Aprobar revisión</button>':'')+
+    (['draft','paid_review','changes_requested'].includes(d.status)?'<button type="button" class="ghost mini" data-ad-draft="'+Number(d.id)+'" data-review="changes_requested">Pedir cambios</button>':'')+
+    (['draft','paid_review','changes_requested'].includes(d.status)?'<button type="button" class="ghost mini warn" data-ad-draft="'+Number(d.id)+'" data-review="rejected">Rechazar</button>':'')+
+    '</div></article>';
+  }).join('');
+ }catch(err){root.innerHTML='<div class="empty">'+escape(err.message)+'</div>'}
+}
+$('advertiserDraftsList').onclick=async event=>{
+ const btn=event.target.closest('[data-ad-draft]');if(!btn)return;
+ const status=btn.dataset.review;
+ const reason=prompt(status==='approved'?'Observaciones de la revisión (opcional)':'Indica qué debe corregir el anunciante:');
+ if(reason===null)return;
+ if(status!=='approved'&&!reason.trim()){message('Indica el motivo antes de solicitar cambios o rechazar');return}
+ btn.disabled=true;
+ try{
+  await api('advertiser-review',{id:Number(btn.dataset.adDraft),status,note:reason.trim()});
+  await loadAdvertiserDrafts();
+  message('Revisión registrada. No se ha publicado ningún anuncio.');
+ }catch(err){message(err.message)}finally{btn.disabled=false}
 };
 initialize();
 })();

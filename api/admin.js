@@ -1,4 +1,4 @@
-import { createHmac, randomUUID } from 'node:crypto';
+import { createHmac, createHash, randomBytes, randomUUID } from 'node:crypto';
 import { authenticated, db, isConfigured, json, passwordValid, safeText, sameOrigin, setSession, validLocalDate } from '../lib/admin-auth.js';
 
 const statuses = new Set(['unreviewed','approved','needs_review','rejected']);
@@ -260,6 +260,90 @@ async function changeLead(sql,body){
  return {id,status};
 }
 
+
+function invitedId(value){
+ const number=Number(value);
+ return Number.isSafeInteger(number)&&number>0?number:null;
+}
+async function advertiserAccounts(sql){
+ const accounts=await sql`SELECT a.id,a.lead_id,a.company,a.contact_name,a.email,a.active,a.created_at,a.updated_at,
+   (SELECT count(*)::int FROM advertiser_campaign_drafts d WHERE d.advertiser_id=a.id) AS campaigns
+   FROM advertiser_accounts a ORDER BY a.created_at DESC LIMIT 150`;
+ return {accounts};
+}
+async function advertiserInvite(sql,body,req){
+ const leadId=invitedId(body.lead_id);
+ if(!leadId)throw new Error('Selecciona una solicitud de empresa válida');
+ const [lead]=await sql`SELECT company,contact_name,email FROM advertising_enquiries WHERE id=${leadId}`;
+ if(!lead)throw new Error('Solicitud no encontrada');
+ if(!lead.company||!lead.email)throw new Error('La solicitud necesita empresa y correo');
+ const [existing]=await sql`SELECT id FROM advertiser_accounts WHERE lead_id=${leadId}`;
+ if(existing&&body.rotate!==true)throw new Error('Este anunciante ya tiene acceso. Confirma que quieres regenerar su enlace.');
+ const raw=randomBytes(32).toString('hex');
+ const digest=createHash('sha256').update(raw).digest('hex');
+ let accountId;
+ if(existing){
+  const [changed]=await sql`UPDATE advertiser_accounts SET token_hash=${digest},
+   access_version=access_version+1,active=TRUE,updated_at=now()
+   WHERE id=${existing.id} RETURNING id`;
+  accountId=Number(changed.id);
+ }else{
+  const [created]=await sql`INSERT INTO advertiser_accounts
+   (lead_id,company,contact_name,email,token_hash)
+   VALUES(${leadId},${lead.company},${lead.contact_name||''},${lead.email},${digest})
+   RETURNING id`;
+  accountId=Number(created.id);
+ }
+ // Server only returns this sensitive link once: never persist its raw token.
+ const origin=String(req.headers.origin||'');
+ return {created:true,account_id:accountId,
+  invitation_url:origin+'/anunciantes/#acceso='+raw,
+  message:'Copia el enlace y envíalo tú por correo. El enlace anterior queda invalidado si se ha regenerado.'};
+}
+async function advertiserChangeAccess(sql,body){
+ const id=invitedId(body.id);
+ if(!id||typeof body.active!=='boolean')throw new Error('Acceso o estado inválido');
+ const [updated]=await sql`UPDATE advertiser_accounts SET active=${body.active},
+ access_version=access_version+1,updated_at=now() WHERE id=${id}
+ RETURNING id,active`;
+ if(!updated)throw new Error('Anunciante no encontrado');
+ return {id:Number(updated.id),active:updated.active};
+}
+async function advertiserDrafts(sql){
+ const drafts=await sql`SELECT d.id,d.advertiser_id,a.company AS account_company,d.plan,d.days,d.price_cents,
+ d.municipalities,d.placement,d.advertiser,d.title,d.description,d.destination,d.image_alt,d.status,d.payment_status,
+ d.campaign_start,d.event_start,d.event_town,d.event_venue,d.actual_starts_at,d.actual_ends_at,d.review_note,
+ d.updated_at,EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
+ FROM advertiser_campaign_drafts d JOIN advertiser_accounts a ON a.id=d.advertiser_id
+ ORDER BY d.updated_at DESC LIMIT 150`;
+ return {drafts};
+}
+async function advertiserDraftImage(sql,res,id){
+ const [img]=await sql`SELECT mime_type,image_data FROM advertiser_campaign_draft_images WHERE draft_id=${id}`;
+ if(!img)return json(res,404,{error:'Imagen no encontrada'});
+ const bytes=typeof img.image_data==='string'
+  ?Buffer.from(img.image_data.replace(/^\\x/,''),'hex'):Buffer.from(img.image_data);
+ res.setHeader('Content-Type',img.mime_type);
+ res.setHeader('Content-Disposition','inline');
+ res.setHeader('Cache-Control','private, no-store');
+ res.setHeader('X-Content-Type-Options','nosniff');
+ return res.status(200).end(bytes);
+}
+async function advertiserReview(sql,body){
+ const id=invitedId(body.id),status=String(body.status||'');
+ if(!id||!['changes_requested','rejected','approved'].includes(status))throw new Error('Estado de revisión inválido');
+ const [found]=await sql`SELECT payment_status,status FROM advertiser_campaign_drafts WHERE id=${id}`;
+ if(!found)throw new Error('Anuncio no encontrado');
+ if(status==='approved'&&found.payment_status!=='paid')
+  throw new Error('No se puede aprobar publicidad sin pago verificado');
+ if(status==='approved'&&found.status!=='paid_review')
+  throw new Error('La campaña no está pendiente de revisión de pago');
+ const note=safeText(body.note,500);
+ const [changed]=await sql`UPDATE advertiser_campaign_drafts SET status=${status},
+ review_note=${note},updated_at=now() WHERE id=${id} RETURNING id,status`;
+ return {id:Number(changed.id),status:changed.status};
+}
+
 export default async function handler(req,res){
   res.setHeader('Cache-Control','private, no-store, max-age=0');
   if(!['GET','POST'].includes(req.method))return json(res,405,{error:'Método no permitido'});
@@ -283,6 +367,15 @@ export default async function handler(req,res){
     }
     if(op==='session')return json(res,200,{authenticated:authenticated(req),configured:true});
     if(!authenticated(req))return json(res,401,{error:'Acceso reservado al administrador'});
+    if(req.method==='GET'&&op==='advertiser-accounts')return json(res,200,await advertiserAccounts(sql));
+    if(req.method==='GET'&&op==='advertiser-drafts')return json(res,200,await advertiserDrafts(sql));
+    if(req.method==='GET'&&op==='advertiser-draft-image'){
+      const id=invitedId(query.id);
+      return id?advertiserDraftImage(sql,res,id):json(res,404,{error:'Imagen no encontrada'});
+    }
+    if(req.method==='POST'&&op==='advertiser-invite')return json(res,200,await advertiserInvite(sql,data(req),req));
+    if(req.method==='POST'&&op==='advertiser-access')return json(res,200,await advertiserChangeAccess(sql,data(req)));
+    if(req.method==='POST'&&op==='advertiser-review')return json(res,200,await advertiserReview(sql,data(req)));
     if(req.method==='GET'&&op==='leads')return json(res,200,await listLeads(sql));
     if(req.method==='GET'&&op==='promotions')return json(res,200,await listPromotions(sql));
     if(req.method==='GET'&&op==='leadimage'){
