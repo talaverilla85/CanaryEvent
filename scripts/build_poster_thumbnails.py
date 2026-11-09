@@ -72,15 +72,20 @@ def candidates(events,now=None):
         if not valid_official_url(url):
             continue
         start=str(event.get("start") or "")[:10]
+        until=str(event.get("end") or start)[:10]
         try:
             date=datetime.strptime(start,"%Y-%m-%d").date()
+            last=datetime.strptime(until,"%Y-%m-%d").date()
         except ValueError:
             continue
-        if not today<=date<=end:
+        # Multiweek festivals and ongoing courses may have started earlier,
+        # yet still be visible today. Their poster remains needed until the
+        # *verified* end date. Never invent an end date for expired events.
+        if date>last or last<today or date>end:
             continue
-        # Earliest upcoming use determines optimization order.
-        if url not in selected or date<selected[url]:
-            selected[url]=date
+        priority=max(date,today)
+        if url not in selected or priority<selected[url]:
+            selected[url]=priority
     return [url for url,_ in sorted(selected.items(),key=lambda x:(x[1],x[0]))][:MAX_SCANNED_POSTERS]
 
 
