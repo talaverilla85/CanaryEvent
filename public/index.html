@@ -634,7 +634,8 @@ function verifiedImage(e,large=false){
 function coverHtml(e,large=false){
  const src=verifiedImage(e,large);
  const variants=posterVariants(e);
- const srcset=variants&&!large?' srcset="'+escapeHTML(variants.thumb)+' 320w, '+escapeHTML(variants.retina)+' 480w" sizes="(max-width: 600px) 45vw, 220px"':'';
+ // Most list posters are 120-180 CSS pixels wide; don't request 480px art for them.
+ const srcset=variants&&!large?' srcset="'+escapeHTML(variants.thumb)+' 320w" sizes="(max-width: 720px) 145px, 220px"':'';
  const poster=src&&(/\/plot\/event_/.test(src)||/https:\/\/(?:eventos\.santabrigida\.es|lpacultura\.com|teror\.es|tejeda\.eu|www\.galdar\.es|www\.arucas\.org|santamariadeguia\.es)\//.test(src));
  const fallback='<div class="cover-fallback" aria-hidden="true">'+
    '<div class="fallback-top"><span>D’PARRANDA</span><span>'+escapeHTML(textForCat(e.category))+' · '+(COVER_SYMBOLS[e.category]||'✳')+'</span></div>'+
@@ -1354,7 +1355,7 @@ function scheduleCatalogCache(events){
  else setTimeout(write,80);
 }
 
-async function loadEvents(){try{const result=await api('/api/events');state.events=result.events||[];scanNewEventIds(state.events);
+async function loadEvents(){try{const metaPromise=api('/api/meta').catch(()=>null);const result=await api('/api/events');state.events=result.events||[];scanNewEventIds(state.events);
 if(!window.__gcFirstLoad){
   window.__gcFirstLoad=true;
   if(state.when!==null&&!state.events.some(e=>inFilter(e))&&state.when!=='custom'){
@@ -1365,7 +1366,7 @@ if(!window.__gcFirstLoad){
 }
 scheduleCatalogCache(state.events);const count=state.events.filter(e=>!DParrandaTime.hasFinished(e,localTimeKey())).length;
 $('sourceStatus').textContent=count+' planes próximos · Gran Canaria · Comprobando última revisión…';
-api('/api/meta').then(meta=>{
+metaPromise.then(meta=>{if(!meta)throw new Error('Metadata unavailable');
   const checked=Date.parse(meta.checked_at||'');
   const errors=(meta.sources||[]).filter(src=>src.error).length;
   let label='Sin fecha de revisión verificable';
@@ -1489,7 +1490,9 @@ $('customDateCancel').onclick=closeCustomDatePanel;
  showCachedCatalog();
  loadEvents();
  loadSponsored();
- requestCurrentLocation(false);
+ // Automatically refresh location only when permission was already granted.
+ // First-time visitors can opt in with the visible location control.
+ refreshLocationIfAllowed();
 let lastRefresh=Date.now();
 // Re-evaluate availability as Canary time passes, without reloading the catalog.
 let lastVisibleMinute=localTimeKey();
