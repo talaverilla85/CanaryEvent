@@ -120,7 +120,8 @@ class PosterThumbnailTests(unittest.TestCase):
                                     max_new=3,delay=0)
             self.assertEqual(result["available"],0)
             self.assertEqual(result["failures"],1)
-            self.assertEqual(len(session.calls),2)
+            # The policy blocks image fetch: only robots.txt was requested.
+            self.assertEqual(len(session.calls),1)
             self.assertTrue(session.calls[0][0].endswith("/robots.txt"))
             self.assertEqual(json.dumps(result).count("failure"),1)
             self.assertIn("Object.freeze({})",
