@@ -8,7 +8,7 @@ const html=fs.readFileSync(path.join(root,'public/index.html'),'utf8');
 const inline=[...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(x=>x[1]).filter(x=>x.trim());
 if(!inline.length)throw new Error('No inline scripts to validate');
 for(const [i,code] of inline.entries())new vm.Script(code,{filename:'index.html:inline-'+i});
-for(const file of ['filter_ui.js','reminders.js','temporal.js','install_prompt.js']){
+for(const file of ['filter_ui.js','reminders.js','temporal.js','install_prompt.js','posters/manifest.js']){
  new vm.Script(fs.readFileSync(path.join(root,'public',file),'utf8'),{filename:file});
 }
-console.log('Frontend syntax OK: '+inline.length+' inline blocks, 4 external scripts');
+console.log('Frontend syntax OK: '+inline.length+' inline blocks, 5 external scripts');
