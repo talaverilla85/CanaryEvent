@@ -5,13 +5,13 @@ const vm=require('node:vm');
 const assert=require('node:assert/strict');
 const path=require('node:path');
 const html=fs.readFileSync(path.join(__dirname,'../public/index.html'),'utf8');
-const first=html.indexOf('function verifiedImage(e){');
+const first=html.indexOf('function posterVariants(e){');
 const last=html.indexOf('\nfunction coverHtml(e,',first);
-assert.ok(first>0&&last>first,'verifiedImage function not found');
+assert.ok(first>0&&last>first,'Poster selection functions not found');
 const expected='https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6a955c6a013a6268e0795f4b';
 const local='/posters/6a955c6a013a6268e0795f4b.webp';
 const map={};
-map[expected]=local;
+map[expected]={thumb:local.replace('.webp','-320.webp'),retina:local.replace('.webp','-480.webp'),detail:local};
 const ctx={URL,window:{DParrandaPosterThumbs:map},IMAGE_HOSTS:new Set([
  'www.eventosgrancanaria.com','ingenio.es'
 ])};
@@ -20,7 +20,7 @@ vm.runInContext(html.slice(first,last),ctx);
 const verify=x=>vm.runInContext('verifiedImage(event)',Object.assign(ctx,{event:x}));
 assert.equal(verify({
  image_url:expected,image_status:'official_remote',
-}),local,'Official poster must load local WebP when present');
+}),map[expected].thumb,'Official poster cards must load the 320px WebP');
 assert.equal(verify({
  image_url:expected,image_status:'official_remote',
  paid_promotion:true
@@ -35,6 +35,8 @@ assert.equal(verify({
  image_url:'https://example.evil.invalid/controlpanel/files/gridfs/x',
  image_status:'official_remote'
 }),'','Unapproved image host cannot be loaded');
+assert.equal(vm.runInContext('verifiedImage(event,true)',Object.assign(ctx,{event:{image_url:expected,image_status:'official_remote'}})),local,
+ 'Detail must use full-resolution local WebP');
 ctx.window.DParrandaPosterThumbs[expected]='https://evil.invalid/stolen.webp';
 assert.equal(verify({image_url:expected,image_status:'official_remote'}),expected,
  'Invalid manifest path falls back to the verified original');
