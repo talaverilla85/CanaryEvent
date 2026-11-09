@@ -2448,8 +2448,23 @@ function openFilters(){$('filtersBackdrop').classList.remove('hidden');$('filter
 function closeFilters(){$('filtersBackdrop').classList.add('hidden');$('filtersPanel').classList.add('hidden');$('openFiltersBtn').setAttribute('aria-expanded','false');if($('modal').classList.contains('hidden'))document.body.style.overflow='';$('openFiltersBtn').focus()}
 function setIsland(name){if(!ISLANDS.includes(name))return;state.island=name;state.tab='explore';state.newOnly=false;state.visibleLimit=24;try{localStorage.setItem('dparranda_island_v1',name)}catch{}render()}
 function resetDParrandaFilters(){setIsland('Gran Canaria');state.when=null;state.freeOnly=false;state.dateRange=null;state.dateRangeLabel='';state.categories.clear();state.query='';state.sort='recommended';state.municipality='';state.origin=null;state.originName='Toda Gran Canaria';state.geoManualOverride=true;state.geoRequestSeq++;$('locationName').textContent=state.originName;$('searchInput').value='';$('clearSearch').classList.add('hidden');$('sortSelect').value='recommended';try{localStorage.removeItem('padonde_selected_categories');localStorage.removeItem('plangc_municipio')}catch{}closeCustomDatePanel();render()}
-/* A live magazine cover based only on published, actual events. */
+/* A live magazine cover based only on published, actual events.
+   Keep its decorative motif in the DOM across updates: removing it and adding
+   it again after /api/catalog responds creates a late Largest Contentful Paint. */
 let editorialFeatureId=null;
+function clearFeaturedPhotos(media){
+ // Preserve the same early-painted decorative motif; never reinsert it on
+ // every catalog refresh, island change, or filter interaction.
+ let motif=media.querySelector('.dp-feature-fallback');
+ if(!motif){
+  motif=document.createElement('span');
+  motif.className='dp-feature-fallback';
+  motif.setAttribute('aria-hidden','true');
+  motif.textContent='✳';
+  media.prepend(motif);
+ }
+ media.querySelectorAll('img').forEach(image=>image.remove());
+}
 function renderEditorial(visible,now=localTimeKey()){
  const dateElement=$('dpBrandDate');
  if(dateElement){
@@ -2464,7 +2479,7 @@ function renderEditorial(visible,now=localTimeKey()){
   $('dpFeaturedOpen').disabled=true;
   $('dpFeatureTitle').textContent='Muy pronto, más islas';
   $('dpFeatureMeta').textContent='Descubre los planes de Gran Canaria';
-  $('dpFeatureMedia').replaceChildren();
+  clearFeaturedPhotos($('dpFeatureMedia'));
   editorialFeatureId=null;
   return;
  }
@@ -2479,7 +2494,7 @@ function renderEditorial(visible,now=localTimeKey()){
   $('dpFeaturedOpen').disabled=true;
   $('dpFeatureTitle').textContent='La agenda se está preparando';
   $('dpFeatureMeta').textContent='Explora los planes de Gran Canaria';
-  $('dpFeatureMedia').replaceChildren();
+  clearFeaturedPhotos($('dpFeatureMedia'));
   editorialFeatureId=null;
   return;
  }
@@ -2493,10 +2508,7 @@ function renderEditorial(visible,now=localTimeKey()){
  if(key===editorialFeatureId)return;
  editorialFeatureId=key;
  const media=$('dpFeatureMedia');
- media.replaceChildren();
- const motif=document.createElement('span');
- motif.className='dp-feature-fallback';motif.setAttribute('aria-hidden','true');motif.textContent='✳';
- media.append(motif);
+ clearFeaturedPhotos(media);
  if(image){
   const img=document.createElement('img');
   img.src=image;img.alt='Imagen del evento '+next.title;
