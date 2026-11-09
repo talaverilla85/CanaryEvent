@@ -119,9 +119,9 @@ def manifest_content(mapping):
         if all(paths.get(key)=="/posters/"+filename for key,filename in
                (("thumb",names[320]),("retina",names[480]),("detail",names["detail"]))):
             clean[url]=paths
-    return ("// Official external images cached at publication time; original URLs remain in events.json.\\n"
+    return ("// Official external images cached at publication time; original URLs remain in events.json.\n"
             "window.DParrandaExtraPosterThumbs=Object.freeze("+
-            json.dumps(clean,ensure_ascii=True,separators=(",",":"))+");\\n")
+            json.dumps(clean,ensure_ascii=True,separators=(",",":"))+");\n")
 
 
 def generate(events,out_dir,session=None,now=None,max_new=MAX_NEW,delay=0.15):
