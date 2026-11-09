@@ -32,21 +32,23 @@ for rid in IDS:
         # Audit payload is an escaped Lighthouse JSON string. Two sets are
         # commonly embedded (desktop/mobile); print every occurrence so the
         # real mobile metrics can be identified by their numeric values.
+        # PageSpeed serializes JSON within an escaped JS string in HTML.
+        quote=chr(92)+'"'
         for name in ("performance","first-contentful-paint","largest-contentful-paint",
                      "total-blocking-time","speed-index","cumulative-layout-shift"):
-            marker='\\\\"'+name+'\\\\":{'
+            marker=quote+name+quote+':{'
             candidates=[]
             cursor=0
             while True:
                 ix=raw.find(marker,cursor)
                 if ix<0: break
                 piece=raw[ix:ix+1400]
-                score=re.search(r'\\\\\"score\\\\\":([0-9.]+|null)',piece)
-                numeric=re.search(r'\\\\\"numericValue\\\\\":([0-9.]+)',piece)
+                score=re.search(re.escape(quote+'score'+quote+':')+r'([0-9.]+|null)',piece)
+                numeric=re.search(re.escape(quote+'numericValue'+quote+':')+r'([0-9.]+)',piece)
                 candidates.append({"score":score.group(1) if score else None,
                                    "numeric":numeric.group(1) if numeric else None})
                 cursor=ix+len(marker)
-            print("METRIC",name,candidates[:10],flush=True)
+            print("METRIC",name,candidates[:12],flush=True)
         for kw in ("First Contentful Paint","Total Blocking Time","Speed Index","Largest Contentful Paint","Rendimiento","performanceScore","lighthouseResult","categories"):
             pos=raw.lower().find(kw.lower())
             print("MATCH",kw,pos,repr(raw[max(0,pos-170):pos+500])[:700] if pos>=0 else "-",flush=True)
