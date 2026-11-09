@@ -610,3 +610,8 @@ body.dp-install-guide-open{overflow:hidden}
  .dp-shortcut,.event-card .card-share-btn{transition:none}
  .dp-shortcut:hover,.event-card .card-share-btn:hover{transform:none}
 }
+
+/* Avoid non-composited color/border animation on quick filters. */
+.dp-shortcut{transition:transform .16s}
+.dp-shortcut.active{transition:none}
+@media(prefers-reduced-motion:reduce){.dp-shortcut{transition:none}}
