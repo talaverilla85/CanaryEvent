@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - "scripts/build_poster_thumbnails.py"
+      - "scripts/sync_feature_preview.py"
       - "scripts/build_remote_poster_thumbnails.py"
       - "tests/test_remote_poster_thumbnails.py"
       - "scripts/optimize_static_sponsors.py"
@@ -36,20 +37,22 @@ jobs:
       - name: Dependencias de cartelería
         run: python -m pip install "pillow>=10,<13" "requests>=2.31,<3"
       - name: Comprobar rutas y conversiones sin red
-        run: python -m unittest -v tests.test_poster_thumbnails tests.test_remote_poster_thumbnails
+        run: python -m unittest -v tests.test_poster_thumbnails tests.test_remote_poster_thumbnails tests.test_feature_preview
       - name: Generar miniaturas WebP con fuentes oficiales permitidas
         run: python scripts/build_poster_thumbnails.py --max-new 80
       - name: Optimizar otros carteles oficiales permitidos como WebP
         run: python scripts/build_remote_poster_thumbnails.py --max-new 24
       - name: Optimizar imagen publicitaria de ejemplo sin servicios externos
         run: python scripts/optimize_static_sponsors.py
+      - name: Preparar imagen inicial del evento destacado
+        run: python scripts/sync_feature_preview.py
       - name: Guardar imágenes estáticas y mapa de URLs
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A public/posters/ public/sponsors/arimar-pollo-asado.webp
+          git add -A public/posters/ public/sponsors/arimar-pollo-asado.webp public/index.html
           if git diff --cached --quiet; then
             echo 'Carteles optimizados al día; no hay nuevos archivos'
             exit 0
