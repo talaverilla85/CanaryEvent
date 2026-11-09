@@ -632,6 +632,13 @@ const zoneParts=(date=new Date())=>Object.fromEntries(new Intl.DateTimeFormat('e
 const todayKey=()=>{const p=zoneParts();return `${p.year}-${p.month}-${p.day}`};
 const localTimeKey=()=>{const p=zoneParts();return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`};
 const plusDays=(date,n)=>{let d=new Date(date+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10)};
+function nextWeekendDates(today){
+ const date=new Date(today+'T12:00:00Z'),dow=date.getUTCDay();
+ // On Saturday and Sunday, keep the current weekend.
+ const offset=dow===6?-1:dow===0?-2:(5-dow+7)%7;
+ const friday=plusDays(today,offset);
+ return [friday,plusDays(friday,1),plusDays(friday,2)];
+}
 const dayName=s=>new Date(s.slice(0,10)+'T12:00:00Z').toLocaleDateString('es-ES',{timeZone:'UTC',weekday:'short',day:'numeric',month:'short'}).replace('.','');
 const timeLabel=e=>e.end&&e.end.length===10&&e.end.slice(0,10)>e.start.slice(0,10)?'Consulta las sesiones':e.start.length>10?e.start.slice(11,16):'Hora por confirmar';
 const dayLabel=e=>dayName(e.start);
@@ -666,7 +673,11 @@ function inFilter(e){
  if(state.when==='today')return start<=today&&end>=today;
  if(state.when==='tomorrow')return start<=tom&&end>=tom;
  if(state.when==='week')return start<=plusDays(today,6)&&end>=today;
- if(state.when==='weekend'){const dow=new Date(today+'T12:00:00Z').getUTCDay(),sat=plusDays(today,(6-dow+7)%7),sun=plusDays(sat,1);return start<=sun&&end>=sat}
+ if(state.when==='weekend'){
+  const [friday,,sunday]=nextWeekendDates(today);
+  // A programme's overall range is not proof of a specific weekend session.
+  return start>=friday&&start<=sunday;
+ }
  return true;
 }
 function eventScore(e){
@@ -900,20 +911,24 @@ function renderWeekendShelf(){
  const enabled=state.island==='Gran Canaria'&&state.tab==='explore'&&
   !state.query&&state.when!=='weekend'&&!state.categories.size&&!state.freeOnly;
  if(!enabled||!state.events.length){shelf.hidden=true;return}
- const date=new Date(todayKey()+'T12:00:00Z');
- const dow=date.getUTCDay();
- const offset=dow===6?-1:dow===0?-2:(5-dow+7)%7;
- date.setUTCDate(date.getUTCDate()+offset);
- const friday=date.toISOString().slice(0,10);
- date.setUTCDate(date.getUTCDate()+2);
- const sunday=date.toISOString().slice(0,10);
- const items=state.events.filter(e=>e&&e.id!==undefined&&e.title&&
+ const [friday,saturday,sunday]=nextWeekendDates(todayKey());
+ const date=new Date(sunday+'T12:00:00Z');
+ const matches=state.events.filter(e=>e&&e.id!==undefined&&e.title&&
   !e.paid_promotion&&typeof e.start==='string'&&
-  e.start.slice(0,10)<=sunday&&
-  (e.end||e.start).slice(0,10)>=friday&&
+  // Only select dated sessions, never infer sessions from a long programme range.
+  e.start.slice(0,10)>=friday&&e.start.slice(0,10)<=sunday&&
   !DParrandaTime.hasFinished(e,localTimeKey())&&
-  (!state.municipality||e.municipality===state.municipality))
-  .sort((a,b)=>a.start.localeCompare(b.start)).slice(0,10);
+  (!state.municipality||e.municipality===state.municipality));
+ // Share discovery space across the three days instead of showing Friday alone.
+ const buckets=[friday,saturday,sunday].map(day=>matches
+  .filter(e=>e.start.slice(0,10)===day)
+  .sort((a,b)=>a.start.localeCompare(b.start)));
+ const items=[];
+ while(items.length<12&&buckets.some(group=>group.length)){
+  for(const group of buckets){
+   if(group.length&&items.length<12)items.push(group.shift());
+  }
+ }
  if(!items.length){shelf.hidden=true;return}
  shelf.hidden=false;
  $('dpShelfDate').textContent='Del '+friday.slice(8,10)+' al '+sunday.slice(8,10)+' de '+
