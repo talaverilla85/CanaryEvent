@@ -48,7 +48,11 @@ class CinemaPolicyTest(unittest.TestCase):
   self.assertTrue(all(cinema_policy.is_commercial_screening(e) for e in discarded))
   self.assertEqual(len(kept)+len(discarded),len(es))
   self.assertTrue(any("Efecto cinema" in e["title"] for e in kept))
-  self.assertTrue(any("Stray Kids" in e["title"] for e in kept))
+  # This particular concert is no longer necessarily in the rolling catalog.
+  # Protect the policy itself, not the presence of an expired event fixture.
+  self.assertFalse(cinema_policy.is_commercial_screening(
+      entry("Stray Kids World Tour LIVE VIEWING (Reemisión)")))
+  self.assertTrue(all(not cinema_policy.is_commercial_screening(e) for e in kept))
   self.assertFalse(any("Clayface" in e["title"] for e in kept))
 if __name__=="__main__":unittest.main()
 
