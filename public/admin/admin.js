@@ -210,7 +210,7 @@ function daysLeft(value){
 async function loadLeads(){
  const list=$('leadsList');if(!list)return;
  list.innerHTML='<div class="empty">Cargando solicitudes…</div>';
- try{const data=await api('leads');leads=data.leads||[];renderLeads()}
+ try{const data=await api('leads');leads=data.leads||[];renderLeads();const pending=leads.filter(l=>l.status==='new'&&String(l.dates_text||'').startsWith('INTERES_INICIAL|')).length;$('tabAds').textContent='Publicidad'+(pending?' · '+pending+' interesados':'')}
  catch(e){list.innerHTML='<div class="empty">'+escape(e.message)+'</div>'}
 }
 function renderLeads(){
