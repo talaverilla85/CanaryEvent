@@ -78,6 +78,35 @@ class DParrandaHomepageContract(unittest.TestCase):
         self.assertIn(".dp-shortcut.active", css)
         self.assertIn(".event-card .card-share-btn", css)
 
+    def test_weekend_discovery_only_uses_confirmed_session_dates(self):
+        """A broad programme interval must never invent an event this weekend."""
+        self.assertIn("function nextWeekendDates(today)", self.html)
+        self.assertIn("return start>=friday&&start<=sunday;", self.html)
+        self.assertIn(
+            "e.start.slice(0,10)>=friday&&e.start.slice(0,10)<=sunday&&",
+            self.html,
+        )
+        self.assertIn("const buckets=[friday,saturday,sunday]", self.html)
+        self.assertNotIn("(e.end||e.start).slice(0,10)>=friday", self.html)
+
+        # Regression examples: these workshops start in September and their
+        # broad end dates must NOT imply sessions on 13-15 November.
+        friday, sunday = "2026-11-13", "2026-11-15"
+        for old_start, overall_end in [
+            ("2026-09-11", "2026-12-11"),
+            ("2026-09-14", "2026-12-21"),
+        ]:
+            self.assertLess(old_start, friday)
+            self.assertGreater(overall_end, sunday)
+            self.assertFalse(friday <= old_start <= sunday)
+
+        catalog = json.loads((PUBLIC / "events.json").read_text(encoding="utf-8"))
+        explicit = [
+            event for event in catalog["events"]
+            if friday <= event.get("start", "")[:10] <= sunday
+        ]
+        self.assertGreater(len(explicit), 0, "The test weekend should have events")
+
     def test_install_invitation_recovers_after_revisit(self):
         """A stale browser flag must not hide install indefinitely."""
         js = (PUBLIC / "install_prompt.js").read_text(encoding="utf-8")
