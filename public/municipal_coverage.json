@@ -294,8 +294,8 @@
       "source_health": [
         {
           "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-          "found": 0,
-          "error": "HTTPSConnectionPool(host='santamariadeguia.es', port=443): Read timed out. (read timeout=12)"
+          "found": 1,
+          "error": ""
         }
       ],
       "full_coverage_claim": false

@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-09T20:17:29+00:00",
+  "checked_at": "2026-11-09T21:55:02+00:00",
   "quality_counts": {
     "publicados": 455,
     "recintos_sin_verificar": 46,
     "programas_y_fichas_por_revisar": 9,
     "precios_sin_confirmar": 322,
     "distancia_a_centro_municipal": 302,
-    "fuentes_con_error": 2,
+    "fuentes_con_error": 1,
     "duplicados_potenciales": 3
   },
   "sources": [
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 15,
+      "fichas_leidas_en_esta_ejecucion": 3,
       "error": ""
     },
     {
@@ -192,13 +192,13 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 1,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "HTTPSConnectionPool(host='santamariadeguia.es', port=443): Read timed out. (read timeout=12)"
+      "fichas_leidas_en_esta_ejecucion": 1,
+      "error": ""
     },
     {
       "source": "Municipio · descubrimiento oficial · Agaete",
@@ -462,10 +462,6 @@
     }
   ],
   "reported_errors": [
-    {
-      "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "error": "HTTPSConnectionPool(host='santamariadeguia.es', port=443): Read timed out. (read timeout=12)"
-    },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
