@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-08T12:09:13+00:00",
-  "not_published": 47,
+  "updated_at": "2026-11-09T12:37:20+00:00",
+  "not_published": 46,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -208,30 +208,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 150,
-      "title": "Fashion & Friend",
-      "start": "2026-11-06",
-      "end": "2026-11-08",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0000/fashion-friend",
-      "organizer_url": "https://www.grancanariamodacalida.com/fashionfriends",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 157,
-      "title": "IV Jornadas de Neurodiversidad Mogán 2026",
-      "start": "2026-11-06",
-      "end": "2026-11-08",
-      "municipality": "Mogán",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261106-0007/iv-jornadas-de-neurodiversidad-mogan-2026",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 195,
       "title": "Curso básico de cocina canaria saludable",
       "start": "2026-11-11T19:30:00",
@@ -373,6 +349,18 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261115-0002/visita-a-tejeda-feria-km-0",
       "organizer_url": "https://ingenio.es/events/%f0%9f%8d%82%f0%9f%8f%94%ef%b8%8f-visita-a-tejeda-feria-km-0-%f0%9f%a7%80%f0%9f%8d%af/",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 904,
+      "title": "El crimen de las espiritistas de Telde en el Centro Cultural",
+      "start": "2026-11-15T19:00:00",
+      "end": "2026-11-15T20:00:00",
+      "municipality": "Santa Brígida",
+      "venue": "CENTRO CULTURAL",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/la-casa-de-don-alonso-en-la-plaza-de-la-iglesia/",
+      "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
