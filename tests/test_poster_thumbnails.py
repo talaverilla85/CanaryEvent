@@ -157,6 +157,14 @@ class PosterThumbnailTests(unittest.TestCase):
             text=(out/"manifest.js").read_text()
             self.assertIn(URL,text)
             self.assertIn("/posters/6a955c6a013a6268e0795f4b.webp",text)
+            self.assertIn("/posters/6a955c6a013a6268e0795f4b-320.webp",text)
+            self.assertIn("/posters/6a955c6a013a6268e0795f4b-480.webp",text)
+            for width in posters.CARD_WIDTHS:
+                card=out/posters.card_filename(URL,width)
+                self.assertTrue(card.is_file())
+                self.assertLessEqual(card.stat().st_size,posters.MAX_CARD_BYTES)
+                with Image.open(card) as image:
+                    self.assertLessEqual(image.width,width)
             self.assertIn("Object.freeze(",text)
 
             # A second run reuses the immutable file without downloading it again.
@@ -165,6 +173,20 @@ class PosterThumbnailTests(unittest.TestCase):
             self.assertEqual(repeat["new"],0)
             self.assertEqual(repeat["available"],1)
             self.assertEqual(len(reuse.calls),1)
+            self.assertEqual(repeat["available"],1)
+
+    def test_existing_webp_backfills_card_sizes_without_redownload(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out=Path(tmp)
+            full=posters.compress_webp(sample_png())
+            (out/posters.poster_filename(URL)).write_bytes(full)
+            session=FakeSession()
+            result=posters.generate([event()],out,session,self.now,max_new=0,delay=0)
+            self.assertEqual(result["available"],1)
+            self.assertEqual(result["new"],0)
+            self.assertEqual(len(session.calls),1)
+            self.assertTrue((out/posters.card_filename(URL,320)).exists())
+            self.assertTrue((out/posters.card_filename(URL,480)).exists())
 
     def test_bounded_work_defers_unprocessed_originals(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -184,9 +206,15 @@ class PosterThumbnailTests(unittest.TestCase):
 
     def test_manifest_never_injects_arbitrary_javascript(self):
         result=posters.manifest_content({
-            URL:"/posters/6a955c6a013a6268e0795f4b.webp",
-            URL2:"https://outside.example/evil.js",
-            "https://evil.example/img":"/posters/6a955c6a013a6268e0795f4b.webp",
+            URL:{"thumb":"/posters/6a955c6a013a6268e0795f4b-320.webp",
+                 "retina":"/posters/6a955c6a013a6268e0795f4b-480.webp",
+                 "detail":"/posters/6a955c6a013a6268e0795f4b.webp"},
+            URL2:{"thumb":"https://outside.example/evil.js",
+                  "retina":"/posters/6ab332eb013a6268e079e576-480.webp",
+                  "detail":"/posters/6ab332eb013a6268e079e576.webp"},
+            "https://evil.example/img":{"thumb":"/posters/6a955c6a013a6268e0795f4b-320.webp",
+                 "retina":"/posters/6a955c6a013a6268e0795f4b-480.webp",
+                 "detail":"/posters/6a955c6a013a6268e0795f4b.webp"},
         })
         self.assertIn(URL,result)
         self.assertNotIn("outside.example",result)
