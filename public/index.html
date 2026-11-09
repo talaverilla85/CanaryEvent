@@ -568,7 +568,8 @@ body{background:var(--cream)}
 <!-- Map script loaded on demand -->
 <script>
 try{localStorage.setItem('plangc_check','ok');localStorage.removeItem('plangc_check')}catch(e){const mem={};Object.defineProperty(window,'localStorage',{value:{getItem:k=>mem[k]??null,setItem:(k,v)=>{mem[k]=String(v)},removeItem:k=>{delete mem[k]}}})}
-</script><script src="/reminders.js"></script>
+</script><script src="/posters/manifest.js"></script>
+<script src="/reminders.js"></script>
 <script src="/filter_ui.js"></script>
 <script src="/temporal.js?v=1"></script>
 <script src="/install_prompt.js?v=2"></script>
@@ -605,7 +606,14 @@ function verifiedImage(e){
  if(e.image_status!=='official_remote'||!e.image_url)return '';
  try{
   const url=new URL(e.image_url);
-  return url.protocol==='https:'&&IMAGE_HOSTS.has(url.hostname)?url.href:'';
+  if(url.protocol!=='https:'||!IMAGE_HOSTS.has(url.hostname))return '';
+  // Only thumbnails derived from the same already verified official URL.
+  // Advertising images are handled above and never passed through this map.
+  const optimized=window.DParrandaPosterThumbs?.[url.href];
+  if(typeof optimized==='string'&&/^\/posters\/[a-f0-9]{24}\.webp$/.test(optimized)){
+   return optimized;
+  }
+  return url.href;
  }catch{return ''}
 }
 function coverHtml(e,large=false){
