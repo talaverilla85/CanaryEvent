@@ -84,6 +84,7 @@ export default async function handler(req,res){
   return res.status(200).end(bytes);
  }
  if(req.method==='POST'&&op==='save'){
+  if(req.body?.consent!==true)return json(res,400,{error:'Debes aceptar el aviso de privacidad'});
   const x=clean(req.body||{});if(!x)return json(res,400,{error:'Revisa los datos de la campaña'});
   const idIn=req.body?.id?positive(req.body.id):null;
   if(req.body?.id&&!idIn)return json(res,400,{error:'Borrador no válido'});
