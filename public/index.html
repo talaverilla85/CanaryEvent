@@ -618,7 +618,7 @@ function coverHtml(e,large=false){
    '<div class="fallback-bottom">'+escapeHTML(textForCat(e.category))+' · '+escapeHTML(e.municipality)+'</div></div>';
  return fallback+(src?'<img class="official-cover'+(poster?' poster-art':'')+'" src="'+escapeHTML(src)+'" alt="'+
     escapeHTML(e.image_alt||('Cartel del evento: '+e.title))+'" loading="'+(large?'eager':'lazy')+
-    '" decoding="async" referrerpolicy="strict-origin-when-cross-origin">':'');
+    '" decoding="async"'+(large?' fetchpriority="high"':'')+' referrerpolicy="strict-origin-when-cross-origin">':'');
 }
 document.addEventListener('error',event=>{
  const img=event.target;
@@ -924,7 +924,7 @@ function renderEditorial(visible){
  if(image){
   const img=document.createElement('img');
   img.src=image;img.alt='Imagen del evento '+next.title;
-  img.decoding='async';img.loading='eager';img.referrerPolicy='strict-origin-when-cross-origin';
+  img.decoding='async';img.loading='eager';img.fetchPriority='high';img.referrerPolicy='strict-origin-when-cross-origin';
   if(/\/plot\/event_|eventos\.santabrigida\.es|lpacultura\.com|teror\.es|tejeda\.eu|www\.galdar\.es|www\.arucas\.org|santamariadeguia\.es/i.test(image))
     img.classList.add('poster-art');
   img.addEventListener('error',()=>img.remove(),{once:true});
@@ -1266,7 +1266,7 @@ function closeMap(){
  $('mapPanel').classList.add('hidden');
  state.tab='explore';render();
 }
-async function api(path,method='GET',body=null){const options={method,credentials:'same-origin',headers:{}};if(method==='GET')options.cache='no-store';if(method!=='GET'){options.headers['Content-Type']='application/json';if(state.user)options.headers['X-CSRF-Token']=state.user.csrf;options.body=JSON.stringify(body||{})}const url=path==='/api/events'?'/api/catalog':path==='/api/meta'?'/meta.json':path;let r;try{r=await fetch(url,options);if(path==='/api/events'&&!r.ok)r=await fetch('/events.json',options)}catch(e){if(path!=='/api/events')throw e;r=await fetch('/events.json',options)}let data=await r.json();if(!r.ok)throw Error(data.error||'No se pudo completar la operación');return data}
+async function api(path,method='GET',body=null){const options={method,credentials:'same-origin',headers:{}};if(method==='GET')options.cache=path==='/api/events'?'default':'no-store';if(method!=='GET'){options.headers['Content-Type']='application/json';if(state.user)options.headers['X-CSRF-Token']=state.user.csrf;options.body=JSON.stringify(body||{})}const url=path==='/api/events'?'/api/catalog':path==='/api/meta'?'/meta.json':path;let r;try{r=await fetch(url,options);if(path==='/api/events'&&!r.ok)r=await fetch('/events.json',{...options,cache:'no-cache'})}catch(e){if(path!=='/api/events')throw e;r=await fetch('/events.json',{...options,cache:'no-cache'})}let data=await r.json();if(!r.ok)throw Error(data.error||'No se pudo completar la operación');return data}
 function authDialog(mode='login'){openModal(`<div class="form-panel"><span class="eyebrow">BIENVENIDO A LA COMUNIDAD</span><h2 id="modalHeading">${mode==='register'?'Crear cuenta':'Entrar a D’Parranda'}</h2><p>${mode==='register'?'Publica tus actividades y descubre nuevos asistentes. Las propuestas se revisan antes de aparecer en el catálogo.':'Accede para proponer eventos y consultar tus publicaciones.'}</p><form class="stack-form" id="authForm"><div class="field"><label for="authEmail">Correo electrónico</label><input id="authEmail" type="email" required autocomplete="email" maxlength="254" placeholder="nombre@empresa.com"></div><div class="field"><label for="authPwd">Contraseña</label><input id="authPwd" type="password" required minlength="10" autocomplete="${mode==='register'?'new-password':'current-password'}" placeholder="Mínimo 10 caracteres"></div><button type="submit" class="primary-btn">${mode==='register'?'Crear cuenta':'Iniciar sesión'}</button></form><button id="toggleAuth" class="inline-link">${mode==='register'?'¿Ya tienes cuenta? Entrar':'¿No tienes cuenta? Regístrate gratis'}</button></div>`);
  $('toggleAuth').onclick=()=>authDialog(mode==='login'?'register':'login');$('authForm').onsubmit=async e=>{e.preventDefault();try{const r=await api('/api/auth/'+mode,'POST',{email:$('authEmail').value,password:$('authPwd').value});state.user=r.user;toast('Sesión iniciada');publishDialog()}catch(err){toast(err.message)}};
 }
@@ -1289,6 +1289,46 @@ async function adminDialog(){if(!state.user||state.user.role!=='admin')return;tr
  $('manualSync').onclick=async()=>{try{await api('/api/admin/sync','POST',{});toast('Actualización de fuentes iniciada')}catch(e){toast(e.message)}};
  document.querySelectorAll('[data-review]').forEach(b=>b.onclick=async()=>{try{await api('/api/admin/review','POST',{id:+b.dataset.review,status:b.dataset.status});toast('Revisión guardada');await loadEvents();adminDialog()}catch(e){toast(e.message)}})}catch(err){toast(err.message)}}
 async function showSources(){try{const d=await api('/api/meta');const rows=d.sources.map(s=>`<div class="mine-item"><div><strong>${escapeHTML(s.source)}</strong><small>${escapeHTML(s.checked_at)} · ${s.found} candidatos · ${s.added} nuevos ${s.error?'· Error: '+escapeHTML(s.error):''}</small></div></div>`).join('');openModal(`<div class="form-panel"><span class="eyebrow">TRANSPARENCIA Y FUENTES</span><h2 id="modalHeading">Cómo se actualiza la agenda</h2><p><strong>Última revisión:</strong> ${escapeHTML(d.checked_at||'No disponible')}</p><p>D’Parranda consulta periódicamente las agendas municipales, el Cabildo y las fuentes de entradas disponibles para Gran Canaria. Los datos pueden cambiar: comprueba siempre el enlace original del evento.</p><div class="mine-list">${rows||'<p>Aún no se ha realizado ninguna sincronización.</p>'}</div><p><strong>${d.counts.approved||0}</strong> planes con recinto identificado · <strong>${d.counts.excluded_missing_venue||0}</strong> fichas no publicadas por ubicación sin verificar · <strong>${(d.counts.pending||0)+(d.counts.needs_review||0)}</strong> otras pendientes</p><p class="footnote">Sincronización automática una vez al día con GitHub Actions. La ejecución puede retrasarse. Una fuente con incidencias conserva el último catálogo válido hasta poder revisarla.</p></div>`)}catch(e){toast(e.message)}}
+// Warm-start with a bounded public-only snapshot while the live catalogue loads.
+// Never persist paid campaigns; their visibility must always be verified live.
+const EVENT_CACHE_KEY='plangc_event_cache';
+const EVENT_CACHE_WARM_MAX_AGE=24*60*60*1000;
+const EVENT_CACHE_OFFLINE_MAX_AGE=7*24*60*60*1000;
+let pendingCatalogCache=null,cacheWriteScheduled=false;
+function readCachedCatalog(maxAgeMs){
+ try{
+  const saved=JSON.parse(localStorage.getItem(EVENT_CACHE_KEY)||'null');
+  if(!saved||!Number.isFinite(saved.at)||
+     Date.now()<saved.at||Date.now()-saved.at>maxAgeMs||
+     !Array.isArray(saved.events)||saved.events.length>3500)return null;
+  const events=saved.events.filter(e=>e&&typeof e.title==='string'&&
+    typeof e.start==='string'&&Number.isSafeInteger(Number(e.id))&&
+    e.paid_promotion!==true);
+  return events.length?events:null;
+ }catch{return null}
+}
+function showCachedCatalog(){
+ if(state.events.length)return;
+ const cached=readCachedCatalog(EVENT_CACHE_WARM_MAX_AGE);
+ if(!cached)return;
+ state.events=cached;
+ $('sourceStatus').textContent='Agenda guardada · Comprobando novedades…';
+ render();
+}
+function scheduleCatalogCache(events){
+ pendingCatalogCache=events.filter(e=>e&&e.paid_promotion!==true);
+ if(cacheWriteScheduled)return;
+ cacheWriteScheduled=true;
+ const write=()=>{
+  cacheWriteScheduled=false;
+  const payload=pendingCatalogCache;pendingCatalogCache=null;
+  try{localStorage.setItem(EVENT_CACHE_KEY,
+    JSON.stringify({at:Date.now(),events:payload}))}catch{}
+ };
+ if(typeof requestIdleCallback==='function')requestIdleCallback(write,{timeout:1800});
+ else setTimeout(write,80);
+}
+
 async function loadEvents(){try{const result=await api('/api/events');state.events=result.events||[];scanNewEventIds(state.events);
 if(!window.__gcFirstLoad){
   window.__gcFirstLoad=true;
@@ -1298,7 +1338,7 @@ if(!window.__gcFirstLoad){
     document.querySelectorAll('[data-when]').forEach(b=>b.classList.toggle('active',b.dataset.when===state.when));
   }
 }
-localStorage.setItem('plangc_event_cache',JSON.stringify({at:Date.now(),events:state.events}));const count=state.events.filter(e=>!DParrandaTime.hasFinished(e,localTimeKey())).length;
+scheduleCatalogCache(state.events);const count=state.events.filter(e=>!DParrandaTime.hasFinished(e,localTimeKey())).length;
 $('sourceStatus').textContent=count+' planes próximos · Gran Canaria · Comprobando última revisión…';
 api('/api/meta').then(meta=>{
   const checked=Date.parse(meta.checked_at||'');
@@ -1312,7 +1352,16 @@ api('/api/meta').then(meta=>{
   }
   $('sourceStatus').textContent=count+' planes próximos · '+label+
     (errors?' · '+errors+' fuente(s) con incidencias':'');
-}).catch(()=>{$('sourceStatus').textContent=count+' planes próximos · Fecha de revisión no disponible';});render();if(!$('mapPanel').classList.contains('hidden'))drawMap();const id=new URLSearchParams(location.search).get('evento');if(id&&state.events.some(e=>e.id===+id)&&!state.seen){state.seen=1;showEvent(id)}}catch(error){try{const saved=JSON.parse(localStorage.getItem('plangc_event_cache'));if(saved.events?.length){state.events=saved.events;$('sourceStatus').textContent='Sin conexión · Mostrando datos guardados (pueden estar desactualizados)';render();return}}catch{}$('sourceStatus').textContent='No se ha podido conectar con el catálogo';toast('Error de conexión con la agenda')}}
+}).catch(()=>{$('sourceStatus').textContent=count+' planes próximos · Fecha de revisión no disponible';});render();if(!$('mapPanel').classList.contains('hidden'))drawMap();const id=new URLSearchParams(location.search).get('evento');if(id&&state.events.some(e=>e.id===+id)&&!state.seen){state.seen=1;showEvent(id)}}catch(error){
+  const cached=state.events.length?state.events:readCachedCatalog(EVENT_CACHE_OFFLINE_MAX_AGE);
+  if(cached?.length){
+   state.events=cached;
+   $('sourceStatus').textContent='Sin conexión · Mostrando datos guardados (pueden estar desactualizados)';
+   render();return;
+  }
+  $('sourceStatus').textContent='No se ha podido conectar con el catálogo';
+  toast('Error de conexión con la agenda');
+}}
 let searchRenderTimer=null;
 function init(){
  $('dpTopExplore').onclick=()=>document.querySelector('.navtab[data-tab="explore"]')?.click();
@@ -1412,6 +1461,7 @@ $('customDateCancel').onclick=closeCustomDatePanel;
  document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{const tab=b.dataset.tab;if(tab==='map'){openMap();return}if(tab==='publish'){publishDialog();return}state.tab=tab;state.newOnly=false;closeMap();state.tab=tab;render();$('eventsGrid').scrollIntoView({block:'start',behavior:'smooth'})});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('filtersPanel').classList.contains('hidden'))closeFilters();else if(!$('modal').classList.contains('hidden')){closeModal();clearEventUrl()}if(!$('mapPanel').classList.contains('hidden'))closeMap()}});
  // Accounts and merchant panel are disabled in this public phase.
+ showCachedCatalog();
  loadEvents();
  loadSponsored();
  requestCurrentLocation(false);
