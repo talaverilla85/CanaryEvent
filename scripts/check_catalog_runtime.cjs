@@ -83,7 +83,7 @@ assert.equal(fetched[0].id,10);
 vm.runInContext('showCachedCatalog()',cacheCtx);
 assert.equal(renders,1);
 assert.equal(cacheCtx.state.events.length,1);
-assert.match(page.textContent,/Actualizando/);
+assert.match(page.textContent,/Comprobando novedades/);
 cacheCtx.toSave=[official,paid];
 vm.runInContext('scheduleCatalogCache(toSave)',cacheCtx);
 assert.equal(queued.length,1,'Cache write must be deferred');
