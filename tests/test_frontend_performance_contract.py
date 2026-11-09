@@ -75,7 +75,7 @@ class FrontendPerformanceContract(unittest.TestCase):
                        "function showEvent(", "function toggleFav(", "function renderWeekendShelf(now=localTimeKey())",
                        "function loadSponsored(", "const sponsorAt=sponsorInsertAfter()",
                        "function requestCurrentLocation(", "function loadEvents()",
-                       "'/reminders.js'", "dparranda-editorial.css"):
+                       "'/reminders.js'", 'id="dparranda-brand-styles"'):
             if marker=="'/reminders.js'":
                 marker='/reminders.js'
             self.assertIn(marker,HTML)
