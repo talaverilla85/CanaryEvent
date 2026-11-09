@@ -603,6 +603,7 @@ const textForCat=k=>CATS.find(c=>c[0]===k)?.[2]||'Actividad';
 function verifiedImage(e){
  if(e.paid_promotion===true&&typeof e.image_url==='string'&&/^\/api\/media\?id=[0-9]+$/.test(e.image_url))return e.image_url;
  if(e.paid_promotion===true&&typeof e.image_url==='string'&&/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpg|jpeg)$/i.test(e.image_url))return e.image_url;
+ if(e.paid_promotion===true)return ''; // Never substitute campaign creatives.
  if(e.image_status!=='official_remote'||!e.image_url)return '';
  try{
   const url=new URL(e.image_url);
