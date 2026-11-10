@@ -438,6 +438,17 @@ export default async function handler(req,res){
     }
     if(op==='session')return json(res,200,{authenticated:authenticated(req),configured:true});
     if(!authenticated(req))return json(res,401,{error:'Acceso reservado al administrador'});
+    if(req.method==='GET'&&op==='advertising-intake-config'){
+      let privacy=false;
+      try{
+       const url=new URL(process.env.DPARRANDA_PRIVACY_URL||'');
+       privacy=url.protocol==='https:'&&!url.username&&!url.password;
+      }catch{}
+      const leads=process.env.DPARRANDA_LEADS_ENABLED==='true';
+      return json(res,200,{receiving_proposals:leads&&privacy&&!!process.env.DATABASE_URL,
+       leads_enabled:leads,privacy_configured:privacy,database_configured:!!process.env.DATABASE_URL,
+       accepting_payments:false});
+    }
     if(req.method==='GET'&&op==='advertiser-accounts')return json(res,200,await advertiserAccounts(sql));
     if(req.method==='GET'&&op==='advertiser-drafts')return json(res,200,await advertiserDrafts(sql));
     if(req.method==='GET'&&op==='advertiser-draft-image'){

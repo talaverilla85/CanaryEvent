@@ -90,3 +90,8 @@ fieldset{border:0;margin:0;padding:0}.field{display:grid;gap:6px;margin-bottom:1
 .adops-preview-card .muted{font-size:12px}
 @media(max-width:900px){.adops-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.adops-table{min-width:960px}}
 @media(max-width:500px){.adops-heading{flex-wrap:wrap}.adops-kpi{padding:11px}.adops-kpi strong{font-size:25px}.adops-overview{padding:12px}.adops-table-scroll{margin:0 -4px}}
+
+.adops-intake{border:1px solid #e8cf9d;background:#fff9ec;color:#785319;border-radius:10px;padding:12px 15px;margin:0 0 16px;font-size:12px;line-height:1.55}
+.adops-intake p{margin:4px 0 8px}
+.adops-intake a{color:#086c78;font-weight:800;text-decoration:underline}
+.adops-intake.ready{background:#eef9f5;border-color:#b9dfd4;color:#20684b;font-weight:750}
