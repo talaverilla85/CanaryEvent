@@ -390,5 +390,235 @@ $('advertiserDraftsList').onclick=async event=>{
   message('Revisión registrada. No se ha publicado ningún anuncio.');
  }catch(err){message(err.message)}finally{btn.disabled=false}
 };
+
+/* Advertising control desk: one view over interest, reviewed submissions,
+ * advertiser revisions and existing published campaigns. No payment is inferred.
+ */
+const opsStateNames={
+ interest:'Interesado',draft:'Borrador',submitted:'Pendiente de revisión',
+ changes_requested:'Cambios solicitados',approved_for_payment:'Aprobado · pago pendiente',
+ pending_payment:'Esperando pago',paid_review:'Pago verificado · revisión',
+ approved:'Aprobado',active:'Activo',finished:'Caducado',
+ rejected:'Rechazado',cancelled:'Cancelado'
+};
+const opsPlanNames={local:'Local',zona:'Zona',insular:'Insular'};
+let opsSearch='',opsFilter='all',opsAllRows=[];
+const opsDate=v=>String(v||'').slice(0,10);
+const opsToday=()=>{
+ const obj=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{
+  timeZone:'Atlantic/Canary',year:'numeric',month:'2-digit',day:'2-digit'
+ }).formatToParts(new Date()).filter(v=>v.type!=='literal').map(v=>[v.type,v.value]));
+ return obj.year+'-'+obj.month+'-'+obj.day;
+};
+function normalizedOpsRows(){
+ const today=opsToday(),result=[];
+ for(const e of leads){
+  if(e.has_linked_draft)continue; // Show the newer submitted version, not its original.
+  const attrs=String(e.dates_text||'').split('|');
+  const plan=['local','zona','insular'].includes(attrs[1])?attrs[1]:'';
+  const status=['submitted','changes_requested','approved_for_payment','rejected'].includes(e.review_status)
+   ?e.review_status:'interest';
+  const cost=Number(attrs[2]);
+  const hasCost=plan&&Number.isFinite(cost)&&cost>=0;
+  result.push({
+   key:'lead-'+Number(e.id),source:'lead',id:Number(e.id),
+   company:e.company||'',title:e.campaign_name||'Consulta comercial',
+   submitted_at:e.created_at,status,payment:e.payment_status||'unavailable',
+   days:Number(e.campaign_days)||null,plan,kind:e.format==='event'?'Evento patrocinado':'Banner',
+   area:e.municipality||'',price:hasCost?cost:null,
+   has_image:!!e.has_image,image_url:e.has_image?'/api/admin?op=leadimage&id='+Number(e.id):'',
+   description:e.banner_text||e.message||'',review_note:e.review_note||'',
+   contact:e.contact_name||'',email:e.email||'',telephone:e.telephone||'',
+   destination:e.action_url||'',start:e.campaign_start,
+   event_start:e.event_start,event_venue:e.event_venue,
+   actual_starts_at:null,actual_ends_at:null,
+   editable:['submitted','changes_requested'].includes(status)
+  });
+ }
+ for(const d of opsDrafts){
+  const id=Number(d.id),end=opsDate(d.actual_ends_at);
+  const status=d.status==='active'&&end&&end<today?'finished':d.status;
+  result.push({
+   key:'draft-'+id,source:'draft',id,company:d.account_company||d.advertiser||'',
+   title:d.title||'Sin título',submitted_at:d.created_at||d.updated_at,
+   status,payment:d.payment_status||'unavailable',days:Number(d.days)||null,
+   plan:d.plan||'',kind:d.placement==='evento'?'Evento patrocinado':'Banner',
+   area:Array.isArray(d.municipalities)&&d.municipalities.length?d.municipalities.join(', '):'Toda Gran Canaria',
+   price:Number.isFinite(Number(d.price_cents))?Number(d.price_cents)/100:null,
+   has_image:!!d.has_image,
+   image_url:d.has_image?'/api/admin?op=advertiser-draft-image&id='+id:'',
+   description:d.description||'',review_note:d.review_note||'',
+   contact:'',email:'',telephone:'',destination:d.destination||'',
+   start:d.campaign_start,event_start:d.event_start,event_venue:d.event_venue,
+   actual_starts_at:d.actual_starts_at,actual_ends_at:d.actual_ends_at,
+   editable:['submitted','changes_requested'].includes(status)
+  });
+ }
+ for(const a of ads){
+  if(a.kind!=='paid')continue;
+  const started=opsDate(a.starts_at),ended=opsDate(a.ends_at);
+  const status=ended&&ended<today?'finished':a.enabled&&(!started||started<=today)?'active':'draft';
+  result.push({
+   key:'published-'+String(a.id),source:'published',id:String(a.id),
+   company:a.advertiser||'',title:a.headline||'Campaña publicitaria',submitted_at:a.updated_at,
+   status,payment:'unavailable',days:started&&ended?
+   Math.round((Date.parse(ended+'T00:00:00Z')-Date.parse(started+'T00:00:00Z'))/86400000)+1:null,
+   plan:'',kind:'Banner',area:Array.isArray(a.municipalities)&&a.municipalities.length?a.municipalities.join(', '):'Toda Gran Canaria',
+   price:null,has_image:!!a.has_uploaded_image,image_url:a.has_uploaded_image?
+    '/api/admin?op=adimage&id='+encodeURIComponent(a.id):'',
+   description:a.description||'',review_note:'',contact:'',email:'',telephone:'',
+   destination:a.button_url||'',start:started,event_start:null,event_venue:null,
+   actual_starts_at:started,actual_ends_at:ended,editable:false
+  });
+ }
+ return result.sort((a,b)=>String(b.submitted_at||'').localeCompare(String(a.submitted_at||'')));
+}
+function opsFilteredRows(){
+ return opsAllRows.filter(r=>{
+  const search=opsSearch;
+  if(search&&!([r.company,r.title,r.area,r.id].join(' ').toLowerCase().includes(search)))return false;
+  return opsFilter==='all'||(opsFilter==='paid'?r.payment==='paid':r.status===opsFilter);
+ });
+}
+function renderAdOperations(){
+ const container=$('adOpsRows');if(!container)return;
+ opsAllRows=normalizedOpsRows();
+ const countOf=status=>opsAllRows.filter(r=>r.status===status).length;
+ $('adOpsInterested').textContent=String(countOf('interest'));
+ $('adOpsPending').textContent=String(countOf('submitted')+countOf('paid_review'));
+ $('adOpsActive').textContent=String(countOf('active'));
+ $('adOpsFinished').textContent=String(countOf('finished'));
+ const rows=opsFilteredRows();
+ $('adOpsCount').textContent=rows.length+' campañas visibles · '+opsAllRows.length+' registradas';
+ if(!rows.length){
+  container.innerHTML='<tr><td colspan="9">No hay campañas que coincidan con este filtro.</td></tr>';
+  return;
+ }
+ container.innerHTML=rows.map(r=>{
+  const status=opsStateNames[r.status]||r.status;
+  const payment=r.payment==='paid'?'Pagado':r.payment==='pending'?'Pendiente':
+    r.payment==='refunded'?'Reembolsado':'No verificado';
+  const days=Number.isInteger(r.days)&&r.days>0?r.days+' días':'—';
+  const amount=r.price===null?'—':Number(r.price).toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:2})+' €';
+  const img=r.has_image&&r.image_url?'<img class="adops-thumb" loading="lazy" src="'+escape(r.image_url)+'" alt="Anuncio de '+escape(r.company)+'">':'';
+  const area=r.plan?opsPlanNames[r.plan]+' · '+r.area:r.area;
+  return '<tr><td><strong>'+escape(r.company)+'</strong><small>'+escape(r.title)+'</small></td>'+
+   '<td>'+escape(opsDate(r.submitted_at)||'—')+'<small>#'+escape(String(r.id))+'</small></td>'+
+   '<td><span class="adops-status st-'+escape(r.status)+'">'+escape(status)+'</span></td>'+
+   '<td><span class="adops-payment p-'+escape(r.payment)+'">'+escape(payment)+'</span></td>'+
+   '<td>'+escape(days)+(r.status==='active'&&r.actual_ends_at?
+    '<small>'+escape(daysLeft(r.actual_ends_at))+'</small>':'')+'</td>'+
+   '<td>'+escape(r.kind)+'<small>'+escape(area||'Sin cobertura')+'</small></td>'+
+   '<td><strong>'+escape(amount)+'</strong></td>'+
+   '<td><div class="adops-visual">'+img+
+     '<button type="button" data-ops-preview="'+escape(r.key)+'">Ver anuncio</button></div></td>'+
+   '<td><div class="adops-actions">'+
+    '<button type="button" class="ghost mini" data-ops-preview="'+escape(r.key)+'">'+
+      (r.editable?'Revisar':'Detalles')+'</button>'+
+    (r.source==='lead'&&r.status==='changes_requested'?
+     '<button type="button" class="ghost mini" data-ops-invite="'+Number(r.id)+'">Dar acceso</button>':'')+
+    '</div></td></tr>';
+ }).join('');
+}
+function opsOpenPreview(row){
+ const url=/^https:\/\//i.test(row.destination)?row.destination:'';
+ const image=row.has_image&&row.image_url?
+  '<div class="adops-preview-card"><img src="'+escape(row.image_url)+'" alt="Vista de la creatividad presentada"></div>':
+  '<p class="notice">Esta solicitud no tiene imagen registrada.</p>';
+ const area=(row.plan?opsPlanNames[row.plan]+' · ':'')+row.area;
+ const money=row.price===null?'Sin importe calculado':row.price+' €';
+ const details='<div class="sheet-head"><div><span class="eyebrow">Publicidad · Solicitud #'+escape(String(row.id))+'</span>'+
+  '<h2 id="dialogTitle">'+escape(row.company)+'</h2></div><button type="button" class="ghost mini" data-close>✕</button></div>'+
+  '<p><strong>'+escape(row.title)+'</strong></p>'+
+  '<div class="meta"><span class="adops-status st-'+escape(row.status)+'">'+
+  escape(opsStateNames[row.status]||row.status)+'</span> '+
+  '<span class="adops-payment p-'+escape(row.payment)+'">'+
+  escape(row.payment==='paid'?'Pago confirmado':row.payment==='pending'?'Pago pendiente':'Pago sin verificar')+'</span></div>'+
+  image+
+  '<div class="adops-preview-card"><p><strong>Descripción:</strong> '+escape(row.description)+'</p>'+
+  '<p><strong>Formato:</strong> '+escape(row.kind)+' · <strong>Zona:</strong> '+escape(area)+'</p>'+
+  '<p><strong>Duración:</strong> '+escape(row.days||'—')+' días · <strong>Tarifa:</strong> '+escape(money)+'</p>'+
+  '<p><strong>Inicio solicitado:</strong> '+escape(opsDate(row.start)||'Sin fecha')+'</p>'+
+  (row.event_start?'<p><strong>Evento:</strong> '+escape(row.event_start)+' · '+escape(row.event_venue)+'</p>':'')+
+  (row.email?'<p><strong>Contacto:</strong> '+escape(row.contact)+' · '+escape(row.email)+
+    (row.telephone?' · '+escape(row.telephone):'')+'</p>':'')+
+  (url?'<p><a href="'+escape(url)+'" target="_blank" rel="noopener noreferrer">Consultar página del anunciante</a></p>':'')+
+  '</div>'+
+  (row.review_note?'<p class="notice"><strong>Observaciones anteriores:</strong> '+escape(row.review_note)+'</p>':'')+
+  '<div class="sheet-footer">'+
+  (row.editable&&row.has_image?'<button type="button" class="primary" data-ops-review="approved_for_payment" data-ops-key="'+escape(row.key)+'">Aprobar contenido</button>':'')+
+  (row.editable?'<button type="button" class="ghost" data-ops-review="changes_requested" data-ops-key="'+escape(row.key)+'">Pedir cambios</button>'+
+  '<button type="button" class="ghost" data-ops-review="rejected" data-ops-key="'+escape(row.key)+'">Rechazar</button>':'')+
+  (row.source==='lead'?'<button type="button" class="ghost" data-ops-invite="'+Number(row.id)+'">Generar acceso privado</button>':'')+
+  '<button type="button" class="ghost" data-close>Cerrar</button></div>'+
+  '<p class="muted small">Aprobar contenido no genera un cobro ni publica nada. El enlace de pago se habilitará únicamente cuando la pasarela esté configurada.</p>';
+ openDialog(details);
+}
+$('adOpsSearch').addEventListener('input',event=>{
+ opsSearch=String(event.target.value||'').trim().toLowerCase();renderAdOperations();
+});
+$('adOpsFilter').addEventListener('change',event=>{
+ opsFilter=event.target.value;renderAdOperations();
+});
+$('refreshAdOperations').onclick=async()=>{
+ await Promise.allSettled([loadLeads(),loadAdvertiserDrafts(),loadAds(),loadPromotions()]);
+ message('Tabla de publicidad actualizada');
+};
+$('adOpsRows').addEventListener('click',event=>{
+ const button=event.target.closest('[data-ops-preview],[data-ops-invite]');if(!button)return;
+ if(button.dataset.opsInvite){
+  createAdvertiserInvite(Number(button.dataset.opsInvite)).then(async()=>{
+    await Promise.allSettled([loadLeads(),loadAdvertiserDrafts()]);
+  }).catch(err=>message(err.message));
+  return;
+ }
+ const row=opsAllRows.find(r=>r.key===button.dataset.opsPreview);
+ if(row)opsOpenPreview(row);
+});
+$('adOpsExport').onclick=()=>{
+ const columns=['Empresa','Anuncio','Fecha solicitud','Estado','Pago','Dias','Formato','Cobertura','Importe'];
+ const cell=value=>{
+  let textValue=String(value??'').replace(/[\r\n\t]+/g,' ');
+  if(/^[\s]*[=+\-@]/.test(textValue))textValue="'"+textValue;
+  return '"'+textValue.replace(/"/g,'""')+'"';
+ };
+ const lines=[columns,...opsFilteredRows().map(r=>[
+  r.company,r.title,opsDate(r.submitted_at),opsStateNames[r.status]||r.status,
+  r.payment==='paid'?'Pagado':r.payment==='pending'?'Pendiente':'Sin confirmar',
+  r.days||'',r.kind,(r.plan?opsPlanNames[r.plan]+' · ':'')+r.area,r.price??''
+ ])];
+ const csv='\ufeff'+lines.map(row=>row.map(cell).join(';')).join('\r\n');
+ const object=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+ const a=document.createElement('a');a.href=object;a.download='dparranda-publicidad.csv';a.click();
+ setTimeout(()=>URL.revokeObjectURL(object),500);
+};
+$('sheet').addEventListener('click',async event=>{
+ const button=event.target.closest('[data-ops-review],[data-ops-invite]');if(!button)return;
+ if(button.dataset.opsInvite){
+  const id=Number(button.dataset.opsInvite);
+  try{await createAdvertiserInvite(id);await Promise.allSettled([loadLeads(),loadAdvertiserDrafts()])}
+  catch(err){message(err.message)}
+  return;
+ }
+ const row=opsAllRows.find(x=>x.key===button.dataset.opsKey);
+ if(!row)return;
+ const state=button.dataset.opsReview;
+ if(state==='approved_for_payment'&&!confirm('¿Has revisado la imagen, texto, fechas y condiciones? Solo se aprobará el contenido. El pago continuará deshabilitado.'))return;
+ let note='';
+ if(state!=='approved_for_payment'){
+  const answer=prompt(state==='changes_requested'?'¿Qué debe corregir el anunciante?':'Motivo del rechazo:');
+  if(answer===null)return;
+  note=answer.trim();
+  if(!note){message('Debes indicar el motivo');return}
+ }
+ button.disabled=true;
+ try{
+  const result=await api(row.source==='lead'?'enquiry-review':'advertiser-review',
+   {id:row.id,status:state,note});
+  closeDialog();
+  await Promise.allSettled([loadLeads(),loadAdvertiserDrafts()]);
+  message(result.message||'Revisión guardada. Ningún pago ni publicación automática.');
+ }catch(err){message(err.message);button.disabled=false}
+});
 initialize();
 })();
