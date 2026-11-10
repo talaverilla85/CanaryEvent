@@ -145,6 +145,7 @@
   function setView(view) {
     if (!['home','explore','saved','more'].includes(view)) return;
     state.view=view;
+    document.body.dataset.view=view;
     for (const v of ['home','explore','saved','more']) {
       const elem=$(v+'View'); const selected=v===view;
       elem.hidden=!selected;elem.classList.toggle('active',selected);
@@ -158,21 +159,37 @@
     if(view==='saved')renderSaved();
     window.scrollTo({top:0,behavior:'instant'});
   }
+
   function featureChoices() {
-    const future=sorted(organic());
-    const candidates=future.filter(e=>poster(e,'thumb') && eventDate(e)<=isoOffset(today,28));
-    const out=[], categories=new Set();
-    for(const e of candidates) {
-      if(categories.has(e.category)) continue;
-      out.push(e);categories.add(e.category);
-      if(out.length>=4)break;
+    // Choose a compact editorial selection of upcoming events with real official art.
+    // Long-running activities shouldn't eclipse this week's performances.
+    const nextMonth = isoOffset(today,30);
+    const soon = sorted(organic().filter(e =>
+      day(e.start)>=today && day(e.start)<=nextMonth && poster(e,'thumb') &&
+      title(e).length>=8
+    ));
+    const byReadableTitle = soon.filter(e => title(e).length<=54);
+    const interesting = (byReadableTitle.length>=4 ? byReadableTitle : soon).slice()
+      .sort((a,b) => {
+        const weight={musica:5,cultura:4,familia:3,gastronomia:2,deporte:1,ocio:0,otros:0,naturaleza:1};
+        const wa=weight[a.category]||0,wb=weight[b.category]||0;
+        const da= Math.max(0, Math.round((new Date(day(a.start)+'T12:00:00Z')-new Date(today+'T12:00:00Z'))/86400000));
+        const db= Math.max(0, Math.round((new Date(day(b.start)+'T12:00:00Z')-new Date(today+'T12:00:00Z'))/86400000));
+        return (db-da)*0.18+(wb-wa)*(-1) || day(a.start).localeCompare(day(b.start));
+      });
+    const chosen=[],categories=new Set(),images=new Set();
+    for(const e of interesting) {
+      if(categories.has(e.category)||images.has(String(e.image_url)))continue;
+      chosen.push(e);categories.add(e.category);images.add(String(e.image_url));
+      if(chosen.length===4)break;
     }
-    for(const e of candidates) {
-      if(out.length>=4)break;
-      if(!out.some(f=>String(f.id)===String(e.id)))out.push(e);
+    for(const e of interesting) {
+      if(chosen.length===4)break;
+      if(images.has(String(e.image_url)))continue;
+      chosen.push(e);images.add(String(e.image_url));
     }
-    if(out.length===0)out.push(...future.slice(0,4));
-    return out;
+    if(!chosen.length)chosen.push(...sorted(organic().filter(e=>poster(e,'thumb'))).slice(0,4));
+    return chosen;
   }
   function renderFeature() {
     const e=state.featured[state.heroIndex];
@@ -215,26 +232,30 @@
     const list=items.slice(0,14).map(e=>tile(e)).join('');
     return '<section class="rail-section" aria-label="'+html(heading)+'"><div class="section-head"><div><span class="small-kicker">'+html(kicker)+'</span><h2>'+html(heading)+'</h2></div><button type="button" class="section-link" data-explore-period="'+html(tag||'all')+'">Ver todos →</button></div><div class="rail" tabindex="0" aria-label="Desliza para ver '+html(heading)+'">'+list+(withSponsor?adsTile():'')+'</div></section>';
   }
+
   function renderHome() {
     state.featured=featureChoices();
     if(state.heroIndex>=state.featured.length)state.heroIndex=0;
     renderFeature();
     const all=sorted(organic());
+    const upcoming=all.filter(e=>day(e.start)>=today);
+    const illustrated=upcoming.filter(e=>poster(e,'thumb'));
+    const selection=illustrated.filter(e=>day(e.start)<=isoOffset(today,21));
+    const picks=selection.length ? selection : illustrated;
     const todayItems=all.filter(isToday);
     const weekendItems=all.filter(inWeekend);
-    const picks=all.filter(e=>eventDate(e)<=isoOffset(today,21));
     const family=all.filter(e=>e.category==='familia');
     const music=all.filter(e=>e.category==='musica');
     const culture=all.filter(e=>e.category==='cultura');
     const free=all.filter(e=>moneyLabel(e)==='Gratis');
     $('homeSections').innerHTML=[
-      railSection('Planes para hoy','A UN PASO',todayItems,'today'),
-      railSection('Este fin de semana','TIEMPO PARA DISFRUTAR',weekendItems,'weekend',true),
-      railSection('Próximos descubrimientos','NO TE LO PIERDAS',picks,'all'),
-      railSection('Para disfrutar en familia','PLANES PARA TODOS',family,'all'),
-      railSection('Música y espectáculos','SUBE EL VOLUMEN',music,'all'),
-      railSection('Cultura que inspira','ALGO DIFERENTE',culture,'all'),
-      railSection('Planes gratuitos','DISFRUTA SIN GASTAR',free,'free')
+      railSection('Descubre tu próximo plan','TE PUEDE GUSTAR',picks,'all'),
+      railSection('Este fin de semana','PLANES PARA DISFRUTAR',weekendItems,'weekend',true),
+      railSection('Hoy en Canarias','NO TE QUEDES EN CASA',todayItems,'today'),
+      railSection('En familia','PARA GRANDES Y PEQUEÑOS',family,'all'),
+      railSection('Conciertos y música','SUBE EL VOLUMEN',music,'all'),
+      railSection('Arte y cultura','UNA EXPERIENCIA DIFERENTE',culture,'all'),
+      railSection('Planes gratuitos','SAL Y DISFRUTA',free,'free')
     ].join('') || empty('No hay eventos disponibles actualmente.');
   }
   function renderCategories(){
