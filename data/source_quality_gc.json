@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-10T13:43:54+00:00",
+  "checked_at": "2026-11-10T20:34:25+00:00",
   "quality_counts": {
     "publicados": 461,
-    "recintos_sin_verificar": 46,
+    "recintos_sin_verificar": 47,
     "programas_y_fichas_por_revisar": 9,
     "precios_sin_confirmar": 321,
     "distancia_a_centro_municipal": 307,
-    "fuentes_con_error": 1,
+    "fuentes_con_error": 2,
     "duplicados_potenciales": 3
   },
   "sources": [
@@ -37,7 +37,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 11,
-      "fichas_leidas_en_esta_ejecucion": 10,
+      "fichas_leidas_en_esta_ejecucion": 8,
       "error": ""
     },
     {
@@ -87,18 +87,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 8,
+      "fichas_leidas_en_esta_ejecucion": 15,
       "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 8,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 8,
       "distancia_al_centro_municipal": 8,
-      "fichas_leidas_en_esta_ejecucion": 15,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Sala Insular de Teatro · agenda oficial",
@@ -254,10 +254,10 @@
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
       "publicados": 20,
-      "recinto_sin_verificar": 6,
+      "recinto_sin_verificar": 7,
       "precio_sin_confirmar": 20,
       "distancia_al_centro_municipal": 20,
-      "fichas_leidas_en_esta_ejecucion": 27,
+      "fichas_leidas_en_esta_ejecucion": 28,
       "error": ""
     },
     {
@@ -382,12 +382,12 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "operativa",
+      "estado": "al_dia_sin_fichas_pendientes",
       "publicados": 174,
       "recinto_sin_verificar": 33,
       "precio_sin_confirmar": 147,
       "distancia_al_centro_municipal": 91,
-      "fichas_leidas_en_esta_ejecucion": 24,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -463,6 +463,10 @@
   ],
   "reported_errors": [
     {
+      "source": "Teatro Cuyás · agenda oficial",
+      "error": "RuntimeError"
+    },
+    {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
     }
@@ -474,7 +478,7 @@
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "count": 6
+      "count": 7
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
@@ -623,6 +627,14 @@
       "source_url": "https://eventos.santabrigida.es/eventos/santa-brigida-con-vinos-2026-programa/"
     },
     {
+      "id": 919,
+      "title": "Aprende diseño e impresión en 3 D",
+      "start": "2026-11-10",
+      "municipality": "Santa Brígida",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/aprende-diseno-e-impresion-en-3-d/"
+    },
+    {
       "id": 195,
       "title": "Curso básico de cocina canaria saludable",
       "start": "2026-11-11T19:30:00",
@@ -677,14 +689,6 @@
       "municipality": "Arucas",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0016/vi-edicion-de-arucas-es-arte"
-    },
-    {
-      "id": 247,
-      "title": "III MAR. Mujeres Africanas Rodando 2026",
-      "start": "2026-11-14",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0017/iii-mar-mujeres-africanas-rodando-2026"
     }
   ],
   "guidance": [

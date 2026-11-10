@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-10T13:43:54+00:00",
-  "not_published": 46,
+  "updated_at": "2026-11-10T20:34:25+00:00",
+  "not_published": 47,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -204,6 +204,18 @@
       "venue": "Santa Brígida",
       "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "source_url": "https://eventos.santabrigida.es/eventos/santa-brigida-con-vinos-2026-programa/",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 919,
+      "title": "Aprende diseño e impresión en 3 D",
+      "start": "2026-11-10",
+      "end": "2026-11-20",
+      "municipality": "Santa Brígida",
+      "venue": "Biblioteca Municipal",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/aprende-diseno-e-impresion-en-3-d/",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
