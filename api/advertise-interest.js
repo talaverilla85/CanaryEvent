@@ -21,7 +21,9 @@ function privacyUrl(){
 }
 function enabled(){return process.env.DPARRANDA_LEADS_ENABLED==='true'&&
  !!process.env.DATABASE_URL&&!!privacyUrl();}
-const proposalEnabled=()=>enabled()&&process.env.DPARRANDA_PROPOSALS_ENABLED==='true';
+// A review request uses the same privacy/legal intake as a simple enquiry.
+// No separate proposal switch: once requests are enabled, a simulated ad can be submitted.
+const proposalEnabled=()=>enabled();
 function creative(value){
  if(typeof value!=='string'||value.length>900000||!/^data:image\/webp;base64,[A-Za-z0-9+/=]+$/.test(value))return null;
  const b=Buffer.from(value.slice(value.indexOf(',')+1),'base64');

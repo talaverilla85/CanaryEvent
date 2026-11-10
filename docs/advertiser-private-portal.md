@@ -45,7 +45,7 @@ El administrador tiene un **resumen superior con cuatro contadores** (interesado
 
 1. El visitante prepara el anuncio en \`/anunciate/\` y ve la simulación con eventos reales.
 2. Si solo quiere consultar, usa «Me interesa esta campaña» (sin transferencia de imagen).
-3. Si decide presentar una propuesta, usa «Enviar anuncio para revisión»; esta opción requiere \`DPARRANDA_PROPOSALS_ENABLED=true\` además de \`DPARRANDA_LEADS_ENABLED=true\`, \`DATABASE_URL\` y una \`DPARRANDA_PRIVACY_URL\` válida. **Por defecto permanece oculta**.
+3. Desde el simulador, el visitante pulsa «Solicitar contratación y revisión del anuncio». La propuesta completa se envía a la mesa del administrador **sin cobrar ni publicar**. El formulario utiliza la recepción legal de solicitudes (DPARRANDA_LEADS_ENABLED, DATABASE_URL y DPARRANDA_PRIVACY_URL); ya no se necesita una bandera adicional para el envío de la creatividad. Si no hay aviso de privacidad o no está activada la recepción, el envío sigue cerrado.
 4. La propuesta completa (datos de contacto, plan y duración, zona, título, descripción, destino, fecha solicitada e imagen WebP optimizada) se guarda en tablas privadas \`advertising_enquiries\` y \`advertising_enquiry_images\` mediante una única instrucción SQL; estado editorial \`submitted\`; **sin pago**.
 5. En la tabla, el administrador elige «Ver anuncio» para revisar el material original y todos los datos.
 

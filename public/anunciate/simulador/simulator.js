@@ -178,14 +178,14 @@ function initInterestForm(draft){
  form.addEventListener('submit',async event=>{
   event.preventDefault();
   if(!form.reportValidity())return;
-  const proposal=event.submitter?.id==='proposalSubmit';
+  const proposal=true; // This simulator submits the selected ad for editorial review, never payment.
   if(proposal&&(!draft.image||!/^data:image\/webp;base64,/.test(draft.image))){
    feedback.textContent='Para solicitar la publicación, primero añade una imagen al anuncio desde «Volver al formulario».';
    return;
   }
-  const button=$('interestSubmit');
-  button.disabled=true;$('proposalSubmit').disabled=true;
-  feedback.textContent=proposal?'Enviando anuncio para revisión…':'Registrando tu interés…';
+  const button=$('proposalSubmit');
+  button.disabled=true;
+  feedback.textContent='Enviando solicitud de contratación para revisión…';
   const values=new FormData(form);
   // The complete creative is sent only when the user expressly chooses a
   // proposal for review; an interest-only enquiry never transfers its image.
@@ -214,12 +214,10 @@ function initInterestForm(draft){
    if(!response.ok||result.received!==true)throw Error(result.error||'No se ha podido registrar');
    form.hidden=true;
    availability.hidden=false;
-   availability.textContent=proposal?
-    'Propuesta #'+Number(result.request_id)+' enviada al administrador para su revisión. No se ha realizado ningún pago ni se ha publicado el anuncio.':
-    'Interés registrado (solicitud #'+Number(result.request_id)+'). ¡Gracias! Nos pondremos en contacto cuando podamos ofrecer este servicio. No has contratado ni pagado nada.';
+   availability.textContent='Solicitud #'+Number(result.request_id)+' enviada al administrador. Revisaremos tu propuesta y, si todo está correcto, te facilitaremos el enlace de pago. No se ha realizado ningún cobro ni se ha publicado el anuncio.';
   }catch(err){
    feedback.textContent=err instanceof Error?err.message:'No se ha podido registrar tu interés.';
-  }finally{button.disabled=false;$('proposalSubmit').disabled=false}
+  }finally{button.disabled=false}
  });
 }
 let draft=null;
