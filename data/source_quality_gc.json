@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-10T09:54:06+00:00",
+  "checked_at": "2026-11-10T11:36:57+00:00",
   "quality_counts": {
     "publicados": 453,
     "recintos_sin_verificar": 46,
     "programas_y_fichas_por_revisar": 9,
     "precios_sin_confirmar": 321,
     "distancia_a_centro_municipal": 299,
-    "fuentes_con_error": 4,
+    "fuentes_con_error": 1,
     "duplicados_potenciales": 3
   },
   "sources": [
@@ -37,7 +37,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 10,
-      "fichas_leidas_en_esta_ejecucion": 10,
+      "fichas_leidas_en_esta_ejecucion": 9,
       "error": ""
     },
     {
@@ -142,13 +142,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 1,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "ReadTimeout"
+      "fichas_leidas_en_esta_ejecucion": 5,
+      "error": ""
     },
     {
       "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
@@ -172,13 +172,13 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
+      "fichas_leidas_en_esta_ejecucion": 1,
+      "error": ""
     },
     {
       "source": "Municipio · descubrimiento oficial · Firgas",
@@ -312,13 +312,13 @@
     },
     {
       "source": "Ayuntamientos · actos individualmente contrastados",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 7,
-      "error": "Gáldar: ReadTimeout"
+      "fichas_leidas_en_esta_ejecucion": 10,
+      "error": ""
     },
     {
       "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
@@ -382,12 +382,12 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "operativa",
+      "estado": "al_dia_sin_fichas_pendientes",
       "publicados": 174,
       "recinto_sin_verificar": 33,
       "precio_sin_confirmar": 147,
       "distancia_al_centro_municipal": 91,
-      "fichas_leidas_en_esta_ejecucion": 1,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -463,20 +463,8 @@
   ],
   "reported_errors": [
     {
-      "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-      "error": "ReadTimeout"
-    },
-    {
-      "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
-    },
-    {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
-    },
-    {
-      "source": "Ayuntamientos · actos individualmente contrastados",
-      "error": "Gáldar: ReadTimeout"
     }
   ],
   "missing_venue_by_source": [
