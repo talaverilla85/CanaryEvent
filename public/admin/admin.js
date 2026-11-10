@@ -1,6 +1,6 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id), apiUrl='/api/admin';
-let events=[], ads=[], leads=[], promotions=[], pagination=0, filter='all', search='', section='events', current=null, toastTimer;
+let events=[], ads=[], leads=[], promotions=[], opsDrafts=[], pagination=0, filter='all', search='', section='events', current=null, toastTimer;
 const escape=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const text=x=>String(x??'').trim();
 function message(m){const p=$('feedback');p.textContent=m;p.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>p.classList.remove('show'),3500)}
@@ -148,7 +148,7 @@ function editEvent(row){
 }
 async function loadAds() {
  $('adsList').innerHTML='<div class="empty">Cargando campañas…</div>';
- try{const response=await api('ads');ads=response.ads||[];renderAds()}
+ try{const response=await api('ads');ads=response.ads||[];renderAds();renderAdOperations()}
  catch(e){$('adsList').innerHTML='<div class="empty">'+escape(e.message)+'</div>'}
 }
 function renderAds(){
@@ -210,7 +210,7 @@ function daysLeft(value){
 async function loadLeads(){
  const list=$('leadsList');if(!list)return;
  list.innerHTML='<div class="empty">Cargando solicitudes…</div>';
- try{const data=await api('leads');leads=data.leads||[];renderLeads();const pending=leads.filter(l=>l.status==='new'&&String(l.dates_text||'').startsWith('INTERES_INICIAL|')).length;$('tabAds').textContent='Publicidad'+(pending?' · '+pending+' interesados':'')}
+ try{const data=await api('leads');leads=data.leads||[];renderLeads();renderAdOperations();const pending=leads.filter(l=>l.status==='new'&&String(l.dates_text||'').startsWith('INTERES_INICIAL|')).length;$('tabAds').textContent='Publicidad'+(pending?' · '+pending+' interesados':'')}
  catch(e){list.innerHTML='<div class="empty">'+escape(e.message)+'</div>'}
 }
 function renderLeads(){
@@ -255,7 +255,7 @@ $('leadsList').onclick=async e=>{
 async function loadPromotions(){
  const list=$('promotionsList');if(!list)return;
  list.innerHTML='<div class="empty">Cargando eventos promocionados…</div>';
- try{const data=await api('promotions');promotions=data.promotions||[];renderPromotions()}
+ try{const data=await api('promotions');promotions=data.promotions||[];renderPromotions();renderAdOperations()}
  catch(e){list.innerHTML='<div class="empty">'+escape(e.message)+'</div>'}
 }
 function renderPromotions(){
@@ -354,7 +354,7 @@ async function loadAdvertiserDrafts(){
  const root=$('advertiserDraftsList');if(!root)return;
  root.innerHTML='<div class="empty">Cargando campañas privadas…</div>';
  try{
-  const result=await api('advertiser-drafts'),drafts=result.drafts||[];
+  const result=await api('advertiser-drafts'),drafts=result.drafts||[];opsDrafts=drafts;renderAdOperations();
   if(!drafts.length){root.innerHTML='<div class="empty">Ningún anunciante ha creado campañas todavía.</div>';return}
   root.innerHTML=drafts.map(d=>{
    const status=advertStatus[d.status]||d.status;
