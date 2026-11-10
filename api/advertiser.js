@@ -83,6 +83,24 @@ export default async function handler(req,res){
   res.setHeader('Cache-Control','private, no-store');res.setHeader('X-Content-Type-Options','nosniff');
   return res.status(200).end(bytes);
  }
+ if(req.method==='POST'&&op==='submit'){
+  const id=positive(req.body?.id);
+  if(!id)return json(res,400,{error:'Selecciona un borrador válido'});
+  const [draft]=await sql`SELECT d.id,d.status,d.campaign_start,
+    EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
+    FROM advertiser_campaign_drafts d WHERE d.id=${id} AND d.advertiser_id=${a.id}`;
+  if(!draft)return json(res,404,{error:'Anuncio no encontrado'});
+  if(!['draft','changes_requested'].includes(draft.status))
+    return json(res,409,{error:'La campaña ya está en revisión o no admite modificaciones'});
+  if(!draft.has_image)return json(res,400,{error:'Añade una imagen antes de solicitar la revisión'});
+  if(!draft.campaign_start)return json(res,400,{error:'Indica cuándo quieres comenzar la campaña'});
+  const [done]=await sql`UPDATE advertiser_campaign_drafts SET status='submitted',
+     review_note=NULL,updated_at=now()
+     WHERE id=${id} AND advertiser_id=${a.id} AND status IN ('draft','changes_requested')
+     RETURNING id`;
+  return done?json(res,200,{submitted:true,id:Number(done.id),payment_enabled:false})
+    :json(res,409,{error:'La campaña ha cambiado de estado'});
+ }
  if(req.method==='POST'&&op==='save'){
   if(req.body?.consent!==true)return json(res,400,{error:'Debes aceptar el aviso de privacidad'});
   const x=clean(req.body||{});if(!x)return json(res,400,{error:'Revisa los datos de la campaña'});
@@ -106,7 +124,8 @@ export default async function handler(req,res){
    id=Number(r.id);
   }
   if(x.image)await sql`INSERT INTO advertiser_campaign_draft_images(draft_id,mime_type,width,height,image_data) VALUES(${id},'image/webp',1200,675,decode(${x.image},'base64'))
-   ON CONFLICT(draft_id) DO UPDATE SET image_data=excluded.image_data,updated_at=now()`;
+   ON CONFLICT(draft_id) DO UPDATE SET image_data=excluded.image_data,
+    width=excluded.width,height=excluded.height,mime_type=excluded.mime_type,updated_at=now()`;
   return json(res,200,{saved:true,id:Number(id),status:'draft',payment_enabled:false});
  }
  return json(res,404,{error:'Operación desconocida'});
