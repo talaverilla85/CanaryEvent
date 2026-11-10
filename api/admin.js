@@ -390,18 +390,29 @@ async function reviewEnquiry(sql,body){
    :'Estado actualizado. Envía manualmente las indicaciones al anunciante.'};
 }
 async function advertiserReview(sql,body){
- const id=invitedId(body.id),status=String(body.status||'');
- if(!id||!['changes_requested','rejected','approved'].includes(status))throw new Error('Estado de revisión inválido');
- const [found]=await sql`SELECT payment_status,status FROM advertiser_campaign_drafts WHERE id=${id}`;
- if(!found)throw new Error('Anuncio no encontrado');
- if(status==='approved'&&found.payment_status!=='paid')
-  throw new Error('No se puede aprobar publicidad sin pago verificado');
- if(status==='approved'&&found.status!=='paid_review')
-  throw new Error('La campaña no está pendiente de revisión de pago');
- const note=safeText(body.note,500);
- const [changed]=await sql`UPDATE advertiser_campaign_drafts SET status=${status},
- review_note=${note},updated_at=now() WHERE id=${id} RETURNING id,status`;
- return {id:Number(changed.id),status:changed.status};
+ const id=invitedId(body.id),decision=String(body.status||''),note=safeText(body.note,500);
+ if(!id||!['changes_requested','rejected','approved_for_payment'].includes(decision))
+   throw new Error('Estado de revisión inválido');
+ if(decision==='changes_requested'&&!note)
+   throw new Error('Explica al anunciante qué debe corregir');
+ const [draft]=await sql`SELECT d.status,d.payment_status,
+  EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
+  FROM advertiser_campaign_drafts d WHERE id=${id}`;
+ if(!draft)throw new Error('Anuncio no encontrado');
+ if(!['submitted','changes_requested'].includes(draft.status))
+  throw new Error('Esta propuesta no está pendiente de revisión');
+ if(decision==='approved_for_payment'&&!draft.has_image)
+  throw new Error('La creatividad debe incluir una imagen antes de aprobar el contenido');
+ if(draft.payment_status==='paid'||draft.payment_status==='refunded')
+  throw new Error('Los pagos confirmados requieren un procedimiento específico');
+ const [updated]=await sql`UPDATE advertiser_campaign_drafts SET status=${decision},
+  review_note=${note||null},updated_at=now()
+  WHERE id=${id} AND status IN ('submitted','changes_requested') RETURNING id,status`;
+ if(!updated)throw new Error('La propuesta ha cambiado de estado');
+ return {id:Number(updated.id),status:updated.status,payment_enabled:false,
+  message:decision==='approved_for_payment'
+   ?'Contenido aprobado. Queda pendiente de habilitar y confirmar el pago. No se ha publicado.'
+   :'Revisión registrada. Comunica las observaciones al anunciante.'};
 }
 
 export default async function handler(req,res){
