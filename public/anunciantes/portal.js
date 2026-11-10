@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id);
 const TOWNS=['Agaete','Agüimes','Artenara','Arucas','Firgas','Gáldar','Ingenio','La Aldea de San Nicolás','Las Palmas de Gran Canaria','Mogán','Moya','San Bartolomé de Tirajana','Santa Brígida','Santa Lucía de Tirajana','Santa María de Guía de Gran Canaria','Tejeda','Telde','Teror','Valleseco','Valsequillo de Gran Canaria','Vega de San Mateo'];
 const PRICES={local:19,zona:49,insular:99};
 const LABELS={local:'Local',zona:'Zona',insular:'Insular'};
-const STATUS={draft:'Borrador',pending_payment:'Pendiente de pago',paid_review:'Pagado · en revisión',changes_requested:'Cambios solicitados',
+const STATUS={draft:'Borrador',submitted:'Pendiente de revisión',approved_for_payment:'Aprobado · pendiente de pago',pending_payment:'Pendiente de pago',paid_review:'Pago verificado',changes_requested:'Cambios solicitados',
  approved:'Aprobado · pendiente de publicación',active:'Publicado',finished:'Finalizado',rejected:'No aprobado',cancelled:'Cancelado'};
 let account=null,campaigns=[],editing=null,plan='local',selected=[],previewUrl=null;
 const close=x=>{$(x).hidden=true};
@@ -111,7 +111,7 @@ function paintCampaigns(){
    }
    card.append(text('p','Publicada: '+dateText(d.actual_starts_at)+' · Finaliza: '+dateText(d.actual_ends_at),'campaign-meta'));
   }else card.append(text('p','La campaña todavía no está publicándose. El plazo de difusión no ha comenzado.','campaign-meta'));
-  if(d.review_note)card.append(text('p','Observaciones: '+d.review_note,'campaign-meta'));
+  if(d.review_note)card.append(text('p','Observaciones del administrador: '+d.review_note,'campaign-meta'));
   if(d.has_image){
    const preview=text('div','','preview'),image=document.createElement('img');
    image.src='/api/advertiser?op=artwork&id='+Number(d.id);image.alt='Creatividad de '+d.title;
@@ -120,7 +120,19 @@ function paintCampaigns(){
   card.append(text('p','Estadísticas de visitas y clics: próximamente.','campaign-meta'));
   if(['draft','changes_requested'].includes(d.status)){
    const buttons=text('div','','actions'),edit=text('button','Editar borrador','secondary');
-   edit.type='button';edit.addEventListener('click',()=>setEditor(d));buttons.append(edit);card.append(buttons);
+   edit.type='button';edit.addEventListener('click',()=>setEditor(d));buttons.append(edit);
+   if(d.has_image&&d.campaign_start){
+    const submit=text('button','Enviar para revisión','primary');
+    submit.type='button';submit.onclick=async()=>{
+     if(!confirm('¿Enviar esta versión del anuncio para revisión? Todavía no se realiza ningún pago.'))return;
+     submit.disabled=true;
+     try{await api('submit',{id:d.id});await loadCampaigns()}
+     catch(err){alert(err.message)}
+     finally{submit.disabled=false}
+    };
+    buttons.append(submit);
+   }
+   card.append(buttons);
   }
   node.append(card);
  }
