@@ -36,7 +36,30 @@ async function loadStats(){
  const s=await api('stats');$('statEvents').textContent=s.events;$('statReview').textContent=s.reviews;
  $('statHidden').textContent=s.hidden;$('statAds').textContent=s.active_ads;
 }
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts()]);if(location.hash==='#publicidad')setSection('ads')}
+async function loadAdvertisingIntake(){
+ const node=$('adopsIntake');if(!node)return;
+ try{
+  const state=await api('advertising-intake-config');
+  if(state.receiving_proposals){
+    node.textContent='Recepción de solicitudes: ACTIVADA. Los anunciantes pueden enviar su creatividad y sus datos para revisión, sin pagar.';
+    node.classList.add('ready');
+    return;
+  }
+  const missing=[];
+  if(!state.leads_enabled)missing.push('DPARRANDA_LEADS_ENABLED = true');
+  if(!state.privacy_configured)missing.push('DPARRANDA_PRIVACY_URL = dirección HTTPS de tu aviso de privacidad');
+  if(!state.database_configured)missing.push('DATABASE_URL = conexión de Neon');
+  node.replaceChildren();
+  const intro=document.createElement('strong');
+  intro.textContent='Recepción de solicitudes: DESACTIVADA';
+  const detail=document.createElement('p');
+  detail.textContent='Falta configurar en Vercel: '+missing.join('; ')+'. Guarda los cambios en Production y vuelve a desplegar.';
+  const link=document.createElement('a');link.href='https://vercel.com/noe-s-projects-deb823a5/canaryevent/settings/environment-variables';
+  link.target='_blank';link.rel='noopener noreferrer';link.textContent='Abrir configuración de Vercel';
+  node.append(intro,detail,link);
+ }catch(err){node.textContent='No se ha podido comprobar la recepción: '+(err.message||'error de conexión')}
+}
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake()]);if(location.hash==='#publicidad')setSection('ads')}
 function setSection(next){
  section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
  for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){
