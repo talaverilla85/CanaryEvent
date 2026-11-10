@@ -188,8 +188,11 @@ async function listLeads(sql){
    billing_type,billing_address,billing_postal,billing_city,billing_region,billing_country,
    billing_email,format,municipality,event_municipality,campaign_name,campaign_start,campaign_days,
    event_title,event_start,event_end,event_venue,category,event_price,action_url,message,
-   banner_text,creative_alt,image_name,dates_text,status,created_at
-   FROM advertising_enquiries ORDER BY created_at DESC LIMIT 120`;
+   banner_text,creative_alt,image_name,dates_text,status,review_status,review_note,
+   payment_status,created_at,
+   EXISTS(SELECT 1 FROM advertising_enquiry_images i WHERE i.enquiry_id=advertising_enquiries.id) AS has_image,
+   EXISTS(SELECT 1 FROM advertiser_campaign_drafts d WHERE d.source_lead_id=advertising_enquiries.id) AS has_linked_draft
+   FROM advertising_enquiries ORDER BY created_at DESC LIMIT 200`;
  return {leads:rows};
 }
 async function listPromotions(sql){
@@ -312,7 +315,7 @@ async function advertiserChangeAccess(sql,body){
 async function advertiserDrafts(sql){
  const drafts=await sql`SELECT d.id,d.advertiser_id,a.company AS account_company,d.plan,d.days,d.price_cents,
  d.municipalities,d.placement,d.advertiser,d.title,d.description,d.destination,d.image_alt,d.status,d.payment_status,
- d.campaign_start,d.event_start,d.event_town,d.event_venue,d.actual_starts_at,d.actual_ends_at,d.review_note,
+ d.campaign_start,d.event_start,d.event_town,d.event_venue,d.actual_starts_at,d.actual_ends_at,d.review_note,d.source_lead_id,
  d.updated_at,EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
  FROM advertiser_campaign_drafts d JOIN advertiser_accounts a ON a.id=d.advertiser_id
  ORDER BY d.updated_at DESC LIMIT 150`;
@@ -328,6 +331,29 @@ async function advertiserDraftImage(sql,res,id){
  res.setHeader('Cache-Control','private, no-store');
  res.setHeader('X-Content-Type-Options','nosniff');
  return res.status(200).end(bytes);
+}
+async function reviewEnquiry(sql,body){
+ const id=invitedId(body.id),decision=String(body.status||''),note=safeText(body.note,500);
+ if(!id||!['changes_requested','approved_for_payment','rejected'].includes(decision))
+  throw new Error('Revisión no válida');
+ if(decision==='changes_requested'&&!note)throw new Error('Indica qué cambios debe realizar el anunciante');
+ const [lead]=await sql`SELECT id,review_status,
+   EXISTS(SELECT 1 FROM advertising_enquiry_images i WHERE i.enquiry_id=advertising_enquiries.id) AS has_image,
+   EXISTS(SELECT 1 FROM advertiser_campaign_drafts d WHERE d.source_lead_id=advertising_enquiries.id) AS has_linked_draft
+   FROM advertising_enquiries WHERE id=${id}`;
+ if(!lead||lead.review_status==='interest')throw new Error('No es una propuesta de publicación');
+ if(lead.has_linked_draft)throw new Error('Revisa la versión actualizada de la campaña, no su solicitud original');
+ if(!['submitted','changes_requested'].includes(lead.review_status))
+  throw new Error('Esta propuesta no admite cambios de estado');
+ if(decision==='approved_for_payment'&&!lead.has_image)
+  throw new Error('El anunciante debe adjuntar una imagen antes de aprobar la propuesta');
+ const [changed]=await sql`UPDATE advertising_enquiries SET review_status=${decision},
+  review_note=${note},status='contacted' WHERE id=${id}
+  RETURNING id,review_status`;
+ return {id:Number(changed.id),status:changed.review_status,
+  payment_enabled:false,message:decision==='approved_for_payment'
+   ?'Creatividad aprobada. El enlace de pago estará disponible tras integrar la pasarela. No se ha cobrado ni publicado.'
+   :'Estado actualizado. Envía manualmente las indicaciones al anunciante.'};
 }
 async function advertiserReview(sql,body){
  const id=invitedId(body.id),status=String(body.status||'');
@@ -376,6 +402,7 @@ export default async function handler(req,res){
     if(req.method==='POST'&&op==='advertiser-invite')return json(res,200,await advertiserInvite(sql,data(req),req));
     if(req.method==='POST'&&op==='advertiser-access')return json(res,200,await advertiserChangeAccess(sql,data(req)));
     if(req.method==='POST'&&op==='advertiser-review')return json(res,200,await advertiserReview(sql,data(req)));
+    if(req.method==='POST'&&op==='enquiry-review')return json(res,200,await reviewEnquiry(sql,data(req)));
     if(req.method==='GET'&&op==='leads')return json(res,200,await listLeads(sql));
     if(req.method==='GET'&&op==='promotions')return json(res,200,await listPromotions(sql));
     if(req.method==='GET'&&op==='leadimage'){
