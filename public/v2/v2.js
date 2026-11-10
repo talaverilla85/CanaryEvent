@@ -175,7 +175,7 @@
         const wa=weight[a.category]||0,wb=weight[b.category]||0;
         const da= Math.max(0, Math.round((new Date(day(a.start)+'T12:00:00Z')-new Date(today+'T12:00:00Z'))/86400000));
         const db= Math.max(0, Math.round((new Date(day(b.start)+'T12:00:00Z')-new Date(today+'T12:00:00Z'))/86400000));
-        return (db-da)*0.18+(wb-wa)*(-1) || day(a.start).localeCompare(day(b.start));
+        return (da-db)*0.18+(wb-wa) || day(a.start).localeCompare(day(b.start));
       });
     const chosen=[],categories=new Set(),images=new Set();
     for(const e of interesting) {
@@ -382,6 +382,14 @@
       const node=event.target.closest('[data-open]');
       if(node&&(event.key==='Enter'||event.key===' ')){event.preventDefault();showEvent(node.dataset.open);}
     });
+    // Preserve entire official portrait posters instead of cutting off their text.
+    document.addEventListener('load',(event)=>{
+      const img=event.target;
+      if(img.tagName==='IMG' && img.closest('.feature,.tile-art,.detail-dialog') &&
+          img.naturalWidth>0 && img.naturalHeight/img.naturalWidth>1.28){
+        img.classList.add('poster-art');
+      }
+    },true);
     document.addEventListener('error',(event)=>{
       const el=event.target;
       if(el.tagName!=='IMG' || !el.closest('.feature,.tile-art,.detail-dialog'))return;
