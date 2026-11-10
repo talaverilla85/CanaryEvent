@@ -438,6 +438,7 @@ function normalizedOpsRows(){
  for(const e of leads){
   if(e.has_linked_draft)continue; // Show the newer submitted version, not its original.
   const attrs=String(e.dates_text||'').split('|');
+  const isAdminTest=attrs[0]==='PRUEBA_ADMIN';
   const plan=['local','zona','insular'].includes(attrs[1])?attrs[1]:'';
   const status=['submitted','changes_requested','approved_for_payment','rejected'].includes(e.review_status)
    ?e.review_status:'interest';
@@ -445,7 +446,7 @@ function normalizedOpsRows(){
   const hasCost=plan&&Number.isFinite(cost)&&cost>=0;
   result.push({
    key:'lead-'+Number(e.id),source:'lead',id:Number(e.id),
-   company:e.company||'',title:e.campaign_name||'Consulta comercial',
+   company:(isAdminTest?'[PRUEBA] ':'')+(e.company||''),title:e.campaign_name||'Consulta comercial',
    submitted_at:e.created_at,status,payment:e.payment_status||'unavailable',
    days:Number(e.campaign_days)||null,plan,kind:e.format==='event'?'Evento patrocinado':'Banner',
    area:e.municipality||'',price:hasCost?cost:null,
