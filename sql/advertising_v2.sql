@@ -150,3 +150,10 @@ ALTER TABLE advertiser_campaign_drafts ADD CONSTRAINT advertiser_campaign_drafts
    'changes_requested','approved','active','finished','rejected','cancelled'));
 ALTER TABLE advertiser_campaign_drafts ADD COLUMN IF NOT EXISTS source_lead_id BIGINT UNIQUE REFERENCES advertising_enquiries(id) ON DELETE SET NULL;
 CREATE INDEX IF NOT EXISTS idx_dp_drafts_source_lead ON advertiser_campaign_drafts(source_lead_id);
+
+-- Public preview artwork uses an optimized 1000 x 563 WebP image. Workspace
+-- edits use 1200 x 675; preserve real dimensions when migrating an enquiry.
+ALTER TABLE advertiser_campaign_draft_images DROP CONSTRAINT IF EXISTS advertiser_campaign_draft_images_width_check;
+ALTER TABLE advertiser_campaign_draft_images DROP CONSTRAINT IF EXISTS advertiser_campaign_draft_images_height_check;
+ALTER TABLE advertiser_campaign_draft_images ADD CONSTRAINT advertiser_campaign_draft_images_width_check
+ CHECK((width=1000 AND height=563) OR (width=1200 AND height=675));
