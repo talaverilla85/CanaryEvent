@@ -69,7 +69,7 @@ footer{text-align:center;border-top:1px solid var(--line);padding:25px 15px;colo
  </section>
  <section id="editor" class="card" hidden aria-labelledby="editorTitle">
   <div class="heading-row"><h2 id="editorTitle">Preparar nuevo anuncio</h2><button id="cancelEditor" class="secondary" type="button">Cerrar</button></div>
-  <p class="note">Tu campaña se guardará como borrador privado. El pago y el envío definitivo a revisión no están habilitados todavía.</p>
+  <p class="note">Puedes guardar el borrador y enviarlo para revisión, con posibilidad de corregirlo y volver a presentarlo. El pago se habilitará después de que el administrador apruebe el contenido.</p>
   <form id="draftForm">
    <div class="field"><label>1. Cobertura y tarifa</label>
     <div class="grid3" id="plans">
@@ -104,7 +104,7 @@ footer{text-align:center;border-top:1px solid var(--line);padding:25px 15px;colo
     <span>He leído la <a id="privacyLink" href="" target="_blank" rel="noopener noreferrer">información sobre privacidad</a> y autorizo el tratamiento de los datos de esta propuesta para gestionar mi publicidad.</span>
    </label>
    <div class="summary" style="margin-top:17px"><div><strong id="summaryPlan">Local · 30 días</strong><div class="note">Precio orientativo. Sin compra ni reserva.</div></div><strong id="summaryTotal">19 €</strong></div>
-   <div class="actions"><button id="saveDraft" type="submit" class="primary">Guardar borrador</button><button type="button" class="secondary" disabled title="Pendiente de habilitar el pago">Pagar y enviar a revisión · próximamente</button></div>
+   <div class="actions"><button id="saveDraft" type="submit" class="primary">Guardar borrador</button><button type="button" class="secondary" disabled title="Pendiente de habilitar el pago">Pagar tras la aprobación · próximamente</button></div>
    <p id="editorFeedback" class="status" role="status" aria-live="polite" hidden></p>
   </form>
  </section>
@@ -115,5 +115,5 @@ footer{text-align:center;border-top:1px solid var(--line);padding:25px 15px;colo
 </div>
 </main>
 <footer>DParranda · Disfruta de tus islas · Acceso privado</footer>
-<script src="/anunciantes/portal.js?v=1" defer></script>
+<script src="/anunciantes/portal.js?v=2" defer></script>
 </body></html>
