@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-11-10T11:36:57+00:00",
+  "checked_at": "2026-11-10T13:43:54+00:00",
   "quality_counts": {
-    "publicados": 453,
+    "publicados": 461,
     "recintos_sin_verificar": 46,
     "programas_y_fichas_por_revisar": 9,
     "precios_sin_confirmar": 321,
-    "distancia_a_centro_municipal": 299,
+    "distancia_a_centro_municipal": 307,
     "fuentes_con_error": 1,
     "duplicados_potenciales": 3
   },
@@ -33,11 +33,11 @@
     {
       "source": "Juventud Las Palmas de Gran Canaria",
       "estado": "operativa",
-      "publicados": 10,
+      "publicados": 11,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 10,
-      "fichas_leidas_en_esta_ejecucion": 9,
+      "distancia_al_centro_municipal": 11,
+      "fichas_leidas_en_esta_ejecucion": 10,
       "error": ""
     },
     {
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 15,
+      "fichas_leidas_en_esta_ejecucion": 8,
       "error": ""
     },
     {
@@ -382,22 +382,22 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "al_dia_sin_fichas_pendientes",
+      "estado": "operativa",
       "publicados": 174,
       "recinto_sin_verificar": 33,
       "precio_sin_confirmar": 147,
       "distancia_al_centro_municipal": 91,
-      "fichas_leidas_en_esta_ejecucion": 0,
+      "fichas_leidas_en_esta_ejecucion": 24,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 66,
+      "publicados": 73,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 65,
-      "fichas_leidas_en_esta_ejecucion": 112,
+      "distancia_al_centro_municipal": 72,
+      "fichas_leidas_en_esta_ejecucion": 119,
       "error": ""
     },
     {

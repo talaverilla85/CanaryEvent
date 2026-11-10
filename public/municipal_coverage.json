@@ -186,13 +186,13 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 219,
-      "municipal_cards_total": 10,
+      "catalog_cards_total": 220,
+      "municipal_cards_total": 11,
       "other_sources_cards_total": 209,
       "source_health": [
         {
           "source": "Juventud Las Palmas de Gran Canaria",
-          "found": 9,
+          "found": 10,
           "error": ""
         }
       ],
@@ -275,9 +275,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 24,
+      "catalog_cards_total": 30,
       "municipal_cards_total": 1,
-      "other_sources_cards_total": 23,
+      "other_sources_cards_total": 29,
       "source_health": [],
       "full_coverage_claim": false
     },
@@ -326,9 +326,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 64,
+      "catalog_cards_total": 65,
       "municipal_cards_total": 42,
-      "other_sources_cards_total": 22,
+      "other_sources_cards_total": 23,
       "source_health": [
         {
           "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
