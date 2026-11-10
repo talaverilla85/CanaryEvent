@@ -15,9 +15,9 @@
   <script src="/posters/manifest.js" defer></script>
   <script src="/v2/v2.js" defer></script>
 </head>
-<body>
+<body data-view="home">
   <a class="skip" href="#main">Saltar al contenido</a>
-  <div class="lab-strip"><span class="lab-pulse"></span> DParranda 2.0 · Diseño en pruebas <a href="/" rel="nofollow">Ver versión actual ↗</a></div>
+  <div class="lab-strip"><span class="lab-pulse"></span> Versión experimental <a href="/" rel="nofollow">Volver a DParranda ↗</a></div>
   <header class="site-header container">
     <a class="brand-link" href="/v2/" aria-label="DParranda 2.0 · Inicio">
       <img src="/brand/dparranda-compact.svg" width="181" height="51" alt="DParranda" fetchpriority="high">
@@ -25,24 +25,20 @@
     <button class="header-location" type="button" id="locationButton" title="Activar planes cercanos"><span class="location-mark">⌖</span><span id="locationLabel">Gran Canaria</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
   </header>
   <main id="main" class="container">
-    <div class="intro">
-      <div><p class="eyebrow"><span class="shine">✦</span> DESCUBRE CANARIAS</p><h1>¿Qué plan te apetece <em>hoy?</em></h1><p class="intro-caption">Ideas para salir, descubrir y disfrutar. Todo a tu manera.</p></div>
-      <div class="island-mark" aria-hidden="true">☀</div>
-    </div>
     <form id="searchForm" class="search-bar" role="search">
       <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16.5 16.5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      <input id="searchInput" type="search" enterkeyhint="search" placeholder="Busca un plan, municipio o artista..." aria-label="Buscar eventos" autocomplete="off">
+      <input id="searchInput" type="search" enterkeyhint="search" placeholder="Buscar eventos, música, planes..." aria-label="Buscar eventos" autocomplete="off">
       <button class="search-submit" type="submit" aria-label="Buscar"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 14 0m-5-5 5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </form>
-    <div class="quick-row" id="quickFilters" role="group" aria-label="Filtrar por fecha"><button class="quick-pill active" data-period="all" type="button">✦ Para ti</button><button class="quick-pill" data-period="today" type="button">Hoy</button><button class="quick-pill" data-period="weekend" type="button">Este finde</button><button class="quick-pill" data-period="free" type="button">Gratis</button><button class="quick-pill" data-period="near" type="button">Cerca de mí</button></div>
     <section id="homeView" class="view active" aria-label="Inicio">
-      <div class="section-head hero-head"><div><span class="small-kicker">NUESTRA SELECCIÓN</span><h2>En portada <span class="heading-star">✳</span></h2></div><span class="section-side">Descubre algo nuevo</span></div>
+      <h1 class="sr-only">Descubre planes y eventos en Canarias</h1>
       <div id="hero" class="hero-shell" aria-roledescription="carrusel"><div class="hero-loading shimmer"></div></div>
       <div id="heroDots" class="hero-dots" role="group" aria-label="Elegir evento destacado"></div>
       <div id="homeSections" class="home-sections"><div class="loading-note">Buscando los próximos planes…</div></div>
     </section>
     <section id="exploreView" class="view" aria-label="Explorar eventos" hidden>
       <div class="section-head page-head"><div><span class="small-kicker">ENCUENTRA TU PRÓXIMO PLAN</span><h2>Explorar eventos</h2></div><span id="resultCounter" class="section-side"></span></div>
+    <div class="quick-row" id="quickFilters" role="group" aria-label="Filtrar por fecha"><button class="quick-pill active" data-period="all" type="button">✦ Para ti</button><button class="quick-pill" data-period="today" type="button">Hoy</button><button class="quick-pill" data-period="weekend" type="button">Este finde</button><button class="quick-pill" data-period="free" type="button">Gratis</button><button class="quick-pill" data-period="near" type="button">Cerca de mí</button></div>
       <div class="category-row" id="categoryFilters" role="group" aria-label="Categorías de eventos"></div>
       <div id="exploreGrid" class="explore-grid"></div>
       <button id="moreButton" class="more-button" type="button" hidden>Ver más planes <span aria-hidden="true">↓</span></button>
