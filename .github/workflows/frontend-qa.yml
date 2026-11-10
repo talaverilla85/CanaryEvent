@@ -49,6 +49,7 @@ jobs:
       - name: Validar JavaScript del sitio
         run: |
           node --check api/catalog.js
+          node --check public/v2/v2.js
           node scripts/check_frontend_syntax.cjs
           node scripts/check_catalog_runtime.cjs
           node scripts/check_grid_batches.cjs
