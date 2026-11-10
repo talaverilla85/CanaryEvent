@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-11-09",
+  "checked_on": "2026-11-10",
   "scope": "Gran Canaria (official candidate links only)",
   "no_auto_publication": true,
   "inspected": [
@@ -20,8 +20,9 @@
     },
     {
       "municipality": "Gáldar",
-      "outcome": "ok",
-      "links": 5
+      "outcome": "needs_review",
+      "error_type": "ReadTimeout",
+      "links": 0
     },
     {
       "municipality": "La Aldea de San Nicolás",
@@ -50,35 +51,35 @@
   ],
   "scan_state": {
     "Agaete": {
-      "checked_on": "2026-11-09",
+      "checked_on": "2026-11-10",
       "outcome": "ok"
     },
     "Artenara": {
-      "checked_on": "2026-11-09",
+      "checked_on": "2026-11-10",
       "outcome": "ok"
     },
     "Firgas": {
-      "checked_on": "2026-11-09",
+      "checked_on": "2026-11-10",
       "outcome": "ok"
     },
     "Gáldar": {
-      "checked_on": "2026-11-09",
-      "outcome": "ok"
+      "checked_on": "2026-11-10",
+      "outcome": "needs_review"
     },
     "La Aldea de San Nicolás": {
-      "checked_on": "2026-11-09",
+      "checked_on": "2026-11-10",
       "outcome": "needs_review"
     },
     "Las Palmas de Gran Canaria": {
-      "checked_on": "2026-11-09",
+      "checked_on": "2026-11-10",
       "outcome": "needs_review"
     },
     "Mogán": {
-      "checked_on": "2026-11-09",
+      "checked_on": "2026-11-10",
       "outcome": "needs_review"
     },
     "Moya": {
-      "checked_on": "2026-11-09",
+      "checked_on": "2026-11-10",
       "outcome": "needs_review"
     },
     "San Bartolomé de Tirajana": {
@@ -116,6 +117,42 @@
   },
   "candidate_count": 50,
   "leads": [
+    {
+      "url": "https://www.villadefirgas.es/firgas-celebra-el-19-de-septiembre-una-jornada-de-naturaleza-gastronomia-y-musica-con-motivo-del-dia-mundial-del-turismo/",
+      "label": "Firgas celebra el Día Mundial del Turismo con senderismo, gastronomía y música en la Plaza de San Roque",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-10",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/taller-de-teatro/",
+      "label": "TALLER DE TEATRO",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-10",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/categories/festival/",
+      "label": "Festival",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-10",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/categories/casa-cultura/",
+      "label": "Casa Cultura",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-10",
+      "publication_status": "not_an_event"
+    },
     {
       "url": "https://vegadesanmateo.es/areas/patrimonio-cultural-e-historico",
       "label": "Patrimonio Cultural e Histórico",
@@ -319,42 +356,6 @@
       "label": "Banda Municipal de Música",
       "kind": "unverified_official_link",
       "municipality": "Gáldar",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-09",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/firgas-celebra-el-19-de-septiembre-una-jornada-de-naturaleza-gastronomia-y-musica-con-motivo-del-dia-mundial-del-turismo/",
-      "label": "Firgas celebra el Día Mundial del Turismo con senderismo, gastronomía y música en la Plaza de San Roque",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-09",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/events/taller-de-teatro/",
-      "label": "TALLER DE TEATRO",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-09",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/events/categories/festival/",
-      "label": "Festival",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-09",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/events/categories/casa-cultura/",
-      "label": "Casa Cultura",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
       "first_seen": "2026-10-27",
       "last_seen": "2026-11-09",
       "publication_status": "not_an_event"

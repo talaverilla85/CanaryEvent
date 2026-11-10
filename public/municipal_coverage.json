@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-11-09",
+  "updated_on": "2026-11-10",
   "scope": "21 municipios de Gran Canaria",
   "municipalities_total": 21,
   "municipalities_with_any_catalog_cards": 18,
@@ -131,13 +131,13 @@
       "source_health": [
         {
           "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-          "found": 5,
-          "error": ""
+          "found": 0,
+          "error": "ReadTimeout"
         },
         {
           "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-          "found": 1,
-          "error": ""
+          "found": 0,
+          "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=12)"
         }
       ],
       "full_coverage_claim": false
@@ -149,9 +149,9 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 24,
+      "catalog_cards_total": 23,
       "municipal_cards_total": 10,
-      "other_sources_cards_total": 14,
+      "other_sources_cards_total": 13,
       "source_health": [
         {
           "source": "Ayuntamiento de Ingenio",
@@ -186,13 +186,13 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 220,
-      "municipal_cards_total": 11,
+      "catalog_cards_total": 219,
+      "municipal_cards_total": 10,
       "other_sources_cards_total": 209,
       "source_health": [
         {
           "source": "Juventud Las Palmas de Gran Canaria",
-          "found": 8,
+          "found": 10,
           "error": ""
         }
       ],
