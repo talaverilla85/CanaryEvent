@@ -415,6 +415,60 @@ async function advertiserReview(sql,body){
    :'Revisión registrada. Comunica las observaciones al anunciante.'};
 }
 
+
+// Admin-authenticated test: saves the exact simulated creative without
+// requiring public lead collection, fake consent, or Stripe configuration.
+async function saveAdvertisingTestProposal(sql,body){
+ const d=body?.campaign;
+ if(!d||typeof d!=='object'||Array.isArray(d))throw new Error('Campaña de prueba inválida');
+ const tariffs={local:19,zona:49,insular:99};
+ const plan=safeText(d.plan,20),days=Number(d.days),kind=safeText(d.kind,20);
+ const company=safeText(d.advertiser,120),title=safeText(d.title,160);
+ const description=safeText(d.description,350),destination=safeText(d.destination,850);
+ const campaignStart=safeText(d.start,10);
+ const towns=Array.isArray(d.municipalities)?d.municipalities:[];
+ const municipalities=[...new Set(towns)];
+ const startDate=safeText(d.eventDate,25),venue=safeText(d.eventVenue,200),eventTown=safeText(d.eventTown,90);
+ const image=typeof d.image_data==='string'?d.image_data:'';
+ const validImage=/^data:image\/webp;base64,[A-Za-z0-9+/=]+$/.test(image)&&image.length<900000;
+ const bytes=validImage?Buffer.from(image.slice(image.indexOf(',')+1),'base64'):null;
+ let validURL=false;
+ try{const u=new URL(destination);validURL=u.protocol==='https:'&&!u.username&&!u.password}catch{}
+ if(!Object.hasOwn(tariffs,plan)||![30,60].includes(days)||!['banner','evento'].includes(kind)||
+   !company||!title||description.length<12||!validURL||!validLocalDate(campaignStart)||
+   !campaignStart||municipalities.length!==towns.length||
+   (plan==='local'&&municipalities.length!==1)||
+   (plan==='zona'&&(municipalities.length<1||municipalities.length>4))||
+   (plan==='insular'&&municipalities.length!==0)||
+   (kind==='evento'&&(!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(startDate)||!eventTown||!venue))||
+   !bytes||bytes.length<800||bytes.length>620000||
+   bytes.toString('ascii',0,4)!=='RIFF'||bytes.toString('ascii',8,12)!=='WEBP')
+   throw new Error('Completa la campaña y adjunta una imagen WebP válida para enviarla de prueba');
+ const amount=tariffs[plan]*(days/30);
+ const zone=plan==='insular'?'Toda Gran Canaria':municipalities.join(', ');
+ const details='PRUEBA_ADMIN|'+plan+'|'+amount+'|'+days+'|'+kind;
+ const [quota]=await sql`SELECT count(*)::int AS count FROM advertising_enquiries
+    WHERE dates_text LIKE 'PRUEBA_ADMIN|%' AND created_at>now()-interval '1 hour'`;
+ if(quota.count>=12)throw new Error('Ya se han enviado demasiadas pruebas en una hora');
+ const encoded=bytes.toString('base64');
+ const [result]=await sql`WITH lead AS (
+    INSERT INTO advertising_enquiries(company,contact_name,email,telephone,municipality,format,
+     dates_text,message,campaign_name,campaign_start,campaign_days,event_title,event_start,
+     event_venue,event_municipality,action_url,banner_text,creative_alt,
+     status,review_status,payment_status)
+    VALUES (${company},'Simulación del administrador','prueba@ejemplo.invalid','',${zone},
+     ${kind==='banner'?'banner':'event'},${details},
+     'PRUEBA DEL ADMINISTRADOR: no es una contratación ni se ha enviado ningún aviso al anunciante.',
+     ${title},${campaignStart},${days},${kind==='evento'?title:null},
+     ${kind==='evento'?startDate:null},${kind==='evento'?venue:null},
+     ${kind==='evento'?eventTown:null},${destination},${description},${title},
+     'new','submitted','unavailable')
+    RETURNING id
+   ) INSERT INTO advertising_enquiry_images(enquiry_id,mime_type,width,height,image_data)
+   SELECT id,'image/webp',1000,563,decode(${encoded},'base64') FROM lead RETURNING enquiry_id`;
+ return {received:true,request_id:Number(result.enquiry_id),test:true,
+  message:'Campaña de prueba recibida en el panel, pendiente de revisión. Sin pago ni publicación.'};
+}
 export default async function handler(req,res){
   res.setHeader('Cache-Control','private, no-store, max-age=0');
   if(!['GET','POST'].includes(req.method))return json(res,405,{error:'Método no permitido'});
@@ -438,6 +492,8 @@ export default async function handler(req,res){
     }
     if(op==='session')return json(res,200,{authenticated:authenticated(req),configured:true});
     if(!authenticated(req))return json(res,401,{error:'Acceso reservado al administrador'});
+    if(req.method==='POST'&&op==='advertising-test-proposal')
+      return json(res,201,await saveAdvertisingTestProposal(sql,data(req)));
     if(req.method==='GET'&&op==='advertising-intake-config'){
       let privacy=false;
       try{
@@ -445,7 +501,7 @@ export default async function handler(req,res){
        privacy=url.protocol==='https:'&&!url.username&&!url.password;
       }catch{}
       const leads=process.env.DPARRANDA_LEADS_ENABLED==='true';
-      return json(res,200,{receiving_proposals:leads&&privacy&&!!process.env.DATABASE_URL,
+      return json(res,200,{receiving_proposals:leads&&privacy&&!!process.env.DATABASE_URL,admin_test_enabled:true,
        leads_enabled:leads,privacy_configured:privacy,database_configured:!!process.env.DATABASE_URL,
        accepting_payments:false});
     }

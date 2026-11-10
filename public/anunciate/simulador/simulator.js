@@ -106,8 +106,47 @@ function contractCallout(draft){
   button.textContent=section.hidden?'Solicitar contratación':'Ocultar solicitud';
   if(!section.hidden)section.scrollIntoView({behavior:'smooth',block:'nearest'});
  };
- row.append(info,button);wrapper.append(row);
- wrapper.append($('interestSection')); // The form belongs to this ad, not the end of the events feed.
+ const actions=el('div','inline-contract-actions');
+ const testButton=el('button','inline-contract-test','Enviar prueba al panel');
+ testButton.type='button';testButton.hidden=true;
+ const testFeedback=el('p','inline-contract-feedback','');testFeedback.setAttribute('role','status');testFeedback.setAttribute('aria-live','polite');
+ actions.append(button,testButton);row.append(info,actions);wrapper.append(row,testFeedback);
+ // Admin test calls the authenticated admin API; no actual merchant data or payment.
+ fetch('/api/admin?op=advertising-intake-config',{credentials:'same-origin',cache:'no-store'})
+  .then(async response=>response.ok?response.json():null)
+  .then(config=>{if(config?.admin_test_enabled===true)testButton.hidden=false})
+  .catch(()=>{});
+ testButton.onclick=async()=>{
+  if(!confirm('¿Guardar esta simulación como una solicitud de PRUEBA en tu panel de administración? No se cobra ni publica nada.'))return;
+  if(!canDisplayImage(draft.image,false)){
+   testFeedback.textContent='Para enviar una prueba con imagen debes adjuntar primero una creatividad desde «Volver a editar».';
+   return;
+  }
+  testButton.disabled=true;testFeedback.textContent='Enviando anuncio e imagen al panel…';
+  try{
+   const response=await fetch('/api/admin?op=advertising-test-proposal',{
+    method:'POST',credentials:'same-origin',cache:'no-store',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({campaign:{
+     plan:draft.plan,days:draft.days,kind:draft.kind,
+     advertiser:draft.advertiser,title:draft.title,
+     description:draft.description,destination:draft.destination,
+     start:draft.start,municipalities:draft.municipalities,
+     eventDate:draft.eventDate,eventVenue:draft.eventVenue,eventTown:draft.eventTown,
+     image_data:draft.image
+    }})
+   });
+   const result=await response.json();
+   if(!response.ok||!result.received)throw Error(result.error||'No se pudo enviar la prueba');
+   testFeedback.replaceChildren();
+   const strong=el('strong','','Solicitud de prueba #'+Number(result.request_id)+' guardada correctamente. ');
+   const link=el('a','inline-test-link','Verla en administración');
+   link.href='/admin/#publicidad';link.target='_blank';link.rel='noopener noreferrer';
+   testFeedback.append(strong,link);
+   testButton.textContent='Prueba enviada';testButton.disabled=true;
+  }catch(err){testFeedback.textContent=err.message||'Error al enviar la prueba';testButton.disabled=false}
+ };
+ wrapper.append($('interestSection')); // The public form belongs to this ad.
  return wrapper;
 }
 function localToday(){
