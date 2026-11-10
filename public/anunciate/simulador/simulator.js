@@ -88,6 +88,28 @@ function sponsorBanner(draft){
  card.append(media,body);slot.append(card);
  return slot;
 }
+function contractCallout(draft){
+ const wrapper=el('section','inline-contract');
+ wrapper.setAttribute('aria-label','Solicitar contratación del anuncio mostrado');
+ const row=el('div','inline-contract-row');
+ const info=el('div','inline-contract-info');
+ info.append(el('strong','','¿Te gusta este anuncio?'));
+ const plan={local:'Local',zona:'Zona',insular:'Insular'}[draft.plan]||'Publicidad';
+ const price=Number(draft.total)||0;
+ info.append(el('span','',plan+' · '+draft.days+' días · '+price+' € · Revisión antes del pago'));
+ const button=el('button','inline-contract-button','Solicitar contratación');
+ button.type='button';button.setAttribute('aria-controls','interestSection');button.setAttribute('aria-expanded','false');
+ button.onclick=()=>{
+  const section=$('interestSection');
+  section.hidden=!section.hidden;
+  button.setAttribute('aria-expanded',String(!section.hidden));
+  button.textContent=section.hidden?'Solicitar contratación':'Ocultar solicitud';
+  if(!section.hidden)section.scrollIntoView({behavior:'smooth',block:'nearest'});
+ };
+ row.append(info,button);wrapper.append(row);
+ wrapper.append($('interestSection')); // The form belongs to this ad, not the end of the events feed.
+ return wrapper;
+}
 function localToday(){
  const p=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{
   timeZone:'Atlantic/Canary',year:'numeric',month:'2-digit',day:'2-digit'
@@ -135,15 +157,16 @@ function render(draft,events){
    municipality:draft.eventTown,category:'ocio',
    image_url:draft.image,free:false,price:''
   },true));
+  GRID.append(contractCallout(draft));
  }
  let bannerAdded=false;
  for(let i=0;i<candidates.length;i++){
   GRID.append(eventCard(candidates[i]));
   if(draft.kind==='banner'&&i===4){
-   GRID.append(sponsorBanner(draft));bannerAdded=true;
+   GRID.append(sponsorBanner(draft));GRID.append(contractCallout(draft));bannerAdded=true;
   }
  }
- if(draft.kind==='banner'&&!bannerAdded)GRID.append(sponsorBanner(draft));
+ if(draft.kind==='banner'&&!bannerAdded){GRID.append(sponsorBanner(draft));GRID.append(contractCallout(draft));}
  if(!candidates.length){
   GRID.append(el('p','status','No hay otros eventos disponibles ahora mismo para mostrar en la simulación.'));
  }
@@ -156,13 +179,13 @@ function render(draft,events){
 function initInterestForm(draft){
  const section=$('interestSection'),form=$('interestForm');
  const availability=$('interestAvailability'),feedback=$('interestFeedback');
- section.hidden=false;
+ section.hidden=true;
  fetch('/api/advertise-interest',{cache:'no-store'}).then(async response=>{
   if(!response.ok)throw Error('Configuración no disponible');
   return response.json();
  }).then(config=>{
   if(config.enabled!==true||typeof config.privacy_url!=='string'||!config.privacy_url.startsWith('https://')){
-   availability.textContent='Estamos preparando la recepción de solicitudes. Puedes usar la vista previa mientras tanto.';
+   availability.textContent='La recepción de solicitudes aún no está activada. Puedes ver tu anuncio, pero no enviarlo hasta que se configure el formulario de contratación.';
    return;
   }
   $('interestPrivacy').href=config.privacy_url;
@@ -173,7 +196,7 @@ function initInterestForm(draft){
   availability.hidden=true;
   form.hidden=false;
  }).catch(()=>{
-  availability.textContent='El registro de interesados no está disponible en este momento.';
+  availability.textContent='No se ha podido comprobar el envío de solicitudes. Inténtalo de nuevo después de recargar la página.';
  });
  form.addEventListener('submit',async event=>{
   event.preventDefault();
