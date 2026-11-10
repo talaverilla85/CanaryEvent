@@ -277,7 +277,10 @@ async function advertiserAccounts(sql){
 async function advertiserInvite(sql,body,req){
  const leadId=invitedId(body.lead_id);
  if(!leadId)throw new Error('Selecciona una solicitud de empresa válida');
- const [lead]=await sql`SELECT company,contact_name,email FROM advertising_enquiries WHERE id=${leadId}`;
+ const [lead]=await sql`SELECT company,contact_name,email,dates_text,municipality,format,
+ campaign_name,campaign_start,campaign_days,banner_text,action_url,creative_alt,
+ event_start,event_venue,event_municipality,review_status,review_note
+ FROM advertising_enquiries WHERE id=${leadId}`;
  if(!lead)throw new Error('Solicitud no encontrada');
  if(!lead.company||!lead.email)throw new Error('La solicitud necesita empresa y correo');
  const [existing]=await sql`SELECT id FROM advertiser_accounts WHERE lead_id=${leadId}`;
@@ -296,6 +299,37 @@ async function advertiserInvite(sql,body,req){
    VALUES(${leadId},${lead.company},${lead.contact_name||''},${lead.email},${digest})
    RETURNING id`;
   accountId=Number(created.id);
+ }
+ // Public preview proposals are carried into the advertiser workspace
+ // when the admin shares an invitation. The original enquiry remains audited.
+ const parts=String(lead.dates_text||'').split('|');
+ if(['submitted','changes_requested','approved_for_payment'].includes(lead.review_status)&&
+    parts[0]==='INTERES_INICIAL'&&['local','zona','insular'].includes(parts[1])&&
+    ['30','60'].includes(parts[3])&&['banner','evento'].includes(parts[4])){
+  const plan=parts[1],days=Number(parts[3]),placement=parts[4];
+  const limit=plan==='local'?1:plan==='zona'?4:0;
+  const towns=plan==='insular'?[]:String(lead.municipality||'')
+     .split(',').map(x=>x.trim()).filter(Boolean).slice(0,limit);
+  const prices={local:1900,zona:4900,insular:9900};
+  const [previous]=await sql`SELECT id FROM advertiser_campaign_drafts WHERE source_lead_id=${leadId}`;
+  if(!previous){
+   const state=lead.review_status;
+   const description=safeText(lead.banner_text||'',350)||'Propuesta de publicidad enviada para revisión';
+   const [created]=await sql`INSERT INTO advertiser_campaign_drafts
+    (advertiser_id,source_lead_id,plan,days,price_cents,municipalities,placement,
+     advertiser,title,description,destination,campaign_start,event_start,event_town,
+     event_venue,image_alt,review_note,status)
+    VALUES (${accountId},${leadId},${plan},${days},${prices[plan]*(days/30)},
+     ${JSON.stringify(towns)}::jsonb,${placement},${lead.company},
+     ${lead.campaign_name||lead.company},${description},${lead.action_url},
+     ${lead.campaign_start},${placement==='evento'?lead.event_start:null},
+     ${placement==='evento'?lead.event_municipality:null},
+     ${placement==='evento'?lead.event_venue:null},
+     ${lead.creative_alt||''},${lead.review_note||null},${state}) RETURNING id`;
+   await sql`INSERT INTO advertiser_campaign_draft_images(draft_id,mime_type,width,height,image_data)
+    SELECT ${created.id},mime_type,width,height,image_data FROM advertising_enquiry_images
+    WHERE enquiry_id=${leadId} ON CONFLICT(draft_id) DO NOTHING`;
+  }
  }
  // Server only returns this sensitive link once: never persist its raw token.
  const origin=String(req.headers.origin||'');
