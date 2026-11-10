@@ -166,6 +166,10 @@ function initInterestForm(draft){
    return;
   }
   $('interestPrivacy').href=config.privacy_url;
+  if(config.proposal_enabled===true){
+   $('proposalSubmit').hidden=false;
+   $('proposalNotice').hidden=false;
+  }
   availability.hidden=true;
   form.hidden=false;
  }).catch(()=>{
@@ -174,11 +178,17 @@ function initInterestForm(draft){
  form.addEventListener('submit',async event=>{
   event.preventDefault();
   if(!form.reportValidity())return;
-  const button=$('interestSubmit');button.disabled=true;
-  feedback.textContent='Registrando tu interés…';
+  const proposal=event.submitter?.id==='proposalSubmit';
+  if(proposal&&(!draft.image||!/^data:image\/webp;base64,/.test(draft.image))){
+   feedback.textContent='Para solicitar la publicación, primero añade una imagen al anuncio desde «Volver al formulario».';
+   return;
+  }
+  const button=$('interestSubmit');
+  button.disabled=true;$('proposalSubmit').disabled=true;
+  feedback.textContent=proposal?'Enviando anuncio para revisión…':'Registrando tu interés…';
   const values=new FormData(form);
-  // Only a small verified campaign summary is sent, never the preview image
-  // or any fiscal/payment information. Server rechecks price and coverage.
+  // The complete creative is sent only when the user expressly chooses a
+  // proposal for review; an interest-only enquiry never transfers its image.
   const payload={
    company:String(values.get('company')||''),
    contact:String(values.get('contact')||''),
@@ -186,10 +196,12 @@ function initInterestForm(draft){
    telephone:String(values.get('telephone')||''),
    website:String(values.get('website')||''),
    consent:values.get('consent')==='on',
+   proposal,
    campaign:{
     kind:draft.kind,plan:draft.plan,days:draft.days,
     municipalities:draft.municipalities,start:draft.start,
-    advertiser:draft.advertiser,title:draft.title,destination:draft.destination,
+    advertiser:draft.advertiser,title:draft.title,description:draft.description,
+    destination:draft.destination,image_data:proposal?draft.image:null,
     eventDate:draft.eventDate,eventVenue:draft.eventVenue,eventTown:draft.eventTown
    }
   };
@@ -202,10 +214,12 @@ function initInterestForm(draft){
    if(!response.ok||result.received!==true)throw Error(result.error||'No se ha podido registrar');
    form.hidden=true;
    availability.hidden=false;
-   availability.textContent='Interés registrado (solicitud #'+Number(result.request_id)+'). ¡Gracias! Nos pondremos en contacto cuando podamos ofrecer este servicio. No has contratado ni pagado nada.';
+   availability.textContent=proposal?
+    'Propuesta #'+Number(result.request_id)+' enviada al administrador para su revisión. No se ha realizado ningún pago ni se ha publicado el anuncio.':
+    'Interés registrado (solicitud #'+Number(result.request_id)+'). ¡Gracias! Nos pondremos en contacto cuando podamos ofrecer este servicio. No has contratado ni pagado nada.';
   }catch(err){
    feedback.textContent=err instanceof Error?err.message:'No se ha podido registrar tu interés.';
-  }finally{button.disabled=false}
+  }finally{button.disabled=false;$('proposalSubmit').disabled=false}
  });
 }
 let draft=null;

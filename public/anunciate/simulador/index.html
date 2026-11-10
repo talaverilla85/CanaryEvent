@@ -71,6 +71,7 @@ footer{text-align:center;color:#7c9283;padding:16px 0 33px;font-size:11px}
 .interest-feedback{min-height:14px;margin:9px 0}
 .interest-trap{position:absolute!important;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
 @media(max-width:649px){.interest-section{padding:18px}.interest-fields{grid-template-columns:1fr}}
+.interest-actions{display:flex;align-items:center;gap:11px;flex-wrap:wrap}.proposal-send{background:#078495}.interest-feedback{line-height:1.55}
 </style>
 </head>
 <body>
@@ -99,11 +100,15 @@ footer{text-align:center;color:#7c9283;padding:16px 0 33px;font-size:11px}
    </div>
    <div class="interest-trap" aria-hidden="true"><label>Dejar vacío<input name="website" tabindex="-1" autocomplete="off"></label></div>
    <label class="interest-consent"><input name="consent" type="checkbox" required><span>He leído la <a id="interestPrivacy" href="" target="_blank" rel="noopener noreferrer">información de privacidad</a> y acepto el uso de mis datos para responder a esta solicitud.</span></label>
-   <button id="interestSubmit" type="submit" class="interest-send">Me interesa esta campaña</button>
+   <div class="interest-actions">
+    <button id="interestSubmit" type="submit" class="interest-send">Me interesa esta campaña</button>
+    <button id="proposalSubmit" type="submit" class="interest-send proposal-send" hidden>Enviar anuncio para revisión</button>
+   </div>
+   <p id="proposalNotice" class="interest-feedback" hidden>Enviaremos la propuesta completa y su imagen al administrador. No se cobra ni se publica nada; recibirás instrucciones después de su revisión.</p>
    <p id="interestFeedback" class="interest-feedback" role="status" aria-live="polite"></p>
   </form>
  </section>
 </main>
 <footer>D’Parranda · Disfruta de tus islas.</footer>
-<script src="/anunciate/simulador/simulator.js?v=2" defer></script>
+<script src="/anunciate/simulador/simulator.js?v=3" defer></script>
 </body></html>

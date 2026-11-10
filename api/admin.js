@@ -188,8 +188,11 @@ async function listLeads(sql){
    billing_type,billing_address,billing_postal,billing_city,billing_region,billing_country,
    billing_email,format,municipality,event_municipality,campaign_name,campaign_start,campaign_days,
    event_title,event_start,event_end,event_venue,category,event_price,action_url,message,
-   banner_text,creative_alt,image_name,dates_text,status,created_at
-   FROM advertising_enquiries ORDER BY created_at DESC LIMIT 120`;
+   banner_text,creative_alt,image_name,dates_text,status,review_status,review_note,
+   payment_status,created_at,
+   EXISTS(SELECT 1 FROM advertising_enquiry_images i WHERE i.enquiry_id=advertising_enquiries.id) AS has_image,
+   EXISTS(SELECT 1 FROM advertiser_campaign_drafts d WHERE d.source_lead_id=advertising_enquiries.id) AS has_linked_draft
+   FROM advertising_enquiries ORDER BY created_at DESC LIMIT 200`;
  return {leads:rows};
 }
 async function listPromotions(sql){
@@ -274,7 +277,10 @@ async function advertiserAccounts(sql){
 async function advertiserInvite(sql,body,req){
  const leadId=invitedId(body.lead_id);
  if(!leadId)throw new Error('Selecciona una solicitud de empresa válida');
- const [lead]=await sql`SELECT company,contact_name,email FROM advertising_enquiries WHERE id=${leadId}`;
+ const [lead]=await sql`SELECT company,contact_name,email,dates_text,municipality,format,
+ campaign_name,campaign_start,campaign_days,banner_text,action_url,creative_alt,
+ event_start,event_venue,event_municipality,review_status,review_note
+ FROM advertising_enquiries WHERE id=${leadId}`;
  if(!lead)throw new Error('Solicitud no encontrada');
  if(!lead.company||!lead.email)throw new Error('La solicitud necesita empresa y correo');
  const [existing]=await sql`SELECT id FROM advertiser_accounts WHERE lead_id=${leadId}`;
@@ -294,6 +300,37 @@ async function advertiserInvite(sql,body,req){
    RETURNING id`;
   accountId=Number(created.id);
  }
+ // Public preview proposals are carried into the advertiser workspace
+ // when the admin shares an invitation. The original enquiry remains audited.
+ const parts=String(lead.dates_text||'').split('|');
+ if(['submitted','changes_requested','approved_for_payment'].includes(lead.review_status)&&
+    parts[0]==='INTERES_INICIAL'&&['local','zona','insular'].includes(parts[1])&&
+    ['30','60'].includes(parts[3])&&['banner','evento'].includes(parts[4])){
+  const plan=parts[1],days=Number(parts[3]),placement=parts[4];
+  const limit=plan==='local'?1:plan==='zona'?4:0;
+  const towns=plan==='insular'?[]:String(lead.municipality||'')
+     .split(',').map(x=>x.trim()).filter(Boolean).slice(0,limit);
+  const prices={local:1900,zona:4900,insular:9900};
+  const [previous]=await sql`SELECT id FROM advertiser_campaign_drafts WHERE source_lead_id=${leadId}`;
+  if(!previous){
+   const state=lead.review_status;
+   const description=safeText(lead.banner_text||'',350)||'Propuesta de publicidad enviada para revisión';
+   const [created]=await sql`INSERT INTO advertiser_campaign_drafts
+    (advertiser_id,source_lead_id,plan,days,price_cents,municipalities,placement,
+     advertiser,title,description,destination,campaign_start,event_start,event_town,
+     event_venue,image_alt,review_note,status)
+    VALUES (${accountId},${leadId},${plan},${days},${prices[plan]*(days/30)},
+     ${JSON.stringify(towns)}::jsonb,${placement},${lead.company},
+     ${lead.campaign_name||lead.company},${description},${lead.action_url},
+     ${lead.campaign_start},${placement==='evento'?lead.event_start:null},
+     ${placement==='evento'?lead.event_municipality:null},
+     ${placement==='evento'?lead.event_venue:null},
+     ${lead.creative_alt||''},${lead.review_note||null},${state}) RETURNING id`;
+   await sql`INSERT INTO advertiser_campaign_draft_images(draft_id,mime_type,width,height,image_data)
+    SELECT ${created.id},mime_type,width,height,image_data FROM advertising_enquiry_images
+    WHERE enquiry_id=${leadId} ON CONFLICT(draft_id) DO NOTHING`;
+  }
+ }
  // Server only returns this sensitive link once: never persist its raw token.
  const origin=String(req.headers.origin||'');
  return {created:true,account_id:accountId,
@@ -312,7 +349,7 @@ async function advertiserChangeAccess(sql,body){
 async function advertiserDrafts(sql){
  const drafts=await sql`SELECT d.id,d.advertiser_id,a.company AS account_company,d.plan,d.days,d.price_cents,
  d.municipalities,d.placement,d.advertiser,d.title,d.description,d.destination,d.image_alt,d.status,d.payment_status,
- d.campaign_start,d.event_start,d.event_town,d.event_venue,d.actual_starts_at,d.actual_ends_at,d.review_note,
+ d.campaign_start,d.event_start,d.event_town,d.event_venue,d.actual_starts_at,d.actual_ends_at,d.review_note,d.source_lead_id,
  d.updated_at,EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
  FROM advertiser_campaign_drafts d JOIN advertiser_accounts a ON a.id=d.advertiser_id
  ORDER BY d.updated_at DESC LIMIT 150`;
@@ -329,19 +366,53 @@ async function advertiserDraftImage(sql,res,id){
  res.setHeader('X-Content-Type-Options','nosniff');
  return res.status(200).end(bytes);
 }
+async function reviewEnquiry(sql,body){
+ const id=invitedId(body.id),decision=String(body.status||''),note=safeText(body.note,500);
+ if(!id||!['changes_requested','approved_for_payment','rejected'].includes(decision))
+  throw new Error('Revisión no válida');
+ if(decision==='changes_requested'&&!note)throw new Error('Indica qué cambios debe realizar el anunciante');
+ const [lead]=await sql`SELECT id,review_status,
+   EXISTS(SELECT 1 FROM advertising_enquiry_images i WHERE i.enquiry_id=advertising_enquiries.id) AS has_image,
+   EXISTS(SELECT 1 FROM advertiser_campaign_drafts d WHERE d.source_lead_id=advertising_enquiries.id) AS has_linked_draft
+   FROM advertising_enquiries WHERE id=${id}`;
+ if(!lead||lead.review_status==='interest')throw new Error('No es una propuesta de publicación');
+ if(lead.has_linked_draft)throw new Error('Revisa la versión actualizada de la campaña, no su solicitud original');
+ if(!['submitted','changes_requested'].includes(lead.review_status))
+  throw new Error('Esta propuesta no admite cambios de estado');
+ if(decision==='approved_for_payment'&&!lead.has_image)
+  throw new Error('El anunciante debe adjuntar una imagen antes de aprobar la propuesta');
+ const [changed]=await sql`UPDATE advertising_enquiries SET review_status=${decision},
+  review_note=${note},status='contacted' WHERE id=${id}
+  RETURNING id,review_status`;
+ return {id:Number(changed.id),status:changed.review_status,
+  payment_enabled:false,message:decision==='approved_for_payment'
+   ?'Creatividad aprobada. El enlace de pago estará disponible tras integrar la pasarela. No se ha cobrado ni publicado.'
+   :'Estado actualizado. Envía manualmente las indicaciones al anunciante.'};
+}
 async function advertiserReview(sql,body){
- const id=invitedId(body.id),status=String(body.status||'');
- if(!id||!['changes_requested','rejected','approved'].includes(status))throw new Error('Estado de revisión inválido');
- const [found]=await sql`SELECT payment_status,status FROM advertiser_campaign_drafts WHERE id=${id}`;
- if(!found)throw new Error('Anuncio no encontrado');
- if(status==='approved'&&found.payment_status!=='paid')
-  throw new Error('No se puede aprobar publicidad sin pago verificado');
- if(status==='approved'&&found.status!=='paid_review')
-  throw new Error('La campaña no está pendiente de revisión de pago');
- const note=safeText(body.note,500);
- const [changed]=await sql`UPDATE advertiser_campaign_drafts SET status=${status},
- review_note=${note},updated_at=now() WHERE id=${id} RETURNING id,status`;
- return {id:Number(changed.id),status:changed.status};
+ const id=invitedId(body.id),decision=String(body.status||''),note=safeText(body.note,500);
+ if(!id||!['changes_requested','rejected','approved_for_payment'].includes(decision))
+   throw new Error('Estado de revisión inválido');
+ if(decision==='changes_requested'&&!note)
+   throw new Error('Explica al anunciante qué debe corregir');
+ const [draft]=await sql`SELECT d.status,d.payment_status,
+  EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
+  FROM advertiser_campaign_drafts d WHERE id=${id}`;
+ if(!draft)throw new Error('Anuncio no encontrado');
+ if(!['submitted','changes_requested'].includes(draft.status))
+  throw new Error('Esta propuesta no está pendiente de revisión');
+ if(decision==='approved_for_payment'&&!draft.has_image)
+  throw new Error('La creatividad debe incluir una imagen antes de aprobar el contenido');
+ if(draft.payment_status==='paid'||draft.payment_status==='refunded')
+  throw new Error('Los pagos confirmados requieren un procedimiento específico');
+ const [updated]=await sql`UPDATE advertiser_campaign_drafts SET status=${decision},
+  review_note=${note||null},updated_at=now()
+  WHERE id=${id} AND status IN ('submitted','changes_requested') RETURNING id,status`;
+ if(!updated)throw new Error('La propuesta ha cambiado de estado');
+ return {id:Number(updated.id),status:updated.status,payment_enabled:false,
+  message:decision==='approved_for_payment'
+   ?'Contenido aprobado. Queda pendiente de habilitar y confirmar el pago. No se ha publicado.'
+   :'Revisión registrada. Comunica las observaciones al anunciante.'};
 }
 
 export default async function handler(req,res){
@@ -376,6 +447,7 @@ export default async function handler(req,res){
     if(req.method==='POST'&&op==='advertiser-invite')return json(res,200,await advertiserInvite(sql,data(req),req));
     if(req.method==='POST'&&op==='advertiser-access')return json(res,200,await advertiserChangeAccess(sql,data(req)));
     if(req.method==='POST'&&op==='advertiser-review')return json(res,200,await advertiserReview(sql,data(req)));
+    if(req.method==='POST'&&op==='enquiry-review')return json(res,200,await reviewEnquiry(sql,data(req)));
     if(req.method==='GET'&&op==='leads')return json(res,200,await listLeads(sql));
     if(req.method==='GET'&&op==='promotions')return json(res,200,await listPromotions(sql));
     if(req.method==='GET'&&op==='leadimage'){

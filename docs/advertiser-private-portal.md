@@ -35,3 +35,33 @@ Cuando la actividad esté regularizada, la solución de pago debe añadir:
 - Evitar compartir capturas con el enlace, pegarlo en sistemas externos o enviar enlaces con analítica incorporada.
 - Todos los datos e imágenes quedan en Neon, en tablas privadas, sin exponer credenciales en el frontend.
 - Mantener `noindex`, `noarchive`, `no-referrer`, aislamiento por anunciante y el flujo de aprobación humana.
+
+
+## Flujo editorial actualizado y mesa de operaciones (noviembre 2026)
+
+El administrador tiene un **resumen superior con cuatro contadores** (interesados, pendientes de revisión, activos, finalizados), una **tabla única** con empresa, solicitud, estado, pago, días, tipo, cobertura, precio, vista previa e historial. Se puede buscar, filtrar por estado y exportar un CSV con protección frente a fórmulas de Excel. Los registros antiguos y las herramientas manuales quedan bajo un desplegable de «Herramientas avanzadas».
+
+### Entrada desde el simulador público
+
+1. El visitante prepara el anuncio en \`/anunciate/\` y ve la simulación con eventos reales.
+2. Si solo quiere consultar, usa «Me interesa esta campaña» (sin transferencia de imagen).
+3. Si decide presentar una propuesta, usa «Enviar anuncio para revisión»; esta opción requiere \`DPARRANDA_PROPOSALS_ENABLED=true\` además de \`DPARRANDA_LEADS_ENABLED=true\`, \`DATABASE_URL\` y una \`DPARRANDA_PRIVACY_URL\` válida. **Por defecto permanece oculta**.
+4. La propuesta completa (datos de contacto, plan y duración, zona, título, descripción, destino, fecha solicitada e imagen WebP optimizada) se guarda en tablas privadas \`advertising_enquiries\` y \`advertising_enquiry_images\` mediante una única instrucción SQL; estado editorial \`submitted\`; **sin pago**.
+5. En la tabla, el administrador elige «Ver anuncio» para revisar el material original y todos los datos.
+
+### Circuito de correcciones
+
+- La decisión «Pedir cambios» solicita un motivo obligatorio y fija \`changes_requested\`.
+- Desde la misma solicitud, el administrador genera/copia el acceso individual para enviarlo manualmente al anunciante. Al crear esa invitación, la propuesta y su creatividad se importan a \`advertiser_campaign_drafts\` (vinculadas mediante \`source_lead_id\`). La tabla deja de duplicar la solicitud antigua cuando existe la versión del portal.
+- El anunciante modifica su borrador y usa «Enviar para revisión». Una imagen y una fecha de inicio son necesarias; el estado pasa de \`draft\` o \`changes_requested\` a \`submitted\`.
+- La nueva versión vuelve a aparecer en la misma tabla para una revisión humana. Puede repetirse el ciclo.
+
+### Aprobación editorial y pagos (separados)
+
+- «Aprobar contenido» lleva la campaña a \`approved_for_payment\`, después de exigir una imagen verificada. Esto **no es una confirmación de cobro** y **no activa publicidad**.
+- La columna de pagos muestra «No verificado» mientras no exista una transacción real confirmada.
+- La generación del enlace de Stripe, el envío comercial del enlace, el webhook idempotente, las facturas y la activación automática del anuncio **aún no están desarrollados**. Se implementarán tras regularizar la actividad, validar la pasarela y definir los datos fiscales.
+- En la fase de pago real, solo el webhook del proveedor, tras comprobar importe, moneda, identidad de la campaña y autenticidad de la operación, podrá marcar \`payment_status='paid'\`. La publicación y el cómputo de días deben operar sobre la campaña que el administrador aprobó, nunca sobre un borrador posterior sin revisar.
+- La política comercial de cambios y reembolsos para anuncios aprobados/pagados debe decidirse antes de aceptar el primer cobro.
+
+El código de la tabla y la presentación de propuestas no cambia los valores de Vercel por sí mismo. No hay promesa de despliegue funcional hasta que Vercel complete una publicación correcta, la migración SQL se ejecute y se habiliten las respectivas variables.

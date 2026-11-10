@@ -134,3 +134,26 @@ CREATE TABLE IF NOT EXISTS advertiser_campaign_draft_images (
  image_data BYTEA NOT NULL,
  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+
+-- Editorial review is independent from payment and active advertising.
+-- Legacy leads stay informational until they explicitly send a proposal.
+ALTER TABLE advertising_enquiries ADD COLUMN IF NOT EXISTS review_status TEXT NOT NULL DEFAULT 'interest';
+ALTER TABLE advertising_enquiries ADD COLUMN IF NOT EXISTS review_note TEXT;
+ALTER TABLE advertising_enquiries ADD COLUMN IF NOT EXISTS payment_status TEXT NOT NULL DEFAULT 'unavailable';
+CREATE INDEX IF NOT EXISTS idx_dp_enquiries_review_status ON advertising_enquiries(review_status,created_at DESC);
+
+-- The final action before checkout is editorial approval, not publication.
+ALTER TABLE advertiser_campaign_drafts DROP CONSTRAINT IF EXISTS advertiser_campaign_drafts_status_check;
+ALTER TABLE advertiser_campaign_drafts ADD CONSTRAINT advertiser_campaign_drafts_status_check
+  CHECK(status IN ('draft','submitted','approved_for_payment','pending_payment','paid_review',
+   'changes_requested','approved','active','finished','rejected','cancelled'));
+ALTER TABLE advertiser_campaign_drafts ADD COLUMN IF NOT EXISTS source_lead_id BIGINT UNIQUE REFERENCES advertising_enquiries(id) ON DELETE SET NULL;
+CREATE INDEX IF NOT EXISTS idx_dp_drafts_source_lead ON advertiser_campaign_drafts(source_lead_id);
+
+-- Public preview artwork uses an optimized 1000 x 563 WebP image. Workspace
+-- edits use 1200 x 675; preserve real dimensions when migrating an enquiry.
+ALTER TABLE advertiser_campaign_draft_images DROP CONSTRAINT IF EXISTS advertiser_campaign_draft_images_width_check;
+ALTER TABLE advertiser_campaign_draft_images DROP CONSTRAINT IF EXISTS advertiser_campaign_draft_images_height_check;
+ALTER TABLE advertiser_campaign_draft_images ADD CONSTRAINT advertiser_campaign_draft_images_width_check
+ CHECK((width=1000 AND height=563) OR (width=1200 AND height=675));
