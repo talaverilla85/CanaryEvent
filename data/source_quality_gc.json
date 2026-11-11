@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-11-10T21:11:02+00:00",
+  "checked_at": "2026-11-11T12:55:38+00:00",
   "quality_counts": {
-    "publicados": 461,
+    "publicados": 457,
     "recintos_sin_verificar": 47,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 321,
-    "distancia_a_centro_municipal": 307,
+    "precios_sin_confirmar": 318,
+    "distancia_a_centro_municipal": 306,
     "fuentes_con_error": 1,
     "duplicados_potenciales": 3
   },
@@ -13,10 +13,10 @@
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 10,
+      "publicados": 12,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 3,
-      "distancia_al_centro_municipal": 10,
+      "precio_sin_confirmar": 5,
+      "distancia_al_centro_municipal": 12,
       "fichas_leidas_en_esta_ejecucion": 10,
       "error": ""
     },
@@ -33,11 +33,11 @@
     {
       "source": "Juventud Las Palmas de Gran Canaria",
       "estado": "operativa",
-      "publicados": 11,
+      "publicados": 10,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 11,
-      "fichas_leidas_en_esta_ejecucion": 8,
+      "distancia_al_centro_municipal": 10,
+      "fichas_leidas_en_esta_ejecucion": 7,
       "error": ""
     },
     {
@@ -63,21 +63,21 @@
     {
       "source": "Sociedad Filarmónica de Las Palmas · conciertos",
       "estado": "operativa",
-      "publicados": 3,
+      "publicados": 2,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 3,
+      "precio_sin_confirmar": 2,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 3,
+      "fichas_leidas_en_esta_ejecucion": 2,
       "error": ""
     },
     {
       "source": "Teatro Pérez Galdós · programación oficial",
       "estado": "operativa",
-      "publicados": 26,
+      "publicados": 28,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 26,
+      "precio_sin_confirmar": 28,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 27,
+      "fichas_leidas_en_esta_ejecucion": 28,
       "error": ""
     },
     {
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 9,
+      "fichas_leidas_en_esta_ejecucion": 4,
       "error": ""
     },
     {
@@ -253,11 +253,11 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 20,
+      "publicados": 19,
       "recinto_sin_verificar": 7,
-      "precio_sin_confirmar": 20,
-      "distancia_al_centro_municipal": 20,
-      "fichas_leidas_en_esta_ejecucion": 28,
+      "precio_sin_confirmar": 19,
+      "distancia_al_centro_municipal": 19,
+      "fichas_leidas_en_esta_ejecucion": 27,
       "error": ""
     },
     {
@@ -293,11 +293,11 @@
     {
       "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
       "estado": "operativa",
-      "publicados": 39,
+      "publicados": 38,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 39,
-      "distancia_al_centro_municipal": 39,
-      "fichas_leidas_en_esta_ejecucion": 39,
+      "precio_sin_confirmar": 38,
+      "distancia_al_centro_municipal": 38,
+      "fichas_leidas_en_esta_ejecucion": 38,
       "error": ""
     },
     {
@@ -382,12 +382,12 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 174,
+      "estado": "operativa",
+      "publicados": 170,
       "recinto_sin_verificar": 33,
-      "precio_sin_confirmar": 147,
+      "precio_sin_confirmar": 143,
       "distancia_al_centro_municipal": 91,
-      "fichas_leidas_en_esta_ejecucion": 0,
+      "fichas_leidas_en_esta_ejecucion": 18,
       "error": ""
     },
     {
@@ -407,7 +407,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 7,
+      "fichas_leidas_en_esta_ejecucion": 4,
       "error": ""
     },
     {

@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-11-10",
+  "checked_on": "2026-11-11",
   "scope": "Gran Canaria (official candidate links only)",
   "no_auto_publication": true,
   "inspected": [
@@ -21,7 +21,7 @@
     {
       "municipality": "Gáldar",
       "outcome": "ok",
-      "links": 4
+      "links": 5
     },
     {
       "municipality": "La Aldea de San Nicolás",
@@ -50,35 +50,35 @@
   ],
   "scan_state": {
     "Agaete": {
-      "checked_on": "2026-11-10",
+      "checked_on": "2026-11-11",
       "outcome": "ok"
     },
     "Artenara": {
-      "checked_on": "2026-11-10",
+      "checked_on": "2026-11-11",
       "outcome": "ok"
     },
     "Firgas": {
-      "checked_on": "2026-11-10",
+      "checked_on": "2026-11-11",
       "outcome": "ok"
     },
     "Gáldar": {
-      "checked_on": "2026-11-10",
+      "checked_on": "2026-11-11",
       "outcome": "ok"
     },
     "La Aldea de San Nicolás": {
-      "checked_on": "2026-11-10",
+      "checked_on": "2026-11-11",
       "outcome": "needs_review"
     },
     "Las Palmas de Gran Canaria": {
-      "checked_on": "2026-11-10",
+      "checked_on": "2026-11-11",
       "outcome": "needs_review"
     },
     "Mogán": {
-      "checked_on": "2026-11-10",
+      "checked_on": "2026-11-11",
       "outcome": "needs_review"
     },
     "Moya": {
-      "checked_on": "2026-11-10",
+      "checked_on": "2026-11-11",
       "outcome": "needs_review"
     },
     "San Bartolomé de Tirajana": {
@@ -114,8 +114,89 @@
       "outcome": "ok"
     }
   },
-  "candidate_count": 51,
+  "candidate_count": 52,
   "leads": [
+    {
+      "url": "https://www.galdar.es/mercado/",
+      "label": "Mercado Municipal \"La Recova\"",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-11",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/galdar-celebra-una-nueva-edicion-del-mercado-agricola-este-domingo-15-de-noviembre/",
+      "label": "Desarrollo Socioeconómico 11 de noviembre de 2026 Gáldar celebra una nueva edición del Mercado Agrícola este domingo 15 de noviembre",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-11",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/eventos/",
+      "label": "Agenda de Eventos",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-11",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/culturayfiestas/#ert_pane1-1",
+      "label": "Festejos",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-11",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.galdar.es/bandamunicipal/",
+      "label": "Banda Municipal de Música",
+      "kind": "unverified_official_link",
+      "municipality": "Gáldar",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-11",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/firgas-celebra-el-19-de-septiembre-una-jornada-de-naturaleza-gastronomia-y-musica-con-motivo-del-dia-mundial-del-turismo/",
+      "label": "Firgas celebra el Día Mundial del Turismo con senderismo, gastronomía y música en la Plaza de San Roque",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-11",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/taller-de-teatro/",
+      "label": "TALLER DE TEATRO",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-11",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/categories/festival/",
+      "label": "Festival",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-11",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.villadefirgas.es/events/categories/casa-cultura/",
+      "label": "Casa Cultura",
+      "kind": "unverified_official_link",
+      "municipality": "Firgas",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-11",
+      "publication_status": "not_an_event"
+    },
     {
       "url": "https://vegadesanmateo.es/areas/patrimonio-cultural-e-historico",
       "label": "Patrimonio Cultural e Histórico",
@@ -265,78 +346,6 @@
       "label": "Agenda / eventos",
       "kind": "unverified_official_link",
       "municipality": "Santa Lucía de Tirajana",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-10",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.galdar.es/mercado/",
-      "label": "Mercado Municipal \"La Recova\"",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-10",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.galdar.es/eventos/",
-      "label": "Agenda de Eventos",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-10",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.galdar.es/culturayfiestas/#ert_pane1-1",
-      "label": "Festejos",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-10",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.galdar.es/bandamunicipal/",
-      "label": "Banda Municipal de Música",
-      "kind": "unverified_official_link",
-      "municipality": "Gáldar",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-10",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/firgas-celebra-el-19-de-septiembre-una-jornada-de-naturaleza-gastronomia-y-musica-con-motivo-del-dia-mundial-del-turismo/",
-      "label": "Firgas celebra el Día Mundial del Turismo con senderismo, gastronomía y música en la Plaza de San Roque",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-10",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/events/taller-de-teatro/",
-      "label": "TALLER DE TEATRO",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-10",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/events/categories/festival/",
-      "label": "Festival",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-10",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.villadefirgas.es/events/categories/casa-cultura/",
-      "label": "Casa Cultura",
-      "kind": "unverified_official_link",
-      "municipality": "Firgas",
       "first_seen": "2026-10-27",
       "last_seen": "2026-11-10",
       "publication_status": "not_an_event"

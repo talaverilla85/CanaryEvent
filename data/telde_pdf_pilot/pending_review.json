@@ -1,25 +1,5 @@
 [
   {
-    "id": "telde-pdf-518bea722bd428cf",
-    "title": "Encuentro de Academias de Baile",
-    "date": "2026-11-10",
-    "time": "17:00",
-    "venue": "Plaza de San Gregorio",
-    "type": "musica",
-    "evidence": "“10 NOV • MARTES”; “17:00 h Encuentro de Academias de Baile.”",
-    "municipality": "Telde",
-    "program_title": "Fiestas en honor a San Gregorio Taumaturgo",
-    "pdf_url": "https://www.telde.es/wp-content/uploads/2026/11/sangregorio26.pdf",
-    "admission_type": "unknown",
-    "admission_details": null,
-    "pdf_sha256": "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df",
-    "pdf_page": 9,
-    "review_status": "pending_review",
-    "date_state": "upcoming",
-    "note": "NO PUBLICAR sin contrastar fecha/horario con la página escaneada",
-    "extractor": "ai_vision"
-  },
-  {
     "id": "telde-pdf-5fcf710a68cb792a",
     "title": "Recorrido Histórico-Etnográfico “Recordando Los Llanos de San Gregorio”",
     "date": "2026-11-11",

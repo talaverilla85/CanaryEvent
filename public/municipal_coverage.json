@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-11-10",
+  "updated_on": "2026-11-11",
   "scope": "21 municipios de Gran Canaria",
   "municipalities_total": 21,
   "municipalities_with_any_catalog_cards": 18,
@@ -149,8 +149,8 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 23,
-      "municipal_cards_total": 10,
+      "catalog_cards_total": 25,
+      "municipal_cards_total": 12,
       "other_sources_cards_total": 13,
       "source_health": [
         {
@@ -186,13 +186,13 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 220,
-      "municipal_cards_total": 11,
-      "other_sources_cards_total": 209,
+      "catalog_cards_total": 216,
+      "municipal_cards_total": 10,
+      "other_sources_cards_total": 206,
       "source_health": [
         {
           "source": "Juventud Las Palmas de Gran Canaria",
-          "found": 8,
+          "found": 7,
           "error": ""
         }
       ],
@@ -256,13 +256,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 22,
-      "municipal_cards_total": 20,
+      "catalog_cards_total": 21,
+      "municipal_cards_total": 19,
       "other_sources_cards_total": 2,
       "source_health": [
         {
           "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-          "found": 28,
+          "found": 27,
           "error": ""
         }
       ],
@@ -326,8 +326,8 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 65,
-      "municipal_cards_total": 42,
+      "catalog_cards_total": 64,
+      "municipal_cards_total": 41,
       "other_sources_cards_total": 23,
       "source_health": [
         {
@@ -342,7 +342,7 @@
         },
         {
           "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
-          "found": 39,
+          "found": 38,
           "error": ""
         },
         {
