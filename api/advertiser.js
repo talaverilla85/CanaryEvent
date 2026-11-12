@@ -2,11 +2,13 @@
 import {createHmac,createHash,timingSafeEqual} from 'node:crypto';
 import {db,json,sameOrigin,safeText,validLocalDate} from '../lib/admin-auth.js';
 import {privacyUrl as legalPrivacyUrl} from '../lib/privacy.js';
+import {advertiserPortalReady} from '../lib/advertiser-workspace.js';
+import {parseEmailAccessToken} from '../lib/advertiser-mail.js';
 const PLANS={local:1900,zona:4900,insular:9900};
 const TOWNS=new Set(['Agaete','Agüimes','Artenara','Arucas','Firgas','Gáldar','Ingenio','La Aldea de San Nicolás','Las Palmas de Gran Canaria','Mogán','Moya','San Bartolomé de Tirajana','Santa Brígida','Santa Lucía de Tirajana','Santa María de Guía de Gran Canaria','Tejeda','Telde','Teror','Valleseco','Valsequillo de Gran Canaria','Vega de San Mateo']);
 const AGE=30*24*60*60;
 function privacy(){return legalPrivacyUrl()}
-function ready(){return !!process.env.DATABASE_URL&&!!process.env.DPARRANDA_SESSION_SECRET&&process.env.DPARRANDA_SESSION_SECRET.length>=32&&process.env.DPARRANDA_ADVERTISER_PORTAL_ENABLED==='true'&&!!privacy()}
+function ready(){return advertiserPortalReady()&&!!privacy()}
 function mac(x){return createHmac('sha256',process.env.DPARRANDA_SESSION_SECRET).update(x).digest('base64url')}
 function setCookie(res,x){res.setHeader('Set-Cookie','dp_advertiser='+x+'; HttpOnly; Secure; SameSite=Strict; Path=/api/advertiser; Max-Age='+(x?AGE:0))}
 function decoded(req){
@@ -55,11 +57,16 @@ export default async function handler(req,res){
  const sql=db();
  try{
  if(req.method==='POST'&&op==='exchange'){
-  const t=safeText(req.body?.token,80);
-  if(!/^[0-9a-f]{64}$/i.test(t))return json(res,401,{error:'Invitación no válida'});
-  const hash=createHash('sha256').update(t.toLowerCase()).digest('hex');
-  const [a]=await sql`SELECT id,access_version FROM advertiser_accounts WHERE token_hash=${hash} AND active=TRUE`;
-  if(!a)return json(res,401,{error:'Enlace caducado o revocado'});
+  const t=safeText(req.body?.token,180);
+  const fromEmail=parseEmailAccessToken(t);
+  let a=null;
+  if(fromEmail){
+   [a]=await sql`SELECT id,access_version FROM advertiser_accounts WHERE id=${fromEmail.id} AND access_version=${fromEmail.version} AND active=TRUE`;
+  }else if(/^[0-9a-f]{64}$/i.test(t)){
+   const hash=createHash('sha256').update(t.toLowerCase()).digest('hex');
+   [a]=await sql`SELECT id,access_version FROM advertiser_accounts WHERE token_hash=${hash} AND active=TRUE`;
+  }
+  if(!a)return json(res,401,{error:'Enlace no válido, caducado o revocado'});
   const payload=Buffer.from(JSON.stringify({id:Number(a.id),v:a.access_version,exp:Date.now()+AGE*1000})).toString('base64url');
   setCookie(res,payload+'.'+mac(payload));return json(res,200,{authenticated:true});
  }
