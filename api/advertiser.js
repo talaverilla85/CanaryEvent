@@ -4,6 +4,7 @@ import {db,json,sameOrigin,safeText,validLocalDate} from '../lib/admin-auth.js';
 import {privacyUrl as legalPrivacyUrl} from '../lib/privacy.js';
 import {advertiserPortalReady} from '../lib/advertiser-workspace.js';
 import {parseEmailAccessToken} from '../lib/advertiser-mail.js';
+import {stripePaymentsReady} from '../lib/stripe-advertising.js';
 const PLANS={local:1900,zona:4900,insular:9900};
 const TOWNS=new Set(['Agaete','Agüimes','Artenara','Arucas','Firgas','Gáldar','Ingenio','La Aldea de San Nicolás','Las Palmas de Gran Canaria','Mogán','Moya','San Bartolomé de Tirajana','Santa Brígida','Santa Lucía de Tirajana','Santa María de Guía de Gran Canaria','Tejeda','Telde','Teror','Valleseco','Valsequillo de Gran Canaria','Vega de San Mateo']);
 const AGE=30*24*60*60;
@@ -51,7 +52,7 @@ export default async function handler(req,res){
  res.setHeader('X-Robots-Tag','noindex,noarchive');
  if(!['GET','POST'].includes(req.method))return json(res,405,{error:'Método no permitido'});
  const op=String(req.query?.op||'session');
- if(req.method==='GET'&&op==='config')return json(res,200,{enabled:ready(),payment_enabled:false,privacy_url:privacy()});
+ if(req.method==='GET'&&op==='config')return json(res,200,{enabled:ready(),payment_enabled:stripePaymentsReady(),privacy_url:privacy()});
  if(!ready())return json(res,503,{error:'El área de anunciantes está pendiente de activación'});
  if(req.method==='POST'&&!sameOrigin(req))return json(res,403,{error:'Origen no autorizado'});
  const sql=db();
@@ -72,15 +73,17 @@ export default async function handler(req,res){
  }
  if(req.method==='POST'&&op==='logout'){setCookie(res,'');return json(res,200,{authenticated:false})}
  const a=await viewer(sql,req);
- if(req.method==='GET'&&op==='session')return json(res,200,{authenticated:!!a,account:a?{company:a.company,contact_name:a.contact_name,email:a.email}:null,payment_enabled:false});
+ if(req.method==='GET'&&op==='session')return json(res,200,{authenticated:!!a,account:a?{company:a.company,contact_name:a.contact_name,email:a.email}:null,payment_enabled:stripePaymentsReady()});
  if(!a)return json(res,401,{error:'Acceso de anunciante no autorizado'});
  if(req.method==='GET'&&op==='campaigns'){
   const rows=await sql`SELECT d.*,EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image FROM advertiser_campaign_drafts d WHERE d.advertiser_id=${a.id} ORDER BY d.created_at DESC LIMIT 100`;
   return json(res,200,{campaigns:rows.map(d=>({id:Number(d.id),plan:d.plan,days:d.days,price_cents:d.price_cents,municipalities:d.municipalities,
   placement:d.placement,advertiser:d.advertiser,title:d.title,description:d.description,destination:d.destination,image_alt:d.image_alt,
   campaign_start:d.campaign_start,event_start:d.event_start,event_town:d.event_town,event_venue:d.event_venue,
-  status:d.status,payment_status:d.payment_status,actual_starts_at:d.actual_starts_at,actual_ends_at:d.actual_ends_at,
-  review_note:d.review_note,has_image:d.has_image,stats_available:false,created_at:d.created_at,updated_at:d.updated_at})),payment_enabled:false});
+  status:d.status,payment_status:d.payment_status,
+  payment_url:d.status==='pending_payment'&&d.payment_status==='pending'&&/^https:\/\/buy\.stripe\.com\//.test(d.stripe_payment_url||'')?d.stripe_payment_url:null,
+  actual_starts_at:d.actual_starts_at,actual_ends_at:d.actual_ends_at,
+  review_note:d.review_note,has_image:d.has_image,stats_available:false,created_at:d.created_at,updated_at:d.updated_at})),payment_enabled:stripePaymentsReady()});
  }
  if(req.method==='GET'&&op==='artwork'){
   const id=positive(req.query?.id);if(!id)return json(res,404,{error:'No encontrado'});
