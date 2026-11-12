@@ -67,7 +67,7 @@ class AdvertisingOperationsContract(unittest.TestCase):
         self.assertIn("op==='advertiser-draft-image'",self.admin)
         self.assertIn("op==='leadimage'",self.admin)
         self.assertIn("DPARRANDA_LEADS_ENABLED",self.intake)
-        self.assertIn("DPARRANDA_PRIVACY_URL",self.intake)
+        self.assertIn("legalPrivacyUrl()",self.intake)
         self.assertIn("review_status TEXT NOT NULL DEFAULT 'interest'",self.schema)
         self.assertIn("advertiser_campaign_drafts_status_check",self.schema)
         self.assertIn("width=1000 AND height=563",self.schema)
