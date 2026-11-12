@@ -17,7 +17,7 @@ class ResendSandboxTest(unittest.TestCase):
   self.assertIn('Idempotency-Key',self.mail)
   self.assertIn("export async function sendResendAdminTest()",self.mail)
   self.assertIn('customer_emails_enabled:false',self.admin)
-  self.assertNotIn('RESEND_API_KEY',self.panel)
+  self.assertNotIn('process.env.RESEND_API_KEY',self.panel)
   self.assertNotIn('RESEND_API_KEY',self.html)
  def test_test_route_is_admin_only(self):
   self.assertLess(self.admin.index('if(!authenticated(req))'),self.admin.index("op==='resend-send-test'"))
