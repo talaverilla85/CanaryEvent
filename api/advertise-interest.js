@@ -1,6 +1,8 @@
 // Minimal, non-binding commercial interest. No payment, invoice details, or ad publication.
 import { db, json, safeText, sameOrigin, validLocalDate } from '../lib/admin-auth.js';
 import {privacyUrl as legalPrivacyUrl} from '../lib/privacy.js';
+import {ensureAdvertiserWorkspace} from '../lib/advertiser-workspace.js';
+import {sendWelcomeEmail} from '../lib/advertiser-mail.js';
 
 const PRICES=Object.freeze({local:19,zona:49,insular:99});
 const TOWNS=new Set([
@@ -106,8 +108,24 @@ export default async function handler(req,res){
     ) INSERT INTO advertising_enquiry_images(enquiry_id,mime_type,width,height,image_data)
       SELECT id,'image/webp',1000,563,decode(${image},'base64') FROM new_proposal
       RETURNING enquiry_id`;
+   // Create the private workspace now, so a future verified email can link
+   // straight to the exact artwork rather than asking for another submission.
+   // Email failures must never invalidate a proposal that was already saved.
+   let privateAreaReady=false,emailStatus='pending_domain';
+   try{
+    const workspace=await ensureAdvertiserWorkspace(sql,Number(row.enquiry_id));
+    if(workspace){
+     privateAreaReady=true;
+     const email=await sendWelcomeEmail(workspace);
+     emailStatus=email.status;
+    }else emailStatus='unavailable';
+   }catch(e){
+    console.error('DParranda welcome/workspace setup failed:',e?.name||'Error');
+    emailStatus='failed';
+   }
    return json(res,201,{received:true,request_id:Number(row.enquiry_id),
-     proposal:true,payment_required:false});
+     proposal:true,payment_required:false,private_area_ready:privateAreaReady,
+     welcome_email:emailStatus});
   }
   const [saved]=await sql`INSERT INTO advertising_enquiries
    (company,contact_name,email,telephone,municipality,format,dates_text,message,
