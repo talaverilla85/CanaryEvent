@@ -36,7 +36,7 @@ class AdvertiserPortalContract(unittest.TestCase):
         self.assertIn('WHERE d.id=',self.api)
         self.assertIn('advertiser_id=',self.api)
         self.assertIn("sameOrigin(req)",self.api)
-        self.assertIn("DPARRANDA_ADVERTISER_PORTAL_ENABLED",self.api)
+        self.assertIn("advertiserPortalReady()",self.api)
 
     def test_drafts_not_paid_or_published_by_default(self):
         self.assertIn("payment_enabled:false",self.api)
