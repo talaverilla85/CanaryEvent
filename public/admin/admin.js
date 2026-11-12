@@ -497,7 +497,7 @@ const opsStateNames={
  interest:'Interesado',draft:'Borrador',submitted:'Pendiente de revisión',
  changes_requested:'Cambios solicitados',approved_for_payment:'Aprobado · pago pendiente',
  pending_payment:'Esperando pago',paid_review:'Pago verificado · revisión',
- approved:'Aprobado',scheduled:'Programado',active:'Activo',finished:'Caducado',
+ approved:'Aprobado',scheduled:'Programado',active:'Activo',paused:'Pausado',finished:'Caducado',
  rejected:'Rechazado',cancelled:'Cancelado'
 };
 const opsPlanNames={local:'Local',zona:'Zona',insular:'Insular'};
@@ -556,6 +556,26 @@ function normalizedOpsRows(){
   });
  }
  for(const a of ads){
+  if(a.kind==='house'){
+   const started=opsDate(a.starts_at),ended=opsDate(a.ends_at);
+   const status=ended&&ended<today?'finished':!a.enabled?'paused':started&&started>today?'scheduled':'active';
+   const duration=started&&ended?Math.round(
+    (Date.parse(ended+'T00:00:00Z')-Date.parse(started+'T00:00:00Z'))/86400000)+1:null;
+   const staticImage=typeof a.image==='string'&&/^\/sponsors\/[a-z0-9._/-]+\.(webp|jpg|jpeg|png)$/i.test(a.image)?a.image:'';
+   result.push({
+    key:'house-'+String(a.id),source:'house',id:String(a.id),
+    company:a.advertiser||'AriMar',title:a.headline||'Campaña propia',submitted_at:a.updated_at,
+    status,payment:'free',days:duration,permanent:!!a.permanent,
+    plan:'',kind:'Publicidad propia',area:Array.isArray(a.municipalities)&&a.municipalities.length?
+     a.municipalities.join(', '):'Toda Gran Canaria',
+    price:0,has_image:!!a.has_uploaded_image||!!staticImage,
+    image_url:a.has_uploaded_image?'/api/admin?op=adimage&id='+encodeURIComponent(a.id):staticImage,
+    description:a.description||'',review_note:'',contact:'',email:'',telephone:'',
+    destination:a.button_url||'',start:started,event_start:null,event_venue:null,
+    actual_starts_at:started,actual_ends_at:ended,editable:false
+   });
+   continue;
+  }
   if(a.kind!=='paid')continue;
   const started=opsDate(a.starts_at),ended=opsDate(a.ends_at);
   const status=ended&&ended<today?'finished':a.enabled&&(!started||started<=today)?'active':'draft';
@@ -598,8 +618,8 @@ function renderAdOperations(){
  container.innerHTML=rows.map(r=>{
   const status=opsStateNames[r.status]||r.status;
   const payment=r.payment==='paid'?'Pagado':r.payment==='pending'?'Pendiente':
-    r.payment==='refunded'?'Reembolsado':'No verificado';
-  const days=Number.isInteger(r.days)&&r.days>0?r.days+' días':'—';
+    r.payment==='free'?'Sin coste':r.payment==='refunded'?'Reembolsado':'No verificado';
+  const days=r.permanent?'Anterior permanente':Number.isInteger(r.days)&&r.days>0?r.days+' días':'—';
   const amount=r.price===null?'—':Number(r.price).toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:2})+' €';
   const img=r.has_image&&r.image_url?'<img class="adops-thumb" loading="lazy" src="'+escape(r.image_url)+'" alt="Anuncio de '+escape(r.company)+'">':'';
   const area=r.plan?opsPlanNames[r.plan]+' · '+r.area:r.area;
