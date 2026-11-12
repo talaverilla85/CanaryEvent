@@ -111,6 +111,14 @@ function paintCampaigns(){
    }
    card.append(text('p','Publicada: '+dateText(d.actual_starts_at)+' · Finaliza: '+dateText(d.actual_ends_at),'campaign-meta'));
   }else card.append(text('p','La campaña todavía no está publicándose. El plazo de difusión no ha comenzado.','campaign-meta'));
+  if(d.status==='pending_payment'&&d.payment_status==='pending'&&/^https:\/\/buy\.stripe\.com\//.test(d.payment_url||'')){
+   const button=text('a','Realizar pago seguro · '+(d.price_cents/100)+' €','primary');
+   button.href=d.payment_url;button.target='_blank';button.rel='noopener noreferrer';
+   card.append(button);
+   card.append(text('p','El plazo de la campaña no comienza hasta que el pago esté confirmado y el anuncio se publique.','campaign-meta'));
+  }
+  if(d.status==='paid_review'&&d.payment_status==='paid')
+   card.append(text('p','Pago confirmado. La campaña queda pendiente de publicación.','campaign-meta'));
   if(d.review_note)card.append(text('p','Observaciones del administrador: '+d.review_note,'campaign-meta'));
   if(d.has_image){
    const preview=text('div','','preview'),image=document.createElement('img');
