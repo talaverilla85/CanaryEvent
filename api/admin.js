@@ -5,6 +5,7 @@ import {resendTestConfiguration,sendResendAdminTest} from '../lib/resend-test.js
 import {ensureAdvertiserWorkspace,workspaceForDraft} from '../lib/advertiser-workspace.js';
 import {sendChangesRequestedEmail,advertiserMailStatus} from '../lib/advertiser-mail.js';
 import {ensureApprovedPayment,stripePaymentsReady} from '../lib/stripe-advertising.js';
+import {schedulePaidDraft} from '../lib/advertiser-publication.js';
 
 const statuses = new Set(['unreviewed','approved','needs_review','rejected']);
 const kinds = new Set(['house','paid']);
@@ -355,7 +356,7 @@ async function advertiserDrafts(sql){
  const drafts=await sql`SELECT d.id,d.advertiser_id,a.company AS account_company,a.contact_name AS account_contact,a.email AS account_email,d.plan,d.days,d.price_cents,
  d.municipalities,d.placement,d.advertiser,d.title,d.description,d.destination,d.image_alt,d.status,d.payment_status,
  d.campaign_start,d.event_start,d.event_town,d.event_venue,d.actual_starts_at,d.actual_ends_at,d.review_note,d.source_lead_id,
- d.updated_at,d.stripe_payment_url,d.paid_at,EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
+ d.updated_at,d.stripe_payment_url,d.paid_at,d.published_ad_id,d.published_event_id,EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
  FROM advertiser_campaign_drafts d JOIN advertiser_accounts a ON a.id=d.advertiser_id
  ORDER BY d.updated_at DESC LIMIT 150`;
  return {drafts};
@@ -586,6 +587,11 @@ export default async function handler(req,res){
     if(req.method==='POST'&&op==='advertiser-invite')return json(res,200,await advertiserInvite(sql,data(req),req));
     if(req.method==='POST'&&op==='advertiser-access')return json(res,200,await advertiserChangeAccess(sql,data(req)));
     if(req.method==='POST'&&op==='advertiser-review')return json(res,200,await advertiserReview(sql,data(req)));
+    if(req.method==='POST'&&op==='schedule-paid-draft'){
+      const id=invitedId(data(req).id);
+      if(!id)return json(res,400,{error:'Anuncio inválido'});
+      return json(res,200,await schedulePaidDraft(sql,id));
+    }
      if(req.method==='POST'&&op==='send-approved-payment'){
       const id=invitedId(data(req).id);
       if(!id)return json(res,400,{error:'Anuncio no válido'});
