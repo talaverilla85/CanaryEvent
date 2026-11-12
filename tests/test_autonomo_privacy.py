@@ -27,7 +27,7 @@ class AutonomoPrivacyContract(unittest.TestCase):
   self.assertIn("if(info?.ready!==true)",self.js)
   self.assertIn("$('unavailable').hidden=false",self.js)
   for key in ("legal_name","legal_address","legal_nif","privacy_email"):
-   self.assertIn(key,self.api)
+   self.assertIn(key,self.js)
   self.assertIn('<meta name="robots" content="noindex,nofollow,noarchive">',self.html)
   self.assertIn('id="rightsEmail"',self.html)
   self.assertIn('artículo 6.1.b',self.html)
