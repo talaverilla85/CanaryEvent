@@ -160,8 +160,8 @@
         },
         {
           "source": "Juventud de Ingenio · programa de otoño desglosado",
-          "found": 1,
-          "error": ""
+          "found": 0,
+          "error": "El título del programa oficial de Ingenio ha cambiado"
         }
       ],
       "full_coverage_claim": false
