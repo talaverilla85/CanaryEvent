@@ -12,6 +12,7 @@ class AdvertiserWelcomeReviewEmails(unittest.TestCase):
   cls.mail=(ROOT/'lib/advertiser-mail.js').read_text('utf8')
   cls.portal=(ROOT/'api/advertiser.js').read_text('utf8')
   cls.admin=(ROOT/'api/admin.js').read_text('utf8')
+  cls.admin_ui=(ROOT/'public/admin/admin.js').read_text('utf8')
   cls.simulator=(ROOT/'public/anunciate/simulador/simulator.js').read_text('utf8')
   cls.simulator_html=(ROOT/'public/anunciate/simulador/index.html').read_text('utf8')
 
@@ -41,6 +42,12 @@ class AdvertiserWelcomeReviewEmails(unittest.TestCase):
   self.assertIn("notification_status:emailStatus",self.admin)
   self.assertIn("review_note",self.admin)
   self.assertIn("Revisar y corregir mi anuncio",self.mail)
+
+ def test_contact_is_kept_in_admin_after_private_area_creation(self):
+  self.assertIn("a.contact_name AS account_contact",self.admin)
+  self.assertIn("a.email AS account_email",self.admin)
+  self.assertIn("contact:d.account_contact||''",self.admin_ui)
+  self.assertIn("email:d.account_email||''",self.admin_ui)
 
  def test_domain_gate_and_resend_test_sandbox(self):
   self.assertIn("RESEND_CUSTOMER_EMAILS_ENABLED",self.mail)

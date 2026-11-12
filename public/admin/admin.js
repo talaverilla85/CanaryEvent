@@ -521,7 +521,7 @@ function normalizedOpsRows(){
    has_image:!!d.has_image,
    image_url:d.has_image?'/api/admin?op=advertiser-draft-image&id='+id:'',
    description:d.description||'',review_note:d.review_note||'',
-   contact:'',email:'',telephone:'',destination:d.destination||'',
+   contact:d.account_contact||'',email:d.account_email||'',telephone:'',destination:d.destination||'',
    start:d.campaign_start,event_start:d.event_start,event_venue:d.event_venue,
    actual_starts_at:d.actual_starts_at,actual_ends_at:d.actual_ends_at,
    editable:['submitted','changes_requested'].includes(status)
