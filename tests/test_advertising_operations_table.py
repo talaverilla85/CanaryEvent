@@ -57,8 +57,8 @@ class AdvertisingOperationsContract(unittest.TestCase):
         self.assertIn("op==='advertiser-review'",self.admin)
         self.assertIn("review_note",self.admin)
         self.assertIn("approved_for_payment",self.admin)
-        self.assertIn("payment_enabled:false",self.admin)
-        self.assertNotIn('checkout.sessions.create',self.admin)
+        self.assertIn("payment_enabled:payment?.status==='ready'",self.admin)
+        self.assertIn("send-approved-payment",self.admin)
         self.assertNotIn('payment_intent.succeeded',self.admin)
 
     def test_private_image_view_and_no_fake_payment(self):

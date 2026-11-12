@@ -622,9 +622,11 @@ function opsOpenPreview(row){
   (row.editable&&row.has_image?'<button type="button" class="primary" data-ops-review="approved_for_payment" data-ops-key="'+escape(row.key)+'">Aprobar contenido</button>':'')+
   (row.editable?'<button type="button" class="ghost" data-ops-review="changes_requested" data-ops-key="'+escape(row.key)+'">Pedir cambios</button>'+
   '<button type="button" class="ghost" data-ops-review="rejected" data-ops-key="'+escape(row.key)+'">Rechazar</button>':'')+
+  (row.source==='draft'&&['approved_for_payment','pending_payment'].includes(row.status)&&row.payment!=='paid'?
+   '<button type="button" class="primary" data-ops-payment="'+Number(row.id)+'">Enviar / reenviar pago</button>':'')+
   (row.source==='lead'?'<button type="button" class="ghost" data-ops-invite="'+Number(row.id)+'">Generar acceso privado</button>':'')+
   '<button type="button" class="ghost" data-close>Cerrar</button></div>'+
-  '<p class="muted small">Aprobar contenido no genera un cobro ni publica nada. El enlace de pago se habilitará únicamente cuando la pasarela esté configurada.</p>';
+  '<p class="muted small">Al aprobar se generará el enlace Stripe y se intentará enviar por correo. El anuncio no se publica sin pago verificado.</p>';
  openDialog(details);
 }
 $('adOpsSearch').addEventListener('input',event=>{
@@ -666,7 +668,16 @@ $('adOpsExport').onclick=()=>{
  setTimeout(()=>URL.revokeObjectURL(object),500);
 };
 $('sheet').addEventListener('click',async event=>{
- const button=event.target.closest('[data-ops-review],[data-ops-invite]');if(!button)return;
+ const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment]');if(!button)return;
+ if(button.dataset.opsPayment){
+  button.disabled=true;
+  try{
+   const result=await api('send-approved-payment',{id:Number(button.dataset.opsPayment)});
+   await Promise.allSettled([loadLeads(),loadAdvertiserDrafts()]);
+   closeDialog();message(result.message||'Enlace de pago preparado');
+  }catch(err){message(err.message);button.disabled=false}
+  return;
+ }
  if(button.dataset.opsInvite){
   const id=Number(button.dataset.opsInvite);
   try{await createAdvertiserInvite(id);await Promise.allSettled([loadLeads(),loadAdvertiserDrafts()])}
@@ -676,7 +687,7 @@ $('sheet').addEventListener('click',async event=>{
  const row=opsAllRows.find(x=>x.key===button.dataset.opsKey);
  if(!row)return;
  const state=button.dataset.opsReview;
- if(state==='approved_for_payment'&&!confirm('¿Has revisado la imagen, texto, fechas y condiciones? Solo se aprobará el contenido. El pago continuará deshabilitado.'))return;
+ if(state==='approved_for_payment'&&!confirm('¿Has revisado imagen, texto, fechas y condiciones? Se intentará generar y enviar el enlace Stripe correspondiente. Ningún anuncio se publica sin confirmar el pago.'))return;
  let note='';
  if(state!=='approved_for_payment'){
   const answer=prompt(state==='changes_requested'?'¿Qué debe corregir el anunciante?':'Motivo del rechazo:');

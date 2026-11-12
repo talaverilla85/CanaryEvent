@@ -39,9 +39,10 @@ class AdvertiserWelcomeReviewEmails(unittest.TestCase):
   self.assertIn("if(decision==='changes_requested')",self.admin)
   self.assertIn("const workspace=await workspaceForDraft(sql,id)",self.admin)
   self.assertIn("const workspace=await ensureAdvertiserWorkspace(sql,id)",self.admin)
-  self.assertIn("notification_status:emailStatus",self.admin)
+  self.assertIn("notification_status:payment?.email_status||emailStatus",self.admin)
   self.assertIn("review_note",self.admin)
   self.assertIn("Revisar y corregir mi anuncio",self.mail)
+  self.assertIn("sendPaymentApprovedEmail",self.mail)
 
  def test_contact_is_kept_in_admin_after_private_area_creation(self):
   self.assertIn("a.contact_name AS account_contact",self.admin)

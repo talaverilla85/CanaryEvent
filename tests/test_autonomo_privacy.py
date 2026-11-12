@@ -34,7 +34,7 @@ class AutonomoPrivacyContract(unittest.TestCase):
   self.assertIn('Agencia Española de Protección de Datos',self.html)
  def test_no_new_payment(self):
   self.assertIn('payment_enabled:false',self.leads)
-  self.assertIn('accepting_payments:false',self.admin)
+  self.assertIn('accepting_payments:stripePaymentsReady()',self.admin)
   self.assertNotIn('checkout.sessions.create',self.leads)
 if __name__=='__main__':
  unittest.main()
