@@ -25,6 +25,12 @@ class ResendSandboxTest(unittest.TestCase):
   self.assertIn("op==='resend-test-config'",self.admin)
   self.assertIn("op==='resend-send-test'",self.admin)
   self.assertIn('id="sendResendTest"',self.html)
+  self.assertNotIn('id="sendResendTest" disabled',self.html)
+  self.assertIn("api_key_status",self.mail)
+  self.assertIn("test_recipient_status",self.mail)
+  self.assertIn("resendTestConfiguration()",self.admin)
+  self.assertIn("button.textContent='Comprobar configuración'",self.panel)
+  self.assertIn("button.dataset.ready='true'",self.panel)
   self.assertIn('loadResendSandbox()',self.panel)
   self.assertIn("No se enviará nada a los anunciantes",self.panel)
  def test_validity_and_sandbox_limits(self):
