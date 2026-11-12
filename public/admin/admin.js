@@ -226,8 +226,9 @@ async function loadAds() {
 function renderAds(){
  if(!ads.length){$('adsList').innerHTML='<div class="empty">Todavía no hay campañas publicitarias.</div>';return}
  $('adsList').innerHTML=ads.map(a=>{
-  const preview=a.enquiry_id?'/api/admin?op=leadimage&id='+Number(a.enquiry_id):a.image;
-  const image=/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(preview||'')||/^\/api\/admin\?op=leadimage&id=[0-9]+$/.test(preview)?
+  const preview=a.has_uploaded_image?'/api/admin?op=adimage&id='+encodeURIComponent(a.id):
+    a.enquiry_id?'/api/admin?op=leadimage&id='+Number(a.enquiry_id):a.image;
+  const image=/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(preview||'')||/^\/api\/admin\?op=(leadimage&id=[0-9]+|adimage&id=[a-zA-Z0-9_-]+)$/.test(preview)?
     '<img src="'+escape(preview)+'" alt="'+escape(a.image_alt||'Anuncio')+'" loading="lazy">':'Imagen pendiente';
   const dates=a.permanent?'Permanente':(a.starts_at?String(a.starts_at).slice(0,10):'Desde ahora')+' – '+(a.ends_at?String(a.ends_at).slice(0,10):'Sin final')+' · '+daysLeft(a.ends_at);
   return '<article class="ad-card"><div class="ad-media">'+image+'</div><div class="ad-content"><span class="pill '+(a.enabled?'':'off')+'">'+(a.enabled?'Activa':'Pausada')+'</span>'+
@@ -238,9 +239,13 @@ function renderAds(){
 }
 $('adsList').onclick=e=>{const btn=e.target.closest('[data-ad]');if(!btn)return;editAd(ads.find(a=>a.id===btn.dataset.ad))};
 $('newAd').onclick=()=>editAd(null);
+$('createOwnAd').onclick=()=>editAd(null);
 function editAd(ad){
- if(!ad)ad={enabled:false,kind:'paid',permanent:false,municipalities:[]};
+ if(ad&&ad.kind!=='house'){message('Esta opción es para gestionar publicidad propia sin coste.');return}
+ if(!ad)ad={enabled:false,kind:'house',permanent:false,municipalities:[],advertiser:'AriMar'};
  const dates=v=>typeof v==='string'?v.slice(0,10):'';
+ const today=opsToday(),defaultEnd=new Date(Date.parse(today+'T12:00:00Z')+29*86400000).toISOString().slice(0,10);
+ const startDefault=dates(ad.starts_at)||today,endDefault=dates(ad.ends_at)||defaultEnd;
  let content='<div class="sheet-head"><div><span class="eyebrow">Publicidad · Solo administración</span><h2 id="dialogTitle">'+(ad.id?'Editar campaña':'Nueva campaña')+'</h2></div><button class="ghost mini" type="button" data-close>✕</button></div>'+
  '<form id="adForm"><div class="form-grid">'+
  field('advertiser','Anunciante',ad.advertiser||'')+
@@ -251,23 +256,45 @@ function editAd(ad){
  field('button_url','Enlace de destino HTTPS',ad.button_url||'','https://...',true,'url')+
  field('image','Imagen (ruta /sponsors/...webp)',ad.image||'','/sponsors/archivo.webp',true)+
  field('image_alt','Descripción accesible de la imagen',ad.image_alt||'','',true)+
- field('starts_at','Inicio',dates(ad.starts_at),'',false,'date')+
- field('ends_at','Finalización',dates(ad.ends_at),'',false,'date')+
+ field('starts_at','Inicio',startDefault,'',false,'date')+
+ field('ends_at','Finalización',endDefault,'',false,'date')+
  field('municipalities','Municipios (separados por coma; vacío = toda la isla)',(ad.municipalities||[]).join(', '),'Agüimes, Ingenio',true)+
- '<div class="field"><label for="f-kind">Tipo de campaña</label><select name="kind" id="f-kind"><option value="paid">Comercial</option><option value="house">Propia</option></select></div></div>'+
+ '<input type="hidden" name="kind" id="f-kind" value="house"></div>'+
  '<label class="checkbox"><input type="checkbox" id="f-enabled" '+(ad.enabled?'checked':'')+'>Campaña activa</label>'+
- '<label class="checkbox"><input type="checkbox" id="f-permanent" '+(ad.permanent?'checked':'')+'>Campaña permanente</label>'+
- '<p class="notice">La publicidad se mostrará únicamente cuando esté activa y cumpla las fechas indicadas.</p>'+
+ '<div class="field"><label for="f-newImage">Cartel publicitario (JPG, PNG o WebP, opcional)</label><input id="f-newImage" type="file" accept="image/jpeg,image/png,image/webp"><small class="muted">Se prepara a 1200 × 675. Si no subes ninguno, se conserva la imagen que ya tengas.</small></div>'+
+ '<p class="notice">Publicidad propia gratuita · Sin Stripe. Cada campaña se puede activar, pausar y modificar por separado. Duración de 1 a 60 días; al editar un anuncio antiguo permanente, se aplicarán las fechas que elijas.</p>'+
  '<div class="sheet-footer"><button type="button" class="ghost" data-close>Cancelar</button><button class="primary" type="submit">Guardar campaña</button></div></form>';
- openDialog(content);$('f-kind').value=ad.kind||'paid';
+ openDialog(content);
  $('adForm').onsubmit=async ev=>{
   ev.preventDefault();const b=ev.submitter||$('adForm').querySelector('[type=submit]');b.disabled=true;
   const f=Object.fromEntries(new FormData(ev.currentTarget).entries());
-  f.id=ad.id||undefined;f.enabled=$('f-enabled').checked;f.permanent=$('f-permanent').checked;
+  f.id=ad.id||undefined;f.enabled=$('f-enabled').checked;f.permanent=false;f.kind='house';
   f.municipalities=String(f.municipalities||'').split(',').map(x=>x.trim()).filter(Boolean);
   f.starts_at=f.starts_at||null;f.ends_at=f.ends_at||null;
-  try{await api('ad',f);closeDialog();message('Campaña guardada');await Promise.allSettled([loadAds(),loadStats()])}
-  catch(err){message(err.message);b.disabled=false}
+  try{
+   const file=$('f-newImage').files?.[0];
+   if(file){
+    if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>15_000_000)
+     throw new Error('Selecciona una imagen JPG, PNG o WebP de menos de 15 MB');
+    const bitmap=await createImageBitmap(file);
+    const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=675;
+    const ctx=canvas.getContext('2d');
+    if(!ctx)throw new Error('No se pudo preparar la imagen');
+    const scale=Math.max(1200/bitmap.width,675/bitmap.height);
+    ctx.drawImage(bitmap,(1200-bitmap.width*scale)/2,(675-bitmap.height*scale)/2,
+      bitmap.width*scale,bitmap.height*scale);bitmap.close?.();
+    let encoded='';
+    for(const q of [.84,.7,.54,.4]){
+     encoded=canvas.toDataURL('image/webp',q);
+     if(encoded.startsWith('data:image/webp;base64,')&&encoded.length*3/4<=800000)break;
+    }
+    if(!encoded.startsWith('data:image/webp;base64,')||encoded.length*3/4>800000)
+     throw new Error('La imagen no se ha podido optimizar a menos de 800 KB');
+    f.image_data=encoded;f.image_width=1200;f.image_height=675;f.image='';
+   }
+   await api('ad',f);closeDialog();message('Campaña propia guardada, sin coste');
+   await Promise.allSettled([loadAds(),loadStats()]);
+  }catch(err){message(err.message);b.disabled=false}
  };
 }
 
@@ -470,7 +497,7 @@ const opsStateNames={
  interest:'Interesado',draft:'Borrador',submitted:'Pendiente de revisión',
  changes_requested:'Cambios solicitados',approved_for_payment:'Aprobado · pago pendiente',
  pending_payment:'Esperando pago',paid_review:'Pago verificado · revisión',
- approved:'Aprobado',scheduled:'Programado',active:'Activo',finished:'Caducado',
+ approved:'Aprobado',scheduled:'Programado',active:'Activo',paused:'Pausado',finished:'Caducado',
  rejected:'Rechazado',cancelled:'Cancelado'
 };
 const opsPlanNames={local:'Local',zona:'Zona',insular:'Insular'};
@@ -529,6 +556,26 @@ function normalizedOpsRows(){
   });
  }
  for(const a of ads){
+  if(a.kind==='house'){
+   const started=opsDate(a.starts_at),ended=opsDate(a.ends_at);
+   const status=ended&&ended<today?'finished':!a.enabled?'paused':started&&started>today?'scheduled':'active';
+   const duration=started&&ended?Math.round(
+    (Date.parse(ended+'T00:00:00Z')-Date.parse(started+'T00:00:00Z'))/86400000)+1:null;
+   const staticImage=typeof a.image==='string'&&/^\/sponsors\/[a-z0-9._/-]+\.(webp|jpg|jpeg|png)$/i.test(a.image)?a.image:'';
+   result.push({
+    key:'house-'+String(a.id),source:'house',id:String(a.id),
+    company:a.advertiser||'AriMar',title:a.headline||'Campaña propia',submitted_at:a.updated_at,
+    status,payment:'free',days:duration,permanent:!!a.permanent,
+    plan:'',kind:'Publicidad propia',area:Array.isArray(a.municipalities)&&a.municipalities.length?
+     a.municipalities.join(', '):'Toda Gran Canaria',
+    price:0,has_image:!!a.has_uploaded_image||!!staticImage,
+    image_url:a.has_uploaded_image?'/api/admin?op=adimage&id='+encodeURIComponent(a.id):staticImage,
+    description:a.description||'',review_note:'',contact:'',email:'',telephone:'',
+    destination:a.button_url||'',start:started,event_start:null,event_venue:null,
+    actual_starts_at:started,actual_ends_at:ended,editable:false
+   });
+   continue;
+  }
   if(a.kind!=='paid')continue;
   const started=opsDate(a.starts_at),ended=opsDate(a.ends_at);
   const status=ended&&ended<today?'finished':a.enabled&&(!started||started<=today)?'active':'draft';
@@ -571,8 +618,8 @@ function renderAdOperations(){
  container.innerHTML=rows.map(r=>{
   const status=opsStateNames[r.status]||r.status;
   const payment=r.payment==='paid'?'Pagado':r.payment==='pending'?'Pendiente':
-    r.payment==='refunded'?'Reembolsado':'No verificado';
-  const days=Number.isInteger(r.days)&&r.days>0?r.days+' días':'—';
+    r.payment==='free'?'Sin coste':r.payment==='refunded'?'Reembolsado':'No verificado';
+  const days=r.permanent?'Anterior permanente':Number.isInteger(r.days)&&r.days>0?r.days+' días':'—';
   const amount=r.price===null?'—':Number(r.price).toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:2})+' €';
   const img=r.has_image&&r.image_url?'<img class="adops-thumb" loading="lazy" src="'+escape(r.image_url)+'" alt="Anuncio de '+escape(r.company)+'">':'';
   const area=r.plan?opsPlanNames[r.plan]+' · '+r.area:r.area;
@@ -589,6 +636,10 @@ function renderAdOperations(){
    '<td><div class="adops-actions">'+
     '<button type="button" class="ghost mini" data-ops-preview="'+escape(r.key)+'">'+
       (r.editable?'Revisar':'Detalles')+'</button>'+
+    (r.source==='house'?'<button type="button" class="ghost mini" data-ops-house-edit="'+escape(r.id)+'">Editar</button>'+
+    (r.status==='active'||r.status==='scheduled'?
+      '<button type="button" class="ghost mini" data-ops-house-toggle="'+escape(r.id)+'" data-house-enable="false">Pausar</button>':
+      '<button type="button" class="ghost mini" data-ops-house-toggle="'+escape(r.id)+'" data-house-enable="true">Activar</button>'):'')+
     (r.source==='lead'&&r.status==='changes_requested'?
      '<button type="button" class="ghost mini" data-ops-invite="'+Number(r.id)+'">Dar acceso</button>':'')+
     '</div></td></tr>';
@@ -614,11 +665,11 @@ function opsOpenPreview(row){
   '<div class="meta"><span class="adops-status st-'+escape(row.status)+'">'+
   escape(opsStateNames[row.status]||row.status)+'</span> '+
   '<span class="adops-payment p-'+escape(row.payment)+'">'+
-  escape(row.payment==='paid'?'Pago confirmado':row.payment==='pending'?'Pago pendiente':'Pago sin verificar')+'</span></div>'+
+  escape(row.payment==='paid'?'Pago confirmado':row.payment==='pending'?'Pago pendiente':row.payment==='free'?'Sin coste · campaña propia':'Pago sin verificar')+'</span></div>'+
   previewCard+image+
   '<div class="adops-preview-card"><p><strong>Descripción:</strong> '+escape(row.description)+'</p>'+
   '<p><strong>Formato:</strong> '+escape(row.kind)+' · <strong>Zona:</strong> '+escape(area)+'</p>'+
-  '<p><strong>Duración:</strong> '+escape(row.days||'—')+' días · <strong>Tarifa:</strong> '+escape(money)+'</p>'+
+  '<p><strong>Duración:</strong> '+escape(row.permanent?'Anterior permanente':row.days?row.days+' días':'—')+' · <strong>Tarifa:</strong> '+escape(money)+'</p>'+
   '<p><strong>Inicio solicitado:</strong> '+escape(opsDate(row.start)||'Sin fecha')+'</p>'+
   (row.event_start?'<p><strong>Evento:</strong> '+escape(row.event_start)+' · '+escape(row.event_venue)+'</p>':'')+
   (row.email?'<p><strong>Contacto:</strong> '+escape(row.contact)+' · '+escape(row.email)+
@@ -630,7 +681,11 @@ function opsOpenPreview(row){
   (row.editable&&row.has_image?'<button type="button" class="primary" data-ops-review="approved_for_payment" data-ops-key="'+escape(row.key)+'">Aprobar contenido</button>':'')+
   (row.editable?'<button type="button" class="ghost" data-ops-review="changes_requested" data-ops-key="'+escape(row.key)+'">Pedir cambios</button>'+
   '<button type="button" class="ghost" data-ops-review="rejected" data-ops-key="'+escape(row.key)+'">Rechazar</button>':'')+
-  (row.source==='draft'&&row.status==='paid_review'&&row.payment==='paid'?
+  (row.source==='house'?'<button type="button" class="primary" data-ops-house-edit="'+escape(row.id)+'">Editar campaña propia</button>'+
+    (row.status==='active'||row.status==='scheduled'?
+      '<button type="button" class="ghost" data-ops-house-toggle="'+escape(row.id)+'" data-house-enable="false">Pausar</button>':
+      '<button type="button" class="ghost" data-ops-house-toggle="'+escape(row.id)+'" data-house-enable="true">Activar</button>'):'')+
+   (row.source==='draft'&&row.status==='paid_review'&&row.payment==='paid'?
     '<button type="button" class="primary" data-ops-schedule="'+Number(row.id)+'">Programar publicación</button>':'')+
    (row.source==='draft'&&['approved_for_payment','pending_payment'].includes(row.status)&&row.payment!=='paid'?
    '<button type="button" class="primary" data-ops-payment="'+Number(row.id)+'">Enviar / reenviar pago</button>':'')+
@@ -651,8 +706,24 @@ $('refreshAdOperations').onclick=async()=>{
  await Promise.allSettled([loadLeads(),loadAdvertiserDrafts(),loadAds(),loadPromotions()]);
  message('Tabla de publicidad actualizada');
 };
+async function handleOwnCampaignAction(button){
+ const id=button.dataset.opsHouseEdit||button.dataset.opsHouseToggle;
+ const ad=ads.find(a=>a.kind==='house'&&a.id===id);
+ if(!ad){message('No encontramos la campaña. Actualiza la lista.');return}
+ if(button.dataset.opsHouseEdit){editAd(ad);return}
+ const enabled=button.dataset.houseEnable==='true';
+ if(!confirm((enabled?'¿Activar':'¿Pausar')+' la campaña «'+ad.headline+'»?'))return;
+ button.disabled=true;
+ try{
+  await api('house-ad-status',{id,enabled});
+  closeDialog();
+  await Promise.allSettled([loadAds(),loadStats()]);
+  message(enabled?'Campaña propia habilitada':'Campaña propia pausada');
+ }catch(err){message(err.message);button.disabled=false}
+}
 $('adOpsRows').addEventListener('click',event=>{
- const button=event.target.closest('[data-ops-preview],[data-ops-invite]');if(!button)return;
+ const button=event.target.closest('[data-ops-preview],[data-ops-invite],[data-ops-house-edit],[data-ops-house-toggle]');if(!button)return;
+ if(button.dataset.opsHouseEdit||button.dataset.opsHouseToggle){handleOwnCampaignAction(button);return;}
  if(button.dataset.opsInvite){
   createAdvertiserInvite(Number(button.dataset.opsInvite)).then(async()=>{
     await Promise.allSettled([loadLeads(),loadAdvertiserDrafts()]);
@@ -671,7 +742,7 @@ $('adOpsExport').onclick=()=>{
  };
  const lines=[columns,...opsFilteredRows().map(r=>[
   r.company,r.title,opsDate(r.submitted_at),opsStateNames[r.status]||r.status,
-  r.payment==='paid'?'Pagado':r.payment==='pending'?'Pendiente':'Sin confirmar',
+  r.payment==='paid'?'Pagado':r.payment==='pending'?'Pendiente':r.payment==='free'?'Sin coste':'Sin confirmar',
   r.days||'',r.kind,(r.plan?opsPlanNames[r.plan]+' · ':'')+r.area,r.price??''
  ])];
  const csv='\ufeff'+lines.map(row=>row.map(cell).join(';')).join('\r\n');
@@ -680,7 +751,8 @@ $('adOpsExport').onclick=()=>{
  setTimeout(()=>URL.revokeObjectURL(object),500);
 };
 $('sheet').addEventListener('click',async event=>{
- const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule]');if(!button)return;
+ const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle]');if(!button)return;
+ if(button.dataset.opsHouseEdit||button.dataset.opsHouseToggle){await handleOwnCampaignAction(button);return;}
  if(button.dataset.opsSchedule){
   const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsSchedule));
   if(!row||row.payment!=='paid'||row.status!=='paid_review')return;

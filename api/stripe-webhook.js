@@ -4,6 +4,7 @@ import {db} from '../lib/admin-auth.js';
 import {expectedAmount,stripePaymentsReady,stripeMode} from '../lib/stripe-advertising.js';
 import {workspaceForDraft} from '../lib/advertiser-workspace.js';
 import {sendPaymentConfirmedEmail} from '../lib/advertiser-mail.js';
+import {schedulePaidDraft} from '../lib/advertiser-publication.js';
 
 export const config={api:{bodyParser:false}};
 
@@ -54,7 +55,7 @@ export default async function handler(req,res){
    FROM advertiser_campaign_drafts WHERE stripe_payment_link_id=${linkId}`;
   if(!d||expectedAmount(d.plan,d.days)!==Number(d.price_cents)||
      Number(d.price_cents)!==s.amount_total||
-     !['pending_payment','paid_review','approved_for_payment'].includes(d.status))
+     !['pending_payment','paid_review','approved_for_payment','approved','active'].includes(d.status))
    return res.status(200).json({received:true,ignored:true});
   const [updated]=await sql`UPDATE advertiser_campaign_drafts SET
    payment_status='paid',status='paid_review',paid_at=now(),
@@ -64,6 +65,14 @@ export default async function handler(req,res){
    RETURNING id,source_lead_id`;
   if(updated?.source_lead_id)
    await sql`UPDATE advertising_enquiries SET payment_status='paid' WHERE id=${updated.source_lead_id}`;
+  // Confirmed payments must be scheduled server-side without an admin click.
+  // If publication fails, return 503 so Stripe retries this signed event.
+  // Retried events must also schedule a previously recorded paid_review/approved draft.
+  const confirmedId=updated?.id || (d.payment_status==='paid'&&
+   ['paid_review','approved'].includes(d.status)?d.id:null);
+  if(confirmedId){
+   await schedulePaidDraft(sql,Number(confirmedId));
+  }
   if(updated){
    try{
     const info=await workspaceForDraft(sql,Number(updated.id));

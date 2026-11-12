@@ -159,7 +159,11 @@ async function saveAd(sql, body) {
   if(asset && (Number(body.image_width)!==1200||Number(body.image_height)!==675))
     throw new Error('La imagen debe prepararse en formato horizontal 1200 × 675');
 
-  const kind=kinds.has(body.kind)?body.kind:'paid';
+  const kind=kinds.has(body.kind)?body.kind:'house';
+  // An existing contracted advertiser campaign cannot be converted into a free house ad.
+  const [original]=await sql`SELECT kind FROM ad_campaigns WHERE id=${id}`;
+  if(original&&original.kind!==kind)
+    throw new Error('No puedes cambiar una campaña comercial por una propia ni a la inversa');
   const municipalities=Array.isArray(body.municipalities)?
     [...new Set(body.municipalities.filter(x=>typeof x==='string').map(x=>safeText(x,75)).filter(Boolean))].slice(0,25):[];
   const enabled=body.enabled===true,permanent=false;
@@ -187,7 +191,20 @@ async function saveAd(sql, body) {
   }
   return {id,updated:true,has_uploaded_image:!!asset};
 }
-
+async function setHouseCampaignEnabled(sql,body){
+ const id=typeof body?.id==='string'&&/^[a-zA-Z0-9_-]{2,90}$/.test(body.id)?body.id:null;
+ if(!id||typeof body.enabled!=='boolean')throw new Error('Campaña propia inválida');
+ const [old]=await sql`SELECT kind,permanent,starts_at,ends_at FROM ad_campaigns WHERE id=${id}`;
+ if(!old||old.kind!=='house')throw new Error('Solo puedes activar o pausar publicidad propia');
+ if(body.enabled===true&&!old.permanent){
+  if(!old.starts_at||!old.ends_at)throw new Error('Indica las fechas para activar la campaña');
+  const [expired]=await sql`SELECT ${old.ends_at}::date<((now() AT TIME ZONE 'Atlantic/Canary')::date) AS expired`;
+  if(expired?.expired)throw new Error('La campaña ha terminado: edita las fechas antes de activarla');
+ }
+ await sql`UPDATE ad_campaigns SET enabled=${body.enabled},updated_at=now()
+  WHERE id=${id} AND kind='house'`;
+ return {id,enabled:body.enabled};
+}
 function leadId(value){const n=Number(value);return Number.isSafeInteger(n)&&n>0?n:null}
 async function listLeads(sql){
  const rows=await sql`SELECT id,company,contact_name,email,telephone,legal_name,tax_id,
@@ -628,6 +645,7 @@ export default async function handler(req,res){
     if(req.method==='POST'&&op==='event')return json(res,200,await saveEvent(sql,data(req)));
     if(req.method==='POST'&&op==='visibility')return json(res,200,await setEventVisibility(sql,data(req)));
     if(req.method==='POST'&&op==='ad')return json(res,200,await saveAd(sql,data(req)));
+    if(req.method==='POST'&&op==='house-ad-status')return json(res,200,await setHouseCampaignEnabled(sql,data(req)));
     return json(res,404,{error:'Operación desconocida'});
   }catch(err){
     if(err instanceof Error && /inválid|Indica |debe |No se encuentra|No puedes|no encontrado|Fechas/.test(err.message))
