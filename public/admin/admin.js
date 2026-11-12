@@ -636,6 +636,10 @@ function renderAdOperations(){
    '<td><div class="adops-actions">'+
     '<button type="button" class="ghost mini" data-ops-preview="'+escape(r.key)+'">'+
       (r.editable?'Revisar':'Detalles')+'</button>'+
+    (r.source==='house'?'<button type="button" class="ghost mini" data-ops-house-edit="'+escape(r.id)+'">Editar</button>'+
+    (r.status==='active'||r.status==='scheduled'?
+      '<button type="button" class="ghost mini" data-ops-house-toggle="'+escape(r.id)+'" data-house-enable="false">Pausar</button>':
+      '<button type="button" class="ghost mini" data-ops-house-toggle="'+escape(r.id)+'" data-house-enable="true">Activar</button>'):'')+
     (r.source==='lead'&&r.status==='changes_requested'?
      '<button type="button" class="ghost mini" data-ops-invite="'+Number(r.id)+'">Dar acceso</button>':'')+
     '</div></td></tr>';
@@ -661,11 +665,11 @@ function opsOpenPreview(row){
   '<div class="meta"><span class="adops-status st-'+escape(row.status)+'">'+
   escape(opsStateNames[row.status]||row.status)+'</span> '+
   '<span class="adops-payment p-'+escape(row.payment)+'">'+
-  escape(row.payment==='paid'?'Pago confirmado':row.payment==='pending'?'Pago pendiente':'Pago sin verificar')+'</span></div>'+
+  escape(row.payment==='paid'?'Pago confirmado':row.payment==='pending'?'Pago pendiente':row.payment==='free'?'Sin coste · campaña propia':'Pago sin verificar')+'</span></div>'+
   previewCard+image+
   '<div class="adops-preview-card"><p><strong>Descripción:</strong> '+escape(row.description)+'</p>'+
   '<p><strong>Formato:</strong> '+escape(row.kind)+' · <strong>Zona:</strong> '+escape(area)+'</p>'+
-  '<p><strong>Duración:</strong> '+escape(row.days||'—')+' días · <strong>Tarifa:</strong> '+escape(money)+'</p>'+
+  '<p><strong>Duración:</strong> '+escape(row.permanent?'Anterior permanente':row.days?row.days+' días':'—')+' · <strong>Tarifa:</strong> '+escape(money)+'</p>'+
   '<p><strong>Inicio solicitado:</strong> '+escape(opsDate(row.start)||'Sin fecha')+'</p>'+
   (row.event_start?'<p><strong>Evento:</strong> '+escape(row.event_start)+' · '+escape(row.event_venue)+'</p>':'')+
   (row.email?'<p><strong>Contacto:</strong> '+escape(row.contact)+' · '+escape(row.email)+
@@ -677,7 +681,11 @@ function opsOpenPreview(row){
   (row.editable&&row.has_image?'<button type="button" class="primary" data-ops-review="approved_for_payment" data-ops-key="'+escape(row.key)+'">Aprobar contenido</button>':'')+
   (row.editable?'<button type="button" class="ghost" data-ops-review="changes_requested" data-ops-key="'+escape(row.key)+'">Pedir cambios</button>'+
   '<button type="button" class="ghost" data-ops-review="rejected" data-ops-key="'+escape(row.key)+'">Rechazar</button>':'')+
-  (row.source==='draft'&&row.status==='paid_review'&&row.payment==='paid'?
+  (row.source==='house'?'<button type="button" class="primary" data-ops-house-edit="'+escape(row.id)+'">Editar campaña propia</button>'+
+    (row.status==='active'||row.status==='scheduled'?
+      '<button type="button" class="ghost" data-ops-house-toggle="'+escape(row.id)+'" data-house-enable="false">Pausar</button>':
+      '<button type="button" class="ghost" data-ops-house-toggle="'+escape(row.id)+'" data-house-enable="true">Activar</button>'):'')+
+   (row.source==='draft'&&row.status==='paid_review'&&row.payment==='paid'?
     '<button type="button" class="primary" data-ops-schedule="'+Number(row.id)+'">Programar publicación</button>':'')+
    (row.source==='draft'&&['approved_for_payment','pending_payment'].includes(row.status)&&row.payment!=='paid'?
    '<button type="button" class="primary" data-ops-payment="'+Number(row.id)+'">Enviar / reenviar pago</button>':'')+
@@ -698,8 +706,24 @@ $('refreshAdOperations').onclick=async()=>{
  await Promise.allSettled([loadLeads(),loadAdvertiserDrafts(),loadAds(),loadPromotions()]);
  message('Tabla de publicidad actualizada');
 };
+async function handleOwnCampaignAction(button){
+ const id=button.dataset.opsHouseEdit||button.dataset.opsHouseToggle;
+ const ad=ads.find(a=>a.kind==='house'&&a.id===id);
+ if(!ad){message('No encontramos la campaña. Actualiza la lista.');return}
+ if(button.dataset.opsHouseEdit){editAd(ad);return}
+ const enabled=button.dataset.houseEnable==='true';
+ if(!confirm((enabled?'¿Activar':'¿Pausar')+' la campaña «'+ad.headline+'»?'))return;
+ button.disabled=true;
+ try{
+  await api('house-ad-status',{id,enabled});
+  closeDialog();
+  await Promise.allSettled([loadAds(),loadStats()]);
+  message(enabled?'Campaña propia habilitada':'Campaña propia pausada');
+ }catch(err){message(err.message);button.disabled=false}
+}
 $('adOpsRows').addEventListener('click',event=>{
- const button=event.target.closest('[data-ops-preview],[data-ops-invite]');if(!button)return;
+ const button=event.target.closest('[data-ops-preview],[data-ops-invite],[data-ops-house-edit],[data-ops-house-toggle]');if(!button)return;
+ if(button.dataset.opsHouseEdit||button.dataset.opsHouseToggle){handleOwnCampaignAction(button);return;}
  if(button.dataset.opsInvite){
   createAdvertiserInvite(Number(button.dataset.opsInvite)).then(async()=>{
     await Promise.allSettled([loadLeads(),loadAdvertiserDrafts()]);
@@ -718,7 +742,7 @@ $('adOpsExport').onclick=()=>{
  };
  const lines=[columns,...opsFilteredRows().map(r=>[
   r.company,r.title,opsDate(r.submitted_at),opsStateNames[r.status]||r.status,
-  r.payment==='paid'?'Pagado':r.payment==='pending'?'Pendiente':'Sin confirmar',
+  r.payment==='paid'?'Pagado':r.payment==='pending'?'Pendiente':r.payment==='free'?'Sin coste':'Sin confirmar',
   r.days||'',r.kind,(r.plan?opsPlanNames[r.plan]+' · ':'')+r.area,r.price??''
  ])];
  const csv='\ufeff'+lines.map(row=>row.map(cell).join(';')).join('\r\n');
@@ -727,7 +751,8 @@ $('adOpsExport').onclick=()=>{
  setTimeout(()=>URL.revokeObjectURL(object),500);
 };
 $('sheet').addEventListener('click',async event=>{
- const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule]');if(!button)return;
+ const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle]');if(!button)return;
+ if(button.dataset.opsHouseEdit||button.dataset.opsHouseToggle){await handleOwnCampaignAction(button);return;}
  if(button.dataset.opsSchedule){
   const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsSchedule));
   if(!row||row.payment!=='paid'||row.status!=='paid_review')return;
