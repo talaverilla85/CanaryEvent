@@ -47,7 +47,11 @@ async function loadAdvertisingIntake(){
   }
   const missing=[];
   if(!state.leads_enabled)missing.push('DPARRANDA_LEADS_ENABLED = true');
-  if(!state.privacy_configured)missing.push('DPARRANDA_PRIVACY_URL = dirección HTTPS de tu aviso de privacidad');
+  if(!state.privacy_configured){
+    const fields=Array.isArray(state.missing_legal_fields)?state.missing_legal_fields:[];
+    if(fields.length)missing.push(...fields.map(name=>name+' = completar identidad del autónomo'));
+    else missing.push('Completar información legal de DParranda');
+  }
   if(!state.database_configured)missing.push('DATABASE_URL = conexión de Neon');
   node.replaceChildren();
   const intro=document.createElement('strong');
@@ -57,6 +61,9 @@ async function loadAdvertisingIntake(){
   const link=document.createElement('a');link.href='https://vercel.com/noe-s-projects-deb823a5/canaryevent/settings/environment-variables';
   link.target='_blank';link.rel='noopener noreferrer';link.textContent='Abrir configuración de Vercel';
   node.append(intro,detail,link);
+  const legal=document.createElement('a');legal.href='/privacidad/';legal.target='_blank';
+  legal.rel='noopener noreferrer';legal.textContent=' · Previsualizar privacidad';
+  node.append(legal);
  }catch(err){node.textContent='No se ha podido comprobar la recepción: '+(err.message||'error de conexión')}
 }
 async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake()]);if(location.hash==='#publicidad')setSection('ads')}
