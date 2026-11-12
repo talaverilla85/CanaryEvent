@@ -15,7 +15,7 @@ export default async function handler(req,res) {
        AND (ends_at IS NULL OR ends_at>=((now() AT TIME ZONE 'Atlantic/Canary')::date))
      ORDER BY updated_at DESC,id LIMIT 100`;
     for(const ad of ads){
-      if(ad.has_uploaded_image)ad.image='/api/ad-image?id='+encodeURIComponent(ad.id);
+      if(ad.has_uploaded_image)ad.image=ad.id.startsWith('dp-ad-')?'/api/paid-banner-image?id='+encodeURIComponent(ad.id):'/api/ad-image?id='+encodeURIComponent(ad.id);
       else if(ad.enquiry_id)ad.image='/api/media?id='+ad.enquiry_id;
       delete ad.has_uploaded_image;
     }
