@@ -2322,7 +2322,7 @@ function sponsorUrl(value){
 function sponsorCardHtml(ad){
  const href=sponsorUrl(ad.button_url);
  if(!href)return '';
- const path=typeof ad.image==='string'&&(/^(\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg))$/i.test(ad.image)||/^\/api\/(media|paid-banner-image)\?id=[a-zA-Z0-9-]+$/.test(ad.image))?ad.image:'';
+ const path=typeof ad.image==='string'&&(/^(\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg))$/i.test(ad.image)||/^\/api\/(media|paid-banner-image|ad-image)\?id=[a-zA-Z0-9_-]+$/.test(ad.image))?ad.image:'';
  const img=path?'<img src="'+escapeHTML(path)+'" alt="'+escapeHTML(ad.image_alt||'Imagen del anunciante')+'" loading="lazy" decoding="async">':'';
  return '<section class="sponsor-slot" aria-label="Espacio patrocinado">'+
    '<div class="sponsor-slot-caption"><span class="sponsor-slot-heading">'+
