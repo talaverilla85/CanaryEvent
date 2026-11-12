@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-11T12:55:38+00:00",
+  "checked_at": "2026-11-12T10:37:28+00:00",
   "quality_counts": {
-    "publicados": 457,
-    "recintos_sin_verificar": 47,
+    "publicados": 454,
+    "recintos_sin_verificar": 46,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 318,
-    "distancia_a_centro_municipal": 306,
-    "fuentes_con_error": 1,
+    "precios_sin_confirmar": 315,
+    "distancia_a_centro_municipal": 304,
+    "fuentes_con_error": 3,
     "duplicados_potenciales": 3
   },
   "sources": [
@@ -33,11 +33,11 @@
     {
       "source": "Juventud Las Palmas de Gran Canaria",
       "estado": "operativa",
-      "publicados": 10,
+      "publicados": 11,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 10,
-      "fichas_leidas_en_esta_ejecucion": 7,
+      "distancia_al_centro_municipal": 11,
+      "fichas_leidas_en_esta_ejecucion": 9,
       "error": ""
     },
     {
@@ -52,13 +52,13 @@
     },
     {
       "source": "LPA Cultura · agenda municipal oficial",
-      "estado": "operativa",
-      "publicados": 5,
+      "estado": "error",
+      "publicados": 4,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 5,
-      "fichas_leidas_en_esta_ejecucion": 5,
-      "error": ""
+      "distancia_al_centro_municipal": 4,
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "ReadTimeout"
     },
     {
       "source": "Sociedad Filarmónica de Las Palmas · conciertos",
@@ -82,13 +82,13 @@
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 14,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 14,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 4,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -192,12 +192,12 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "estado": "operativa",
+      "estado": "sin_resultados_en_esta_revision",
       "publicados": 1,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 1,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -253,11 +253,11 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 19,
+      "publicados": 18,
       "recinto_sin_verificar": 7,
-      "precio_sin_confirmar": 19,
-      "distancia_al_centro_municipal": 19,
-      "fichas_leidas_en_esta_ejecucion": 27,
+      "precio_sin_confirmar": 18,
+      "distancia_al_centro_municipal": 18,
+      "fichas_leidas_en_esta_ejecucion": 26,
       "error": ""
     },
     {
@@ -293,11 +293,11 @@
     {
       "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
       "estado": "operativa",
-      "publicados": 38,
+      "publicados": 37,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 38,
-      "distancia_al_centro_municipal": 38,
-      "fichas_leidas_en_esta_ejecucion": 38,
+      "precio_sin_confirmar": 37,
+      "distancia_al_centro_municipal": 37,
+      "fichas_leidas_en_esta_ejecucion": 37,
       "error": ""
     },
     {
@@ -383,11 +383,11 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "operativa",
-      "publicados": 170,
-      "recinto_sin_verificar": 33,
-      "precio_sin_confirmar": 143,
+      "publicados": 169,
+      "recinto_sin_verificar": 32,
+      "precio_sin_confirmar": 142,
       "distancia_al_centro_municipal": 91,
-      "fichas_leidas_en_esta_ejecucion": 18,
+      "fichas_leidas_en_esta_ejecucion": 14,
       "error": ""
     },
     {
@@ -463,6 +463,14 @@
   ],
   "reported_errors": [
     {
+      "source": "LPA Cultura · agenda municipal oficial",
+      "error": "ReadTimeout"
+    },
+    {
+      "source": "Auditorio Alfredo Kraus · programación oficial",
+      "error": "RuntimeError"
+    },
+    {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
     }
@@ -470,7 +478,7 @@
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 33
+      "count": 32
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
@@ -631,14 +639,6 @@
       "source_url": "https://eventos.santabrigida.es/eventos/aprende-diseno-e-impresion-en-3-d/"
     },
     {
-      "id": 195,
-      "title": "Curso básico de cocina canaria saludable",
-      "start": "2026-11-11T19:30:00",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261111-0001/curso-basico-de-cocina-canaria-saludable"
-    },
-    {
       "id": 228,
       "title": "Gran Gala de Mogán Talent 2026",
       "start": "2026-11-13",
@@ -685,6 +685,14 @@
       "municipality": "Arucas",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0016/vi-edicion-de-arucas-es-arte"
+    },
+    {
+      "id": 247,
+      "title": "III MAR. Mujeres Africanas Rodando 2026",
+      "start": "2026-11-14",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0017/iii-mar-mujeres-africanas-rodando-2026"
     }
   ],
   "guidance": [

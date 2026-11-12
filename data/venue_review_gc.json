@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-11T12:55:38+00:00",
-  "not_published": 47,
+  "updated_at": "2026-11-12T10:37:28+00:00",
+  "not_published": 46,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -217,18 +217,6 @@
       "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "source_url": "https://eventos.santabrigida.es/eventos/aprende-diseno-e-impresion-en-3-d/",
       "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 195,
-      "title": "Curso básico de cocina canaria saludable",
-      "start": "2026-11-11T19:30:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261111-0001/curso-basico-de-cocina-canaria-saludable",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/11/curso-basico-cocina-canaria-saludable",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {

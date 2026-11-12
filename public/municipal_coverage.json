@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-11-11",
+  "updated_on": "2026-11-12",
   "scope": "21 municipios de Gran Canaria",
   "municipalities_total": 21,
   "municipalities_with_any_catalog_cards": 18,
@@ -186,13 +186,13 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 216,
-      "municipal_cards_total": 10,
-      "other_sources_cards_total": 206,
+      "catalog_cards_total": 215,
+      "municipal_cards_total": 11,
+      "other_sources_cards_total": 204,
       "source_health": [
         {
           "source": "Juventud Las Palmas de Gran Canaria",
-          "found": 7,
+          "found": 9,
           "error": ""
         }
       ],
@@ -256,13 +256,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 21,
-      "municipal_cards_total": 19,
+      "catalog_cards_total": 20,
+      "municipal_cards_total": 18,
       "other_sources_cards_total": 2,
       "source_health": [
         {
           "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-          "found": 27,
+          "found": 26,
           "error": ""
         }
       ],
@@ -294,7 +294,7 @@
       "source_health": [
         {
           "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-          "found": 1,
+          "found": 0,
           "error": ""
         }
       ],
@@ -326,8 +326,8 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 64,
-      "municipal_cards_total": 41,
+      "catalog_cards_total": 63,
+      "municipal_cards_total": 40,
       "other_sources_cards_total": 23,
       "source_health": [
         {
@@ -342,7 +342,7 @@
         },
         {
           "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
-          "found": 38,
+          "found": 37,
           "error": ""
         },
         {
