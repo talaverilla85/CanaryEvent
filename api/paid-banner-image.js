@@ -10,7 +10,7 @@ export default async function handler(req,res){
   const [img]=await sql`SELECT i.mime_type,i.image_data
    FROM ad_campaigns a
    JOIN advertiser_campaign_drafts d ON d.published_ad_id=a.id
-   JOIN ad_campaign_images i ON i.ad_id=a.id
+   JOIN advertiser_campaign_draft_images i ON i.draft_id=d.id
    WHERE a.id=${id} AND a.enabled=TRUE AND d.status='active' AND d.payment_status='paid'
     AND a.starts_at<=((now() AT TIME ZONE 'Atlantic/Canary')::date)
     AND a.ends_at>=((now() AT TIME ZONE 'Atlantic/Canary')::date)`;
