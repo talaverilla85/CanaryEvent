@@ -35,7 +35,7 @@
 <div class="card adops-overview">
  <div class="adops-heading"><div><span class="eyebrow">PUBLICIDAD · CONTROL COMERCIAL</span><h2>Solicitudes y campañas</h2>
  <p class="muted">Vista general de interesados, propuestas, pagos y anuncios publicados. Ninguna aprobación editorial equivale a un cobro.</p></div>
- <button id="refreshAdOperations" type="button" class="ghost mini">Actualizar lista</button></div>
+ <div class="adops-top-actions"><button id="createOwnAd" type="button" class="primary mini">+ Crear publicidad propia</button><button id="refreshAdOperations" type="button" class="ghost mini">Actualizar lista</button></div></div>
  <div class="card resend-test-panel">
  <div><strong>Prueba de notificaciones por correo (Resend)</strong>
  <p id="resendTestInfo" class="muted small" role="status">Comprobando la conexión de pruebas…</p></div>
@@ -74,18 +74,18 @@
 <details class="adops-advanced"><summary>Herramientas avanzadas: accesos, campañas y registros anteriores</summary>
 
 <div class="card marketing-overview"><h2>Accesos privados de anunciantes</h2>
-<p class="muted">Desde cada solicitud puedes generar un enlace personal y enviarlo por correo. El acceso es privado, revocable y permite guardar borradores. La compra todavía está desactivada.</p>
+<p class="muted">Desde cada solicitud puedes generar un enlace personal y enviarlo por correo. El acceso es privado, revocable y permite guardar borradores. El pago se realiza con Stripe al aprobar el anuncio; tras confirmarlo, la publicación se programa automáticamente.</p>
 <div id="advertiserAccountsList" class="results" aria-live="polite"></div></div>
 <div class="card marketing-overview"><h2>Campañas creadas por anunciantes</h2>
-<p class="muted">Borradores y revisiones de las áreas privadas. No se permite aprobar sin pago verificado ni publicar automáticamente.</p>
+<p class="muted">Borradores y revisiones de las áreas privadas. Tras verificar el pago de Stripe, la publicación se programa automáticamente para la fecha elegida.</p>
 <div id="advertiserDraftsList" class="results" aria-live="polite"></div></div>
 <div class="card marketing-overview"><h2>Solicitudes de empresas</h2><p class="muted">Presupuestos pendientes, datos de facturación e imagen original. Nada se publica automáticamente.</p>
 <div id="leadsList" class="results" aria-live="polite"></div></div>
 <div class="card marketing-overview"><h2>Eventos patrocinados</h2><p class="muted">Actividades pagadas, con etiqueta de publicidad y contador de días de campaña.</p>
 <div id="promotionsList" class="results" aria-live="polite"></div></div>
-<div class="toolbar"><div><h2 class="ad-title">Campañas publicitarias</h2><p class="muted">Solo tú puedes crear, modificar o pausar anuncios.</p></div>
-<button class="primary" id="newAd" type="button">+ Nueva campaña</button></div><div id="adsList" class="ad-grid" aria-live="polite"></div>
-<p class="muted spaced">Las imágenes se referencian a archivos verificados alojados en /sponsors/. La subida de imágenes se incorporará después.</p>
+<div class="toolbar"><div><h2 class="ad-title">Campañas publicitarias</h2><p class="muted">Crea y gestiona anuncios propios sin coste y sin Stripe. Los nuevos anuncios tienen un máximo de 60 días; los anteriores se pueden convertir a una campaña con fechas al editarlos.</p></div>
+<button class="primary" id="newAd" type="button">+ Nueva campaña propia</button></div><div id="adsList" class="ad-grid" aria-live="polite"></div>
+<p class="muted spaced">Las imágenes se referencian a archivos verificados alojados en /sponsors/. Puedes subir imágenes nuevas en el editor de cada campaña propia.</p>
 </details></section>
 </section></main>
 <div id="dialog" class="dialog hidden" aria-hidden="true"><div class="shade" data-close="true"></div><div id="sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"></div></div>
