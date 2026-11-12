@@ -470,7 +470,7 @@ const opsStateNames={
  interest:'Interesado',draft:'Borrador',submitted:'Pendiente de revisión',
  changes_requested:'Cambios solicitados',approved_for_payment:'Aprobado · pago pendiente',
  pending_payment:'Esperando pago',paid_review:'Pago verificado · revisión',
- approved:'Aprobado',active:'Activo',finished:'Caducado',
+ approved:'Aprobado',scheduled:'Programado',active:'Activo',finished:'Caducado',
  rejected:'Rechazado',cancelled:'Cancelado'
 };
 const opsPlanNames={local:'Local',zona:'Zona',insular:'Insular'};
@@ -503,14 +503,15 @@ function normalizedOpsRows(){
    description:e.banner_text||e.message||'',review_note:e.review_note||'',
    contact:e.contact_name||'',email:e.email||'',telephone:e.telephone||'',
    destination:e.action_url||'',start:e.campaign_start,
-   event_start:e.event_start,event_venue:e.event_venue,
+   event_start:e.event_start,event_town:e.event_municipality,event_venue:e.event_venue,
    actual_starts_at:null,actual_ends_at:null,
    editable:['submitted','changes_requested'].includes(status)
   });
  }
  for(const d of opsDrafts){
   const id=Number(d.id),end=opsDate(d.actual_ends_at);
-  const status=d.status==='active'&&end&&end<today?'finished':d.status;
+  const start=opsDate(d.actual_starts_at);
+  const status=d.status==='active'&&end&&end<today?'finished': d.status==='active'&&start&&start>today?'scheduled':d.status;
   result.push({
    key:'draft-'+id,source:'draft',id,company:d.account_company||d.advertiser||'',
    title:d.title||'Sin título',submitted_at:d.created_at||d.updated_at,
@@ -522,7 +523,7 @@ function normalizedOpsRows(){
    image_url:d.has_image?'/api/admin?op=advertiser-draft-image&id='+id:'',
    description:d.description||'',review_note:d.review_note||'',
    contact:d.account_contact||'',email:d.account_email||'',telephone:'',destination:d.destination||'',
-   start:d.campaign_start,event_start:d.event_start,event_venue:d.event_venue,
+   start:d.campaign_start,event_start:d.event_start,event_town:d.event_town,event_venue:d.event_venue,
    actual_starts_at:d.actual_starts_at,actual_ends_at:d.actual_ends_at,
    editable:['submitted','changes_requested'].includes(status)
   });
@@ -600,6 +601,13 @@ function opsOpenPreview(row){
   '<p class="notice">Esta solicitud no tiene imagen registrada.</p>';
  const area=(row.plan?opsPlanNames[row.plan]+' · ':'')+row.area;
  const money=row.price===null?'Sin importe calculado':row.price+' €';
+ const mockEvent=row.kind==='Evento patrocinado';
+ const previewImage=row.has_image&&row.image_url?'<img src="'+escape(row.image_url)+'" alt="Cartel de '+escape(row.title)+'">':'';
+ const previewCard='<div class="adops-live-outer"><p class="muted small">Vista previa de la tarjeta en D’Parranda. No implica publicación ni inicia la campaña.</p>'+
+  '<article class="adops-live-card"><div class="adops-live-photo">'+previewImage+
+  '<span class="adops-live-tag">'+(mockEvent?'Patrocinado · Ocio':'Publicidad')+'</span></div>'+
+  '<div class="adops-live-content"><span class="adops-live-date">'+escape(mockEvent?String(row.event_start||'').slice(0,16).replace('T',' · '):'Publicidad')+'</span>'+
+  '<h3>'+escape(row.title)+'</h3><p>'+escape(mockEvent?(row.event_venue||'')+' · '+(row.event_town||'Gran Canaria'):row.area)+'</p></div></article></div>';
  const details='<div class="sheet-head"><div><span class="eyebrow">Publicidad · Solicitud #'+escape(String(row.id))+'</span>'+
   '<h2 id="dialogTitle">'+escape(row.company)+'</h2></div><button type="button" class="ghost mini" data-close>✕</button></div>'+
   '<p><strong>'+escape(row.title)+'</strong></p>'+
@@ -607,7 +615,7 @@ function opsOpenPreview(row){
   escape(opsStateNames[row.status]||row.status)+'</span> '+
   '<span class="adops-payment p-'+escape(row.payment)+'">'+
   escape(row.payment==='paid'?'Pago confirmado':row.payment==='pending'?'Pago pendiente':'Pago sin verificar')+'</span></div>'+
-  image+
+  previewCard+image+
   '<div class="adops-preview-card"><p><strong>Descripción:</strong> '+escape(row.description)+'</p>'+
   '<p><strong>Formato:</strong> '+escape(row.kind)+' · <strong>Zona:</strong> '+escape(area)+'</p>'+
   '<p><strong>Duración:</strong> '+escape(row.days||'—')+' días · <strong>Tarifa:</strong> '+escape(money)+'</p>'+
@@ -622,11 +630,15 @@ function opsOpenPreview(row){
   (row.editable&&row.has_image?'<button type="button" class="primary" data-ops-review="approved_for_payment" data-ops-key="'+escape(row.key)+'">Aprobar contenido</button>':'')+
   (row.editable?'<button type="button" class="ghost" data-ops-review="changes_requested" data-ops-key="'+escape(row.key)+'">Pedir cambios</button>'+
   '<button type="button" class="ghost" data-ops-review="rejected" data-ops-key="'+escape(row.key)+'">Rechazar</button>':'')+
-  (row.source==='draft'&&['approved_for_payment','pending_payment'].includes(row.status)&&row.payment!=='paid'?
+  (row.source==='draft'&&row.status==='paid_review'&&row.payment==='paid'?
+    '<button type="button" class="primary" data-ops-schedule="'+Number(row.id)+'">Programar publicación</button>':'')+
+   (row.source==='draft'&&['approved_for_payment','pending_payment'].includes(row.status)&&row.payment!=='paid'?
    '<button type="button" class="primary" data-ops-payment="'+Number(row.id)+'">Enviar / reenviar pago</button>':'')+
   (row.source==='lead'?'<button type="button" class="ghost" data-ops-invite="'+Number(row.id)+'">Generar acceso privado</button>':'')+
   '<button type="button" class="ghost" data-close>Cerrar</button></div>'+
-  '<p class="muted small">Al aprobar se generará el enlace Stripe y se intentará enviar por correo. El anuncio no se publica sin pago verificado.</p>';
+  '<p class="muted small">'+(row.payment==='paid'&&row.status==='paid_review'?
+  'Pago confirmado. Programar publicación respeta la fecha de inicio; si es futura, el anuncio no se mostrará al público hasta entonces.':
+  'Al aprobar se generará el enlace Stripe y se intentará enviar por correo. El anuncio no se publica sin pago verificado.')+'</p>';
  openDialog(details);
 }
 $('adOpsSearch').addEventListener('input',event=>{
@@ -668,7 +680,21 @@ $('adOpsExport').onclick=()=>{
  setTimeout(()=>URL.revokeObjectURL(object),500);
 };
 $('sheet').addEventListener('click',async event=>{
- const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment]');if(!button)return;
+ const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule]');if(!button)return;
+ if(button.dataset.opsSchedule){
+  const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsSchedule));
+  if(!row||row.payment!=='paid'||row.status!=='paid_review')return;
+  const start=opsDate(row.start),dates=start?' desde '+start:' según las fechas contratadas';
+  if(!confirm('¿Programar el anuncio'+dates+'? Solo será visible en las fechas contratadas. No se modifica la fecha solicitada.'))return;
+  button.disabled=true;
+  try{
+   const result=await api('schedule-paid-draft',{id:row.id});
+   closeDialog();
+   await Promise.allSettled([loadLeads(),loadAdvertiserDrafts(),loadPromotions(),loadAds()]);
+   message('Anuncio programado del '+result.start+' al '+result.end+'. La vista pública respeta esas fechas.');
+  }catch(err){message(err.message);button.disabled=false}
+  return;
+ }
  if(button.dataset.opsPayment){
   button.disabled=true;
   try{
