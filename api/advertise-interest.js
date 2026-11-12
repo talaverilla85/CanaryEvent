@@ -1,5 +1,6 @@
 // Minimal, non-binding commercial interest. No payment, invoice details, or ad publication.
 import { db, json, safeText, sameOrigin, validLocalDate } from '../lib/admin-auth.js';
+import {privacyUrl as legalPrivacyUrl} from '../lib/privacy.js';
 
 const PRICES=Object.freeze({local:19,zona:49,insular:99});
 const TOWNS=new Set([
@@ -13,12 +14,7 @@ const emailAddress=v=>{
  const text=safeText(v,180).toLowerCase();
  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text)?text:'';
 };
-function privacyUrl(){
- try{
-  const url=new URL(process.env.DPARRANDA_PRIVACY_URL||'');
-  return url.protocol==='https:'&&!url.username&&!url.password?url.href:null;
- }catch{return null}
-}
+function privacyUrl(){return legalPrivacyUrl()}
 function enabled(){return process.env.DPARRANDA_LEADS_ENABLED==='true'&&
  !!process.env.DATABASE_URL&&!!privacyUrl();}
 // A review request uses the same privacy/legal intake as a simple enquiry.

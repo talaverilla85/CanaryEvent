@@ -1,10 +1,11 @@
 // Private per-advertiser workspace. No paid checkout or publication here.
 import {createHmac,createHash,timingSafeEqual} from 'node:crypto';
 import {db,json,sameOrigin,safeText,validLocalDate} from '../lib/admin-auth.js';
+import {privacyUrl as legalPrivacyUrl} from '../lib/privacy.js';
 const PLANS={local:1900,zona:4900,insular:9900};
 const TOWNS=new Set(['Agaete','Agüimes','Artenara','Arucas','Firgas','Gáldar','Ingenio','La Aldea de San Nicolás','Las Palmas de Gran Canaria','Mogán','Moya','San Bartolomé de Tirajana','Santa Brígida','Santa Lucía de Tirajana','Santa María de Guía de Gran Canaria','Tejeda','Telde','Teror','Valleseco','Valsequillo de Gran Canaria','Vega de San Mateo']);
 const AGE=30*24*60*60;
-function privacy(){try{const u=new URL(process.env.DPARRANDA_PRIVACY_URL||'');return u.protocol==='https:'&&!u.username&&!u.password?u.href:null}catch{return null}}
+function privacy(){return legalPrivacyUrl()}
 function ready(){return !!process.env.DATABASE_URL&&!!process.env.DPARRANDA_SESSION_SECRET&&process.env.DPARRANDA_SESSION_SECRET.length>=32&&process.env.DPARRANDA_ADVERTISER_PORTAL_ENABLED==='true'&&!!privacy()}
 function mac(x){return createHmac('sha256',process.env.DPARRANDA_SESSION_SECRET).update(x).digest('base64url')}
 function setCookie(res,x){res.setHeader('Set-Cookie','dp_advertiser='+x+'; HttpOnly; Secure; SameSite=Strict; Path=/api/advertiser; Max-Age='+(x?AGE:0))}

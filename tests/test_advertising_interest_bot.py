@@ -58,7 +58,7 @@ class InterestBotContract(unittest.TestCase):
         panel=(ROOT/"public/admin/admin.js").read_text("utf8")
         wf=(ROOT/".github/workflows/telegram-advertising-leads.yml").read_text("utf8")
         self.assertIn("DPARRANDA_LEADS_ENABLED",api)
-        self.assertIn("DPARRANDA_PRIVACY_URL",api)
+        self.assertIn("legalPrivacyUrl()",api)
         self.assertIn("sameOrigin(req)",api)
         self.assertIn("privacy_accepted_at",api)
         self.assertIn("INTERES_INICIAL|",api)

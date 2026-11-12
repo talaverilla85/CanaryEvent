@@ -1,5 +1,6 @@
 import { createHmac, createHash, randomBytes, randomUUID } from 'node:crypto';
 import { authenticated, db, isConfigured, json, passwordValid, safeText, sameOrigin, setSession, validLocalDate } from '../lib/admin-auth.js';
+import {privacyUrl,missingPrivacyIdentity} from '../lib/privacy.js';
 
 const statuses = new Set(['unreviewed','approved','needs_review','rejected']);
 const kinds = new Set(['house','paid']);
@@ -495,14 +496,12 @@ export default async function handler(req,res){
     if(req.method==='POST'&&op==='advertising-test-proposal')
       return json(res,201,await saveAdvertisingTestProposal(sql,data(req)));
     if(req.method==='GET'&&op==='advertising-intake-config'){
-      let privacy=false;
-      try{
-       const url=new URL(process.env.DPARRANDA_PRIVACY_URL||'');
-       privacy=url.protocol==='https:'&&!url.username&&!url.password;
-      }catch{}
+      const privacy=!!privacyUrl();
       const leads=process.env.DPARRANDA_LEADS_ENABLED==='true';
-      return json(res,200,{receiving_proposals:leads&&privacy&&!!process.env.DATABASE_URL,admin_test_enabled:true,
-       leads_enabled:leads,privacy_configured:privacy,database_configured:!!process.env.DATABASE_URL,
+      return json(res,200,{receiving_proposals:leads&&privacy&&!!process.env.DATABASE_URL,
+       admin_test_enabled:true,leads_enabled:leads,privacy_configured:privacy,
+       missing_legal_fields:missingPrivacyIdentity(),
+       privacy_url:privacy?privacyUrl():null,database_configured:!!process.env.DATABASE_URL,
        accepting_payments:false});
     }
     if(req.method==='GET'&&op==='advertiser-accounts')return json(res,200,await advertiserAccounts(sql));

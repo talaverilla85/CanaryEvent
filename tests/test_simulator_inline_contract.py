@@ -24,7 +24,7 @@ class InlineContractTest(unittest.TestCase):
         self.assertIn("advertising-intake-config",self.admin)
         self.assertIn("if(!authenticated(req))",self.admin)
         self.assertIn("receiving_proposals:leads&&privacy",self.admin)
-        self.assertIn("DPARRANDA_PRIVACY_URL",self.admin)
+        self.assertIn("missingPrivacyIdentity()",self.admin)
         self.assertIn("DPARRANDA_LEADS_ENABLED",self.admin)
         self.assertIn("loadAdvertisingIntake()",self.panel)
         self.assertIn('id="adopsIntake"',self.admin_html)

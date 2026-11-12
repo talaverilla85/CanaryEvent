@@ -56,7 +56,7 @@ class AdvertiserPortalContract(unittest.TestCase):
         self.assertIn('675',self.api)
         self.assertIn('image/webp',self.api)
         self.assertIn('privacy_accepted_at',self.sql)
-        self.assertIn('DPARRANDA_PRIVACY_URL',self.api)
+        self.assertIn('legalPrivacyUrl()',self.api)
         self.assertIn("req.body?.consent!==true",self.api)
         self.assertIn('id="portalConsent"',self.html)
         self.assertIn('id="advertiserAccountsList"',self.admin_html)
