@@ -4,80 +4,81 @@
   "no_auto_publication": true,
   "inspected": [
     {
-      "municipality": "San Bartolomé de Tirajana",
+      "municipality": "Agaete",
       "outcome": "ok",
       "links": 0
     },
     {
-      "municipality": "Santa Lucía de Tirajana",
+      "municipality": "Artenara",
       "outcome": "ok",
-      "links": 3
+      "links": 0
     },
     {
-      "municipality": "Santa María de Guía",
+      "municipality": "Firgas",
+      "outcome": "ok",
+      "links": 4
+    },
+    {
+      "municipality": "Gáldar",
+      "outcome": "ok",
+      "links": 5
+    },
+    {
+      "municipality": "La Aldea de San Nicolás",
+      "outcome": "needs_review",
+      "error_type": "ConnectTimeout",
+      "links": 0
+    },
+    {
+      "municipality": "Las Palmas de Gran Canaria",
       "outcome": "needs_review",
       "error_type": "RuntimeError",
       "links": 0
     },
     {
-      "municipality": "Telde",
-      "outcome": "ok",
-      "links": 11
-    },
-    {
-      "municipality": "Teror",
+      "municipality": "Mogán",
       "outcome": "needs_review",
       "error_type": "RuntimeError",
       "links": 0
     },
     {
-      "municipality": "Valleseco",
-      "outcome": "ok",
-      "links": 0
-    },
-    {
-      "municipality": "Valsequillo",
+      "municipality": "Moya",
       "outcome": "needs_review",
-      "error_type": "SSLError",
+      "error_type": "PermissionError",
       "links": 0
-    },
-    {
-      "municipality": "Vega de San Mateo",
-      "outcome": "ok",
-      "links": 3
     }
   ],
   "scan_state": {
     "Agaete": {
-      "checked_on": "2026-11-11",
+      "checked_on": "2026-11-12",
       "outcome": "ok"
     },
     "Artenara": {
-      "checked_on": "2026-11-11",
+      "checked_on": "2026-11-12",
       "outcome": "ok"
     },
     "Firgas": {
-      "checked_on": "2026-11-11",
+      "checked_on": "2026-11-12",
       "outcome": "ok"
     },
     "Gáldar": {
-      "checked_on": "2026-11-11",
+      "checked_on": "2026-11-12",
       "outcome": "ok"
     },
     "La Aldea de San Nicolás": {
-      "checked_on": "2026-11-11",
+      "checked_on": "2026-11-12",
       "outcome": "needs_review"
     },
     "Las Palmas de Gran Canaria": {
-      "checked_on": "2026-11-11",
+      "checked_on": "2026-11-12",
       "outcome": "needs_review"
     },
     "Mogán": {
-      "checked_on": "2026-11-11",
+      "checked_on": "2026-11-12",
       "outcome": "needs_review"
     },
     "Moya": {
-      "checked_on": "2026-11-11",
+      "checked_on": "2026-11-12",
       "outcome": "needs_review"
     },
     "San Bartolomé de Tirajana": {
@@ -274,7 +275,7 @@
       "kind": "unverified_official_link",
       "municipality": "Gáldar",
       "first_seen": "2026-10-27",
-      "last_seen": "2026-11-11",
+      "last_seen": "2026-11-12",
       "publication_status": "not_an_event"
     },
     {
@@ -283,7 +284,7 @@
       "kind": "unverified_official_link",
       "municipality": "Gáldar",
       "first_seen": "2026-11-11",
-      "last_seen": "2026-11-11",
+      "last_seen": "2026-11-12",
       "publication_status": "not_an_event"
     },
     {
@@ -292,7 +293,7 @@
       "kind": "unverified_official_link",
       "municipality": "Gáldar",
       "first_seen": "2026-10-27",
-      "last_seen": "2026-11-11",
+      "last_seen": "2026-11-12",
       "publication_status": "not_an_event"
     },
     {
@@ -301,7 +302,7 @@
       "kind": "unverified_official_link",
       "municipality": "Gáldar",
       "first_seen": "2026-10-27",
-      "last_seen": "2026-11-11",
+      "last_seen": "2026-11-12",
       "publication_status": "not_an_event"
     },
     {
@@ -310,7 +311,7 @@
       "kind": "unverified_official_link",
       "municipality": "Gáldar",
       "first_seen": "2026-10-27",
-      "last_seen": "2026-11-11",
+      "last_seen": "2026-11-12",
       "publication_status": "not_an_event"
     },
     {
@@ -319,7 +320,7 @@
       "kind": "unverified_official_link",
       "municipality": "Firgas",
       "first_seen": "2026-10-27",
-      "last_seen": "2026-11-11",
+      "last_seen": "2026-11-12",
       "publication_status": "not_an_event"
     },
     {
@@ -328,7 +329,7 @@
       "kind": "unverified_official_link",
       "municipality": "Firgas",
       "first_seen": "2026-10-27",
-      "last_seen": "2026-11-11",
+      "last_seen": "2026-11-12",
       "publication_status": "not_an_event"
     },
     {
@@ -337,7 +338,7 @@
       "kind": "unverified_official_link",
       "municipality": "Firgas",
       "first_seen": "2026-10-27",
-      "last_seen": "2026-11-11",
+      "last_seen": "2026-11-12",
       "publication_status": "not_an_event"
     },
     {
@@ -346,7 +347,7 @@
       "kind": "unverified_official_link",
       "municipality": "Firgas",
       "first_seen": "2026-10-27",
-      "last_seen": "2026-11-11",
+      "last_seen": "2026-11-12",
       "publication_status": "not_an_event"
     },
     {

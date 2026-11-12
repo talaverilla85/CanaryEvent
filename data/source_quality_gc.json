@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-12T10:37:28+00:00",
+  "checked_at": "2026-11-12T11:27:08+00:00",
   "quality_counts": {
-    "publicados": 454,
+    "publicados": 455,
     "recintos_sin_verificar": 46,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 315,
-    "distancia_a_centro_municipal": 304,
-    "fuentes_con_error": 3,
+    "precios_sin_confirmar": 316,
+    "distancia_a_centro_municipal": 305,
+    "fuentes_con_error": 1,
     "duplicados_potenciales": 3
   },
   "sources": [
@@ -52,13 +52,13 @@
     },
     {
       "source": "LPA Cultura · agenda municipal oficial",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 4,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 4,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "ReadTimeout"
+      "fichas_leidas_en_esta_ejecucion": 4,
+      "error": ""
     },
     {
       "source": "Sociedad Filarmónica de Las Palmas · conciertos",
@@ -82,13 +82,13 @@
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "error",
-      "publicados": 14,
+      "estado": "operativa",
+      "publicados": 15,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 14,
+      "precio_sin_confirmar": 15,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "fichas_leidas_en_esta_ejecucion": 16,
+      "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -253,11 +253,11 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 18,
+      "publicados": 19,
       "recinto_sin_verificar": 7,
-      "precio_sin_confirmar": 18,
-      "distancia_al_centro_municipal": 18,
-      "fichas_leidas_en_esta_ejecucion": 26,
+      "precio_sin_confirmar": 19,
+      "distancia_al_centro_municipal": 19,
+      "fichas_leidas_en_esta_ejecucion": 27,
       "error": ""
     },
     {
@@ -383,11 +383,11 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "operativa",
-      "publicados": 169,
+      "publicados": 168,
       "recinto_sin_verificar": 32,
-      "precio_sin_confirmar": 142,
+      "precio_sin_confirmar": 141,
       "distancia_al_centro_municipal": 91,
-      "fichas_leidas_en_esta_ejecucion": 14,
+      "fichas_leidas_en_esta_ejecucion": 29,
       "error": ""
     },
     {
@@ -397,7 +397,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 72,
-      "fichas_leidas_en_esta_ejecucion": 119,
+      "fichas_leidas_en_esta_ejecucion": 117,
       "error": ""
     },
     {
@@ -462,14 +462,6 @@
     }
   ],
   "reported_errors": [
-    {
-      "source": "LPA Cultura · agenda municipal oficial",
-      "error": "ReadTimeout"
-    },
-    {
-      "source": "Auditorio Alfredo Kraus · programación oficial",
-      "error": "RuntimeError"
-    },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"

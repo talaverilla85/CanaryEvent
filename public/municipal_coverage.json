@@ -256,13 +256,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 20,
-      "municipal_cards_total": 18,
+      "catalog_cards_total": 21,
+      "municipal_cards_total": 19,
       "other_sources_cards_total": 2,
       "source_health": [
         {
           "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-          "found": 26,
+          "found": 27,
           "error": ""
         }
       ],
