@@ -97,10 +97,11 @@ function paintCampaigns(){
   const left=text('div',''),heading=text('h3',d.title);
   left.append(heading,text('div',(LABELS[d.plan]||d.plan)+' · '+d.days+' días · '+(d.price_cents/100)+' €','campaign-meta'));
   head.append(left);
-  const badge=text('span',STATUS[d.status]||d.status,'tag'+(d.status==='active'?' active':d.status==='paid_review'?' pending':''));
+  const scheduled=d.status==='active'&&d.actual_starts_at&&String(d.actual_starts_at).slice(0,10)>localDay();
+  const badge=text('span',scheduled?'Programado':STATUS[d.status]||d.status,'tag'+(d.status==='active'&&!scheduled?' active':d.status==='paid_review'?' pending':''));
   head.append(badge);card.append(head);
   const meta=text('p',d.placement==='evento'?'Evento patrocinado':'Banner publicitario','campaign-meta');card.append(meta);
-  if(d.status==='active'&&d.actual_ends_at){
+  if(d.status==='active'&&d.actual_ends_at&&d.actual_starts_at){
    const leftDays=daysLeft(d.actual_ends_at);
    card.append(text('strong',(leftDays??0)+' días restantes','small'));
    if(d.actual_starts_at){
@@ -109,7 +110,7 @@ function paintCampaigns(){
     const duration=Math.max(1,(Date.parse(end+'T00:00:00Z')-Date.parse(start+'T00:00:00Z'))/86400000+1);
     const track=text('div','','progress'),bar=text('span');bar.style.width=Math.min(100,Math.max(0,elapsed/duration*100))+'%';track.append(bar);card.append(track);
    }
-   card.append(text('p','Publicada: '+dateText(d.actual_starts_at)+' · Finaliza: '+dateText(d.actual_ends_at),'campaign-meta'));
+   card.append(text('p',(scheduled?'Programada: ':'Publicada: ')+dateText(d.actual_starts_at)+' · Finaliza: '+dateText(d.actual_ends_at),'campaign-meta'));
   }else card.append(text('p','La campaña todavía no está publicándose. El plazo de difusión no ha comenzado.','campaign-meta'));
   if(d.status==='pending_payment'&&d.payment_status==='pending'&&/^https:\/\/buy\.stripe\.com\//.test(d.payment_url||'')){
    const button=text('a','Realizar pago seguro · '+(d.price_cents/100)+' €','primary');

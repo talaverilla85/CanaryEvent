@@ -13,7 +13,7 @@ export default async function handler(req,res) {
       WHERE p.active AND COALESCE(o.hidden,FALSE)=FALSE AND o.canonical_event_id IS NULL
       ORDER BY p.payload->>'start',p.id LIMIT 3500`,
       sql`SELECT id,title,start,"end",municipality,venue,category,details,price,free,
-      source_url,image_url,image_alt,enquiry_id,advertiser
+      source_url,image_url,image_alt,enquiry_id,advertiser,advertiser_draft_id
       FROM sponsored_events WHERE enabled=TRUE AND review_status='approved'
         AND (campaign_starts_at IS NULL OR campaign_starts_at<=((now() AT TIME ZONE 'Atlantic/Canary')::date))
         AND (campaign_ends_at IS NULL OR campaign_ends_at>=((now() AT TIME ZONE 'Atlantic/Canary')::date))
@@ -33,7 +33,7 @@ export default async function handler(req,res) {
         municipality:item.municipality,venue:item.venue,category:item.category,
         details:item.details,price:item.price,free:item.free,lat:null,lng:null,
         accuracy:'municipality',source_name:'Publicidad · '+item.advertiser,
-        source_url:item.source_url,image_url:item.enquiry_id?'/api/media?id='+item.enquiry_id:item.image_url,
+        source_url:item.source_url,image_url:item.advertiser_draft_id?'/api/paid-event-image?id='+item.id: item.enquiry_id?'/api/media?id='+item.enquiry_id:item.image_url,
         image_alt:item.image_alt,image_status:'promotional',paid_promotion:true
       });
     }
