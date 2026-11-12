@@ -2,6 +2,8 @@ import { createHmac, createHash, randomBytes, randomUUID } from 'node:crypto';
 import { authenticated, db, isConfigured, json, passwordValid, safeText, sameOrigin, setSession, validLocalDate } from '../lib/admin-auth.js';
 import {privacyUrl,missingPrivacyIdentity} from '../lib/privacy.js';
 import {resendTestConfiguration,sendResendAdminTest} from '../lib/resend-test.js';
+import {ensureAdvertiserWorkspace,workspaceForDraft} from '../lib/advertiser-workspace.js';
+import {sendChangesRequestedEmail,advertiserMailStatus} from '../lib/advertiser-mail.js';
 
 const statuses = new Set(['unreviewed','approved','needs_review','rejected']);
 const kinds = new Set(['house','paid']);
@@ -368,6 +370,22 @@ async function advertiserDraftImage(sql,res,id){
  res.setHeader('X-Content-Type-Options','nosniff');
  return res.status(200).end(bytes);
 }
+async function notifyChangesSafely(workspace,note,revision){
+ if(!workspace||!workspace.account?.active)return 'unavailable';
+ try{
+  const result=await sendChangesRequestedEmail(workspace,note,revision);
+  return result.status;
+ }catch(e){
+  console.error('DParranda revision email failed:',e?.name||'Error');
+  return 'failed';
+ }
+}
+function changesMessage(status){
+ if(status==='sent')return 'Cambios guardados. Resend ha aceptado el correo al anunciante.';
+ if(status==='pending_domain')return 'Cambios guardados. El email al anunciante queda pendiente hasta verificar el dominio. Solo recibe correos la dirección de pruebas de Resend.';
+ if(status==='failed')return 'Cambios guardados, pero falló el correo. Revisa Resend antes de dar por avisado al cliente.';
+ return 'Cambios guardados. Aún no hay un correo automático disponible para esta solicitud.';
+}
 async function reviewEnquiry(sql,body){
  const id=invitedId(body.id),decision=String(body.status||''),note=safeText(body.note,500);
  if(!id||!['changes_requested','approved_for_payment','rejected'].includes(decision))
@@ -386,10 +404,20 @@ async function reviewEnquiry(sql,body){
  const [changed]=await sql`UPDATE advertising_enquiries SET review_status=${decision},
   review_note=${note},status='contacted' WHERE id=${id}
   RETURNING id,review_status`;
+ let emailStatus='not_requested';
+ if(decision==='changes_requested'){
+  try{
+   const workspace=await ensureAdvertiserWorkspace(sql,id);
+   emailStatus=await notifyChangesSafely(workspace,note,'lead-'+id+'-'+Date.now());
+  }catch(e){
+   console.error('DParranda revision workspace failed:',e?.name||'Error');
+   emailStatus='failed';
+  }
+ }
  return {id:Number(changed.id),status:changed.review_status,
-  payment_enabled:false,message:decision==='approved_for_payment'
+  notification_status:emailStatus,payment_enabled:false,message:decision==='approved_for_payment'
    ?'Creatividad aprobada. El enlace de pago estará disponible tras integrar la pasarela. No se ha cobrado ni publicado.'
-   :'Estado actualizado. Envía manualmente las indicaciones al anunciante.'};
+   :decision==='changes_requested'?changesMessage(emailStatus):'Solicitud rechazada. No se ha enviado ningún correo automático.'};
 }
 async function advertiserReview(sql,body){
  const id=invitedId(body.id),decision=String(body.status||''),note=safeText(body.note,500);
@@ -409,12 +437,22 @@ async function advertiserReview(sql,body){
   throw new Error('Los pagos confirmados requieren un procedimiento específico');
  const [updated]=await sql`UPDATE advertiser_campaign_drafts SET status=${decision},
   review_note=${note||null},updated_at=now()
-  WHERE id=${id} AND status IN ('submitted','changes_requested') RETURNING id,status`;
+  WHERE id=${id} AND status IN ('submitted','changes_requested') RETURNING id,status,updated_at`;
  if(!updated)throw new Error('La propuesta ha cambiado de estado');
- return {id:Number(updated.id),status:updated.status,payment_enabled:false,
+ let emailStatus='not_requested';
+ if(decision==='changes_requested'){
+  try{
+   const workspace=await workspaceForDraft(sql,id);
+   emailStatus=await notifyChangesSafely(workspace,note,updated.updated_at?.toISOString?.()||String(updated.updated_at));
+  }catch(e){
+   console.error('DParranda review notification failed:',e?.name||'Error');
+   emailStatus='failed';
+  }
+ }
+ return {id:Number(updated.id),status:updated.status,notification_status:emailStatus,payment_enabled:false,
   message:decision==='approved_for_payment'
    ?'Contenido aprobado. Queda pendiente de habilitar y confirmar el pago. No se ha publicado.'
-   :'Revisión registrada. Comunica las observaciones al anunciante.'};
+   :decision==='changes_requested'?changesMessage(emailStatus):'Anuncio rechazado. No se ha enviado ningún correo automático.'};
 }
 
 
@@ -510,7 +548,7 @@ export default async function handler(req,res){
        admin_test_enabled:true,leads_enabled:leads,privacy_configured:privacy,
        missing_legal_fields:missingPrivacyIdentity(),
        privacy_url:privacy?privacyUrl():null,database_configured:!!process.env.DATABASE_URL,
-       accepting_payments:false});
+       advertising_mail:advertiserMailStatus(),accepting_payments:false});
     }
     if(req.method==='GET'&&op==='advertiser-accounts')return json(res,200,await advertiserAccounts(sql));
     if(req.method==='GET'&&op==='advertiser-drafts')return json(res,200,await advertiserDrafts(sql));

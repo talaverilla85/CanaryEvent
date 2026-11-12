@@ -276,7 +276,15 @@ function initInterestForm(draft){
    if(!response.ok||result.received!==true)throw Error(result.error||'No se ha podido registrar');
    form.hidden=true;
    availability.hidden=false;
-   availability.textContent='Solicitud #'+Number(result.request_id)+' enviada al administrador. Revisaremos tu propuesta y, si todo está correcto, te facilitaremos el enlace de pago. No se ha realizado ningún cobro ni se ha publicado el anuncio.';
+   availability.classList.add('interest-success');
+   availability.replaceChildren();
+   availability.append(el('strong','','Solicitud #'+Number(result.request_id)+' recibida correctamente.'));
+   const notice=result.welcome_email==='sent'
+    ?' Te hemos enviado un correo de bienvenida con el acceso privado a tu anuncio. Revisa también la carpeta de spam.'
+    :result.private_area_ready
+      ?' Tu anuncio y su área privada están preparados. Durante esta fase de pruebas los correos automáticos a clientes aún no están disponibles.'
+      :' Hemos guardado tu solicitud; te informaremos de los siguientes pasos.';
+   availability.append(el('span','',notice+' Revisaremos tu creatividad antes de cualquier pago. No se ha cobrado ni publicado nada.'));
   }catch(err){
    feedback.textContent=err instanceof Error?err.message:'No se ha podido registrar tu interés.';
   }finally{button.disabled=false}
