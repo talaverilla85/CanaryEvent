@@ -351,7 +351,7 @@ async function advertiserChangeAccess(sql,body){
  return {id:Number(updated.id),active:updated.active};
 }
 async function advertiserDrafts(sql){
- const drafts=await sql`SELECT d.id,d.advertiser_id,a.company AS account_company,d.plan,d.days,d.price_cents,
+ const drafts=await sql`SELECT d.id,d.advertiser_id,a.company AS account_company,a.contact_name AS account_contact,a.email AS account_email,d.plan,d.days,d.price_cents,
  d.municipalities,d.placement,d.advertiser,d.title,d.description,d.destination,d.image_alt,d.status,d.payment_status,
  d.campaign_start,d.event_start,d.event_town,d.event_venue,d.actual_starts_at,d.actual_ends_at,d.review_note,d.source_lead_id,
  d.updated_at,EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
