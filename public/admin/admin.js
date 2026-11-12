@@ -226,8 +226,9 @@ async function loadAds() {
 function renderAds(){
  if(!ads.length){$('adsList').innerHTML='<div class="empty">Todavía no hay campañas publicitarias.</div>';return}
  $('adsList').innerHTML=ads.map(a=>{
-  const preview=a.enquiry_id?'/api/admin?op=leadimage&id='+Number(a.enquiry_id):a.image;
-  const image=/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(preview||'')||/^\/api\/admin\?op=leadimage&id=[0-9]+$/.test(preview)?
+  const preview=a.has_uploaded_image?'/api/admin?op=adimage&id='+encodeURIComponent(a.id):
+    a.enquiry_id?'/api/admin?op=leadimage&id='+Number(a.enquiry_id):a.image;
+  const image=/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(preview||'')||/^\/api\/admin\?op=(leadimage&id=[0-9]+|adimage&id=[a-zA-Z0-9_-]+)$/.test(preview)?
     '<img src="'+escape(preview)+'" alt="'+escape(a.image_alt||'Anuncio')+'" loading="lazy">':'Imagen pendiente';
   const dates=a.permanent?'Permanente':(a.starts_at?String(a.starts_at).slice(0,10):'Desde ahora')+' – '+(a.ends_at?String(a.ends_at).slice(0,10):'Sin final')+' · '+daysLeft(a.ends_at);
   return '<article class="ad-card"><div class="ad-media">'+image+'</div><div class="ad-content"><span class="pill '+(a.enabled?'':'off')+'">'+(a.enabled?'Activa':'Pausada')+'</span>'+
@@ -238,9 +239,13 @@ function renderAds(){
 }
 $('adsList').onclick=e=>{const btn=e.target.closest('[data-ad]');if(!btn)return;editAd(ads.find(a=>a.id===btn.dataset.ad))};
 $('newAd').onclick=()=>editAd(null);
+$('createOwnAd').onclick=()=>editAd(null);
 function editAd(ad){
- if(!ad)ad={enabled:false,kind:'paid',permanent:false,municipalities:[]};
+ if(ad&&ad.kind!=='house'){message('Esta opción es para gestionar publicidad propia sin coste.');return}
+ if(!ad)ad={enabled:false,kind:'house',permanent:false,municipalities:[],advertiser:'AriMar'};
  const dates=v=>typeof v==='string'?v.slice(0,10):'';
+ const today=opsToday(),defaultEnd=new Date(Date.parse(today+'T12:00:00Z')+29*86400000).toISOString().slice(0,10);
+ const startDefault=dates(ad.starts_at)||today,endDefault=dates(ad.ends_at)||defaultEnd;
  let content='<div class="sheet-head"><div><span class="eyebrow">Publicidad · Solo administración</span><h2 id="dialogTitle">'+(ad.id?'Editar campaña':'Nueva campaña')+'</h2></div><button class="ghost mini" type="button" data-close>✕</button></div>'+
  '<form id="adForm"><div class="form-grid">'+
  field('advertiser','Anunciante',ad.advertiser||'')+
@@ -251,23 +256,45 @@ function editAd(ad){
  field('button_url','Enlace de destino HTTPS',ad.button_url||'','https://...',true,'url')+
  field('image','Imagen (ruta /sponsors/...webp)',ad.image||'','/sponsors/archivo.webp',true)+
  field('image_alt','Descripción accesible de la imagen',ad.image_alt||'','',true)+
- field('starts_at','Inicio',dates(ad.starts_at),'',false,'date')+
- field('ends_at','Finalización',dates(ad.ends_at),'',false,'date')+
+ field('starts_at','Inicio',startDefault,'',false,'date')+
+ field('ends_at','Finalización',endDefault,'',false,'date')+
  field('municipalities','Municipios (separados por coma; vacío = toda la isla)',(ad.municipalities||[]).join(', '),'Agüimes, Ingenio',true)+
- '<div class="field"><label for="f-kind">Tipo de campaña</label><select name="kind" id="f-kind"><option value="paid">Comercial</option><option value="house">Propia</option></select></div></div>'+
+ '<input type="hidden" name="kind" id="f-kind" value="house"></div>'+
  '<label class="checkbox"><input type="checkbox" id="f-enabled" '+(ad.enabled?'checked':'')+'>Campaña activa</label>'+
- '<label class="checkbox"><input type="checkbox" id="f-permanent" '+(ad.permanent?'checked':'')+'>Campaña permanente</label>'+
- '<p class="notice">La publicidad se mostrará únicamente cuando esté activa y cumpla las fechas indicadas.</p>'+
+ '<div class="field"><label for="f-newImage">Cartel publicitario (JPG, PNG o WebP, opcional)</label><input id="f-newImage" type="file" accept="image/jpeg,image/png,image/webp"><small class="muted">Se prepara a 1200 × 675. Si no subes ninguno, se conserva la imagen que ya tengas.</small></div>'+
+ '<p class="notice">Publicidad propia gratuita · Sin Stripe. Cada campaña se puede activar, pausar y modificar por separado. Duración de 1 a 60 días; al editar un anuncio antiguo permanente, se aplicarán las fechas que elijas.</p>'+
  '<div class="sheet-footer"><button type="button" class="ghost" data-close>Cancelar</button><button class="primary" type="submit">Guardar campaña</button></div></form>';
- openDialog(content);$('f-kind').value=ad.kind||'paid';
+ openDialog(content);
  $('adForm').onsubmit=async ev=>{
   ev.preventDefault();const b=ev.submitter||$('adForm').querySelector('[type=submit]');b.disabled=true;
   const f=Object.fromEntries(new FormData(ev.currentTarget).entries());
-  f.id=ad.id||undefined;f.enabled=$('f-enabled').checked;f.permanent=$('f-permanent').checked;
+  f.id=ad.id||undefined;f.enabled=$('f-enabled').checked;f.permanent=false;f.kind='house';
   f.municipalities=String(f.municipalities||'').split(',').map(x=>x.trim()).filter(Boolean);
   f.starts_at=f.starts_at||null;f.ends_at=f.ends_at||null;
-  try{await api('ad',f);closeDialog();message('Campaña guardada');await Promise.allSettled([loadAds(),loadStats()])}
-  catch(err){message(err.message);b.disabled=false}
+  try{
+   const file=$('f-newImage').files?.[0];
+   if(file){
+    if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>15_000_000)
+     throw new Error('Selecciona una imagen JPG, PNG o WebP de menos de 15 MB');
+    const bitmap=await createImageBitmap(file);
+    const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=675;
+    const ctx=canvas.getContext('2d');
+    if(!ctx)throw new Error('No se pudo preparar la imagen');
+    const scale=Math.max(1200/bitmap.width,675/bitmap.height);
+    ctx.drawImage(bitmap,(1200-bitmap.width*scale)/2,(675-bitmap.height*scale)/2,
+      bitmap.width*scale,bitmap.height*scale);bitmap.close?.();
+    let encoded='';
+    for(const q of [.84,.7,.54,.4]){
+     encoded=canvas.toDataURL('image/webp',q);
+     if(encoded.startsWith('data:image/webp;base64,')&&encoded.length*3/4<=800000)break;
+    }
+    if(!encoded.startsWith('data:image/webp;base64,')||encoded.length*3/4>800000)
+     throw new Error('La imagen no se ha podido optimizar a menos de 800 KB');
+    f.image_data=encoded;f.image_width=1200;f.image_height=675;f.image='';
+   }
+   await api('ad',f);closeDialog();message('Campaña propia guardada, sin coste');
+   await Promise.allSettled([loadAds(),loadStats()]);
+  }catch(err){message(err.message);b.disabled=false}
  };
 }
 
