@@ -1,7 +1,7 @@
 import { createHmac, createHash, randomBytes, randomUUID } from 'node:crypto';
 import { authenticated, db, isConfigured, json, passwordValid, safeText, sameOrigin, setSession, validLocalDate } from '../lib/admin-auth.js';
 import {privacyUrl,missingPrivacyIdentity} from '../lib/privacy.js';
-import {resendTestConfigured,sendResendAdminTest} from '../lib/resend-test.js';
+import {resendTestConfiguration,sendResendAdminTest} from '../lib/resend-test.js';
 
 const statuses = new Set(['unreviewed','approved','needs_review','rejected']);
 const kinds = new Set(['house','paid']);
@@ -495,7 +495,7 @@ export default async function handler(req,res){
     if(op==='session')return json(res,200,{authenticated:authenticated(req),configured:true});
     if(!authenticated(req))return json(res,401,{error:'Acceso reservado al administrador'});
     if(req.method==='GET'&&op==='resend-test-config')
-      return json(res,200,{ready:resendTestConfigured(),sandbox_only:true,customer_emails_enabled:false});
+      return json(res,200,{...resendTestConfiguration(),sandbox_only:true,customer_emails_enabled:false});
     if(req.method==='POST'&&op==='resend-send-test'){
       const result=await sendResendAdminTest();
       return json(res,result.ok?200:503,result);

@@ -69,19 +69,36 @@ async function loadAdvertisingIntake(){
 async function loadResendSandbox(){
  const button=$('sendResendTest'),status=$('resendTestInfo');
  if(!button||!status)return;
- button.disabled=true;
+ button.disabled=false;
+ button.dataset.ready='false';
+ button.textContent='Comprobar configuración';
  try{
   const info=await api('resend-test-config');
   if(info.ready===true){
-   status.textContent='Conexión de pruebas preparada. El correo se enviará únicamente a la dirección registrada en tu cuenta Resend; no a anunciantes.';
-   button.disabled=false;
+   status.textContent='Resend listo para pruebas. El correo se enviará únicamente a la dirección registrada en tu cuenta Resend, no a anunciantes.';
+   button.dataset.ready='true';
+   button.textContent='Enviar correo de prueba';
   }else{
-   status.textContent='Pendiente: añade RESEND_API_KEY y RESEND_TEST_RECIPIENT en Vercel Production y vuelve a desplegar. No envíes la clave por chat.';
+   const missing=[];
+   if(info.api_key_status==='missing')missing.push('falta RESEND_API_KEY');
+   else if(info.api_key_status==='invalid_format')missing.push('RESEND_API_KEY no tiene el formato de una clave Resend');
+   if(info.test_recipient_status==='missing')missing.push('falta RESEND_TEST_RECIPIENT');
+   else if(info.test_recipient_status==='invalid_format')missing.push('RESEND_TEST_RECIPIENT no es un correo válido');
+   const problem=missing.join('; ')||'la configuración aún no está disponible';
+   status.textContent='Resend pendiente: '+problem+'. Comprueba que ambas variables estén en Production y haz Redeploy tras guardarlas. No compartas la API key.';
   }
- }catch(err){status.textContent='No se pudo comprobar Resend: '+err.message}
+ }catch(err){
+  status.textContent='No se pudo comprobar Resend: '+err.message+'. Comprueba que tienes una sesión de administrador activa.';
+ }
 }
 $('sendResendTest').addEventListener('click',async()=>{
  const button=$('sendResendTest'),status=$('resendTestInfo');
+ if(button.dataset.ready!=='true'){
+  await loadResendSandbox();
+  if(button.dataset.ready==='true')message('Resend preparado. Ya puedes pulsar Enviar correo de prueba.');
+  else message('Revisa el motivo indicado en el recuadro de Resend.');
+  return;
+ }
  if(!confirm('¿Enviar un único correo de prueba a tu propia cuenta de Resend? No se enviará nada a los anunciantes.'))return;
  button.disabled=true;status.textContent='Solicitando correo de prueba a Resend…';
  try{
