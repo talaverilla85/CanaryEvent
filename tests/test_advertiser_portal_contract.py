@@ -39,13 +39,13 @@ class AdvertiserPortalContract(unittest.TestCase):
         self.assertIn("advertiserPortalReady()",self.api)
 
     def test_drafts_not_paid_or_published_by_default(self):
-        self.assertIn("payment_enabled:false",self.api)
-        self.assertNotIn('stripe.com',self.api)
+        self.assertIn("payment_enabled:stripePaymentsReady()",self.api)
+        self.assertIn("payment_url:d.status==='pending_payment'",self.api)
         self.assertIn("status TEXT NOT NULL DEFAULT 'draft'",self.sql)
         self.assertIn("payment_status TEXT NOT NULL DEFAULT 'unavailable'",self.sql)
         self.assertIn("if(decision==='approved_for_payment'&&!draft.has_image)",self.admin)
-        self.assertIn("El enlace de pago estará disponible",self.admin)
-        self.assertIn("payment_enabled:false",self.admin)
+        self.assertIn("safelyPreparePayment(sql,id)",self.admin)
+        self.assertIn("payment_enabled:payment?.status==='ready'",self.admin)
         self.assertIn('pending_payment',self.html + self.api + self.sql)
         self.assertIn('stats_available:false',self.api)
         self.assertIn('actual_ends_at',self.api)
