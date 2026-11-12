@@ -95,3 +95,7 @@ fieldset{border:0;margin:0;padding:0}.field{display:grid;gap:6px;margin-bottom:1
 .adops-intake p{margin:4px 0 8px}
 .adops-intake a{color:#086c78;font-weight:800;text-decoration:underline}
 .adops-intake.ready{background:#eef9f5;border-color:#b9dfd4;color:#20684b;font-weight:750}
+
+.resend-test-panel{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:13px 17px;border:1px solid #d2e5e6;border-radius:12px;background:#f4fbfb;margin:0 0 16px}
+.resend-test-panel p{margin:4px 0 0;max-width:690px;line-height:1.5}
+.resend-test-panel button{white-space:nowrap}

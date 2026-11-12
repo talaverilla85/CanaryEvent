@@ -66,7 +66,32 @@ async function loadAdvertisingIntake(){
   node.append(legal);
  }catch(err){node.textContent='No se ha podido comprobar la recepción: '+(err.message||'error de conexión')}
 }
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake()]);if(location.hash==='#publicidad')setSection('ads')}
+async function loadResendSandbox(){
+ const button=$('sendResendTest'),status=$('resendTestInfo');
+ if(!button||!status)return;
+ button.disabled=true;
+ try{
+  const info=await api('resend-test-config');
+  if(info.ready===true){
+   status.textContent='Conexión de pruebas preparada. El correo se enviará únicamente a la dirección registrada en tu cuenta Resend; no a anunciantes.';
+   button.disabled=false;
+  }else{
+   status.textContent='Pendiente: añade RESEND_API_KEY y RESEND_TEST_RECIPIENT en Vercel Production y vuelve a desplegar. No envíes la clave por chat.';
+  }
+ }catch(err){status.textContent='No se pudo comprobar Resend: '+err.message}
+}
+$('sendResendTest').addEventListener('click',async()=>{
+ const button=$('sendResendTest'),status=$('resendTestInfo');
+ if(!confirm('¿Enviar un único correo de prueba a tu propia cuenta de Resend? No se enviará nada a los anunciantes.'))return;
+ button.disabled=true;status.textContent='Solicitando correo de prueba a Resend…';
+ try{
+  const result=await api('resend-send-test',{});
+  status.textContent=result.message||'Resend ha aceptado el correo de prueba.';
+  message('Prueba aceptada por Resend. Comprueba tu correo.');
+ }catch(err){status.textContent=err.message;message('No se ha podido enviar la prueba')}
+ finally{button.disabled=false}
+});
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox()]);if(location.hash==='#publicidad')setSection('ads')}
 function setSection(next){
  section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
  for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){

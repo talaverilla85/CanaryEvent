@@ -2,7 +2,7 @@
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'">
-<title>Administración · DParranda</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/admin/admin.css?v=3">
+<title>Administración · DParranda</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/admin/admin.css?v=4">
 </head><body>
 <header class="top"><div class="brand"><div class="logo" aria-hidden="true">D</div><div><strong>DParranda</strong><small>Centro de administración privado</small></div></div>
 <div><a class="ghost" href="/" target="_blank" rel="noopener noreferrer">Ver web pública ↗</a> <button class="ghost hidden" type="button" id="logout">Salir</button></div></header>
@@ -36,7 +36,12 @@
  <div class="adops-heading"><div><span class="eyebrow">PUBLICIDAD · CONTROL COMERCIAL</span><h2>Solicitudes y campañas</h2>
  <p class="muted">Vista general de interesados, propuestas, pagos y anuncios publicados. Ninguna aprobación editorial equivale a un cobro.</p></div>
  <button id="refreshAdOperations" type="button" class="ghost mini">Actualizar lista</button></div>
- <div class="adops-intake" id="adopsIntake" role="status" aria-live="polite">Comprobando si se pueden recibir solicitudes de contratación…</div>
+ <div class="card resend-test-panel">
+ <div><strong>Prueba de notificaciones por correo (Resend)</strong>
+ <p id="resendTestInfo" class="muted small" role="status">Comprobando la conexión de pruebas…</p></div>
+ <button class="ghost" type="button" id="sendResendTest" disabled>Enviar correo de prueba</button>
+</div>
+<div class="adops-intake" id="adopsIntake" role="status" aria-live="polite">Comprobando si se pueden recibir solicitudes de contratación…</div>
  <div class="adops-kpis">
   <div class="adops-kpi"><span>Interesados</span><strong id="adOpsInterested">—</strong><small>Consultas iniciales</small></div>
   <div class="adops-kpi"><span>Pendientes de revisión</span><strong id="adOpsPending">—</strong><small>Solicitudes y correcciones</small></div>
@@ -85,5 +90,5 @@
 </section></main>
 <div id="dialog" class="dialog hidden" aria-hidden="true"><div class="shade" data-close="true"></div><div id="sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"></div></div>
 <div id="feedback" role="status" aria-live="polite"></div>
-<script src="/admin/admin.js?v=5" defer></script>
+<script src="/admin/admin.js?v=6" defer></script>
 </body></html>
