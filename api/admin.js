@@ -4,6 +4,7 @@ import {privacyUrl,missingPrivacyIdentity} from '../lib/privacy.js';
 import {resendTestConfiguration,sendResendAdminTest} from '../lib/resend-test.js';
 import {ensureAdvertiserWorkspace,workspaceForDraft} from '../lib/advertiser-workspace.js';
 import {sendChangesRequestedEmail,advertiserMailStatus} from '../lib/advertiser-mail.js';
+import {ensureApprovedPayment,stripePaymentsReady} from '../lib/stripe-advertising.js';
 
 const statuses = new Set(['unreviewed','approved','needs_review','rejected']);
 const kinds = new Set(['house','paid']);
@@ -354,7 +355,7 @@ async function advertiserDrafts(sql){
  const drafts=await sql`SELECT d.id,d.advertiser_id,a.company AS account_company,a.contact_name AS account_contact,a.email AS account_email,d.plan,d.days,d.price_cents,
  d.municipalities,d.placement,d.advertiser,d.title,d.description,d.destination,d.image_alt,d.status,d.payment_status,
  d.campaign_start,d.event_start,d.event_town,d.event_venue,d.actual_starts_at,d.actual_ends_at,d.review_note,d.source_lead_id,
- d.updated_at,EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
+ d.updated_at,d.stripe_payment_url,d.paid_at,EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
  FROM advertiser_campaign_drafts d JOIN advertiser_accounts a ON a.id=d.advertiser_id
  ORDER BY d.updated_at DESC LIMIT 150`;
  return {drafts};
@@ -386,6 +387,19 @@ function changesMessage(status){
  if(status==='failed')return 'Cambios guardados, pero falló el correo. Revisa Resend antes de dar por avisado al cliente.';
  return 'Cambios guardados. Aún no hay un correo automático disponible para esta solicitud.';
 }
+async function safelyPreparePayment(sql,id){
+ try{return await ensureApprovedPayment(sql,id)}
+ catch(e){console.error('DParranda Stripe payment link failed',e?.name||'Error');return {status:'failed',email_status:'failed'}}
+}
+function paymentMessage(p){
+ if(p.status==='not_configured')return 'Anuncio aprobado. Stripe queda pendiente de configuración en Vercel.';
+ if(p.status==='failed')return 'Anuncio aprobado, pero Stripe no pudo generar el enlace. Puedes reintentarlo.';
+ if(p.status==='already_paid')return 'Pago confirmado anteriormente.';
+ if(p.status==='unavailable')return 'Anuncio aprobado. Necesita área de anunciante antes de cobrar.';
+ if(p.email_status==='sent')return 'Enlace Stripe generado y correo de aprobación aceptado por Resend.';
+ if(p.email_status==='pending_domain')return 'Enlace de pago generado. Resend solo puede escribir al correo de pruebas hasta verificar el dominio.';
+ return 'Enlace Stripe creado, pero el correo no se ha confirmado. Puedes reenviarlo.';
+}
 async function reviewEnquiry(sql,body){
  const id=invitedId(body.id),decision=String(body.status||''),note=safeText(body.note,500);
  if(!id||!['changes_requested','approved_for_payment','rejected'].includes(decision))
@@ -414,9 +428,20 @@ async function reviewEnquiry(sql,body){
    emailStatus='failed';
   }
  }
+ let payment=null;
+ if(decision==='approved_for_payment'){
+  try{
+   const workspace=await ensureAdvertiserWorkspace(sql,id);
+   if(workspace?.draft?.id){
+    await sql`UPDATE advertiser_campaign_drafts SET status='approved_for_payment',updated_at=now()
+     WHERE id=${workspace.draft.id} AND status IN ('submitted','changes_requested')`;
+    payment=await safelyPreparePayment(sql,workspace.draft.id);
+   }else payment={status:'unavailable'};
+  }catch(e){console.error('DParranda payment workspace failed',e?.name||'Error');payment={status:'failed'}}
+ }
  return {id:Number(changed.id),status:changed.review_status,
-  notification_status:emailStatus,payment_enabled:false,message:decision==='approved_for_payment'
-   ?'Creatividad aprobada. El enlace de pago estará disponible tras integrar la pasarela. No se ha cobrado ni publicado.'
+  notification_status:payment?.email_status||emailStatus,payment_enabled:payment?.status==='ready',message:decision==='approved_for_payment'
+   ?paymentMessage(payment||{status:'failed'})
    :decision==='changes_requested'?changesMessage(emailStatus):'Solicitud rechazada. No se ha enviado ningún correo automático.'};
 }
 async function advertiserReview(sql,body){
@@ -449,9 +474,11 @@ async function advertiserReview(sql,body){
    emailStatus='failed';
   }
  }
- return {id:Number(updated.id),status:updated.status,notification_status:emailStatus,payment_enabled:false,
+ const payment=decision==='approved_for_payment'?await safelyPreparePayment(sql,id):null;
+ return {id:Number(updated.id),status:updated.status,
+  notification_status:payment?.email_status||emailStatus,payment_enabled:payment?.status==='ready',
   message:decision==='approved_for_payment'
-   ?'Contenido aprobado. Queda pendiente de habilitar y confirmar el pago. No se ha publicado.'
+   ?paymentMessage(payment||{status:'failed'})
    :decision==='changes_requested'?changesMessage(emailStatus):'Anuncio rechazado. No se ha enviado ningún correo automático.'};
 }
 
@@ -548,7 +575,7 @@ export default async function handler(req,res){
        admin_test_enabled:true,leads_enabled:leads,privacy_configured:privacy,
        missing_legal_fields:missingPrivacyIdentity(),
        privacy_url:privacy?privacyUrl():null,database_configured:!!process.env.DATABASE_URL,
-       advertising_mail:advertiserMailStatus(),accepting_payments:false});
+       advertising_mail:advertiserMailStatus(),accepting_payments:stripePaymentsReady()});
     }
     if(req.method==='GET'&&op==='advertiser-accounts')return json(res,200,await advertiserAccounts(sql));
     if(req.method==='GET'&&op==='advertiser-drafts')return json(res,200,await advertiserDrafts(sql));
@@ -559,6 +586,12 @@ export default async function handler(req,res){
     if(req.method==='POST'&&op==='advertiser-invite')return json(res,200,await advertiserInvite(sql,data(req),req));
     if(req.method==='POST'&&op==='advertiser-access')return json(res,200,await advertiserChangeAccess(sql,data(req)));
     if(req.method==='POST'&&op==='advertiser-review')return json(res,200,await advertiserReview(sql,data(req)));
+     if(req.method==='POST'&&op==='send-approved-payment'){
+      const id=invitedId(data(req).id);
+      if(!id)return json(res,400,{error:'Anuncio no válido'});
+      const payment=await safelyPreparePayment(sql,id);
+      return json(res,200,{...payment,message:paymentMessage(payment)});
+     }
     if(req.method==='POST'&&op==='enquiry-review')return json(res,200,await reviewEnquiry(sql,data(req)));
     if(req.method==='GET'&&op==='leads')return json(res,200,await listLeads(sql));
     if(req.method==='GET'&&op==='promotions')return json(res,200,await listPromotions(sql));
