@@ -10,7 +10,7 @@ export default async function handler(req,res) {
      to_char(ends_at,'YYYY-MM-DD') AS ends_at,
      municipalities,headline,description,location,button_text,button_url,image,image_alt,disclosure,enquiry_id,
      EXISTS(SELECT 1 FROM ad_campaign_images ai WHERE ai.ad_id=ad_campaigns.id) AS has_uploaded_image
-     FROM ad_campaigns WHERE enabled=TRUE
+     FROM ad_campaigns WHERE enabled=TRUE AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.record_id=ad_campaigns.id AND ar.source IN ('house','published'))
        AND (starts_at IS NULL OR starts_at<=((now() AT TIME ZONE 'Atlantic/Canary')::date))
        AND (ends_at IS NULL OR ends_at>=((now() AT TIME ZONE 'Atlantic/Canary')::date))
      ORDER BY updated_at DESC,id LIMIT 100`;
