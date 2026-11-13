@@ -538,7 +538,9 @@ function normalizedOpsRows(){
  for(const d of opsDrafts){
   const id=Number(d.id),end=opsDate(d.actual_ends_at);
   const start=opsDate(d.actual_starts_at);
-  const status=d.status==='active'&&end&&end<today?'finished': d.status==='active'&&start&&start>today?'scheduled':d.status;
+  const status=d.status==='active'&&end&&end<today?'finished':
+   d.status==='active'&&d.published_enabled===false?'paused':
+   d.status==='active'&&start&&start>today?'scheduled':d.status;
   result.push({
    key:'draft-'+id,source:'draft',id,company:d.account_company||d.advertiser||'',
    title:d.title||'Sin título',submitted_at:d.created_at||d.updated_at,
@@ -548,7 +550,7 @@ function normalizedOpsRows(){
    price:Number.isFinite(Number(d.price_cents))?Number(d.price_cents)/100:null,
    has_image:!!d.has_image,
    image_url:d.has_image?'/api/admin?op=advertiser-draft-image&id='+id:'',
-   description:d.description||'',review_note:d.review_note||'',
+    description:d.description||'',image_alt:d.image_alt||'',review_note:d.review_note||'',
    contact:d.account_contact||'',email:d.account_email||'',telephone:'',destination:d.destination||'',
    start:d.campaign_start,event_start:d.event_start,event_town:d.event_town,event_venue:d.event_venue,
    actual_starts_at:d.actual_starts_at,actual_ends_at:d.actual_ends_at,
@@ -636,6 +638,11 @@ function renderAdOperations(){
    '<td><div class="adops-actions">'+
     '<button type="button" class="ghost mini" data-ops-preview="'+escape(r.key)+'">'+
       (r.editable?'Revisar':'Detalles')+'</button>'+
+    (r.source==='draft'&&r.payment==='paid'&&['active','scheduled','paused','approved','paid_review'].includes(r.status)?
+      '<button type="button" class="ghost mini" data-ops-paid-edit="'+Number(r.id)+'">Editar anuncio</button>'+
+      (['active','scheduled','paused'].includes(r.status)?
+       '<button type="button" class="ghost mini" data-ops-paid-toggle="'+Number(r.id)+'" data-paid-enable="'+(r.status==='paused'?'true':'false')+'">'+
+       (r.status==='paused'?'Activar':'Desactivar')+'</button>':''):'')+
     (r.source==='house'?'<button type="button" class="ghost mini" data-ops-house-edit="'+escape(r.id)+'">Editar</button>'+
     (r.status==='active'||r.status==='scheduled'?
       '<button type="button" class="ghost mini" data-ops-house-toggle="'+escape(r.id)+'" data-house-enable="false">Pausar</button>':
@@ -681,7 +688,12 @@ function opsOpenPreview(row){
   (row.editable&&row.has_image?'<button type="button" class="primary" data-ops-review="approved_for_payment" data-ops-key="'+escape(row.key)+'">Aprobar contenido</button>':'')+
   (row.editable?'<button type="button" class="ghost" data-ops-review="changes_requested" data-ops-key="'+escape(row.key)+'">Pedir cambios</button>'+
   '<button type="button" class="ghost" data-ops-review="rejected" data-ops-key="'+escape(row.key)+'">Rechazar</button>':'')+
-  (row.source==='house'?'<button type="button" class="primary" data-ops-house-edit="'+escape(row.id)+'">Editar campaña propia</button>'+
+  (row.source==='draft'&&row.payment==='paid'&&['active','scheduled','paused','approved','paid_review'].includes(row.status)?
+     '<button type="button" class="primary" data-ops-paid-edit="'+Number(row.id)+'">Editar anuncio pagado</button>'+
+     (['active','scheduled','paused'].includes(row.status)?
+      '<button type="button" class="ghost" data-ops-paid-toggle="'+Number(row.id)+'" data-paid-enable="'+(row.status==='paused'?'true':'false')+'">'+
+      (row.status==='paused'?'Activar anuncio':'Desactivar anuncio')+'</button>':''):'')+
+   (row.source==='house'?'<button type="button" class="primary" data-ops-house-edit="'+escape(row.id)+'">Editar campaña propia</button>'+
     (row.status==='active'||row.status==='scheduled'?
       '<button type="button" class="ghost" data-ops-house-toggle="'+escape(row.id)+'" data-house-enable="false">Pausar</button>':
       '<button type="button" class="ghost" data-ops-house-toggle="'+escape(row.id)+'" data-house-enable="true">Activar</button>'):'')+
