@@ -133,7 +133,9 @@ export default async function handler(req,res){
     municipalities=${JSON.stringify(x.municipalities)}::jsonb,placement=${x.placement},advertiser=${x.advertiser},title=${x.title},
     description=${x.description},destination=${x.destination},image_alt=${x.imageAlt},campaign_start=${x.start||null},
     event_start=${x.eventStart},event_town=${x.eventTown},event_venue=${x.eventVenue},status='draft',updated_at=now()
-    WHERE id=${id} AND advertiser_id=${a.id} AND status IN ('draft','changes_requested') RETURNING id`;
+    WHERE id=${id} AND advertiser_id=${a.id} AND status IN ('draft','changes_requested')
+      AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=advertiser_campaign_drafts.id::text)
+     RETURNING id`;
    if(!r)return json(res,409,{error:'Este anuncio ya no puede editarse'});
   }else{
    const [cnt]=await sql`SELECT count(*)::int AS count FROM advertiser_campaign_drafts WHERE advertiser_id=${a.id}`;
