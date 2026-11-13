@@ -736,6 +736,7 @@ $('adOpsFilter').addEventListener('change',event=>{
  opsFilter=event.target.value;renderAdOperations();
 });
 $('refreshAdOperations').onclick=async()=>{
+ await loadAdvertisingArchives();
  await Promise.allSettled([loadLeads(),loadAdvertiserDrafts(),loadAds(),loadPromotions()]);
  message('Tabla de publicidad actualizada');
 };
@@ -830,8 +831,31 @@ async function handleOwnCampaignAction(button){
   message(enabled?'Campaña propia habilitada':'Campaña propia pausada');
  }catch(err){message(err.message);button.disabled=false}
 }
+async function handleAdvertisingArchiveAction(button){
+ const key=button.dataset.opsArchive||button.dataset.opsRestore;
+ const row=opsAllRows.find(r=>r.key===key);
+ if(!row)return;
+ const archiving=!!button.dataset.opsArchive, word=archiving?'ARCHIVAR':'RESTAURAR';
+ const detail=row.payment==='paid'?
+  'El pago y sus justificantes permanecerán guardados. ':
+  'Podrás recuperar el registro desde Archivados. ';
+ const caution=archiving?'Al retirarlo dejará de mostrarse públicamente. ':'Al recuperarlo no se reactivará automáticamente su publicación. ';
+ const typed=prompt((archiving?'Quitar del panel':'Restaurar')+' «'+row.title+'»?\n\n'+detail+caution+
+  '\n\nEscribe '+word+' para confirmar:');
+ if(typed===null)return;
+ if(typed.trim()!==word){message('Operación cancelada: escribe exactamente '+word);return}
+ button.disabled=true;
+ try{
+  const result=await api('advertising-archive',{source:row.source,id:row.id,
+   action:archiving?'archive':'restore',confirmation:word});
+  await loadAdvertisingArchives();
+  await Promise.allSettled([loadLeads(),loadAdvertiserDrafts(),loadAds(),loadPromotions(),loadStats()]);
+  closeDialog();message(result.message||'Gestión de archivo realizada');
+ }catch(err){message(err.message);button.disabled=false}
+}
 $('adOpsRows').addEventListener('click',event=>{
- const button=event.target.closest('[data-ops-preview],[data-ops-invite],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle]');if(!button)return;
+ const button=event.target.closest('[data-ops-preview],[data-ops-invite],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
+ if(button.dataset.opsArchive||button.dataset.opsRestore){handleAdvertisingArchiveAction(button);return}
  if(button.dataset.opsPaidEdit){const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsPaidEdit));if(row)openPaidCreativeEditor(row);return}
  if(button.dataset.opsPaidToggle){handlePaidCampaignAction(button);return}
  if(button.dataset.opsHouseEdit||button.dataset.opsHouseToggle){handleOwnCampaignAction(button);return;}
@@ -862,7 +886,8 @@ $('adOpsExport').onclick=()=>{
  setTimeout(()=>URL.revokeObjectURL(object),500);
 };
 $('sheet').addEventListener('click',async event=>{
- const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle]');if(!button)return;
+ const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
+ if(button.dataset.opsArchive||button.dataset.opsRestore){await handleAdvertisingArchiveAction(button);return}
  if(button.dataset.opsPaidEdit){const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsPaidEdit));if(row)openPaidCreativeEditor(row);return}
  if(button.dataset.opsPaidToggle){await handlePaidCampaignAction(button);return}
  if(button.dataset.opsHouseEdit||button.dataset.opsHouseToggle){await handleOwnCampaignAction(button);return;}
