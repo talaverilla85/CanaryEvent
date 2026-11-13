@@ -100,7 +100,7 @@ form.addEventListener('submit',async e=>{
    headers:{'Content-Type':'application/json'},body:JSON.stringify(fields)});
   const data=await response.json();
   if(!response.ok)throw Error(data.error||'No se pudo enviar la propuesta');
-  status.textContent='Solicitud '+data.request_id+' registrada. Revisaremos los datos antes de ofrecerte una propuesta.';
+  status.textContent='Hemos recibido tu propuesta. Revisaremos el anuncio y contactaremos contigo antes de cualquier pago.';
   form.reset();form.elements.billing_country.value='España';refreshFields();refreshDays();
   preview.hidden=true;if(previewUrl)URL.revokeObjectURL(previewUrl);
  }catch(err){status.classList.add('error');status.textContent=err.message}

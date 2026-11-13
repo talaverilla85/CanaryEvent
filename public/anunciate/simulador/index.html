@@ -66,6 +66,11 @@ footer{text-align:center;color:#7c9283;padding:16px 0 33px;font-size:11px}
 .interest-fields input{width:100%;border:1px solid #c4dcdd;border-radius:10px;padding:11px 12px;font:inherit;min-height:43px}
 .interest-consent{display:flex;align-items:flex-start;gap:9px;color:#486770;font-size:12px;line-height:1.5}
 .interest-consent input{margin-top:3px;flex:none}
+ .interest-privacy-link{margin:17px 0 10px!important;padding:12px 15px;border-radius:11px;background:#eef9fa;border:1px solid #b7dcdf;font-size:13px!important}
+ .interest-privacy-link a{color:#066c7a;font-weight:850;text-decoration:underline;text-underline-offset:3px}
+ .interest-privacy-link a:hover{color:#084c5a}
+ .interest-privacy-link a:focus-visible{outline:3px solid #0b8b9c;outline-offset:3px;border-radius:3px}
+ .interest-privacy-link small{font-size:11px;color:#52717a}
 .interest-send{display:inline-flex;border:0;border-radius:10px;background:#10364d;color:#fff;font-size:13px;font-weight:800;padding:12px 20px;margin-top:17px;cursor:pointer}
 .interest-send:disabled{opacity:.6;cursor:wait}
 .interest-feedback{min-height:14px;margin:9px 0}.interest-success{display:flex;flex-direction:column;gap:9px;background:#ecf8f4;color:#155a48;border:1px solid #b4ded1;padding:19px 21px;border-radius:13px;margin:16px 0 3px;font-size:14px;line-height:1.55}.interest-success strong{font-size:18px;line-height:1.25}
@@ -119,7 +124,8 @@ footer{text-align:center;color:#7c9283;padding:16px 0 33px;font-size:11px}
     <label>Teléfono (opcional)<input name="telephone" type="tel" maxlength="35" autocomplete="tel" placeholder="Número de contacto"></label>
    </div>
    <div class="interest-trap" aria-hidden="true"><label>Dejar vacío<input name="website" tabindex="-1" autocomplete="off"></label></div>
-   <label class="interest-consent"><input name="consent" type="checkbox" required><span>He leído la <a id="interestPrivacy" href="" target="_blank" rel="noopener noreferrer">información de privacidad</a> y acepto el tratamiento de mis datos para gestionar esta solicitud de contratación.</span></label>
+   <p class="interest-privacy-link"><a id="interestPrivacy" href="/privacidad/" target="_blank" rel="noopener noreferrer">Leer la política de privacidad completa <small>(se abre en otra pestaña)</small></a></p>
+    <label class="interest-consent"><input name="consent" type="checkbox" required><span>Confirmo que he leído la información de privacidad y entiendo cómo se utilizarán mis datos para tramitar esta solicitud.</span></label>
    <div class="interest-actions">
     <button id="proposalSubmit" type="submit" class="interest-send proposal-send" hidden>Solicitar contratación y revisión del anuncio</button>
    </div>
@@ -129,5 +135,5 @@ footer{text-align:center;color:#7c9283;padding:16px 0 33px;font-size:11px}
  </section>
 </main>
 <footer>D’Parranda · Disfruta de tus islas.</footer>
-<script src="/anunciate/simulador/simulator.js?v=7" defer></script>
+<script src="/anunciate/simulador/simulator.js?v=8" defer></script>
 </body></html>
