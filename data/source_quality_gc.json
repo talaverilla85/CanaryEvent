@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-13T13:24:12+00:00",
+  "checked_at": "2026-11-13T14:34:47+00:00",
   "quality_counts": {
-    "publicados": 450,
+    "publicados": 451,
     "recintos_sin_verificar": 48,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 310,
-    "distancia_a_centro_municipal": 303,
-    "fuentes_con_error": 4,
+    "precios_sin_confirmar": 311,
+    "distancia_a_centro_municipal": 304,
+    "fuentes_con_error": 2,
     "duplicados_potenciales": 2
   },
   "sources": [
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 17,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 13,
+      "fichas_leidas_en_esta_ejecucion": 17,
       "error": ""
     },
     {
@@ -253,11 +253,11 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 23,
+      "publicados": 24,
       "recinto_sin_verificar": 7,
-      "precio_sin_confirmar": 23,
-      "distancia_al_centro_municipal": 23,
-      "fichas_leidas_en_esta_ejecucion": 31,
+      "precio_sin_confirmar": 24,
+      "distancia_al_centro_municipal": 24,
+      "fichas_leidas_en_esta_ejecucion": 30,
       "error": ""
     },
     {
@@ -272,23 +272,23 @@
     },
     {
       "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 3,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 3,
       "distancia_al_centro_municipal": 3,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "Telde gregorio HTTP 429"
+      "fichas_leidas_en_esta_ejecucion": 1,
+      "error": ""
     },
     {
       "source": "Ayuntamiento de Telde · índice de programas PDF",
-      "estado": "error",
+      "estado": "inventario_documental_no_desglosado",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "Telde festival index HTTP 429"
+      "error": ""
     },
     {
       "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
@@ -382,7 +382,7 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "sin_resultados_en_esta_revision",
+      "estado": "al_dia_sin_fichas_pendientes",
       "publicados": 160,
       "recinto_sin_verificar": 32,
       "precio_sin_confirmar": 133,
@@ -465,14 +465,6 @@
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
-    },
-    {
-      "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
-      "error": "Telde gregorio HTTP 429"
-    },
-    {
-      "source": "Ayuntamiento de Telde · índice de programas PDF",
-      "error": "Telde festival index HTTP 429"
     },
     {
       "source": "Juventud de Ingenio · programa de otoño desglosado",

@@ -256,13 +256,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 25,
-      "municipal_cards_total": 23,
+      "catalog_cards_total": 26,
+      "municipal_cards_total": 24,
       "other_sources_cards_total": 2,
       "source_health": [
         {
           "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-          "found": 31,
+          "found": 30,
           "error": ""
         }
       ],
@@ -332,13 +332,13 @@
       "source_health": [
         {
           "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
-          "found": 0,
-          "error": "Telde gregorio HTTP 429"
+          "found": 1,
+          "error": ""
         },
         {
           "source": "Ayuntamiento de Telde · índice de programas PDF",
           "found": 0,
-          "error": "Telde festival index HTTP 429"
+          "error": ""
         },
         {
           "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
