@@ -1,6 +1,6 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id), apiUrl='/api/admin';
-let events=[], ads=[], leads=[], promotions=[], opsDrafts=[], advertisingArchives=[], pagination=0, filter='all', search='', section='events', current=null, toastTimer;
+let events=[], ads=[], leads=[], promotions=[], opsDrafts=[], advertisingArchives=[], invoiceReviews=[], pagination=0, filter='all', search='', section='events', current=null, toastTimer;
 const escape=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const text=x=>String(x??'').trim();
 function message(m){const p=$('feedback');p.textContent=m;p.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>p.classList.remove('show'),3500)}
@@ -108,7 +108,7 @@ $('sendResendTest').addEventListener('click',async()=>{
  }catch(err){status.textContent=err.message;message('No se ha podido enviar la prueba')}
  finally{button.disabled=false}
 });
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives()]);if(location.hash==='#publicidad')setSection('ads')}
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives(),loadInvoiceReviews()]);if(location.hash==='#publicidad')setSection('ads')}
 function setSection(next){
  section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
  for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){
@@ -219,6 +219,74 @@ function editEvent(row){
  };
 }
 function isArchived(source,id){return advertisingArchives.some(a=>a.source===source&&a.record_id===String(id))}
+async function loadInvoiceReviews(){
+ const node=$('invoiceReviewsList');if(!node)return;
+ try{
+  const result=await api('invoice-reviews');invoiceReviews=result.invoices||[];
+  renderInvoiceReviews();
+ }catch(err){node.innerHTML='<p class="muted">No se pudo consultar facturación: '+escape(err.message)+'</p>'}
+}
+function renderInvoiceReviews(){
+ const node=$('invoiceReviewsList');if(!node)return;
+ if(!invoiceReviews.length){node.innerHTML='<p class="muted">Todavía no hay pagos confirmados pendientes de facturación.</p>';return}
+ node.innerHTML=invoiceReviews.map(r=>{
+  const id=Number(r.draft_id),pending=r.review_status!=='checked';
+  const amount=(Number(r.total_cents||0)/100).toLocaleString('es-ES',{style:'currency',currency:'EUR'});
+  return '<article class="invoice-review-item">'+
+   '<div><strong>'+escape(r.company_name||r.title||'Anunciante')+'</strong><p>'+escape(r.title||'Campaña')+' · '+escape(amount)+
+   ' · Pago Stripe verificado</p><p>'+ (pending?'Pendiente de revisar los datos':'Datos revisados · falta habilitar emisión fiscal')+'</p></div>'+
+   '<div class="actions"><a class="invoice-preview-link" target="_blank" rel="noopener noreferrer" href="/api/admin?op=invoice-review-preview&id='+id+
+   '">Ver borrador</a><button type="button" class="ghost mini" data-invoice-edit="'+id+'">Revisar datos</button></div>'+
+   '</article>';
+ }).join('');
+}
+function openInvoiceReview(row){
+ const props=[
+  ['company_name','Razón social o nombre fiscal'],
+  ['customer_tax_id','NIF / CIF'],
+  ['billing_address','Dirección fiscal'],
+  ['billing_postal','Código postal'],
+  ['billing_city','Localidad'],
+  ['billing_region','Provincia / región'],
+  ['billing_country','País'],
+  ['billing_email','Correo de facturación'],
+  ['internal_note','Nota interna para la revisión']
+ ];
+ const fields=props.map(([name,label])=>
+  '<label class="'+(['company_name','billing_address','billing_email','internal_note'].includes(name)?'full':'')+'">'+
+  escape(label)+(name==='internal_note'?
+  '<textarea name="'+name+'" maxlength="700" rows="2">'+escape(row[name]||'')+'</textarea>':
+  '<input name="'+name+'" maxlength="'+(name==='company_name'?180:name==='billing_address'?220:name==='billing_email'?180:110)+'" value="'+escape(row[name]||'')+'">')+'</label>').join('');
+ openDialog('<div class="sheet-head"><div><span class="eyebrow">FACTURACIÓN · DOCUMENTO NO EMITIDO</span>'+
+  '<h2 id="dialogTitle">Revisar datos fiscales</h2></div><button type="button" class="ghost mini" data-close>✕</button></div>'+
+  '<p class="notice">El pago de '+escape((Number(row.total_cents)/100).toLocaleString('es-ES',{style:'currency',currency:'EUR'}))+
+  ' está confirmado. Todavía NO hay factura ni envío automático. Comprueba todos los datos fiscales antes de marcar como revisada.</p>'+
+  '<p><a target="_blank" rel="noopener noreferrer" href="/api/admin?op=invoice-review-preview&id='+Number(row.draft_id)+'">Abrir vista previa del documento</a></p>'+
+  '<form id="invoiceReviewForm" data-invoice-id="'+Number(row.draft_id)+'"><div class="invoice-review-form">'+fields+'</div>'+
+  '<div class="sheet-footer"><button type="submit" class="ghost" value="save">Guardar borrador</button>'+
+  '<button type="submit" class="primary" value="check">Marcar datos revisados</button>'+
+  '<button type="button" class="ghost" data-close>Cerrar</button></div></form>');
+}
+$('invoiceReviewsList').addEventListener('click',event=>{
+ const button=event.target.closest('[data-invoice-edit]');if(!button)return;
+ const row=invoiceReviews.find(r=>Number(r.draft_id)===Number(button.dataset.invoiceEdit));
+ if(row)openInvoiceReview(row);
+});
+$('refreshInvoiceReviews').addEventListener('click',loadInvoiceReviews);
+$('sheet').addEventListener('submit',async event=>{
+ if(event.target.id!=='invoiceReviewForm')return;
+ event.preventDefault();
+ const form=event.target,id=Number(form.dataset.invoiceId);
+ const action=event.submitter?.value==='check'?'check':'save';
+ const data=Object.fromEntries(new FormData(form).entries());
+ form.querySelectorAll('button[type=submit]').forEach(b=>b.disabled=true);
+ try{
+  const result=await api('invoice-review-update',{id,action,...data});
+  await loadInvoiceReviews();closeDialog();message(result.message||'Datos guardados');
+ }catch(err){
+  message(err.message);form.querySelectorAll('button[type=submit]').forEach(b=>b.disabled=false);
+ }
+});
 async function loadAdvertisingArchives(){
  try{const data=await api('advertising-archives');advertisingArchives=data.archives||[];
   renderAdOperations();renderAds();renderLeads();}
