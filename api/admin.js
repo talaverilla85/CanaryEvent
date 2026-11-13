@@ -228,7 +228,7 @@ async function listPromotions(sql){
  const rows=await sql`SELECT id,enquiry_id,enabled,review_status,advertiser,title,start,
     "end",municipality,venue,category,details,price,source_url,campaign_starts_at,
     campaign_ends_at,image_alt,updated_at
-   FROM sponsored_events ORDER BY created_at DESC LIMIT 120`;
+   FROM sponsored_events WHERE NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE (ar.source='draft' AND ar.record_id=sponsored_events.advertiser_draft_id::text) OR (ar.source='lead' AND ar.record_id=sponsored_events.enquiry_id::text)) ORDER BY created_at DESC LIMIT 120`;
  return {promotions:rows};
 }
 async function leadImage(sql,res,id){
