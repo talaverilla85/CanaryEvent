@@ -11,6 +11,7 @@ export default async function handler(req,res){
    JOIN advertiser_campaign_drafts d ON d.id=s.advertiser_draft_id
    JOIN advertiser_campaign_draft_images i ON i.draft_id=d.id
    WHERE s.id=${id} AND s.enabled=TRUE AND s.review_status='approved'
+    AND left(COALESCE(NULLIF(s."end",''),s.start),10)>=to_char((now() AT TIME ZONE 'Atlantic/Canary')::date,'YYYY-MM-DD')
     AND d.status='active' AND d.payment_status='paid' AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=d.id::text)
     AND s.campaign_starts_at<=((now() AT TIME ZONE 'Atlantic/Canary')::date)
     AND s.campaign_ends_at>=((now() AT TIME ZONE 'Atlantic/Canary')::date)`;
