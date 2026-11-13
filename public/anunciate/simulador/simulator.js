@@ -237,6 +237,7 @@ function initInterestForm(draft){
  }).catch(()=>{
   availability.textContent='No se ha podido comprobar el envío de solicitudes. Inténtalo de nuevo después de recargar la página.';
  });
+ $('eventCampaignRule').hidden=draft.kind!=='evento';
  form.addEventListener('submit',async event=>{
   event.preventDefault();
   if(!form.reportValidity())return;

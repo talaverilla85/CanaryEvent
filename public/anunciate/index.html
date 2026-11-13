@@ -72,7 +72,7 @@ footer{padding:24px 0 36px;color:#687f89;font-size:12px;border-top:1px solid var
       <details><summary>¿Cuánto cuesta?</summary><p>Desde 19 € por 30 días. Elige tu zona y verás el precio de tu campaña.</p></details>
       <details><summary>¿Cuánto dura?</summary><p>30 o 60 días, con posibilidad de renovación.</p></details>
       <details><summary>¿Dónde aparece?</summary><p>Entre los eventos de las zonas elegidas.</p></details>
-      <details><summary>¿Puedo anunciar un evento?</summary><p>Sí, también puedes promocionar eventos y actividades.</p></details>
+      <details><summary>¿Puedo anunciar un evento?</summary><p>Sí. El evento se muestra únicamente hasta que finaliza, aunque todavía queden días de la campaña contratada. La duración de 30 o 60 días no se amplía ni se ajusta automáticamente: elige la fecha de inicio con antelación suficiente.</p></details>
     </div>
     <div class="actions"><button type="button" class="btn" id="infoToCreate">Preparar mi anuncio</button></div>
   </section>
@@ -100,7 +100,7 @@ footer{padding:24px 0 36px;color:#687f89;font-size:12px;border-top:1px solid var
       <div class="field wide"><label for="headline">Título del anuncio</label><input id="headline" maxlength="160" placeholder="Ej. Libros, talleres y mucho más"></div>
       <div class="field wide"><label for="description">Descripción breve</label><textarea id="description" maxlength="350" placeholder="Ej. Descubre nuestras novedades y actividades"></textarea></div>
       <div class="field wide"><label for="destination">Enlace de destino</label><input id="destination" type="url" placeholder="https://www.ejemplo.com"></div>
-      <div id="eventDetails" class="wide form-grid" hidden><div class="field wide"><label for="eventVenue">Lugar del evento</label><input id="eventVenue" maxlength="200" placeholder="Ej. Centro cultural municipal"></div><div class="field"><label for="eventDate">Fecha y hora del evento</label><input id="eventDate" type="datetime-local"></div><div class="field"><label for="eventTown">Municipio del evento</label><select id="eventTown"></select></div></div>
+      <div id="eventDetails" class="wide form-grid" hidden><p class="notice wide"><strong>Importante para eventos:</strong> su ficha dejará de aparecer cuando finalice el evento, aunque queden días de la campaña publicitaria. La fecha de finalización contratada no se amplía. Planifica el inicio con antelación suficiente.</p><div class="field wide"><label for="eventVenue">Lugar del evento</label><input id="eventVenue" maxlength="200" placeholder="Ej. Centro cultural municipal"></div><div class="field"><label for="eventDate">Fecha y hora del evento</label><input id="eventDate" type="datetime-local"></div><div class="field"><label for="eventTown">Municipio del evento</label><select id="eventTown"></select></div></div>
       <div class="field wide"><label for="advertImage">Imagen o cartel</label><input id="advertImage" type="file" accept="image/jpeg,image/png,image/webp"><small class="tag-line">JPG, PNG o WebP · formato horizontal</small><div id="imagePreview" class="creative-preview" hidden><img id="previewImg" alt="Vista previa de la imagen seleccionada"></div></div>
     </div>
     <div class="step-title"><span class="num">4</span>Vista previa final</div>
@@ -110,5 +110,5 @@ footer{padding:24px 0 36px;color:#687f89;font-size:12px;border-top:1px solid var
   </section>
 </main>
 <footer><div class="wrap">D’Parranda · Disfruta de tus islas. · <a href="/privacidad/">Privacidad</a></div></footer>
-<script src="/anunciate/landing.js?v=5" defer></script>
+<script src="/anunciate/landing.js?v=6" defer></script>
 </body></html>

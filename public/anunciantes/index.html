@@ -88,6 +88,7 @@ footer{text-align:center;border-top:1px solid var(--line);padding:25px 15px;colo
     <div class="field wide"><label for="description">Descripción</label><textarea id="description" maxlength="350" minlength="12" required></textarea></div>
     <div class="field wide"><label for="destination">Enlace de destino (HTTPS)</label><input id="destination" type="url" required placeholder="https://ejemplo.com"></div>
     <div id="eventFields" class="grid wide" hidden>
+     <p class="note wide"><strong>Condición para eventos:</strong> el anuncio deja de mostrarse cuando termina el evento, aunque todavía queden días de la campaña de 30 o 60 días. El plazo contratado no se amplía ni ajusta automáticamente. Elige el inicio con antelación suficiente.</p>
      <div class="field"><label for="eventStart">Fecha y hora del evento</label><input id="eventStart" type="datetime-local"></div>
      <div class="field"><label for="eventTown">Municipio del evento</label><select id="eventTown"></select></div>
      <div class="field wide"><label for="eventVenue">Lugar del evento</label><input id="eventVenue" maxlength="200"></div>
