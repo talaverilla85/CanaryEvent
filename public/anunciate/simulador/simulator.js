@@ -139,7 +139,7 @@ function contractCallout(draft){
    const result=await response.json();
    if(!response.ok||!result.received)throw Error(result.error||'No se pudo enviar la prueba');
    testFeedback.replaceChildren();
-   const strong=el('strong','','Solicitud de prueba #'+Number(result.request_id)+' guardada correctamente. ');
+   const strong=el('strong','','Tu prueba se ha guardado correctamente. ');
    const link=el('a','inline-test-link','Verla en administración');
    link.href='/admin/#publicidad';link.target='_blank';link.rel='noopener noreferrer';
    testFeedback.append(strong,link);
@@ -278,11 +278,11 @@ function initInterestForm(draft){
    availability.hidden=false;
    availability.classList.add('interest-success');
    availability.replaceChildren();
-   availability.append(el('strong','','Solicitud #'+Number(result.request_id)+' recibida correctamente.'));
+   availability.append(el('strong','','¡Hemos recibido tu anuncio!'));
    const notice=result.welcome_email==='sent'
     ?' Te hemos enviado un correo de bienvenida con el acceso privado a tu anuncio. Revisa también la carpeta de spam.'
     :result.private_area_ready
-      ?' Tu anuncio y su área privada están preparados. Durante esta fase de pruebas los correos automáticos a clientes aún no están disponibles.'
+      ?' Hemos preparado tu área privada. Si todavía no recibes el correo, contactaremos contigo para darte acceso.'
       :' Hemos guardado tu solicitud; te informaremos de los siguientes pasos.';
    availability.append(el('span','',notice+' Revisaremos tu creatividad antes de cualquier pago. No se ha cobrado ni publicado nada.'));
   }catch(err){
