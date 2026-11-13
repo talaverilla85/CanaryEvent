@@ -9,6 +9,7 @@ import {sendChangesRequestedEmail,advertiserMailStatus} from '../lib/advertiser-
 import {ensureApprovedPayment,stripePaymentsReady} from '../lib/stripe-advertising.js';
 import {schedulePaidDraft} from '../lib/advertiser-publication.js';
 import {editPaidCreative,setPaidPublicationEnabled} from '../lib/paid-ad-edit.js';
+import {listAdvertisingArchives,changeAdvertisingArchive} from '../lib/advertising-archive.js';
 
 const statuses = new Set(['unreviewed','approved','needs_review','rejected']);
 const kinds = new Set(['house','paid']);
@@ -165,6 +166,8 @@ async function saveAd(sql, body) {
   const kind=kinds.has(body.kind)?body.kind:'house';
   // An existing contracted advertiser campaign cannot be converted into a free house ad.
   const [original]=await sql`SELECT kind FROM ad_campaigns WHERE id=${id}`;
+   const [archived]=await sql`SELECT 1 FROM advertising_archives WHERE source IN ('house','published') AND record_id=${id}`;
+   if(archived)throw new Error('Recupera primero la campaña desde Archivados');
   if(original&&original.kind!==kind)
     throw new Error('No puedes cambiar una campaña comercial por una propia ni a la inversa');
   const municipalities=Array.isArray(body.municipalities)?
@@ -197,7 +200,7 @@ async function saveAd(sql, body) {
 async function setHouseCampaignEnabled(sql,body){
  const id=typeof body?.id==='string'&&/^[a-zA-Z0-9_-]{2,90}$/.test(body.id)?body.id:null;
  if(!id||typeof body.enabled!=='boolean')throw new Error('Campaña propia inválida');
- const [old]=await sql`SELECT kind,permanent,starts_at,ends_at FROM ad_campaigns WHERE id=${id}`;
+ const [old]=await sql`SELECT kind,permanent,starts_at,ends_at FROM ad_campaigns WHERE id=${id} AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.record_id=${id} AND ar.source='house')`;
  if(!old||old.kind!=='house')throw new Error('Solo puedes activar o pausar publicidad propia');
  if(body.enabled===true&&!old.permanent){
   if(!old.starts_at||!old.ends_at)throw new Error('Indica las fechas para activar la campaña');
@@ -225,7 +228,7 @@ async function listPromotions(sql){
  const rows=await sql`SELECT id,enquiry_id,enabled,review_status,advertiser,title,start,
     "end",municipality,venue,category,details,price,source_url,campaign_starts_at,
     campaign_ends_at,image_alt,updated_at
-   FROM sponsored_events ORDER BY created_at DESC LIMIT 120`;
+   FROM sponsored_events WHERE NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE (ar.source='draft' AND ar.record_id=sponsored_events.advertiser_draft_id::text) OR (ar.source='lead' AND ar.record_id=sponsored_events.enquiry_id::text)) ORDER BY created_at DESC LIMIT 120`;
  return {promotions:rows};
 }
 async function leadImage(sql,res,id){
@@ -241,7 +244,7 @@ async function leadImage(sql,res,id){
 async function promoteLead(sql,body){
  const id=leadId(body.id),placement=String(body.placement||'');
  if(!id||!['event','banner'].includes(placement))throw new Error('Solicitud o formato inválido');
- const [lead]=await sql`SELECT * FROM advertising_enquiries WHERE id=${id}`;
+ const [lead]=await sql`SELECT * FROM advertising_enquiries WHERE id=${id} AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='lead' AND ar.record_id=${id}::text)`;
  if(!lead)throw new Error('Solicitud no encontrada');
  if(placement==='event'){
   if(!lead.event_title||!lead.event_start||!lead.event_municipality||!lead.event_venue)
@@ -275,7 +278,7 @@ async function promoteLead(sql,body){
 async function changePromotion(sql,body){
  const id=leadId(body.id);if(!id)throw new Error('Identificador inválido');
  const approved=body.approved===true,enabled=body.enabled===true;
- const [old]=await sql`SELECT id FROM sponsored_events WHERE id=${id}`;
+ const [old]=await sql`SELECT id FROM sponsored_events WHERE id=${id} AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=sponsored_events.advertiser_draft_id::text)`;
  if(!old)throw new Error('Promoción no encontrada');
  await sql`UPDATE sponsored_events SET review_status=${approved?'approved':'draft'},
     enabled=${approved&&enabled},updated_at=now() WHERE id=${id}`;
@@ -478,7 +481,7 @@ async function advertiserReview(sql,body){
    throw new Error('Explica al anunciante qué debe corregir');
  const [draft]=await sql`SELECT d.status,d.payment_status,
   EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
-  FROM advertiser_campaign_drafts d WHERE id=${id}`;
+  FROM advertiser_campaign_drafts d WHERE d.id=${id} AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=d.id::text)`;
  if(!draft)throw new Error('Anuncio no encontrado');
  if(!['submitted','changes_requested'].includes(draft.status))
   throw new Error('Esta propuesta no está pendiente de revisión');
@@ -603,6 +606,9 @@ export default async function handler(req,res){
        privacy_url:privacy?privacyUrl():null,database_configured:!!process.env.DATABASE_URL,
        advertising_mail:advertiserMailStatus(),accepting_payments:stripePaymentsReady()});
     }
+    if(req.method==='GET'&&op==='advertising-archives')return json(res,200,await listAdvertisingArchives(sql));
+    if(req.method==='POST'&&op==='advertising-archive')
+      return json(res,200,await changeAdvertisingArchive(sql,data(req)));
     if(req.method==='GET'&&op==='advertiser-accounts')return json(res,200,await advertiserAccounts(sql));
     if(req.method==='GET'&&op==='advertiser-drafts')return json(res,200,await advertiserDrafts(sql));
     if(req.method==='GET'&&op==='advertiser-draft-image'){
@@ -660,7 +666,7 @@ export default async function handler(req,res){
     if(req.method==='POST'&&op==='house-ad-status')return json(res,200,await setHouseCampaignEnabled(sql,data(req)));
     return json(res,404,{error:'Operación desconocida'});
   }catch(err){
-    if(err instanceof Error && /inválid|Indica |debe |No se encuentra|No puedes|no encontrado|Fechas/.test(err.message))
+    if(err instanceof Error && /inválid|Indica |debe |Debes |Solo |No se encuentra|No se ha encontrado|No puedes|no encontrado|No está|protegida|bloqueada|Archivados|archiv|Retira|Fechas|Stripe no está|Acción de archivo/.test(err.message))
       return json(res,400,{error:err.message});
     console.error('DParranda admin request failed:',err?.name||'Error');
     return json(res,500,{error:'No se pudo completar la operación'});

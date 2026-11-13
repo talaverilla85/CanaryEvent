@@ -1,6 +1,6 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id), apiUrl='/api/admin';
-let events=[], ads=[], leads=[], promotions=[], opsDrafts=[], pagination=0, filter='all', search='', section='events', current=null, toastTimer;
+let events=[], ads=[], leads=[], promotions=[], opsDrafts=[], advertisingArchives=[], pagination=0, filter='all', search='', section='events', current=null, toastTimer;
 const escape=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const text=x=>String(x??'').trim();
 function message(m){const p=$('feedback');p.textContent=m;p.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>p.classList.remove('show'),3500)}
@@ -108,7 +108,7 @@ $('sendResendTest').addEventListener('click',async()=>{
  }catch(err){status.textContent=err.message;message('No se ha podido enviar la prueba')}
  finally{button.disabled=false}
 });
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox()]);if(location.hash==='#publicidad')setSection('ads')}
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives()]);if(location.hash==='#publicidad')setSection('ads')}
 function setSection(next){
  section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
  for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){
@@ -218,14 +218,21 @@ function editEvent(row){
   catch(err){message(err.message);btn.disabled=false}
  };
 }
+function isArchived(source,id){return advertisingArchives.some(a=>a.source===source&&a.record_id===String(id))}
+async function loadAdvertisingArchives(){
+ try{const data=await api('advertising-archives');advertisingArchives=data.archives||[];
+  renderAdOperations();renderAds();renderLeads();}
+ catch(err){message('No se pudo cargar la papelera: '+err.message)}
+}
 async function loadAds() {
  $('adsList').innerHTML='<div class="empty">Cargando campañas…</div>';
  try{const response=await api('ads');ads=response.ads||[];renderAds();renderAdOperations()}
  catch(e){$('adsList').innerHTML='<div class="empty">'+escape(e.message)+'</div>'}
 }
 function renderAds(){
- if(!ads.length){$('adsList').innerHTML='<div class="empty">Todavía no hay campañas publicitarias.</div>';return}
- $('adsList').innerHTML=ads.map(a=>{
+ const visibleAds=ads.filter(a=>!isArchived(a.kind==='house'?'house':'published',a.id));
+ if(!visibleAds.length){$('adsList').innerHTML='<div class="empty">Todavía no hay campañas publicitarias.</div>';return}
+ $('adsList').innerHTML=visibleAds.map(a=>{
   const preview=a.has_uploaded_image?'/api/admin?op=adimage&id='+encodeURIComponent(a.id):
     a.enquiry_id?'/api/admin?op=leadimage&id='+Number(a.enquiry_id):a.image;
   const image=/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(preview||'')||/^\/api\/admin\?op=(leadimage&id=[0-9]+|adimage&id=[a-zA-Z0-9_-]+)$/.test(preview)?
@@ -309,12 +316,13 @@ function daysLeft(value){
 async function loadLeads(){
  const list=$('leadsList');if(!list)return;
  list.innerHTML='<div class="empty">Cargando solicitudes…</div>';
- try{const data=await api('leads');leads=data.leads||[];renderLeads();renderAdOperations();const pending=leads.filter(l=>l.status==='new'&&String(l.dates_text||'').startsWith('INTERES_INICIAL|')).length;$('tabAds').textContent='Publicidad'+(pending?' · '+pending+' interesados':'')}
+ try{const data=await api('leads');leads=data.leads||[];renderLeads();renderAdOperations();const pending=leads.filter(l=>!isArchived('lead',l.id)&&l.status==='new'&&String(l.dates_text||'').startsWith('INTERES_INICIAL|')).length;$('tabAds').textContent='Publicidad'+(pending?' · '+pending+' interesados':'')}
  catch(e){list.innerHTML='<div class="empty">'+escape(e.message)+'</div>'}
 }
 function renderLeads(){
- if(!leads.length){$('leadsList').innerHTML='<div class="empty">No hay solicitudes comerciales registradas.</div>';return}
- $('leadsList').innerHTML=leads.map(l=>{
+ const visibleLeads=leads.filter(l=>!isArchived('lead',l.id)&&!isArchived('draft',opsDrafts.find(d=>Number(d.source_lead_id)===Number(l.id))?.id));
+ if(!visibleLeads.length){$('leadsList').innerHTML='<div class="empty">No hay solicitudes comerciales registradas.</div>';return}
+ $('leadsList').innerHTML=visibleLeads.map(l=>{
  const id=Number(l.id),interest=String(l.dates_text||'').startsWith('INTERES_INICIAL|'),eligible=!interest&&!!(l.event_title&&l.event_start&&l.event_venue&&l.event_municipality);
  return '<article class="event lead-item"><div class="event-info"><small>Solicitud #'+id+' · '+escape(String(l.created_at).slice(0,10))+
   ' · '+escape(l.status)+(interest?' · INTERESADO':'')+'</small><strong>'+escape(l.company)+' · '+escape(l.campaign_name)+'</strong>'+
@@ -454,8 +462,9 @@ async function loadAdvertiserDrafts(){
  root.innerHTML='<div class="empty">Cargando campañas privadas…</div>';
  try{
   const result=await api('advertiser-drafts'),drafts=result.drafts||[];opsDrafts=drafts;renderAdOperations();
-  if(!drafts.length){root.innerHTML='<div class="empty">Ningún anunciante ha creado campañas todavía.</div>';return}
-  root.innerHTML=drafts.map(d=>{
+  const visibleDrafts=drafts.filter(d=>!isArchived('draft',d.id));
+  if(!visibleDrafts.length){root.innerHTML='<div class="empty">Ningún anunciante ha creado campañas todavía.</div>';return}
+  root.innerHTML=visibleDrafts.map(d=>{
    const status=advertStatus[d.status]||d.status;
    return '<article class="event"><div class="event-info">'+
     '<small>Anuncio #'+Number(d.id)+' · '+escape(d.account_company)+' · '+escape(status)+'</small>'+
@@ -502,6 +511,12 @@ const opsStateNames={
 };
 const opsPlanNames={local:'Local',zona:'Zona',insular:'Insular'};
 let opsSearch='',opsFilter='all',opsAllRows=[];
+function opsArchiveAction(row){
+ if(row.archived)return '<button class="ghost mini adops-restore-btn" type="button" data-ops-restore="'+escape(row.key)+'">Restaurar</button>';
+ if(row.source==='house'&&row.id==='arimar-fundador')return '';
+ return '<button class="ghost mini adops-archive-btn" type="button" data-ops-archive="'+escape(row.key)+'">'+
+  (row.payment==='paid'?'Archivar':'Quitar del panel')+'</button>';
+}
 const opsDate=v=>String(v||'').slice(0,10);
 const opsToday=()=>{
  const obj=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{
@@ -579,6 +594,7 @@ function normalizedOpsRows(){
    continue;
   }
   if(a.kind!=='paid')continue;
+  if(opsDrafts.some(d=>d.published_ad_id===a.id))continue; // Shown via linked paid draft.
   const started=opsDate(a.starts_at),ended=opsDate(a.ends_at);
   const status=ended&&ended<today?'finished':a.enabled&&(!started||started<=today)?'active':'draft';
   result.push({
@@ -594,31 +610,34 @@ function normalizedOpsRows(){
    actual_starts_at:started,actual_ends_at:ended,editable:false
   });
  }
+ for(const row of result)row.archived=isArchived(row.source,row.id);
  return result.sort((a,b)=>String(b.submitted_at||'').localeCompare(String(a.submitted_at||'')));
 }
 function opsFilteredRows(){
  return opsAllRows.filter(r=>{
   const search=opsSearch;
+  if(opsFilter==='archived'){if(!r.archived)return false}
+  else if(r.archived)return false;
   if(search&&!([r.company,r.title,r.area,r.id].join(' ').toLowerCase().includes(search)))return false;
-  return opsFilter==='all'||(opsFilter==='paid'?r.payment==='paid':r.status===opsFilter);
+  return opsFilter==='archived'||opsFilter==='all'||(opsFilter==='paid'?r.payment==='paid':r.status===opsFilter);
  });
 }
 function renderAdOperations(){
  const container=$('adOpsRows');if(!container)return;
  opsAllRows=normalizedOpsRows();
- const countOf=status=>opsAllRows.filter(r=>r.status===status).length;
+ const countOf=status=>opsAllRows.filter(r=>!r.archived&&r.status===status).length;
  $('adOpsInterested').textContent=String(countOf('interest'));
  $('adOpsPending').textContent=String(countOf('submitted')+countOf('paid_review'));
  $('adOpsActive').textContent=String(countOf('active'));
  $('adOpsFinished').textContent=String(countOf('finished'));
  const rows=opsFilteredRows();
- $('adOpsCount').textContent=rows.length+' campañas visibles · '+opsAllRows.length+' registradas';
+ $('adOpsCount').textContent=rows.length+' visibles · '+opsAllRows.filter(r=>!r.archived).length+' en gestión · '+opsAllRows.filter(r=>r.archived).length+' archivadas';
  if(!rows.length){
   container.innerHTML='<tr><td colspan="9">No hay campañas que coincidan con este filtro.</td></tr>';
   return;
  }
  container.innerHTML=rows.map(r=>{
-  const status=opsStateNames[r.status]||r.status;
+  const status=r.archived?'Archivado':opsStateNames[r.status]||r.status;
   const payment=r.payment==='paid'?'Pagado':r.payment==='pending'?'Pendiente':
     r.payment==='free'?'Sin coste':r.payment==='refunded'?'Reembolsado':'No verificado';
   const days=r.permanent?'Anterior permanente':Number.isInteger(r.days)&&r.days>0?r.days+' días':'—';
@@ -627,7 +646,7 @@ function renderAdOperations(){
   const area=r.plan?opsPlanNames[r.plan]+' · '+r.area:r.area;
   return '<tr><td><strong>'+escape(r.company)+'</strong><small>'+escape(r.title)+'</small></td>'+
    '<td>'+escape(opsDate(r.submitted_at)||'—')+'<small>#'+escape(String(r.id))+'</small></td>'+
-   '<td><span class="adops-status st-'+escape(r.status)+'">'+escape(status)+'</span></td>'+
+   '<td><span class="adops-status st-'+(r.archived?'archived':escape(r.status))+'">'+escape(status)+'</span></td>'+
    '<td><span class="adops-payment p-'+escape(r.payment)+'">'+escape(payment)+'</span></td>'+
    '<td>'+escape(days)+(r.status==='active'&&r.actual_ends_at?
     '<small>'+escape(daysLeft(r.actual_ends_at))+'</small>':'')+'</td>'+
@@ -636,6 +655,7 @@ function renderAdOperations(){
    '<td><div class="adops-visual">'+img+
      '<button type="button" data-ops-preview="'+escape(r.key)+'">Ver anuncio</button></div></td>'+
    '<td><div class="adops-actions">'+
+    (r.archived?opsArchiveAction(r):
     '<button type="button" class="ghost mini" data-ops-preview="'+escape(r.key)+'">'+
       (r.editable?'Revisar':'Detalles')+'</button>'+
     (r.source==='draft'&&r.payment==='paid'&&['active','scheduled','paused','approved','paid_review'].includes(r.status)?
@@ -649,7 +669,7 @@ function renderAdOperations(){
       '<button type="button" class="ghost mini" data-ops-house-toggle="'+escape(r.id)+'" data-house-enable="true">Activar</button>'):'')+
     (r.source==='lead'&&r.status==='changes_requested'?
      '<button type="button" class="ghost mini" data-ops-invite="'+Number(r.id)+'">Dar acceso</button>':'')+
-    '</div></td></tr>';
+    opsArchiveAction(r))+'</div></td></tr>';
  }).join('');
 }
 function opsOpenPreview(row){
@@ -670,7 +690,7 @@ function opsOpenPreview(row){
   '<h2 id="dialogTitle">'+escape(row.company)+'</h2></div><button type="button" class="ghost mini" data-close>✕</button></div>'+
   '<p><strong>'+escape(row.title)+'</strong></p>'+
   '<div class="meta"><span class="adops-status st-'+escape(row.status)+'">'+
-  escape(opsStateNames[row.status]||row.status)+'</span> '+
+  escape(row.archived?'Archivado':opsStateNames[row.status]||row.status)+'</span> '+
   '<span class="adops-payment p-'+escape(row.payment)+'">'+
   escape(row.payment==='paid'?'Pago confirmado':row.payment==='pending'?'Pago pendiente':row.payment==='free'?'Sin coste · campaña propia':'Pago sin verificar')+'</span></div>'+
   previewCard+image+
@@ -685,6 +705,7 @@ function opsOpenPreview(row){
   '</div>'+
   (row.review_note?'<p class="notice"><strong>Observaciones anteriores:</strong> '+escape(row.review_note)+'</p>':'')+
   '<div class="sheet-footer">'+
+  (row.archived?opsArchiveAction(row):
   (row.editable&&row.has_image?'<button type="button" class="primary" data-ops-review="approved_for_payment" data-ops-key="'+escape(row.key)+'">Aprobar contenido</button>':'')+
   (row.editable?'<button type="button" class="ghost" data-ops-review="changes_requested" data-ops-key="'+escape(row.key)+'">Pedir cambios</button>'+
   '<button type="button" class="ghost" data-ops-review="rejected" data-ops-key="'+escape(row.key)+'">Rechazar</button>':'')+
@@ -702,7 +723,7 @@ function opsOpenPreview(row){
    (row.source==='draft'&&['approved_for_payment','pending_payment'].includes(row.status)&&row.payment!=='paid'?
    '<button type="button" class="primary" data-ops-payment="'+Number(row.id)+'">Enviar / reenviar pago</button>':'')+
   (row.source==='lead'?'<button type="button" class="ghost" data-ops-invite="'+Number(row.id)+'">Generar acceso privado</button>':'')+
-  '<button type="button" class="ghost" data-close>Cerrar</button></div>'+
+  opsArchiveAction(row))+'<button type="button" class="ghost" data-close>Cerrar</button></div>'+
   '<p class="muted small">'+(row.payment==='paid'&&row.status==='paid_review'?
   'Pago confirmado. Programar publicación respeta la fecha de inicio; si es futura, el anuncio no se mostrará al público hasta entonces.':
   'Al aprobar se generará el enlace Stripe y se intentará enviar por correo. El anuncio no se publica sin pago verificado.')+'</p>';
@@ -715,6 +736,7 @@ $('adOpsFilter').addEventListener('change',event=>{
  opsFilter=event.target.value;renderAdOperations();
 });
 $('refreshAdOperations').onclick=async()=>{
+ await loadAdvertisingArchives();
  await Promise.allSettled([loadLeads(),loadAdvertiserDrafts(),loadAds(),loadPromotions()]);
  message('Tabla de publicidad actualizada');
 };
@@ -809,8 +831,31 @@ async function handleOwnCampaignAction(button){
   message(enabled?'Campaña propia habilitada':'Campaña propia pausada');
  }catch(err){message(err.message);button.disabled=false}
 }
+async function handleAdvertisingArchiveAction(button){
+ const key=button.dataset.opsArchive||button.dataset.opsRestore;
+ const row=opsAllRows.find(r=>r.key===key);
+ if(!row)return;
+ const archiving=!!button.dataset.opsArchive, word=archiving?'ARCHIVAR':'RESTAURAR';
+ const detail=row.payment==='paid'?
+  'El pago y sus justificantes permanecerán guardados. ':
+  'Podrás recuperar el registro desde Archivados. ';
+ const caution=archiving?'Al retirarlo dejará de mostrarse públicamente. ':'Al recuperarlo no se reactivará automáticamente su publicación. ';
+ const typed=prompt((archiving?'Quitar del panel':'Restaurar')+' «'+row.title+'»?\n\n'+detail+caution+
+  '\n\nEscribe '+word+' para confirmar:');
+ if(typed===null)return;
+ if(typed.trim()!==word){message('Operación cancelada: escribe exactamente '+word);return}
+ button.disabled=true;
+ try{
+  const result=await api('advertising-archive',{source:row.source,id:row.id,
+   action:archiving?'archive':'restore',confirmation:word});
+  await loadAdvertisingArchives();
+  await Promise.allSettled([loadLeads(),loadAdvertiserDrafts(),loadAds(),loadPromotions(),loadStats()]);
+  closeDialog();message(result.message||'Gestión de archivo realizada');
+ }catch(err){message(err.message);button.disabled=false}
+}
 $('adOpsRows').addEventListener('click',event=>{
- const button=event.target.closest('[data-ops-preview],[data-ops-invite],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle]');if(!button)return;
+ const button=event.target.closest('[data-ops-preview],[data-ops-invite],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
+ if(button.dataset.opsArchive||button.dataset.opsRestore){handleAdvertisingArchiveAction(button);return}
  if(button.dataset.opsPaidEdit){const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsPaidEdit));if(row)openPaidCreativeEditor(row);return}
  if(button.dataset.opsPaidToggle){handlePaidCampaignAction(button);return}
  if(button.dataset.opsHouseEdit||button.dataset.opsHouseToggle){handleOwnCampaignAction(button);return;}
@@ -841,7 +886,8 @@ $('adOpsExport').onclick=()=>{
  setTimeout(()=>URL.revokeObjectURL(object),500);
 };
 $('sheet').addEventListener('click',async event=>{
- const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle]');if(!button)return;
+ const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
+ if(button.dataset.opsArchive||button.dataset.opsRestore){await handleAdvertisingArchiveAction(button);return}
  if(button.dataset.opsPaidEdit){const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsPaidEdit));if(row)openPaidCreativeEditor(row);return}
  if(button.dataset.opsPaidToggle){await handlePaidCampaignAction(button);return}
  if(button.dataset.opsHouseEdit||button.dataset.opsHouseToggle){await handleOwnCampaignAction(button);return;}

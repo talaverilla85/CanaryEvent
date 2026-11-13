@@ -51,8 +51,9 @@ export default async function handler(req,res){
   return res.status(200).json({received:true,ignored:true});
  try{
   const sql=db();
-  const [d]=await sql`SELECT id,plan,days,price_cents,status,payment_status
-   FROM advertiser_campaign_drafts WHERE stripe_payment_link_id=${linkId}`;
+  const [d]=await sql`SELECT d.id,d.plan,d.days,d.price_cents,d.status,d.payment_status,
+    EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=d.id::text) AS archived
+   FROM advertiser_campaign_drafts d WHERE d.stripe_payment_link_id=${linkId}`;
   if(!d||expectedAmount(d.plan,d.days)!==Number(d.price_cents)||
      Number(d.price_cents)!==s.amount_total||
      !['pending_payment','paid_review','approved_for_payment','approved','active'].includes(d.status))
@@ -70,7 +71,7 @@ export default async function handler(req,res){
   // Retried events must also schedule a previously recorded paid_review/approved draft.
   const confirmedId=updated?.id || (d.payment_status==='paid'&&
    ['paid_review','approved'].includes(d.status)?d.id:null);
-  if(confirmedId){
+  if(confirmedId&&!d.archived){
    await schedulePaidDraft(sql,Number(confirmedId));
   }
   if(updated){

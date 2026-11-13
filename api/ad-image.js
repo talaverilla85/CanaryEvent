@@ -11,7 +11,7 @@ export default async function handler(req,res){
  try{
   const [item]=await sql`SELECT img.mime_type,img.image_data
    FROM ad_campaign_images img JOIN ad_campaigns ad ON ad.id=img.ad_id
-   WHERE img.ad_id=${id} AND ad.enabled=TRUE
+   WHERE img.ad_id=${id} AND ad.enabled=TRUE AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.record_id=ad.id AND ar.source IN ('house','published'))
     AND (ad.starts_at IS NULL OR ad.starts_at<=((now() AT TIME ZONE 'Atlantic/Canary')::date))
     AND (ad.ends_at IS NULL OR ad.ends_at>=((now() AT TIME ZONE 'Atlantic/Canary')::date))
     AND (ad.kind='house' OR EXISTS (

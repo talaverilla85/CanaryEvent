@@ -70,6 +70,7 @@ fieldset{border:0;margin:0;padding:0}.field{display:grid;gap:6px;margin-bottom:1
 .adops-status.st-active{color:#236b3d;background:#e7f5e9;border-color:#cbe7d2}
 .adops-status.st-finished,.adops-status.st-cancelled{color:#66717b;background:#ebedef;border-color:#dfe3e7}
 .adops-status.st-rejected{color:#9e3838;background:#ffeded;border-color:#f5cdcd}
+.adops-status.st-archived{color:#5e6671;background:#f0f1f3;border-color:#d8dce1}
 .adops-status.st-draft{color:#576f7c;background:#eff4f6;border-color:#d8e4e9}
 .adops-payment.p-paid{color:#176d3c;background:#e9f8ee;border-color:#d1ead8}
 .adops-payment.p-pending{color:#96601a;background:#fff4dc;border-color:#f3dfb6}
@@ -80,6 +81,9 @@ fieldset{border:0;margin:0;padding:0}.field{display:grid;gap:6px;margin-bottom:1
 .adops-visual button{border:1px solid #bfd9df;background:#fff;color:#166a79;border-radius:8px;font-weight:800;padding:7px 9px;white-space:nowrap;font-size:11px}
 .adops-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .adops-actions button{font-weight:750;font-size:11px;white-space:nowrap}
+.adops-actions .adops-archive-btn{color:#9b4444;border-color:#edc6c6;background:#fff8f8}
+.adops-actions .adops-restore-btn{color:#0b7056;border-color:#a4d9c7;background:#f1fbf6}
+.adops-safe-delete-note{margin:10px 0 0;line-height:1.5}
 .adops-count{margin:9px 0 0;color:#708591;font-size:11px}
 .adops-advanced{margin-top:15px}
 .adops-advanced>summary{font-size:12px;font-weight:800;color:#315d69;cursor:pointer;border:1px solid #d5e4e8;background:#f8fbfc;padding:13px 17px;border-radius:11px}

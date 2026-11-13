@@ -14,7 +14,7 @@ export default async function handler(req,res) {
       ORDER BY p.payload->>'start',p.id LIMIT 3500`,
       sql`SELECT id,title,start,"end",municipality,venue,category,details,price,free,
       source_url,image_url,image_alt,enquiry_id,advertiser,advertiser_draft_id
-      FROM sponsored_events WHERE enabled=TRUE AND review_status='approved'
+      FROM sponsored_events WHERE enabled=TRUE AND review_status='approved' AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=sponsored_events.advertiser_draft_id::text)
         AND (campaign_starts_at IS NULL OR campaign_starts_at<=((now() AT TIME ZONE 'Atlantic/Canary')::date))
         AND (campaign_ends_at IS NULL OR campaign_ends_at>=((now() AT TIME ZONE 'Atlantic/Canary')::date))
       ORDER BY start,id LIMIT 250`
