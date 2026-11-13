@@ -100,6 +100,17 @@ fieldset{border:0;margin:0;padding:0}.field{display:grid;gap:6px;margin-bottom:1
 .adops-intake a{color:#086c78;font-weight:800;text-decoration:underline}
 .adops-intake.ready{background:#eef9f5;border-color:#b9dfd4;color:#20684b;font-weight:750}
 
+.invoice-review-panel{margin-top:18px;border:1px solid #d0e1e3}
+.invoice-review-item{border:1px solid #d7e6e8;border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:10px;background:#fafdfd}
+.invoice-review-item strong{font-size:14px}
+.invoice-review-item p{margin:4px 0;font-size:12px;color:#536f7b}
+.invoice-review-item .actions{display:flex;gap:8px;flex-wrap:wrap}
+.invoice-preview-link{color:#126879;font-size:12px;font-weight:800;text-decoration:underline}
+.invoice-review-form{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:16px 0}
+.invoice-review-form label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:700}
+.invoice-review-form label.full{grid-column:1/-1}
+.invoice-review-form input,.invoice-review-form textarea{width:100%;padding:10px;border:1px solid #cadce3;border-radius:8px;box-sizing:border-box}
+@media(max-width:650px){.invoice-review-form{grid-template-columns:1fr}}
 .resend-test-panel{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:13px 17px;border:1px solid #d2e5e6;border-radius:12px;background:#f4fbfb;margin:0 0 16px}
 .resend-test-panel p{margin:4px 0 0;max-width:690px;line-height:1.5}
 .resend-test-panel button{white-space:nowrap}
