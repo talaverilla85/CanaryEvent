@@ -38,7 +38,7 @@ class PaidAdManagementContract(unittest.TestCase):
   self.assertIn("WHERE id=${draft.published_event_id} AND advertiser_draft_id=${id}",self.logic)
   self.assertIn("AND kind='paid'",self.logic)
   self.assertIn("s.enabled=TRUE",self.image)
-  self.assertIn("s.enabled=TRUE",self.catalog)
+  self.assertIn("FROM sponsored_events WHERE enabled=TRUE",self.catalog)
 
  def test_admin_controls_and_customer_pause_status(self):
   for snippet in ("data-ops-paid-edit","data-ops-paid-toggle","edit-paid-creative",
