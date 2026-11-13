@@ -511,6 +511,12 @@ const opsStateNames={
 };
 const opsPlanNames={local:'Local',zona:'Zona',insular:'Insular'};
 let opsSearch='',opsFilter='all',opsAllRows=[];
+function opsArchiveAction(row){
+ if(row.archived)return '<button class="ghost mini adops-restore-btn" type="button" data-ops-restore="'+escape(row.key)+'">Restaurar</button>';
+ if(row.source==='house'&&row.id==='arimar-fundador')return '';
+ return '<button class="ghost mini adops-archive-btn" type="button" data-ops-archive="'+escape(row.key)+'">'+
+  (row.payment==='paid'?'Archivar':'Quitar del panel')+'</button>';
+}
 const opsDate=v=>String(v||'').slice(0,10);
 const opsToday=()=>{
  const obj=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{
@@ -649,6 +655,7 @@ function renderAdOperations(){
    '<td><div class="adops-visual">'+img+
      '<button type="button" data-ops-preview="'+escape(r.key)+'">Ver anuncio</button></div></td>'+
    '<td><div class="adops-actions">'+
+    (r.archived?opsArchiveAction(r):
     '<button type="button" class="ghost mini" data-ops-preview="'+escape(r.key)+'">'+
       (r.editable?'Revisar':'Detalles')+'</button>'+
     (r.source==='draft'&&r.payment==='paid'&&['active','scheduled','paused','approved','paid_review'].includes(r.status)?
@@ -662,7 +669,7 @@ function renderAdOperations(){
       '<button type="button" class="ghost mini" data-ops-house-toggle="'+escape(r.id)+'" data-house-enable="true">Activar</button>'):'')+
     (r.source==='lead'&&r.status==='changes_requested'?
      '<button type="button" class="ghost mini" data-ops-invite="'+Number(r.id)+'">Dar acceso</button>':'')+
-    '</div></td></tr>';
+    opsArchiveAction(r))+'</div></td></tr>';
  }).join('');
 }
 function opsOpenPreview(row){
@@ -683,7 +690,7 @@ function opsOpenPreview(row){
   '<h2 id="dialogTitle">'+escape(row.company)+'</h2></div><button type="button" class="ghost mini" data-close>✕</button></div>'+
   '<p><strong>'+escape(row.title)+'</strong></p>'+
   '<div class="meta"><span class="adops-status st-'+escape(row.status)+'">'+
-  escape(opsStateNames[row.status]||row.status)+'</span> '+
+  escape(row.archived?'Archivado':opsStateNames[row.status]||row.status)+'</span> '+
   '<span class="adops-payment p-'+escape(row.payment)+'">'+
   escape(row.payment==='paid'?'Pago confirmado':row.payment==='pending'?'Pago pendiente':row.payment==='free'?'Sin coste · campaña propia':'Pago sin verificar')+'</span></div>'+
   previewCard+image+
@@ -698,6 +705,7 @@ function opsOpenPreview(row){
   '</div>'+
   (row.review_note?'<p class="notice"><strong>Observaciones anteriores:</strong> '+escape(row.review_note)+'</p>':'')+
   '<div class="sheet-footer">'+
+  (row.archived?opsArchiveAction(row):
   (row.editable&&row.has_image?'<button type="button" class="primary" data-ops-review="approved_for_payment" data-ops-key="'+escape(row.key)+'">Aprobar contenido</button>':'')+
   (row.editable?'<button type="button" class="ghost" data-ops-review="changes_requested" data-ops-key="'+escape(row.key)+'">Pedir cambios</button>'+
   '<button type="button" class="ghost" data-ops-review="rejected" data-ops-key="'+escape(row.key)+'">Rechazar</button>':'')+
@@ -715,7 +723,7 @@ function opsOpenPreview(row){
    (row.source==='draft'&&['approved_for_payment','pending_payment'].includes(row.status)&&row.payment!=='paid'?
    '<button type="button" class="primary" data-ops-payment="'+Number(row.id)+'">Enviar / reenviar pago</button>':'')+
   (row.source==='lead'?'<button type="button" class="ghost" data-ops-invite="'+Number(row.id)+'">Generar acceso privado</button>':'')+
-  '<button type="button" class="ghost" data-close>Cerrar</button></div>'+
+  opsArchiveAction(row))+'<button type="button" class="ghost" data-close>Cerrar</button></div>'+
   '<p class="muted small">'+(row.payment==='paid'&&row.status==='paid_review'?
   'Pago confirmado. Programar publicación respeta la fecha de inicio; si es futura, el anuncio no se mostrará al público hasta entonces.':
   'Al aprobar se generará el enlace Stripe y se intentará enviar por correo. El anuncio no se publica sin pago verificado.')+'</p>';
