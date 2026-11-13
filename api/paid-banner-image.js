@@ -11,7 +11,7 @@ export default async function handler(req,res){
    FROM ad_campaigns a
    JOIN advertiser_campaign_drafts d ON d.published_ad_id=a.id
    JOIN advertiser_campaign_draft_images i ON i.draft_id=d.id
-   WHERE a.id=${id} AND a.enabled=TRUE AND d.status='active' AND d.payment_status='paid'
+   WHERE a.id=${id} AND a.enabled=TRUE AND d.status='active' AND d.payment_status='paid' AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=d.id::text)
     AND a.starts_at<=((now() AT TIME ZONE 'Atlantic/Canary')::date)
     AND a.ends_at>=((now() AT TIME ZONE 'Atlantic/Canary')::date)`;
   if(!img)return res.status(404).end();
