@@ -75,7 +75,8 @@ export default async function handler(req,res){
      (plan==='insular'&&area.length!==0)||
      (start!==''&&(!validLocalDate(start)||start<todayCanary()))||
      (proposal&&(!start||description.length<12||!image||
-       (kind==='evento'&&(!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(eventDate)||!TOWNS.has(eventTown)||!eventVenue)))))
+       (kind==='evento'&&(!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(eventDate)||!TOWNS.has(eventTown)||!eventVenue||
+         eventDate.slice(0,10)<todayCanary()||eventDate.slice(0,10)<start)))))
     return json(res,400,{error:'Revisa el contacto y la campaña seleccionada'});
   const sql=db();
   if(!sql)return json(res,503,{error:'El registro de interesados no está disponible'});
