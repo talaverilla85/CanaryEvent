@@ -718,6 +718,82 @@ $('refreshAdOperations').onclick=async()=>{
  await Promise.allSettled([loadLeads(),loadAdvertiserDrafts(),loadAds(),loadPromotions()]);
  message('Tabla de publicidad actualizada');
 };
+async function optimizePaidCreativeFile(file){
+ if(!file)return null;
+ if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>15000000)
+  throw new Error('Selecciona JPG, PNG o WebP de hasta 15 MB');
+ const bitmap=await createImageBitmap(file);
+ const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=675;
+ const ctx=canvas.getContext('2d');
+ if(!ctx){bitmap.close?.();throw new Error('No se pudo preparar la imagen')}
+ const scale=Math.max(1200/bitmap.width,675/bitmap.height);
+ ctx.drawImage(bitmap,(1200-bitmap.width*scale)/2,(675-bitmap.height*scale)/2,
+  bitmap.width*scale,bitmap.height*scale);bitmap.close?.();
+ let data='';
+ for(const q of [.84,.7,.54,.4]){
+  data=canvas.toDataURL('image/webp',q);
+  if(data.startsWith('data:image/webp;base64,')&&data.length*3/4<=800000)break;
+ }
+ if(!data.startsWith('data:image/webp;base64,')||data.length*3/4>800000)
+  throw new Error('El cartel no se pudo comprimir a menos de 800 KB');
+ return {image_data:data,image_width:1200,image_height:675};
+}
+function openPaidCreativeEditor(row){
+ if(row.source!=='draft'||row.payment!=='paid'||
+   !['active','scheduled','paused','approved','paid_review'].includes(row.status))return;
+ const isEvent=row.kind==='Evento patrocinado';
+ const content='<div class="sheet-head"><div><span class="eyebrow">Publicidad contratada · Pago confirmado</span>'+
+  '<h2 id="dialogTitle">Editar anuncio #'+row.id+'</h2></div>'+
+  '<button type="button" class="ghost mini" data-close>✕</button></div>'+
+  '<p class="notice">Puedes modificar cartel, título, descripción y enlace. Se conservan el pago de '+
+  escape(String(row.price))+' €, la cobertura, el inicio y la duración de '+escape(String(row.days))+' días.</p>'+
+  '<form id="paidCreativeForm"><div class="form-grid">'+
+  field('title','Título',row.title||'','',true)+
+  field('description','Descripción',row.description||'','',true,'textarea')+
+  field('destination','Enlace HTTPS',row.destination||'','https://...',true,'url')+
+  field('image_alt','Descripción accesible del cartel',row.image_alt||row.title||'','',true)+
+  (isEvent?field('event_start','Fecha y hora del evento',row.event_start||'','',true,'datetime-local')+
+   field('event_town','Municipio del evento',row.event_town||'','',true)+
+   field('event_venue','Lugar del evento',row.event_venue||'','',true):'')+
+  '</div><div class="field"><label for="paidCreativeImage">Nuevo cartel (opcional)</label>'+
+  '<input id="paidCreativeImage" type="file" accept="image/jpeg,image/png,image/webp">'+
+  '<small class="muted">Se prepara a 1200 × 675 en WebP. Sin archivo nuevo, se conserva el actual.</small></div>'+
+  '<p class="muted small">No se genera otro pago ni se cambian las fechas publicitarias.</p>'+
+  '<div class="sheet-footer"><button type="button" class="ghost" data-close>Cancelar</button>'+
+  '<button type="submit" class="primary">Guardar cambios</button></div></form>';
+ openDialog(content);
+ const form=$('paidCreativeForm');
+ form.onsubmit=async e=>{
+  e.preventDefault();
+  const button=e.submitter||form.querySelector('button[type=submit]');button.disabled=true;
+  try{
+   const body=Object.fromEntries(new FormData(form).entries());body.id=row.id;
+   const asset=await optimizePaidCreativeFile($('paidCreativeImage').files?.[0]);
+   if(asset)Object.assign(body,asset);
+   await api('edit-paid-creative',body);
+   closeDialog();
+   await Promise.allSettled([loadAdvertiserDrafts(),loadPromotions(),loadAds()]);
+   message('Anuncio actualizado sin modificar el pago ni los días contratados.');
+  }catch(err){message(err.message);button.disabled=false}
+ };
+}
+async function handlePaidCampaignAction(button){
+ const id=Number(button.dataset.opsPaidToggle);
+ const row=opsAllRows.find(r=>r.source==='draft'&&r.id===id&&r.payment==='paid');
+ if(!row||!['active','scheduled','paused'].includes(row.status)){
+  message('Solo se puede activar o desactivar un anuncio pagado y programado');return;
+ }
+ const enabled=button.dataset.paidEnable==='true';
+ if(!confirm((enabled?'¿Activar':'¿Desactivar')+' el anuncio «'+row.title+'»?'+
+   '\\n\\nNo se modifican las fechas ni el pago. Los días desactivados siguen dentro del periodo contratado.'))return;
+ button.disabled=true;
+ try{
+  const result=await api('paid-ad-status',{id,enabled});
+  closeDialog();
+  await Promise.allSettled([loadAdvertiserDrafts(),loadPromotions(),loadAds()]);
+  message(result.message||'Estado de publicación actualizado');
+ }catch(e){message(e.message);button.disabled=false}
+}
 async function handleOwnCampaignAction(button){
  const id=button.dataset.opsHouseEdit||button.dataset.opsHouseToggle;
  const ad=ads.find(a=>a.kind==='house'&&a.id===id);
