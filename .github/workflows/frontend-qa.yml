@@ -55,5 +55,17 @@ jobs:
           node scripts/check_feature_lcp.cjs
           node scripts/check_poster_runtime.cjs
           node scripts/sync_inline_brand_css.cjs --check
+      - name: Instalar dependencias Node para comprobar transacciones simuladas
+        run: npm install --ignore-scripts --no-fund --no-audit
+      - name: Auditar el circuito comercial sin envíos ni cobros reales
+        run: |
+          node --check api/advertise-interest.js
+          node --check api/advertiser.js
+          node --check api/stripe-webhook.js
+          node --check lib/advertiser-mail.js
+          node --check lib/stripe-advertising.js
+          node --check lib/advertiser-publication.js
+          node --check lib/advertising-archive.js
+          node --test tests/test_commercial_workflow.mjs
       - name: Pruebas de la interfaz y compatibilidad
         run: python -m unittest discover -s tests -q
