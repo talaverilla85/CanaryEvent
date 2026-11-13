@@ -42,7 +42,8 @@ function clean(x){
  towns.length!==municipalities.length||towns.length>4||municipalities.some(t=>typeof t!=='string'||!TOWNS.has(t))||
  (plan==='local'&&municipalities.length!==1)||(plan==='zona'&&(municipalities.length<1||municipalities.length>4))||(plan==='insular'&&municipalities.length!==0)||
  (start&&(!validLocalDate(start)||start<today()))||(x.image_data&&!image)||
- (placement==='evento'&&(!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(eventStart)||!TOWNS.has(eventTown)||!eventVenue)))return null;
+ (placement==='evento'&&(!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(eventStart)||!TOWNS.has(eventTown)||!eventVenue||
+     eventStart.slice(0,10)<today()||(start&&eventStart.slice(0,10)<start))))return null;
  return {plan,days,placement,municipalities,advertiser,title,description,destination,start,imageAlt,
  eventStart:placement==='evento'?eventStart:null,eventTown:placement==='evento'?eventTown:null,
  eventVenue:placement==='evento'?eventVenue:null,price:PLANS[plan]*(days/30),image};
@@ -133,7 +134,9 @@ export default async function handler(req,res){
     municipalities=${JSON.stringify(x.municipalities)}::jsonb,placement=${x.placement},advertiser=${x.advertiser},title=${x.title},
     description=${x.description},destination=${x.destination},image_alt=${x.imageAlt},campaign_start=${x.start||null},
     event_start=${x.eventStart},event_town=${x.eventTown},event_venue=${x.eventVenue},status='draft',updated_at=now()
-    WHERE id=${id} AND advertiser_id=${a.id} AND status IN ('draft','changes_requested') RETURNING id`;
+    WHERE id=${id} AND advertiser_id=${a.id} AND status IN ('draft','changes_requested')
+      AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=advertiser_campaign_drafts.id::text)
+     RETURNING id`;
    if(!r)return json(res,409,{error:'Este anuncio ya no puede editarse'});
   }else{
    const [cnt]=await sql`SELECT count(*)::int AS count FROM advertiser_campaign_drafts WHERE advertiser_id=${a.id}`;

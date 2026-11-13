@@ -85,7 +85,7 @@ function setEditor(d){
   $('imagePreviewImg').src='/api/advertiser?op=artwork&id='+Number(d.id);
   show('imagePreview');
  }
- $('editorTitle').textContent=d?'Editar borrador #'+d.id:'Preparar nuevo anuncio';
+ $('editorTitle').textContent=d?'Editar mi anuncio':'Preparar nuevo anuncio';
  summary();show('editor');$('editor').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function paintCampaigns(){
@@ -237,7 +237,7 @@ $('draftForm').onsubmit=async event=>{
    image_data:file?await compress(file):null
   };
   const result=await api('save',payload);
-  feedback('Borrador #'+result.id+' guardado. No se ha cobrado ni publicado nada.');
+  feedback('Tu anuncio se ha guardado correctamente. No se ha cobrado ni publicado nada.');
   await loadCampaigns();
  }catch(err){feedback(err.message||'No se pudo guardar el borrador')}
  finally{button.disabled=false}

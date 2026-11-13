@@ -7,7 +7,7 @@ import {resendTestConfiguration,sendResendAdminTest} from '../lib/resend-test.js
 import {ensureAdvertiserWorkspace,workspaceForDraft} from '../lib/advertiser-workspace.js';
 import {sendChangesRequestedEmail,advertiserMailStatus} from '../lib/advertiser-mail.js';
 import {ensureApprovedPayment,stripePaymentsReady} from '../lib/stripe-advertising.js';
-import {schedulePaidDraft} from '../lib/advertiser-publication.js';
+import {schedulePaidDraft,canaryToday} from '../lib/advertiser-publication.js';
 import {editPaidCreative,setPaidPublicationEnabled} from '../lib/paid-ad-edit.js';
 import {listAdvertisingArchives,changeAdvertisingArchive} from '../lib/advertising-archive.js';
 
@@ -434,7 +434,7 @@ async function reviewEnquiry(sql,body){
  if(!id||!['changes_requested','approved_for_payment','rejected'].includes(decision))
   throw new Error('Revisión no válida');
  if(decision==='changes_requested'&&!note)throw new Error('Indica qué cambios debe realizar el anunciante');
- const [lead]=await sql`SELECT id,review_status,
+ const [lead]=await sql`SELECT id,review_status,format,event_start,to_char(campaign_start,'YYYY-MM-DD') AS requested_start,
    EXISTS(SELECT 1 FROM advertising_enquiry_images i WHERE i.enquiry_id=advertising_enquiries.id) AS has_image,
    EXISTS(SELECT 1 FROM advertiser_campaign_drafts d WHERE d.source_lead_id=advertising_enquiries.id) AS has_linked_draft
    FROM advertising_enquiries WHERE id=${id}`;
@@ -442,6 +442,10 @@ async function reviewEnquiry(sql,body){
  if(lead.has_linked_draft)throw new Error('Revisa la versión actualizada de la campaña, no su solicitud original');
  if(!['submitted','changes_requested'].includes(lead.review_status))
   throw new Error('Esta propuesta no admite cambios de estado');
+ if(decision==='approved_for_payment'&&lead.format==='event'&&
+   (!lead.event_start||lead.event_start.slice(0,10)<canaryToday()||
+    (lead.requested_start&&lead.event_start.slice(0,10)<lead.requested_start)))
+  throw new Error('La fecha del evento ya ha pasado o es anterior al inicio de campaña. Pide al anunciante que la corrija antes de aprobar.');
  if(decision==='approved_for_payment'&&!lead.has_image)
   throw new Error('El anunciante debe adjuntar una imagen antes de aprobar la propuesta');
  const [changed]=await sql`UPDATE advertising_enquiries SET review_status=${decision},
@@ -479,12 +483,17 @@ async function advertiserReview(sql,body){
    throw new Error('Estado de revisión inválido');
  if(decision==='changes_requested'&&!note)
    throw new Error('Explica al anunciante qué debe corregir');
- const [draft]=await sql`SELECT d.status,d.payment_status,
+ const [draft]=await sql`SELECT d.status,d.payment_status,d.placement,d.event_start,
+  to_char(d.campaign_start,'YYYY-MM-DD') AS requested_start,
   EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
   FROM advertiser_campaign_drafts d WHERE d.id=${id} AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=d.id::text)`;
  if(!draft)throw new Error('Anuncio no encontrado');
  if(!['submitted','changes_requested'].includes(draft.status))
   throw new Error('Esta propuesta no está pendiente de revisión');
+ if(decision==='approved_for_payment'&&draft.placement==='evento'&&
+  (!draft.event_start||draft.event_start.slice(0,10)<canaryToday()||
+   (draft.requested_start&&draft.event_start.slice(0,10)<draft.requested_start)))
+  throw new Error('La fecha del evento ya ha pasado o es anterior al inicio de campaña. Pide al anunciante que la corrija antes de aprobar.');
  if(decision==='approved_for_payment'&&!draft.has_image)
   throw new Error('La creatividad debe incluir una imagen antes de aprobar el contenido');
  if(draft.payment_status==='paid'||draft.payment_status==='refunded')
@@ -666,7 +675,7 @@ export default async function handler(req,res){
     if(req.method==='POST'&&op==='house-ad-status')return json(res,200,await setHouseCampaignEnabled(sql,data(req)));
     return json(res,404,{error:'Operación desconocida'});
   }catch(err){
-    if(err instanceof Error && /inválid|Indica |debe |Debes |Solo |No se encuentra|No se ha encontrado|No puedes|no encontrado|No está|protegida|bloqueada|Archivados|archiv|Retira|Fechas|Stripe no está|Acción de archivo/.test(err.message))
+    if(err instanceof Error && /inválid|Indica |debe |Debes |Solo |No se encuentra|No se ha encontrado|No puedes|no encontrado|No está|protegida|bloqueada|Archivados|archiv|Retira|Fechas|La fecha del evento|Stripe no está|Acción de archivo/.test(err.message))
       return json(res,400,{error:err.message});
     console.error('DParranda admin request failed:',err?.name||'Error');
     return json(res,500,{error:'No se pudo completar la operación'});
