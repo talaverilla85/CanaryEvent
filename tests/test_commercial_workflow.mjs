@@ -74,6 +74,11 @@ test('Cobro y confirmación comunican el precio y el estado sin afirmar incorrec
  assert.match(sent[0].html,/https:\/\/buy\.stripe\.com\/test_token/);
  assert.match(sent[1].body||sent[1].html,/Hemos registrado tu contratación/);
  assert.doesNotMatch(sent[1].html,/No se ha realizado ningún cobro/);
+ const eventInfo={...info,draft:{...info.draft,placement:'evento'}};
+ assert.equal((await sendPaymentApprovedEmail(eventInfo,'https://buy.stripe.com/test_event',1900,'local',30,'plink_event')).status,'sent');
+ assert.match(sent[2].html,/la ficha del evento dejará de mostrarse cuando finalice el evento/);
+ assert.match(sent[2].text,/aunque queden días de la campaña/);
+ assert.doesNotMatch(sent[0].html,/la ficha del evento dejará de mostrarse/);
 });
 
 test('Desactivación del correo impide envíos reales al anunciante',async t=>{
