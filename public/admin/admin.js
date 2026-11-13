@@ -1,6 +1,6 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id), apiUrl='/api/admin';
-let events=[], ads=[], leads=[], promotions=[], opsDrafts=[], pagination=0, filter='all', search='', section='events', current=null, toastTimer;
+let events=[], ads=[], leads=[], promotions=[], opsDrafts=[], advertisingArchives=[], pagination=0, filter='all', search='', section='events', current=null, toastTimer;
 const escape=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const text=x=>String(x??'').trim();
 function message(m){const p=$('feedback');p.textContent=m;p.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>p.classList.remove('show'),3500)}
@@ -108,7 +108,7 @@ $('sendResendTest').addEventListener('click',async()=>{
  }catch(err){status.textContent=err.message;message('No se ha podido enviar la prueba')}
  finally{button.disabled=false}
 });
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox()]);if(location.hash==='#publicidad')setSection('ads')}
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives()]);if(location.hash==='#publicidad')setSection('ads')}
 function setSection(next){
  section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
  for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){
@@ -218,14 +218,21 @@ function editEvent(row){
   catch(err){message(err.message);btn.disabled=false}
  };
 }
+function isArchived(source,id){return advertisingArchives.some(a=>a.source===source&&a.record_id===String(id))}
+async function loadAdvertisingArchives(){
+ try{const data=await api('advertising-archives');advertisingArchives=data.archives||[];
+  renderAdOperations();renderAds();renderLeads();}
+ catch(err){message('No se pudo cargar la papelera: '+err.message)}
+}
 async function loadAds() {
  $('adsList').innerHTML='<div class="empty">Cargando campañas…</div>';
  try{const response=await api('ads');ads=response.ads||[];renderAds();renderAdOperations()}
  catch(e){$('adsList').innerHTML='<div class="empty">'+escape(e.message)+'</div>'}
 }
 function renderAds(){
- if(!ads.length){$('adsList').innerHTML='<div class="empty">Todavía no hay campañas publicitarias.</div>';return}
- $('adsList').innerHTML=ads.map(a=>{
+ const visibleAds=ads.filter(a=>!isArchived(a.kind==='house'?'house':'published',a.id));
+ if(!visibleAds.length){$('adsList').innerHTML='<div class="empty">Todavía no hay campañas publicitarias.</div>';return}
+ $('adsList').innerHTML=visibleAds.map(a=>{
   const preview=a.has_uploaded_image?'/api/admin?op=adimage&id='+encodeURIComponent(a.id):
     a.enquiry_id?'/api/admin?op=leadimage&id='+Number(a.enquiry_id):a.image;
   const image=/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(preview||'')||/^\/api\/admin\?op=(leadimage&id=[0-9]+|adimage&id=[a-zA-Z0-9_-]+)$/.test(preview)?
@@ -309,12 +316,13 @@ function daysLeft(value){
 async function loadLeads(){
  const list=$('leadsList');if(!list)return;
  list.innerHTML='<div class="empty">Cargando solicitudes…</div>';
- try{const data=await api('leads');leads=data.leads||[];renderLeads();renderAdOperations();const pending=leads.filter(l=>l.status==='new'&&String(l.dates_text||'').startsWith('INTERES_INICIAL|')).length;$('tabAds').textContent='Publicidad'+(pending?' · '+pending+' interesados':'')}
+ try{const data=await api('leads');leads=data.leads||[];renderLeads();renderAdOperations();const pending=leads.filter(l=>!isArchived('lead',l.id)&&l.status==='new'&&String(l.dates_text||'').startsWith('INTERES_INICIAL|')).length;$('tabAds').textContent='Publicidad'+(pending?' · '+pending+' interesados':'')}
  catch(e){list.innerHTML='<div class="empty">'+escape(e.message)+'</div>'}
 }
 function renderLeads(){
- if(!leads.length){$('leadsList').innerHTML='<div class="empty">No hay solicitudes comerciales registradas.</div>';return}
- $('leadsList').innerHTML=leads.map(l=>{
+ const visibleLeads=leads.filter(l=>!isArchived('lead',l.id)&&!isArchived('draft',opsDrafts.find(d=>Number(d.source_lead_id)===Number(l.id))?.id));
+ if(!visibleLeads.length){$('leadsList').innerHTML='<div class="empty">No hay solicitudes comerciales registradas.</div>';return}
+ $('leadsList').innerHTML=visibleLeads.map(l=>{
  const id=Number(l.id),interest=String(l.dates_text||'').startsWith('INTERES_INICIAL|'),eligible=!interest&&!!(l.event_title&&l.event_start&&l.event_venue&&l.event_municipality);
  return '<article class="event lead-item"><div class="event-info"><small>Solicitud #'+id+' · '+escape(String(l.created_at).slice(0,10))+
   ' · '+escape(l.status)+(interest?' · INTERESADO':'')+'</small><strong>'+escape(l.company)+' · '+escape(l.campaign_name)+'</strong>'+
@@ -454,8 +462,9 @@ async function loadAdvertiserDrafts(){
  root.innerHTML='<div class="empty">Cargando campañas privadas…</div>';
  try{
   const result=await api('advertiser-drafts'),drafts=result.drafts||[];opsDrafts=drafts;renderAdOperations();
-  if(!drafts.length){root.innerHTML='<div class="empty">Ningún anunciante ha creado campañas todavía.</div>';return}
-  root.innerHTML=drafts.map(d=>{
+  const visibleDrafts=drafts.filter(d=>!isArchived('draft',d.id));
+  if(!visibleDrafts.length){root.innerHTML='<div class="empty">Ningún anunciante ha creado campañas todavía.</div>';return}
+  root.innerHTML=visibleDrafts.map(d=>{
    const status=advertStatus[d.status]||d.status;
    return '<article class="event"><div class="event-info">'+
     '<small>Anuncio #'+Number(d.id)+' · '+escape(d.account_company)+' · '+escape(status)+'</small>'+
@@ -579,6 +588,7 @@ function normalizedOpsRows(){
    continue;
   }
   if(a.kind!=='paid')continue;
+  if(opsDrafts.some(d=>d.published_ad_id===a.id))continue; // Shown via linked paid draft.
   const started=opsDate(a.starts_at),ended=opsDate(a.ends_at);
   const status=ended&&ended<today?'finished':a.enabled&&(!started||started<=today)?'active':'draft';
   result.push({
@@ -594,31 +604,34 @@ function normalizedOpsRows(){
    actual_starts_at:started,actual_ends_at:ended,editable:false
   });
  }
+ for(const row of result)row.archived=isArchived(row.source,row.id);
  return result.sort((a,b)=>String(b.submitted_at||'').localeCompare(String(a.submitted_at||'')));
 }
 function opsFilteredRows(){
  return opsAllRows.filter(r=>{
   const search=opsSearch;
+  if(opsFilter==='archived'){if(!r.archived)return false}
+  else if(r.archived)return false;
   if(search&&!([r.company,r.title,r.area,r.id].join(' ').toLowerCase().includes(search)))return false;
-  return opsFilter==='all'||(opsFilter==='paid'?r.payment==='paid':r.status===opsFilter);
+  return opsFilter==='archived'||opsFilter==='all'||(opsFilter==='paid'?r.payment==='paid':r.status===opsFilter);
  });
 }
 function renderAdOperations(){
  const container=$('adOpsRows');if(!container)return;
  opsAllRows=normalizedOpsRows();
- const countOf=status=>opsAllRows.filter(r=>r.status===status).length;
+ const countOf=status=>opsAllRows.filter(r=>!r.archived&&r.status===status).length;
  $('adOpsInterested').textContent=String(countOf('interest'));
  $('adOpsPending').textContent=String(countOf('submitted')+countOf('paid_review'));
  $('adOpsActive').textContent=String(countOf('active'));
  $('adOpsFinished').textContent=String(countOf('finished'));
  const rows=opsFilteredRows();
- $('adOpsCount').textContent=rows.length+' campañas visibles · '+opsAllRows.length+' registradas';
+ $('adOpsCount').textContent=rows.length+' visibles · '+opsAllRows.filter(r=>!r.archived).length+' en gestión · '+opsAllRows.filter(r=>r.archived).length+' archivadas';
  if(!rows.length){
   container.innerHTML='<tr><td colspan="9">No hay campañas que coincidan con este filtro.</td></tr>';
   return;
  }
  container.innerHTML=rows.map(r=>{
-  const status=opsStateNames[r.status]||r.status;
+  const status=r.archived?'Archivado':opsStateNames[r.status]||r.status;
   const payment=r.payment==='paid'?'Pagado':r.payment==='pending'?'Pendiente':
     r.payment==='free'?'Sin coste':r.payment==='refunded'?'Reembolsado':'No verificado';
   const days=r.permanent?'Anterior permanente':Number.isInteger(r.days)&&r.days>0?r.days+' días':'—';
@@ -627,7 +640,7 @@ function renderAdOperations(){
   const area=r.plan?opsPlanNames[r.plan]+' · '+r.area:r.area;
   return '<tr><td><strong>'+escape(r.company)+'</strong><small>'+escape(r.title)+'</small></td>'+
    '<td>'+escape(opsDate(r.submitted_at)||'—')+'<small>#'+escape(String(r.id))+'</small></td>'+
-   '<td><span class="adops-status st-'+escape(r.status)+'">'+escape(status)+'</span></td>'+
+   '<td><span class="adops-status st-'+(r.archived?'archived':escape(r.status))+'">'+escape(status)+'</span></td>'+
    '<td><span class="adops-payment p-'+escape(r.payment)+'">'+escape(payment)+'</span></td>'+
    '<td>'+escape(days)+(r.status==='active'&&r.actual_ends_at?
     '<small>'+escape(daysLeft(r.actual_ends_at))+'</small>':'')+'</td>'+
