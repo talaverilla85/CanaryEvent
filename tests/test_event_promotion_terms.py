@@ -17,7 +17,7 @@ class EventPromotionTermsContract(unittest.TestCase):
 
  def test_clear_notice_in_all_advertiser_entry_points(self):
   self.assertIn('no se amplía ni se ajusta automáticamente',self.landing)
-  self.assertIn('no se amplía ni se ajusta automáticamente',self.sim)
+  self.assertIn('no se amplía ni ajusta automáticamente',self.sim)
   self.assertIn('no se amplía ni ajusta automáticamente',self.portal)
   self.assertIn('id="eventCampaignRule"',self.sim)
   self.assertIn("eventCampaignRule').hidden=draft.kind!=='evento'",self.sim_js)
