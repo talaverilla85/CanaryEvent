@@ -42,7 +42,8 @@ function clean(x){
  towns.length!==municipalities.length||towns.length>4||municipalities.some(t=>typeof t!=='string'||!TOWNS.has(t))||
  (plan==='local'&&municipalities.length!==1)||(plan==='zona'&&(municipalities.length<1||municipalities.length>4))||(plan==='insular'&&municipalities.length!==0)||
  (start&&(!validLocalDate(start)||start<today()))||(x.image_data&&!image)||
- (placement==='evento'&&(!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(eventStart)||!TOWNS.has(eventTown)||!eventVenue)))return null;
+ (placement==='evento'&&(!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(eventStart)||!TOWNS.has(eventTown)||!eventVenue||
+     eventStart.slice(0,10)<today()||(start&&eventStart.slice(0,10)<start))))return null;
  return {plan,days,placement,municipalities,advertiser,title,description,destination,start,imageAlt,
  eventStart:placement==='evento'?eventStart:null,eventTown:placement==='evento'?eventTown:null,
  eventVenue:placement==='evento'?eventVenue:null,price:PLANS[plan]*(days/30),image};
