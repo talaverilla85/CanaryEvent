@@ -8,6 +8,8 @@ class CommercialAuditContract(unittest.TestCase):
  def setUpClass(cls):
   cls.intake=(ROOT/'api/advertise-interest.js').read_text('utf8')
   cls.portal=(ROOT/'api/advertiser.js').read_text('utf8')
+  cls.portal_ui=(ROOT/'public/anunciantes/portal.js').read_text('utf8')
+  cls.portal_html=(ROOT/'public/anunciantes/index.html').read_text('utf8')
   cls.stripe=(ROOT/'lib/stripe-advertising.js').read_text('utf8')
   cls.mail=(ROOT/'lib/advertiser-mail.js').read_text('utf8')
   cls.admin=(ROOT/'api/admin.js').read_text('utf8')
@@ -20,6 +22,12 @@ class CommercialAuditContract(unittest.TestCase):
   self.assertIn("ar.record_id=advertiser_campaign_drafts.id::text",self.portal)
   self.assertIn("status IN ('draft','changes_requested')",self.portal)
   self.assertIn("if(!r)return json(res,409",self.portal)
+
+ def test_advertiser_private_area_never_shows_internal_identifiers(self):
+  self.assertNotIn("'Editar borrador #'+d.id",self.portal_ui)
+  self.assertNotIn("'Borrador #'+result.id",self.portal_ui)
+  self.assertIn("'Editar mi anuncio'",self.portal_ui)
+  self.assertIn('portal.js?v=3',self.portal_html)
 
  def test_checkout_has_no_visible_internal_request_id(self):
   self.assertIn("'line_items[0][price_data][product_data][description]':String(d.title).slice(0,120)",self.stripe)
