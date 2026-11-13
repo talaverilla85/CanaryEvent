@@ -63,13 +63,24 @@ class VerifiedVenueGeoTests(unittest.TestCase):
    conn.execute("UPDATE events SET venue='Recinto por confirmar' WHERE id=?",(id,))
    self.assertEqual(geo.backfill(conn,app.PLACES),1)
    self.assertEqual(conn.execute("SELECT accuracy FROM events").fetchone()[0],"municipality")
- def test_number_of_baseline_records_enriched(self):
+ def test_current_venue_coordinates_remain_verified_after_expired_events_are_pruned(self):
+  # The public catalogue is dynamic: expired shows are removed every day.
+  # Never require an absolute number of active matches (150, etc.), or
+  # a routine archive pass will prevent the entire official-event sync.
   ev=json.loads((ROOT/"public/events.json").read_text(encoding="utf8"))["events"]
-  matches=[e for e in ev if geo.find(e["municipality"],e["venue"])]
-  self.assertGreaterEqual(len(matches),150)
+  self.assertTrue(ev,"El catálogo público no puede estar vacío")
+  matches=[(e,geo.find(e["municipality"],e["venue"])) for e in ev
+           if geo.find(e["municipality"],e["venue"])]
+  self.assertTrue(matches,"No hay ningún recinto con ubicación verificada")
   self.assertLess(len(matches),len(ev))
-  print("BASELINE_MATCHED_RECORDS",len(matches),"BY_VENUE",
-        dict(collections.Counter(x["venue"] for x in matches).most_common(12)),flush=True)
+  for event,coordinates in matches:
+   with self.subTest(event_id=event["id"],venue=event["venue"]):
+    self.assertEqual(event.get("accuracy"),"venue")
+    self.assertAlmostEqual(float(event["lat"]),coordinates[0],places=5)
+    self.assertAlmostEqual(float(event["lng"]),coordinates[1],places=5)
+  print("CURRENT_MATCHED_VERIFIED_VENUES",len(matches),"OF",len(ev),
+        "BY_VENUE",dict(collections.Counter(e["venue"] for e,_ in matches).most_common(12)),
+        flush=True)
 
 if __name__=="__main__":unittest.main()
 
