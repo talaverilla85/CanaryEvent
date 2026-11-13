@@ -1,15 +1,15 @@
 {
-  "checked_on": "2026-11-12T21:56:03.544864+00:00",
-  "total_events": 457,
-  "known_price_or_free": 141,
+  "checked_on": "2026-11-13T12:01:40.256440+00:00",
+  "total_events": 447,
+  "known_price_or_free": 140,
   "classification": {
-    "minimum_zero_ambiguous": 9,
+    "minimum_zero_ambiguous": 8,
     "minimum_positive": 112,
     "free": 16,
     "fixed_positive": 4
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 75,
+    "TuReservaOnline · agenda de Gran Canaria": 74,
     "Juventud Las Palmas de Gran Canaria": 11,
     "Ayuntamiento de Moya · Otoño es Cultura 2026": 1,
     "Ayuntamiento de Ingenio": 7,
@@ -31,15 +31,6 @@
       "free": 0,
       "category": "minimum_zero_ambiguous",
       "url": "https://www.tureservaonline.es/es/events/copa-hipica-san-vicente-2627-carrera-de-caballo"
-    },
-    {
-      "id": 813,
-      "title": "XVIII MUESTRA INSULAR CORTOMETRAJES DE PERSONAS CON DISCAPACIDAD",
-      "source": "TuReservaOnline · agenda de Gran Canaria",
-      "label": "Desde 0 €",
-      "free": 0,
-      "category": "minimum_zero_ambiguous",
-      "url": "https://www.tureservaonline.es/es/events/xviii-muestra-insular-cortometrajes-de-personas-con-discapacidad"
     },
     {
       "id": 466,

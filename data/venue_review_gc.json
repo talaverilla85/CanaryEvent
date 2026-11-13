@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-12T21:53:40+00:00",
-  "not_published": 46,
+  "updated_at": "2026-11-13T11:58:01+00:00",
+  "not_published": 48,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -328,6 +328,18 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
+      "id": 931,
+      "title": "ARUCAS ES ARTE 2026",
+      "start": "2026-11-14",
+      "end": "2026-11-15",
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01UTT0=",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
       "id": 805,
       "title": "Manu Tenorio celebra sus «25 Años de Emociones» en Santa Brígida",
       "start": "2026-11-14T20:30:00",
@@ -336,6 +348,18 @@
       "venue": "CENTRO CULTURAL",
       "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "source_url": "https://eventos.santabrigida.es/eventos/manu-tenorio-celebra-sus-25-anos-de-emociones-en-santa-brigida/",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 932,
+      "title": "DÍA DEL VECINO Y LA VECINA",
+      "start": "2026-11-15",
+      "end": null,
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrNU53PT0=",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
