@@ -538,7 +538,9 @@ function normalizedOpsRows(){
  for(const d of opsDrafts){
   const id=Number(d.id),end=opsDate(d.actual_ends_at);
   const start=opsDate(d.actual_starts_at);
-  const status=d.status==='active'&&end&&end<today?'finished': d.status==='active'&&start&&start>today?'scheduled':d.status;
+  const status=d.status==='active'&&end&&end<today?'finished':
+   d.status==='active'&&d.published_enabled===false?'paused':
+   d.status==='active'&&start&&start>today?'scheduled':d.status;
   result.push({
    key:'draft-'+id,source:'draft',id,company:d.account_company||d.advertiser||'',
    title:d.title||'Sin título',submitted_at:d.created_at||d.updated_at,
@@ -548,7 +550,7 @@ function normalizedOpsRows(){
    price:Number.isFinite(Number(d.price_cents))?Number(d.price_cents)/100:null,
    has_image:!!d.has_image,
    image_url:d.has_image?'/api/admin?op=advertiser-draft-image&id='+id:'',
-   description:d.description||'',review_note:d.review_note||'',
+    description:d.description||'',image_alt:d.image_alt||'',review_note:d.review_note||'',
    contact:d.account_contact||'',email:d.account_email||'',telephone:'',destination:d.destination||'',
    start:d.campaign_start,event_start:d.event_start,event_town:d.event_town,event_venue:d.event_venue,
    actual_starts_at:d.actual_starts_at,actual_ends_at:d.actual_ends_at,
@@ -636,6 +638,11 @@ function renderAdOperations(){
    '<td><div class="adops-actions">'+
     '<button type="button" class="ghost mini" data-ops-preview="'+escape(r.key)+'">'+
       (r.editable?'Revisar':'Detalles')+'</button>'+
+    (r.source==='draft'&&r.payment==='paid'&&['active','scheduled','paused','approved','paid_review'].includes(r.status)?
+      '<button type="button" class="ghost mini" data-ops-paid-edit="'+Number(r.id)+'">Editar anuncio</button>'+
+      (['active','scheduled','paused'].includes(r.status)?
+       '<button type="button" class="ghost mini" data-ops-paid-toggle="'+Number(r.id)+'" data-paid-enable="'+(r.status==='paused'?'true':'false')+'">'+
+       (r.status==='paused'?'Activar':'Desactivar')+'</button>':''):'')+
     (r.source==='house'?'<button type="button" class="ghost mini" data-ops-house-edit="'+escape(r.id)+'">Editar</button>'+
     (r.status==='active'||r.status==='scheduled'?
       '<button type="button" class="ghost mini" data-ops-house-toggle="'+escape(r.id)+'" data-house-enable="false">Pausar</button>':
@@ -681,7 +688,12 @@ function opsOpenPreview(row){
   (row.editable&&row.has_image?'<button type="button" class="primary" data-ops-review="approved_for_payment" data-ops-key="'+escape(row.key)+'">Aprobar contenido</button>':'')+
   (row.editable?'<button type="button" class="ghost" data-ops-review="changes_requested" data-ops-key="'+escape(row.key)+'">Pedir cambios</button>'+
   '<button type="button" class="ghost" data-ops-review="rejected" data-ops-key="'+escape(row.key)+'">Rechazar</button>':'')+
-  (row.source==='house'?'<button type="button" class="primary" data-ops-house-edit="'+escape(row.id)+'">Editar campaña propia</button>'+
+  (row.source==='draft'&&row.payment==='paid'&&['active','scheduled','paused','approved','paid_review'].includes(row.status)?
+     '<button type="button" class="primary" data-ops-paid-edit="'+Number(row.id)+'">Editar anuncio pagado</button>'+
+     (['active','scheduled','paused'].includes(row.status)?
+      '<button type="button" class="ghost" data-ops-paid-toggle="'+Number(row.id)+'" data-paid-enable="'+(row.status==='paused'?'true':'false')+'">'+
+      (row.status==='paused'?'Activar anuncio':'Desactivar anuncio')+'</button>':''):'')+
+   (row.source==='house'?'<button type="button" class="primary" data-ops-house-edit="'+escape(row.id)+'">Editar campaña propia</button>'+
     (row.status==='active'||row.status==='scheduled'?
       '<button type="button" class="ghost" data-ops-house-toggle="'+escape(row.id)+'" data-house-enable="false">Pausar</button>':
       '<button type="button" class="ghost" data-ops-house-toggle="'+escape(row.id)+'" data-house-enable="true">Activar</button>'):'')+
@@ -706,6 +718,82 @@ $('refreshAdOperations').onclick=async()=>{
  await Promise.allSettled([loadLeads(),loadAdvertiserDrafts(),loadAds(),loadPromotions()]);
  message('Tabla de publicidad actualizada');
 };
+async function optimizePaidCreativeFile(file){
+ if(!file)return null;
+ if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>15000000)
+  throw new Error('Selecciona JPG, PNG o WebP de hasta 15 MB');
+ const bitmap=await createImageBitmap(file);
+ const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=675;
+ const ctx=canvas.getContext('2d');
+ if(!ctx){bitmap.close?.();throw new Error('No se pudo preparar la imagen')}
+ const scale=Math.max(1200/bitmap.width,675/bitmap.height);
+ ctx.drawImage(bitmap,(1200-bitmap.width*scale)/2,(675-bitmap.height*scale)/2,
+  bitmap.width*scale,bitmap.height*scale);bitmap.close?.();
+ let data='';
+ for(const q of [.84,.7,.54,.4]){
+  data=canvas.toDataURL('image/webp',q);
+  if(data.startsWith('data:image/webp;base64,')&&data.length*3/4<=800000)break;
+ }
+ if(!data.startsWith('data:image/webp;base64,')||data.length*3/4>800000)
+  throw new Error('El cartel no se pudo comprimir a menos de 800 KB');
+ return {image_data:data,image_width:1200,image_height:675};
+}
+function openPaidCreativeEditor(row){
+ if(row.source!=='draft'||row.payment!=='paid'||
+   !['active','scheduled','paused','approved','paid_review'].includes(row.status))return;
+ const isEvent=row.kind==='Evento patrocinado';
+ const content='<div class="sheet-head"><div><span class="eyebrow">Publicidad contratada · Pago confirmado</span>'+
+  '<h2 id="dialogTitle">Editar anuncio #'+row.id+'</h2></div>'+
+  '<button type="button" class="ghost mini" data-close>✕</button></div>'+
+  '<p class="notice">Puedes modificar cartel, título, descripción y enlace. Se conservan el pago de '+
+  escape(String(row.price))+' €, la cobertura, el inicio y la duración de '+escape(String(row.days))+' días.</p>'+
+  '<form id="paidCreativeForm"><div class="form-grid">'+
+  field('title','Título',row.title||'','',true)+
+  field('description','Descripción',row.description||'','',true,'textarea')+
+  field('destination','Enlace HTTPS',row.destination||'','https://...',true,'url')+
+  field('image_alt','Descripción accesible del cartel',row.image_alt||row.title||'','',true)+
+  (isEvent?field('event_start','Fecha y hora del evento',row.event_start||'','',true,'datetime-local')+
+   field('event_town','Municipio del evento',row.event_town||'','',true)+
+   field('event_venue','Lugar del evento',row.event_venue||'','',true):'')+
+  '</div><div class="field"><label for="paidCreativeImage">Nuevo cartel (opcional)</label>'+
+  '<input id="paidCreativeImage" type="file" accept="image/jpeg,image/png,image/webp">'+
+  '<small class="muted">Se prepara a 1200 × 675 en WebP. Sin archivo nuevo, se conserva el actual.</small></div>'+
+  '<p class="muted small">No se genera otro pago ni se cambian las fechas publicitarias.</p>'+
+  '<div class="sheet-footer"><button type="button" class="ghost" data-close>Cancelar</button>'+
+  '<button type="submit" class="primary">Guardar cambios</button></div></form>';
+ openDialog(content);
+ const form=$('paidCreativeForm');
+ form.onsubmit=async e=>{
+  e.preventDefault();
+  const button=e.submitter||form.querySelector('button[type=submit]');button.disabled=true;
+  try{
+   const body=Object.fromEntries(new FormData(form).entries());body.id=row.id;
+   const asset=await optimizePaidCreativeFile($('paidCreativeImage').files?.[0]);
+   if(asset)Object.assign(body,asset);
+   await api('edit-paid-creative',body);
+   closeDialog();
+   await Promise.allSettled([loadAdvertiserDrafts(),loadPromotions(),loadAds()]);
+   message('Anuncio actualizado sin modificar el pago ni los días contratados.');
+  }catch(err){message(err.message);button.disabled=false}
+ };
+}
+async function handlePaidCampaignAction(button){
+ const id=Number(button.dataset.opsPaidToggle);
+ const row=opsAllRows.find(r=>r.source==='draft'&&r.id===id&&r.payment==='paid');
+ if(!row||!['active','scheduled','paused'].includes(row.status)){
+  message('Solo se puede activar o desactivar un anuncio pagado y programado');return;
+ }
+ const enabled=button.dataset.paidEnable==='true';
+ if(!confirm((enabled?'¿Activar':'¿Desactivar')+' el anuncio «'+row.title+'»?'+
+   '\\n\\nNo se modifican las fechas ni el pago. Los días desactivados siguen dentro del periodo contratado.'))return;
+ button.disabled=true;
+ try{
+  const result=await api('paid-ad-status',{id,enabled});
+  closeDialog();
+  await Promise.allSettled([loadAdvertiserDrafts(),loadPromotions(),loadAds()]);
+  message(result.message||'Estado de publicación actualizado');
+ }catch(e){message(e.message);button.disabled=false}
+}
 async function handleOwnCampaignAction(button){
  const id=button.dataset.opsHouseEdit||button.dataset.opsHouseToggle;
  const ad=ads.find(a=>a.kind==='house'&&a.id===id);
@@ -722,7 +810,9 @@ async function handleOwnCampaignAction(button){
  }catch(err){message(err.message);button.disabled=false}
 }
 $('adOpsRows').addEventListener('click',event=>{
- const button=event.target.closest('[data-ops-preview],[data-ops-invite],[data-ops-house-edit],[data-ops-house-toggle]');if(!button)return;
+ const button=event.target.closest('[data-ops-preview],[data-ops-invite],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle]');if(!button)return;
+ if(button.dataset.opsPaidEdit){const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsPaidEdit));if(row)openPaidCreativeEditor(row);return}
+ if(button.dataset.opsPaidToggle){handlePaidCampaignAction(button);return}
  if(button.dataset.opsHouseEdit||button.dataset.opsHouseToggle){handleOwnCampaignAction(button);return;}
  if(button.dataset.opsInvite){
   createAdvertiserInvite(Number(button.dataset.opsInvite)).then(async()=>{
@@ -751,7 +841,9 @@ $('adOpsExport').onclick=()=>{
  setTimeout(()=>URL.revokeObjectURL(object),500);
 };
 $('sheet').addEventListener('click',async event=>{
- const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle]');if(!button)return;
+ const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle]');if(!button)return;
+ if(button.dataset.opsPaidEdit){const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsPaidEdit));if(row)openPaidCreativeEditor(row);return}
+ if(button.dataset.opsPaidToggle){await handlePaidCampaignAction(button);return}
  if(button.dataset.opsHouseEdit||button.dataset.opsHouseToggle){await handleOwnCampaignAction(button);return;}
  if(button.dataset.opsSchedule){
   const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsSchedule));

@@ -76,11 +76,19 @@ export default async function handler(req,res){
  if(req.method==='GET'&&op==='session')return json(res,200,{authenticated:!!a,account:a?{company:a.company,contact_name:a.contact_name,email:a.email}:null,payment_enabled:stripePaymentsReady()});
  if(!a)return json(res,401,{error:'Acceso de anunciante no autorizado'});
  if(req.method==='GET'&&op==='campaigns'){
-  const rows=await sql`SELECT d.*,EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image FROM advertiser_campaign_drafts d WHERE d.advertiser_id=${a.id} ORDER BY d.created_at DESC LIMIT 100`;
+  const rows=await sql`SELECT d.*,
+  CASE WHEN d.published_event_id IS NOT NULL THEN
+    (SELECT s.enabled FROM sponsored_events s WHERE s.id=d.published_event_id AND s.advertiser_draft_id=d.id)
+  WHEN d.published_ad_id IS NOT NULL THEN
+    (SELECT ac.enabled FROM ad_campaigns ac WHERE ac.id=d.published_ad_id)
+  ELSE NULL END AS published_enabled,
+  EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
+  FROM advertiser_campaign_drafts d WHERE d.advertiser_id=${a.id}
+  ORDER BY d.created_at DESC LIMIT 100`;
   return json(res,200,{campaigns:rows.map(d=>({id:Number(d.id),plan:d.plan,days:d.days,price_cents:d.price_cents,municipalities:d.municipalities,
   placement:d.placement,advertiser:d.advertiser,title:d.title,description:d.description,destination:d.destination,image_alt:d.image_alt,
   campaign_start:d.campaign_start,event_start:d.event_start,event_town:d.event_town,event_venue:d.event_venue,
-  status:d.status,payment_status:d.payment_status,
+  status:d.status,payment_status:d.payment_status,published_enabled:d.published_enabled,
   payment_url:d.status==='pending_payment'&&d.payment_status==='pending'&&/^https:\/\/buy\.stripe\.com\//.test(d.stripe_payment_url||'')?d.stripe_payment_url:null,
   actual_starts_at:d.actual_starts_at,actual_ends_at:d.actual_ends_at,
   review_note:d.review_note,has_image:d.has_image,stats_available:false,created_at:d.created_at,updated_at:d.updated_at})),payment_enabled:stripePaymentsReady()});
