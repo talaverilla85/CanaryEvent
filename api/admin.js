@@ -6,6 +6,7 @@ import {ensureAdvertiserWorkspace,workspaceForDraft} from '../lib/advertiser-wor
 import {sendChangesRequestedEmail,advertiserMailStatus} from '../lib/advertiser-mail.js';
 import {ensureApprovedPayment,stripePaymentsReady} from '../lib/stripe-advertising.js';
 import {schedulePaidDraft} from '../lib/advertiser-publication.js';
+import {editPaidCreative} from '../lib/paid-ad-edit.js';
 
 const statuses = new Set(['unreviewed','approved','needs_review','rejected']);
 const kinds = new Set(['house','paid']);
@@ -604,6 +605,8 @@ export default async function handler(req,res){
     if(req.method==='POST'&&op==='advertiser-invite')return json(res,200,await advertiserInvite(sql,data(req),req));
     if(req.method==='POST'&&op==='advertiser-access')return json(res,200,await advertiserChangeAccess(sql,data(req)));
     if(req.method==='POST'&&op==='advertiser-review')return json(res,200,await advertiserReview(sql,data(req)));
+    if(req.method==='POST'&&op==='edit-paid-creative')
+      return json(res,200,await editPaidCreative(sql,data(req),adminImageData));
     if(req.method==='POST'&&op==='schedule-paid-draft'){
       const id=invitedId(data(req).id);
       if(!id)return json(res,400,{error:'Anuncio inválido'});
