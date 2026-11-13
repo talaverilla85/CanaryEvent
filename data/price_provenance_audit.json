@@ -1,17 +1,16 @@
 {
-  "checked_on": "2026-11-13T17:41:18.879546+00:00",
+  "checked_on": "2026-11-13T20:58:29.513733+00:00",
   "total_events": 454,
-  "known_price_or_free": 140,
+  "known_price_or_free": 139,
   "classification": {
     "minimum_zero_ambiguous": 8,
-    "minimum_positive": 112,
+    "minimum_positive": 111,
     "free": 16,
     "fixed_positive": 4
   },
   "known_by_source": {
     "TuReservaOnline · agenda de Gran Canaria": 74,
     "Juventud Las Palmas de Gran Canaria": 11,
-    "Ayuntamiento de Moya · Otoño es Cultura 2026": 1,
     "Ayuntamiento de Ingenio": 7,
     "Ayuntamiento de Agüimes": 1,
     "Ayuntamiento de Mogán · actividades documentadas": 1,
