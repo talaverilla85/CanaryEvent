@@ -5,6 +5,7 @@ import {expectedAmount,stripePaymentsReady,stripeMode} from '../lib/stripe-adver
 import {workspaceForDraft} from '../lib/advertiser-workspace.js';
 import {sendPaymentConfirmedEmail} from '../lib/advertiser-mail.js';
 import {schedulePaidDraft} from '../lib/advertiser-publication.js';
+import {prepareInvoiceReview} from '../lib/advertising-invoice-reviews.js';
 
 export const config={api:{bodyParser:false}};
 
@@ -70,7 +71,10 @@ export default async function handler(req,res){
   // If publication fails, return 503 so Stripe retries this signed event.
   // Retried events must also schedule a previously recorded paid_review/approved draft.
   const confirmedId=updated?.id || (d.payment_status==='paid'&&
-   ['paid_review','approved'].includes(d.status)?d.id:null);
+   ['paid_review','approved','active'].includes(d.status)?d.id:null);
+  // Payment review is created only after the signed Stripe event was persisted.
+  // Replayed events are idempotent and cannot generate duplicate invoice drafts.
+  if(confirmedId)await prepareInvoiceReview(sql,Number(confirmedId),s);
   if(confirmedId&&!d.archived){
    await schedulePaidDraft(sql,Number(confirmedId));
   }

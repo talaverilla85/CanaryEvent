@@ -6,6 +6,7 @@ import {expectedAmount,ensureApprovedPayment,stripePaymentsReady} from '../lib/s
 import {createEmailAccessToken,parseEmailAccessToken,sendWelcomeEmail,
  sendChangesRequestedEmail,sendPaymentApprovedEmail,sendPaymentConfirmedEmail} from '../lib/advertiser-mail.js';
 import {canaryToday} from '../lib/advertiser-publication.js';
+import {prepareInvoiceReview,listInvoiceReviews,updateInvoiceReview,invoiceReviewPreview} from '../lib/advertising-invoice-reviews.js';
 
 const env={
  DPARRANDA_LEADS_ENABLED:'true',
@@ -140,4 +141,68 @@ test('El pago no puede autorizarse cuando el importe o la fecha del evento son i
   campaign_start_iso:'2025-01-01',email:account.email};
  await check(base);
  await check({...base,placement:'banner',price_cents:200});
+});
+
+test('Solo pagos Stripe verificados generan un borrador de revisión, nunca una factura',async()=>{
+ const seen=[];
+ const sql=async(pieces,...args)=>{
+  const q=pieces.join('?');seen.push({q,args});
+  if(q.includes('INSERT INTO advertising_invoice_reviews'))return [{draft_id:17}];
+  throw Error('Unexpected query');
+ };
+ const session={id:'cs_test_abc123',payment_status:'paid',currency:'eur',amount_total:4900,
+  customer_details:{name:'Empresa Prueba SL',email:'facturas@example.invalid',address:{
+   line1:'Calle Inventada 1',city:'Las Palmas',postal_code:'35001',country:'ES'},
+   tax_ids:[{type:'es_cif',value:'B12345678'}]}};
+ const result=await prepareInvoiceReview(sql,17,session);
+ assert.equal(result.prepared,true);
+ assert.equal(seen.length,1);
+ assert.match(seen[0].q,/d\.payment_status='paid'/);
+ assert.match(seen[0].q,/d\.stripe_checkout_session_id=/);
+ assert.match(seen[0].q,/ON CONFLICT\(draft_id\) DO NOTHING/);
+ assert.ok(seen[0].args.includes('B12345678'));
+ assert.ok(seen[0].args.includes(4900));
+ await assert.rejects(()=>prepareInvoiceReview(sql,17,{...session,payment_status:'unpaid'}));
+ await assert.rejects(()=>prepareInvoiceReview(sql,17,{...session,id:'fake_session'}));
+});
+
+test('Los datos fiscales pueden corregirse, pero revisar no expide ni envía una factura',async()=>{
+ const row={id:17,action:'check',company_name:'Empresa Prueba SL',customer_tax_id:'B12345678',
+ billing_address:'Calle Inventada 1',billing_postal:'35001',billing_city:'Las Palmas',
+ billing_region:'Las Palmas',billing_country:'ES',billing_email:'facturas@example.invalid',internal_note:'Correcto'};
+ const queries=[];
+ const sql=async(pieces,...args)=>{
+  queries.push({query:pieces.join('?'),args});
+  return [{draft_id:17,review_status:'checked'}];
+ };
+ const response=await updateInvoiceReview(sql,row);
+ assert.equal(response.issued,false);
+ assert.equal(response.sent,false);
+ assert.equal(response.review_status,'checked');
+ assert.match(queries[0].query,/UPDATE advertising_invoice_reviews/);
+ assert.doesNotMatch(queries[0].query,/\bissue\b|\binvoice_number\b/i);
+ await assert.rejects(()=>updateInvoiceReview(sql,{...row,customer_tax_id:''}),/NIF/);
+});
+
+test('El HTML de revisión escapa datos potencialmente maliciosos y nunca simula una factura fiscal',async()=>{
+ const sql=async()=>[{
+  title:'<script>alert(1)</script>',plan:'local',days:30,placement:'banner',
+  company_name:'<img src=x onerror=alert(1)>',customer_tax_id:'',billing_address:'',
+  billing_postal:'',billing_city:'',billing_region:'',billing_country:'',billing_email:'',
+  total_cents:1900,payment_status:'paid',starts_at:null,ends_at:null
+ }];
+ const html=await invoiceReviewPreview(sql,17);
+ assert.match(html,/BORRADOR INTERNO · NO ES FACTURA/);
+ assert.match(html,/SIN VALIDEZ FISCAL/);
+ assert.match(html,/&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
+ assert.doesNotMatch(html,/<script>|<img src=x/i);
+ assert.match(html,/pendiente de determinar/);
+ assert.match(html,/19,00/);
+});
+
+test('La bandeja fiscal informa expresamente que la emisión automática está desactivada',async()=>{
+ const r=await listInvoiceReviews(async()=>[]);
+ assert.deepEqual(r.invoices,[]);
+ assert.equal(r.auto_issuance,false);
+ assert.equal(r.legal_invoice_emission,false);
 });

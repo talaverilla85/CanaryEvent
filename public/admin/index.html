@@ -73,6 +73,13 @@
  <p id="adOpsCount" class="adops-count" role="status" aria-live="polite"></p>
  <p class="muted small adops-safe-delete-note">«Quitar del panel» mueve el registro a Archivados, donde puedes recuperarlo. Los pagos y datos contables nunca se eliminan. La campaña principal de AriMar está protegida.</p>
 </div>
+<div class="card invoice-review-panel" id="invoiceReviewPanel">
+ <div class="adops-heading"><div><span class="eyebrow">FACTURACIÓN · PREPARACIÓN</span><h2>Documentos pendientes de revisión</h2>
+ <p class="muted">Cuando Stripe confirme un pago, aparecerá aquí un borrador con el importe cobrado y los datos fiscales recopilados. Puedes revisar y corregir los datos antes de emitir la factura.</p></div>
+ <button id="refreshInvoiceReviews" type="button" class="ghost mini">Actualizar facturación</button></div>
+ <p class="adops-intake"><strong>Emisión fiscal todavía desactivada.</strong> Estos documentos no son facturas emitidas ni tienen numeración. No se envía nada al cliente ni a tu correo hasta que el sistema de facturación y el IGIC estén correctamente configurados.</p>
+ <div id="invoiceReviewsList" class="results" role="status" aria-live="polite"><p class="muted">Cargando pagos confirmados…</p></div>
+</div>
 <details class="adops-advanced"><summary>Herramientas avanzadas: accesos, campañas y registros anteriores</summary>
 
 <div class="card marketing-overview"><h2>Accesos privados de anunciantes</h2>
