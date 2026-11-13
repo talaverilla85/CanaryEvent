@@ -9,6 +9,7 @@ import {sendChangesRequestedEmail,advertiserMailStatus} from '../lib/advertiser-
 import {ensureApprovedPayment,stripePaymentsReady} from '../lib/stripe-advertising.js';
 import {schedulePaidDraft} from '../lib/advertiser-publication.js';
 import {editPaidCreative,setPaidPublicationEnabled} from '../lib/paid-ad-edit.js';
+import {listAdvertisingArchives,changeAdvertisingArchive} from '../lib/advertising-archive.js';
 
 const statuses = new Set(['unreviewed','approved','needs_review','rejected']);
 const kinds = new Set(['house','paid']);
@@ -603,6 +604,9 @@ export default async function handler(req,res){
        privacy_url:privacy?privacyUrl():null,database_configured:!!process.env.DATABASE_URL,
        advertising_mail:advertiserMailStatus(),accepting_payments:stripePaymentsReady()});
     }
+    if(req.method==='GET'&&op==='advertising-archives')return json(res,200,await listAdvertisingArchives(sql));
+    if(req.method==='POST'&&op==='advertising-archive')
+      return json(res,200,await changeAdvertisingArchive(sql,data(req)));
     if(req.method==='GET'&&op==='advertiser-accounts')return json(res,200,await advertiserAccounts(sql));
     if(req.method==='GET'&&op==='advertiser-drafts')return json(res,200,await advertiserDrafts(sql));
     if(req.method==='GET'&&op==='advertiser-draft-image'){
