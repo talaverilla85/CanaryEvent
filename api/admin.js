@@ -1,4 +1,6 @@
 import { createHmac, createHash, randomBytes, randomUUID } from 'node:crypto';
+// Uploaded WebP creatives can be ~800 KB before base64 encoding; accept the encoded form safely.
+export const config={api:{bodyParser:{sizeLimit:'2mb'}}};
 import { authenticated, db, isConfigured, json, passwordValid, safeText, sameOrigin, setSession, validLocalDate } from '../lib/admin-auth.js';
 import {privacyUrl,missingPrivacyIdentity} from '../lib/privacy.js';
 import {resendTestConfiguration,sendResendAdminTest} from '../lib/resend-test.js';
