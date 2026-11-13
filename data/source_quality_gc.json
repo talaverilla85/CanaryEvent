@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-13T20:55:38+00:00",
+  "checked_at": "2026-11-13T21:43:18+00:00",
   "quality_counts": {
     "publicados": 454,
     "recintos_sin_verificar": 48,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 315,
+    "precios_sin_confirmar": 316,
     "distancia_a_centro_municipal": 307,
-    "fuentes_con_error": 3,
+    "fuentes_con_error": 2,
     "duplicados_potenciales": 2
   },
   "sources": [
@@ -15,7 +15,7 @@
       "estado": "operativa",
       "publicados": 13,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 6,
+      "precio_sin_confirmar": 7,
       "distancia_al_centro_municipal": 13,
       "fichas_leidas_en_esta_ejecucion": 10,
       "error": ""
@@ -77,18 +77,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 28,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 9,
+      "fichas_leidas_en_esta_ejecucion": 28,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 17,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 17,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "fichas_leidas_en_esta_ejecucion": 17,
+      "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -462,10 +462,6 @@
     }
   ],
   "reported_errors": [
-    {
-      "source": "Auditorio Alfredo Kraus · programación oficial",
-      "error": "RuntimeError"
-    },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
