@@ -54,6 +54,6 @@ class CommercialAuditContract(unittest.TestCase):
   self.assertNotIn("Tu contratación está registrada y queda pendiente de su publicación",self.mail)
   self.assertIn("Puedes consultar las fechas y el estado de tu campaña",self.mail)
   self.assertIn("No se ha realizado ningún cobro ni se ha publicado el anuncio.",self.mail)
-  self.assertIn("Deactivación",self.tests.replace("Desactivación","Deactivación"))
+  self.assertIn("Desactivación del correo impide envíos reales al anunciante",self.tests)
 
 if __name__=="__main__":unittest.main()
