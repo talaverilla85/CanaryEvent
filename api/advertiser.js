@@ -84,6 +84,7 @@ export default async function handler(req,res){
   ELSE NULL END AS published_enabled,
   EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
   FROM advertiser_campaign_drafts d WHERE d.advertiser_id=${a.id}
+   AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=d.id::text)
   ORDER BY d.created_at DESC LIMIT 100`;
   return json(res,200,{campaigns:rows.map(d=>({id:Number(d.id),plan:d.plan,days:d.days,price_cents:d.price_cents,municipalities:d.municipalities,
   placement:d.placement,advertiser:d.advertiser,title:d.title,description:d.description,destination:d.destination,image_alt:d.image_alt,
@@ -95,7 +96,7 @@ export default async function handler(req,res){
  }
  if(req.method==='GET'&&op==='artwork'){
   const id=positive(req.query?.id);if(!id)return json(res,404,{error:'No encontrado'});
-  const [r]=await sql`SELECT i.mime_type,i.image_data FROM advertiser_campaign_draft_images i JOIN advertiser_campaign_drafts d ON d.id=i.draft_id WHERE d.id=${id} AND d.advertiser_id=${a.id}`;
+  const [r]=await sql`SELECT i.mime_type,i.image_data FROM advertiser_campaign_draft_images i JOIN advertiser_campaign_drafts d ON d.id=i.draft_id WHERE d.id=${id} AND d.advertiser_id=${a.id} AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=d.id::text)`;
   if(!r)return json(res,404,{error:'Imagen no encontrada'});
   const bytes=typeof r.image_data==='string'?Buffer.from(r.image_data.replace(/^\\x/,''),'hex'):Buffer.from(r.image_data);
   res.setHeader('Content-Type',r.mime_type);res.setHeader('Content-Disposition','inline');
@@ -107,7 +108,7 @@ export default async function handler(req,res){
   if(!id)return json(res,400,{error:'Selecciona un borrador válido'});
   const [draft]=await sql`SELECT d.id,d.status,d.campaign_start,
     EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
-    FROM advertiser_campaign_drafts d WHERE d.id=${id} AND d.advertiser_id=${a.id}`;
+    FROM advertiser_campaign_drafts d WHERE d.id=${id} AND d.advertiser_id=${a.id} AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=d.id::text)`;
   if(!draft)return json(res,404,{error:'Anuncio no encontrado'});
   if(!['draft','changes_requested'].includes(draft.status))
     return json(res,409,{error:'La campaña ya está en revisión o no admite modificaciones'});
@@ -116,6 +117,7 @@ export default async function handler(req,res){
   const [done]=await sql`UPDATE advertiser_campaign_drafts SET status='submitted',
      review_note=NULL,updated_at=now()
      WHERE id=${id} AND advertiser_id=${a.id} AND status IN ('draft','changes_requested')
+      AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=advertiser_campaign_drafts.id::text)
      RETURNING id`;
   return done?json(res,200,{submitted:true,id:Number(done.id),payment_enabled:false})
     :json(res,409,{error:'La campaña ha cambiado de estado'});
