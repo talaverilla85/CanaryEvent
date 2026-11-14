@@ -74,6 +74,28 @@
  <p class="muted small adops-safe-delete-note">«Quitar del panel» mueve el registro a Archivados, donde puedes recuperarlo. Los pagos y datos contables nunca se eliminan. La campaña principal de AriMar está protegida.</p>
 </div>
 <div class="card invoice-review-panel" id="invoiceReviewPanel">
+ <section class="invoice-issuer-section" aria-labelledby="invoiceIssuerTitle">
+  <div class="adops-heading">
+   <div><span class="eyebrow">EMISOR · PERSONA FÍSICA</span><h2 id="invoiceIssuerTitle">Datos fiscales del autónomo</h2>
+    <p class="muted">D’Parranda será la marca comercial. Las facturas se emitirán a tu nombre y NIF/NIE, no a nombre de AriMar. Completa esta información en el panel privado.</p></div>
+   <span id="invoiceIssuerState" class="muted small" role="status">Comprobando configuración…</span>
+  </div>
+  <form id="invoiceIssuerForm" autocomplete="off">
+   <div class="invoice-review-form">
+    <label class="full">Nombre y apellidos fiscales<input name="legal_name" maxlength="180" placeholder="Nombre y dos apellidos"></label>
+    <label>NIF / NIE<input name="tax_id" maxlength="24" placeholder="NIF o NIE" autocapitalize="characters" spellcheck="false"></label>
+    <label>Correo de copia de futuras facturas<input name="copy_email" type="email" maxlength="180" placeholder="hola@dparranda.es"></label>
+    <label class="full">Domicilio fiscal<input name="billing_address" maxlength="220"></label>
+    <label>Código postal<input name="billing_postal" maxlength="20"></label>
+    <label>Localidad<input name="billing_city" maxlength="110"></label>
+    <label>Provincia<input name="billing_region" maxlength="110"></label>
+    <label>País<input name="billing_country" maxlength="90" value="España"></label>
+   </div>
+   <div class="actions"><button id="saveInvoiceIssuer" type="submit" class="primary mini">Guardar mis datos fiscales</button></div>
+  </form>
+  <p class="muted small"><strong>IGIC pendiente de confirmar:</strong> podría corresponder un régimen general, REPEP u otro tratamiento según tu alta y el destinatario. No se aplicará automáticamente ningún porcentaje hasta que se configure.</p>
+  <p class="muted small"><strong>Envío de facturas desactivado:</strong> guardar estos datos no emite documentos oficiales ni envía correos. La copia se enviará a la dirección indicada cuando se habilite la emisión fiscal.</p>
+ </section>
  <div class="adops-heading"><div><span class="eyebrow">FACTURACIÓN · PREPARACIÓN</span><h2>Documentos pendientes de revisión</h2>
  <p class="muted">Cuando Stripe confirme un pago, aparecerá aquí un borrador con el importe cobrado y los datos fiscales recopilados. Puedes revisar y corregir los datos antes de emitir la factura.</p></div>
  <button id="refreshInvoiceReviews" type="button" class="ghost mini">Actualizar facturación</button></div>
@@ -99,5 +121,5 @@
 </section></main>
 <div id="dialog" class="dialog hidden" aria-hidden="true"><div class="shade" data-close="true"></div><div id="sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"></div></div>
 <div id="feedback" role="status" aria-live="polite"></div>
-<script src="/admin/admin.js?v=7" defer></script>
+<script src="/admin/admin.js?v=8" defer></script>
 </body></html>
