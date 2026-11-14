@@ -38,9 +38,11 @@ class SelfEmployedIssuerContract(unittest.TestCase):
   self.assertIn("fiscal_issuance_enabled:false",self.issuer)
   self.assertIn("emails_sent:false",self.issuer)
   self.assertIn("copy_email TEXT NOT NULL DEFAULT 'hola@dparranda.es'",self.schema)
+  self.assertIn('igic_general_rate_percent SMALLINT NOT NULL DEFAULT 7',self.schema)
+  self.assertIn('prices_include_igic:true',self.issuer)
  def test_config_validation_does_not_auto_apply_igic(self):
   self.assertIn("tax_treatment:'pending'",self.issuer)
-  self.assertNotIn('igic_rate',self.schema.lower())
+  self.assertIn('igic_general_rate_percent:7',self.issuer)
   self.assertIn('taxIdPattern',self.issuer)
   self.assertIn("validEmail(profile.copy_email)",self.issuer)
 
