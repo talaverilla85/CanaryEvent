@@ -6,7 +6,8 @@ import {expectedAmount,ensureApprovedPayment,stripePaymentsReady} from '../lib/s
 import {createEmailAccessToken,parseEmailAccessToken,sendWelcomeEmail,
  sendChangesRequestedEmail,sendPaymentApprovedEmail,sendPaymentConfirmedEmail} from '../lib/advertiser-mail.js';
 import {canaryToday} from '../lib/advertiser-publication.js';
-import {prepareInvoiceReview,listInvoiceReviews,updateInvoiceReview,invoiceReviewPreview} from '../lib/advertising-invoice-reviews.js';
+import {prepareInvoiceReview,listInvoiceReviews,updateInvoiceReview,invoiceReviewPreview,inclusiveIgicBreakdown} from '../lib/advertising-invoice-reviews.js';
+import {loadInvoiceIssuer,saveInvoiceIssuer} from '../lib/advertising-invoice-issuer.js';
 
 const env={
  DPARRANDA_LEADS_ENABLED:'true',
@@ -205,4 +206,74 @@ test('La bandeja fiscal informa expresamente que la emisión automática está d
  assert.deepEqual(r.invoices,[]);
  assert.equal(r.auto_issuance,false);
  assert.equal(r.legal_invoice_emission,false);
+});
+
+test('IGIC general 7% incluido en cada precio publicitario sin recargar la compra',()=>{
+ const examples=[
+  {total:1900,base:1776,igic:124},
+  {total:4900,base:4579,igic:321},
+  {total:9900,base:9252,igic:648},
+  {total:3800,base:3551,igic:249},
+  {total:9800,base:9159,igic:641},
+  {total:19800,base:18505,igic:1295}
+ ];
+ for(const example of examples){
+  const result=inclusiveIgicBreakdown(example.total);
+  assert.equal(result.base_cents,example.base);
+  assert.equal(result.igic_cents,example.igic);
+  assert.equal(result.total_cents,example.total);
+  assert.equal(result.base_cents+result.igic_cents,result.total_cents);
+  assert.equal(result.rate_percent,7);
+ }
+ assert.throws(()=>inclusiveIgicBreakdown(-5),/inválido/);
+});
+test('Datos del autónomo e IGIC al 7% permanecen en modo revisión sin emisión fiscal',async()=>{
+ const result=await loadInvoiceIssuer(async()=>[]);
+ assert.equal(result.issuer.issuer_type,'individual');
+ assert.equal(result.issuer.igic_general_rate_percent,7);
+ assert.equal(result.prices_include_igic,true);
+ assert.equal(result.fiscal_issuance_enabled,false);
+ assert.equal(result.tax_treatment,'pending');
+ assert.equal(result.issuer.copy_email,'hola@dparranda.es');
+ const sql=async(q,...params)=>[{
+  issuer_type:'individual',legal_name:'Persona de pruebas',tax_id:'12345678Z',
+  billing_address:'Calle de pruebas 1',billing_postal:'35118',
+  billing_city:'Agüimes',billing_region:'Las Palmas',billing_country:'España',
+  copy_email:'hola@dparranda.es',igic_general_rate_percent:7
+ }];
+ const saved=await saveInvoiceIssuer(sql,{
+  issuer_type:'individual',legal_name:'Persona de pruebas',tax_id:'12345678Z',
+  billing_address:'Calle de pruebas 1',billing_postal:'35118',
+  billing_city:'Agüimes',billing_region:'Las Palmas',billing_country:'España',
+  copy_email:'hola@dparranda.es'
+ });
+ assert.equal(saved.saved,true);
+ assert.equal(saved.fiscal_issuance_enabled,false);
+ assert.equal(saved.emails_sent,false);
+ await assert.rejects(()=>saveInvoiceIssuer(sql,{issuer_type:'company'}),/autónomo/);
+});
+test('El borrador de factura muestra desglose orientativo a 7% pero no factura oficial',async()=>{
+ let calls=0;
+ const sql=async()=>{
+  calls++;
+  if(calls===1)return [{
+   title:'Campaña prueba',plan:'local',days:30,placement:'banner',
+   company_name:'Cliente',total_cents:1900,starts_at:'01/12/2026',ends_at:'30/12/2026'
+  }];
+  return [{
+   issuer_type:'individual',legal_name:'Persona de pruebas',tax_id:'12345678Z',
+   billing_address:'Calle de pruebas 1',billing_postal:'35118',
+   billing_city:'Agüimes',billing_region:'Las Palmas',billing_country:'España',
+   copy_email:'hola@dparranda.es',igic_general_rate_percent:7
+  }];
+ };
+ const html=await invoiceReviewPreview(sql,42);
+ assert.match(html,/BORRADOR INTERNO · NO ES FACTURA/);
+ assert.match(html,/IGIC general 7 %/);
+ assert.match(html,/17,76/);
+ assert.match(html,/1,24/);
+ assert.match(html,/19,00/);
+ assert.match(html,/REPEP/);
+ assert.match(html,/NIF\/NIE: 12345678Z/);
+ assert.equal(calls,2);
 });

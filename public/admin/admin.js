@@ -108,7 +108,7 @@ $('sendResendTest').addEventListener('click',async()=>{
  }catch(err){status.textContent=err.message;message('No se ha podido enviar la prueba')}
  finally{button.disabled=false}
 });
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives(),loadInvoiceReviews()]);if(location.hash==='#publicidad')setSection('ads')}
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives(),loadInvoiceReviews(),loadInvoiceIssuerProfile()]);if(location.hash==='#publicidad')setSection('ads')}
 function setSection(next){
  section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
  for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){
@@ -219,6 +219,37 @@ function editEvent(row){
  };
 }
 function isArchived(source,id){return advertisingArchives.some(a=>a.source===source&&a.record_id===String(id))}
+async function loadInvoiceIssuerProfile(){
+ const form=$('invoiceIssuerForm'),state=$('invoiceIssuerState');
+ if(!form||!state)return;
+ try{
+  const result=await api('invoice-issuer');
+  const issuer=result.issuer||{};
+  for(const name of ['legal_name','tax_id','billing_address','billing_postal','billing_city',
+    'billing_region','billing_country','copy_email']){
+    const control=form.elements.namedItem(name);
+    if(control)control.value=issuer[name]||'';
+  }
+  state.textContent=result.data_complete?
+   'Datos completados · pendiente de configuración fiscal':
+   'Pendiente de completar · no se emiten facturas';
+ }catch(err){
+  state.textContent='Error al consultar el emisor: '+err.message;
+ }
+}
+$('invoiceIssuerForm').addEventListener('submit',async event=>{
+ event.preventDefault();
+ const form=event.currentTarget,button=$('saveInvoiceIssuer');
+ button.disabled=true;
+ try{
+  const fields=Object.fromEntries(new FormData(form).entries());
+  const result=await api('invoice-issuer-update',{issuer_type:'individual',...fields});
+  $('invoiceIssuerState').textContent=result.data_complete?
+   'Datos completados · pendiente de configuración fiscal':'Datos guardados · pendiente de completar';
+  message(result.message);
+ }catch(err){message(err.message)}
+ finally{button.disabled=false}
+});
 async function loadInvoiceReviews(){
  const node=$('invoiceReviewsList');if(!node)return;
  try{
