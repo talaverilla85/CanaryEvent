@@ -11,6 +11,7 @@ import {schedulePaidDraft,canaryToday} from '../lib/advertiser-publication.js';
 import {editPaidCreative,setPaidPublicationEnabled} from '../lib/paid-ad-edit.js';
 import {listAdvertisingArchives,changeAdvertisingArchive} from '../lib/advertising-archive.js';
 import {listInvoiceReviews,updateInvoiceReview,invoiceReviewPreview} from '../lib/advertising-invoice-reviews.js';
+import {loadInvoiceIssuer,saveInvoiceIssuer} from '../lib/advertising-invoice-issuer.js';
 
 const statuses = new Set(['unreviewed','approved','needs_review','rejected']);
 const kinds = new Set(['house','paid']);
@@ -616,6 +617,9 @@ export default async function handler(req,res){
        privacy_url:privacy?privacyUrl():null,database_configured:!!process.env.DATABASE_URL,
        advertising_mail:advertiserMailStatus(),accepting_payments:stripePaymentsReady()});
     }
+    if(req.method==='GET'&&op==='invoice-issuer')return json(res,200,await loadInvoiceIssuer(sql));
+    if(req.method==='POST'&&op==='invoice-issuer-update')
+      return json(res,200,await saveInvoiceIssuer(sql,data(req)));
     if(req.method==='GET'&&op==='invoice-reviews')return json(res,200,await listInvoiceReviews(sql));
     if(req.method==='POST'&&op==='invoice-review-update')
       return json(res,200,await updateInvoiceReview(sql,data(req)));
@@ -687,7 +691,7 @@ export default async function handler(req,res){
     if(req.method==='POST'&&op==='house-ad-status')return json(res,200,await setHouseCampaignEnabled(sql,data(req)));
     return json(res,404,{error:'Operación desconocida'});
   }catch(err){
-    if(err instanceof Error && /inválid|Indica |debe |Debes |Solo |No se encuentra|No se ha encontrado|No puedes|no encontrado|No está|protegida|bloqueada|Archivados|archiv|Retira|Fechas|La fecha del evento|Stripe no está|Acción de archivo|Documento no válido|Acción no permitida|Indica la razón social|Para revisar, completa|Documento pendiente/.test(err.message))
+    if(err instanceof Error && /inválid|Indica |debe |Debes |Solo |No se encuentra|No se ha encontrado|No puedes|no encontrado|No está|protegida|bloqueada|Archivados|archiv|Retira|Fechas|La fecha del evento|Stripe no está|Acción de archivo|Documento no válido|Acción no permitida|Indica la razón social|Para revisar, completa|Documento pendiente|facturar como autónomo|formato del NIF|correo válido/.test(err.message))
       return json(res,400,{error:err.message});
     console.error('DParranda admin request failed:',err?.name||'Error');
     return json(res,500,{error:'No se pudo completar la operación'});
