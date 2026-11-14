@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-13T21:55:47+00:00",
-  "not_published": 48,
+  "updated_at": "2026-11-14T12:32:04+00:00",
+  "not_published": 47,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -220,42 +220,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 228,
-      "title": "Gran Gala de Mogán Talent 2026",
-      "start": "2026-11-13",
-      "end": null,
-      "municipality": "Mogán",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0015/gran-gala-de-mogan-talent-2026",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 225,
-      "title": "I Encuentro con el Teatro Chino: Perspectivas Interculturales",
-      "start": "2026-11-13T16:00:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0012/i-encuentro-con-el-teatro-chino-perspectivas-interculturales",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/13/i-encuentro-teatro-chino-perspectivas-interculturales",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 226,
-      "title": "Semana de la Cultura ULPGC",
-      "start": "2026-11-13T20:00:00",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0013/semana-de-la-cultura-ulpgc",
-      "organizer_url": "https://www.ulpgc.es/agenda/2026/11/09/semana-cultura-ulpgc",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 233,
       "title": "Ruta Astronómica: Degollada del Salao - Garañón",
       "start": "2026-11-14",
@@ -436,6 +400,18 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
+      "id": 948,
+      "title": "RECORRIDO POR UN BARRIO ANTIGUO",
+      "start": "2026-11-21",
+      "end": null,
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01UZz0=",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
       "id": 289,
       "title": "Teror Patea por GC: Cruz Tejeda - Talayón - Teror",
       "start": "2026-11-21T09:00:00",
@@ -541,6 +517,18 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261128-0003/i-congreso-internacional-de-formacion-senior",
       "organizer_url": "https://www.ulpgc.es/agenda/2026/11/26/i-congreso-internacional-formacion-senior",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 949,
+      "title": "GRAN RETO PUZZLERO III",
+      "start": "2026-12-05",
+      "end": null,
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01Uaz0=",
+      "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {

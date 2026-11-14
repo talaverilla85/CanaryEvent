@@ -1,22 +1,22 @@
 {
-  "checked_at": "2026-11-13T21:55:47+00:00",
+  "checked_at": "2026-11-14T12:32:04+00:00",
   "quality_counts": {
-    "publicados": 454,
-    "recintos_sin_verificar": 48,
+    "publicados": 434,
+    "recintos_sin_verificar": 47,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 316,
-    "distancia_a_centro_municipal": 307,
-    "fuentes_con_error": 2,
-    "duplicados_potenciales": 2
+    "precios_sin_confirmar": 300,
+    "distancia_a_centro_municipal": 292,
+    "fuentes_con_error": 3,
+    "duplicados_potenciales": 1
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 13,
+      "publicados": 11,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 7,
-      "distancia_al_centro_municipal": 13,
+      "precio_sin_confirmar": 5,
+      "distancia_al_centro_municipal": 11,
       "fichas_leidas_en_esta_ejecucion": 10,
       "error": ""
     },
@@ -37,17 +37,17 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 11,
-      "fichas_leidas_en_esta_ejecucion": 9,
+      "fichas_leidas_en_esta_ejecucion": 8,
       "error": ""
     },
     {
       "source": "Circuito de Artes Escénicas GC",
       "estado": "operativa",
-      "publicados": 17,
+      "publicados": 15,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 17,
-      "distancia_al_centro_municipal": 15,
-      "fichas_leidas_en_esta_ejecucion": 21,
+      "precio_sin_confirmar": 15,
+      "distancia_al_centro_municipal": 13,
+      "fichas_leidas_en_esta_ejecucion": 17,
       "error": ""
     },
     {
@@ -82,13 +82,13 @@
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "operativa",
-      "publicados": 17,
+      "estado": "error",
+      "publicados": 15,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 17,
+      "precio_sin_confirmar": 15,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 17,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -97,7 +97,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 8,
       "distancia_al_centro_municipal": 8,
-      "fichas_leidas_en_esta_ejecucion": 15,
+      "fichas_leidas_en_esta_ejecucion": 14,
       "error": ""
     },
     {
@@ -163,11 +163,11 @@
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
-      "publicados": 1,
-      "recinto_sin_verificar": 8,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 11,
+      "publicados": 3,
+      "recinto_sin_verificar": 10,
+      "precio_sin_confirmar": 3,
+      "distancia_al_centro_municipal": 3,
+      "fichas_leidas_en_esta_ejecucion": 14,
       "error": ""
     },
     {
@@ -253,11 +253,11 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 27,
+      "publicados": 25,
       "recinto_sin_verificar": 7,
-      "precio_sin_confirmar": 27,
-      "distancia_al_centro_municipal": 27,
-      "fichas_leidas_en_esta_ejecucion": 33,
+      "precio_sin_confirmar": 25,
+      "distancia_al_centro_municipal": 25,
+      "fichas_leidas_en_esta_ejecucion": 31,
       "error": ""
     },
     {
@@ -333,11 +333,11 @@
     {
       "source": "Ayuntamiento de Moya · Otoño es Cultura 2026",
       "estado": "operativa",
-      "publicados": 4,
+      "publicados": 3,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 4,
-      "distancia_al_centro_municipal": 4,
-      "fichas_leidas_en_esta_ejecucion": 4,
+      "precio_sin_confirmar": 3,
+      "distancia_al_centro_municipal": 3,
+      "fichas_leidas_en_esta_ejecucion": 3,
       "error": ""
     },
     {
@@ -382,21 +382,21 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 160,
-      "recinto_sin_verificar": 32,
-      "precio_sin_confirmar": 133,
-      "distancia_al_centro_municipal": 87,
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 151,
+      "recinto_sin_verificar": 29,
+      "precio_sin_confirmar": 124,
+      "distancia_al_centro_municipal": 81,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 74,
+      "publicados": 70,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 73,
+      "distancia_al_centro_municipal": 69,
       "fichas_leidas_en_esta_ejecucion": 114,
       "error": ""
     },
@@ -463,6 +463,10 @@
   ],
   "reported_errors": [
     {
+      "source": "Auditorio Alfredo Kraus · programación oficial",
+      "error": "RuntimeError"
+    },
+    {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
     },
@@ -474,11 +478,11 @@
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 32
+      "count": 29
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 8
+      "count": 10
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
@@ -635,30 +639,6 @@
       "source_url": "https://eventos.santabrigida.es/eventos/aprende-diseno-e-impresion-en-3-d/"
     },
     {
-      "id": 228,
-      "title": "Gran Gala de Mogán Talent 2026",
-      "start": "2026-11-13",
-      "municipality": "Mogán",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0015/gran-gala-de-mogan-talent-2026"
-    },
-    {
-      "id": 225,
-      "title": "I Encuentro con el Teatro Chino: Perspectivas Interculturales",
-      "start": "2026-11-13T16:00:00",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0012/i-encuentro-con-el-teatro-chino-perspectivas-interculturales"
-    },
-    {
-      "id": 226,
-      "title": "Semana de la Cultura ULPGC",
-      "start": "2026-11-13T20:00:00",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261113-0013/semana-de-la-cultura-ulpgc"
-    },
-    {
       "id": 233,
       "title": "Ruta Astronómica: Degollada del Salao - Garañón",
       "start": "2026-11-14",
@@ -689,6 +669,30 @@
       "municipality": "Las Palmas de Gran Canaria",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0017/iii-mar-mujeres-africanas-rodando-2026"
+    },
+    {
+      "id": 532,
+      "title": "VI EDICIÓN DE ARUCAS ES ARTE",
+      "start": "2026-11-14",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrMk5RPT0="
+    },
+    {
+      "id": 794,
+      "title": "SENDEROS EN FAMILIA - SENDERO LA MONTAÑETA - CAMINO REAL - ACEQUIA ALTA",
+      "start": "2026-11-14",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrNU5nPT0="
+    },
+    {
+      "id": 931,
+      "title": "ARUCAS ES ARTE 2026",
+      "start": "2026-11-14",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01UTT0="
     }
   ],
   "guidance": [
