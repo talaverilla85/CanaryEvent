@@ -1,13 +1,13 @@
 {
-  "checked_at": "2026-11-14T12:41:17+00:00",
+  "checked_at": "2026-11-15T12:56:18+00:00",
   "quality_counts": {
-    "publicados": 434,
-    "recintos_sin_verificar": 47,
+    "publicados": 409,
+    "recintos_sin_verificar": 42,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 300,
-    "distancia_a_centro_municipal": 292,
-    "fuentes_con_error": 3,
-    "duplicados_potenciales": 1
+    "precios_sin_confirmar": 285,
+    "distancia_a_centro_municipal": 273,
+    "fuentes_con_error": 4,
+    "duplicados_potenciales": 0
   },
   "sources": [
     {
@@ -15,49 +15,49 @@
       "estado": "operativa",
       "publicados": 11,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 5,
+      "precio_sin_confirmar": 3,
       "distancia_al_centro_municipal": 11,
-      "fichas_leidas_en_esta_ejecucion": 10,
+      "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Agüimes",
       "estado": "operativa",
-      "publicados": 1,
+      "publicados": 0,
       "recinto_sin_verificar": 1,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 2,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
     {
       "source": "Juventud Las Palmas de Gran Canaria",
       "estado": "operativa",
-      "publicados": 11,
+      "publicados": 10,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 11,
+      "distancia_al_centro_municipal": 10,
       "fichas_leidas_en_esta_ejecucion": 8,
       "error": ""
     },
     {
       "source": "Circuito de Artes Escénicas GC",
       "estado": "operativa",
-      "publicados": 15,
+      "publicados": 13,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 15,
-      "distancia_al_centro_municipal": 13,
-      "fichas_leidas_en_esta_ejecucion": 17,
+      "precio_sin_confirmar": 13,
+      "distancia_al_centro_municipal": 12,
+      "fichas_leidas_en_esta_ejecucion": 15,
       "error": ""
     },
     {
       "source": "LPA Cultura · agenda municipal oficial",
       "estado": "operativa",
-      "publicados": 4,
+      "publicados": 3,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 4,
-      "fichas_leidas_en_esta_ejecucion": 4,
+      "distancia_al_centro_municipal": 3,
+      "fichas_leidas_en_esta_ejecucion": 3,
       "error": ""
     },
     {
@@ -77,18 +77,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 28,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 26,
+      "fichas_leidas_en_esta_ejecucion": 28,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "error",
-      "publicados": 15,
+      "estado": "operativa",
+      "publicados": 13,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 15,
+      "precio_sin_confirmar": 13,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "fichas_leidas_en_esta_ejecucion": 10,
+      "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -97,7 +97,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 8,
       "distancia_al_centro_municipal": 8,
-      "fichas_leidas_en_esta_ejecucion": 14,
+      "fichas_leidas_en_esta_ejecucion": 13,
       "error": ""
     },
     {
@@ -107,7 +107,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 11,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 13,
+      "fichas_leidas_en_esta_ejecucion": 12,
       "error": ""
     },
     {
@@ -147,7 +147,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 5,
+      "fichas_leidas_en_esta_ejecucion": 4,
       "error": ""
     },
     {
@@ -164,21 +164,21 @@
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
       "publicados": 3,
-      "recinto_sin_verificar": 10,
+      "recinto_sin_verificar": 9,
       "precio_sin_confirmar": 3,
       "distancia_al_centro_municipal": 3,
-      "fichas_leidas_en_esta_ejecucion": 14,
+      "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 1,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "Galdar calendar returned no future structured events"
     },
     {
       "source": "Municipio · descubrimiento oficial · Firgas",
@@ -192,12 +192,12 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "estado": "sin_resultados_en_esta_revision",
-      "publicados": 1,
+      "estado": "operativa",
+      "publicados": 2,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 0,
+      "precio_sin_confirmar": 2,
+      "distancia_al_centro_municipal": 2,
+      "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
     {
@@ -254,20 +254,20 @@
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
       "publicados": 25,
-      "recinto_sin_verificar": 7,
+      "recinto_sin_verificar": 6,
       "precio_sin_confirmar": 25,
       "distancia_al_centro_municipal": 25,
-      "fichas_leidas_en_esta_ejecucion": 31,
+      "fichas_leidas_en_esta_ejecucion": 30,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Teror · programación del Auditorio",
       "estado": "operativa",
-      "publicados": 11,
+      "publicados": 10,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 3,
-      "distancia_al_centro_municipal": 11,
-      "fichas_leidas_en_esta_ejecucion": 11,
+      "distancia_al_centro_municipal": 10,
+      "fichas_leidas_en_esta_ejecucion": 10,
       "error": ""
     },
     {
@@ -293,11 +293,11 @@
     {
       "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
       "estado": "operativa",
-      "publicados": 33,
+      "publicados": 31,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 33,
-      "distancia_al_centro_municipal": 33,
-      "fichas_leidas_en_esta_ejecucion": 33,
+      "precio_sin_confirmar": 31,
+      "distancia_al_centro_municipal": 31,
+      "fichas_leidas_en_esta_ejecucion": 31,
       "error": ""
     },
     {
@@ -317,18 +317,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 10,
+      "fichas_leidas_en_esta_ejecucion": 9,
       "error": ""
     },
     {
       "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
-      "estado": "operativa",
-      "publicados": 1,
+      "estado": "error",
+      "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 1,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "ValueError: EcoEntradas listing has wrong town or island"
     },
     {
       "source": "Ayuntamiento de Moya · Otoño es Cultura 2026",
@@ -352,12 +352,12 @@
     },
     {
       "source": "Ayuntamiento de Mogán · actividades documentadas",
-      "estado": "operativa",
-      "publicados": 1,
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 1,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -383,21 +383,21 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "sin_resultados_en_esta_revision",
-      "publicados": 151,
-      "recinto_sin_verificar": 29,
-      "precio_sin_confirmar": 124,
-      "distancia_al_centro_municipal": 81,
+      "publicados": 138,
+      "recinto_sin_verificar": 26,
+      "precio_sin_confirmar": 116,
+      "distancia_al_centro_municipal": 70,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 70,
+      "publicados": 69,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 69,
-      "fichas_leidas_en_esta_ejecucion": 114,
+      "distancia_al_centro_municipal": 68,
+      "fichas_leidas_en_esta_ejecucion": 109,
       "error": ""
     },
     {
@@ -407,7 +407,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 4,
+      "fichas_leidas_en_esta_ejecucion": 3,
       "error": ""
     },
     {
@@ -463,12 +463,16 @@
   ],
   "reported_errors": [
     {
-      "source": "Auditorio Alfredo Kraus · programación oficial",
-      "error": "RuntimeError"
+      "source": "Ayuntamiento de Gáldar · agenda de Cultura",
+      "error": "Galdar calendar returned no future structured events"
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
+    },
+    {
+      "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
+      "error": "ValueError: EcoEntradas listing has wrong town or island"
     },
     {
       "source": "Juventud de Ingenio · programa de otoño desglosado",
@@ -478,15 +482,15 @@
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 29
+      "count": 26
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 10
+      "count": 9
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "count": 7
+      "count": 6
     },
     {
       "source": "Ayuntamiento de Agüimes",
@@ -639,36 +643,12 @@
       "source_url": "https://eventos.santabrigida.es/eventos/aprende-diseno-e-impresion-en-3-d/"
     },
     {
-      "id": 233,
-      "title": "Ruta Astronómica: Degollada del Salao - Garañón",
-      "start": "2026-11-14",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0002/ruta-astronomica-degollada-del-salao-garanon"
-    },
-    {
-      "id": 237,
-      "title": "Trofeo Rector - Vóley Playa Mixto",
-      "start": "2026-11-14",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0006/trofeo-rector-voley-playa-mixto"
-    },
-    {
       "id": 246,
       "title": "VI EDICIÓN DE ARUCAS ES ARTE",
       "start": "2026-11-14",
       "municipality": "Arucas",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0016/vi-edicion-de-arucas-es-arte"
-    },
-    {
-      "id": 247,
-      "title": "III MAR. Mujeres Africanas Rodando 2026",
-      "start": "2026-11-14",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0017/iii-mar-mujeres-africanas-rodando-2026"
     },
     {
       "id": 532,
@@ -679,20 +659,44 @@
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrMk5RPT0="
     },
     {
-      "id": 794,
-      "title": "SENDEROS EN FAMILIA - SENDERO LA MONTAÑETA - CAMINO REAL - ACEQUIA ALTA",
-      "start": "2026-11-14",
-      "municipality": "Arucas",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrNU5nPT0="
-    },
-    {
       "id": 931,
       "title": "ARUCAS ES ARTE 2026",
       "start": "2026-11-14",
       "municipality": "Arucas",
       "source_name": "Ayuntamiento de Arucas · agenda municipal",
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01UTT0="
+    },
+    {
+      "id": 932,
+      "title": "DÍA DEL VECINO Y LA VECINA",
+      "start": "2026-11-15",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrNU53PT0="
+    },
+    {
+      "id": 250,
+      "title": "🍂🏔️ VISITA A TEJEDA – FERIA KM 0 🧀🍯",
+      "start": "2026-11-15T08:30:00",
+      "municipality": "Ingenio",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261115-0002/visita-a-tejeda-feria-km-0"
+    },
+    {
+      "id": 904,
+      "title": "El crimen de las espiritistas de Telde en el Centro Cultural",
+      "start": "2026-11-15T19:00:00",
+      "municipality": "Santa Brígida",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/la-casa-de-don-alonso-en-la-plaza-de-la-iglesia/"
+    },
+    {
+      "id": 536,
+      "title": "CONOCE EL CONGRESO Y SENADO",
+      "start": "2026-11-19",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RZMk9BPT0="
     }
   ],
   "guidance": [

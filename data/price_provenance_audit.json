@@ -1,25 +1,22 @@
 {
-  "checked_on": "2026-11-14T12:45:46.597001+00:00",
-  "total_events": 434,
-  "known_price_or_free": 134,
+  "checked_on": "2026-11-15T13:00:30.878623+00:00",
+  "total_events": 409,
+  "known_price_or_free": 124,
   "classification": {
-    "minimum_zero_ambiguous": 7,
-    "free": 16,
-    "minimum_positive": 107,
+    "minimum_zero_ambiguous": 6,
+    "minimum_positive": 102,
+    "free": 12,
     "fixed_positive": 4
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 70,
-    "Juventud Las Palmas de Gran Canaria": 11,
-    "Ayuntamiento de Agüimes": 1,
-    "Ayuntamiento de Mogán · actividades documentadas": 1,
-    "LPA Cultura · agenda municipal oficial": 3,
-    "Portal oficial de Eventos Gran Canaria (Cabildo)": 27,
-    "EcoEntradas · Centro Municipal de Cultura de La Aldea": 1,
-    "Ayuntamiento de Teror · programación del Auditorio": 8,
-    "Ayuntamiento de Ingenio": 6,
+    "TuReservaOnline · agenda de Gran Canaria": 69,
+    "Ayuntamiento de Ingenio": 8,
+    "Juventud Las Palmas de Gran Canaria": 10,
+    "LPA Cultura · agenda municipal oficial": 2,
     "Ayuntamiento de Agüimes · programación de teatros": 4,
-    "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 2
+    "Portal oficial de Eventos Gran Canaria (Cabildo)": 22,
+    "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 2,
+    "Ayuntamiento de Teror · programación del Auditorio": 7
   },
   "issues": [
     {
@@ -30,15 +27,6 @@
       "free": 0,
       "category": "minimum_zero_ambiguous",
       "url": "https://www.tureservaonline.es/es/events/copa-hipica-san-vicente-2627-carrera-de-caballo"
-    },
-    {
-      "id": 848,
-      "title": "PREMIOS TASATE 2026",
-      "source": "TuReservaOnline · agenda de Gran Canaria",
-      "label": "Desde 0 €",
-      "free": 0,
-      "category": "minimum_zero_ambiguous",
-      "url": "https://www.tureservaonline.es/es/events/premios-tasate-2026"
     },
     {
       "id": 814,
