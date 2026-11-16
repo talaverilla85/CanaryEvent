@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-15T12:56:18+00:00",
-  "not_published": 42,
+  "updated_at": "2026-11-16T13:57:21+00:00",
+  "not_published": 34,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -124,30 +124,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 78,
-      "title": "Microcredencial en Propiedad Intelectual y Derechos de Autor",
-      "start": "2026-10-19",
-      "end": "2026-11-15",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0008/microcredencial-en-propiedad-intelectual-y-derechos-de-autor",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 452,
-      "title": "Microcredencial en Propiedad Intelectual y Derechos de Autor",
-      "start": "2026-10-19",
-      "end": "2026-11-15",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0000/microcredencial-en-propiedad-intelectual-y-derechos-de-autor",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 71,
       "title": "Mi espacio, mi poder",
       "start": "2026-10-20",
@@ -216,78 +192,6 @@
       "venue": "Biblioteca Municipal",
       "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "source_url": "https://eventos.santabrigida.es/eventos/aprende-diseno-e-impresion-en-3-d/",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 246,
-      "title": "VI EDICIÓN DE ARUCAS ES ARTE",
-      "start": "2026-11-14",
-      "end": "2026-11-15",
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0016/vi-edicion-de-arucas-es-arte",
-      "organizer_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrMk5RPT0=",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 532,
-      "title": "VI EDICIÓN DE ARUCAS ES ARTE",
-      "start": "2026-11-14",
-      "end": "2026-11-15",
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrMk5RPT0=",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 931,
-      "title": "ARUCAS ES ARTE 2026",
-      "start": "2026-11-14",
-      "end": "2026-11-15",
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01UTT0=",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 932,
-      "title": "DÍA DEL VECINO Y LA VECINA",
-      "start": "2026-11-15",
-      "end": null,
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrNU53PT0=",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 250,
-      "title": "🍂🏔️ VISITA A TEJEDA – FERIA KM 0 🧀🍯",
-      "start": "2026-11-15T08:30:00",
-      "end": null,
-      "municipality": "Ingenio",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261115-0002/visita-a-tejeda-feria-km-0",
-      "organizer_url": "https://ingenio.es/events/%f0%9f%8d%82%f0%9f%8f%94%ef%b8%8f-visita-a-tejeda-feria-km-0-%f0%9f%a7%80%f0%9f%8d%af/",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 904,
-      "title": "El crimen de las espiritistas de Telde en el Centro Cultural",
-      "start": "2026-11-15T19:00:00",
-      "end": "2026-11-15T20:00:00",
-      "municipality": "Santa Brígida",
-      "venue": "CENTRO CULTURAL",
-      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "source_url": "https://eventos.santabrigida.es/eventos/la-casa-de-don-alonso-en-la-plaza-de-la-iglesia/",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },

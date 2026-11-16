@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-11-15T12:56:18+00:00",
+  "checked_at": "2026-11-16T13:57:21+00:00",
   "quality_counts": {
-    "publicados": 409,
-    "recintos_sin_verificar": 42,
+    "publicados": 399,
+    "recintos_sin_verificar": 34,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 285,
-    "distancia_a_centro_municipal": 273,
+    "precios_sin_confirmar": 276,
+    "distancia_a_centro_municipal": 261,
     "fuentes_con_error": 4,
     "duplicados_potenciales": 0
   },
@@ -15,7 +15,7 @@
       "estado": "operativa",
       "publicados": 11,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 3,
+      "precio_sin_confirmar": 4,
       "distancia_al_centro_municipal": 11,
       "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
@@ -73,9 +73,9 @@
     {
       "source": "Teatro Pérez Galdós · programación oficial",
       "estado": "operativa",
-      "publicados": 28,
+      "publicados": 30,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 28,
+      "precio_sin_confirmar": 30,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 28,
       "error": ""
@@ -83,11 +83,11 @@
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
       "estado": "operativa",
-      "publicados": 13,
+      "publicados": 17,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 13,
+      "precio_sin_confirmar": 17,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 10,
+      "fichas_leidas_en_esta_ejecucion": 17,
       "error": ""
     },
     {
@@ -163,10 +163,10 @@
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
-      "publicados": 3,
-      "recinto_sin_verificar": 9,
-      "precio_sin_confirmar": 3,
-      "distancia_al_centro_municipal": 3,
+      "publicados": 2,
+      "recinto_sin_verificar": 6,
+      "precio_sin_confirmar": 2,
+      "distancia_al_centro_municipal": 2,
       "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
@@ -192,12 +192,12 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "estado": "operativa",
-      "publicados": 2,
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 1,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 2,
-      "distancia_al_centro_municipal": 2,
-      "fichas_leidas_en_esta_ejecucion": 1,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -253,11 +253,11 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 25,
-      "recinto_sin_verificar": 6,
-      "precio_sin_confirmar": 25,
-      "distancia_al_centro_municipal": 25,
-      "fichas_leidas_en_esta_ejecucion": 30,
+      "publicados": 27,
+      "recinto_sin_verificar": 5,
+      "precio_sin_confirmar": 27,
+      "distancia_al_centro_municipal": 27,
+      "fichas_leidas_en_esta_ejecucion": 29,
       "error": ""
     },
     {
@@ -273,10 +273,10 @@
     {
       "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
       "estado": "operativa",
-      "publicados": 3,
+      "publicados": 2,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 3,
-      "distancia_al_centro_municipal": 3,
+      "precio_sin_confirmar": 2,
+      "distancia_al_centro_municipal": 2,
       "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
@@ -293,11 +293,11 @@
     {
       "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
       "estado": "operativa",
-      "publicados": 31,
+      "publicados": 25,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 31,
-      "distancia_al_centro_municipal": 31,
-      "fichas_leidas_en_esta_ejecucion": 31,
+      "precio_sin_confirmar": 25,
+      "distancia_al_centro_municipal": 25,
+      "fichas_leidas_en_esta_ejecucion": 25,
       "error": ""
     },
     {
@@ -333,11 +333,11 @@
     {
       "source": "Ayuntamiento de Moya · Otoño es Cultura 2026",
       "estado": "operativa",
-      "publicados": 3,
+      "publicados": 2,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 3,
-      "distancia_al_centro_municipal": 3,
-      "fichas_leidas_en_esta_ejecucion": 3,
+      "precio_sin_confirmar": 2,
+      "distancia_al_centro_municipal": 2,
+      "fichas_leidas_en_esta_ejecucion": 2,
       "error": ""
     },
     {
@@ -383,10 +383,10 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "sin_resultados_en_esta_revision",
-      "publicados": 138,
-      "recinto_sin_verificar": 26,
-      "precio_sin_confirmar": 116,
-      "distancia_al_centro_municipal": 70,
+      "publicados": 130,
+      "recinto_sin_verificar": 22,
+      "precio_sin_confirmar": 108,
+      "distancia_al_centro_municipal": 66,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
@@ -397,7 +397,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 68,
-      "fichas_leidas_en_esta_ejecucion": 109,
+      "fichas_leidas_en_esta_ejecucion": 108,
       "error": ""
     },
     {
@@ -407,7 +407,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 3,
+      "fichas_leidas_en_esta_ejecucion": 4,
       "error": ""
     },
     {
@@ -482,15 +482,15 @@
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 26
+      "count": 22
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 9
+      "count": 6
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "count": 6
+      "count": 5
     },
     {
       "source": "Ayuntamiento de Agüimes",
@@ -579,22 +579,6 @@
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261015-0023/exposicion-fotografica-barreras-de-la-vision-de-tim-parchikov"
     },
     {
-      "id": 78,
-      "title": "Microcredencial en Propiedad Intelectual y Derechos de Autor",
-      "start": "2026-10-19",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0008/microcredencial-en-propiedad-intelectual-y-derechos-de-autor"
-    },
-    {
-      "id": 452,
-      "title": "Microcredencial en Propiedad Intelectual y Derechos de Autor",
-      "start": "2026-10-19",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261019-0000/microcredencial-en-propiedad-intelectual-y-derechos-de-autor"
-    },
-    {
       "id": 71,
       "title": "Mi espacio, mi poder",
       "start": "2026-10-20",
@@ -643,60 +627,76 @@
       "source_url": "https://eventos.santabrigida.es/eventos/aprende-diseno-e-impresion-en-3-d/"
     },
     {
-      "id": 246,
-      "title": "VI EDICIÓN DE ARUCAS ES ARTE",
-      "start": "2026-11-14",
-      "municipality": "Arucas",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261114-0016/vi-edicion-de-arucas-es-arte"
-    },
-    {
-      "id": 532,
-      "title": "VI EDICIÓN DE ARUCAS ES ARTE",
-      "start": "2026-11-14",
-      "municipality": "Arucas",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrMk5RPT0="
-    },
-    {
-      "id": 931,
-      "title": "ARUCAS ES ARTE 2026",
-      "start": "2026-11-14",
-      "municipality": "Arucas",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01UTT0="
-    },
-    {
-      "id": 932,
-      "title": "DÍA DEL VECINO Y LA VECINA",
-      "start": "2026-11-15",
-      "municipality": "Arucas",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrNU53PT0="
-    },
-    {
-      "id": 250,
-      "title": "🍂🏔️ VISITA A TEJEDA – FERIA KM 0 🧀🍯",
-      "start": "2026-11-15T08:30:00",
-      "municipality": "Ingenio",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261115-0002/visita-a-tejeda-feria-km-0"
-    },
-    {
-      "id": 904,
-      "title": "El crimen de las espiritistas de Telde en el Centro Cultural",
-      "start": "2026-11-15T19:00:00",
-      "municipality": "Santa Brígida",
-      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "source_url": "https://eventos.santabrigida.es/eventos/la-casa-de-don-alonso-en-la-plaza-de-la-iglesia/"
-    },
-    {
       "id": 536,
       "title": "CONOCE EL CONGRESO Y SENADO",
       "start": "2026-11-19",
       "municipality": "Arucas",
       "source_name": "Ayuntamiento de Arucas · agenda municipal",
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RZMk9BPT0="
+    },
+    {
+      "id": 283,
+      "title": "Antígona Negra en la Universidad París 8.",
+      "start": "2026-11-20",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0012/antigona-negra-en-la-universidad-paris-8"
+    },
+    {
+      "id": 284,
+      "title": "Antígona Negra en la Universidad París 8.",
+      "start": "2026-11-20",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0013/antigona-negra-en-la-universidad-paris-8"
+    },
+    {
+      "id": 288,
+      "title": "Africana Lab en Madrid: «Un puente, un amuleto, una mesa compartida»",
+      "start": "2026-11-20",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0017/africana-lab-en-madrid-un-puente-un-amuleto-una-mesa-compartida"
+    },
+    {
+      "id": 948,
+      "title": "RECORRIDO POR UN BARRIO ANTIGUO",
+      "start": "2026-11-21",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01UZz0="
+    },
+    {
+      "id": 289,
+      "title": "Teror Patea por GC: Cruz Tejeda - Talayón - Teror",
+      "start": "2026-11-21T09:00:00",
+      "municipality": "Teror",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261121-0000/teror-patea-por-gc-cruz-tejeda-talayon-teror"
+    },
+    {
+      "id": 610,
+      "title": "Multiaventura",
+      "start": "2026-11-21T10:00:00",
+      "municipality": "Santa Lucía de Tirajana",
+      "source_name": "Ayuntamiento de Agüimes",
+      "source_url": "https://eventos.aguimes.es/events/ccdafbbf1c5103317a5db6a225aed63324a31a4b"
+    },
+    {
+      "id": 832,
+      "title": "Canarias Brass Connection en el Centro Cultural",
+      "start": "2026-11-22T12:30:00",
+      "municipality": "Santa Brígida",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/canarias-brass-connection-en-el-centro-cultural/"
+    },
+    {
+      "id": 307,
+      "title": "Exposición y charla 'Conocer para Conservar'",
+      "start": "2026-11-23",
+      "municipality": "Mogán",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261123-0001/exposicion-y-charla-conocer-para-conservar"
     }
   ],
   "guidance": [
