@@ -312,8 +312,10 @@ test('el botón PDF recupera una factura ya creada sin emitir una segunda factur
    return Response.json({content:{uuid:'inv_existing123',main:{
     lines:[{text:'Publicidad de prueba DParranda SANDBOX TEST sin validez fiscal'}]}},
     webUrl:'https://3.facturadirecta.com/company/sandbox/invoice'});
-  if(path.endsWith('/invoices/inv_existing123/pdf')&&method==='PUT')
+  if(path.endsWith('/invoices/inv_existing123/pdf')&&method==='PUT'){
+   assert.deepEqual(JSON.parse(options.body),{mode:'inline'});
    return Response.json({url:'https://files.facturadirecta.com/invoice/test.pdf',filename:'test.pdf'});
+  }
   return fakeResponse(url,options);
  };
  try{
@@ -371,4 +373,33 @@ test('fallo del PDF devuelve motivo y conserva ID de factura sin duplicarla',asy
   assert.equal(result.pdf_url,'');
   assert.match(result.pdf_message,/Plantilla de impresión sin configurar/);
  }finally{globalThis.fetch=prior;restore()}
+});
+
+test('generar PDF de factura nueva utiliza mode inline sin crear otro documento',async()=>{
+ activate();const old=globalThis.fetch;let capturedPdfMode='',posts=0;
+ globalThis.fetch=async(url,options={})=>{
+  const path=String(url),method=options.method||'GET';
+  if(path.endsWith('/invoices/inv_SANDBOX_TEST')&&method==='GET')
+   return Response.json({content:{uuid:'inv_SANDBOX_TEST',main:{
+    lines:[{text:'DParranda SANDBOX TEST sin validez fiscal'}]}}});
+  if(path.endsWith('/invoices/inv_SANDBOX_TEST/pdf')&&method==='PUT'){
+   capturedPdfMode=JSON.parse(options.body).mode;
+   return Response.json({url:'https://files.facturadirecta.com/tmp/test.pdf'});
+  }
+  if(path.endsWith('/invoices')&&method==='POST'){
+   posts++;return Response.json({content:{uuid:'inv_SANDBOX_TEST'}});
+  }
+  return fakeResponse(url,options);
+ };
+ try{
+  const {facturadirectaSandboxAction}=await import('../lib/facturadirecta-sandbox.js');
+  const res=await facturadirectaSandboxAction({
+   action:'invoice',plan:'zona',days:30,test_id:'testpdfdocument01234567890123456789'
+  });
+  assert.equal(res.id,'inv_SANDBOX_TEST');
+  assert.equal(res.pdf_message,'');
+  assert.match(res.pdf_url,/test\.pdf$/);
+  assert.equal(capturedPdfMode,'inline');
+  assert.equal(posts,1);
+ }finally{globalThis.fetch=old;restore()}
 });
