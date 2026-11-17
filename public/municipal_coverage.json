@@ -34,8 +34,8 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 10,
-      "municipal_cards_total": 9,
+      "catalog_cards_total": 8,
+      "municipal_cards_total": 7,
       "other_sources_cards_total": 1,
       "source_health": [
         {

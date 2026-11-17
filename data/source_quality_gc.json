@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-17T17:37:27+00:00",
+  "checked_at": "2026-11-17T18:25:08+00:00",
   "quality_counts": {
-    "publicados": 391,
+    "publicados": 389,
     "recintos_sin_verificar": 36,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 268,
-    "distancia_a_centro_municipal": 253,
-    "fuentes_con_error": 4,
+    "precios_sin_confirmar": 266,
+    "distancia_a_centro_municipal": 251,
+    "fuentes_con_error": 5,
     "duplicados_potenciales": 0
   },
   "sources": [
@@ -77,18 +77,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 30,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 28,
+      "fichas_leidas_en_esta_ejecucion": 16,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 17,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 17,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 9,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -302,12 +302,12 @@
     },
     {
       "source": "Ayuntamientos · programas PDF verificados",
-      "estado": "operativa",
+      "estado": "sin_resultados_en_esta_revision",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 2,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -462,6 +462,10 @@
     }
   ],
   "reported_errors": [
+    {
+      "source": "Auditorio Alfredo Kraus · programación oficial",
+      "error": "RuntimeError"
+    },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
       "error": "Galdar calendar returned no future structured events"
