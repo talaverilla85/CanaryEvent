@@ -1,5 +1,7 @@
 # D’Parranda · Disfruta de tus islas
 
+> **Facturación y devoluciones: EN PAUSA (17/11/2026).** Antes de retomar o activar facturas reales, lee [docs/CONTINUIDAD_FACTURACION.md](docs/CONTINUIDAD_FACTURACION.md) y [docs/facturacion-dparranda.md](docs/facturacion-dparranda.md). El titular aún tiene pendiente el alta censal/IAE de la actividad. Guardar datos fiscales no activa emisión ni reembolsos.
+
 Agenda digital de ocio y cultura de las islas Canarias. En esta primera fase publica eventos verificados de Gran Canaria. La plataforma está optimizada para móvil y tablet y funciona como PWA instalable.
 
 ## Marca y dominio · 29 de octubre de 2026
