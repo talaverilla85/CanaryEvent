@@ -146,3 +146,21 @@ fieldset{border:0;margin:0;padding:0}.field{display:grid;gap:6px;margin-bottom:1
 .invoice-adjustment-warning{background:#fff5e2;border:1px solid #e6c680;border-radius:10px;padding:12px;line-height:1.5}
 .invoice-adjustment-row{border:1px solid #d7e6e8;border-radius:10px;padding:13px 16px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .invoice-adjustment-row .actions{display:flex;gap:8px;flex-wrap:wrap}
+
+.invoice-demo-section{padding:18px 18px 23px;margin-bottom:23px;border:1px solid #d0e6dc;border-radius:13px;background:#f7fcf9}
+.invoice-demo-controls{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+.invoice-demo-controls label{display:flex;flex-direction:column;gap:4px;min-width:180px;font-size:12px;font-weight:800}
+.invoice-demo-controls select{border:1px solid #b4cfd0;border-radius:8px;padding:9px;background:white;font:inherit;color:#14333d}
+.invoice-demo-actions{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0 18px}
+.invoice-demo-results{background:white;border:1px dashed #a6bec4;border-radius:12px;padding:15px}
+.invoice-demo-watermark{border:2px solid #a33f3f;color:#a33f3f;background:#fff5f5;padding:7px 10px;text-align:center;font-size:12px;font-weight:900;letter-spacing:.07em}
+.invoice-demo-intro{margin:16px 0 8px;font-size:13px}
+.invoice-demo-steps{padding-left:19px;font-size:12px;line-height:1.8}
+.invoice-demo-documents{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:15px 0}
+.invoice-demo-document{border:1px solid #d3e2e5;border-radius:9px;padding:13px;font-size:12px;background:#fff}
+.invoice-demo-document strong{font-size:13px}
+.invoice-demo-document p{margin:8px 0}
+.invoice-demo-document table{width:100%;border-collapse:collapse}
+.invoice-demo-document td,.invoice-demo-document th{font-size:12px;text-align:left;padding:7px 0;border-top:1px solid #e1ebec}
+.invoice-demo-document td{text-align:right;white-space:nowrap}
+.invoice-demo-note{font-size:12px;color:#546b76;line-height:1.5;margin-top:12px}
