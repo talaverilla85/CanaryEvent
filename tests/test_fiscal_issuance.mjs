@@ -107,7 +107,7 @@ test('El pago real validado y revisado emite una sola factura y envía PDF a cli
     provider_invoice_url:'https://app.facturadirecta.com/factura'};
    return [{provider_invoice_id:'inv_factura_unica'}];
   }
-  if(q.includes("status='sending'"))return [{provider_invoice_id:'inv_factura_unica'}];
+  if(q.includes("UPDATE advertising_invoice_issuance SET status='sending'"))return [{provider_invoice_id:'inv_factura_unica'}];
   if(q.includes("status='sent',sent_at=")){
    existing={...existing,status:'sent'};return [{draft_id:17}];
   }
