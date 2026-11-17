@@ -253,8 +253,13 @@ test('el cliente ficticio de sandbox usa el identificador del ejemplo oficial en
   if(s.endsWith('/invoices')&&options.method==='POST')
    return Response.json({content:{uuid:'inv_SANDBOX_TEST'}});
   if(s.endsWith('/contacts')&&options.method==='POST'){
-   const value=JSON.parse(options.body).content.main.fiscalId;
-   calls.push({value,currency:JSON.parse(options.body).content.main.currency});return Response.json({content:{uuid:'con_SANDBOX_TEST'}});
+   const main=JSON.parse(options.body).content.main;
+   for(const field of ['name','currency','accounts','fiscalId','fiscalIdCountry','address','zipcode','city','country']){
+    assert.ok(Object.hasOwn(main,field),'Falta un campo en el contacto: '+field);
+   }
+   assert.deepEqual(main.accounts,{client:'430000',clientCredit:'438000'});
+   calls.push({value:main.fiscalId,currency:main.currency,accounts:main.accounts});
+   return Response.json({content:{uuid:'con_SANDBOX_TEST'}});
   }
   return fakeResponse(url,options);
  };
@@ -262,6 +267,32 @@ test('el cliente ficticio de sandbox usa el identificador del ejemplo oficial en
   const {facturadirectaSandboxAction}=await import('../lib/facturadirecta-sandbox.js');
   await facturadirectaSandboxAction({action:'invoice',plan:'zona',days:30,
    test_id:'abc1234567890def1234567890abcd'});
-  assert.deepEqual(calls,[{value:'B12345674',currency:'EUR'}]);
+  assert.deepEqual(calls,[{value:'B12345674',currency:'EUR',accounts:{client:'430000',clientCredit:'438000'}}]);
  }finally{globalThis.fetch=old;restore()}
+});
+
+test('el payload para contactos respeta la configuración contable de cada empresa',async()=>{
+ const {createOrFindContact}=await import('../lib/facturadirecta-invoices.js');
+ const old=globalThis.fetch;
+ globalThis.fetch=async(url,options={})=>{
+  if(String(url).includes('/contacts?'))return Response.json({items:[]});
+  if(String(url).endsWith('/contacts')){
+   const main=JSON.parse(options.body).content.main;
+   assert.deepEqual(main.accounts,{client:'430001',clientCredit:'438001'});
+   assert.equal(main.currency,'EUR');
+   return Response.json({content:{uuid:'con_AAAAAA'}});
+  }
+  throw Error('Solicitud no esperada '+url);
+ };
+ try{
+  const contact=await createOrFindContact({
+   company_id:'com_sandboxtest1234567890',api_key:'Abc.'+'r'.repeat(40),
+   contact_client_account:'430001',contact_client_credit_account:'438001'
+  },{
+   draft_id:31,customer_tax_id:'B12345674',company_name:'Cliente de pruebas',
+   billing_country:'ES',billing_email:'prueba@example.com',billing_address:'Ejemplo 1',
+   billing_postal:'35001',billing_city:'Las Palmas',billing_region:'Las Palmas'
+  });
+  assert.equal(contact,'con_AAAAAA');
+ }finally{globalThis.fetch=old}
 });
