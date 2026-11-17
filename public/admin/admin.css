@@ -127,3 +127,11 @@ fieldset{border:0;margin:0;padding:0}.field{display:grid;gap:6px;margin-bottom:1
 .adops-live-content{padding:15px 17px}.adops-live-date{color:#0a7e83;font-size:11px;font-weight:750}
 .adops-live-content h3{font-size:18px;line-height:1.25;margin:6px 0 9px;color:#193347}
 .adops-live-content p{font-size:13px;color:#607886;margin:0}
+
+.invoice-tax-confirmation{display:flex;align-items:flex-start;gap:10px;margin:12px 0 18px;font-size:13px;line-height:1.55;color:#355463}
+.invoice-tax-confirmation input{flex:none;width:auto!important;min-width:17px;min-height:17px;margin-top:3px;accent-color:#147888}
+.invoice-issuance-status{font-size:12px;font-weight:750}
+.invoice-issuance-status.sent{color:#147256}
+.invoice-issuance-status.issued{color:#955f08}
+.invoice-ready-alert{border:1px solid #b3d5d8;background:#f5fbfb;padding:11px;border-radius:9px;line-height:1.5}
+.invoice-review-item .invoice-issue-btn{color:#12665b;border-color:#b1d5cb;background:#eff9f4}
