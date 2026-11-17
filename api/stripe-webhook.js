@@ -75,10 +75,12 @@ export default async function handler(req,res){
   // Payment review is created only after the signed Stripe event was persisted.
   // Replayed events are idempotent and cannot generate duplicate invoice drafts.
   if(confirmedId)await prepareInvoiceReview(sql,Number(confirmedId),s);
-  if(confirmedId&&!d.archived){
+  // In the sandbox, a test payment must never publish a paid advert to visitors.
+  if(confirmedId&&!d.archived&&process.env.DPARRANDA_BILLING_MODE!=='sandbox'){
    await schedulePaidDraft(sql,Number(confirmedId));
   }
-  if(updated){
+  // No real customer mail during sandbox tests; the invoice provider redirects test emails.
+  if(updated&&process.env.DPARRANDA_BILLING_MODE!=='sandbox'){
    try{
     const info=await workspaceForDraft(sql,Number(updated.id));
     if(info)await sendPaymentConfirmedEmail(info,String(event.id));
