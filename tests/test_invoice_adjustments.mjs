@@ -140,7 +140,7 @@ test('Devolución parcial real se confirma en Stripe antes de emitir una única 
   if(q.includes('FROM advertising_invoice_adjustments a'))return [state];
   if(q.includes("UPDATE advertising_invoice_adjustments SET\n  status='processing'")){
    if(state.status==='completed')return [];
-   state.status='processing';return [{id:11}];
+   state.status='processing';return [{id:11,issue_date:'2026-11-17'}];
   }
   if(q.includes('UPDATE advertising_invoice_adjustments SET stripe_refund_id=')){
    state.stripe_refund_id=v[0];state.status=v[1];return [];
