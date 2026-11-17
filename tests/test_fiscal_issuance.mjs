@@ -6,7 +6,7 @@ import {invoiceIssuanceReadiness,issueCheckedInvoice} from '../lib/advertising-i
 
 const keys=['FACTURADIRECTA_API_KEY','FACTURADIRECTA_COMPANY_ID','FACTURADIRECTA_IGIC_SALES_TAX_ID',
  'FACTURADIRECTA_INVOICE_SERIES','FACTURADIRECTA_ACCOUNT_CODE','FACTURADIRECTA_FISCAL_SETUP_CONFIRMED',
- 'DPARRANDA_STRIPE_MODE'];
+ 'DPARRANDA_STRIPE_MODE','DPARRANDA_STRIPE_PAYMENTS_ENABLED','STRIPE_SECRET_KEY','STRIPE_WEBHOOK_SECRET'];
 const original=Object.fromEntries(keys.map(k=>[k,process.env[k]]));
 const activate=()=>{
  process.env.FACTURADIRECTA_API_KEY='AbC123.'+'x'.repeat(32);
@@ -16,6 +16,9 @@ const activate=()=>{
  process.env.FACTURADIRECTA_ACCOUNT_CODE='705000';
  process.env.FACTURADIRECTA_FISCAL_SETUP_CONFIRMED='true';
  process.env.DPARRANDA_STRIPE_MODE='live';
+ process.env.DPARRANDA_STRIPE_PAYMENTS_ENABLED='true';
+ process.env.STRIPE_SECRET_KEY='sk_live_fake_offline';
+ process.env.STRIPE_WEBHOOK_SECRET='whsec_fake_offline';
 };
 const reset=()=>{for(const k of keys){
  if(original[k]===undefined)delete process.env[k];else process.env[k]=original[k]
@@ -103,7 +106,7 @@ test('El pago real validado y revisado emite una sola factura y envía PDF a cli
   }
   if(q.includes('UPDATE advertising_invoice_issuance SET provider_contact_id'))return [];
   if(q.includes("status='issued',provider_invoice_id=")){
-   existing={status:'issued',provider_invoice_id:'inv_factura_unica',
+   existing={provider:'facturadirecta',status:'issued',provider_invoice_id:'inv_factura_unica',
     provider_invoice_url:'https://app.facturadirecta.com/factura'};
    return [{provider_invoice_id:'inv_factura_unica'}];
   }
