@@ -38,6 +38,7 @@ const invoiceRow={...review,id:11,kind:'refund_partial',amount_cents:1200,
  stripe_payment_intent_id:'pi_fake',
  stripe_checkout_session_id:'cs_live_abc123',
  original_invoice_id:'inv_original',original_invoice_status:'sent',
+ original_invoice_provider:'facturadirecta',
  title:'Publicidad',plan:'zona',days:30,placement:'banner',source_lead_id:null,
  published_ad_id:null,published_event_id:null,issue_date:'2026-11-17',
  correction_invoice_id:null,correction_sent_at:null};
