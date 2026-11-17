@@ -300,3 +300,75 @@ test('el payload para contactos respeta la configuración contable de cada empre
   assert.equal(contact,'con_AAAAAA');
  }finally{globalThis.fetch=old}
 });
+
+test('el botón PDF recupera una factura ya creada sin emitir una segunda factura',async()=>{
+ activate();
+ const prior=globalThis.fetch;
+ const calls=[];
+ globalThis.fetch=async(url,options={})=>{
+  const path=String(url),method=options.method||'GET';
+  calls.push({path,method});
+  if(path.endsWith('/invoices/inv_existing123')&&method==='GET')
+   return Response.json({content:{uuid:'inv_existing123',main:{
+    lines:[{text:'Publicidad de prueba DParranda SANDBOX TEST sin validez fiscal'}]}},
+    webUrl:'https://3.facturadirecta.com/company/sandbox/invoice'});
+  if(path.endsWith('/invoices/inv_existing123/pdf')&&method==='PUT')
+   return Response.json({url:'https://files.facturadirecta.com/invoice/test.pdf',filename:'test.pdf'});
+  return fakeResponse(url,options);
+ };
+ try{
+  const {facturadirectaSandboxAction}=await import('../lib/facturadirecta-sandbox.js');
+  const result=await facturadirectaSandboxAction({
+   action:'pdf',invoice_id:'inv_existing123',test_id:'mysecuretestkey1234567890123456'
+  });
+  assert.equal(result.sandbox,true);
+  assert.equal(result.id,'inv_existing123');
+  assert.match(result.pdf_url,/test\.pdf$/);
+  assert.ok(!calls.some(x=>x.method==='POST'));
+  assert.equal(calls.filter(x=>x.path.endsWith('/invoices/inv_existing123/pdf')).length,1);
+ }finally{globalThis.fetch=prior;restore()}
+});
+
+test('consulta de PDF bloquea documentos ajenos al escenario de prueba',async()=>{
+ activate();
+ const prior=globalThis.fetch;
+ let pdfCalls=0;
+ globalThis.fetch=async(url,options={})=>{
+  const path=String(url);
+  if(path.endsWith('/invoices/inv_foreign123')&&options.method==='GET')
+   return Response.json({content:{uuid:'inv_foreign123',main:{
+    lines:[{text:'Factura sin etiqueta de pruebas'}]}}});
+  if(path.endsWith('/invoices/inv_foreign123/pdf'))pdfCalls++;
+  return fakeResponse(url,options);
+ };
+ try{
+  const {facturadirectaSandboxAction}=await import('../lib/facturadirecta-sandbox.js');
+  await assert.rejects(()=>facturadirectaSandboxAction({
+   action:'pdf',invoice_id:'inv_foreign123',test_id:'mysecuretestkey1234567890123456'
+  }),/Solo pueden/);
+  assert.equal(pdfCalls,0);
+ }finally{globalThis.fetch=prior;restore()}
+});
+
+test('fallo del PDF devuelve motivo y conserva ID de factura sin duplicarla',async()=>{
+ activate();
+ const prior=globalThis.fetch;
+ globalThis.fetch=async(url,options={})=>{
+  const path=String(url);
+  if(path.endsWith('/invoices/inv_existing123')&&options.method==='GET')
+   return Response.json({content:{uuid:'inv_existing123',main:{
+    lines:[{text:'DParranda SANDBOX TEST'}]}}});
+  if(path.endsWith('/invoices/inv_existing123/pdf')&&options.method==='PUT')
+   return Response.json({errors:[{path:'/body',message:'Plantilla de impresión sin configurar'}]},{status:400});
+  return fakeResponse(url,options);
+ };
+ try{
+  const {facturadirectaSandboxAction}=await import('../lib/facturadirecta-sandbox.js');
+  const result=await facturadirectaSandboxAction({
+   action:'pdf',invoice_id:'inv_existing123',test_id:'mysecuretestkey1234567890123456'
+  });
+  assert.equal(result.id,'inv_existing123');
+  assert.equal(result.pdf_url,'');
+  assert.match(result.pdf_message,/Plantilla de impresión sin configurar/);
+ }finally{globalThis.fetch=prior;restore()}
+});

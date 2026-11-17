@@ -576,9 +576,9 @@ $('checkFacturadirecta').addEventListener('click',async event=>{
 });
 
 async function loadFdSandboxStatus(){
- const box=$('fdSandboxStatus'),button=$('fdSandboxCheck'),create=$('fdSandboxCreate');
+ const box=$('fdSandboxStatus'),button=$('fdSandboxCheck'),create=$('fdSandboxCreate'),pdfButton=$('fdSandboxPdf');
  if(!box||!button||!create)return;
- button.disabled=true;create.disabled=true;
+ button.disabled=true;create.disabled=true;if(pdfButton)pdfButton.disabled=true;
  try{
   const status=await api('facturadirecta-sandbox-status');
   const ready=status.verified===true&&status.ready===true&&status.enabled===true;
@@ -589,7 +589,7 @@ async function loadFdSandboxStatus(){
      '. Ya puedes crear una factura de prueba mediante la API.':
     'Sandbox identificado, pero aún no listo. '+(status.missing||[]).join(' ')):
    status.message;
-  create.disabled=!ready;
+  create.disabled=!ready;if(pdfButton)pdfButton.disabled=!ready;
  }catch(e){box.textContent='Sandbox no verificado. '+e.message}
  finally{button.disabled=false}
 }
@@ -614,7 +614,7 @@ $('fdSandboxCreate').addEventListener('click',async()=>{
   if(r.sandbox!==true||!/^inv_[A-Za-z0-9_-]+$/.test(String(r.id||'')))
    throw Error('La API no confirmó una factura sandbox válida');
   const amount=(Number(r.amount_cents)/100).toLocaleString('es-ES',{style:'currency',currency:'EUR'});
-  const safeLink=typeof r.url==='string'&&/^https:\/\/app\.facturadirecta\.com\//.test(r.url)?r.url:null;
+  const safeLink=typeof r.url==='string'&&/^https:\/\/(?:[a-z0-9-]+\.)?facturadirecta\.com\//i.test(r.url)?r.url:null;
   result.replaceChildren();
   const heading=document.createElement('strong');
   heading.textContent='Factura de prueba registrada en FacturaDirecta Sandbox';
@@ -645,12 +645,48 @@ $('fdSandboxCreate').addEventListener('click',async()=>{
   if(r.pdf_message){
    const warning=document.createElement('p');warning.textContent=r.pdf_message;result.append(warning);
   }
+  $('fdSandboxExistingInvoice').value=r.id;
   delete button.dataset.testId;
   message('Factura creada en FacturaDirecta Sandbox.');
  }catch(e){
   result.textContent='No se pudo confirmar la factura en FacturaDirecta Sandbox: '+e.message+
    '. Si reintentas, se reutilizará el identificador para evitar duplicados.';
  }finally{button.disabled=false}
+});
+
+
+$('fdSandboxPdf').addEventListener('click',async()=>{
+ const input=$('fdSandboxExistingInvoice'),button=$('fdSandboxPdf'),box=$('fdSandboxPdfResult');
+ const id=String(input.value||'').trim();
+ if(!/^inv_[a-zA-Z0-9_-]{6,95}$/.test(id)){
+  box.textContent='Introduce un identificador de factura válido, que comienza por inv_.';
+  return;
+ }
+ if(button.disabled)return;
+ button.disabled=true;
+ box.textContent='Consultando factura existente y solicitando PDF a FacturaDirecta Sandbox…';
+ try{
+  const r=await api('facturadirecta-sandbox-action',{
+   confirmation:'PRUEBA SANDBOX',action:'pdf',invoice_id:id,
+   test_id:crypto.randomUUID().replaceAll('-','')
+  });
+  if(r.sandbox!==true||r.action!=='pdf'||r.id!==id)
+   throw Error('La API no confirmó la consulta segura de esa factura de prueba');
+  if(!r.pdf_url){
+   box.textContent=r.pdf_message||'Factura localizada, pero la API no devolvió un enlace al PDF.';
+   return;
+  }
+  const url=new URL(r.pdf_url);
+  if(url.protocol!=='https:'||url.username||url.password)throw Error('El PDF no tiene una dirección HTTPS válida.');
+  box.replaceChildren();
+  const success=document.createElement('strong');
+  success.textContent='Factura original localizada en FacturaDirecta Sandbox. ';
+  const link=document.createElement('a');
+  link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';
+  link.textContent='Abrir PDF de la factura (enlace temporal)';
+  box.append(success,link);
+ }catch(e){box.textContent='No se pudo recuperar el PDF: '+e.message}
+ finally{button.disabled=false}
 });
 
 async function loadAdvertisingArchives(){

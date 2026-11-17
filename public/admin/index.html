@@ -82,6 +82,13 @@
   <p id="fdSandboxStatus" class="adops-intake" role="status" aria-live="polite">Comprobando el entorno de pruebas…</p>
   <div class="actions"><button type="button" class="ghost mini" id="fdSandboxCheck">Verificar FacturaDirecta Sandbox</button></div>
   <div class="invoice-demo-controls">
+   <label for="fdSandboxExistingInvoice">Factura Sandbox ya creada (identificador inv_…)
+    <input id="fdSandboxExistingInvoice" type="text" autocomplete="off" spellcheck="false" placeholder="inv_..." maxlength="100">
+   </label>
+  </div>
+  <div class="actions"><button type="button" class="ghost mini" id="fdSandboxPdf" disabled>Recuperar PDF de esta factura (sin crear otra)</button></div>
+  <div id="fdSandboxPdfResult" class="muted small" role="status" aria-live="polite">Introduce el identificador de la factura de prueba que ya aparece en FacturaDirecta.</div>
+  <div class="invoice-demo-controls">
    <label>Tarifa de prueba en FacturaDirecta
     <select id="fdSandboxPlan"><option value="local">Local · 19 €</option><option value="zona" selected>Zona · 49 €</option><option value="insular">Insular · 99 €</option></select>
    </label>
@@ -179,5 +186,5 @@
 </section></main>
 <div id="dialog" class="dialog hidden" aria-hidden="true"><div class="shade" data-close="true"></div><div id="sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"></div></div>
 <div id="feedback" role="status" aria-live="polite"></div>
-<script src="/admin/admin.js?v=13" defer></script>
+<script src="/admin/admin.js?v=14" defer></script>
 </body></html>
