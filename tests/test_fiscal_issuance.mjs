@@ -1,7 +1,7 @@
 // No external calls leave this test: provider and SQL are faked.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {providerConfiguration,billingProviderStatus,isCanaryBuyer,buildInvoicePayload} from '../lib/facturadirecta-invoices.js';
+import {providerConfiguration,billingProviderStatus,isCanaryBuyer,buildInvoicePayload,buildCorrectionPayload} from '../lib/facturadirecta-invoices.js';
 import {invoiceIssuanceReadiness,issueCheckedInvoice} from '../lib/advertising-invoice-issuance.js';
 
 const keys=['FACTURADIRECTA_API_KEY','FACTURADIRECTA_COMPANY_ID','FACTURADIRECTA_IGIC_SALES_TAX_ID',
@@ -147,4 +147,25 @@ test('Incluso con el proveedor configurado, un borrador sin revisar nunca se emi
  try{await assert.rejects(()=>issueCheckedInvoice(sql,17),/pago real confirmado y datos revisados/)}
  finally{globalThis.fetch=initial;reset()}
  assert.equal(fetchCount,0);
+});
+
+test('Contrato API FacturaDirecta: factura y rectificativa incluyen content.type=invoice',()=>{
+ const cfg={account:'700000',tax_id:'S_IGIC_7',series:'F-##-',rectification_series:'R-##-',theme:'default'};
+ const row={total_cents:4900,plan:'zona',days:30,placement:'banner',
+  title:'Prueba de payload',issue_date:'2026-11-17'};
+ const payload=buildInvoicePayload(cfg,row,'con_TEST');
+ assert.equal(payload.content.type,'invoice');
+ const main=payload.content.main;
+ for(const name of ['contact','date','dueDate','currency','docNumber','fiscalPosition','lines','account','draft','voided']){
+  assert.ok(Object.hasOwn(main,name),'Falta campo obligatorio: '+name);
+ }
+ const line=main.lines[0];
+ for(const name of ['account','quantity','unitPrice','discount','discountRate','lineTotal','tax','text'])
+  assert.ok(Object.hasOwn(line,name),'Falta campo de línea: '+name);
+ const correction=buildCorrectionPayload(cfg,{
+  originalInvoiceId:'inv_TEST',originalContact:'con_TEST',amountCents:4900,
+  issueDate:'2026-11-17',reason:'Ejemplo de prueba de rectificativa',
+  kind:'refund_full',title:'Prueba'
+ });
+ assert.equal(correction.content.type,'invoice');
 });
