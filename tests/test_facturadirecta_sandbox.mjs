@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {facturadirectaSandboxStatus} from '../lib/facturadirecta-sandbox.js';
 import {invoiceIssuanceReadiness,issueCheckedInvoice} from '../lib/advertising-invoice-issuance.js';
 import {processInvoiceAdjustment} from '../lib/advertising-invoice-adjustments.js';
+import {request} from '../lib/facturadirecta-invoices.js';
 const env={
  DPARRANDA_BILLING_MODE:'sandbox',DPARRANDA_STRIPE_MODE:'test',
  DPARRANDA_STRIPE_PAYMENTS_ENABLED:'true',
@@ -217,5 +218,50 @@ test('el botón de administración puede crear un documento de sandbox verificab
   assert.equal(posted.body.content.main.lines[0].unitPrice,49);
   assert.ok(calls.every(x=>x.s.includes(env.FACTURADIRECTA_SANDBOX_COMPANY_ID)));
   assert.ok(calls.every(x=>!x.s.includes('stripe.com')));
+ }finally{globalThis.fetch=old;restore()}
+});
+
+test('la API propaga diagnóstico de validación de un contacto sin exponer credenciales',async()=>{
+ const previous=globalThis.fetch;
+ globalThis.fetch=async()=>Response.json({
+  statusCode:400,message:'Validation failed',type:'ValidationError',
+  errors:[{path:'content.main.fiscalId',message:'Formato de NIF/CIF inválido para España'}]
+ },{status:400});
+ try{
+  await assert.rejects(
+   request({company_id:'com_sandboxtest1234567890',api_key:'CREDENCIAL_SECRETA'},'POST','/contacts',{}),
+   e=>{
+    assert.match(e.message,/HTTP 400/);
+    assert.match(e.message,/content\.main\.fiscalId/);
+    assert.match(e.message,/Formato de NIF\/CIF inválido/);
+    assert.ok(!e.message.includes('CREDENCIAL_SECRETA'));
+    assert.ok(!e.message.includes('com_sandboxtest1234567890'));
+    return true;
+   }
+  );
+ }finally{globalThis.fetch=previous}
+});
+
+test('el cliente ficticio de sandbox usa el identificador del ejemplo oficial en lugar de ceros',async()=>{
+ activate();const old=globalThis.fetch;const calls=[];
+ globalThis.fetch=async(url,options={})=>{
+  const s=String(url);if(s.endsWith('/invoices/inv_SANDBOX_TEST')&&options.method==='GET')
+   return Response.json({content:{uuid:'inv_SANDBOX_TEST',main:{
+    lines:[{text:'DParranda SANDBOX TEST sin validez fiscal'}]}}});
+  if(s.endsWith('/invoices/inv_SANDBOX_TEST/pdf')&&options.method==='PUT')
+   return Response.json({url:'https://app.facturadirecta.com/tmp/test.pdf'});
+  if(s.endsWith('/invoices')&&options.method==='POST')
+   return Response.json({content:{uuid:'inv_SANDBOX_TEST'}});
+  if(s.endsWith('/contacts')&&options.method==='POST'){
+   const value=JSON.parse(options.body).content.main.fiscalId;
+   calls.push(value);return Response.json({content:{uuid:'con_SANDBOX_TEST'}});
+  }
+  return fakeResponse(url,options);
+ };
+ try{
+  const {facturadirectaSandboxAction}=await import('../lib/facturadirecta-sandbox.js');
+  await facturadirectaSandboxAction({action:'invoice',plan:'zona',days:30,
+   test_id:'abc1234567890def1234567890abcd'});
+  assert.deepEqual(calls,['B12345674']);
  }finally{globalThis.fetch=old;restore()}
 });

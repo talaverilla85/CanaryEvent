@@ -171,3 +171,8 @@ En Administración → Publicidad, el bloque «Pruebas con el sistema de factura
 
 
 El flujo de prueba directa solicita además `PUT /{companyId}/invoices/{id}/pdf` tras comprobar mediante GET la factura creada. Muestra el enlace HTTPS temporal al PDF (el proveedor documenta una duración aproximada de 24 horas) y el enlace a la ficha de la factura; si generar el PDF falla se mantiene el ID y el enlace a FacturaDirecta Sandbox, sin reemitir otra factura.
+
+
+## Diagnóstico de rechazo al crear contacto (17/11/2026)
+
+El usuario probó la conexión real de Sandbox: empresa verificada con IGIC 7 %, series ordinaria y rectificativa, pero la primera emisión se detuvo en `POST /contacts`, HTTP 400 (no se creó ninguna factura ni hubo cobro). El 400 original ocultaba el JSON de validaciones. Se sustituyó el NIF ficticio `00000000T` por el CIF de ejemplo `B12345674` de la documentación oficial de FacturaDirecta; para corregidos se usa `12345678Z`. Se incorporó propagación limitada de `errors[].path/message` para mostrar en el panel el campo rechazado sin incluir claves ni cuerpos de petición. Pendiente: reintentar con la cuenta de Sandbox real y atender el campo concreto que informe la API. Enlace de referencia: https://www.facturadirecta.com/desarrolladores/api/referencia/contacts/ .
