@@ -160,7 +160,7 @@ test('Solo pagos Stripe verificados generan un borrador de revisión, nunca una 
  assert.equal(seen.length,1);
  assert.match(seen[0].q,/d\.payment_status='paid'/);
  assert.match(seen[0].q,/d\.stripe_checkout_session_id=/);
- assert.match(seen[0].q,/ON CONFLICT\(draft_id\) DO NOTHING/);
+ assert.match(seen[0].q,/ON CONFLICT\(draft_id\) DO UPDATE SET/);
  assert.ok(seen[0].args.includes('B12345678'));
  assert.ok(seen[0].args.includes(4900));
  await assert.rejects(()=>prepareInvoiceReview(sql,17,{...session,payment_status:'unpaid'}));

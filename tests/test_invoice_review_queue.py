@@ -19,7 +19,7 @@ class InvoiceReviewContract(unittest.TestCase):
   self.assertIn('PRIMARY KEY REFERENCES',self.schema.replace('PRIMARY KEY REFERENCES','PRIMARY KEY REFERENCES'))
   self.assertIn('stripe_checkout_session_id TEXT NOT NULL UNIQUE',self.schema)
   self.assertIn("review_status TEXT NOT NULL DEFAULT 'pending'",self.schema)
-  self.assertIn("ON CONFLICT(draft_id) DO NOTHING",self.logic)
+  self.assertIn("ON CONFLICT(draft_id) DO UPDATE SET",self.logic)
   self.assertIn("d.payment_status='paid'",self.logic)
   self.assertIn("d.stripe_checkout_session_id=",self.logic)
   self.assertIn('prepareInvoiceReview(sql,Number(confirmedId),s)',self.webhook)

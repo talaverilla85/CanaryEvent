@@ -1,6 +1,6 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id), apiUrl='/api/admin';
-let events=[], ads=[], leads=[], promotions=[], opsDrafts=[], advertisingArchives=[], invoiceReviews=[], invoiceReady=false, pagination=0, filter='all', search='', section='events', current=null, toastTimer;
+let events=[], ads=[], leads=[], promotions=[], opsDrafts=[], advertisingArchives=[], invoiceReviews=[], invoiceAdjustments=[], invoiceReady=false, rectificationReady=false, pagination=0, filter='all', search='', section='events', current=null, toastTimer;
 const escape=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const text=x=>String(x??'').trim();
 function message(m){const p=$('feedback');p.textContent=m;p.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>p.classList.remove('show'),3500)}
@@ -108,7 +108,7 @@ $('sendResendTest').addEventListener('click',async()=>{
  }catch(err){status.textContent=err.message;message('No se ha podido enviar la prueba')}
  finally{button.disabled=false}
 });
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives(),loadInvoiceReviews(),loadInvoiceIssuerProfile(),refreshInvoiceReadiness()]);if(location.hash==='#publicidad')setSection('ads')}
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives(),loadInvoiceReviews(),loadInvoiceAdjustments(),loadInvoiceIssuerProfile(),refreshInvoiceReadiness()]);if(location.hash==='#publicidad')setSection('ads')}
 function setSection(next){
  section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
  for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){
@@ -225,13 +225,14 @@ async function refreshInvoiceReadiness(){
  try{
   const result=await api('invoice-issuance-status');
   invoiceReady=result.can_issue===true;
+  rectificationReady=invoiceReady&&result.rectifications_ready===true;
   if(invoiceReady){
    el.textContent='Configuración lista para emisión manual. Cada factura requerirá un pago real confirmado, datos del cliente revisados y tu confirmación antes de enviarse.';
   }else{
    el.textContent='Facturación aún no lista para emitir. '+(result.missing||[]).join(' ');
   }
-  renderInvoiceReviews();
- }catch(err){invoiceReady=false;el.textContent='No se ha podido comprobar la facturación: '+err.message}
+  renderInvoiceReviews();renderInvoiceAdjustments();
+ }catch(err){invoiceReady=false;rectificationReady=false;el.textContent='No se ha podido comprobar la facturación: '+err.message}
 }
 async function loadInvoiceIssuerProfile(){
  const form=$('invoiceIssuerForm'),state=$('invoiceIssuerState');
@@ -299,6 +300,7 @@ function renderInvoiceReviews(){
    '<div class="actions">'+(issued?fiscalLink:
    '<a class="invoice-preview-link" target="_blank" rel="noopener noreferrer" href="/api/admin?op=invoice-review-preview&id='+id+'">Ver borrador</a>')+
    (!issued?'<button type="button" class="ghost mini" data-invoice-edit="'+id+'">Revisar datos</button>':'')+
+   (sent?'<button type="button" class="ghost mini" data-invoice-adjust="'+id+'">Rectificación / devolución</button>':'')+
    (!pending&&invoiceReady&&!sent?'<button type="button" class="ghost mini invoice-issue-btn" data-invoice-issue="'+id+'">'+
      (issued?'Reenviar factura':'Emitir y enviar factura')+'</button>':'')+
    '</div></article>';
@@ -332,7 +334,12 @@ function openInvoiceReview(row){
   '<button type="button" class="ghost" data-close>Cerrar</button></div></form>');
 }
 $('invoiceReviewsList').addEventListener('click',event=>{
- const button=event.target.closest('[data-invoice-edit],[data-invoice-issue]');if(!button)return;
+ const button=event.target.closest('[data-invoice-edit],[data-invoice-issue],[data-invoice-adjust]');if(!button)return;
+ if(button.dataset.invoiceAdjust){
+  const row=invoiceReviews.find(r=>Number(r.draft_id)===Number(button.dataset.invoiceAdjust));
+  if(row)openInvoiceAdjustmentForm(row);
+  return;
+ }
  if(button.dataset.invoiceIssue){
   const id=Number(button.dataset.invoiceIssue);
   const row=invoiceReviews.find(r=>Number(r.draft_id)===id);
@@ -365,6 +372,160 @@ $('sheet').addEventListener('submit',async event=>{
  }catch(err){
   message(err.message);form.querySelectorAll('button[type=submit]').forEach(b=>b.disabled=false);
  }
+});
+
+async function loadInvoiceAdjustments(){
+ const node=$('invoiceAdjustmentsList');if(!node)return;
+ try{
+  const result=await api('invoice-adjustments');
+  invoiceAdjustments=result.adjustments||[];
+  renderInvoiceAdjustments();
+ }catch(err){node.innerHTML='<p class="muted">No se pudo consultar las rectificaciones: '+escape(err.message)+'</p>'}
+}
+function renderInvoiceAdjustments(){
+ const node=$('invoiceAdjustmentsList');if(!node)return;
+ if(!invoiceAdjustments.length){
+  node.innerHTML='<p class="muted">No hay solicitudes de rectificación o devolución.</p>';return;
+ }
+ const labels={billing_details:'Cambio de datos fiscales',refund_full:'Devolución completa',
+  refund_partial:'Devolución parcial'};
+ const done=['completed','rejected','refund_failed'];
+ const finished=a=>done.includes(a.status);
+ node.innerHTML=invoiceAdjustments.map(a=>{
+  const id=Number(a.id),word=a.kind==='billing_details'?'RECTIFICAR':'DEVOLVER';
+  const amount=(Number(a.amount_cents)/100).toLocaleString('es-ES',{style:'currency',currency:'EUR'});
+  const status={
+   pending_review:'Pendiente de autorización',processing:'Procesando',
+   refund_pending:'Reembolso pendiente en Stripe',refund_failed:'Falló el reembolso',
+   refund_succeeded:'Reembolso confirmado · pendiente de documento',
+   correction_issued:'Rectificativa emitida · pendiente de envío',
+   replacement_issued:'Nueva factura emitida · pendiente de envío',
+   needs_attention:'Requiere revisión y reintento',completed:'Completada',
+   rejected:'Rechazada'
+  }[a.status]||a.status;
+  const canContinue=['pending_review','refund_pending','refund_succeeded',
+   'correction_issued','replacement_issued','needs_attention'].includes(a.status);
+  const link=a.correction_invoice_url&&/^https:\/\/app\.facturadirecta\.com\//.test(a.correction_invoice_url)?
+   '<a href="'+escape(a.correction_invoice_url)+'" rel="noopener noreferrer" target="_blank">Ver rectificativa</a>':'';
+  return '<article class="invoice-adjustment-row"><div>'+
+   '<strong>'+escape(labels[a.kind]||a.kind)+' · '+escape(a.title||'')+'</strong>'+
+   '<p class="invoice-adjustment-meta">'+escape(amount)+' · '+escape(a.reason||'')+'</p>'+
+   '<p class="'+(finished(a)?'invoice-adjustment-completed':'invoice-adjustment-pending')+'">'+escape(status)+'</p>'+
+   (a.error_note?'<p class="invoice-adjustment-error">'+escape(a.error_note)+'</p>':'')+
+   link+'</div><div class="actions">'+
+   (canContinue?'<button type="button" class="ghost mini" data-adjustment-process="'+id+'"'+
+    (rectificationReady?'':' disabled title="Falta conexión fiscal real y serie de rectificativas"')+'>'+
+    (a.status==='refund_pending'?'Consultar Stripe y continuar':a.status==='pending_review'?'Autorizar y ejecutar':'Reanudar operación')+'</button>':'')+
+   (a.status==='pending_review'?'<button type="button" class="ghost mini" data-adjustment-reject="'+id+'">Rechazar</button>':'')+
+   '</div></article>';
+ }).join('');
+}
+function adjustmentAmount(a){return (Number(a||0)/100).toFixed(2)}
+function openInvoiceAdjustmentForm(r){
+ const draftId=Number(r.draft_id);
+ const open=invoiceAdjustments.find(a=>Number(a.draft_id)===draftId&&
+  !['completed','rejected','refund_failed'].includes(a.status));
+ if(open){message('Ya existe una operación pendiente en esta factura. Termínala o recházala antes de crear otra.');return}
+ const refunded=invoiceAdjustments.filter(a=>Number(a.draft_id)===draftId&&
+  ['refund_full','refund_partial'].includes(a.kind)&&!['rejected','refund_failed'].includes(a.status))
+  .reduce((total,a)=>total+Number(a.amount_cents||0),0);
+ const left=Math.max(0,Number(r.total_cents)-refunded);
+ const fields=[
+  ['company_name','Razón social o nombre fiscal'],
+  ['customer_tax_id','NIF / CIF nuevo'],
+  ['billing_email','Correo de facturación nuevo'],
+  ['billing_address','Dirección fiscal'],
+  ['billing_postal','Código postal'],
+  ['billing_city','Municipio'],
+  ['billing_region','Provincia'],
+  ['billing_country','País']
+ ];
+ const html=fields.map(([name,label])=>
+  '<label>'+escape(label)+'<input name="'+name+'" maxlength="180" value="'+escape(r[name]||'')+'"></label>').join('');
+ openDialog('<div class="sheet-head"><div><span class="eyebrow">GESTIÓN FISCAL · ADMINISTRACIÓN</span>'+
+  '<h2 id="dialogTitle">Rectificar o devolver un pago</h2></div>'+
+  '<button type="button" class="ghost mini" data-close>✕</button></div>'+
+  '<p class="invoice-adjustment-warning"><strong>Importante:</strong> preparar esta solicitud no mueve dinero ni emite una factura. Debes revisarla y autorizarla después. Si autorizas una devolución, Stripe reembolsará el importe al cliente y se generará la rectificativa correspondiente cuando el dinero esté confirmado.</p>'+
+  '<p><strong>'+escape(r.company_name||r.title)+'</strong> · Factura emitida por '+escape(adjustmentAmount(r.total_cents))+' €'+
+  ' · máximo pendiente por devolver: '+escape(adjustmentAmount(left))+' €.</p>'+
+  '<form id="invoiceAdjustmentForm" data-draft-id="'+draftId+'" class="invoice-adjustment-form">'+
+  '<label>Tipo de operación<select name="kind" id="invoiceAdjustmentKind">'+
+  '<option value="billing_details">Cambiar datos fiscales (sin devolución de dinero)</option>'+
+  (left>0?'<option value="refund_full">Devolver el saldo restante completo</option>'+
+  '<option value="refund_partial">Devolver una parte del pago</option>':'')+
+  '</select></label>'+
+  '<label id="invoiceAdjustmentAmountLabel" hidden>Importe a devolver, en euros (máx. '+
+   escape(adjustmentAmount(left))+')<input name="amount" inputmode="decimal" value="'+escape(adjustmentAmount(left))+'"></label>'+
+  '<label>Motivo detallado<textarea name="reason" required minlength="10" maxlength="700" rows="3" placeholder="Explica por qué se rectifica o devuelve el importe"></textarea></label>'+
+  '<fieldset id="invoiceAdjustmentNewFields" class="invoice-review-form"><legend>Datos correctos del cliente</legend>'+html+'</fieldset>'+
+  '<div class="sheet-footer"><button type="submit" class="primary">Preparar solicitud (sin ejecutar)</button>'+
+  '<button type="button" class="ghost" data-close>Cancelar</button></div></form>');
+ $('invoiceAdjustmentKind').addEventListener('change',()=>{
+  const kind=$('invoiceAdjustmentKind').value;
+  $('invoiceAdjustmentAmountLabel').hidden=kind==='billing_details';
+  $('invoiceAdjustmentNewFields').hidden=kind!=='billing_details';
+  if(kind==='refund_full')$('invoiceAdjustmentAmountLabel').querySelector('input').value=adjustmentAmount(left);
+ });
+}
+$('sheet').addEventListener('submit',async event=>{
+ if(event.target.id!=='invoiceAdjustmentForm')return;
+ event.preventDefault();
+ const form=event.target;
+ const kind=form.elements.namedItem('kind').value;
+ const reason=form.elements.namedItem('reason').value.trim();
+ const input=form.elements.namedItem('amount')?.value?.trim()||'';
+ if(reason.length<10){message('Especifica un motivo de al menos diez caracteres');return}
+ let cents=0;
+ if(kind!=='billing_details'){
+  if(!/^\d{1,6}(?:[.,]\d{1,2})?$/.test(input)){message('Introduce un importe válido, por ejemplo 5,00');return}
+  const [euros,part='']=input.replace(',','.').split('.');
+  cents=Number(euros)*100+Number(part.padEnd(2,'0'));
+ }
+ const details={};
+ for(const key of ['company_name','customer_tax_id','billing_email','billing_address',
+  'billing_postal','billing_city','billing_region','billing_country']){
+  details[key]=form.elements.namedItem(key)?.value?.trim()||'';
+ }
+ const button=form.querySelector('button[type="submit"]');button.disabled=true;
+ try{
+  const result=await api('invoice-adjustment-create',{
+   draft_id:Number(form.dataset.draftId),request_key:crypto.randomUUID().replaceAll('-',''),
+   kind,reason,amount_cents:cents,replacement_details:details
+  });
+  await loadInvoiceAdjustments();closeDialog();message(result.message);
+ }catch(err){message(err.message);button.disabled=false}
+});
+$('invoiceAdjustmentsList').addEventListener('click',async event=>{
+ const button=event.target.closest('[data-adjustment-process],[data-adjustment-reject]');
+ if(!button)return;
+ const rejecting=!!button.dataset.adjustmentReject;
+ const id=Number(button.dataset.adjustmentProcess||button.dataset.adjustmentReject);
+ const adjustment=invoiceAdjustments.find(a=>Number(a.id)===id);
+ if(!adjustment)return;
+ const word=rejecting?'RECHAZAR':adjustment.kind==='billing_details'?'RECTIFICAR':'DEVOLVER';
+ const label=rejecting?'Rechazar una solicitud sin ejecutar operaciones':
+   adjustment.kind==='billing_details'?'Emitir una rectificativa y una nueva factura, SIN devolución':
+    'Autorizar un reembolso real por Stripe y la rectificativa fiscal correspondiente';
+ const answer=prompt(label+' por '+adjustmentAmount(adjustment.amount_cents)+
+  ' €.\n\nEscribe '+word+' para confirmar:');
+ if(answer===null)return;
+ if(answer.trim()!==word){message('Operación cancelada.');return}
+ button.disabled=true;
+ try{
+  const result=await api(rejecting?'invoice-adjustment-reject':'invoice-adjustment-process',
+   {id,confirmation:word});
+  await Promise.all([loadInvoiceAdjustments(),loadInvoiceReviews(),loadAdvertiserDrafts(),loadAds()]);
+  message(result.message||'Estado actualizado: '+result.status);
+ }catch(err){message('Incidencia en la operación: '+err.message);await loadInvoiceAdjustments()}
+});
+$('refreshInvoiceAdjustments').addEventListener('click',loadInvoiceAdjustments);
+$('checkFacturadirecta').addEventListener('click',async event=>{
+ const button=event.currentTarget,el=$('facturadirectaConnection');button.disabled=true;
+ el.textContent='Comprobando conexión…';
+ try{const r=await api('facturadirecta-connection-check');
+  el.textContent=r.message+(r.rectification_series_configured?' Serie de rectificativas configurada.':' Falta serie de rectificativas.');
+ }catch(err){el.textContent='No se pudo verificar FacturaDirecta: '+err.message}
+ finally{button.disabled=false}
 });
 async function loadAdvertisingArchives(){
  try{const data=await api('advertising-archives');advertisingArchives=data.archives||[];

@@ -17,6 +17,7 @@ La aplicación guarda el perfil del emisor, recopila datos del comprador en Stri
    - `FACTURADIRECTA_COMPANY_ID`: identificador de la empresa autónomo en FacturaDirecta.
    - `FACTURADIRECTA_IGIC_SALES_TAX_ID`: ID **de su catálogo de impuestos de ventas** para IGIC general 7 %.
    - `FACTURADIRECTA_INVOICE_SERIES`: serie creada en FacturaDirecta para la facturación de D’Parranda.
+   - `FACTURADIRECTA_RECTIFICATION_SERIES`: serie específica de rectificativas en FacturaDirecta, por ejemplo `RDP-##-`. El código incluye `main.correctedInvoice` para enlazarlas con la factura original.
    - `FACTURADIRECTA_ACCOUNT_CODE`: cuenta contable de ingresos por publicidad configurada en FacturaDirecta.
    - `FACTURADIRECTA_FISCAL_SETUP_CONFIRMED=true`: activar solo tras verificar la configuración y los permisos en FacturaDirecta.
    - `DPARRANDA_STRIPE_MODE=live` junto con claves y webhook Stripe **de producción**. No alterar hasta realizar las comprobaciones de la pasarela.
@@ -41,3 +42,46 @@ Referencia técnica: [API de FacturaDirecta](https://www.facturadirecta.com/desa
 ## Activación futura de envío sin supervisión
 
 Una vez auditada una factura real emitida y enviada correctamente, diseñar un ajuste explícito de activación/desactivación de la modalidad automática, con registro de auditoría, verificación de estado de Stripe, reglas fiscales por destinatario y reintentos idempotentes. **Actualmente no disponible ni habilitado.**
+
+## Rectificaciones y devoluciones — administración de incidencias
+
+Tras emitir **y enviar** una factura original verificada, aparece en el panel **Publicidad → Documentos pendientes de revisión → Rectificación / devolución**. Esta gestión se controla desde D’Parranda, pero las escrituras fiscales se realizan en FacturaDirecta y los movimientos de dinero en Stripe.
+
+### Rectificación de datos fiscales
+
+1. Elegir **Cambiar datos fiscales (sin devolución de dinero)**, introducir la razón social, NIF, domicilio y correo correctos, además de un motivo detallado.
+2. Pulsar **Preparar solicitud**: no mueve dinero ni emite factura. Sólo registra la operación pendiente.
+3. El administrador revisa la solicitud en **Rectificaciones y devoluciones**. Con FacturaDirecta configurado, confirma escribiendo `RECTIFICAR`.
+4. FacturaDirecta crea mediante `POST /invoices` una rectificativa negativa **R4** con `main.correctedInvoice` apuntando a la factura original, y una nueva factura positiva con los datos correctos.
+5. Se solicita al proveedor que envíe los dos PDFs al destinatario y copia al correo del emisor configurado. Los documentos llevan numeración fiscal del proveedor, no se alteran en D’Parranda.
+6. Se conserva el histórico completo, los IDs de ambas facturas y sus estados. **Stripe no recibe ninguna solicitud de devolución**.
+
+Para evitar usos fiscales incorrectos, si ya se había devuelto dinero de esa factura no se puede sustituir automáticamente; y si el nuevo destinatario está fuera de Canarias o tiene un NIF asociado a otra identidad, el flujo se bloquea para revisar el caso.
+
+### Devolución total o parcial
+
+1. Elegir **Devolver el saldo restante completo** o **Devolver una parte del pago**, importe y justificación. No se puede solicitar más que el total realmente pagado menos devoluciones anteriores.
+2. Registrar la solicitud sin movimientos. El administrador confirma una segunda vez escribiendo `DEVOLVER`.
+3. El servidor consulta la sesión de Checkout en Stripe (**en modo live**) y verifica la moneda EUR, el importe originalmente cobrado y el PaymentIntent. El navegador nunca puede imponer un identificador de cobro ni un importe arbitrario fuera del límite.
+4. El servidor ejecuta **POST /v1/refunds** con una clave de idempotencia específica para la solicitud. Si Stripe devuelve `pending`, queda **pendiente** y **no se crea ninguna rectificativa todavía**.
+5. Cuando el reembolso aparece como `succeeded` (tras pulsar **Consultar Stripe y continuar** si estaba pendiente), FacturaDirecta genera una rectificativa negativa **R1**, vinculada a la factura previa y por el **importe exacto devuelto**, con serie fiscal independiente.
+6. Se solicita el envío de la rectificativa al cliente y copia al emisor. Una devolución completa confirmada pausa la publicidad y marca la contratación como cancelada. Una devolución parcial mantiene la campaña, salvo que el administrador la pause aparte.
+
+Si Stripe falla, no se emite rectificativa de reembolso. Si Stripe ya devolvió el dinero y después falla FacturaDirecta, la operación queda **Requiere revisión y reintento**, guardando el ID del reembolso. Al reanudar **no se solicita un segundo reembolso**. Si se emitió la rectificativa, los reintentos guardan el ID y no generan una segunda.
+
+### Verificación técnica antes del primer uso real
+
+- Crear un entorno **sandbox** separado dentro de FacturaDirecta, con la serie ordinaria, serie de rectificativas, taxId de venta del IGIC general 7 %, cuenta de ingresos, plantilla de correo y VeriFactu comprobados.
+- Crear una **API key propia de D’Parranda** con permisos de lectura y escritura de `contacts` e `invoices`, y configurar las variables en Vercel (nunca en el repositorio ni en correos).
+- Pulsar **Comprobar conexión con FacturaDirecta** en el panel: realiza únicamente `GET /apiKeyInfo`, sin crear ningún documento.
+- Verificar un pago real supervisado. **No convertir una operación de prueba en una factura real**.
+- Probar primero una rectificación de datos y una devolución parcial en sandbox con Stripe de pruebas, revisando que no se dupliquen facturas ni movimientos antes de usar el modo real. Como el circuito de operaciones reales requiere Stripe live, las pruebas funcionales integradas usan respuestas simuladas, no un pago de pruebas enviado a facturación real.
+- Esta implementación es **supervisada**: el cliente no puede solicitar ni ejecutar devoluciones por su cuenta. No existe política de devoluciones automáticas ni habilitación al guardar el NIF.
+- El programa de facturación y el asesor fiscal deben validar el supuesto concreto de rectificativa y el código R1/R4, así como el tratamiento IGIC de ventas a clientes fuera de Canarias.
+
+Referencias oficiales de la integración:
+- [FacturaDirecta — Facturas de venta API](https://www.facturadirecta.com/desarrolladores/api/referencia/invoices/)
+- [FacturaDirecta — Rectificativas API](https://www.facturadirecta.com/desarrolladores/api/guias/corrective-invoices/)
+- [Stripe — Reembolsos](https://docs.stripe.com/refunds)
+
+**No se ha emitido ninguna factura ni ejecutado ningún reembolso real durante esta preparación.**
