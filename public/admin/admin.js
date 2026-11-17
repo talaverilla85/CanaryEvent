@@ -320,7 +320,7 @@ async function loadInvoiceReviews(){
  const node=$('invoiceReviewsList');if(!node)return;
  try{
   const result=await api('invoice-reviews');invoiceReviews=result.invoices||[];
-  renderInvoiceReviews();
+  renderInvoiceReviews();renderAdOperations();
  }catch(err){node.innerHTML='<p class="muted">No se pudo consultar facturación: '+escape(err.message)+'</p>'}
 }
 function renderInvoiceReviews(){
@@ -1092,6 +1092,43 @@ function opsFilteredRows(){
   return opsFilter==='archived'||opsFilter==='all'||(opsFilter==='paid'?r.payment==='paid':r.status===opsFilter);
  });
 }
+async function openPaidInvoice(id){
+ const row=invoiceReviews.find(r=>Number(r.draft_id)===id);
+ if(!row){
+  openDialog('<div class="sheet-head"><div><h2 id="dialogTitle">Factura pendiente</h2></div><button class="ghost mini" type="button" data-close>✕</button></div><p class="notice">Todavía no existe una factura asociada a este pago.</p>');return;
+ }
+ const sandbox=invoiceSandboxMode,test=String(row.stripe_checkout_session_id||'').startsWith('cs_test_');
+ const issued=!!row.provider_invoice_id&&test===sandbox;
+ const total=(Number(row.total_cents)/100).toLocaleString('es-ES',{style:'currency',currency:'EUR'});
+ openDialog('<div class="sheet-head"><div><span class="eyebrow">FACTURA '+(sandbox?'SANDBOX':'')+'</span><h2 id="dialogTitle">'+escape(row.company_name||'Anunciante')+'</h2></div><button class="ghost mini" type="button" data-close>✕</button></div>'+
+ '<p><strong>'+escape(row.title||'Publicidad')+'</strong> · '+escape(total)+'</p><p>Correo fiscal: '+escape(row.billing_email||'Pendiente')+'</p>'+
+ (issued?'<p id="invoiceModalStatus" class="muted" role="status">Cargando factura…</p><div id="invoiceModalPdf"></div><div class="sheet-footer"><button class="ghost" id="invoiceModalSend" type="button" disabled>Enviar copia por Resend</button><button class="ghost" type="button" data-close>Cerrar</button></div>':
+ '<p class="notice">Todavía no hay factura emitida en este entorno. No se puede enviar.</p>'));
+ if(!issued)return;
+ const status=$('invoiceModalStatus'),root=$('invoiceModalPdf');
+ try{
+  const doc=await api('invoice-existing-document',null,{id:String(id)});
+  if(!$('invoiceModalStatus'))return;
+  const url=new URL(doc.url);if(url.protocol!=='https:')throw Error('Enlace PDF no seguro.');
+  status.textContent='Factura localizada en FacturaDirecta.';
+  const link=document.createElement('a');link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Abrir o descargar PDF';
+  const p=document.createElement('p');p.append(link);root.append(p);
+  const frame=document.createElement('iframe');frame.src=url.href;frame.title='Vista previa de la factura';frame.referrerPolicy='no-referrer';frame.style.cssText='width:100%;height:350px;border:1px solid #dce6e8;border-radius:9px';root.append(frame);
+  const button=$('invoiceModalSend');if(!button)return;
+  button.disabled=!doc.resend_available;button.textContent=doc.sandbox?'Enviar prueba mediante Resend':'Enviar copia al cliente mediante Resend';
+  button.onclick=async()=>{
+   if(!confirm('¿Enviar copia del PDF existente a '+doc.recipient+' mediante Resend? No se crea otra factura.'))return;
+   button.disabled=true;
+   try{
+    const r=await api('invoice-existing-send-resend',{id,recipient:doc.recipient,attempt_key:crypto.randomUUID().replaceAll('-')});
+    status.textContent=r.message+' Destinatario: '+r.recipient+'. Ref. '+r.resend_id;
+   }catch(e){status.textContent='No se pudo enviar: '+e.message}
+   finally{button.disabled=false}
+  };
+  if(!doc.resend_available){const p=document.createElement('p');p.className='muted small';p.textContent='Resend todavía no está habilitado para enviar facturas. La consulta y descarga sí están disponibles.';root.append(p)}
+ }catch(e){if($('invoiceModalStatus'))status.textContent='Error al mostrar la factura: '+e.message}
+}
+
 function renderAdOperations(){
  const container=$('adOpsRows');if(!container)return;
  opsAllRows=normalizedOpsRows();
@@ -1139,7 +1176,7 @@ function renderAdOperations(){
       '<button type="button" class="ghost mini" data-ops-house-toggle="'+escape(r.id)+'" data-house-enable="true">Activar</button>'):'')+
     (r.source==='lead'&&r.status==='changes_requested'?
      '<button type="button" class="ghost mini" data-ops-invite="'+Number(r.id)+'">Dar acceso</button>':'')+
-    opsArchiveAction(r))+'</div></td></tr>';
+    (r.source==='draft'&&r.payment==='paid'?'<button class="ghost mini" type="button" data-ops-invoice="'+Number(r.id)+'">Factura</button>':'')+opsArchiveAction(r))+'</div></td></tr>';
  }).join('');
 }
 function opsOpenPreview(row){
@@ -1193,7 +1230,7 @@ function opsOpenPreview(row){
    (row.source==='draft'&&['approved_for_payment','pending_payment'].includes(row.status)&&row.payment!=='paid'?
    '<button type="button" class="primary" data-ops-payment="'+Number(row.id)+'">Enviar / reenviar pago</button>':'')+
   (row.source==='lead'?'<button type="button" class="ghost" data-ops-invite="'+Number(row.id)+'">Generar acceso privado</button>':'')+
-  opsArchiveAction(row))+'<button type="button" class="ghost" data-close>Cerrar</button></div>'+
+  (row.source==='draft'&&row.payment==='paid'?'<button class="ghost" type="button" data-ops-invoice="'+Number(row.id)+'">Factura</button>':'')+opsArchiveAction(row))+'<button type="button" class="ghost" data-close>Cerrar</button></div>'+
   '<p class="muted small">'+(row.payment==='paid'&&row.status==='paid_review'?
   'Pago confirmado. Programar publicación respeta la fecha de inicio; si es futura, el anuncio no se mostrará al público hasta entonces.':
   'Al aprobar se generará el enlace Stripe y se intentará enviar por correo. El anuncio no se publica sin pago verificado.')+'</p>';
@@ -1324,7 +1361,8 @@ async function handleAdvertisingArchiveAction(button){
  }catch(err){message(err.message);button.disabled=false}
 }
 $('adOpsRows').addEventListener('click',event=>{
- const button=event.target.closest('[data-ops-preview],[data-ops-invite],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
+ const button=event.target.closest('[data-ops-invoice],[data-ops-preview],[data-ops-invite],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
+ if(button.dataset.opsInvoice){openPaidInvoice(Number(button.dataset.opsInvoice));return}
  if(button.dataset.opsArchive||button.dataset.opsRestore){handleAdvertisingArchiveAction(button);return}
  if(button.dataset.opsPaidEdit){const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsPaidEdit));if(row)openPaidCreativeEditor(row);return}
  if(button.dataset.opsPaidToggle){handlePaidCampaignAction(button);return}
@@ -1356,7 +1394,8 @@ $('adOpsExport').onclick=()=>{
  setTimeout(()=>URL.revokeObjectURL(object),500);
 };
 $('sheet').addEventListener('click',async event=>{
- const button=event.target.closest('[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
+ const button=event.target.closest('[data-ops-invoice],[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
+ if(button.dataset.opsInvoice){openPaidInvoice(Number(button.dataset.opsInvoice));return}
  if(button.dataset.opsArchive||button.dataset.opsRestore){await handleAdvertisingArchiveAction(button);return}
  if(button.dataset.opsPaidEdit){const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsPaidEdit));if(row)openPaidCreativeEditor(row);return}
  if(button.dataset.opsPaidToggle){await handlePaidCampaignAction(button);return}
