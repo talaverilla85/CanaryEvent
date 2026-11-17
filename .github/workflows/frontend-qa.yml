@@ -66,6 +66,8 @@ jobs:
           node --check lib/stripe-advertising.js
           node --check lib/advertiser-publication.js
           node --check lib/advertising-archive.js
-          node --test tests/test_commercial_workflow.mjs
+          node --check lib/facturadirecta-invoices.js
+          node --check lib/advertising-invoice-issuance.js
+          node --test tests/test_commercial_workflow.mjs tests/test_fiscal_issuance.mjs
       - name: Pruebas de la interfaz y compatibilidad
         run: python -m unittest discover -s tests -q
