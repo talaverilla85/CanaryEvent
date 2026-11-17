@@ -3,6 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {facturadirectaSandboxStatus} from '../lib/facturadirecta-sandbox.js';
 import {invoiceIssuanceReadiness,issueCheckedInvoice} from '../lib/advertising-invoice-issuance.js';
+import {processInvoiceAdjustment} from '../lib/advertising-invoice-adjustments.js';
 const env={
  DPARRANDA_BILLING_MODE:'sandbox',DPARRANDA_STRIPE_MODE:'test',
  DPARRANDA_STRIPE_PAYMENTS_ENABLED:'true',
@@ -123,5 +124,62 @@ test('no acepta Stripe live ni credenciales reales en modo sandbox',async()=>{
  try{
   const ready=await invoiceIssuanceReadiness(async()=>[issuer]);
   assert.equal(ready.can_issue,false);
+ }finally{globalThis.fetch=old;restore()}
+});
+
+test('la devolución Stripe TEST genera rectificativa en FacturaDirecta SANDBOX sin tocar producción',async()=>{
+ activate();const old=globalThis.fetch;
+ let stripeRefunds=0,providerCorrections=0;const calls=[];
+ const row={id:20,draft_id:33,kind:'refund_partial',amount_cents:1200,
+  total_cents:4900,reason:'Incidencia con campaña de publicidad de prueba',status:'pending_review',
+  stripe_checkout_session_id:'cs_test_ABC123',stripe_payment_intent_id:'pi_testABC123',
+  original_invoice_id:'inv_original',original_invoice_status:'sent',
+  original_invoice_provider:'facturadirecta-sandbox',
+  payment_status:'paid',company_name:'Prueba',billing_email:'externo@example.invalid',
+  title:'Anuncio de prueba',plan:'zona',days:30,placement:'banner',issue_date:'2026-11-17',
+  correction_invoice_id:null,correction_sent_at:null};
+ globalThis.fetch=async(url,options={})=>{
+  const u=String(url),method=options.method||'GET';calls.push(u);
+  if(u.endsWith('/settings/company')||u.endsWith('/settings/taxes/sales')||
+    u.endsWith('/settings/series/invoice'))return fakeResponse(u,options);
+  if(u.includes('stripe.com/v1/checkout/sessions/'))return Response.json({
+   id:'cs_test_ABC123',livemode:false,amount_total:4900,currency:'eur',
+   payment_status:'paid',payment_intent:'pi_testABC123'});
+  if(u.endsWith('stripe.com/v1/refunds')&&method==='POST'){
+   stripeRefunds++;return Response.json({id:'re_testREFUND',amount:1200,status:'succeeded'});
+  }
+  if(u.endsWith('/invoices/inv_original')&&method==='GET')
+   return Response.json({content:{uuid:'inv_original',main:{contact:'con_testORIGINAL'}}});
+  if(u.endsWith('/invoices')&&method==='POST'){
+   providerCorrections++;return Response.json({content:{uuid:'inv_testRECTIF'}});}
+  if(u.endsWith('/invoices/inv_testRECTIF/send'))return Response.json({ok:true});
+  throw Error('HTTP inesperado '+u);
+ };
+ const sql=async(parts,...v)=>{
+  const q=parts.join('?');
+  if(q.includes('FROM advertising_invoice_adjustments a'))return [row];
+  if(q.includes('FROM advertising_invoice_issuer'))return [issuer];
+  if(q.includes("status='processing'")&&q.includes('UPDATE advertising_invoice_adjustments SET')){
+   row.status='processing';return [{id:20,issue_date:'2026-11-17'}];}
+  if(q.includes('UPDATE advertising_invoice_adjustments SET stripe_refund_id=')){
+   row.stripe_refund_id=v[0];row.status=v[1];return [];}
+  if(q.includes('UPDATE advertising_invoice_adjustments SET\n   correction_invoice_id=')){
+   row.correction_invoice_id=v[0];return [];}
+  if(q.includes('UPDATE advertising_invoice_adjustments SET correction_sent_at=')){
+   row.correction_sent_at=new Date();return [];}
+  if(q.includes("status='completed'")&&q.includes('UPDATE advertising_invoice_adjustments')){
+   row.status='completed';return [{id:20}];}
+  if(q.includes('UPDATE advertising_invoice_adjustments SET status=')){
+   row.status=v[0];return [];}
+  throw Error('SQL inesperada '+q.slice(0,160));
+ };
+ try{
+  const result=await processInvoiceAdjustment(sql,20);
+  assert.equal(result.status,'completed');
+  assert.equal(stripeRefunds,1);
+  assert.equal(providerCorrections,1);
+  assert.ok(calls.some(x=>x.includes(env.FACTURADIRECTA_SANDBOX_COMPANY_ID)));
+  assert.equal((await processInvoiceAdjustment(sql,20)).already,true);
+  assert.equal(stripeRefunds,1);
  }finally{globalThis.fetch=old;restore()}
 });
