@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-16T13:57:08.610460+00:00",
+  "checked_at": "2026-11-17T15:51:06.665906+00:00",
   "year": 2026,
   "scope": [
     "Santa Lucía de Tirajana",
@@ -15,16 +15,6 @@
       "municipality": "Agüimes",
       "title": "Programa municipal de fiestas",
       "pdf_url": "https://aguimes.es/wp-content/uploads/2026/04/AF_PROGRAMA-A5_-FIESTAS-DE-SAN-JOSE-OBRERO-2026_DIGITAL.pdf",
-      "year": 2026,
-      "official_index_url": "https://aguimes.es/festejos/",
-      "discovery": "official_html",
-      "event_date_verified": false,
-      "first_seen_at": "2026-10-27T23:00:48.804859+00:00"
-    },
-    {
-      "municipality": "Agüimes",
-      "title": "Programa municipal de fiestas",
-      "pdf_url": "https://aguimes.es/wp-content/uploads/2026/08/AF_PROGRAMA-FIESTAS-DE-GUAYADEQUE-2026_DIGITAL.pdf",
       "year": 2026,
       "official_index_url": "https://aguimes.es/festejos/",
       "discovery": "official_html",
@@ -52,6 +42,16 @@
       "first_seen_at": "2026-10-27T23:00:48.804859+00:00",
       "program_end_hint": "2026-10-13",
       "program_end_evidence_url": "https://aguimes.es/wp-content/uploads/2026/09/AF_FIESTAS-DEL-ROSARIO-2026-DIGITAL.pdf"
+    },
+    {
+      "municipality": "Agüimes",
+      "title": "FIESTAS LA MILAGROSA 2026",
+      "pdf_url": "https://aguimes.es/wp-content/uploads/2026/11/AF_PROGRAMA-FIESTAS-DE-LA-MILAGROSA-2026_DIGITAL.pdf",
+      "year": 2026,
+      "official_index_url": "https://aguimes.es/festejos/",
+      "discovery": "official_html",
+      "event_date_verified": false,
+      "first_seen_at": "2026-11-17T15:51:06.665906+00:00"
     },
     {
       "municipality": "Gáldar",

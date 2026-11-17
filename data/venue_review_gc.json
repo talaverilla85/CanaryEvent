@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-16T13:57:21+00:00",
-  "not_published": 34,
+  "updated_at": "2026-11-17T15:51:58+00:00",
+  "not_published": 36,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -196,6 +196,18 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
+      "id": 968,
+      "title": "CAMPAÑA DE REYES - UN JUGUETE, UNA SONRISA, UNA ILUSIÓN",
+      "start": "2026-11-16",
+      "end": "2026-12-18",
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qUT0=",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
       "id": 536,
       "title": "CONOCE EL CONGRESO Y SENADO",
       "start": "2026-11-19",
@@ -372,6 +384,18 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Ayuntamiento de Arucas · agenda municipal",
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01Uaz0=",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 969,
+      "title": "UN POZO, DOS RELATOS",
+      "start": "2026-12-10",
+      "end": null,
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qTT0=",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },

@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-11-16",
+  "updated_on": "2026-11-17",
   "scope": "21 municipios de Gran Canaria",
   "municipalities_total": 21,
   "municipalities_with_any_catalog_cards": 18,
@@ -34,8 +34,8 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 8,
-      "municipal_cards_total": 7,
+      "catalog_cards_total": 15,
+      "municipal_cards_total": 14,
       "other_sources_cards_total": 1,
       "source_health": [
         {
@@ -88,7 +88,7 @@
       "source_health": [
         {
           "source": "Ayuntamiento de Arucas · agenda municipal",
-          "found": 11,
+          "found": 13,
           "error": ""
         }
       ],
@@ -125,9 +125,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 15,
+      "catalog_cards_total": 14,
       "municipal_cards_total": 1,
-      "other_sources_cards_total": 14,
+      "other_sources_cards_total": 13,
       "source_health": [
         {
           "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
@@ -149,8 +149,8 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 21,
-      "municipal_cards_total": 11,
+      "catalog_cards_total": 22,
+      "municipal_cards_total": 12,
       "other_sources_cards_total": 10,
       "source_health": [
         {
@@ -326,8 +326,8 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 49,
-      "municipal_cards_total": 27,
+      "catalog_cards_total": 39,
+      "municipal_cards_total": 17,
       "other_sources_cards_total": 22,
       "source_health": [
         {
@@ -342,7 +342,7 @@
         },
         {
           "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
-          "found": 25,
+          "found": 16,
           "error": ""
         },
         {

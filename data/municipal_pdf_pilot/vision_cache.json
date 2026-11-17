@@ -1255,5 +1255,257 @@
       },
       "total_tokens": 2600
     }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/6/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Actuación musical Attenya",
+          "date": "2026-11-20",
+          "time": "21:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "20 NOVIEMBRE — 21:00 Actuación musical Attenya.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Dj Airam Vega",
+          "date": "2026-11-21",
+          "time": "21:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "21 NOVIEMBRE — 21:00 Dj Airam Vega.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Pedro Afonso",
+          "date": "2026-11-21",
+          "time": "23:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "21 NOVIEMBRE — 23:00 Pedro Afonso.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Ritmo Bakano",
+          "date": "2026-11-21",
+          "time": "01:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "21 NOVIEMBRE — 01:00 Ritmo Bakano.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 1960,
+      "input_tokens_details": {
+        "cache_write_tokens": 1957,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1957
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 416,
+      "output_tokens_details": {
+        "reasoning_tokens": 130
+      },
+      "total_tokens": 2376
+    }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/6/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "Actuación musical Attenya",
+          "date": "2026-11-20",
+          "time": "21:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "21:00 Actuación musical Attenya. Plaza Primero de Mayo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Dj Airam Vega",
+          "date": "2026-11-21",
+          "time": "21:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "21 NOVIEMBRE; 21:00 Dj Airam Vega.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Pedro Afonso",
+          "date": "2026-11-21",
+          "time": "23:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "21 NOVIEMBRE; 23:00 Pedro Afonso.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Ritmo Bakano",
+          "date": "2026-11-21",
+          "time": "01:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "21 NOVIEMBRE; 01:00 Ritmo Bakano.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 1827,
+      "input_tokens_details": {
+        "cache_write_tokens": 1824,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1824
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 433,
+      "output_tokens_details": {
+        "reasoning_tokens": 149
+      },
+      "total_tokens": 2260
+    }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/7/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Ludoparque infantil",
+          "date": "2026-11-22",
+          "time": "11:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "22 NOVIEMBRE — 11:00 Ludoparque infantil.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Tardeo canario y Taifa La Milagrosa",
+          "date": "2026-11-22",
+          "time": "18:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "22 NOVIEMBRE — 18:00 Tardeo canario y Taifa La Milagrosa.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Torneo de zanga",
+          "date": "2026-11-23",
+          "time": "18:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "23 NOVIEMBRE — 18:00 Torneo de zanga.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Gala de variedades",
+          "date": "2026-11-24",
+          "time": "20:30",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "24 NOVIEMBRE — 20:30 Gala de variedades.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 1960,
+      "input_tokens_details": {
+        "cache_write_tokens": 1957,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1957
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 662,
+      "output_tokens_details": {
+        "reasoning_tokens": 363
+      },
+      "total_tokens": 2622
+    }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/7/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "Ludoparque infantil",
+          "date": "2026-11-22",
+          "time": "11:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "22 NOVIEMBRE; PLAZA PRIMERO DE MAYO; 11:00 Ludoparque infantil.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Tardeo canario y Taifa La Milagrosa",
+          "date": "2026-11-22",
+          "time": "18:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "22 NOVIEMBRE; PLAZA PRIMERO DE MAYO; 18:00 Tardeo canario y Taifa La Milagrosa.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Torneo de zanga",
+          "date": "2026-11-23",
+          "time": "18:00",
+          "venue": "Centro de Mayores del Cruce de Arinaga",
+          "evidence": "23 NOVIEMBRE; 18:00 Torneo de zanga. Centro de Mayores del Cruce de Arinaga.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Gala de variedades",
+          "date": "2026-11-24",
+          "time": "20:30",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "24 NOVIEMBRE; PLAZA PRIMERO DE MAYO; 20:30 Gala de variedades.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 1827,
+      "input_tokens_details": {
+        "cache_write_tokens": 1824,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1824
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 557,
+      "output_tokens_details": {
+        "reasoning_tokens": 213
+      },
+      "total_tokens": 2384
+    }
   }
 }

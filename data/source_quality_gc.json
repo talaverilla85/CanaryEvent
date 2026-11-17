@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-11-16T13:57:21+00:00",
+  "checked_at": "2026-11-17T15:51:58+00:00",
   "quality_counts": {
-    "publicados": 399,
-    "recintos_sin_verificar": 34,
+    "publicados": 396,
+    "recintos_sin_verificar": 36,
     "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 276,
-    "distancia_a_centro_municipal": 261,
+    "precios_sin_confirmar": 273,
+    "distancia_a_centro_municipal": 258,
     "fuentes_con_error": 4,
     "duplicados_potenciales": 0
   },
@@ -13,10 +13,10 @@
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 11,
+      "publicados": 12,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 4,
-      "distancia_al_centro_municipal": 11,
+      "distancia_al_centro_municipal": 12,
       "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
@@ -164,10 +164,10 @@
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
       "publicados": 2,
-      "recinto_sin_verificar": 6,
+      "recinto_sin_verificar": 8,
       "precio_sin_confirmar": 2,
       "distancia_al_centro_municipal": 2,
-      "fichas_leidas_en_esta_ejecucion": 11,
+      "fichas_leidas_en_esta_ejecucion": 13,
       "error": ""
     },
     {
@@ -273,10 +273,10 @@
     {
       "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
       "estado": "operativa",
-      "publicados": 2,
+      "publicados": 1,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 2,
-      "distancia_al_centro_municipal": 2,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
       "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
@@ -293,21 +293,21 @@
     {
       "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
       "estado": "operativa",
-      "publicados": 25,
+      "publicados": 16,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 25,
-      "distancia_al_centro_municipal": 25,
-      "fichas_leidas_en_esta_ejecucion": 25,
+      "precio_sin_confirmar": 16,
+      "distancia_al_centro_municipal": 16,
+      "fichas_leidas_en_esta_ejecucion": 16,
       "error": ""
     },
     {
       "source": "Ayuntamientos · programas PDF verificados",
-      "estado": "sin_resultados_en_esta_revision",
+      "estado": "operativa",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
+      "fichas_leidas_en_esta_ejecucion": 7,
       "error": ""
     },
     {
@@ -393,11 +393,11 @@
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 69,
+      "publicados": 68,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 68,
-      "fichas_leidas_en_esta_ejecucion": 108,
+      "distancia_al_centro_municipal": 67,
+      "fichas_leidas_en_esta_ejecucion": 107,
       "error": ""
     },
     {
@@ -407,7 +407,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 4,
+      "fichas_leidas_en_esta_ejecucion": 3,
       "error": ""
     },
     {
@@ -486,7 +486,7 @@
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 6
+      "count": 8
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
@@ -627,6 +627,14 @@
       "source_url": "https://eventos.santabrigida.es/eventos/aprende-diseno-e-impresion-en-3-d/"
     },
     {
+      "id": 968,
+      "title": "CAMPAÑA DE REYES - UN JUGUETE, UNA SONRISA, UNA ILUSIÓN",
+      "start": "2026-11-16",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qUT0="
+    },
+    {
       "id": 536,
       "title": "CONOCE EL CONGRESO Y SENADO",
       "start": "2026-11-19",
@@ -689,14 +697,6 @@
       "municipality": "Santa Brígida",
       "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "source_url": "https://eventos.santabrigida.es/eventos/canarias-brass-connection-en-el-centro-cultural/"
-    },
-    {
-      "id": 307,
-      "title": "Exposición y charla 'Conocer para Conservar'",
-      "start": "2026-11-23",
-      "municipality": "Mogán",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261123-0001/exposicion-y-charla-conocer-para-conservar"
     }
   ],
   "guidance": [

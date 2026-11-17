@@ -1,18 +1,18 @@
 {
-  "checked_on": "2026-11-16T14:02:04.374899+00:00",
-  "total_events": 399,
+  "checked_on": "2026-11-17T15:56:13.887701+00:00",
+  "total_events": 396,
   "known_price_or_free": 123,
   "classification": {
-    "minimum_zero_ambiguous": 6,
+    "minimum_zero_ambiguous": 5,
     "free": 12,
-    "minimum_positive": 101,
+    "minimum_positive": 102,
     "fixed_positive": 4
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 69,
+    "TuReservaOnline · agenda de Gran Canaria": 68,
     "Juventud Las Palmas de Gran Canaria": 10,
     "LPA Cultura · agenda municipal oficial": 2,
-    "Ayuntamiento de Ingenio": 7,
+    "Ayuntamiento de Ingenio": 8,
     "Ayuntamiento de Agüimes · programación de teatros": 4,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 22,
     "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 2,
@@ -27,15 +27,6 @@
       "free": 0,
       "category": "minimum_zero_ambiguous",
       "url": "https://www.tureservaonline.es/es/events/copa-hipica-san-vicente-2627-carrera-de-caballo"
-    },
-    {
-      "id": 814,
-      "title": "PROYECCIÓN \"NO ESTÁS LOCA. LA VERDAD SOBRE LA VIOLENCIA VICARIA\"",
-      "source": "TuReservaOnline · agenda de Gran Canaria",
-      "label": "Desde 0 €",
-      "free": 0,
-      "category": "minimum_zero_ambiguous",
-      "url": "https://www.tureservaonline.es/es/events/proyeccion-no-estas-loca-la-verdad-sobre-la-violencia-vicaria"
     },
     {
       "id": 473,
