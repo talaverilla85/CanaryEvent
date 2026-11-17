@@ -26,6 +26,7 @@ on:
       - "tests/test_invoice_adjustments.mjs"
       - "tests/test_facturadirecta_sandbox.mjs"
       - "public/index.html"
+      - "public/admin/**"
       - "public/filter_ui.js"
       - "tests/test_frontend_performance_contract.py"
       - "scripts/check_frontend_syntax.cjs"

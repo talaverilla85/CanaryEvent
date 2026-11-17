@@ -380,7 +380,7 @@ function openInvoiceReview(row){
   '<button type="submit" class="primary" value="check">Marcar datos revisados</button>'+
   '<button type="button" class="ghost" data-close>Cerrar</button></div></form>');
 }
-$('invoiceReviewsList').addEventListener('click',event=>{
+$('invoiceReviewsList').addEventListener('click',async event=>{
  const button=event.target.closest('[data-invoice-edit],[data-invoice-issue],[data-invoice-adjust]');if(!button)return;
  if(button.dataset.invoiceAdjust){
   const row=invoiceReviews.find(r=>Number(r.draft_id)===Number(button.dataset.invoiceAdjust));
