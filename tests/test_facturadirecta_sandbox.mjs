@@ -254,7 +254,7 @@ test('el cliente ficticio de sandbox usa el identificador del ejemplo oficial en
    return Response.json({content:{uuid:'inv_SANDBOX_TEST'}});
   if(s.endsWith('/contacts')&&options.method==='POST'){
    const value=JSON.parse(options.body).content.main.fiscalId;
-   calls.push(value);return Response.json({content:{uuid:'con_SANDBOX_TEST'}});
+   calls.push({value,currency:JSON.parse(options.body).content.main.currency});return Response.json({content:{uuid:'con_SANDBOX_TEST'}});
   }
   return fakeResponse(url,options);
  };
@@ -262,6 +262,6 @@ test('el cliente ficticio de sandbox usa el identificador del ejemplo oficial en
   const {facturadirectaSandboxAction}=await import('../lib/facturadirecta-sandbox.js');
   await facturadirectaSandboxAction({action:'invoice',plan:'zona',days:30,
    test_id:'abc1234567890def1234567890abcd'});
-  assert.deepEqual(calls,['B12345674']);
+  assert.deepEqual(calls,[{value:'B12345674',currency:'EUR'}]);
  }finally{globalThis.fetch=old;restore()}
 });

@@ -176,3 +176,8 @@ El flujo de prueba directa solicita además `PUT /{companyId}/invoices/{id}/pdf`
 ## Diagnóstico de rechazo al crear contacto (17/11/2026)
 
 El usuario probó la conexión real de Sandbox: empresa verificada con IGIC 7 %, series ordinaria y rectificativa, pero la primera emisión se detuvo en `POST /contacts`, HTTP 400 (no se creó ninguna factura ni hubo cobro). El 400 original ocultaba el JSON de validaciones. Se sustituyó el NIF ficticio `00000000T` por el CIF de ejemplo `B12345674` de la documentación oficial de FacturaDirecta; para corregidos se usa `12345678Z`. Se incorporó propagación limitada de `errors[].path/message` para mostrar en el panel el campo rechazado sin incluir claves ni cuerpos de petición. Pendiente: reintentar con la cuenta de Sandbox real y atender el campo concreto que informe la API. Enlace de referencia: https://www.facturadirecta.com/desarrolladores/api/referencia/contacts/ .
+
+
+## Validación API: moneda en contacto Sandbox (17/11/2026)
+
+La API real confirmó la configuración de empresa Sandbox, pero rechazó `POST /contacts` con `HTTP 400` y ruta `/body/content/main/currency: must have required property 'currency'`. Se añadió explícitamente `currency: 'EUR'` a `content.main` en `createOrFindContact()` (`lib/facturadirecta-invoices.js`), aplicable tanto al Sandbox como al adaptador fiscal futuro. La prueba automatizada de creación de contacto verifica que el JSON enviado incluye moneda EUR. Falta volver a probar el flujo completo contra la API real para comprobar si aparecen validaciones adicionales.
