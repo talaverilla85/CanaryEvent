@@ -21,6 +21,7 @@ on:
       - "api/stripe-webhook.js"
       - "lib/facturadirecta-*.js"
       - "lib/advertising-invoice-*.js"
+      - "tests/**"
       - "tests/test_fiscal_issuance.mjs"
       - "tests/test_invoice_adjustments.mjs"
       - "tests/test_facturadirecta_sandbox.mjs"
