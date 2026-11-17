@@ -17,6 +17,13 @@ on:
     branches: [main]
     paths:
       - "api/catalog.js"
+      - "api/admin.js"
+      - "api/stripe-webhook.js"
+      - "lib/facturadirecta-*.js"
+      - "lib/advertising-invoice-*.js"
+      - "tests/test_fiscal_issuance.mjs"
+      - "tests/test_invoice_adjustments.mjs"
+      - "tests/test_facturadirecta_sandbox.mjs"
       - "public/index.html"
       - "public/filter_ui.js"
       - "tests/test_frontend_performance_contract.py"
