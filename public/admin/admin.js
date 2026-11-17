@@ -576,22 +576,65 @@ $('checkFacturadirecta').addEventListener('click',async event=>{
 });
 
 async function loadFdSandboxStatus(){
- const box=$('fdSandboxStatus'),button=$('fdSandboxCheck');
- if(!box)return;
- button.disabled=true;
+ const box=$('fdSandboxStatus'),button=$('fdSandboxCheck'),create=$('fdSandboxCreate');
+ if(!box||!button||!create)return;
+ button.disabled=true;create.disabled=true;
  try{
   const status=await api('facturadirecta-sandbox-status');
+  const ready=status.verified===true&&status.ready===true&&status.enabled===true;
   box.textContent=status.verified?
-   (status.ready&&status.enabled?
+   (ready?
     'Sandbox verificado: '+status.company_name+'. Impuesto: '+status.igic_tax_id+
      '. Serie: '+status.invoice_series+'. Rectificativas: '+(status.rectification_series||'pendiente')+
-     '. Ya puedes probar un pago con tarjeta Stripe test.':
+     '. Ya puedes crear una factura de prueba mediante la API.':
     'Sandbox identificado, pero aún no listo. '+(status.missing||[]).join(' ')):
    status.message;
+  create.disabled=!ready;
  }catch(e){box.textContent='Sandbox no verificado. '+e.message}
  finally{button.disabled=false}
 }
 $('fdSandboxCheck').addEventListener('click',loadFdSandboxStatus);
+$('fdSandboxCreate').addEventListener('click',async()=>{
+ const button=$('fdSandboxCreate'),result=$('fdSandboxResult');
+ if(button.disabled)return;
+ const plan=$('fdSandboxPlan').value,days=Number($('fdSandboxDays').value);
+ const price={local:19,zona:49,insular:99}[plan]*(days/30);
+ const answer=prompt('Crear una factura de PRUEBA por '+price.toFixed(2)+' € en FacturaDirecta SANDBOX, sin cobro Stripe y sin validez fiscal.\\n\\nEscribe PRUEBA para confirmar:');
+ if(answer===null)return;
+ if(answer.trim()!=='PRUEBA'){message('Prueba cancelada.');return}
+ button.disabled=true;
+ // Preserve the ID after a network failure so retrying does not create a duplicate document.
+ const testId=button.dataset.testId||crypto.randomUUID().replaceAll('-','');
+ button.dataset.testId=testId;
+ result.textContent='Solicitando factura a FacturaDirecta Sandbox…';
+ try{
+  const r=await api('facturadirecta-sandbox-action',{
+   confirmation:'PRUEBA SANDBOX',action:'invoice',plan,days,test_id:testId
+  });
+  if(r.sandbox!==true||!/^inv_[A-Za-z0-9_-]+$/.test(String(r.id||'')))
+   throw Error('La API no confirmó una factura sandbox válida');
+  const amount=(Number(r.amount_cents)/100).toLocaleString('es-ES',{style:'currency',currency:'EUR'});
+  const safeLink=typeof r.url==='string'&&/^https:\/\/app\.facturadirecta\.com\//.test(r.url)?r.url:null;
+  result.replaceChildren();
+  const heading=document.createElement('strong');
+  heading.textContent='Factura de prueba registrada en FacturaDirecta Sandbox';
+  const details=document.createElement('p');
+  details.textContent='ID de factura: '+r.id+' · Total: '+amount+' · Sin validez fiscal · Sin cobro real';
+  const link=document.createElement('a');
+  link.href=safeLink||'https://app.facturadirecta.com/';
+  link.target='_blank';link.rel='noopener noreferrer';
+  link.textContent=safeLink?'Abrir factura en FacturaDirecta':'Abrir mi empresa Sandbox en FacturaDirecta';
+  const note=document.createElement('p');
+  note.textContent=safeLink?'En FacturaDirecta puedes revisar y descargar su PDF con la marca «Sin validez legal».':
+   'Localiza la factura por el identificador anterior en tu empresa de pruebas y abre su PDF «Sin validez legal».';
+  result.append(heading,details,link,note);
+  delete button.dataset.testId;
+  message('Factura creada en FacturaDirecta Sandbox.');
+ }catch(e){
+  result.textContent='No se pudo confirmar la factura en FacturaDirecta Sandbox: '+e.message+
+   '. Si reintentas, se reutilizará el identificador para evitar duplicados.';
+ }finally{button.disabled=false}
+});
 
 async function loadAdvertisingArchives(){
  try{const data=await api('advertising-archives');advertisingArchives=data.archives||[];

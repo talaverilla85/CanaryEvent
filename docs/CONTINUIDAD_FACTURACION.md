@@ -163,3 +163,8 @@ Copia este mensaje:
 ---
 
 **Decisión final de esta sesión:** **documentar y PAUSAR** facturación fiscal real y devoluciones. Nada de emitir, reembolsar ni activar automatismos. Se puede seguir desarrollando y probando en entornos simulados/aislados en otro momento.
+
+
+## Prueba directa de FacturaDirecta Sandbox desde Administración (17/11/2026)
+
+En Administración → Publicidad, el bloque «Pruebas con el sistema de facturación real» aparece **antes** del simulador local. «Verificar FacturaDirecta Sandbox» realiza lecturas al proveedor, valida la marca de empresa sandbox, el impuesto y la serie. Solo cuando el resultado indica `verified + ready + enabled` se habilita «Crear factura en FacturaDirecta Sandbox». El usuario confirma escribiendo PRUEBA; el servidor exige además «PRUEBA SANDBOX» y revalida sandbox antes de escribir. Usa únicamente datos ficticios, no necesita ni crea ningún pago de Stripe y no envía correos. El resultado ofrece ID, total y enlace `webUrl` de FacturaDirecta (o acceso a la empresa de pruebas si el proveedor no lo devuelve), donde se puede abrir/descargar el PDF de pruebas con marca «Sin validez legal». No se ha realizado aún ninguna llamada real con las credenciales del usuario: debe verificar el resultado de la operación.

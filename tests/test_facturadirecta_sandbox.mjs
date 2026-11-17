@@ -183,3 +183,35 @@ test('la devolución Stripe TEST genera rectificativa en FacturaDirecta SANDBOX 
   assert.equal(stripeRefunds,1);
  }finally{globalThis.fetch=old;restore()}
 });
+
+test('el botón de administración puede crear un documento de sandbox verificable por API, sin Stripe',async()=>{
+ activate();
+ const old=globalThis.fetch,calls=[];
+ globalThis.fetch=async(url,options={})=>{
+  const s=String(url),method=options.method||'GET';
+  calls.push({s,method,body:options.body?JSON.parse(options.body):null});
+  if(s.endsWith('/invoices/inv_SANDBOX_TEST')&&method==='GET')
+   return Response.json({content:{uuid:'inv_SANDBOX_TEST',main:{
+    lines:[{text:'Publicidad D’Parranda · DParranda SANDBOX TEST sin validez fiscal'}]
+   }},webUrl:'https://app.facturadirecta.com/view/test-document'});
+  if(s.endsWith('/invoices')&&method==='POST')
+   return Response.json({content:{uuid:'inv_SANDBOX_TEST'}});
+  if(s.endsWith('/contacts')&&method==='POST')
+   return Response.json({content:{uuid:'con_SANDBOX_TEST'}});
+  return fakeResponse(url,options);
+ };
+ try{
+  const {facturadirectaSandboxAction}=await import('../lib/facturadirecta-sandbox.js');
+  const created=await facturadirectaSandboxAction({action:'invoice',plan:'zona',days:30,
+   test_id:'abc1234567890def1234567890abcd'});
+  assert.equal(created.id,'inv_SANDBOX_TEST');
+  assert.equal(created.amount_cents,4900);
+  assert.equal(created.sandbox,true);
+  assert.match(created.url,/facturadirecta\.com/);
+  const posted=calls.find(x=>x.s.endsWith('/invoices')&&x.method==='POST');
+  assert.equal(posted.body.content.main.taxIncludedPrices,true);
+  assert.equal(posted.body.content.main.lines[0].unitPrice,49);
+  assert.ok(calls.every(x=>x.s.includes(env.FACTURADIRECTA_SANDBOX_COMPANY_ID)));
+  assert.ok(calls.every(x=>!x.s.includes('stripe.com')));
+ }finally{globalThis.fetch=old;restore()}
+});

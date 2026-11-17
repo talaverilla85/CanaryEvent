@@ -74,6 +74,28 @@
  <p class="muted small adops-safe-delete-note">«Quitar del panel» mueve el registro a Archivados, donde puedes recuperarlo. Los pagos y datos contables nunca se eliminan. La campaña principal de AriMar está protegida.</p>
 </div>
 <div class="card invoice-review-panel" id="invoiceReviewPanel">
+ <section class="invoice-demo-section" aria-labelledby="fdSandboxTitle">
+  <div class="adops-heading"><div>
+   <span class="eyebrow">STRIPE TEST + FACTURADIRECTA SANDBOX</span><h2 id="fdSandboxTitle">Pruebas con el sistema de facturación real</h2>
+   <p class="muted">El pago con tarjeta de prueba genera un borrador en «Documentos pendientes de revisión». Tras revisarlo y pulsar «Emitir y enviar», la factura se crea en FacturaDirecta Sandbox, sin validez fiscal ni cobro real. Las devoluciones de prueba también usan Stripe test.</p>
+  </div></div>
+  <p id="fdSandboxStatus" class="adops-intake" role="status" aria-live="polite">Comprobando el entorno de pruebas…</p>
+  <div class="actions"><button type="button" class="ghost mini" id="fdSandboxCheck">Verificar FacturaDirecta Sandbox</button></div>
+  <div class="invoice-demo-controls">
+   <label>Tarifa de prueba en FacturaDirecta
+    <select id="fdSandboxPlan"><option value="local">Local · 19 €</option><option value="zona" selected>Zona · 49 €</option><option value="insular">Insular · 99 €</option></select>
+   </label>
+   <label>Duración de la prueba
+    <select id="fdSandboxDays"><option value="30" selected>30 días</option><option value="60">60 días</option></select>
+   </label>
+  </div>
+  <div class="actions"><button type="button" class="primary mini" id="fdSandboxCreate" disabled>Crear factura en FacturaDirecta Sandbox</button></div>
+  <div id="fdSandboxResult" class="invoice-demo-results" role="status" aria-live="polite">
+   <p class="muted">Primero comprueba la conexión. Al crear se registrará una factura de prueba en FacturaDirecta; no se realiza ningún cobro ni se envía correo.</p>
+  </div>
+  <p class="muted small"><strong>Prueba de API directa:</strong> esta acción crea una factura de demostración con datos ficticios y no requiere una compra Stripe. Puedes abrirla en tu empresa Sandbox para revisar el PDF «Sin validez legal». Para probar todo el proceso de contratación y pago, usa Stripe test en una prueba posterior.</p>
+  <p class="muted small">Las facturas sandbox llevan la marca «Sin validez legal» y el proveedor redirige los correos de prueba a la cuenta de pruebas. Ningún anuncio pagado con tarjeta de prueba se publica automáticamente.</p>
+ </section>
  <section class="invoice-demo-section" aria-labelledby="invoiceDemoTitle">
   <div class="adops-heading"><div>
    <span class="eyebrow">PRUEBAS SIN ALTA EN IAE</span>
@@ -97,15 +119,6 @@
   <div id="invoiceDemoResult" class="invoice-demo-results" role="status" aria-live="polite">
    <p class="muted">Elige una de las cuatro pruebas para ver el resultado. No necesitas registrar tus datos fiscales.</p>
   </div>
- </section>
- <section class="invoice-demo-section" aria-labelledby="fdSandboxTitle">
-  <div class="adops-heading"><div>
-   <span class="eyebrow">STRIPE TEST + FACTURADIRECTA SANDBOX</span><h2 id="fdSandboxTitle">Pruebas con el sistema de facturación real</h2>
-   <p class="muted">El pago con tarjeta de prueba genera un borrador en «Documentos pendientes de revisión». Tras revisarlo y pulsar «Emitir y enviar», la factura se crea en FacturaDirecta Sandbox, sin validez fiscal ni cobro real. Las devoluciones de prueba también usan Stripe test.</p>
-  </div></div>
-  <p id="fdSandboxStatus" class="adops-intake" role="status" aria-live="polite">Comprobando el entorno de pruebas…</p>
-  <div class="actions"><button type="button" class="ghost mini" id="fdSandboxCheck">Verificar FacturaDirecta Sandbox</button></div>
-  <p class="muted small">Las facturas sandbox llevan la marca «Sin validez legal» y el proveedor redirige los correos de prueba a la cuenta de pruebas. Ningún anuncio pagado con tarjeta de prueba se publica automáticamente.</p>
  </section>
  <section class="invoice-issuer-section" aria-labelledby="invoiceIssuerTitle">
   <div class="adops-heading">
@@ -166,5 +179,5 @@
 </section></main>
 <div id="dialog" class="dialog hidden" aria-hidden="true"><div class="shade" data-close="true"></div><div id="sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"></div></div>
 <div id="feedback" role="status" aria-live="polite"></div>
-<script src="/admin/admin.js?v=12" defer></script>
+<script src="/admin/admin.js?v=13" defer></script>
 </body></html>
