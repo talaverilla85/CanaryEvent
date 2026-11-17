@@ -175,3 +175,76 @@ test('Devolución parcial real se confirma en Stripe antes de emitir una única 
   assert.equal(fdInvoices,1);
  }finally{globalThis.fetch=oldFetch;restore()}
 });
+
+test('Un cambio de datos fiscales genera dos facturas en FacturaDirecta y NINGÚN reembolso Stripe',async()=>{
+ activate();
+ const oldFetch=globalThis.fetch;
+ let state={...invoiceRow,id:12,kind:'billing_details',amount_cents:4900,status:'pending_review',
+  correction_invoice_id:null,replacement_invoice_id:null,correction_sent_at:null,replacement_sent_at:null,
+  replacement_details:{
+   company_name:'Nuevo Cliente SL',customer_tax_id:'B12345674',
+   billing_address:'Calle Nueva 9',billing_postal:'35002',billing_city:'Las Palmas',
+   billing_region:'Las Palmas',billing_country:'ES',billing_email:'nuevo@example.invalid'
+  }};
+ let invoices=0,refunds=0,mail=0;const bodies=[];
+ globalThis.fetch=async(url,options={})=>{
+  if(url.includes('stripe.com')){refunds++;throw Error('Cambio de datos no puede usar Stripe')}
+  if(url.endsWith('/invoices/inv_original')&&options.method==='GET')
+   return Response.json({content:{uuid:'inv_original',main:{contact:'con_orig'}}});
+  if(url.includes('/contacts?'))return Response.json({items:[]});
+  if(url.endsWith('/contacts')&&options.method==='POST')
+   return Response.json({content:{uuid:'con_nuevo'}});
+  if(url.endsWith('/invoices')&&options.method==='POST'){
+   invoices++;bodies.push(JSON.parse(options.body));
+   return Response.json({content:{uuid:invoices===1?'inv_correction':'inv_replacement'}});
+  }
+  if(url.endsWith('/send')){
+   mail++;const sent=JSON.parse(options.body);
+   assert.equal(sent.to,'nuevo@example.invalid');
+   assert.equal(sent.cc,'hola@dparranda.es');
+   return Response.json({ok:true});
+  }
+  throw Error('Unexpected request '+url);
+ };
+ const sql=async(parts,...v)=>{
+  const q=parts.join('?');
+  if(q.includes('FROM advertising_invoice_issuer'))return [issuer];
+  if(q.includes('FROM advertising_invoice_adjustments a'))return [state];
+  if(q.includes("UPDATE advertising_invoice_adjustments SET\n  status='processing'")){
+   state.status='processing';return [{id:12,issue_date:'2026-11-17'}];
+  }
+  if(q.includes('UPDATE advertising_invoice_adjustments SET\n   correction_invoice_id=')){
+   state.correction_invoice_id=v[0];return [];
+  }
+  if(q.includes('UPDATE advertising_invoice_adjustments SET\n   replacement_invoice_id=')){
+   state.replacement_invoice_id=v[0];return [];
+  }
+  if(q.includes('UPDATE advertising_invoice_adjustments SET correction_sent_at=')){
+   state.correction_sent_at=new Date();return [];
+  }
+  if(q.includes('UPDATE advertising_invoice_adjustments SET replacement_sent_at=')){
+   state.replacement_sent_at=new Date();return [];
+  }
+  if(q.includes("UPDATE advertising_invoice_adjustments SET\n   status='completed'")){
+   state.status='completed';return [{id:12}];
+  }
+  if(q.includes('UPDATE advertising_invoice_adjustments SET status=')){
+   state.status=v[0];return [];
+  }
+  throw Error('Unexpected SQL '+q.slice(0,160));
+ };
+ try{
+  const res=await processInvoiceAdjustment(sql,12);
+  assert.equal(res.status,'completed');
+  assert.equal(refunds,0);
+  assert.equal(invoices,2);
+  assert.equal(mail,2);
+  assert.equal(bodies[0].content.main.correctedInvoice,'inv_original');
+  assert.equal(bodies[0].content.main.lines[0].lineTotal,-49);
+  assert.equal(bodies[1].content.main.contact,'con_nuevo');
+  assert.equal(bodies[1].content.main.lines[0].lineTotal,49);
+  assert.equal((await processInvoiceAdjustment(sql,12)).already,true);
+  assert.equal(invoices,2);
+  assert.equal(mail,2);
+ }finally{globalThis.fetch=oldFetch;restore()}
+});
