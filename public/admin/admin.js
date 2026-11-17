@@ -108,7 +108,7 @@ $('sendResendTest').addEventListener('click',async()=>{
  }catch(err){status.textContent=err.message;message('No se ha podido enviar la prueba')}
  finally{button.disabled=false}
 });
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives(),loadInvoiceReviews(),loadInvoiceAdjustments(),loadInvoiceIssuerProfile(),refreshInvoiceReadiness()]);if(location.hash==='#publicidad')setSection('ads')}
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives(),loadInvoiceReviews(),loadInvoiceAdjustments(),loadInvoiceIssuerProfile(),refreshInvoiceReadiness(),loadFdSandboxStatus()]);if(location.hash==='#publicidad')setSection('ads')}
 function setSection(next){
  section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
  for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){
@@ -226,10 +226,14 @@ async function refreshInvoiceReadiness(){
   const result=await api('invoice-issuance-status');
   invoiceReady=result.can_issue===true;
   rectificationReady=invoiceReady&&result.rectifications_ready===true;
-  if(invoiceReady){
-   el.textContent='Configuración lista para emisión manual. Cada factura requerirá un pago real confirmado, datos del cliente revisados y tu confirmación antes de enviarse.';
+  if(result.sandbox_mode){
+   el.textContent=(invoiceReady?
+    'MODO SANDBOX ACTIVO. Puedes emitir manualmente documentos de prueba solo tras un pago Stripe test firmado y una revisión. NO son facturas fiscales.':
+    'MODO SANDBOX PENDIENTE. ')+(result.missing||[]).join(' ');
+  }else if(invoiceReady){
+   el.textContent='Configuración REAL lista para emisión supervisada. Requiere pago Stripe live, destinatario revisado y tu confirmación.';
   }else{
-   el.textContent='Facturación aún no lista para emitir. '+(result.missing||[]).join(' ');
+   el.textContent='Facturación fiscal desactivada. '+(result.missing||[]).join(' ');
   }
   renderInvoiceReviews();renderInvoiceAdjustments();
  }catch(err){invoiceReady=false;rectificationReady=false;el.textContent='No se ha podido comprobar la facturación: '+err.message}
@@ -567,6 +571,25 @@ $('checkFacturadirecta').addEventListener('click',async event=>{
  }catch(err){el.textContent='No se pudo verificar FacturaDirecta: '+err.message}
  finally{button.disabled=false}
 });
+
+async function loadFdSandboxStatus(){
+ const box=$('fdSandboxStatus'),button=$('fdSandboxCheck');
+ if(!box)return;
+ button.disabled=true;
+ try{
+  const status=await api('facturadirecta-sandbox-status');
+  box.textContent=status.verified?
+   (status.ready&&status.enabled?
+    'Sandbox verificado: '+status.company_name+'. Impuesto: '+status.igic_tax_id+
+     '. Serie: '+status.invoice_series+'. Rectificativas: '+(status.rectification_series||'pendiente')+
+     '. Ya puedes probar un pago con tarjeta Stripe test.':
+    'Sandbox identificado, pero aún no listo. '+(status.missing||[]).join(' ')):
+   status.message;
+ }catch(e){box.textContent='Sandbox no verificado. '+e.message}
+ finally{button.disabled=false}
+}
+$('fdSandboxCheck').addEventListener('click',loadFdSandboxStatus);
+
 async function loadAdvertisingArchives(){
  try{const data=await api('advertising-archives');advertisingArchives=data.archives||[];
   renderAdOperations();renderAds();renderLeads();}
