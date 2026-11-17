@@ -13,6 +13,7 @@ import {listAdvertisingArchives,changeAdvertisingArchive} from '../lib/advertisi
 import {listInvoiceReviews,updateInvoiceReview,invoiceReviewPreview} from '../lib/advertising-invoice-reviews.js';
 import {loadInvoiceIssuer,saveInvoiceIssuer} from '../lib/advertising-invoice-issuer.js';
 import {invoiceIssuanceReadiness,issueCheckedInvoice} from '../lib/advertising-invoice-issuance.js';
+import {simulateInvoiceWorkflow} from '../lib/advertising-invoice-simulator.js';
 import {listInvoiceAdjustments,createInvoiceAdjustment,rejectInvoiceAdjustment,
  processInvoiceAdjustment} from '../lib/advertising-invoice-adjustments.js';
 import {verifyFacturaDirectaConnection} from '../lib/facturadirecta-invoices.js';
@@ -641,6 +642,11 @@ export default async function handler(req,res){
         return json(res,400,{error:'La confirmación no corresponde al tipo de operación'});
       return json(res,200,await processInvoiceAdjustment(sql,body.id));
     }
+    if(req.method==='GET'&&op==='invoice-demo')
+      return json(res,200,simulateInvoiceWorkflow({
+       plan:String(query.plan||'zona'),days:Number(query.days||30),
+       scenario:String(query.scenario||'sale')
+      }));
     if(req.method==='GET'&&op==='invoice-issuance-status')
       return json(res,200,await invoiceIssuanceReadiness(sql));
     if(req.method==='POST'&&op==='invoice-issue'){

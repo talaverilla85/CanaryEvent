@@ -8,6 +8,18 @@
 
 > **Decisión del titular:** D’Parranda facturará a nombre de una **persona física autónoma**, no de AriMar. El titular todavía **no ha regularizado/confirmado el alta censal de esta actividad en el epígrafe IAE correspondiente** y ha decidido POSPONER la puesta en producción de facturas, reembolsos y rectificaciones reales. Esta pausa es intencional; no reactivar por iniciativa del asistente.
 
+## Simulador de facturación sin alta en el IAE (17/11/2026)
+
+En el **panel privado de D’Parranda → Publicidad → Simulador seguro de facturación** hay cuatro escenarios accesibles con tarifas de 19/49/99 € y duraciones de 30/60 días: (1) factura de muestra, (2) rectificación de datos con cancelación contable y sustitución, (3) devolución total, (4) devolución parcial. Todos muestran el desglose **orientativo** del IGIC 7 % incluido, los pasos y documentos simulados con marcas de `SIM-` y «SIN VALIDEZ FISCAL».
+
+Este demo es **estrictamente local y de solo lectura**, usando el cálculo y las estructuras del código existente pero sin acceder a la base de datos ni llamar a Stripe o FacturaDirecta. No crea archivos fiscales ni reembolsos reales; tampoco demuestra que el proveedor acepte las peticiones. El acceso requiere la sesión de administrador. El código está en `lib/advertising-invoice-simulator.js` y sus pruebas en `tests/test_invoice_sandbox_demo.mjs`.
+
+**Importante: diferenciar dos tipos de pruebas:**
+- **Demostración interna de D’Parranda**, ahora disponible: verifica cálculos y lógica de muestra, y no requiere cuenta en FacturaDirecta ni alta IAE.
+- **Sandbox oficial de FacturaDirecta**, pendiente: solo es posible tras disponer de cuenta y una empresa previamente creada en ese proveedor. Los documentos tendrán marca «Sin validez legal», pueden ensayarse envíos redirigidos y procedimientos reales de la API sin afectar a datos productivos. Ver [instrucciones oficiales](https://help.facturadirecta.com/es/articles/15157082-entorno-de-pruebas-sandbox).
+
+No usar el simulador como prueba legal/fiscal ni habilitar Stripe live o una empresa emisora real por haberlo ejecutado.
+
 ## 1. Resumen que debe leer el siguiente asistente
 
 - **Se ha desarrollado la estructura de integración, NO se ha conectado ni validado contra una cuenta real de FacturaDirecta.** No prometer que una factura fiscal se emitirá correctamente hasta completar pruebas verificadas con el proveedor.

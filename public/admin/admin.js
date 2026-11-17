@@ -271,6 +271,46 @@ $('invoiceIssuerForm').addEventListener('submit',async event=>{
  }catch(err){message(err.message)}
  finally{button.disabled=false}
 });
+const invoiceDemoMoney=c=>Number(c/100).toLocaleString('es-ES',{style:'currency',currency:'EUR'});
+async function showInvoiceDemo(scenario){
+ const result=$('invoiceDemoResult');
+ const button=document.querySelector('[data-invoice-demo="'+scenario+'"]');
+ document.querySelectorAll('[data-invoice-demo]').forEach(b=>b.disabled=true);
+ result.innerHTML='<p class="muted">Calculando simulación sin conexiones externas…</p>';
+ try{
+  const demo=await api('invoice-demo',null,{
+   plan:$('invoiceDemoPlan').value,
+   days:$('invoiceDemoDays').value,
+   scenario
+  });
+  if(!demo.simulation||demo.real_payment||demo.legal_invoice||demo.external_requests!==0||demo.database_changes!==0)
+   throw Error('La respuesta no cumple las condiciones de simulación segura');
+  const rows=demo.documents.map(d=>'<article class="invoice-demo-document">'+
+   '<strong>'+escape(d.reference)+' · '+escape(d.kind)+'</strong>'+
+   '<p>'+escape(d.description)+'</p>'+
+   '<table><tbody><tr><th>Base orientativa</th><td>'+invoiceDemoMoney(d.base_cents)+'</td></tr>'+
+   '<tr><th>IGIC 7 % orientativo</th><td>'+invoiceDemoMoney(d.igic_cents)+'</td></tr>'+
+   '<tr><th>Total del documento simulado</th><td><strong>'+invoiceDemoMoney(d.amount_cents)+'</strong></td></tr>'+
+   '</tbody></table>'+
+   (d.linked_to?'<p class="muted">Vinculada a '+escape(d.linked_to)+' · Código '+escape(d.rectification_code)+'</p>':'')+
+   '</article>').join('');
+  const timeline=demo.steps.map(step=>
+   '<li><strong>'+escape(step.label)+'</strong> · '+escape(step.details)+'</li>').join('');
+  result.innerHTML='<div class="invoice-demo-watermark">DEMOSTRACIÓN · SIN VALIDEZ FISCAL</div>'+
+   '<p class="invoice-demo-intro"><strong>'+escape(demo.label)+' · '+escape(demo.days)+
+   ' días · '+invoiceDemoMoney(demo.amount_cents)+'</strong> · Pagos reales: 0 · Correos enviados: 0</p>'+
+   '<ol class="invoice-demo-steps">'+timeline+'</ol>'+
+   '<div class="invoice-demo-documents">'+rows+'</div>'+
+   (demo.refund_cents?'<p class="invoice-demo-note">Reembolso simulado: '+invoiceDemoMoney(demo.refund_cents)+
+   '. No se ha devuelto dinero.</p>':'')+
+   '<p class="invoice-demo-note">'+escape(demo.notice)+'</p>';
+ }catch(err){
+  result.innerHTML='<p class="invoice-adjustment-error">No se pudo ejecutar la simulación: '+escape(err.message)+'</p>';
+ }finally{document.querySelectorAll('[data-invoice-demo]').forEach(b=>b.disabled=false)}
+}
+document.querySelectorAll('[data-invoice-demo]').forEach(button=>
+ button.addEventListener('click',()=>showInvoiceDemo(button.dataset.invoiceDemo)));
+
 async function loadInvoiceReviews(){
  const node=$('invoiceReviewsList');if(!node)return;
  try{

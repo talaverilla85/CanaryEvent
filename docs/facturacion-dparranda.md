@@ -4,6 +4,18 @@
 >
 > Las pruebas de integración disponibles han utilizado respuestas simuladas de las API. FacturaDirecta permite crear facturas de prueba sin validez fiscal en su sandbox, siempre que se cree primero una empresa real de FacturaDirecta y desde ella el entorno de pruebas. [Ayuda oficial: Sandbox](https://help.facturadirecta.com/es/articles/15157082-entorno-de-pruebas-sandbox).
 
+## Simulador de facturación sin alta en el IAE (17/11/2026)
+
+En el **panel privado de D’Parranda → Publicidad → Simulador seguro de facturación** hay cuatro escenarios accesibles con tarifas de 19/49/99 € y duraciones de 30/60 días: (1) factura de muestra, (2) rectificación de datos con cancelación contable y sustitución, (3) devolución total, (4) devolución parcial. Todos muestran el desglose **orientativo** del IGIC 7 % incluido, los pasos y documentos simulados con marcas de `SIM-` y «SIN VALIDEZ FISCAL».
+
+Este demo es **estrictamente local y de solo lectura**, usando el cálculo y las estructuras del código existente pero sin acceder a la base de datos ni llamar a Stripe o FacturaDirecta. No crea archivos fiscales ni reembolsos reales; tampoco demuestra que el proveedor acepte las peticiones. El acceso requiere la sesión de administrador. El código está en `lib/advertising-invoice-simulator.js` y sus pruebas en `tests/test_invoice_sandbox_demo.mjs`.
+
+**Importante: diferenciar dos tipos de pruebas:**
+- **Demostración interna de D’Parranda**, ahora disponible: verifica cálculos y lógica de muestra, y no requiere cuenta en FacturaDirecta ni alta IAE.
+- **Sandbox oficial de FacturaDirecta**, pendiente: solo es posible tras disponer de cuenta y una empresa previamente creada en ese proveedor. Los documentos tendrán marca «Sin validez legal», pueden ensayarse envíos redirigidos y procedimientos reales de la API sin afectar a datos productivos. Ver [instrucciones oficiales](https://help.facturadirecta.com/es/articles/15157082-entorno-de-pruebas-sandbox).
+
+No usar el simulador como prueba legal/fiscal ni habilitar Stripe live o una empresa emisora real por haberlo ejecutado.
+
 ## Estado del despliegue
 
 La aplicación guarda el perfil del emisor, recopila datos del comprador en Stripe y crea una ficha pendiente de revisar tras un pago confirmado.
