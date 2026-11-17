@@ -28,7 +28,7 @@ class SelfEmployedIssuerContract(unittest.TestCase):
   self.assertIn('invoiceIssuerForm',self.html)
   self.assertIn("loadInvoiceIssuerProfile()",self.panel)
   self.assertIn("invoice-issuer-update",self.panel)
-  self.assertIn('admin.js?v=11',self.html)
+  self.assertIn('admin.js?v=12',self.html)
  def test_invoice_preview_uses_actual_individual_data_but_is_not_fiscal(self):
   self.assertIn("await loadInvoiceIssuer(sql)",self.preview)
   self.assertIn("Emisor · autónomo",self.preview)
