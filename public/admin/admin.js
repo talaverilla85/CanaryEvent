@@ -1,6 +1,6 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id), apiUrl='/api/admin';
-let events=[], ads=[], leads=[], promotions=[], opsDrafts=[], advertisingArchives=[], invoiceReviews=[], invoiceAdjustments=[], invoiceReady=false, rectificationReady=false, pagination=0, filter='all', search='', section='events', current=null, toastTimer;
+let events=[], ads=[], leads=[], promotions=[], opsDrafts=[], advertisingArchives=[], invoiceReviews=[], invoiceAdjustments=[], invoiceReady=false, rectificationReady=false, invoiceSandboxMode=false, pagination=0, filter='all', search='', section='events', current=null, toastTimer;
 const escape=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const text=x=>String(x??'').trim();
 function message(m){const p=$('feedback');p.textContent=m;p.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>p.classList.remove('show'),3500)}
@@ -225,6 +225,7 @@ async function refreshInvoiceReadiness(){
  try{
   const result=await api('invoice-issuance-status');
   invoiceReady=result.can_issue===true;
+  invoiceSandboxMode=result.sandbox_mode===true;
   rectificationReady=invoiceReady&&result.rectifications_ready===true;
   if(result.sandbox_mode){
    el.textContent=(invoiceReady?
@@ -328,6 +329,8 @@ function renderInvoiceReviews(){
  node.innerHTML=invoiceReviews.map(r=>{
   const id=Number(r.draft_id),pending=r.review_status!=='checked';
   const issued=!!r.provider_invoice_id;
+  const isTest=String(r.stripe_checkout_session_id||'').startsWith('cs_test_');
+  const correctEnvironment=isTest===invoiceSandboxMode;
   const sent=r.issuance_status==='sent';
   const amount=(Number(r.total_cents||0)/100).toLocaleString('es-ES',{style:'currency',currency:'EUR'});
   const status=sent?'Factura emitida y enviada':
@@ -339,13 +342,13 @@ function renderInvoiceReviews(){
    '<a target="_blank" rel="noopener noreferrer" href="'+escape(r.provider_invoice_url)+'">Ver factura emitida</a>':'';
   return '<article class="invoice-review-item">'+
    '<div><strong>'+escape(r.company_name||r.title||'Anunciante')+'</strong><p>'+escape(r.title||'Campaña')+' · '+escape(amount)+
-   ' · Pago Stripe verificado</p><p class="invoice-issuance-status '+(sent?'sent':issued?'issued':'')+'">'+escape(status)+'</p>'+
+   ' · Pago Stripe verificado '+(isTest?'(PRUEBA)':'(REAL)')+'</p><p class="invoice-issuance-status '+(sent?'sent':issued?'issued':'')+'">'+escape(status)+'</p>'+
    (r.issuance_error?'<p>'+escape(r.issuance_error)+'</p>':'')+'</div>'+
    '<div class="actions">'+(issued?fiscalLink:
    '<a class="invoice-preview-link" target="_blank" rel="noopener noreferrer" href="/api/admin?op=invoice-review-preview&id='+id+'">Ver borrador</a>')+
    (!issued?'<button type="button" class="ghost mini" data-invoice-edit="'+id+'">Revisar datos</button>':'')+
-   (sent?'<button type="button" class="ghost mini" data-invoice-adjust="'+id+'">Rectificación / devolución</button>':'')+
-   (!pending&&invoiceReady&&!sent?'<button type="button" class="ghost mini invoice-issue-btn" data-invoice-issue="'+id+'">'+
+   (sent&&correctEnvironment?'<button type="button" class="ghost mini" data-invoice-adjust="'+id+'">Rectificación / devolución</button>':'')+
+   (!pending&&invoiceReady&&correctEnvironment&&!sent?'<button type="button" class="ghost mini invoice-issue-btn" data-invoice-issue="'+id+'">'+
      (issued?'Reenviar factura':'Emitir y enviar factura')+'</button>':'')+
    '</div></article>';
  }).join('');
@@ -388,8 +391,8 @@ $('invoiceReviewsList').addEventListener('click',event=>{
   const id=Number(button.dataset.invoiceIssue);
   const row=invoiceReviews.find(r=>Number(r.draft_id)===id);
   if(!row||row.review_status!=='checked'||!invoiceReady)return;
-  const answer=prompt('Vas a emitir una factura fiscal definitiva a nombre de «'+row.company_name+
-   '» por '+(Number(row.total_cents)/100).toFixed(2)+' €, y enviarla al cliente y a tu correo.\n\nEsta acción no puede deshacerse. Escribe EMITIR:');
+  const answer=prompt((invoiceSandboxMode?'Vas a emitir una factura de PRUEBA sin validez fiscal':'Vas a emitir una factura fiscal definitiva')+' a nombre de «'+row.company_name+
+   '» por '+(Number(row.total_cents)/100).toFixed(2)+' €. '+(invoiceSandboxMode?'FacturaDirecta SANDBOX redirigirá el correo a su usuario de pruebas.':'Se enviará al cliente y a tu correo.')+'\n\nConfirma escribiendo EMITIR:');
   if(answer===null)return;
   if(answer.trim()!=='EMITIR'){message('Emisión cancelada.');return}
   button.disabled=true;
