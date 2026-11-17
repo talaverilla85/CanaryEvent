@@ -1,6 +1,6 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id), apiUrl='/api/admin';
-let events=[], ads=[], leads=[], promotions=[], opsDrafts=[], advertisingArchives=[], invoiceReviews=[], pagination=0, filter='all', search='', section='events', current=null, toastTimer;
+let events=[], ads=[], leads=[], promotions=[], opsDrafts=[], advertisingArchives=[], invoiceReviews=[], invoiceReady=false, pagination=0, filter='all', search='', section='events', current=null, toastTimer;
 const escape=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const text=x=>String(x??'').trim();
 function message(m){const p=$('feedback');p.textContent=m;p.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>p.classList.remove('show'),3500)}
@@ -108,7 +108,7 @@ $('sendResendTest').addEventListener('click',async()=>{
  }catch(err){status.textContent=err.message;message('No se ha podido enviar la prueba')}
  finally{button.disabled=false}
 });
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives(),loadInvoiceReviews(),loadInvoiceIssuerProfile()]);if(location.hash==='#publicidad')setSection('ads')}
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives(),loadInvoiceReviews(),loadInvoiceIssuerProfile(),refreshInvoiceReadiness()]);if(location.hash==='#publicidad')setSection('ads')}
 function setSection(next){
  section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
  for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){
@@ -219,6 +219,20 @@ function editEvent(row){
  };
 }
 function isArchived(source,id){return advertisingArchives.some(a=>a.source===source&&a.record_id===String(id))}
+async function refreshInvoiceReadiness(){
+ const el=$('invoiceReadiness');
+ if(!el)return;
+ try{
+  const result=await api('invoice-issuance-status');
+  invoiceReady=result.can_issue===true;
+  if(invoiceReady){
+   el.textContent='Configuración lista para emisión manual. Cada factura requerirá un pago real confirmado, datos del cliente revisados y tu confirmación antes de enviarse.';
+  }else{
+   el.textContent='Facturación aún no lista para emitir. '+(result.missing||[]).join(' ');
+  }
+  renderInvoiceReviews();
+ }catch(err){invoiceReady=false;el.textContent='No se ha podido comprobar la facturación: '+err.message}
+}
 async function loadInvoiceIssuerProfile(){
  const form=$('invoiceIssuerForm'),state=$('invoiceIssuerState');
  if(!form||!state)return;
@@ -230,8 +244,10 @@ async function loadInvoiceIssuerProfile(){
     const control=form.elements.namedItem(name);
     if(control)control.value=issuer[name]||'';
   }
+  const checkbox=$('generalIgicConfirmed');
+  if(checkbox)checkbox.checked=issuer.general_igic_confirmed===true;
   state.textContent=result.data_complete?
-   'Datos completados · pendiente de configuración fiscal':
+   'Datos del emisor completos · consultar requisitos de emisión':
    'Pendiente de completar · no se emiten facturas';
  }catch(err){
   state.textContent='Error al consultar el emisor: '+err.message;
@@ -243,9 +259,13 @@ $('invoiceIssuerForm').addEventListener('submit',async event=>{
  button.disabled=true;
  try{
   const fields=Object.fromEntries(new FormData(form).entries());
-  const result=await api('invoice-issuer-update',{issuer_type:'individual',...fields});
+  const result=await api('invoice-issuer-update',{
+   issuer_type:'individual',...fields,
+   general_igic_confirmed:$('generalIgicConfirmed').checked
+  });
   $('invoiceIssuerState').textContent=result.data_complete?
    'Datos completados · pendiente de configuración fiscal':'Datos guardados · pendiente de completar';
+  await refreshInvoiceReadiness();
   message(result.message);
  }catch(err){message(err.message)}
  finally{button.disabled=false}
@@ -262,13 +282,26 @@ function renderInvoiceReviews(){
  if(!invoiceReviews.length){node.innerHTML='<p class="muted">Todavía no hay pagos confirmados pendientes de facturación.</p>';return}
  node.innerHTML=invoiceReviews.map(r=>{
   const id=Number(r.draft_id),pending=r.review_status!=='checked';
+  const issued=!!r.provider_invoice_id;
+  const sent=r.issuance_status==='sent';
   const amount=(Number(r.total_cents||0)/100).toLocaleString('es-ES',{style:'currency',currency:'EUR'});
+  const status=sent?'Factura emitida y enviada':
+   issued?'Factura emitida · envío pendiente':
+   pending?'Pendiente de revisar los datos':
+   r.issuance_status==='error'?'Revisar incidencia de emisión':
+   invoiceReady?'Datos revisados · lista para emitir':'Datos revisados · pendiente de conectar facturación';
+  const fiscalLink=/^https:\/\/app\.facturadirecta\.com\//.test(r.provider_invoice_url||'')?
+   '<a target="_blank" rel="noopener noreferrer" href="'+escape(r.provider_invoice_url)+'">Ver factura emitida</a>':'';
   return '<article class="invoice-review-item">'+
    '<div><strong>'+escape(r.company_name||r.title||'Anunciante')+'</strong><p>'+escape(r.title||'Campaña')+' · '+escape(amount)+
-   ' · Pago Stripe verificado</p><p>'+ (pending?'Pendiente de revisar los datos':'Datos revisados · falta habilitar emisión fiscal')+'</p></div>'+
-   '<div class="actions"><a class="invoice-preview-link" target="_blank" rel="noopener noreferrer" href="/api/admin?op=invoice-review-preview&id='+id+
-   '">Ver borrador</a><button type="button" class="ghost mini" data-invoice-edit="'+id+'">Revisar datos</button></div>'+
-   '</article>';
+   ' · Pago Stripe verificado</p><p class="invoice-issuance-status '+(sent?'sent':issued?'issued':'')+'">'+escape(status)+'</p>'+
+   (r.issuance_error?'<p>'+escape(r.issuance_error)+'</p>':'')+'</div>'+
+   '<div class="actions">'+(issued?fiscalLink:
+   '<a class="invoice-preview-link" target="_blank" rel="noopener noreferrer" href="/api/admin?op=invoice-review-preview&id='+id+'">Ver borrador</a>')+
+   (!issued?'<button type="button" class="ghost mini" data-invoice-edit="'+id+'">Revisar datos</button>':'')+
+   (!pending&&invoiceReady&&!sent?'<button type="button" class="ghost mini invoice-issue-btn" data-invoice-issue="'+id+'">'+
+     (issued?'Reenviar factura':'Emitir y enviar factura')+'</button>':'')+
+   '</div></article>';
  }).join('');
 }
 function openInvoiceReview(row){
@@ -299,7 +332,22 @@ function openInvoiceReview(row){
   '<button type="button" class="ghost" data-close>Cerrar</button></div></form>');
 }
 $('invoiceReviewsList').addEventListener('click',event=>{
- const button=event.target.closest('[data-invoice-edit]');if(!button)return;
+ const button=event.target.closest('[data-invoice-edit],[data-invoice-issue]');if(!button)return;
+ if(button.dataset.invoiceIssue){
+  const id=Number(button.dataset.invoiceIssue);
+  const row=invoiceReviews.find(r=>Number(r.draft_id)===id);
+  if(!row||row.review_status!=='checked'||!invoiceReady)return;
+  const answer=prompt('Vas a emitir una factura fiscal definitiva a nombre de «'+row.company_name+
+   '» por '+(Number(row.total_cents)/100).toFixed(2)+' €, y enviarla al cliente y a tu correo.\n\nEsta acción no puede deshacerse. Escribe EMITIR:');
+  if(answer===null)return;
+  if(answer.trim()!=='EMITIR'){message('Emisión cancelada.');return}
+  button.disabled=true;
+  try{
+   const result=await api('invoice-issue',{id,confirmation:'EMITIR'});
+   await loadInvoiceReviews();message(result.message||'Operación de facturación completada');
+  }catch(err){message('No se pudo emitir o enviar: '+err.message);await loadInvoiceReviews()}
+  return;
+ }
  const row=invoiceReviews.find(r=>Number(r.draft_id)===Number(button.dataset.invoiceEdit));
  if(row)openInvoiceReview(row);
 });

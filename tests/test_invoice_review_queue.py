@@ -49,6 +49,8 @@ class InvoiceReviewContract(unittest.TestCase):
   self.assertIn('No se envía ni expide documentación fiscal',self.logic)
   self.assertIn('legal_invoice_emission:false',self.logic)
   self.assertIn('sent:false',self.logic)
+  self.assertIn('advertising_invoice_issuance',self.logic)
+  self.assertIn('provider_invoice_id IS NOT NULL',self.logic)
   self.assertNotIn('invoice_number',self.schema)
   self.assertNotIn('sendInvoiceEmail',self.logic)
 

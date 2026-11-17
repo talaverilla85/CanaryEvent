@@ -28,7 +28,7 @@ class SelfEmployedIssuerContract(unittest.TestCase):
   self.assertIn('invoiceIssuerForm',self.html)
   self.assertIn("loadInvoiceIssuerProfile()",self.panel)
   self.assertIn("invoice-issuer-update",self.panel)
-  self.assertIn('admin.js?v=8',self.html)
+  self.assertIn('admin.js?v=9',self.html)
  def test_invoice_preview_uses_actual_individual_data_but_is_not_fiscal(self):
   self.assertIn("await loadInvoiceIssuer(sql)",self.preview)
   self.assertIn("Emisor · autónomo",self.preview)
@@ -41,7 +41,7 @@ class SelfEmployedIssuerContract(unittest.TestCase):
   self.assertIn('igic_general_rate_percent SMALLINT NOT NULL DEFAULT 7',self.schema)
   self.assertIn('prices_include_igic:true',self.issuer)
  def test_config_validation_does_not_auto_apply_igic(self):
-  self.assertIn("tax_treatment:'pending'",self.issuer)
+  self.assertIn("tax_treatment:profile.general_igic_confirmed===true",self.issuer)
   self.assertIn('igic_general_rate_percent:7',self.issuer)
   self.assertIn('taxIdPattern',self.issuer)
   self.assertIn("validEmail(profile.copy_email)",self.issuer)
