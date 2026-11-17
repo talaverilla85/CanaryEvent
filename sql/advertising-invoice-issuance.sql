@@ -11,11 +11,13 @@ CREATE TABLE IF NOT EXISTS advertising_invoice_issuance (
  provider_invoice_url TEXT,
  provider_contact_id TEXT,
  processing_started_at TIMESTAMPTZ,
+ issue_date DATE NOT NULL DEFAULT (now() AT TIME ZONE 'Atlantic/Canary')::date,
  issued_at TIMESTAMPTZ,
  sent_at TIMESTAMPTZ,
  error_note TEXT NOT NULL DEFAULT '',
  attempt_count INTEGER NOT NULL DEFAULT 0,
  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+ALTER TABLE advertising_invoice_issuance ADD COLUMN IF NOT EXISTS issue_date DATE NOT NULL DEFAULT (now() AT TIME ZONE 'Atlantic/Canary')::date;
 CREATE UNIQUE INDEX IF NOT EXISTS idx_advertising_invoice_issuance_ref ON advertising_invoice_issuance(provider, provider_invoice_id)
  WHERE provider_invoice_id IS NOT NULL;
