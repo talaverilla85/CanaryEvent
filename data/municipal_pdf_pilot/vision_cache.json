@@ -1507,5 +1507,326 @@
       },
       "total_tokens": 2384
     }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/8/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Merienda solidaria",
+          "date": "2026-11-25",
+          "time": "18:00",
+          "venue": "Centro de Mayores del Cruce de Arinaga",
+          "evidence": "25 NOVIEMBRE — 18:00 Merienda solidaria.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "Merienda y baile de mayores",
+          "date": "2026-11-26",
+          "time": "18:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "26 NOVIEMBRE — 18:00 Merienda y baile de mayores.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Grupo Ecos",
+          "date": "2026-11-27",
+          "time": "21:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "27 NOVIEMBRE — 21:00 Grupo Ecos.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Orquesta Son Canario",
+          "date": "2026-11-27",
+          "time": "23:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "27 NOVIEMBRE — 23:00 Orquesta Son Canario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Dj Abian Reyes",
+          "date": "2026-11-27",
+          "time": "01:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "27 NOVIEMBRE — 01:00 Dj Abian Reyes.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Verbena",
+          "date": "2026-11-28",
+          "time": "21:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "28 NOVIEMBRE — 21:00 Verbena. Yet Garbey. La combinación. Mekánica by Tamarindos.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 1960,
+      "input_tokens_details": {
+        "cache_write_tokens": 1957,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1957
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 656,
+      "output_tokens_details": {
+        "reasoning_tokens": 221
+      },
+      "total_tokens": 2616
+    }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/8/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "Merienda solidaria",
+          "date": "2026-11-25",
+          "time": "18:00",
+          "venue": "Centro de Mayores del Cruce de Arinaga",
+          "evidence": "18:00 Merienda solidaria. Centro de Mayores del Cruce de Arinaga.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "Merienda y baile de mayores",
+          "date": "2026-11-26",
+          "time": "18:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "18:00 Merienda y baile de mayores.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Grupo Ecos",
+          "date": "2026-11-27",
+          "time": "21:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "21:00 Grupo Ecos.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Orquesta Son Canario",
+          "date": "2026-11-27",
+          "time": "23:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "23:00 Orquesta Son Canario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Dj Abian Reyes",
+          "date": "2026-11-27",
+          "time": "01:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "01:00 Dj Abian Reyes.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Verbena (Yet Garbey, La combinación y Mekánica by Tamarindos)",
+          "date": "2026-11-28",
+          "time": "21:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "21:00 Verbena; Yet Garbey. La combinación. Mekánica by Tamarindos.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 1827,
+      "input_tokens_details": {
+        "cache_write_tokens": 1824,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1824
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 689,
+      "output_tokens_details": {
+        "reasoning_tokens": 268
+      },
+      "total_tokens": 2516
+    }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/4/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Festividad litúrgica de la virgen de La Milagrosa",
+          "date": "2026-11-27",
+          "time": null,
+          "venue": null,
+          "evidence": "27 NOVIEMBRE — Festividad litúrgica de la virgen de La Milagrosa.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Repique de campanas",
+          "date": "2026-11-27",
+          "time": "11:00",
+          "venue": null,
+          "evidence": "27 NOVIEMBRE — 11:00 Repique de campanas.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Rezo del Santo Rosario",
+          "date": "2026-11-27",
+          "time": "11:30",
+          "venue": null,
+          "evidence": "27 NOVIEMBRE — 11:30 Rezo del Santo Rosario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía",
+          "date": "2026-11-27",
+          "time": "12:00",
+          "venue": null,
+          "evidence": "27 NOVIEMBRE — 12:00 Eucaristía.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Repique de campanas",
+          "date": "2026-11-28",
+          "time": "12:00",
+          "venue": null,
+          "evidence": "28 NOVIEMBRE — 12:00 Repique de campanas.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Rezo del Santo Rosario",
+          "date": "2026-11-28",
+          "time": "18:45",
+          "venue": null,
+          "evidence": "28 NOVIEMBRE — 18:45 Rezo del Santo Rosario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Eucaristía",
+          "date": "2026-11-28",
+          "time": "19:15",
+          "venue": null,
+          "evidence": "28 NOVIEMBRE — 19:15 Eucaristía.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Santo Rosario",
+          "date": "2026-11-29",
+          "time": "11:00",
+          "venue": null,
+          "evidence": "29 NOVIEMBRE — 11:00 Santo Rosario.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Solemne Eucaristía",
+          "date": "2026-11-29",
+          "time": "11:30",
+          "venue": null,
+          "evidence": "29 NOVIEMBRE — 11:30 Solemne Eucaristía.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Procesión de la imagen de la virgen de La Milagrosa",
+          "date": "2026-11-29",
+          "time": "12:30",
+          "venue": null,
+          "evidence": "29 NOVIEMBRE — 12:30 Procesión de la imagen de la virgen de La Milagrosa.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Bendición del Tradicional Belén del Cruce de Arinaga",
+          "date": "2026-11-29",
+          "time": null,
+          "venue": null,
+          "evidence": "29 NOVIEMBRE; Al terminar Bendición del Tradicional Belén del Cruce de Arinaga.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 1960,
+      "input_tokens_details": {
+        "cache_write_tokens": 1957,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1957
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 1172,
+      "output_tokens_details": {
+        "reasoning_tokens": 416
+      },
+      "total_tokens": 3132
+    }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/4/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 1827,
+      "input_tokens_details": {
+        "cache_write_tokens": 1824,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1824
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 68,
+      "output_tokens_details": {
+        "reasoning_tokens": 46
+      },
+      "total_tokens": 1895
+    }
   }
 }
