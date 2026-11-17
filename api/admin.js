@@ -13,6 +13,7 @@ import {listAdvertisingArchives,changeAdvertisingArchive} from '../lib/advertisi
 import {listInvoiceReviews,updateInvoiceReview,invoiceReviewPreview} from '../lib/advertising-invoice-reviews.js';
 import {loadInvoiceIssuer,saveInvoiceIssuer} from '../lib/advertising-invoice-issuer.js';
 import {invoiceIssuanceReadiness,issueCheckedInvoice} from '../lib/advertising-invoice-issuance.js';
+import {existingInvoiceDocument,sendExistingInvoiceResend} from '../lib/advertising-invoice-resend.js';
 import {simulateInvoiceWorkflow} from '../lib/advertising-invoice-simulator.js';
 import {listInvoiceAdjustments,createInvoiceAdjustment,rejectInvoiceAdjustment,
  processInvoiceAdjustment} from '../lib/advertising-invoice-adjustments.js';
@@ -665,6 +666,10 @@ export default async function handler(req,res){
     if(req.method==='GET'&&op==='invoice-issuer')return json(res,200,await loadInvoiceIssuer(sql));
     if(req.method==='POST'&&op==='invoice-issuer-update')
       return json(res,200,await saveInvoiceIssuer(sql,data(req)));
+    if(req.method==='GET'&&op==='invoice-existing-document')
+      return json(res,200,await existingInvoiceDocument(sql,query.id));
+    if(req.method==='POST'&&op==='invoice-existing-send-resend')
+      return json(res,200,await sendExistingInvoiceResend(sql,data(req)));
     if(req.method==='GET'&&op==='invoice-reviews')return json(res,200,await listInvoiceReviews(sql));
     if(req.method==='POST'&&op==='invoice-review-update')
       return json(res,200,await updateInvoiceReview(sql,data(req)));
