@@ -1,5 +1,9 @@
 # D’Parranda · Facturación del autónomo
 
+> **PAUSADO — 17/11/2026.** El titular todavía no ha formalizado/confirmado el alta censal de la actividad publicitaria. **NO emitir facturas oficiales, NO activar pagos reales, NO tramitar devoluciones reales.** La integración se ha preparado en código pero todavía no se ha validado contra FacturaDirecta real. El plan de pruebas aisladas, los requisitos fiscales, los archivos y el mensaje para continuar están en **[CONTINUIDAD_FACTURACION.md](./CONTINUIDAD_FACTURACION.md)**.
+>
+> Las pruebas de integración disponibles han utilizado respuestas simuladas de las API. FacturaDirecta permite crear facturas de prueba sin validez fiscal en su sandbox, siempre que se cree primero una empresa real de FacturaDirecta y desde ella el entorno de pruebas. [Ayuda oficial: Sandbox](https://help.facturadirecta.com/es/articles/15157082-entorno-de-pruebas-sandbox).
+
 ## Estado del despliegue
 
 La aplicación guarda el perfil del emisor, recopila datos del comprador en Stripe y crea una ficha pendiente de revisar tras un pago confirmado.
@@ -71,7 +75,7 @@ Si Stripe falla, no se emite rectificativa de reembolso. Si Stripe ya devolvió 
 
 ### Verificación técnica antes del primer uso real
 
-- Crear un entorno **sandbox** separado dentro de FacturaDirecta, con la serie ordinaria, serie de rectificativas, taxId de venta del IGIC general 7 %, cuenta de ingresos, plantilla de correo y VeriFactu comprobados.
+- **Sandbox oficial de FacturaDirecta:** requiere una empresa real previamente creada en FacturaDirecta con domicilio fiscal en España y acceso de propietario. Desde esta empresa real crear el sandbox en Ajustes → API e integraciones. Utilizar su identificador y claves **separados** de producción, con serie ordinaria, serie rectificativa, taxId de ventas IGIC, cuenta de ingresos y plantilla. En sandbox los PDFs llevan marca «Sin validez legal», los correos se redirigen al usuario de pruebas y VeriFactu apunta a pruebas. **No emitir facturas fiscales reales como ensayo.**
 - Crear una **API key propia de D’Parranda** con permisos de lectura y escritura de `contacts` e `invoices`, y configurar las variables en Vercel (nunca en el repositorio ni en correos).
 - Pulsar **Comprobar conexión con FacturaDirecta** en el panel: realiza únicamente `GET /apiKeyInfo`, sin crear ningún documento.
 - Verificar un pago real supervisado. **No convertir una operación de prueba en una factura real**.
