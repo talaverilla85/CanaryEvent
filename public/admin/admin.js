@@ -599,7 +599,7 @@ $('fdSandboxCreate').addEventListener('click',async()=>{
  if(button.disabled)return;
  const plan=$('fdSandboxPlan').value,days=Number($('fdSandboxDays').value);
  const price={local:19,zona:49,insular:99}[plan]*(days/30);
- const answer=prompt('Crear una factura de PRUEBA por '+price.toFixed(2)+' € en FacturaDirecta SANDBOX, sin cobro Stripe y sin validez fiscal.\\n\\nEscribe PRUEBA para confirmar:');
+ const answer=prompt('Crear una factura de PRUEBA por '+price.toFixed(2)+' € en FacturaDirecta SANDBOX, sin cobro Stripe y sin validez fiscal.\n\nEscribe PRUEBA para confirmar:');
  if(answer===null)return;
  if(answer.trim()!=='PRUEBA'){message('Prueba cancelada.');return}
  button.disabled=true;
@@ -623,11 +623,28 @@ $('fdSandboxCreate').addEventListener('click',async()=>{
   const link=document.createElement('a');
   link.href=safeLink||'https://app.facturadirecta.com/';
   link.target='_blank';link.rel='noopener noreferrer';
-  link.textContent=safeLink?'Abrir factura en FacturaDirecta':'Abrir mi empresa Sandbox en FacturaDirecta';
+  link.textContent=safeLink?'Abrir ficha de la factura en FacturaDirecta':'Abrir mi empresa Sandbox en FacturaDirecta';
   const note=document.createElement('p');
-  note.textContent=safeLink?'En FacturaDirecta puedes revisar y descargar su PDF con la marca «Sin validez legal».':
-   'Localiza la factura por el identificador anterior en tu empresa de pruebas y abre su PDF «Sin validez legal».';
+  note.textContent=safeLink?'Comprueba que aparece en el listado de tu empresa Sandbox.':
+   'Localiza la factura por el identificador anterior en tu empresa de pruebas.';
   result.append(heading,details,link,note);
+  if(typeof r.pdf_url==='string'){
+   try{
+    const pdf=new URL(r.pdf_url);
+    if(pdf.protocol==='https:'&&!pdf.username&&!pdf.password){
+     const pdfLink=document.createElement('a');
+     pdfLink.href=pdf.href;pdfLink.target='_blank';pdfLink.rel='noopener noreferrer';
+     pdfLink.textContent='Abrir PDF de la factura de prueba (Sin validez legal)';
+     const p=document.createElement('p');p.append(pdfLink);result.append(p);
+     const expires=document.createElement('p');
+     expires.textContent='El enlace al PDF es temporal. Si caduca, vuelve a generar el PDF desde FacturaDirecta.';
+     result.append(expires);
+    }
+   }catch{}
+  }
+  if(r.pdf_message){
+   const warning=document.createElement('p');warning.textContent=r.pdf_message;result.append(warning);
+  }
   delete button.dataset.testId;
   message('Factura creada en FacturaDirecta Sandbox.');
  }catch(e){

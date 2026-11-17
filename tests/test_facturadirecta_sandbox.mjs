@@ -190,6 +190,8 @@ test('el botón de administración puede crear un documento de sandbox verificab
  globalThis.fetch=async(url,options={})=>{
   const s=String(url),method=options.method||'GET';
   calls.push({s,method,body:options.body?JSON.parse(options.body):null});
+  if(s.endsWith('/invoices/inv_SANDBOX_TEST/pdf')&&method==='PUT')
+   return Response.json({url:'https://app.facturadirecta.com/tmp/sandbox-test.pdf',filename:'test.pdf'});
   if(s.endsWith('/invoices/inv_SANDBOX_TEST')&&method==='GET')
    return Response.json({content:{uuid:'inv_SANDBOX_TEST',main:{
     lines:[{text:'Publicidad D’Parranda · DParranda SANDBOX TEST sin validez fiscal'}]
@@ -208,6 +210,8 @@ test('el botón de administración puede crear un documento de sandbox verificab
   assert.equal(created.amount_cents,4900);
   assert.equal(created.sandbox,true);
   assert.match(created.url,/facturadirecta\.com/);
+  assert.match(created.pdf_url,/sandbox-test\.pdf/);
+  assert.ok(calls.some(x=>x.s.endsWith('/invoices/inv_SANDBOX_TEST/pdf')&&x.method==='PUT'));
   const posted=calls.find(x=>x.s.endsWith('/invoices')&&x.method==='POST');
   assert.equal(posted.body.content.main.taxIncludedPrices,true);
   assert.equal(posted.body.content.main.lines[0].unitPrice,49);
