@@ -20,6 +20,41 @@ Este demo es **estrictamente local y de solo lectura**, usando el cálculo y las
 
 No usar el simulador como prueba legal/fiscal ni habilitar Stripe live o una empresa emisora real por haberlo ejecutado.
 
+## Actualización: Stripe test + FacturaDirecta Sandbox (17/11/2026)
+
+**La pausa se aplica a cobros, reembolsos y facturas de producción; se permiten pruebas ficticias dentro de los sandbox.** Se ha preparado la integración real de las API con la MISMA lógica de revisión y emisión, pero usando dos modos segregados. El modo sandbox está preparado en código; no se ha completado aún una llamada autenticada a la cuenta del titular, porque faltan las credenciales privadas que debe introducir él mismo en Vercel.
+
+### Configurar la etapa de pruebas en Vercel
+
+Guardar las siguientes claves **en los secretos de servidor del proyecto**, nunca en GitHub ni en chat:
+- `DPARRANDA_BILLING_MODE=sandbox` — habilita la rama de facturación ficticia.
+- `DPARRANDA_STRIPE_MODE=test` y `DPARRANDA_STRIPE_PAYMENTS_ENABLED=true`.
+- `STRIPE_SECRET_KEY` — valor `sk_test_...` de Stripe.
+- `STRIPE_WEBHOOK_SECRET` — `whsec_...` del endpoint de pruebas de `/api/stripe-webhook`.
+- `FACTURADIRECTA_SANDBOX_API_KEY` — API key del entorno de pruebas de FacturaDirecta.
+- `FACTURADIRECTA_SANDBOX_COMPANY_ID` — ID `com_...` de la empresa sandbox, no empresa real.
+- `FACTURADIRECTA_SANDBOX_ENABLED=true` — permiso para crear facturas de prueba tras verificar que la empresa tiene `sandbox === true`.
+- Solo si existen varias series/impuestos de ventas: `FACTURADIRECTA_SANDBOX_IGIC_SALES_TAX_ID`, `FACTURADIRECTA_SANDBOX_INVOICE_SERIES`, `FACTURADIRECTA_SANDBOX_RECTIFICATION_SERIES`.
+- Si el código por defecto no existe: `FACTURADIRECTA_SANDBOX_ACCOUNT_CODE` con la cuenta contable de ingresos válida en el sandbox (por defecto `700000`).
+
+La API verifica primero `GET /settings/company` con el ID de empresa, y bloquea si el proveedor no confirma `content.company.sandbox === true`. También verifica un impuesto de ventas IGIC al 7 %, y series de factura completa y rectificativa. No acepta empresa o API key idéntica a la configurada para producción.
+
+### Prueba integral real, siempre sin validez fiscal
+
+En administración: **Publicidad → FacturaDirecta Sandbox → Verificar**. A continuación simular el ciclo como anunciante, con datos ficticios: solicitar anuncio, revisión, aprobar, recibir enlace Stripe TEST, pagar con tarjeta de pruebas, dejar que el webhook firmado cree `advertising_invoice_reviews`, revisar datos fiscales de TEST y confirmar `EMITIR`. La API fiscal de la empresa sandbox crea y envía el documento con el importe pagado, marcando el registro `provider=facturadirecta-sandbox`. En pruebas se usa `prueba@example.com` para la petición de correo, y FacturaDirecta redirige los correos del sandbox a su propietario; el email de un cliente real no recibe ninguna factura de prueba. No se publica automáticamente un anuncio pagado en modo sandbox.
+
+Las solicitudes de devolución parcial/total, una vez revisadas y confirmadas, actúan sobre Stripe TEST y crean rectificativas R1 en FacturaDirecta Sandbox. La corrección fiscal del comprador genera rectificativa R4 y factura nueva sin devolver dinero. Las operaciones mantienen referencias e idempotencia y rechazan cruzar un documento facturado en sandbox con el proveedor real.
+
+Los botones siguen requiriendo confirmación; **no se ha habilitado facturación automática sin revisión**. El simulador local anterior permanece disponible de forma independiente.
+
+### Preparación para pasar a modo real
+
+No basta con una sola clave: usar `DPARRANDA_BILLING_MODE=live`, `DPARRANDA_STRIPE_MODE=live`, las credenciales `STRIPE_SECRET_KEY=sk_live_...` y `STRIPE_WEBHOOK_SECRET=whsec_...` de un webhook REAL, empresa real de FacturaDirecta `FACTURADIRECTA_API_KEY`, `FACTURADIRECTA_COMPANY_ID`, `FACTURADIRECTA_IGIC_SALES_TAX_ID`, series ordinaria y rectificativa, cuenta de ingresos y `FACTURADIRECTA_FISCAL_SETUP_CONFIRMED=true`. Comprobar el régimen fiscal del titular, revisar el perfil del emisor y autorizar el primer cobro. Se conservan registros históricos de pruebas pero el backend comprueba `cs_test_` frente a `cs_live_` y `provider` para impedir convertir facturas ficticias en facturas reales.
+
+**No activar producción ni marcar el régimen fiscal como confirmado hasta el alta censal, validación contable y autorización expresa del titular.** Pruebas automatizadas y mocks no equivalen a conexión end-to-end real. Pendiente: credenciales, verificación del sandbox real, pruebas con tarjeta Stripe TEST, PDFs, envío redirigido e idempotencia ante fallos externos.
+
+---
+
 ## 1. Resumen que debe leer el siguiente asistente
 
 - **Se ha desarrollado la estructura de integración, NO se ha conectado ni validado contra una cuenta real de FacturaDirecta.** No prometer que una factura fiscal se emitirá correctamente hasta completar pruebas verificadas con el proveedor.
