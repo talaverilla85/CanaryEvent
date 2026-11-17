@@ -1828,5 +1828,135 @@
       },
       "total_tokens": 1895
     }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/10/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Paella popular",
+          "date": "2026-11-29",
+          "time": "13:30",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "29 NOVIEMBRE · PLAZA PRIMERO DE MAYO · 13:30 Paella popular.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "Verbena del solajero",
+          "date": "2026-11-29",
+          "time": "15:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "29 NOVIEMBRE · PLAZA PRIMERO DE MAYO · 15:00 Verbena del solajero.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 1960,
+      "input_tokens_details": {
+        "cache_write_tokens": 1957,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1957
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 304,
+      "output_tokens_details": {
+        "reasoning_tokens": 130
+      },
+      "total_tokens": 2264
+    }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/10/gpt-6-luna/text-fallback-vision-v3/independent_double_read": {
+    "output": {
+      "events": [
+        {
+          "title": "Paella popular",
+          "date": "2026-11-29",
+          "time": "13:30",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "29 NOVIEMBRE · PLAZA PRIMERO DE MAYO · 13:30 Paella popular.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "Verbena del solajero",
+          "date": "2026-11-29",
+          "time": "15:00",
+          "venue": "Plaza Primero de Mayo",
+          "evidence": "29 NOVIEMBRE · PLAZA PRIMERO DE MAYO · 15:00 Verbena del solajero.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 1827,
+      "input_tokens_details": {
+        "cache_write_tokens": 1824,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1824
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 302,
+      "output_tokens_details": {
+        "reasoning_tokens": 128
+      },
+      "total_tokens": 2129
+    }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/0/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 1960,
+      "input_tokens_details": {
+        "cache_write_tokens": 1957,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1957
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 49,
+      "output_tokens_details": {
+        "reasoning_tokens": 27
+      },
+      "total_tokens": 2009
+    }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/2/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 1960,
+      "input_tokens_details": {
+        "cache_write_tokens": 1957,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1957
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 77,
+      "output_tokens_details": {
+        "reasoning_tokens": 55
+      },
+      "total_tokens": 2037
+    }
   }
 }

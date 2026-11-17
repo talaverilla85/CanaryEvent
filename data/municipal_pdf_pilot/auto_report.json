@@ -1,9 +1,9 @@
 {
-  "checked_at": "2026-11-17T17:02:19.529120+00:00",
+  "checked_at": "2026-11-17T17:36:47.689056+00:00",
   "mode": "api",
   "model": "gpt-6-luna",
   "api_calls": 4,
-  "usage_usd": 0.0020499,
+  "usage_usd": 0.0011367,
   "documents": [
     {
       "municipality": "Agüimes",
@@ -13,28 +13,27 @@
       "bytes": 3504943,
       "inspected": [
         {
-          "page": 9,
-          "native_text_chars": 412,
-          "page_priority": 3,
-          "first_read": "ai_vision",
-          "candidates_for_review": 6,
-          "second_read": "independent_vision",
-          "auto_verified": 4
-        },
-        {
-          "page": 5,
-          "native_text_chars": 451,
-          "page_priority": 3,
-          "first_read": "ai_vision",
-          "candidates_for_review": 11,
-          "second_read": "independent_vision",
-          "auto_verified": 0
-        },
-        {
           "page": 11,
           "native_text_chars": 109,
           "page_priority": 3,
-          "first_read": "budget"
+          "first_read": "ai_vision",
+          "candidates_for_review": 2,
+          "second_read": "independent_vision",
+          "auto_verified": 2
+        },
+        {
+          "page": 1,
+          "native_text_chars": 63,
+          "page_priority": 2,
+          "first_read": "ai_vision",
+          "candidates_for_review": 0
+        },
+        {
+          "page": 3,
+          "native_text_chars": 1353,
+          "page_priority": 2,
+          "first_read": "ai_vision",
+          "candidates_for_review": 0
         }
       ]
     }
@@ -42,7 +41,7 @@
   "errors": [],
   "deferred": [],
   "archived_this_run": 0,
-  "pending_review_count": 25,
-  "auto_verified_count": 4,
+  "pending_review_count": 27,
+  "auto_verified_count": 2,
   "archived_count": 63
 }
