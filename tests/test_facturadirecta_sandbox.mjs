@@ -111,6 +111,7 @@ test('pago test revisado emite solo factura sandbox y correo de prueba sin publi
   assert.equal(hits.filter(x=>x.url.endsWith('/invoices')&&x.method==='POST').length,1);
   const created=hits.find(x=>x.url.endsWith('/invoices')&&x.method==='POST');
   assert.equal(created.body.content.type,'invoice');
+  assert.equal(created.body.content.main.fiscalPosition,'emp');
   assert.equal(created.body.content.main.lines[0].unitPrice,49);
   assert.equal(created.body.content.main.docNumber.series,'F-##-');
   const mail=hits.find(x=>x.url.endsWith('/send'));
@@ -216,6 +217,7 @@ test('el botón de administración puede crear un documento de sandbox verificab
   assert.ok(calls.some(x=>x.s.endsWith('/invoices/inv_SANDBOX_TEST/pdf')&&x.method==='PUT'));
   const posted=calls.find(x=>x.s.endsWith('/invoices')&&x.method==='POST');
   assert.equal(posted.body.content.type,'invoice');
+  assert.equal(posted.body.content.main.fiscalPosition,'emp');
   assert.equal(posted.body.content.main.taxIncludedPrices,true);
   assert.equal(posted.body.content.main.lines[0].unitPrice,49);
   assert.ok(calls.every(x=>x.s.includes(env.FACTURADIRECTA_SANDBOX_COMPANY_ID)));

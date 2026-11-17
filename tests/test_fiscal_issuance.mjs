@@ -155,6 +155,7 @@ test('Contrato API FacturaDirecta: factura y rectificativa incluyen content.type
   title:'Prueba de payload',issue_date:'2026-11-17'};
  const payload=buildInvoicePayload(cfg,row,'con_TEST');
  assert.equal(payload.content.type,'invoice');
+ assert.equal(payload.content.main.fiscalPosition,'emp');
  const main=payload.content.main;
  for(const name of ['contact','date','dueDate','currency','docNumber','fiscalPosition','lines','account','draft','voided']){
   assert.ok(Object.hasOwn(main,name),'Falta campo obligatorio: '+name);
@@ -168,4 +169,5 @@ test('Contrato API FacturaDirecta: factura y rectificativa incluyen content.type
   kind:'refund_full',title:'Prueba'
  });
  assert.equal(correction.content.type,'invoice');
+ assert.equal(correction.content.main.fiscalPosition,'emp');
 });
