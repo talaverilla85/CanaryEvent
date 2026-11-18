@@ -241,25 +241,8 @@ function initInterestForm(draft){
  form.addEventListener('submit',async event=>{
   event.preventDefault();
   if(!form.reportValidity())return;
-  // A saved preview may become stale if its start date has passed.
-  const issues=[];
-  if(!draft.start||draft.start<localToday())issues.push('la fecha de inicio está vencida o falta');
-  if(String(draft.description||'').trim().length<12)
-    issues.push('la descripción necesita al menos 12 caracteres');
-  if(draft.kind==='evento'&&(!draft.eventDate||
-     draft.eventDate.slice(0,10)<localToday()||draft.eventDate.slice(0,10)<draft.start))
-    issues.push('la fecha y hora del evento necesitan revisión');
-  if(issues.length){
-    feedback.textContent='Revisa la campaña: '+issues.join('; ')+
-      '. Vuelve a editar el anuncio para corregirlo; el contacto no está señalado como incorrecto.';
-    feedback.scrollIntoView({behavior:'smooth',block:'center'});
-    return;
-  }
-  const proposal=true; // This simulator submits the selected ad for editorial review, never payment.
-  if(proposal&&(!draft.image||!/^data:image\/webp;base64,/.test(draft.image))){
-   feedback.textContent='Para solicitar la publicación, primero añade una imagen al anuncio desde «Volver al formulario».';
-   return;
-  }
+  // The editor validates URLs, artwork, dates and copy after intake, before any payment.
+  const proposal=true;
   const button=$('proposalSubmit');
   button.disabled=true;
   feedback.textContent='Enviando solicitud de contratación para revisión…';
@@ -269,6 +252,7 @@ function initInterestForm(draft){
   const payload={
    company:String(values.get('company')||''),
    contact:String(values.get('contact')||''),
+   legal_name:String(values.get('legal_name')||''),
    email:String(values.get('email')||''),
    telephone:String(values.get('telephone')||''),
    website:String(values.get('website')||''),
