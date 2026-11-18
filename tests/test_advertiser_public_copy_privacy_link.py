@@ -14,7 +14,9 @@ class AdvertiserPublicCopyContract(unittest.TestCase):
   cls.privacy=(ROOT/"public/privacidad/index.html").read_text("utf8")
   cls.api=(ROOT/"api/advertise-interest.js").read_text("utf8")
  def test_no_internal_request_number_in_public_confirmations(self):
-  self.assertIn("¡Hemos recibido tu anuncio!",self.sim)
+  self.assertIn("location.replace('/anunciate/confirmacion/')",self.sim)
+  page=(ROOT/"public/anunciate/confirmacion/index.html").read_text("utf8")
+  self.assertIn("¡Anuncio enviado correctamente!",page)
   self.assertIn("Tu prueba se ha guardado correctamente.",self.sim)
   self.assertNotIn("Solicitud #'+Number(result.request_id)",self.sim)
   self.assertNotIn("Solicitud '+data.request_id",self.form)
@@ -37,7 +39,8 @@ class AdvertiserPublicCopyContract(unittest.TestCase):
   self.assertIn('id="rightsEmail"',self.privacy)
   self.assertNotIn('<label class="interest-consent"><input name="consent" type="checkbox" required><span>He leído la <a',self.html)
  def test_safeguards_for_payments_and_noindex_unchanged(self):
-  self.assertIn("No se ha cobrado ni publicado nada.",self.sim)
+  page=(ROOT/"public/anunciate/confirmacion/index.html").read_text("utf8")
+  self.assertIn("No se ha cobrado ni publicado nada.",page)
   self.assertIn('<meta name="robots" content="noindex,nofollow,noarchive">',self.html)
   self.assertIn("const proposal=true",self.sim)
   self.assertIn("form.reportValidity()",self.sim)
