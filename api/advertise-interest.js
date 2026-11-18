@@ -53,51 +53,39 @@ export default async function handler(req,res){
   const proposal=input.proposal===true;
   if(proposal&&!proposalEnabled())return json(res,503,{error:'La presentación de propuestas aún está cerrada'});
   const draft=input.campaign&&typeof input.campaign==='object'&&!Array.isArray(input.campaign)?input.campaign:{};
-  const company=safeText(input.company,120),contact=safeText(input.contact,100);
+  const company=safeText(input.company,120),contact=safeText(input.contact,100),legalName=safeText(input.legal_name,180);
   const email=emailAddress(input.email),phone=safeText(input.telephone,35);
   const plan=safeText(draft.plan,20),kind=safeText(draft.kind,20),days=Number(draft.days);
   const places=Array.isArray(draft.municipalities)?draft.municipalities:[];
   const area=[...new Set(places)];
-  const start=safeText(draft.start,10),title=safeText(draft.title,160);
-  const link=asUrl(draft.destination);
+  const rawStart=safeText(draft.start,10),start=validLocalDate(rawStart)?rawStart:null;
+  const title=safeText(draft.title,160);
+  // Store the proposed link for review as text, not an approved or published URL.
+  const link=safeText(draft.destination,850);
   const description=safeText(draft.description,350);
   const image=proposal?creative(draft.image_data):null;
   const eventDate=safeText(draft.eventDate,25);
   const eventTown=safeText(draft.eventTown,90),eventVenue=safeText(draft.eventVenue,200);
   const amount=PRICES[plan]*(days/30);
   const chosen=(plan==='insular'?'Toda Gran Canaria':area.join(', '));
-  // Return precise, non-sensitive field labels for rejected requests.
+  // Only contact identity and the selected tariff/area are required now.
+  // Editorial validation remains mandatory before any payment or publication.
   const problems=[];
-  if(!company)problems.push('nombre del negocio');
-  if(!contact)problems.push('persona de contacto');
+  if(!company)problems.push('nombre comercial');
+  if(!contact)problems.push('nombre y apellidos');
+  if(!legalName)problems.push('razón social o nombre fiscal');
   if(!email)problems.push('correo electrónico');
+  if(!phone)problems.push('teléfono de contacto');
   if(input.consent!==true)problems.push('consentimiento de privacidad');
-  if(!Object.hasOwn(PRICES,plan))problems.push('tarifa publicitaria');
-  if(!['banner','evento'].includes(kind))problems.push('tipo de anuncio');
-  if(![30,60].includes(days))problems.push('duración de la campaña');
-  if(!title)problems.push('título del anuncio');
-  if(!link)problems.push('enlace de destino (se requiere https://)');
-  if(places.length>4||area.some(t=>typeof t!=='string'||!TOWNS.has(t))||
+  if(!Object.hasOwn(PRICES,plan)||!['banner','evento'].includes(kind)||
+     ![30,60].includes(days)||places.length>4||
+     area.some(t=>typeof t!=='string'||!TOWNS.has(t))||
      (plan==='local'&&area.length!==1)||
      (plan==='zona'&&(area.length<1||area.length>4))||
      (plan==='insular'&&area.length!==0))
-    problems.push('municipios elegidos');
-  if(proposal&&!start)problems.push('fecha de inicio');
-  else if(start!==''&&(!validLocalDate(start)||start<todayCanary()))
-    problems.push('fecha de inicio (no puede estar en el pasado)');
-  if(proposal){
-    if(description.length<12)problems.push('descripción del anuncio (mínimo 12 caracteres)');
-    if(!image)problems.push('imagen del anuncio (formato/tamaño no admitido)');
-    if(kind==='evento'){
-      if(!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(eventDate)||
-        eventDate.slice(0,10)<todayCanary()||eventDate.slice(0,10)<start)
-        problems.push('fecha y hora del evento');
-      if(!TOWNS.has(eventTown))problems.push('municipio del evento');
-      if(!eventVenue)problems.push('lugar del evento');
-    }
-  }
+    problems.push('tarifa o municipios');
   if(problems.length)return json(res,400,{
-    error:'Revisa estos datos del anuncio: '+problems.join('; ')+'.',
+    error:'Revisa los datos obligatorios: '+problems.join('; ')+'.',
     invalid_fields:problems
   });
   const sql=db();
@@ -116,21 +104,24 @@ export default async function handler(req,res){
    ' días · '+amount+' € · '+chosen+' · '+(kind==='banner'?'Banner':'Evento patrocinado')+
    '. Campaña: '+title;
   if(proposal){
-   // One atomic query: both the application and its verified image are stored.
+   // Store the proposal even if the artwork is missing. Review before payment.
    const [row]=await sql`WITH new_proposal AS (
      INSERT INTO advertising_enquiries
-      (company,contact_name,email,telephone,municipality,format,dates_text,message,
+      (company,contact_name,legal_name,email,telephone,municipality,format,dates_text,message,
        campaign_name,campaign_start,campaign_days,event_title,event_start,event_venue,
        event_municipality,action_url,banner_text,creative_alt,privacy_accepted_at,status,review_status)
-     VALUES (${company},${contact},${email},${phone},${chosen},${kind==='banner'?'banner':'event'},
+     VALUES (${company},${contact},${legalName},${email},${phone},${chosen},${kind==='banner'?'banner':'event'},
        ${details},${summary+' · Texto: '+description},${title},${start},${days},
        ${kind==='evento'?title:null},${kind==='evento'?eventDate:null},
        ${kind==='evento'?eventVenue:null},${kind==='evento'?eventTown:null},${link},
        ${description},${title},now(),'new','submitted')
      RETURNING id
-    ) INSERT INTO advertising_enquiry_images(enquiry_id,mime_type,width,height,image_data)
+    ), saved_image AS (
+      INSERT INTO advertising_enquiry_images(enquiry_id,mime_type,width,height,image_data)
       SELECT id,'image/webp',1000,563,decode(${image},'base64') FROM new_proposal
-      RETURNING enquiry_id`;
+      WHERE ${image}::text IS NOT NULL
+      RETURNING enquiry_id
+    ) SELECT id AS enquiry_id FROM new_proposal`;
    // Create the private workspace now, so a future verified email can link
    // straight to the exact artwork rather than asking for another submission.
    // Email failures must never invalidate a proposal that was already saved.
@@ -151,10 +142,10 @@ export default async function handler(req,res){
      welcome_email:emailStatus});
   }
   const [saved]=await sql`INSERT INTO advertising_enquiries
-   (company,contact_name,email,telephone,municipality,format,dates_text,message,
+   (company,contact_name,legal_name,email,telephone,municipality,format,dates_text,message,
     campaign_name,campaign_start,campaign_days,event_title,event_start,event_venue,
     event_municipality,action_url,privacy_accepted_at,status)
-   VALUES (${company},${contact},${email},${phone},${chosen},${kind==='banner'?'banner':'event'},
+   VALUES (${company},${contact},${legalName},${email},${phone},${chosen},${kind==='banner'?'banner':'event'},
     ${details},${summary},${title},${start||null},${days},
     ${kind==='evento'?title:null},${kind==='evento'?safeText(draft.eventDate,25):null},
     ${kind==='evento'?safeText(draft.eventVenue,200):null},
