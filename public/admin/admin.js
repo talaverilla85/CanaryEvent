@@ -800,6 +800,7 @@ function renderLeads(){
   '<div class="meta"><span class="pill">'+escape(l.campaign_days)+' días</span><span class="pill off">'+escape(l.campaign_start||'Sin fecha')+'</span></div>'+
   '<details class="lead-detail"><summary>'+(interest?'Ver contacto y tarifa elegida':'Ver propuesta, imagen y datos fiscales')+'</summary>'+
   '<p><strong>Contacto:</strong> '+escape(l.contact_name)+' · '+escape(l.email)+' · '+escape(l.telephone)+'</p>'+
+  '<p><strong>Razón social / nombre fiscal:</strong> '+escape(l.legal_name||'Pendiente de confirmar')+'</p>'+
   (interest?'':'<p><strong>Facturar a:</strong> '+escape(l.legal_name)+' · '+escape(l.tax_id)+'</p>')+
   (interest?'':'<p>'+escape(l.billing_address)+' · '+escape(l.billing_postal)+' '+escape(l.billing_city)+' · '+escape(l.billing_region)+' · '+escape(l.billing_country)+'</p>')+
   (interest?'':'<p><strong>Email de facturas:</strong> '+escape(l.billing_email)+'</p>')+
@@ -1013,7 +1014,7 @@ function normalizedOpsRows(){
    area:e.municipality||'',price:hasCost?cost:null,
    has_image:!!e.has_image,image_url:e.has_image?'/api/admin?op=leadimage&id='+Number(e.id):'',
    description:e.banner_text||e.message||'',review_note:e.review_note||'',
-   contact:e.contact_name||'',email:e.email||'',telephone:e.telephone||'',
+   contact:e.contact_name||'',email:e.email||'',telephone:e.telephone||'',legal_name:e.legal_name||'',
    destination:e.action_url||'',start:e.campaign_start,
    event_start:e.event_start,event_town:e.event_municipality,event_venue:e.event_venue,
    actual_starts_at:null,actual_ends_at:null,
@@ -1036,7 +1037,7 @@ function normalizedOpsRows(){
    has_image:!!d.has_image,
    image_url:d.has_image?'/api/admin?op=advertiser-draft-image&id='+id:'',
     description:d.description||'',image_alt:d.image_alt||'',review_note:d.review_note||'',
-   contact:d.account_contact||'',email:d.account_email||'',telephone:'',destination:d.destination||'',
+   contact:d.account_contact||'',email:d.account_email||'',telephone:d.account_telephone||'',legal_name:d.account_legal_name||'',destination:d.destination||'',
    start:d.campaign_start,event_start:d.event_start,event_town:d.event_town,event_venue:d.event_venue,
    actual_starts_at:d.actual_starts_at,actual_ends_at:d.actual_ends_at,
    editable:['submitted','changes_requested'].includes(status)
@@ -1206,6 +1207,8 @@ function opsOpenPreview(row){
   '<p><strong>Duración:</strong> '+escape(row.permanent?'Anterior permanente':row.days?row.days+' días':'—')+' · <strong>Tarifa:</strong> '+escape(money)+'</p>'+
   '<p><strong>Inicio solicitado:</strong> '+escape(opsDate(row.start)||'Sin fecha')+'</p>'+
   (row.event_start?'<p><strong>Evento:</strong> '+escape(row.event_start)+' · '+escape(row.event_venue)+'</p>':'')+
+  (row.legal_name?'<p><strong>Razón social / nombre fiscal:</strong> '+escape(row.legal_name)+'</p>':'')+
+  (row.destination&&!url?'<p><strong>Enlace proporcionado, pendiente de corrección:</strong> '+escape(row.destination)+'</p>':'')+
   (row.email?'<p><strong>Contacto:</strong> '+escape(row.contact)+' · '+escape(row.email)+
     (row.telephone?' · '+escape(row.telephone):'')+'</p>':'')+
   (url?'<p><a href="'+escape(url)+'" target="_blank" rel="noopener noreferrer">Consultar página del anunciante</a></p>':'')+
