@@ -164,3 +164,16 @@ fieldset{border:0;margin:0;padding:0}.field{display:grid;gap:6px;margin-bottom:1
 .invoice-demo-document td,.invoice-demo-document th{font-size:12px;text-align:left;padding:7px 0;border-top:1px solid #e1ebec}
 .invoice-demo-document td{text-align:right;white-space:nowrap}
 .invoice-demo-note{font-size:12px;color:#546b76;line-height:1.5;margin-top:12px}
+
+/* Ad review actions: never clip Approve off-screen on mobile. */
+.sheet-footer{flex-wrap:wrap;justify-content:flex-start}
+.sheet-footer>button{min-height:44px;max-width:100%;white-space:normal}
+@media(max-width:650px){
+ .dialog{padding:8px}
+ .sheet{padding:16px;max-height:calc(100dvh - 24px);overscroll-behavior:contain}
+ .sheet-footer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .sheet-footer>button{width:100%;min-width:0;overflow-wrap:anywhere;font-size:13px}
+ .sheet-footer>[data-ops-review="approved_for_payment"]{grid-column:1/-1;order:-1}
+ .sheet-footer>button[data-close]{grid-column:1/-1}
+ .adops-preview-card{overflow-wrap:anywhere}
+}
