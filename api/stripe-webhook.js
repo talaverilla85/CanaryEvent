@@ -75,15 +75,18 @@ export default async function handler(req,res){
   // Payment review is created only after the signed Stripe event was persisted.
   // Replayed events are idempotent and cannot generate duplicate invoice drafts.
   if(confirmedId)await prepareInvoiceReview(sql,Number(confirmedId),s);
-  // In the sandbox, a test payment must never publish a paid advert to visitors.
-  if(confirmedId&&!d.archived&&process.env.DPARRANDA_BILLING_MODE!=='sandbox'){
-   await schedulePaidDraft(sql,Number(confirmedId));
-  }
-  // No real customer mail during sandbox tests; the invoice provider redirects test emails.
-  if(updated&&process.env.DPARRANDA_BILLING_MODE!=='sandbox'){
+  // Schedule at the moment of signed Stripe confirmation. Test payments
+  // only create private schedule metadata (schedulePaidDraft never publishes tests).
+  if(confirmedId&&!d.archived)await schedulePaidDraft(sql,Number(confirmedId));
+  // Resend enforces an allowlisted recipient when domain is unverified.
+  // A replay is safe: the event ID is the stable email idempotency key.
+  if(confirmedId){
    try{
-    const info=await workspaceForDraft(sql,Number(updated.id));
-    if(info)await sendPaymentConfirmedEmail(info,String(event.id));
+    const info=await workspaceForDraft(sql,Number(confirmedId));
+    if(info){
+     const mail=await sendPaymentConfirmedEmail(info,String(event.id));
+     if(mail.status!=='sent')console.warn('Payment mail not accepted:',mail.status);
+    }
    }catch(err){console.error('DParranda payment confirmation email failed',err?.name||'Error')}
   }
   return res.status(200).json({received:true});
