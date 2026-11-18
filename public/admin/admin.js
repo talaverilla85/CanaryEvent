@@ -1270,11 +1270,12 @@ function opsOpenPreview(row){
       '<button type="button" class="ghost" data-ops-house-toggle="'+escape(row.id)+'" data-house-enable="false">Pausar</button>':
       '<button type="button" class="ghost" data-ops-house-toggle="'+escape(row.id)+'" data-house-enable="true">Activar</button>'):'')+
    (row.source==='draft'&&row.status==='paid_review'&&row.payment==='paid'?
-    '<button type="button" class="primary" data-ops-schedule="'+Number(row.id)+'">Programar publicación</button>':'')+
+    '<button type="button" class="primary" data-ops-schedule="'+Number(row.id)+'">Reintentar programación</button>':'')+
    (row.source==='draft'&&['approved_for_payment','pending_payment'].includes(row.status)&&row.payment!=='paid'?
    '<button type="button" class="primary" data-ops-payment="'+Number(row.id)+'">Enviar / reenviar pago</button>':'')+
   (row.source==='lead'?'<button type="button" class="ghost" data-ops-invite="'+Number(row.id)+'">Generar acceso privado</button>':'')+
-  (row.source==='draft'&&row.payment==='paid'?'<button class="ghost" type="button" data-ops-invoice="'+Number(row.id)+'">Factura</button>':'')+opsArchiveAction(row))+'<button type="button" class="ghost" data-close>Cerrar</button></div>'+
+  (row.source==='draft'&&row.payment==='paid'?'<button class="ghost" type="button" data-ops-invoice="'+Number(row.id)+'">Factura</button>':'')+
+   (row.source==='draft'&&row.payment==='paid'?'<button class="ghost" type="button" data-ops-receipt="'+Number(row.id)+'">Reenviar confirmación de pago</button>':'')+opsArchiveAction(row))+'<button type="button" class="ghost" data-close>Cerrar</button></div>'+
   '<p class="muted small">'+(row.payment==='paid'&&row.status==='paid_review'?
   'Pago confirmado. Programar publicación respeta la fecha de inicio; si es futura, el anuncio no se mostrará al público hasta entonces.':
   'Al aprobar se generará el enlace Stripe y se intentará enviar por correo. El anuncio no se publica sin pago verificado.')+'</p>';
@@ -1406,6 +1407,17 @@ async function handleAdvertisingArchiveAction(button){
 }
 $('adOpsRows').addEventListener('click',event=>{
  const button=event.target.closest('[data-ops-invoice],[data-ops-preview],[data-ops-invite],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
+ if(button.dataset.opsReceipt){
+  const id=Number(button.dataset.opsReceipt);
+  if(!confirm('¿Reenviar al anunciante la confirmación de pago de esta contratación? En Stripe Test solo se permite el correo autorizado de Resend.'))return;
+  button.disabled=true;
+  try{
+   const result=await api('resend-paid-receipt',{id});
+   message(result.message||'Estado del reenvío no disponible');
+  }catch(e){message('No se pudo reenviar: '+e.message)}
+  finally{button.disabled=false}
+  return;
+ }
  if(button.dataset.opsInvoice){openPaidInvoice(Number(button.dataset.opsInvoice));return}
  if(button.dataset.opsArchive||button.dataset.opsRestore){handleAdvertisingArchiveAction(button);return}
  if(button.dataset.opsPaidEdit){const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsPaidEdit));if(row)openPaidCreativeEditor(row);return}
@@ -1438,7 +1450,7 @@ $('adOpsExport').onclick=()=>{
  setTimeout(()=>URL.revokeObjectURL(object),500);
 };
 $('sheet').addEventListener('click',async event=>{
- const button=event.target.closest('[data-ops-invoice],[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
+ const button=event.target.closest('[data-ops-receipt],[data-ops-invoice],[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
  if(button.dataset.opsInvoice){openPaidInvoice(Number(button.dataset.opsInvoice));return}
  if(button.dataset.opsArchive||button.dataset.opsRestore){await handleAdvertisingArchiveAction(button);return}
  if(button.dataset.opsPaidEdit){const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsPaidEdit));if(row)openPaidCreativeEditor(row);return}
@@ -1454,7 +1466,7 @@ $('sheet').addEventListener('click',async event=>{
    const result=await api('schedule-paid-draft',{id:row.id});
    closeDialog();
    await Promise.allSettled([loadLeads(),loadAdvertiserDrafts(),loadPromotions(),loadAds()]);
-   message('Anuncio programado del '+result.start+' al '+result.end+'. La vista pública respeta esas fechas.');
+   message(result.sandbox?'Programación de prueba guardada del '+result.start+' al '+result.end+'. NO está publicado.':'Anuncio programado del '+result.start+' al '+result.end+'. La vista pública respeta esas fechas.');
   }catch(err){message(err.message);button.disabled=false}
   return;
  }
