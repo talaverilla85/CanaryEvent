@@ -36,8 +36,11 @@
     "sha": "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4",
     "done_pages": [
       0,
+      1,
       2,
+      3,
       4,
+      5,
       6,
       7,
       8,
@@ -45,6 +48,6 @@
     ],
     "page_failures": {},
     "complete": false,
-    "checked_at": "2026-11-17"
+    "checked_at": "2026-11-18"
   }
 }

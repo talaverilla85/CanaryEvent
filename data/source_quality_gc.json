@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-17T21:25:00+00:00",
+  "checked_at": "2026-11-18T11:11:39+00:00",
   "quality_counts": {
-    "publicados": 389,
+    "publicados": 371,
     "recintos_sin_verificar": 36,
-    "programas_y_fichas_por_revisar": 9,
-    "precios_sin_confirmar": 266,
-    "distancia_a_centro_municipal": 251,
-    "fuentes_con_error": 4,
+    "programas_y_fichas_por_revisar": 7,
+    "precios_sin_confirmar": 247,
+    "distancia_a_centro_municipal": 235,
+    "fuentes_con_error": 3,
     "duplicados_potenciales": 0
   },
   "sources": [
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 17,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 10,
+      "fichas_leidas_en_esta_ejecucion": 17,
       "error": ""
     },
     {
@@ -127,7 +127,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 5,
-      "fichas_leidas_en_esta_ejecucion": 5,
+      "fichas_leidas_en_esta_ejecucion": 4,
       "error": ""
     },
     {
@@ -272,12 +272,12 @@
     },
     {
       "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
-      "estado": "operativa",
-      "publicados": 1,
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 0,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 1,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -293,11 +293,11 @@
     {
       "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
       "estado": "operativa",
-      "publicados": 16,
+      "publicados": 1,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 16,
-      "distancia_al_centro_municipal": 16,
-      "fichas_leidas_en_esta_ejecucion": 16,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
     {
@@ -372,20 +372,20 @@
     },
     {
       "source": "Juventud de Ingenio · programa de otoño desglosado",
-      "estado": "error",
-      "publicados": 1,
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 0,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 1,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "El título del programa oficial de Ingenio ha cambiado"
+      "error": ""
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 130,
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 128,
       "recinto_sin_verificar": 22,
-      "precio_sin_confirmar": 108,
+      "precio_sin_confirmar": 106,
       "distancia_al_centro_municipal": 66,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
@@ -393,11 +393,11 @@
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 68,
+      "publicados": 69,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 67,
-      "fichas_leidas_en_esta_ejecucion": 107,
+      "distancia_al_centro_municipal": 68,
+      "fichas_leidas_en_esta_ejecucion": 108,
       "error": ""
     },
     {
@@ -473,10 +473,6 @@
     {
       "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
       "error": "ValueError: EcoEntradas listing has wrong town or island"
-    },
-    {
-      "source": "Juventud de Ingenio · programa de otoño desglosado",
-      "error": "El título del programa oficial de Ingenio ha cambiado"
     }
   ],
   "missing_venue_by_source": [

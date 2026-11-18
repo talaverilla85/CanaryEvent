@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-17T21:25:00+00:00",
+  "updated_at": "2026-11-18T11:11:39+00:00",
   "note": "Fichas pendientes de desglose o sin un evento identificable; no publicarlas como planes.",
   "pending_programs": [
     {
@@ -11,16 +11,6 @@
       "source_name": "TuReservaOnline · agenda de Gran Canaria",
       "source_url": "https://www.tureservaonline.es/es/events/reserva-area-recreativa-huertas-del-rey",
       "reason": "Reserva administrativa de una instalación, no un evento"
-    },
-    {
-      "id": 306,
-      "title": "Programación Otoño 2026 - Juventud de Ingenio",
-      "start": "2026-09-24",
-      "end": "2026-11-17",
-      "municipality": "Ingenio",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260924-0017/programacion-otono-2026-juventud-de-ingenio",
-      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
     },
     {
       "id": 543,
@@ -60,16 +50,6 @@
       "municipality": "Moya",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261103-0002/cursos-y-talleres-de-noviembre-de-la-universidad-popular",
-      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
-    },
-    {
-      "id": 264,
-      "title": "El Ayuntamiento de Agaete pone en marcha el programa de talleres Cuida de tu Bienestar",
-      "start": "2026-11-17",
-      "end": null,
-      "municipality": "Agaete",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261117-0003/el-ayuntamiento-de-agaete-pone-en-marcha-el-programa-de-talleres-cuida-de-tu-bienestar",
       "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
     },
     {
