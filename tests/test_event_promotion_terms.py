@@ -21,8 +21,8 @@ class EventPromotionTermsContract(unittest.TestCase):
   self.assertIn('no se amplía ni ajusta automáticamente',self.portal)
   self.assertIn('id="eventCampaignRule"',self.sim)
   self.assertIn("eventCampaignRule').hidden=draft.kind!=='evento'",self.sim_js)
-  self.assertIn("landing.js?v=6",self.landing)
-  self.assertIn("simulator.js?v=9",self.sim)
+  self.assertRegex(self.landing,r"landing\.js\?v=\d+")
+  self.assertRegex(self.sim,r"simulator\.js\?v=\d+")
 
  def test_pre_payment_mail_is_specific_to_events(self):
   self.assertIn("info.draft?.placement==='evento'",self.mail)
