@@ -62,9 +62,11 @@ class AdvertiserWelcomeReviewEmails(unittest.TestCase):
   self.assertIn("No se ha cobrado ni publicado nada.",confirmation)
 
  def test_public_confirmation_does_not_promise_email_unless_sent(self):
-  self.assertIn("result.welcome_email==='sent'",self.simulator)
+  confirm_js=(ROOT/"public/anunciate/confirmacion/confirmacion.js").read_text("utf8")
+  confirm_html=(ROOT/"public/anunciate/confirmacion/index.html").read_text("utf8")
+  self.assertIn("data.welcome_email==='sent'",confirm_js)
   self.assertIn("private_area_ready",self.simulator)
-  self.assertIn("interest-success",self.simulator_html)
-  self.assertIn("No se ha cobrado ni publicado nada.",self.simulator)
+  self.assertIn("location.replace('/anunciate/confirmacion/')",self.simulator)
+  self.assertIn("No se ha cobrado ni publicado nada.",confirm_html)
 if __name__=='__main__':
  unittest.main()
