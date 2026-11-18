@@ -84,7 +84,7 @@ export default async function handler(req,res){
    try{
     const info=await workspaceForDraft(sql,Number(confirmedId));
     if(info){
-     const mail=await sendPaymentConfirmedEmail(info,String(event.id));
+     const mail=await sendPaymentConfirmedEmail(info,String(event.id),{sandbox:stripeMode()==='test'});
      if(mail.status!=='sent')console.warn('Payment mail not accepted:',mail.status);
     }
    }catch(err){console.error('DParranda payment confirmation email failed',err?.name||'Error')}
