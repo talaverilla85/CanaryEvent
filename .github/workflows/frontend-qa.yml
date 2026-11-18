@@ -17,6 +17,7 @@ on:
     branches: [main]
     paths:
       - "api/catalog.js"
+      - "api/advertise-interest.js"
       - "api/admin.js"
       - "api/stripe-webhook.js"
       - "lib/facturadirecta-*.js"
@@ -82,6 +83,6 @@ jobs:
           node --check lib/advertising-invoice-resend.js
           node --check lib/advertising-invoice-adjustments.js
           node --check lib/advertising-invoice-simulator.js
-          node --test tests/test_commercial_workflow.mjs tests/test_fiscal_issuance.mjs tests/test_invoice_adjustments.mjs tests/test_invoice_sandbox_demo.mjs tests/test_facturadirecta_sandbox.mjs tests/test_invoice_resend.mjs
+          node --test tests/test_commercial_workflow.mjs tests/test_fiscal_issuance.mjs tests/test_invoice_adjustments.mjs tests/test_invoice_sandbox_demo.mjs tests/test_facturadirecta_sandbox.mjs tests/test_invoice_resend.mjs tests/test_advertise_interest_validation.mjs
       - name: Pruebas de la interfaz y compatibilidad
         run: python -m unittest discover -s tests -q
