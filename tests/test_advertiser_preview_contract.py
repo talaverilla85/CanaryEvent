@@ -50,14 +50,20 @@ class AdvertiserSimulatorContracts(unittest.TestCase):
         self.assertIn('function restoreDraft()',self.builder)
         self.assertIn("storedArtwork=d.image",self.builder)
 
-    def test_public_feedback_is_specific(self):
-        self.assertIn("description.length<12",self.builder)
-        self.assertIn("la fecha de inicio está vencida o falta",self.sim_js)
-        self.assertIn("feedback.scrollIntoView",self.sim_js)
-        self.assertIn("simulator.js?v=10",self.sim_html)
+    def test_contact_only_is_required_at_review_request(self):
+        self.assertIn('name="legal_name"',self.sim_html)
+        self.assertIn('name="telephone" type="tel" maxlength="35" required',self.sim_html)
+        self.assertIn("legal_name:String(values.get('legal_name')",self.sim_js)
+        self.assertNotIn("description.length<12",self.builder)
+        self.assertNotIn("!target||",self.builder)
+        self.assertNotIn("const issues=[]",self.sim_js)
+        self.assertIn("simulator.js?v=11",self.sim_html)
         api=(ROOT/"api/advertise-interest.js").read_text("utf8")
         self.assertIn("invalid_fields:problems",api)
-        self.assertIn("descripción del anuncio (mínimo 12 caracteres)",api)
+        self.assertIn("if(!legalName)",api)
+        self.assertIn("if(!phone)",api)
+        self.assertIn("saved_image AS",api)
+        self.assertIn("const link=safeText(draft.destination,850)",api)
 
     def test_preview_is_private_no_payment_or_publication(self):
         self.assertNotIn("fetch(",self.builder)
