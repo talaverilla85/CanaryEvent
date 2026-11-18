@@ -50,7 +50,7 @@ class AdvertiserPortalContract(unittest.TestCase):
         self.assertIn('stats_available:false',self.api)
         self.assertIn('actual_ends_at',self.api)
         self.assertNotIn('Seguimiento y estadísticas',self.html)
-  self.assertNotIn('Estadísticas de visitas y clics: próximamente.',self.portal_ui)
+        self.assertNotIn('Estadísticas de visitas y clics: próximamente.',self.front)
 
     def test_image_and_privacy_guards(self):
         self.assertIn('1200',self.api)
