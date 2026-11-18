@@ -349,7 +349,7 @@ function renderInvoiceReviews(){
    (!issued?'<button type="button" class="ghost mini" data-invoice-edit="'+id+'">Revisar datos</button>':'')+
    (sent&&correctEnvironment?'<button type="button" class="ghost mini" data-invoice-adjust="'+id+'">Rectificación / devolución</button>':'')+
    (!pending&&invoiceReady&&correctEnvironment&&!sent?'<button type="button" class="ghost mini invoice-issue-btn" data-invoice-issue="'+id+'">'+
-     (issued?'Reenviar factura':'Emitir y enviar factura')+'</button>':'')+
+     (issued?'Consultar factura':'Emitir factura')+'</button>':'')+
    '</div></article>';
  }).join('');
 }
@@ -392,14 +392,14 @@ $('invoiceReviewsList').addEventListener('click',async event=>{
   const row=invoiceReviews.find(r=>Number(r.draft_id)===id);
   if(!row||row.review_status!=='checked'||!invoiceReady)return;
   const answer=prompt((invoiceSandboxMode?'Vas a emitir una factura de PRUEBA sin validez fiscal':'Vas a emitir una factura fiscal definitiva')+' a nombre de «'+row.company_name+
-   '» por '+(Number(row.total_cents)/100).toFixed(2)+' €. '+(invoiceSandboxMode?'FacturaDirecta SANDBOX redirigirá el correo a su usuario de pruebas.':'Se enviará al cliente y a tu correo.')+'\n\nConfirma escribiendo EMITIR:');
+   '» por '+(Number(row.total_cents)/100).toFixed(2)+' €. '+'El PDF se emitirá en FacturaDirecta sin enviar correo; después puedes enviarlo manualmente con Resend.'+'\n\nConfirma escribiendo EMITIR:');
   if(answer===null)return;
   if(answer.trim()!=='EMITIR'){message('Emisión cancelada.');return}
   button.disabled=true;
   try{
    const result=await api('invoice-issue',{id,confirmation:'EMITIR'});
    await loadInvoiceReviews();message(result.message||'Operación de facturación completada');
-  }catch(err){message('No se pudo emitir o enviar: '+err.message);await loadInvoiceReviews()}
+  }catch(err){message('No se pudo emitir la factura: '+err.message);await loadInvoiceReviews()}
   return;
  }
  const row=invoiceReviews.find(r=>Number(r.draft_id)===Number(button.dataset.invoiceEdit));
@@ -415,7 +415,7 @@ $('sheet').addEventListener('submit',async event=>{
  form.querySelectorAll('button[type=submit]').forEach(b=>b.disabled=true);
  try{
   const result=await api('invoice-review-update',{id,action,...data});
-  await loadInvoiceReviews();closeDialog();message(result.message||'Datos guardados');
+  await loadInvoiceReviews();closeDialog();message(result.message||'Datos guardados');if(action==='check')await openPaidInvoice(id);
  }catch(err){
   message(err.message);form.querySelectorAll('button[type=submit]').forEach(b=>b.disabled=false);
  }
@@ -1094,42 +1094,83 @@ function opsFilteredRows(){
  });
 }
 async function openPaidInvoice(id){
- const row=invoiceReviews.find(r=>Number(r.draft_id)===id);
+ let row=invoiceReviews.find(r=>Number(r.draft_id)===id);
  if(!row){
-  openDialog('<div class="sheet-head"><div><h2 id="dialogTitle">Factura pendiente</h2></div><button class="ghost mini" type="button" data-close>✕</button></div><p class="notice">Todavía no existe una factura asociada a este pago.</p>');return;
+  try{await loadInvoiceReviews()}catch{}
+  row=invoiceReviews.find(r=>Number(r.draft_id)===id);
  }
- const sandbox=invoiceSandboxMode,test=String(row.stripe_checkout_session_id||'').startsWith('cs_test_');
- const issued=!!row.provider_invoice_id&&test===sandbox;
+ if(!row){
+  openDialog('<div class="sheet-head"><div><h2 id="dialogTitle">Factura pendiente</h2></div><button class="ghost mini" type="button" data-close>✕</button></div>'+
+   '<p class="notice">El pago debe estar registrado por el webhook de Stripe antes de preparar la factura. Actualiza el panel de facturación si acabas de pagar.</p>');
+  return;
+ }
+ const sandbox=invoiceSandboxMode;
+ const test=String(row.stripe_checkout_session_id||'').startsWith('cs_test_');
+ const correct=test===sandbox;
+ const issued=!!row.provider_invoice_id&&correct;
+ const checked=row.review_status==='checked';
  const total=(Number(row.total_cents)/100).toLocaleString('es-ES',{style:'currency',currency:'EUR'});
- openDialog('<div class="sheet-head"><div><span class="eyebrow">FACTURA '+(sandbox?'SANDBOX':'')+'</span><h2 id="dialogTitle">'+escape(row.company_name||'Anunciante')+'</h2></div><button class="ghost mini" type="button" data-close>✕</button></div>'+
- '<p><strong>'+escape(row.title||'Publicidad')+'</strong> · '+escape(total)+'</p><p>Correo fiscal: '+escape(row.billing_email||'Pendiente')+'</p>'+
- (issued?'<p id="invoiceModalStatus" class="muted" role="status">Cargando factura…</p><div id="invoiceModalPdf"></div><div class="sheet-footer"><button class="ghost" id="invoiceModalSend" type="button" disabled>Enviar copia por Resend</button><button class="ghost" type="button" data-close>Cerrar</button></div>':
- '<p class="notice">Todavía no hay factura emitida en este entorno. No se puede enviar.</p>'));
- if(!issued)return;
- const status=$('invoiceModalStatus'),root=$('invoiceModalPdf');
+ const controls=issued?
+  '<p id="invoiceModalStatus" class="muted" role="status">Consultando la factura ya emitida…</p>'+
+  '<div id="invoiceModalPdf"></div><div class="sheet-footer">'+
+  '<button class="ghost" id="invoiceModalSend" type="button" disabled>Enviar copia por Resend</button>'+
+  '<button class="ghost" type="button" data-close>Cerrar</button></div>':
+  '<p class="notice">'+
+  (correct?'Pago confirmado. '+(checked?'Datos fiscales revisados. Falta emitir la factura.':'Comprueba NIF/CIF y dirección fiscal antes de emitir.') :
+   'El pago y la facturación pertenecen a entornos distintos. No se generará ninguna factura.')+'</p>'+
+  '<div id="invoiceModalStatus" class="muted" role="status"></div>'+
+  '<div class="sheet-footer">'+
+  (correct?'<button class="ghost" id="invoiceModalReview" type="button">'+
+   (checked?'Revisar de nuevo datos':'Completar datos fiscales')+'</button>':'')+
+  (correct&&checked&&invoiceReady?'<button class="primary" id="invoiceModalIssue" type="button">Emitir factura en FacturaDirecta '+(sandbox?'Sandbox':'')+'</button>':'')+
+  '<button class="ghost" type="button" data-close>Cerrar</button></div>';
+ openDialog('<div class="sheet-head"><div><span class="eyebrow">FACTURA '+(sandbox?'SANDBOX · SIN VALIDEZ FISCAL':'')+'</span>'+
+  '<h2 id="dialogTitle">'+escape(row.company_name||'Anunciante')+'</h2></div><button class="ghost mini" type="button" data-close>✕</button></div>'+
+  '<p><strong>'+escape(row.title||'Publicidad')+'</strong> · '+escape(total)+'</p>'+
+  '<p>Correo fiscal: '+escape(row.billing_email||'Pendiente')+'</p>'+controls);
+ const status=$('invoiceModalStatus');
+ if(!issued){
+  const review=$('invoiceModalReview');if(review)review.onclick=()=>openInvoiceReview(row);
+  const issue=$('invoiceModalIssue');
+  if(issue)issue.onclick=async()=>{
+   if(!confirm('¿Emitir la factura '+(sandbox?'SANDBOX sin validez fiscal':'fiscal')+
+    ' correspondiente a este pago? Se generará en FacturaDirecta, pero NO se enviará por correo hasta pulsar Enviar copia por Resend.'))return;
+   issue.disabled=true;status.textContent='Emitiendo factura en FacturaDirecta…';
+   try{
+    await api('invoice-issue',{id,confirmation:'EMITIR'});
+    await loadInvoiceReviews();
+    await openPaidInvoice(id);
+   }catch(e){status.textContent='No se pudo emitir la factura: '+e.message;issue.disabled=false}
+  };
+  return;
+ }
+ const root=$('invoiceModalPdf');
  try{
   const doc=await api('invoice-existing-document',null,{id:String(id)});
   if(!$('invoiceModalStatus'))return;
-  const url=new URL(doc.url);if(url.protocol!=='https:')throw Error('Enlace PDF no seguro.');
-  status.textContent='Factura localizada en FacturaDirecta.';
+  const url=new URL(doc.url);if(url.protocol!=='https:')throw Error('Enlace PDF no seguro');
+  status.textContent='Factura existente localizada. Puedes abrir el PDF o enviar otra copia.';
   const link=document.createElement('a');link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Abrir o descargar PDF';
   const p=document.createElement('p');p.append(link);root.append(p);
-  const frame=document.createElement('iframe');frame.src=url.href;frame.title='Vista previa de la factura';frame.referrerPolicy='no-referrer';frame.style.cssText='width:100%;height:350px;border:1px solid #dce6e8;border-radius:9px';root.append(frame);
+  const frame=document.createElement('iframe');frame.src=url.href;frame.title='Vista previa de la factura';frame.referrerPolicy='no-referrer';
+  frame.style.cssText='width:100%;height:350px;border:1px solid #dce6e8;border-radius:9px';root.append(frame);
   const button=$('invoiceModalSend');if(!button)return;
-  button.disabled=!doc.resend_available;button.textContent=doc.sandbox?'Enviar prueba mediante Resend':'Enviar copia al cliente mediante Resend';
+  button.disabled=!doc.resend_available;
+  button.textContent=doc.sandbox?'Enviar PDF a mi correo de prueba por Resend':'Enviar copia al correo fiscal por Resend';
   button.onclick=async()=>{
-   if(!confirm('¿Enviar copia del PDF existente a '+doc.recipient+' mediante Resend? No se crea otra factura.'))return;
-   button.disabled=true;
+   if(!confirm('¿Enviar copia del PDF existente a '+doc.recipient+'? No se crea ninguna factura nueva.'))return;
+   button.disabled=true;status.textContent='Solicitando envío a Resend…';
    try{
     const r=await api('invoice-existing-send-resend',{id,recipient:doc.recipient,attempt_key:crypto.randomUUID().replaceAll('-')});
-    status.textContent=r.message+' Destinatario: '+r.recipient+'. Ref. '+r.resend_id;
-   }catch(e){status.textContent='No se pudo enviar: '+e.message}
+    status.textContent=r.message+' Destinatario: '+r.recipient+'. Referencia: '+r.resend_id;
+   }catch(e){status.textContent='No se pudo enviar la copia: '+e.message}
    finally{button.disabled=false}
   };
-  if(!doc.resend_available){const p=document.createElement('p');p.className='muted small';p.textContent='Resend todavía no está habilitado para enviar facturas. La consulta y descarga sí están disponibles.';root.append(p)}
- }catch(e){if($('invoiceModalStatus'))status.textContent='Error al mostrar la factura: '+e.message}
+  if(!doc.resend_available){
+   const p=document.createElement('p');p.className='muted small';p.textContent='Resend todavía no está habilitado para este destinatario. Puedes consultar y descargar la factura.';root.append(p);
+  }
+ }catch(e){if($('invoiceModalStatus'))status.textContent='No se pudo consultar el PDF: '+e.message}
 }
-
 function renderAdOperations(){
  const container=$('adOpsRows');if(!container)return;
  opsAllRows=normalizedOpsRows();
