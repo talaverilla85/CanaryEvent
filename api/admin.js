@@ -5,8 +5,8 @@ import { authenticated, db, isConfigured, json, passwordValid, safeText, sameOri
 import {privacyUrl,missingPrivacyIdentity} from '../lib/privacy.js';
 import {resendTestConfiguration,sendResendAdminTest} from '../lib/resend-test.js';
 import {ensureAdvertiserWorkspace,workspaceForDraft} from '../lib/advertiser-workspace.js';
-import {sendChangesRequestedEmail,advertiserMailStatus} from '../lib/advertiser-mail.js';
-import {ensureApprovedPayment,stripePaymentsReady} from '../lib/stripe-advertising.js';
+import {sendChangesRequestedEmail,sendPaymentConfirmedEmail,advertiserMailStatus} from '../lib/advertiser-mail.js';
+import {ensureApprovedPayment,stripePaymentsReady,stripeMode} from '../lib/stripe-advertising.js';
 import {schedulePaidDraft,canaryToday} from '../lib/advertiser-publication.js';
 import {editPaidCreative,setPaidPublicationEnabled} from '../lib/paid-ad-edit.js';
 import {listAdvertisingArchives,changeAdvertisingArchive} from '../lib/advertising-archive.js';
@@ -426,6 +426,29 @@ function changesMessage(status){
  if(status==='failed')return 'Cambios guardados, pero falló el correo. Revisa Resend antes de dar por avisado al cliente.';
  return 'Cambios guardados. Aún no hay un correo automático disponible para esta solicitud.';
 }
+async function manuallyResendReceipt(sql,idRaw){
+ const id=invitedId(idRaw);
+ if(!id)throw Error('Anuncio no válido');
+ const [row]=await sql`SELECT d.payment_status,d.paid_at,d.stripe_checkout_session_id
+  FROM advertiser_campaign_drafts d WHERE d.id=${id}
+  AND NOT EXISTS(SELECT 1 FROM advertising_archives ar
+    WHERE ar.source='draft' AND ar.record_id=d.id::text)`;
+ if(!row||row.payment_status!=='paid'||!row.paid_at||
+   !/^cs_(?:test|live)_[A-Za-z0-9]+$/.test(String(row.stripe_checkout_session_id||'')))
+  throw Error('El pago no ha sido confirmado por Stripe');
+ const sandbox=String(row.stripe_checkout_session_id).startsWith('cs_test_');
+ if((stripeMode()==='test')!==sandbox)
+  throw Error('El pago pertenece a otro entorno Stripe.');
+ const info=await workspaceForDraft(sql,id);
+ if(!info?.account?.active)throw Error('No hay una cuenta de anunciante activa');
+ const sent=await sendPaymentConfirmedEmail(info,'admin-receipt-'+id,{sandbox});
+ return {status:sent.status,accepted:sent.status==='sent',
+  message:sent.status==='sent'?
+   'Resend ha aceptado la confirmación de pago. Revisa la entrega del correo en su panel.':
+   sent.status==='pending_domain'?
+    'Resend no permite ese destinatario con la configuración actual. No se ha enviado el correo.':
+    'No se pudo enviar la confirmación por Resend. Consulta su estado.'};
+}
 async function safelyPreparePayment(sql,id){
  try{return await ensureApprovedPayment(sql,id)}
  catch(e){console.error('DParranda Stripe payment link failed',e?.name||'Error');return {status:'failed',email_status:'failed'}}
@@ -717,6 +740,8 @@ export default async function handler(req,res){
       return json(res,200,await setPaidPublicationEnabled(sql,data(req)));
     if(req.method==='POST'&&op==='edit-paid-creative')
       return json(res,200,await editPaidCreative(sql,data(req),adminImageData));
+    if(req.method==='POST'&&op==='resend-paid-receipt')
+      return json(res,200,await manuallyResendReceipt(sql,data(req).id));
     if(req.method==='POST'&&op==='schedule-paid-draft'){
       const id=invitedId(data(req).id);
       if(!id)return json(res,400,{error:'Anuncio inválido'});
