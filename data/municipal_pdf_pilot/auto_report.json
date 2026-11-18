@@ -1,9 +1,9 @@
 {
-  "checked_at": "2026-11-18T11:11:07.216049+00:00",
+  "checked_at": "2026-11-18T11:51:53.838075+00:00",
   "mode": "api",
   "model": "gpt-6-luna",
-  "api_calls": 3,
-  "usage_usd": 0.0006785,
+  "api_calls": 2,
+  "usage_usd": 0.0004345,
   "documents": [
     {
       "municipality": "Agüimes",
@@ -13,22 +13,15 @@
       "bytes": 3504943,
       "inspected": [
         {
-          "page": 6,
-          "native_text_chars": 44,
-          "page_priority": 2,
-          "first_read": "ai_vision",
-          "candidates_for_review": 0
-        },
-        {
-          "page": 2,
+          "page": 10,
           "native_text_chars": 0,
           "page_priority": 0,
           "first_read": "ai_vision",
           "candidates_for_review": 0
         },
         {
-          "page": 4,
-          "native_text_chars": 1150,
+          "page": 12,
+          "native_text_chars": 58,
           "page_priority": 0,
           "first_read": "ai_vision",
           "candidates_for_review": 0

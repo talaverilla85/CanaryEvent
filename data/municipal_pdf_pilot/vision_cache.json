@@ -2024,5 +2024,49 @@
       },
       "total_tokens": 2004
     }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/9/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 1960,
+      "input_tokens_details": {
+        "cache_write_tokens": 1957,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1957
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 43,
+      "output_tokens_details": {
+        "reasoning_tokens": 21
+      },
+      "total_tokens": 2003
+    }
+  },
+  "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4/11/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 1960,
+      "input_tokens_details": {
+        "cache_write_tokens": 1957,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 1957
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 42,
+      "output_tokens_details": {
+        "reasoning_tokens": 20
+      },
+      "total_tokens": 2002
+    }
   }
 }
