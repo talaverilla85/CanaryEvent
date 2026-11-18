@@ -26,7 +26,7 @@ async function validation(body){
  return res;
 }
 const base=()=>({
- company:'Negocio de prueba',contact:'Nombre de prueba',email:'cliente@example.com',telephone:'',
+ company:'Negocio de prueba',contact:'Nombre de prueba',email:'cliente@example.com',telephone:'600123456',legal_name:'Razón social de pruebas SL',
  consent:true,proposal:true,
  campaign:{
   kind:'banner',plan:'local',days:30,municipalities:['Agüimes'],
@@ -35,22 +35,39 @@ const base=()=>({
   image_data:null,eventDate:'',eventTown:'',eventVenue:''
  }
 });
-test('la API distingue el problema de imagen sin culpar al contacto',async()=>{
- const r=await validation(base());
+test('solo se rechaza cuando falta identidad fiscal o teléfono',async()=>{
+ const b=base();b.telephone='';b.legal_name='';
+ b.campaign.destination='';
+ b.campaign.description='';
+ b.campaign.start='2025-01-01';
+ b.campaign.image_data=null;
+ const r=await validation(b);
  assert.equal(r.statusCode,400);
- assert.ok(r.body.invalid_fields.some(x=>x.startsWith('imagen del anuncio')));
- assert.ok(!r.body.invalid_fields.some(x=>/persona de contacto|correo electrónico|nombre del negocio/.test(x)));
+ assert.ok(r.body.invalid_fields.some(x=>x.includes('teléfono')));
+ assert.ok(r.body.invalid_fields.some(x=>x.includes('razón social')));
+ assert.ok(!r.body.invalid_fields.some(x=>/enlace|descripción|imagen|fecha/.test(x)));
  assert.ok(!r.body.error.includes('cliente@example.com'));
 });
-test('descripciones de menos de 12 caracteres se identifican de manera explícita',async()=>{
- const b=base();b.campaign.description='Corto';
+test('el correo válido y el consentimiento siguen siendo obligatorios',async()=>{
+ const b=base();b.email='invalido';b.consent=false;
  const r=await validation(b);
  assert.equal(r.statusCode,400);
- assert.ok(r.body.invalid_fields.some(x=>x.includes('mínimo 12 caracteres')));
+ assert.ok(r.body.invalid_fields.some(x=>x.includes('correo electrónico')));
+ assert.ok(r.body.invalid_fields.some(x=>x.includes('privacidad')));
 });
-test('fecha de inicio pasada se diferencia del resto de los datos',async()=>{
- const b=base();b.campaign.start='2025-01-01';
+test('los campos estructurales de tarifa se siguen validando para evitar precios corruptos',async()=>{
+ const b=base();b.campaign.days=365;
  const r=await validation(b);
  assert.equal(r.statusCode,400);
- assert.ok(r.body.invalid_fields.some(x=>x.includes('fecha de inicio')));
+ assert.ok(r.body.invalid_fields.some(x=>x.includes('tarifa')));
+});
+test('el contrato separa revisión inicial de aprobación y pago',async()=>{
+ const {readFileSync}=await import('node:fs');
+ const src=readFileSync(new URL('../api/advertise-interest.js',import.meta.url),'utf8');
+ const admin=readFileSync(new URL('../api/admin.js',import.meta.url),'utf8');
+ assert.ok(src.includes('saved_image AS'));
+ assert.ok(src.includes("const link=safeText(draft.destination,850)"));
+ assert.ok(src.includes("WHERE ${image}::text IS NOT NULL"));
+ assert.ok(admin.includes('validAdApprovalUrl(draft.destination)'));
+ assert.ok(admin.includes("if(decision==='approved_for_payment'"));
 });
