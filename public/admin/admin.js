@@ -1216,7 +1216,7 @@ function opsOpenPreview(row){
   (row.review_note?'<p class="notice"><strong>Observaciones anteriores:</strong> '+escape(row.review_note)+'</p>':'')+
   '<div class="sheet-footer">'+
   (row.archived?opsArchiveAction(row):
-  (row.editable&&row.has_image?'<button type="button" class="primary" data-ops-review="approved_for_payment" data-ops-key="'+escape(row.key)+'">Aprobar contenido</button>':'')+
+  (row.editable?'<button type="button" class="primary" data-ops-review="approved_for_payment" data-ops-key="'+escape(row.key)+'">Aprobar y enviar pago</button>':'')+
   (row.editable?'<button type="button" class="ghost" data-ops-review="changes_requested" data-ops-key="'+escape(row.key)+'">Pedir cambios</button>'+
   '<button type="button" class="ghost" data-ops-review="rejected" data-ops-key="'+escape(row.key)+'">Rechazar</button>':'')+
   (row.source==='draft'&&row.payment==='paid'&&['active','scheduled','paused','approved','paid_review'].includes(row.status)?
