@@ -38,8 +38,9 @@ class CommercialAuditContract(unittest.TestCase):
   self.assertIn("if(d.payment_status==='paid')",self.stripe)
 
  def test_only_future_relevant_sponsored_events_are_available_for_sale_and_discovery(self):
-  self.assertIn("eventDate.slice(0,10)<todayCanary()",self.intake)
-  self.assertIn("eventDate.slice(0,10)<start",self.intake)
+  # Un anuncio incompleto puede presentarse para revisión, pero nunca cobrarse ni publicarse.
+  self.assertIn("const link=safeText(draft.destination,850)",self.intake)
+  self.assertIn("validAdApprovalUrl(draft.destination)",self.admin)
   self.assertIn("eventStart.slice(0,10)<today()",self.portal)
   self.assertIn("eventStart.slice(0,10)<start",self.portal)
   self.assertIn("eventDay<canaryDate()",self.stripe)
