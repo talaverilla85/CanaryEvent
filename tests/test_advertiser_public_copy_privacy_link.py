@@ -41,6 +41,8 @@ class AdvertiserPublicCopyContract(unittest.TestCase):
  def test_safeguards_for_payments_and_noindex_unchanged(self):
   page=(ROOT/"public/anunciate/confirmacion/index.html").read_text("utf8")
   self.assertIn("No se ha cobrado ni publicado nada.",page)
+  self.assertIn('src="/brand/dparranda-negative.svg?v=1"',page)
+  self.assertNotIn('src="/brand/dparranda-logo.svg?v=6"',page)
   self.assertIn('<meta name="robots" content="noindex,nofollow,noarchive">',self.html)
   self.assertIn("const proposal=true",self.sim)
   self.assertIn("form.reportValidity()",self.sim)
