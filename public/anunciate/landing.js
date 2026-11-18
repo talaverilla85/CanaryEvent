@@ -156,8 +156,8 @@ $('showPreview').addEventListener('click',async()=>{
  else if(start<localDay())problems.push('la fecha de inicio no puede estar en el pasado');
  if(!name)problems.push('escribe el nombre de la empresa o evento');
  if(!title)problems.push('escribe el título del anuncio');
- if(description.length<12)problems.push('añade una descripción de al menos 12 caracteres');
- if(!target||!/^https:\/\/[^/\s?#]+/i.test(target))problems.push('indica una web que empiece por https://');
+ // El equipo revisa la descripción después de registrar la propuesta.
+ // El enlace será revisado antes de aprobar el pago.
  if(isEvent){
   if(!eventVenue)problems.push('indica el lugar del evento');
   if(!eventDate)problems.push('indica la fecha y hora del evento');
