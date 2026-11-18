@@ -1407,17 +1407,6 @@ async function handleAdvertisingArchiveAction(button){
 }
 $('adOpsRows').addEventListener('click',event=>{
  const button=event.target.closest('[data-ops-invoice],[data-ops-preview],[data-ops-invite],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
- if(button.dataset.opsReceipt){
-  const id=Number(button.dataset.opsReceipt);
-  if(!confirm('¿Reenviar al anunciante la confirmación de pago de esta contratación? En Stripe Test solo se permite el correo autorizado de Resend.'))return;
-  button.disabled=true;
-  try{
-   const result=await api('resend-paid-receipt',{id});
-   message(result.message||'Estado del reenvío no disponible');
-  }catch(e){message('No se pudo reenviar: '+e.message)}
-  finally{button.disabled=false}
-  return;
- }
  if(button.dataset.opsInvoice){openPaidInvoice(Number(button.dataset.opsInvoice));return}
  if(button.dataset.opsArchive||button.dataset.opsRestore){handleAdvertisingArchiveAction(button);return}
  if(button.dataset.opsPaidEdit){const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsPaidEdit));if(row)openPaidCreativeEditor(row);return}
@@ -1451,6 +1440,17 @@ $('adOpsExport').onclick=()=>{
 };
 $('sheet').addEventListener('click',async event=>{
  const button=event.target.closest('[data-ops-receipt],[data-ops-invoice],[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
+ if(button.dataset.opsReceipt){
+  const id=Number(button.dataset.opsReceipt);
+  if(!confirm('¿Reenviar al anunciante la confirmación de pago de esta contratación? En Stripe Test solo se permite el correo autorizado de Resend.'))return;
+  button.disabled=true;
+  try{
+   const result=await api('resend-paid-receipt',{id});
+   message(result.message||'Estado del reenvío no disponible');
+  }catch(e){message('No se pudo reenviar: '+e.message)}
+  finally{button.disabled=false}
+  return;
+ }
  if(button.dataset.opsInvoice){openPaidInvoice(Number(button.dataset.opsInvoice));return}
  if(button.dataset.opsArchive||button.dataset.opsRestore){await handleAdvertisingArchiveAction(button);return}
  if(button.dataset.opsPaidEdit){const row=opsAllRows.find(r=>r.source==='draft'&&r.id===Number(button.dataset.opsPaidEdit));if(row)openPaidCreativeEditor(row);return}
