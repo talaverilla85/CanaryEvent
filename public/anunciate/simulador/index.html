@@ -114,14 +114,15 @@ footer{text-align:center;color:#7c9283;padding:16px 0 33px;font-size:11px}
  <section id="interestSection" class="interest-section" hidden aria-labelledby="interestTitle">
   <span class="interest-kicker">SOLICITUD DE CONTRATACIÓN · SIN PAGO INICIAL</span>
   <h2 id="interestTitle">¿Te gusta cómo queda tu anuncio?</h2>
-  <p>Envíanos el anuncio con su imagen, fechas, cobertura y tus datos de contacto. Prepararemos tu área personal para consultar el anuncio y sus posibles correcciones. Lo revisaremos antes de cualquier pago. <strong>No se cobra ni se publica nada ahora.</strong></p>
+  <p>Envíanos tu propuesta con tus datos de contacto. Revisaremos el enlace, la imagen, el texto y las fechas antes de aprobarla; si falta algo, podrás corregirlo desde tu área privada. <strong>No se cobra ni se publica nada ahora.</strong></p>
   <p id="interestAvailability" role="status" aria-live="polite">Comprobando disponibilidad del registro de interesados…</p>
   <form id="interestForm" hidden>
    <div class="interest-fields">
-    <label>Nombre del negocio<input name="company" maxlength="120" required autocomplete="organization" placeholder="Tu empresa o proyecto"></label>
-    <label>Persona de contacto<input name="contact" maxlength="100" required autocomplete="name" placeholder="Nombre y apellidos"></label>
+    <label>Nombre comercial<input name="company" maxlength="120" required autocomplete="organization" placeholder="Tu empresa o proyecto"></label>
+    <label>Nombre y apellidos de contacto<input name="contact" maxlength="100" required autocomplete="name" placeholder="Nombre y apellidos"></label>
+    <label>Razón social o nombre fiscal<input name="legal_name" maxlength="180" required autocomplete="organization" placeholder="Empresa o nombre y apellidos del titular"></label>
     <label>Correo electrónico<input name="email" type="email" maxlength="180" required autocomplete="email" placeholder="hola@empresa.es"></label>
-    <label>Teléfono (opcional)<input name="telephone" type="tel" maxlength="35" autocomplete="tel" placeholder="Número de contacto"></label>
+    <label>Teléfono de contacto<input name="telephone" type="tel" maxlength="35" required autocomplete="tel" placeholder="Número de contacto"></label>
    </div>
    <div class="interest-trap" aria-hidden="true"><label>Dejar vacío<input name="website" tabindex="-1" autocomplete="off"></label></div>
    <p id="eventCampaignRule" class="interest-privacy-link" hidden><strong>Condición de la promoción de eventos:</strong> la ficha se retira cuando acaba el evento, aunque queden días del plan contratado. El periodo publicitario no se amplía ni ajusta automáticamente. Debes contratarlo con antelación suficiente.</p>
@@ -130,11 +131,11 @@ footer{text-align:center;color:#7c9283;padding:16px 0 33px;font-size:11px}
    <div class="interest-actions">
     <button id="proposalSubmit" type="submit" class="interest-send proposal-send" hidden>Solicitar contratación y revisión del anuncio</button>
    </div>
-   <p id="proposalNotice" class="interest-feedback" hidden>Adjuntaremos la propuesta completa y su imagen. Si aprueban el contenido, recibirás las instrucciones de pago. La solicitud no supone un pago ni garantiza la publicación.</p>
+   <p id="proposalNotice" class="interest-feedback" hidden>Guardaremos los datos de tu propuesta y revisaremos el anuncio. Si falta algo, te pediremos cambios antes del pago. La solicitud no supone un pago ni garantiza la publicación.</p>
    <p id="interestFeedback" class="interest-feedback" role="status" aria-live="polite"></p>
   </form>
  </section>
 </main>
 <footer>D’Parranda · Disfruta de tus islas.</footer>
-<script src="/anunciate/simulador/simulator.js?v=10" defer></script>
+<script src="/anunciate/simulador/simulator.js?v=11" defer></script>
 </body></html>
