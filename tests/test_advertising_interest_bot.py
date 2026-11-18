@@ -71,4 +71,71 @@ class InterestBotContract(unittest.TestCase):
         self.assertIn("secrets.DPARRANDA_DATABASE_URL",wf)
         self.assertIn("secrets.TELEGRAM_BOT_TOKEN",wf)
 
+
+
+class PaymentBotContract(unittest.TestCase):
+    def sample(self,session="cs_live_abcdef123",start="2026-11-20",end="2026-12-19"):
+        return (81,"Comercio ejemplo","Campaña de Navidad","zona",30,"banner",
+                4900,["Agüimes","Ingenio"],start,end,session)
+
+    def test_confirmed_payment_content(self):
+        msg=alerts.make_payment_message(self.sample())
+        self.assertIn("PAGO CONFIRMADO",msg)
+        self.assertIn("Comercio ejemplo",msg)
+        self.assertIn("Campaña de Navidad",msg)
+        self.assertIn("Zona",msg)
+        self.assertIn("49,00 €",msg)
+        self.assertIn("20/11/2026",msg)
+        self.assertIn("19/12/2026",msg)
+        self.assertIn("Agüimes, Ingenio",msg)
+        self.assertIn("admin/#publicidad",msg)
+        self.assertNotIn("gmail",msg.lower())
+
+    def test_test_payment_is_clearly_fictitious(self):
+        msg=alerts.make_payment_message(self.sample(session="cs_test_xyzABC123"))
+        self.assertIn("PRUEBA",msg)
+        self.assertIn("No se ha cobrado",msg)
+        self.assertNotIn("💶",msg)
+
+    def test_no_alert_for_unconfirmed_or_unscheduled_payments(self):
+        self.assertIsNone(alerts.make_payment_message(self.sample(session="unconfirmed")))
+        self.assertIsNone(alerts.make_payment_message(self.sample(start=None)))
+        self.assertIsNone(alerts.make_payment_message(self.sample(end=None)))
+
+    def test_payment_alert_is_marked_only_after_delivery(self):
+        class FakePaidSQL:
+            def __init__(self,row):
+                self.row=row;self.delivered=[]
+            def cursor(self):
+                outer=self
+                class Cursor:
+                    def __enter__(self):return self
+                    def __exit__(self,*args):return False
+                    def execute(self,query,params=None):
+                        if "INSERT INTO advertising_payment_notifications" in query:
+                            outer.delivered.append(params[0])
+                    def fetchall(self):return [outer.row]
+                return Cursor()
+        sql=FakePaidSQL(self.sample())
+        self.assertEqual(alerts.poll_payments(sql,"token","chat",send_message=lambda *args:False),(0,False))
+        self.assertEqual(sql.delivered,[])
+        self.assertEqual(alerts.poll_payments(sql,"token","chat",send_message=lambda *args:True),(1,True))
+        self.assertEqual(sql.delivered,[81])
+
+    def test_submitted_request_has_a_review_link(self):
+        msg=alerts.make_message(123,"INTERES_INICIAL|local|19|30|evento",
+            company="AriMar",title="Anuncio",zone="Agüimes",
+            start="2026-11-20",review_status="submitted")
+        self.assertIn("Nueva solicitud de publicidad",msg)
+        self.assertIn("AriMar",msg)
+        self.assertIn("pendiente de revisión",msg)
+        self.assertIn("admin/#publicidad",msg)
+
+    def test_polling_contract_requires_stripe_confirmation_and_schedule(self):
+        source=(ROOT/"scripts/telegram_advertising_leads.py").read_text("utf8")
+        self.assertIn("d.payment_status='paid'",source)
+        self.assertIn("d.paid_at IS NOT NULL",source)
+        self.assertIn("d.actual_starts_at IS NOT NULL",source)
+        self.assertIn("advertising_payment_notifications",source)
+
 if __name__=="__main__":unittest.main()
