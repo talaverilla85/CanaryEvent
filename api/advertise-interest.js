@@ -66,18 +66,40 @@ export default async function handler(req,res){
   const eventTown=safeText(draft.eventTown,90),eventVenue=safeText(draft.eventVenue,200);
   const amount=PRICES[plan]*(days/30);
   const chosen=(plan==='insular'?'Toda Gran Canaria':area.join(', '));
-  if(!company||!contact||!email||phone.length>35||input.consent!==true||
-     !Object.hasOwn(PRICES,plan)||!['banner','evento'].includes(kind)||
-     ![30,60].includes(days)||!title||!link||
-     places.length>4||area.some(t=>typeof t!=='string'||!TOWNS.has(t))||
+  // Return precise, non-sensitive field labels for rejected requests.
+  const problems=[];
+  if(!company)problems.push('nombre del negocio');
+  if(!contact)problems.push('persona de contacto');
+  if(!email)problems.push('correo electrónico');
+  if(input.consent!==true)problems.push('consentimiento de privacidad');
+  if(!Object.hasOwn(PRICES,plan))problems.push('tarifa publicitaria');
+  if(!['banner','evento'].includes(kind))problems.push('tipo de anuncio');
+  if(![30,60].includes(days))problems.push('duración de la campaña');
+  if(!title)problems.push('título del anuncio');
+  if(!link)problems.push('enlace de destino (se requiere https://)');
+  if(places.length>4||area.some(t=>typeof t!=='string'||!TOWNS.has(t))||
      (plan==='local'&&area.length!==1)||
      (plan==='zona'&&(area.length<1||area.length>4))||
-     (plan==='insular'&&area.length!==0)||
-     (start!==''&&(!validLocalDate(start)||start<todayCanary()))||
-     (proposal&&(!start||description.length<12||!image||
-       (kind==='evento'&&(!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(eventDate)||!TOWNS.has(eventTown)||!eventVenue||
-         eventDate.slice(0,10)<todayCanary()||eventDate.slice(0,10)<start)))))
-    return json(res,400,{error:'Revisa el contacto y la campaña seleccionada'});
+     (plan==='insular'&&area.length!==0))
+    problems.push('municipios elegidos');
+  if(proposal&&!start)problems.push('fecha de inicio');
+  else if(start!==''&&(!validLocalDate(start)||start<todayCanary()))
+    problems.push('fecha de inicio (no puede estar en el pasado)');
+  if(proposal){
+    if(description.length<12)problems.push('descripción del anuncio (mínimo 12 caracteres)');
+    if(!image)problems.push('imagen del anuncio (formato/tamaño no admitido)');
+    if(kind==='evento'){
+      if(!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(eventDate)||
+        eventDate.slice(0,10)<todayCanary()||eventDate.slice(0,10)<start)
+        problems.push('fecha y hora del evento');
+      if(!TOWNS.has(eventTown))problems.push('municipio del evento');
+      if(!eventVenue)problems.push('lugar del evento');
+    }
+  }
+  if(problems.length)return json(res,400,{
+    error:'Revisa estos datos del anuncio: '+problems.join('; ')+'.',
+    invalid_fields:problems
+  });
   const sql=db();
   if(!sql)return json(res,503,{error:'El registro de interesados no está disponible'});
   const [limits]=await sql`SELECT
