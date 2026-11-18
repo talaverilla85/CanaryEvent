@@ -58,7 +58,7 @@ export default async function handler(req,res){
   const plan=safeText(draft.plan,20),kind=safeText(draft.kind,20),days=Number(draft.days);
   const places=Array.isArray(draft.municipalities)?draft.municipalities:[];
   const area=[...new Set(places)];
-  const rawStart=safeText(draft.start,10),start=validLocalDate(rawStart)?rawStart:null;
+  const rawStart=safeText(draft.start,10),start=rawStart&&validLocalDate(rawStart)?rawStart:null;
   const title=safeText(draft.title,160);
   // Store the proposed link for review as text, not an approved or published URL.
   const link=safeText(draft.destination,850);
