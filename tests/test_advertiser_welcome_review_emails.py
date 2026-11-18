@@ -58,7 +58,8 @@ class AdvertiserWelcomeReviewEmails(unittest.TestCase):
   self.assertIn("onboarding@resend.dev",self.mail)
   self.assertIn("if(!canSendTo(to))return {status:'pending_domain'}",self.mail)
   self.assertIn("idempotencyKey",self.mail)
-  self.assertIn("No se ha cobrado ni publicado nada.",self.simulator)
+  confirmation=(ROOT/"public/anunciate/confirmacion/index.html").read_text("utf8")
+  self.assertIn("No se ha cobrado ni publicado nada.",confirmation)
 
  def test_public_confirmation_does_not_promise_email_unless_sent(self):
   self.assertIn("result.welcome_email==='sent'",self.simulator)
