@@ -114,7 +114,7 @@ function contractCallout(draft){
  // Admin test calls the authenticated admin API; no actual merchant data or payment.
  fetch('/api/admin?op=advertising-intake-config',{credentials:'same-origin',cache:'no-store'})
   .then(async response=>response.ok?response.json():null)
-  .then(config=>{if(config?.admin_test_enabled===true)testButton.hidden=false})
+  .then(config=>{if(config?.admin_test_enabled===true&&new URLSearchParams(location.search).get('probarPanel')==='1')testButton.hidden=false})
   .catch(()=>{});
  testButton.onclick=async()=>{
   if(!confirm('¿Guardar esta simulación como una solicitud de PRUEBA en tu panel de administración? No se cobra ni publica nada.'))return;
@@ -273,17 +273,13 @@ function initInterestForm(draft){
    });
    const result=await response.json();
    if(!response.ok||result.received!==true)throw Error(result.error||'No se ha podido registrar');
-   form.hidden=true;
-   availability.hidden=false;
-   availability.classList.add('interest-success');
-   availability.replaceChildren();
-   availability.append(el('strong','','¡Hemos recibido tu anuncio!'));
-   const notice=result.welcome_email==='sent'
-    ?' Te hemos enviado un correo de bienvenida con el acceso privado a tu anuncio. Revisa también la carpeta de spam.'
-    :result.private_area_ready
-      ?' Hemos preparado tu área privada. Si todavía no recibes el correo, contactaremos contigo para darte acceso.'
-      :' Hemos guardado tu solicitud; te informaremos de los siguientes pasos.';
-   availability.append(el('span','',notice+' Revisaremos tu creatividad antes de cualquier pago. No se ha cobrado ni publicado nada.'));
+   // Solicitud guardada: salir del simulador y evitar CTA y avisos redundantes.
+   // Persistir solo el estado del correo (nunca datos personales ni ID).
+   try{sessionStorage.setItem('dp_ad_received_v1',JSON.stringify({
+    received:true,welcome_email:result.welcome_email||'pending',
+    private_area_ready:result.private_area_ready===true
+   }))}catch{}
+   location.replace('/anunciate/confirmacion/');
   }catch(err){
    feedback.textContent=err instanceof Error?err.message:'No se ha podido registrar tu interés.';
    feedback.scrollIntoView({behavior:'smooth',block:'center'});
