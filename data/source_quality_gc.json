@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-18T14:30:06+00:00",
+  "checked_at": "2026-11-18T21:57:35+00:00",
   "quality_counts": {
     "publicados": 371,
     "recintos_sin_verificar": 36,
@@ -57,7 +57,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 3,
-      "fichas_leidas_en_esta_ejecucion": 3,
+      "fichas_leidas_en_esta_ejecucion": 2,
       "error": ""
     },
     {
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 17,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 17,
+      "fichas_leidas_en_esta_ejecucion": 14,
       "error": ""
     },
     {
@@ -178,7 +178,7 @@
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=22)"
+      "error": "Galdar calendar returned no future structured events"
     },
     {
       "source": "Municipio · descubrimiento oficial · Firgas",
@@ -382,7 +382,7 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "sin_resultados_en_esta_revision",
+      "estado": "al_dia_sin_fichas_pendientes",
       "publicados": 128,
       "recinto_sin_verificar": 22,
       "precio_sin_confirmar": 106,
@@ -464,7 +464,7 @@
   "reported_errors": [
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "error": "HTTPSConnectionPool(host='www.galdar.es', port=443): Read timed out. (read timeout=22)"
+      "error": "Galdar calendar returned no future structured events"
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
