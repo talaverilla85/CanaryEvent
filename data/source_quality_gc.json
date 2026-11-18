@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-18T22:22:42+00:00",
+  "checked_at": "2026-11-18T23:10:40+00:00",
   "quality_counts": {
     "publicados": 371,
     "recintos_sin_verificar": 36,
     "programas_y_fichas_por_revisar": 7,
     "precios_sin_confirmar": 247,
     "distancia_a_centro_municipal": 235,
-    "fuentes_con_error": 3,
+    "fuentes_con_error": 5,
     "duplicados_potenciales": 0
   },
   "sources": [
@@ -87,18 +87,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 17,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 12,
+      "fichas_leidas_en_esta_ejecucion": 17,
       "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 8,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 8,
       "distancia_al_centro_municipal": 8,
-      "fichas_leidas_en_esta_ejecucion": 13,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Sala Insular de Teatro · agenda oficial",
@@ -182,13 +182,13 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Firgas",
-      "estado": "sin_resultados_en_esta_revision",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
-      "error": ""
+      "error": "No event links found in official listing; check layout"
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
@@ -463,8 +463,16 @@
   ],
   "reported_errors": [
     {
+      "source": "Teatro Cuyás · agenda oficial",
+      "error": "RuntimeError"
+    },
+    {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
       "error": "Galdar calendar returned no future structured events"
+    },
+    {
+      "source": "Municipio · descubrimiento oficial · Firgas",
+      "error": "No event links found in official listing; check layout"
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
