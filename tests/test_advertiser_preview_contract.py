@@ -57,7 +57,7 @@ class AdvertiserSimulatorContracts(unittest.TestCase):
         self.assertNotIn("description.length<12",self.builder)
         self.assertNotIn("!target||",self.builder)
         self.assertNotIn("const issues=[]",self.sim_js)
-        self.assertIn("simulator.js?v=11",self.sim_html)
+        self.assertIn("simulator.js?v=12",self.sim_html)
         api=(ROOT/"api/advertise-interest.js").read_text("utf8")
         self.assertIn("invalid_fields:problems",api)
         self.assertIn("if(!legalName)",api)

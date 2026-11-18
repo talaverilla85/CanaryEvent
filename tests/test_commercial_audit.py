@@ -27,7 +27,7 @@ class CommercialAuditContract(unittest.TestCase):
   self.assertNotIn("'Editar borrador #'+d.id",self.portal_ui)
   self.assertNotIn("'Borrador #'+result.id",self.portal_ui)
   self.assertIn("'Editar mi anuncio'",self.portal_ui)
-  self.assertIn('portal.js?v=3',self.portal_html)
+  self.assertIn('portal.js?v=4',self.portal_html)
 
  def test_checkout_has_no_visible_internal_request_id(self):
   self.assertIn("'line_items[0][price_data][product_data][description]':String(d.title).slice(0,120)",self.stripe)
