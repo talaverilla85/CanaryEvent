@@ -50,6 +50,15 @@ class AdvertiserSimulatorContracts(unittest.TestCase):
         self.assertIn('function restoreDraft()',self.builder)
         self.assertIn("storedArtwork=d.image",self.builder)
 
+    def test_public_feedback_is_specific(self):
+        self.assertIn("description.length<12",self.builder)
+        self.assertIn("la fecha de inicio está vencida o falta",self.sim_js)
+        self.assertIn("feedback.scrollIntoView",self.sim_js)
+        self.assertIn("simulator.js?v=10",self.sim_html)
+        api=(ROOT/"api/advertise-interest.js").read_text("utf8")
+        self.assertIn("invalid_fields:problems",api)
+        self.assertIn("descripción del anuncio (mínimo 12 caracteres)",api)
+
     def test_preview_is_private_no_payment_or_publication(self):
         self.assertNotIn("fetch(",self.builder)
         self.assertIn("method:'POST'",self.sim_js)

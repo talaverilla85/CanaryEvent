@@ -156,7 +156,7 @@ $('showPreview').addEventListener('click',async()=>{
  else if(start<localDay())problems.push('la fecha de inicio no puede estar en el pasado');
  if(!name)problems.push('escribe el nombre de la empresa o evento');
  if(!title)problems.push('escribe el título del anuncio');
- if(!description)problems.push('añade una descripción corta');
+ if(description.length<12)problems.push('añade una descripción de al menos 12 caracteres');
  if(!target||!/^https:\/\/[^/\s?#]+/i.test(target))problems.push('indica una web que empiece por https://');
  if(isEvent){
   if(!eventVenue)problems.push('indica el lugar del evento');
