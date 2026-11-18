@@ -91,6 +91,7 @@ export default async function handler(req,res){
   placement:d.placement,advertiser:d.advertiser,title:d.title,description:d.description,destination:d.destination,image_alt:d.image_alt,
   campaign_start:d.campaign_start,event_start:d.event_start,event_town:d.event_town,event_venue:d.event_venue,
   status:d.status,payment_status:d.payment_status,published_enabled:d.published_enabled,
+  sandbox_scheduled:d.status==='approved'&&d.payment_status==='paid'&&/^cs_test_/.test(d.stripe_checkout_session_id||'')&&!!d.actual_starts_at,
   payment_url:d.status==='pending_payment'&&d.payment_status==='pending'&&/^https:\/\/buy\.stripe\.com\//.test(d.stripe_payment_url||'')?d.stripe_payment_url:null,
   actual_starts_at:d.actual_starts_at,actual_ends_at:d.actual_ends_at,
   review_note:d.review_note,has_image:d.has_image,stats_available:false,created_at:d.created_at,updated_at:d.updated_at})),payment_enabled:stripePaymentsReady()});
