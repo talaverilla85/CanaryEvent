@@ -152,43 +152,7 @@ def poll_payments(sql,token,chat,send_message=send):
           LEFT JOIN advertising_payment_notifications n ON n.draft_id=d.id
           WHERE d.payment_status='paid' AND d.paid_at IS NOT NULL
             AND d.actual_starts_at IS NOT NULL AND d.actual_ends_at IS NOT NULL
-            AND d.stripe_checkout_session_id ~ '^cs_(test|live)_[A-Za-z0-9]+
-    env=env or os.environ
-    token=env.get("TELEGRAM_BOT_TOKEN","").strip()
-    chat=env.get("TELEGRAM_CHAT_ID","").strip()
-    if not token or not chat:
-        print("Bot de interesados pendiente: configura TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID")
-        return 1
-    if test:
-        message=("✅ DParranda · Avisos de anunciantes conectados\n"
-                 "Las nuevas solicitudes se guardarán en el panel privado.\n"+PANEL_URL)
-        return 0 if send_message(token,chat,message) else 1
-    database=env.get("DATABASE_URL","").strip()
-    if not database:
-        print("Monitor de interesados sin conexión a la base de datos")
-        return 1
-    try:
-        with connect(database,connect_timeout=12,autocommit=True) as sql:
-            count,ok=poll(sql,token,chat,send_message=send_message)
-            paid_count,paid_ok=poll_payments(sql,token,chat,send_message=send_message)
-        print("Solicitudes notificadas:",count,"; pagos confirmados notificados:",paid_count)
-        return 0 if ok and paid_ok else 1
-    except psycopg.Error as exc:
-        # Never print connection strings or customer records.
-        print("No se pudo consultar la base privada:",type(exc).__name__)
-        return 1
-
-
-def main():
-    parser=argparse.ArgumentParser()
-    parser.add_argument("--test",action="store_true",help="Send a harmless test to the configured chat")
-    args=parser.parse_args()
-    raise SystemExit(run(test=args.test))
-
-
-if __name__=="__main__":
-    main()
-
+            AND d.stripe_checkout_session_id ~ '^cs_(test|live)_[A-Za-z0-9]+$'
             AND n.draft_id IS NULL
           ORDER BY d.paid_at,d.id LIMIT %s
         """,(MAX_PER_RUN,))
@@ -228,8 +192,9 @@ def run(env=None,*,test=False,connect=psycopg.connect,send_message=send):
     try:
         with connect(database,connect_timeout=12,autocommit=True) as sql:
             count,ok=poll(sql,token,chat,send_message=send_message)
-        print("Notificaciones de interesados confirmadas:",count)
-        return 0 if ok else 1
+            paid_count,paid_ok=poll_payments(sql,token,chat,send_message=send_message)
+        print("Solicitudes notificadas:",count,"; pagos confirmados notificados:",paid_count)
+        return 0 if ok and paid_ok else 1
     except psycopg.Error as exc:
         # Never print connection strings or customer records.
         print("No se pudo consultar la base privada:",type(exc).__name__)
