@@ -385,7 +385,7 @@ async function advertiserChangeAccess(sql,body){
  return {id:Number(updated.id),active:updated.active};
 }
 async function advertiserDrafts(sql){
- const drafts=await sql`SELECT d.id,d.advertiser_id,a.company AS account_company,a.contact_name AS account_contact,a.email AS account_email,d.plan,d.days,d.price_cents,
+ const drafts=await sql`SELECT d.id,d.advertiser_id,a.company AS account_company,a.contact_name AS account_contact,a.email AS account_email,e.legal_name AS account_legal_name,e.telephone AS account_telephone,d.plan,d.days,d.price_cents,
  d.municipalities,d.placement,d.advertiser,d.title,d.description,d.destination,d.image_alt,d.status,d.payment_status,
  d.campaign_start,d.event_start,d.event_town,d.event_venue,d.actual_starts_at,d.actual_ends_at,d.review_note,d.source_lead_id,
  d.updated_at,d.stripe_payment_url,d.paid_at,d.published_ad_id,d.published_event_id,
@@ -395,6 +395,7 @@ async function advertiserDrafts(sql){
    (SELECT ac.enabled FROM ad_campaigns ac WHERE ac.id=d.published_ad_id)
   ELSE NULL END AS published_enabled,EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
  FROM advertiser_campaign_drafts d JOIN advertiser_accounts a ON a.id=d.advertiser_id
+ LEFT JOIN advertising_enquiries e ON e.id=d.source_lead_id
  ORDER BY d.updated_at DESC LIMIT 150`;
  return {drafts};
 }
@@ -438,12 +439,17 @@ function paymentMessage(p){
  if(p.email_status==='pending_domain')return 'Enlace de pago generado. Resend solo puede escribir al correo de pruebas hasta verificar el dominio.';
  return 'Enlace Stripe creado, pero el correo no se ha confirmado. Puedes reenviarlo.';
 }
+function validAdApprovalUrl(value){
+ try{const u=new URL(String(value||''));
+  return u.protocol==='https:'&&!u.username&&!u.password&&u.hostname.includes('.');
+ }catch{return false}
+}
 async function reviewEnquiry(sql,body){
  const id=invitedId(body.id),decision=String(body.status||''),note=safeText(body.note,500);
  if(!id||!['changes_requested','approved_for_payment','rejected'].includes(decision))
   throw new Error('Revisión no válida');
  if(decision==='changes_requested'&&!note)throw new Error('Indica qué cambios debe realizar el anunciante');
- const [lead]=await sql`SELECT id,review_status,format,event_start,to_char(campaign_start,'YYYY-MM-DD') AS requested_start,
+ const [lead]=await sql`SELECT id,review_status,format,event_start,action_url,banner_text,to_char(campaign_start,'YYYY-MM-DD') AS requested_start,
    EXISTS(SELECT 1 FROM advertising_enquiry_images i WHERE i.enquiry_id=advertising_enquiries.id) AS has_image,
    EXISTS(SELECT 1 FROM advertiser_campaign_drafts d WHERE d.source_lead_id=advertising_enquiries.id) AS has_linked_draft
    FROM advertising_enquiries WHERE id=${id}`;
@@ -455,6 +461,12 @@ async function reviewEnquiry(sql,body){
    (!lead.event_start||lead.event_start.slice(0,10)<canaryToday()||
     (lead.requested_start&&lead.event_start.slice(0,10)<lead.requested_start)))
   throw new Error('La fecha del evento ya ha pasado o es anterior al inicio de campaña. Pide al anunciante que la corrija antes de aprobar.');
+ if(decision==='approved_for_payment'&&(!lead.requested_start||lead.requested_start<canaryToday()))
+  throw new Error('Fecha de inicio ausente o vencida. Pide cambios antes de aprobar el pago.');
+ if(decision==='approved_for_payment'&&!validAdApprovalUrl(lead.action_url))
+  throw new Error('Enlace HTTPS inválido. Pide que lo corrijan antes de aprobar el pago.');
+ if(decision==='approved_for_payment'&&String(lead.banner_text||'').trim().length<12)
+  throw new Error('Texto publicitario incompleto. Pide cambios antes de aprobar el pago.');
  if(decision==='approved_for_payment'&&!lead.has_image)
   throw new Error('El anunciante debe adjuntar una imagen antes de aprobar la propuesta');
  const [changed]=await sql`UPDATE advertising_enquiries SET review_status=${decision},
@@ -492,7 +504,7 @@ async function advertiserReview(sql,body){
    throw new Error('Estado de revisión inválido');
  if(decision==='changes_requested'&&!note)
    throw new Error('Explica al anunciante qué debe corregir');
- const [draft]=await sql`SELECT d.status,d.payment_status,d.placement,d.event_start,
+ const [draft]=await sql`SELECT d.status,d.payment_status,d.placement,d.event_start,d.destination,d.description,
   to_char(d.campaign_start,'YYYY-MM-DD') AS requested_start,
   EXISTS(SELECT 1 FROM advertiser_campaign_draft_images i WHERE i.draft_id=d.id) AS has_image
   FROM advertiser_campaign_drafts d WHERE d.id=${id} AND NOT EXISTS(SELECT 1 FROM advertising_archives ar WHERE ar.source='draft' AND ar.record_id=d.id::text)`;
@@ -503,6 +515,14 @@ async function advertiserReview(sql,body){
   (!draft.event_start||draft.event_start.slice(0,10)<canaryToday()||
    (draft.requested_start&&draft.event_start.slice(0,10)<draft.requested_start)))
   throw new Error('La fecha del evento ya ha pasado o es anterior al inicio de campaña. Pide al anunciante que la corrija antes de aprobar.');
+ if(decision==='approved_for_payment'&&(!draft.requested_start||draft.requested_start<canaryToday()))
+  throw new Error('Fecha de inicio ausente o vencida. Pide cambios antes de aprobar el pago.');
+ if(decision==='approved_for_payment'&&!validAdApprovalUrl(draft.destination))
+  throw new Error('Enlace HTTPS inválido. Pide al anunciante que lo corrija antes de aprobar el pago.');
+ if(decision==='approved_for_payment'&&
+  (String(draft.description||'').trim().length<12||
+   draft.description==='Propuesta de publicidad enviada para revisión'))
+  throw new Error('Texto del anuncio incompleto. Pide cambios antes de aprobar el pago.');
  if(decision==='approved_for_payment'&&!draft.has_image)
   throw new Error('La creatividad debe incluir una imagen antes de aprobar el contenido');
  if(draft.payment_status==='paid'||draft.payment_status==='refunded')
