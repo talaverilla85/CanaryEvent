@@ -128,7 +128,7 @@ function paintCampaigns(){
    image.src='/api/advertiser?op=artwork&id='+Number(d.id);image.alt='Creatividad de '+d.title;
    image.loading='lazy';preview.append(image);card.append(preview);
   }
-  card.append(text('p','Estadísticas de visitas y clics: próximamente.','campaign-meta'));
+  /* Métricas ocultas hasta disponer de datos verificados */
   if(['draft','changes_requested'].includes(d.status)){
    const buttons=text('div','','actions'),edit=text('button','Editar borrador','secondary');
    edit.type='button';edit.addEventListener('click',()=>setEditor(d));buttons.append(edit);
