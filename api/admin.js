@@ -681,7 +681,7 @@ export default async function handler(req,res){
     if(req.method==='POST'&&op==='invoice-issue'){
       const body=data(req);
       if(body.confirmation!=='EMITIR')return json(res,400,{error:'Confirma la emisión escribiendo EMITIR'});
-      return json(res,200,await issueCheckedInvoice(sql,body.id));
+      return json(res,200,await issueCheckedInvoice(sql,body.id,{skipProviderSend:true}));
     }
     if(req.method==='GET'&&op==='invoice-issuer')return json(res,200,await loadInvoiceIssuer(sql));
     if(req.method==='POST'&&op==='invoice-issuer-update')
