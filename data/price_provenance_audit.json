@@ -1,22 +1,22 @@
 {
-  "checked_on": "2026-11-18T23:12:51.971099+00:00",
-  "total_events": 371,
-  "known_price_or_free": 124,
+  "checked_on": "2026-11-19T14:42:42.502910+00:00",
+  "total_events": 373,
+  "known_price_or_free": 128,
   "classification": {
-    "minimum_zero_ambiguous": 5,
-    "free": 12,
-    "minimum_positive": 103,
+    "minimum_zero_ambiguous": 6,
+    "free": 10,
+    "minimum_positive": 108,
     "fixed_positive": 4
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 69,
-    "Juventud Las Palmas de Gran Canaria": 10,
-    "LPA Cultura · agenda municipal oficial": 2,
+    "TuReservaOnline · agenda de Gran Canaria": 75,
+    "Juventud Las Palmas de Gran Canaria": 9,
     "Ayuntamiento de Ingenio": 8,
     "Ayuntamiento de Agüimes · programación de teatros": 4,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 22,
     "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 2,
-    "Ayuntamiento de Teror · programación del Auditorio": 7
+    "Ayuntamiento de Teror · programación del Auditorio": 7,
+    "LPA Cultura · agenda municipal oficial": 1
   },
   "issues": [
     {
@@ -63,6 +63,15 @@
       "free": 0,
       "category": "minimum_zero_ambiguous",
       "url": "https://www.tureservaonline.es/es/events/blancanieves-mas-alla-del-espejo-valleseco"
+    },
+    {
+      "id": 991,
+      "title": "FILCA 2027 - FERIA DE LA INNOVACIÓN LOGÍSTICA DE CANARIAS",
+      "source": "TuReservaOnline · agenda de Gran Canaria",
+      "label": "Desde 0 €",
+      "free": 0,
+      "category": "minimum_zero_ambiguous",
+      "url": "https://www.tureservaonline.es/es/events/filca2027"
     }
   ],
   "live_ticket_check": {

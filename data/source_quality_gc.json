@@ -1,22 +1,22 @@
 {
-  "checked_at": "2026-11-18T23:10:40+00:00",
+  "checked_at": "2026-11-19T14:39:42+00:00",
   "quality_counts": {
-    "publicados": 371,
-    "recintos_sin_verificar": 36,
+    "publicados": 373,
+    "recintos_sin_verificar": 38,
     "programas_y_fichas_por_revisar": 7,
-    "precios_sin_confirmar": 247,
-    "distancia_a_centro_municipal": 235,
-    "fuentes_con_error": 5,
+    "precios_sin_confirmar": 245,
+    "distancia_a_centro_municipal": 237,
+    "fuentes_con_error": 4,
     "duplicados_potenciales": 0
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 12,
+      "publicados": 14,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 4,
-      "distancia_al_centro_municipal": 12,
+      "precio_sin_confirmar": 6,
+      "distancia_al_centro_municipal": 14,
       "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
@@ -33,10 +33,10 @@
     {
       "source": "Juventud Las Palmas de Gran Canaria",
       "estado": "operativa",
-      "publicados": 10,
+      "publicados": 9,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 10,
+      "distancia_al_centro_municipal": 9,
       "fichas_leidas_en_esta_ejecucion": 8,
       "error": ""
     },
@@ -53,10 +53,10 @@
     {
       "source": "LPA Cultura · agenda municipal oficial",
       "estado": "operativa",
-      "publicados": 3,
+      "publicados": 2,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 3,
+      "distancia_al_centro_municipal": 2,
       "fichas_leidas_en_esta_ejecucion": 2,
       "error": ""
     },
@@ -77,28 +77,28 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 30,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 28,
+      "fichas_leidas_en_esta_ejecucion": 23,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 17,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 17,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 17,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 8,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 8,
       "distancia_al_centro_municipal": 8,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "fichas_leidas_en_esta_ejecucion": 13,
+      "error": ""
     },
     {
       "source": "Sala Insular de Teatro · agenda oficial",
@@ -164,10 +164,10 @@
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
       "publicados": 2,
-      "recinto_sin_verificar": 8,
+      "recinto_sin_verificar": 10,
       "precio_sin_confirmar": 2,
       "distancia_al_centro_municipal": 2,
-      "fichas_leidas_en_esta_ejecucion": 13,
+      "fichas_leidas_en_esta_ejecucion": 14,
       "error": ""
     },
     {
@@ -182,13 +182,13 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Firgas",
-      "estado": "error",
+      "estado": "sin_resultados_en_esta_revision",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "No event links found in official listing; check layout"
+      "error": ""
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
@@ -253,11 +253,11 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 27,
+      "publicados": 25,
       "recinto_sin_verificar": 5,
-      "precio_sin_confirmar": 27,
-      "distancia_al_centro_municipal": 27,
-      "fichas_leidas_en_esta_ejecucion": 29,
+      "precio_sin_confirmar": 25,
+      "distancia_al_centro_municipal": 25,
+      "fichas_leidas_en_esta_ejecucion": 28,
       "error": ""
     },
     {
@@ -382,22 +382,22 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 128,
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 126,
       "recinto_sin_verificar": 22,
-      "precio_sin_confirmar": 106,
-      "distancia_al_centro_municipal": 66,
+      "precio_sin_confirmar": 104,
+      "distancia_al_centro_municipal": 64,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 69,
+      "publicados": 75,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 68,
-      "fichas_leidas_en_esta_ejecucion": 108,
+      "distancia_al_centro_municipal": 74,
+      "fichas_leidas_en_esta_ejecucion": 113,
       "error": ""
     },
     {
@@ -463,16 +463,12 @@
   ],
   "reported_errors": [
     {
-      "source": "Teatro Cuyás · agenda oficial",
+      "source": "Auditorio Alfredo Kraus · programación oficial",
       "error": "RuntimeError"
     },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
       "error": "Galdar calendar returned no future structured events"
-    },
-    {
-      "source": "Municipio · descubrimiento oficial · Firgas",
-      "error": "No event links found in official listing; check layout"
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
@@ -490,7 +486,7 @@
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 8
+      "count": 10
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
@@ -671,6 +667,14 @@
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0017/africana-lab-en-madrid-un-puente-un-amuleto-una-mesa-compartida"
     },
     {
+      "id": 986,
+      "title": "LA BIBLIOTECA PRESENTA",
+      "start": "2026-11-20",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qYz0="
+    },
+    {
       "id": 948,
       "title": "RECORRIDO POR UN BARRIO ANTIGUO",
       "start": "2026-11-21",
@@ -679,28 +683,20 @@
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01UZz0="
     },
     {
+      "id": 987,
+      "title": "CUENTOS EN EL PATIO",
+      "start": "2026-11-21",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qWT0="
+    },
+    {
       "id": 289,
       "title": "Teror Patea por GC: Cruz Tejeda - Talayón - Teror",
       "start": "2026-11-21T09:00:00",
       "municipality": "Teror",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261121-0000/teror-patea-por-gc-cruz-tejeda-talayon-teror"
-    },
-    {
-      "id": 610,
-      "title": "Multiaventura",
-      "start": "2026-11-21T10:00:00",
-      "municipality": "Santa Lucía de Tirajana",
-      "source_name": "Ayuntamiento de Agüimes",
-      "source_url": "https://eventos.aguimes.es/events/ccdafbbf1c5103317a5db6a225aed63324a31a4b"
-    },
-    {
-      "id": 832,
-      "title": "Canarias Brass Connection en el Centro Cultural",
-      "start": "2026-11-22T12:30:00",
-      "municipality": "Santa Brígida",
-      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "source_url": "https://eventos.santabrigida.es/eventos/canarias-brass-connection-en-el-centro-cultural/"
     }
   ],
   "guidance": [
