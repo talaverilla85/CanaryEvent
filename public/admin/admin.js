@@ -1438,6 +1438,37 @@ $('adOpsExport').onclick=()=>{
  const a=document.createElement('a');a.href=object;a.download='dparranda-publicidad.csv';a.click();
  setTimeout(()=>URL.revokeObjectURL(object),500);
 };
+
+function showApprovedPaymentLink(result){
+ const raw=typeof result?.url==='string'?result.url:typeof result?.payment_url==='string'?result.payment_url:'';
+ let valid=false;
+ try{
+  const u=new URL(raw);
+  valid=u.protocol==='https:'&&u.hostname==='buy.stripe.com'&&!u.username&&!u.password;
+ }catch{}
+ if(!valid){message(result?.message||'No se ha podido generar el enlace de pago.');return}
+ const status=String(result?.email_status||result?.notification_status||'not_confirmed');
+ const statusText=status==='sent'?'Resend ha aceptado el mensaje (no confirma entrega).':
+   status==='pending_domain'?'Bloqueado por la configuración de Resend.':
+   status==='failed'?'Resend no pudo enviar el correo.':'Envío pendiente de confirmar.';
+ const html='<div class="sheet-head"><h2 id="dialogTitle">Enlace de pago preparado</h2>'+
+  '<button type="button" class="ghost mini" data-close>✕</button></div>'+
+  '<p>'+escape(result.message||'Enlace generado correctamente.')+'</p>'+
+  '<p><strong>Correo:</strong> '+escape(statusText)+'</p>'+
+  '<div class="field"><label for="approvedPaymentLink">Enlace seguro Stripe</label>'+
+  '<textarea id="approvedPaymentLink" readonly rows="3">'+escape(raw)+'</textarea></div>'+
+  '<div class="sheet-footer"><button type="button" class="primary" id="copyApprovedPaymentLink">Copiar enlace</button>'+
+  '<a href="'+escape(raw)+'" target="_blank" rel="noopener noreferrer">Abrir Stripe</a>'+
+  '<button type="button" class="ghost" data-close>Cerrar</button></div>'+
+  '<p class="notice">Puedes enviar manualmente este enlace al anunciante. No se genera otro cobro.</p>';
+ openDialog(html);
+ $('copyApprovedPaymentLink').onclick=async()=>{
+  const area=$('approvedPaymentLink');
+  try{await navigator.clipboard.writeText(area.value);message('Enlace copiado')}
+  catch{area.focus();area.select();message('Selecciona el enlace y cópialo')}
+ };
+}
+
 $('sheet').addEventListener('click',async event=>{
  const button=event.target.closest('[data-ops-receipt],[data-ops-invoice],[data-ops-review],[data-ops-invite],[data-ops-payment],[data-ops-schedule],[data-ops-house-edit],[data-ops-house-toggle],[data-ops-paid-edit],[data-ops-paid-toggle],[data-ops-archive],[data-ops-restore]');if(!button)return;
  if(button.dataset.opsReceipt){
@@ -1473,9 +1504,9 @@ $('sheet').addEventListener('click',async event=>{
  if(button.dataset.opsPayment){
   button.disabled=true;
   try{
-   const result=await api('send-approved-payment',{id:Number(button.dataset.opsPayment)});
+   const result=await api('send-approved-payment',{id:Number(button.dataset.opsPayment),attempt_key:crypto.randomUUID().replaceAll('-','')});
    await Promise.allSettled([loadLeads(),loadAdvertiserDrafts()]);
-   closeDialog();message(result.message||'Enlace de pago preparado');
+   showApprovedPaymentLink(result);
   }catch(err){message(err.message);button.disabled=false}
   return;
  }
@@ -1502,7 +1533,8 @@ $('sheet').addEventListener('click',async event=>{
    {id:row.id,status:state,note});
   closeDialog();
   await Promise.allSettled([loadLeads(),loadAdvertiserDrafts()]);
-  message(result.message||'Revisión guardada. Ningún pago ni publicación automática.');
+  if(state==='approved_for_payment'&&result.payment_url)showApprovedPaymentLink(result);
+  else message(result.message||'Revisión guardada. Ningún pago ni publicación automática.');
  }catch(err){message(err.message);button.disabled=false}
 });
 initialize();
