@@ -1,22 +1,22 @@
 {
-  "checked_at": "2026-11-20T14:18:50+00:00",
+  "checked_at": "2026-11-20T20:41:15+00:00",
   "quality_counts": {
-    "publicados": 367,
+    "publicados": 368,
     "recintos_sin_verificar": 37,
     "programas_y_fichas_por_revisar": 7,
-    "precios_sin_confirmar": 240,
-    "distancia_a_centro_municipal": 233,
-    "fuentes_con_error": 3,
+    "precios_sin_confirmar": 241,
+    "distancia_a_centro_municipal": 234,
+    "fuentes_con_error": 4,
     "duplicados_potenciales": 0
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 13,
+      "publicados": 12,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 6,
-      "distancia_al_centro_municipal": 13,
+      "distancia_al_centro_municipal": 12,
       "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
@@ -77,18 +77,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 29,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 29,
+      "fichas_leidas_en_esta_ejecucion": 26,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 18,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 18,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 18,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -192,12 +192,12 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "estado": "sin_resultados_en_esta_revision",
-      "publicados": 1,
+      "estado": "operativa",
+      "publicados": 2,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 0,
+      "precio_sin_confirmar": 2,
+      "distancia_al_centro_municipal": 2,
+      "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
     {
@@ -383,10 +383,10 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "sin_resultados_en_esta_revision",
-      "publicados": 123,
+      "publicados": 124,
       "recinto_sin_verificar": 22,
       "precio_sin_confirmar": 101,
-      "distancia_al_centro_municipal": 63,
+      "distancia_al_centro_municipal": 64,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
@@ -397,7 +397,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 76,
-      "fichas_leidas_en_esta_ejecucion": 114,
+      "fichas_leidas_en_esta_ejecucion": 108,
       "error": ""
     },
     {
@@ -462,6 +462,10 @@
     }
   ],
   "reported_errors": [
+    {
+      "source": "Auditorio Alfredo Kraus · programación oficial",
+      "error": "RuntimeError"
+    },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
       "error": "Galdar calendar returned no future structured events"

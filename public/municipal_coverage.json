@@ -150,8 +150,8 @@
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
       "catalog_cards_total": 24,
-      "municipal_cards_total": 13,
-      "other_sources_cards_total": 11,
+      "municipal_cards_total": 12,
+      "other_sources_cards_total": 12,
       "source_health": [
         {
           "source": "Ayuntamiento de Ingenio",
@@ -288,13 +288,13 @@
       "original_connector_state": "conector_parcial_articulos_verificados",
       "coverage_level": "sin_extraccion_municipal_automatizada",
       "data_status": "fuente_oficial_contrastada_sin_actos_futuros",
-      "catalog_cards_total": 5,
+      "catalog_cards_total": 6,
       "municipal_cards_total": 0,
-      "other_sources_cards_total": 5,
+      "other_sources_cards_total": 6,
       "source_health": [
         {
           "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-          "found": 0,
+          "found": 1,
           "error": ""
         }
       ],
