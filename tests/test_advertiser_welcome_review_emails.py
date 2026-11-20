@@ -58,6 +58,9 @@ class AdvertiserWelcomeReviewEmails(unittest.TestCase):
   self.assertIn("onboarding@resend.dev",self.mail)
   self.assertIn("if(!canSendTo(to))return {status:'pending_domain'}",self.mail)
   self.assertIn("idempotencyKey",self.mail)
+  self.assertIn("if(sandbox&&!active()",self.mail)
+  self.assertIn("Pago de PRUEBA registrado",self.mail)
+  self.assertIn("sandbox?'pago de prueba confirmado':'pago confirmado'",self.mail)
   confirmation=(ROOT/"public/anunciate/confirmacion/index.html").read_text("utf8")
   self.assertIn("No se ha cobrado ni publicado nada.",confirmation)
 
