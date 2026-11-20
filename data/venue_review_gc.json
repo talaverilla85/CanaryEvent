@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-19T14:39:42+00:00",
-  "not_published": 38,
+  "updated_at": "2026-11-20T14:18:50+00:00",
+  "not_published": 37,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -204,18 +204,6 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Ayuntamiento de Arucas · agenda municipal",
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qUT0=",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 536,
-      "title": "CONOCE EL CONGRESO Y SENADO",
-      "start": "2026-11-19",
-      "end": null,
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RZMk9BPT0=",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },

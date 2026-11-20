@@ -1,19 +1,19 @@
 {
-  "checked_on": "2026-11-19T14:42:42.502910+00:00",
-  "total_events": 373,
-  "known_price_or_free": 128,
+  "checked_on": "2026-11-20T14:23:21.178234+00:00",
+  "total_events": 367,
+  "known_price_or_free": 127,
   "classification": {
-    "minimum_zero_ambiguous": 6,
-    "free": 10,
-    "minimum_positive": 108,
+    "minimum_zero_ambiguous": 5,
+    "minimum_positive": 110,
+    "free": 8,
     "fixed_positive": 4
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 75,
-    "Juventud Las Palmas de Gran Canaria": 9,
-    "Ayuntamiento de Ingenio": 8,
+    "TuReservaOnline · agenda de Gran Canaria": 77,
     "Ayuntamiento de Agüimes · programación de teatros": 4,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 22,
+    "Ayuntamiento de Ingenio": 7,
+    "Juventud Las Palmas de Gran Canaria": 7,
     "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 2,
     "Ayuntamiento de Teror · programación del Auditorio": 7,
     "LPA Cultura · agenda municipal oficial": 1
@@ -27,15 +27,6 @@
       "free": 0,
       "category": "minimum_zero_ambiguous",
       "url": "https://www.tureservaonline.es/es/events/copa-hipica-san-vicente-2627-carrera-de-caballo"
-    },
-    {
-      "id": 473,
-      "title": "HILOS DEL ATLÁNTICO",
-      "source": "Ayuntamiento de Ingenio",
-      "label": "Desde 0 €",
-      "free": 0,
-      "category": "minimum_zero_ambiguous",
-      "url": "https://www.tureservaonline.es/es/events/hilos-del-atlantico"
     },
     {
       "id": 909,

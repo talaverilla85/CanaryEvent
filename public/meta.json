@@ -1,17 +1,17 @@
 {
-  "checked_at": "2026-11-19T14:39:42+00:00",
+  "checked_at": "2026-11-20T14:18:50+00:00",
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 11,
-      "added": 2,
+      "added": 0,
       "changed": 5,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Agüimes",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 1,
       "added": 0,
       "changed": 0,
@@ -19,23 +19,23 @@
     },
     {
       "source": "Juventud Las Palmas de Gran Canaria",
-      "checked_at": "2026-11-19T14:39:42+00:00",
-      "found": 8,
+      "checked_at": "2026-11-20T14:18:50+00:00",
+      "found": 6,
       "added": 0,
       "changed": 0,
       "error": ""
     },
     {
       "source": "Circuito de Artes Escénicas GC",
-      "checked_at": "2026-11-19T14:39:42+00:00",
-      "found": 15,
+      "checked_at": "2026-11-20T14:18:50+00:00",
+      "found": 14,
       "added": 0,
-      "changed": 14,
+      "changed": 13,
       "error": ""
     },
     {
       "source": "LPA Cultura · agenda municipal oficial",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 2,
       "added": 0,
       "changed": 0,
@@ -45,7 +45,7 @@
     },
     {
       "source": "Sociedad Filarmónica de Las Palmas · conciertos",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 1,
       "added": 0,
       "changed": 0,
@@ -55,48 +55,27 @@
     },
     {
       "source": "Teatro Pérez Galdós · programación oficial",
-      "checked_at": "2026-11-19T14:39:42+00:00",
-      "found": 23,
+      "checked_at": "2026-11-20T14:18:50+00:00",
+      "found": 29,
       "added": 0,
       "changed": 0,
       "detail_pages": 15,
-      "detail_errors": [
-        {
-          "event_url": "https://teatroperezgaldos.es/evento/el-anzuelo-de-indias",
-          "error_type": "ValueError",
-          "reason": "Title does not match official event detail"
-        },
-        {
-          "event_url": "https://teatroperezgaldos.es/evento/mujeres-y-hombres-del-27",
-          "error_type": "ValueError",
-          "reason": "Title does not match official event detail"
-        },
-        {
-          "event_url": "https://teatroperezgaldos.es/evento/esencia-de-los-elementos",
-          "error_type": "ValueError",
-          "reason": "Title does not match official event detail"
-        },
-        {
-          "event_url": "https://teatroperezgaldos.es/evento/poeta-perdido-en-nueva-york",
-          "error_type": "ValueError",
-          "reason": "Title does not match official event detail"
-        }
-      ],
+      "detail_errors": [],
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "checked_at": "2026-11-19T14:39:42+00:00",
-      "found": 0,
-      "added": 0,
+      "checked_at": "2026-11-20T14:18:50+00:00",
+      "found": 18,
+      "added": 2,
       "changed": 0,
-      "detail_pages": 0,
+      "detail_pages": 15,
       "detail_errors": [],
-      "error": "RuntimeError"
+      "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 13,
       "added": 0,
       "changed": 0,
@@ -110,7 +89,7 @@
     },
     {
       "source": "Sala Insular de Teatro · agenda oficial",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 12,
       "added": 0,
       "changed": 0,
@@ -124,7 +103,7 @@
     },
     {
       "source": "Festival Internacional de Música de Canarias · agenda oficial",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 14,
       "added": 0,
       "changed": 0,
@@ -135,7 +114,7 @@
     },
     {
       "source": "Ayuntamiento de Agüimes · programación de teatros",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 4,
       "added": 0,
       "changed": 3,
@@ -149,7 +128,7 @@
     },
     {
       "source": "Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 2,
       "added": 0,
       "changed": 2,
@@ -163,7 +142,7 @@
     },
     {
       "source": "Ayuntamiento de Gáldar · Centro Cultural Guaires",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 4,
       "added": 0,
       "changed": 0,
@@ -177,7 +156,7 @@
     },
     {
       "source": "Ayuntamiento de Santa Lucía · Fiestas de San Rafael",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -185,15 +164,15 @@
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "checked_at": "2026-11-19T14:39:42+00:00",
-      "found": 14,
-      "added": 2,
+      "checked_at": "2026-11-20T14:18:50+00:00",
+      "found": 11,
+      "added": 0,
       "changed": 0,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -201,7 +180,7 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Firgas",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -209,7 +188,7 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -217,7 +196,7 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Agaete",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -225,7 +204,7 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Vega de San Mateo",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -233,7 +212,7 @@
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -241,7 +220,7 @@
     },
     {
       "source": "Mancomunidad de Medianías · Alma de Medianías en Valsequillo",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -249,7 +228,7 @@
     },
     {
       "source": "Ayuntamiento de Artenara · ferias tradicionales 2026",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -257,15 +236,15 @@
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 28,
-      "added": 0,
+      "added": 1,
       "changed": 0,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Teror · programación del Auditorio",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 10,
       "added": 0,
       "changed": 3,
@@ -273,7 +252,7 @@
     },
     {
       "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -281,7 +260,7 @@
     },
     {
       "source": "Ayuntamiento de Telde · índice de programas PDF",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -289,7 +268,7 @@
     },
     {
       "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 1,
       "added": 0,
       "changed": 0,
@@ -297,7 +276,7 @@
     },
     {
       "source": "Ayuntamientos · programas PDF verificados",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -306,7 +285,7 @@
     },
     {
       "source": "Ayuntamientos · actos individualmente contrastados",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 9,
       "added": 0,
       "changed": 3,
@@ -338,7 +317,7 @@
     },
     {
       "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -347,7 +326,7 @@
     },
     {
       "source": "Ayuntamiento de Moya · Otoño es Cultura 2026",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 2,
       "added": 0,
       "changed": 0,
@@ -362,7 +341,7 @@
     },
     {
       "source": "Ayuntamiento de Valsequillo · calendario municipal",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -376,7 +355,7 @@
     },
     {
       "source": "Ayuntamiento de Mogán · actividades documentadas",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -390,7 +369,7 @@
     },
     {
       "source": "Firgas · Finaos 2026 contrastados con fuentes locales",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -403,7 +382,7 @@
     },
     {
       "source": "Juventud de Ingenio · programa de otoño desglosado",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -411,34 +390,34 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
-      "scanned": 34,
-      "sitemap_count": 582,
-      "eligible_urls": 498,
-      "due_urls": 34,
+      "scanned": 75,
+      "sitemap_count": 596,
+      "eligible_urls": 510,
+      "due_urls": 448,
       "pending_venue_rechecks": 25,
       "pending_full_text_rechecks": 26,
-      "skipped_recent": 464,
-      "queued_remaining": 0,
+      "skipped_recent": 62,
+      "queued_remaining": 373,
       "refresh_interval_hours": 48,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
-      "checked_at": "2026-11-19T14:39:42+00:00",
-      "found": 113,
-      "added": 5,
-      "changed": 18,
-      "skipped_other_islands_or_expired": 2,
+      "checked_at": "2026-11-20T14:18:50+00:00",
+      "found": 114,
+      "added": 2,
+      "changed": 23,
+      "skipped_other_islands_or_expired": 4,
       "error": "",
-      "recent_pages_checked": 0
+      "recent_pages_checked": 1
     },
     {
       "source": "Recintos · fichas oficiales de organizadores",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 3,
       "added": 0,
       "changed": 0,
@@ -450,7 +429,7 @@
     },
     {
       "source": "Recintos · confirmaciones de noticias oficiales",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -459,7 +438,7 @@
     },
     {
       "source": "ULPGC · cine documental con recinto confirmado",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -468,7 +447,7 @@
     },
     {
       "source": "Cuyás · reconciliación con programas originales",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -476,7 +455,7 @@
     },
     {
       "source": "Telde Cultura · funciones vinculadas a recintos oficiales",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -485,7 +464,7 @@
     },
     {
       "source": "Recintos · carteles oficiales comprobados",
-      "checked_at": "2026-11-19T14:39:42+00:00",
+      "checked_at": "2026-11-20T14:18:50+00:00",
       "found": 0,
       "added": 0,
       "changed": 0,
@@ -497,10 +476,10 @@
   ],
   "changes": {
     "available": true,
-    "new": 8,
-    "updated": 12,
-    "removed": 6,
-    "finished": 6,
+    "new": 5,
+    "updated": 17,
+    "removed": 11,
+    "finished": 11,
     "replaced": 0,
     "review_removed": 0
   },
@@ -551,29 +530,29 @@
     }
   },
   "occurrences": {
-    "raw_events": 432,
-    "daily_cards": 457,
+    "raw_events": 425,
+    "daily_cards": 449,
     "short_ranges_expanded": 24,
-    "extra_daily_cards": 25,
+    "extra_daily_cards": 24,
     "long_ranges_preserved": 33,
-    "post_dedup_cards": 373
+    "post_dedup_cards": 367
   },
   "counts": {
-    "approved": 373,
-    "candidate_events": 470,
-    "verified_source_events_before_daily_projection": 432,
-    "excluded_missing_venue": 38,
+    "approved": 367,
+    "candidate_events": 462,
+    "verified_source_events_before_daily_projection": 425,
+    "excluded_missing_venue": 37,
     "excluded_commercial_cinema": 9,
     "excluded_sister_venue_conflicts": 3,
     "pending": 0,
     "needs_review": 7,
-    "archived_or_expired": 452,
+    "archived_or_expired": 465,
     "cancelled": 0,
     "pdf_events_double_verified": 1,
-    "prices_confirmed": 128,
-    "prices_to_verify": 245,
-    "venues_to_verify": 38,
-    "venues_verified": 373
+    "prices_confirmed": 127,
+    "prices_to_verify": 240,
+    "venues_to_verify": 37,
+    "venues_verified": 367
   },
   "description": "Actualización programada de fuentes oficiales. Un cambio o cancelación solo se afirma cuando está explícitamente indicado."
 }

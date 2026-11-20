@@ -4452,5 +4452,28 @@
     "original_review_status": "pending_review",
     "archived_from": "pending_review",
     "archived_on": "2026-11-18"
+  },
+  {
+    "id": "telde-pdf-f7adfacf7a7ba0e2",
+    "title": "III Feria del Motor Ciudad de Telde 2026",
+    "date": "2026-11-19",
+    "time": "10:00",
+    "venue": "Zona Comercial La Mareta",
+    "type": "otros",
+    "evidence": "19 NOV · JUEVES — 10:00 h III Feria del Motor Ciudad de Telde 2026.",
+    "municipality": "Telde",
+    "program_title": "Fiestas en honor a San Gregorio Taumaturgo",
+    "pdf_url": "https://www.telde.es/wp-content/uploads/2026/11/sangregorio26.pdf",
+    "admission_type": "unknown",
+    "admission_details": null,
+    "pdf_sha256": "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df",
+    "pdf_page": 13,
+    "review_status": "archived",
+    "date_state": "expired",
+    "note": "NO PUBLICAR sin contrastar fecha/horario con la página escaneada",
+    "extractor": "ai_vision",
+    "original_review_status": "pending_review",
+    "archived_from": "pending_review",
+    "archived_on": "2026-11-20"
   }
 ]

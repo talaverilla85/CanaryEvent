@@ -1,22 +1,22 @@
 {
-  "checked_at": "2026-11-19T14:39:42+00:00",
+  "checked_at": "2026-11-20T14:18:50+00:00",
   "quality_counts": {
-    "publicados": 373,
-    "recintos_sin_verificar": 38,
+    "publicados": 367,
+    "recintos_sin_verificar": 37,
     "programas_y_fichas_por_revisar": 7,
-    "precios_sin_confirmar": 245,
-    "distancia_a_centro_municipal": 237,
-    "fuentes_con_error": 4,
+    "precios_sin_confirmar": 240,
+    "distancia_a_centro_municipal": 233,
+    "fuentes_con_error": 3,
     "duplicados_potenciales": 0
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 14,
+      "publicados": 13,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 6,
-      "distancia_al_centro_municipal": 14,
+      "distancia_al_centro_municipal": 13,
       "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
@@ -33,21 +33,21 @@
     {
       "source": "Juventud Las Palmas de Gran Canaria",
       "estado": "operativa",
-      "publicados": 9,
+      "publicados": 7,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 9,
-      "fichas_leidas_en_esta_ejecucion": 8,
+      "distancia_al_centro_municipal": 7,
+      "fichas_leidas_en_esta_ejecucion": 6,
       "error": ""
     },
     {
       "source": "Circuito de Artes Escénicas GC",
       "estado": "operativa",
-      "publicados": 13,
+      "publicados": 12,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 13,
-      "distancia_al_centro_municipal": 12,
-      "fichas_leidas_en_esta_ejecucion": 15,
+      "precio_sin_confirmar": 12,
+      "distancia_al_centro_municipal": 11,
+      "fichas_leidas_en_esta_ejecucion": 14,
       "error": ""
     },
     {
@@ -73,22 +73,22 @@
     {
       "source": "Teatro Pérez Galdós · programación oficial",
       "estado": "operativa",
-      "publicados": 30,
+      "publicados": 29,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 30,
+      "precio_sin_confirmar": 29,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 23,
+      "fichas_leidas_en_esta_ejecucion": 29,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "error",
-      "publicados": 17,
+      "estado": "operativa",
+      "publicados": 18,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 17,
+      "precio_sin_confirmar": 18,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "fichas_leidas_en_esta_ejecucion": 18,
+      "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -164,10 +164,10 @@
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
       "publicados": 2,
-      "recinto_sin_verificar": 10,
+      "recinto_sin_verificar": 9,
       "precio_sin_confirmar": 2,
       "distancia_al_centro_municipal": 2,
-      "fichas_leidas_en_esta_ejecucion": 14,
+      "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
     {
@@ -253,10 +253,10 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 25,
+      "publicados": 24,
       "recinto_sin_verificar": 5,
-      "precio_sin_confirmar": 25,
-      "distancia_al_centro_municipal": 25,
+      "precio_sin_confirmar": 24,
+      "distancia_al_centro_municipal": 24,
       "fichas_leidas_en_esta_ejecucion": 28,
       "error": ""
     },
@@ -383,21 +383,21 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "sin_resultados_en_esta_revision",
-      "publicados": 126,
+      "publicados": 123,
       "recinto_sin_verificar": 22,
-      "precio_sin_confirmar": 104,
-      "distancia_al_centro_municipal": 64,
+      "precio_sin_confirmar": 101,
+      "distancia_al_centro_municipal": 63,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 75,
+      "publicados": 77,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 74,
-      "fichas_leidas_en_esta_ejecucion": 113,
+      "distancia_al_centro_municipal": 76,
+      "fichas_leidas_en_esta_ejecucion": 114,
       "error": ""
     },
     {
@@ -463,10 +463,6 @@
   ],
   "reported_errors": [
     {
-      "source": "Auditorio Alfredo Kraus · programación oficial",
-      "error": "RuntimeError"
-    },
-    {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
       "error": "Galdar calendar returned no future structured events"
     },
@@ -486,7 +482,7 @@
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 10
+      "count": 9
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
@@ -635,14 +631,6 @@
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qUT0="
     },
     {
-      "id": 536,
-      "title": "CONOCE EL CONGRESO Y SENADO",
-      "start": "2026-11-19",
-      "municipality": "Arucas",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RZMk9BPT0="
-    },
-    {
       "id": 283,
       "title": "Antígona Negra en la Universidad París 8.",
       "start": "2026-11-20",
@@ -697,6 +685,14 @@
       "municipality": "Teror",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261121-0000/teror-patea-por-gc-cruz-tejeda-talayon-teror"
+    },
+    {
+      "id": 610,
+      "title": "Multiaventura",
+      "start": "2026-11-21T10:00:00",
+      "municipality": "Santa Lucía de Tirajana",
+      "source_name": "Ayuntamiento de Agüimes",
+      "source_url": "https://eventos.aguimes.es/events/ccdafbbf1c5103317a5db6a225aed63324a31a4b"
     }
   ],
   "guidance": [
