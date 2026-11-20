@@ -449,8 +449,8 @@ async function manuallyResendReceipt(sql,idRaw){
     'Resend no permite ese destinatario con la configuración actual. No se ha enviado el correo.':
     'No se pudo enviar la confirmación por Resend. Consulta su estado.'};
 }
-async function safelyPreparePayment(sql,id){
- try{return await ensureApprovedPayment(sql,id)}
+async function safelyPreparePayment(sql,id,retryKey=''){
+ try{return await ensureApprovedPayment(sql,id,{retryKey})}
  catch(e){console.error('DParranda Stripe payment link failed',e?.name||'Error');return {status:'failed',email_status:'failed'}}
 }
 function paymentMessage(p){
@@ -517,7 +517,7 @@ async function reviewEnquiry(sql,body){
   }catch(e){console.error('DParranda payment workspace failed',e?.name||'Error');payment={status:'failed'}}
  }
  return {id:Number(changed.id),status:changed.review_status,
-  notification_status:payment?.email_status||emailStatus,payment_enabled:payment?.status==='ready',message:decision==='approved_for_payment'
+  notification_status:payment?.email_status||emailStatus,payment_enabled:payment?.status==='ready',payment_url:payment?.url||null,message:decision==='approved_for_payment'
    ?paymentMessage(payment||{status:'failed'})
    :decision==='changes_requested'?changesMessage(emailStatus):'Solicitud rechazada. No se ha enviado ningún correo automático.'};
 }
@@ -567,7 +567,7 @@ async function advertiserReview(sql,body){
  const payment=decision==='approved_for_payment'?await safelyPreparePayment(sql,id):null;
  return {id:Number(updated.id),status:updated.status,
   notification_status:payment?.email_status||emailStatus,payment_enabled:payment?.status==='ready',
-  message:decision==='approved_for_payment'
+  payment_url:payment?.url||null,message:decision==='approved_for_payment'
    ?paymentMessage(payment||{status:'failed'})
    :decision==='changes_requested'?changesMessage(emailStatus):'Anuncio rechazado. No se ha enviado ningún correo automático.'};
 }
@@ -750,7 +750,7 @@ export default async function handler(req,res){
      if(req.method==='POST'&&op==='send-approved-payment'){
       const id=invitedId(data(req).id);
       if(!id)return json(res,400,{error:'Anuncio no válido'});
-      const payment=await safelyPreparePayment(sql,id);
+      const payment=await safelyPreparePayment(sql,id,safeText(data(req).attempt_key,64));
       return json(res,200,{...payment,message:paymentMessage(payment)});
      }
     if(req.method==='POST'&&op==='enquiry-review')return json(res,200,await reviewEnquiry(sql,data(req)));
