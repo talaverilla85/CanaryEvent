@@ -37,7 +37,7 @@ class DualPwaInstallContract(unittest.TestCase):
   for px in (180,192,512):
    image=ROOT/'public/admin/icons'/('admin-'+str(px)+'.png')
    data=image.read_bytes()
-   self.assertTrue(data.startswith(b'\\x89PNG\\r\\n\\x1a\\n'))
+   self.assertTrue(data.startswith(bytes([137,80,78,71,13,10,26,10])))
    self.assertEqual(struct.unpack('>II',data[16:24]),(px,px))
 
  def test_public_install_button_is_preserved_and_remembers_confirmation(self):
