@@ -1,5 +1,9 @@
 /* Runtime tests for the independent /admin/ install flow. Run: node tests/test_admin_install.js */
 'use strict';
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+const require=createRequire(import.meta.url);
+const __dirname=fileURLToPath(new URL('.',import.meta.url));
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
