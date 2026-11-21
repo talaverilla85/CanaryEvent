@@ -1160,16 +1160,23 @@ def run():
         # Detect incomplete event facts and revisit the original linked page.
         # Only exact title/date matches in Event JSON-LD can update fields.
         # Searches are bounded to the existing daily worker (never on pageviews).
-        enrich_report=event_enrichment.enrich(
-            conn,NOW,TODAY,fetch_html=get_html,
-            leads=event_enrichment.load_radar_leads(ROOT/"data"/"gc_radar_leads.json"),
-            max_requests=8,cooldown_hours=72)
-        results.append({"source":"Enriquecimiento de fuentes originales",
-                        "checked_at":NOW,"found":enrich_report["checked"],
-                        "added":0,"changed":enrich_report["verified"],
-                        "error":""})
-        print("Source-based automatic event enrichment:",enrich_report)
-        conn.commit()
+        try:
+            enrich_report=event_enrichment.enrich(
+                conn,NOW,TODAY,fetch_html=get_html,
+                leads=event_enrichment.load_radar_leads(ROOT/"data"/"gc_radar_leads.json"),
+                max_requests=8,cooldown_hours=72)
+            results.append({"source":"Enriquecimiento de fuentes originales",
+                            "checked_at":NOW,"found":enrich_report["checked"],
+                            "added":0,"changed":enrich_report["verified"],
+                            "error":""})
+            print("Source-based automatic event enrichment:",enrich_report)
+            conn.commit()
+        except Exception as exc:
+            conn.rollback()
+            print("WARN Automatic enrichment unavailable:",type(exc).__name__,file=sys.stderr)
+            results.append({"source":"Enriquecimiento de fuentes originales",
+                            "checked_at":NOW,"found":0,"added":0,"changed":0,
+                            "error":type(exc).__name__})
         location_changes=verified_venue_coordinates.backfill(conn,PLACES)
         conn.commit()
         print(f"Verified venue coordinates refreshed for {location_changes} events")
