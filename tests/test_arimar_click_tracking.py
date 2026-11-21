@@ -50,7 +50,7 @@ class AriMarClickTracking(unittest.TestCase):
   self.assertIn("id='arimarClicksMonth'",self.admin_html)
   self.assertIn("id='arimarClicksAll'",self.admin_html)
   self.assertIn("await api('arimar-click-stats')",self.admin_ui)
-  self.assertIn("Los clics no equivalen",self.admin_html.replace("Se registran clics, no personas únicas ni pedidos.", "Los clics no equivalen a personas únicas"))
+  self.assertIn("Se registran clics, no personas únicas ni pedidos.",self.admin_html)
 
 if __name__=='__main__':
  unittest.main()
