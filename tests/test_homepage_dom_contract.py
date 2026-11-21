@@ -45,7 +45,7 @@ class DParrandaHomepageContract(unittest.TestCase):
             'id="dpInstallDock"', 'id="dpInstallAction"', 'id="dpInstallDismiss"',
             'id="dpInstallGuideOverlay"', 'id="dpInstallGuideClose"',
             'id="dpInstallGuideDone"', 'id="dpInstallGuideSteps"',
-            '<script src="/install_prompt.js?v=2"></script>',
+            '<script src="/install_prompt.js?v=3"></script>',
             'class="sponsor-slot"', 'ESPACIO PATROCINADO',
         )
         for anchor in anchors:
