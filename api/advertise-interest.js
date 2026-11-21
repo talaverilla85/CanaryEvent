@@ -3,6 +3,7 @@ import { db, json, safeText, sameOrigin, validLocalDate } from '../lib/admin-aut
 import {privacyUrl as legalPrivacyUrl} from '../lib/privacy.js';
 import {ensureAdvertiserWorkspace} from '../lib/advertiser-workspace.js';
 import {sendWelcomeEmail} from '../lib/advertiser-mail.js';
+import {advertisingSalesOpen} from '../lib/advertising-sales.js';
 
 const PRICES=Object.freeze({local:19,zona:49,insular:99});
 const TOWNS=new Set([
@@ -17,7 +18,7 @@ const emailAddress=v=>{
  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text)?text:'';
 };
 function privacyUrl(){return legalPrivacyUrl()}
-function enabled(){return process.env.DPARRANDA_LEADS_ENABLED==='true'&&
+function enabled(){return advertisingSalesOpen()&&process.env.DPARRANDA_LEADS_ENABLED==='true'&&
  !!process.env.DATABASE_URL&&!!privacyUrl();}
 // A review request uses the same privacy/legal intake as a simple enquiry.
 // No separate proposal switch: once requests are enabled, a simulated ad can be submitted.
@@ -44,7 +45,7 @@ export default async function handler(req,res){
   informational_only:true,proposal_enabled:proposalEnabled()
  });
  if(req.method!=='POST')return json(res,405,{error:'Método no permitido'});
- if(!enabled())return json(res,503,{error:'El registro de interesados aún no está disponible'});
+ if(!enabled())return json(res,503,{error:'Las solicitudes de publicidad no están disponibles actualmente'});
  if(!sameOrigin(req))return json(res,403,{error:'Solicitud no autorizada'});
  try{
   const input=req.body&&typeof req.body==='object'&&!Array.isArray(req.body)?req.body:{};
