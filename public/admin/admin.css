@@ -177,3 +177,26 @@ fieldset{border:0;margin:0;padding:0}.field{display:grid;gap:6px;margin-bottom:1
  .sheet-footer>button[data-close]{grid-column:1/-1}
  .adops-preview-card{overflow-wrap:anywhere}
 }
+
+/* Standalone-install invitation for the private administration PWA. */
+.admin-header-actions{display:flex;align-items:center;justify-content:flex-end;gap:9px;flex-wrap:wrap}
+.admin-install-dock{display:inline-flex;align-items:center;gap:4px;background:#0d4551;border:1px solid #66b9b1;border-radius:12px;padding:3px}
+.admin-install-button{border:0;background:#b9f0de;color:#123b42;border-radius:8px;padding:9px 12px;font-size:12px;font-weight:850;min-height:38px;white-space:nowrap}
+.admin-install-button:hover,.admin-install-button:focus-visible{background:#fff}
+.admin-install-dismiss{border:0;color:#d4eeeb;background:transparent;border-radius:8px;font-size:21px;font-weight:650;width:30px;min-height:37px;cursor:pointer}
+.admin-install-dismiss:hover,.admin-install-dismiss:focus-visible{background:#226d70}
+.admin-install-guide{border:0;max-width:min(430px,calc(100vw - 28px));border-radius:20px;padding:26px;color:#16314a;background:white;box-shadow:0 20px 60px #09213350}
+.admin-install-guide::backdrop{background:#061725af}
+.admin-install-guide h2{font-size:22px;margin:0 0 12px}
+.admin-install-guide p,.admin-install-guide li{font-size:14px;line-height:1.55}
+.admin-install-guide ol{padding-left:20px}
+.admin-install-guide li{margin-bottom:10px}
+.admin-install-guide .primary{margin-top:18px;min-width:120px}
+.admin-install-dock[hidden]{display:none!important}
+@media(max-width:650px){
+ .top{flex-wrap:wrap;padding:12px 14px}
+ .top .brand{flex:1;min-width:130px}
+ .admin-header-actions{width:100%;justify-content:space-between}
+ .admin-header-actions .ghost{font-size:12px;padding:9px 10px}
+}
+@media(display-mode:standalone){.admin-install-dock{display:none!important}}
