@@ -30,6 +30,7 @@ test('complete verified event receives canonical and Event structured data',()=>
  assert.match(page.html, /Teatro Pérez Galdós/);
  assert.match(page.html, /Abrir en D’Parranda/);
  assert.match(page.html, /brand\/dparranda-logo.svg/);
+ assert.doesNotMatch(page.html, /mailto:|Ayúdanos a completar o corregir/);
 });
 test('winter and summer Canary offsets match the season',()=>{
  const summer={...valid,start:'2027-07-14T19:00:00'};
