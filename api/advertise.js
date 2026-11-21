@@ -1,7 +1,8 @@
 import { db, json, safeText, sameOrigin, validLocalDate } from '../lib/admin-auth.js';
+import {advertisingSalesOpen} from '../lib/advertising-sales.js';
 const TYPES=new Set(['event','banner','combined','other']);
 const CATS=new Set(['musica','familia','gastronomia','cultura','deporte','naturaleza','ocio','otros']);
-const enabled=()=>process.env.DPARRANDA_LEADS_ENABLED==='true'&&!!process.env.DATABASE_URL&&!!process.env.DPARRANDA_PRIVACY_URL;
+const enabled=()=>advertisingSalesOpen()&&process.env.DPARRANDA_LEADS_ENABLED==='true'&&!!process.env.DATABASE_URL&&!!process.env.DPARRANDA_PRIVACY_URL;
 const email=x=>{const v=safeText(x,180).toLowerCase();return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)?v:''};
 const url=x=>{try{const u=new URL(safeText(x,850));return u.protocol==='https:'&&!u.username&&!u.password?u.href:''}catch{return ''}};
 function imageCheck(input){
