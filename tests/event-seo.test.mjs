@@ -53,7 +53,7 @@ test('archived or completed events retain stable detail but cannot index',()=>{
  assert.equal(past.indexable,false);
  assert.equal(archived.indexable,false);
  assert.match(past.html,/ESTE EVENTO YA HA TERMINADO/);
- assert.match(archived.html,/Ya no figura en la agenda actual/);
+ assert.match(archived.html,/YA NO FIGURA EN LA AGENDA ACTUAL/);
  assert.match(past.html,/noindex,follow/);
  assert.doesNotMatch(archived.html,/"@type":"Event"/);
 });
