@@ -3101,8 +3101,8 @@ $('customDateCancel').onclick=closeCustomDatePanel;
    if(id==='arimar-fundador'){
     try{
      const body=new Blob([JSON.stringify({id})],{type:'application/json'});
-     if(!navigator.sendBeacon||!navigator.sendBeacon('/api/ad-click',body))
-      fetch('/api/ad-click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id}),keepalive:true,credentials:'omit'}).catch(()=>{});
+     if(!navigator.sendBeacon||!navigator.sendBeacon('/api/ads?op=click',body))
+      fetch('/api/ads?op=click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id}),keepalive:true,credentials:'omit'}).catch(()=>{});
     }catch{}
    }
    return;
