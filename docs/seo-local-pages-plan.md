@@ -1,23 +1,39 @@
-# DParranda — futuras páginas SEO locales (plan, no implementación)
+# D’Parranda — fase 1 SEO local (Gran Canaria)
 
-**Estado:** aplazado hasta el lanzamiento. La web de pruebas conserva `noindex,nofollow`. Ninguna página nueva debe indexarse todavía.
+Fecha de preparación: 21/11/2026.
 
-## Objetivo acordado
+## Estado
+- Trabajo en la rama `seo/gran-canaria-pages-pilot-20261121`. Publicación en producción **pendiente de revisión de preview**.
+- La portada actual y su JavaScript permanecen intactos salvo una navegación ligera a las cinco nuevas rutas.
+- Cinco URLs piloto con HTML renderizado en servidor y eventos publicados de PostgreSQL:
+  - `/que-hacer-en-gran-canaria`
+  - `/eventos-en-las-palmas-de-gran-canaria`
+  - `/que-hacer-en-ingenio`
+  - `/eventos-en-telde`
+  - `/que-hacer-en-aguimes`
+- Sitemap actualizado con las cinco nuevas URLs y la portada.
+- Las landing incluyen canonical, title, description, Open Graph, JSON-LD `CollectionPage` y `BreadcrumbList`, y enlaces a la fuente.
+- `noindex` automático si hay menos de tres eventos futuros o vigentes del municipio; error HTTP 503 si falla PostgreSQL. No se publican cientos de páginas repetidas.
+- Respuesta cacheada en CDN durante 5 minutos para proteger rendimiento y PostgreSQL.
+- No se modificaron pagos, panel de administración, contrataciones comerciales ni secretos.
 
-Crear rutas útiles y específicas por municipio y por intención de búsqueda, con el filtro de eventos preseleccionado y contenido editorial realmente local.
+## Antes de fusionar con main
+1. Ejecutar `node --test tests/seo-pages.test.mjs`.
+2. Revisar HTTP 200 en la preview de Vercel para las cinco nuevas rutas, canonical, robots, encabezados y eventos.
+3. Confirmar que home, mapa, favoritos, PWA, /api/catalog y /admin/ siguen funcionando.
+4. Comprobar que /anunciate/ sigue fuera de la navegación pública: su protección de URL directa se abordará por separado.
+5. Probar en móvil, incluyendo LCP, CLS e INP antes y después de fusionar.
+6. Verificar Search Console tras la publicación: indexación, impresiones y sitemaps.
+7. Si hay menos de tres registros futuros en alguna localidad, retirarla del sitemap hasta completar la cobertura.
 
-Ejemplos:
+## Fases siguientes
+- Dar URL HTML única a cada evento con `Event` JSON-LD válido cuando haya fecha, recinto y datos verificables.
+- Actualizar sitemap de eventos a partir del catálogo real, excluir páginas caducadas/pobres y cuidar la estabilidad de URLs.
+- Ampliar municipios con suficiente cobertura: Santa Lucía de Tirajana, Santa Brígida, Gáldar, Teror, San Bartolomé de Tirajana y Arucas.
+- Crear páginas de intención (hoy, fin de semana, gratis, en familia) solamente cuando puedan aportar contenido útil propio.
+- Instrumentar GA4 con consentimiento y eventos de uso, PWA, favoritos, clics a los planes y campañas.
+- Abrir el resto de islas cuando exista catálogo real suficiente y verificado en cada una.
 
-- `/eventos-en-las-palmas-de-gran-canaria`: listado de eventos de Las Palmas de Gran Canaria.
-- `/que-hacer-en-las-palmas-de-gran-canaria`: planes y propuestas por fecha/categoría dentro del municipio.
-- Equivalentes para Telde, Agüimes, Gáldar y los demás municipios canarios cuando su cobertura esté suficientemente verificada.
-
-## Comportamiento esperado
-
-1. Abrir la ruta aplica la isla y el municipio sin que el usuario tenga que tocar filtros.
-2. Fechas, categorías, mapa y cercanía siguen funcionando; los resultados se alimentan del catálogo verificado, no de eventos inventados.
-3. El título, introducción y metadatos de cada ruta son propios del municipio y reflejan su contenido real, no copias con nombres sustituidos.
-4. Definir URL canónicas y evitar rutas casi idénticas para la misma intención; cuando falten eventos suficientes, no publicar páginas vacías o de poco valor.
-5. Activar indexación, sitemap y datos estructurados **solo después de la revisión SEO y decisión expresa de lanzamiento**.
-
-Este archivo documenta la decisión de producto. No cambia rutas, indexación ni contenidos públicos.
+## Fuentes de datos
+`published_events` y `event_overrides` (mismos criterios de publicación que `api/catalog.js`).
+Los datos de organizadores, fecha y fuente se muestran solo si figuran en el catálogo.

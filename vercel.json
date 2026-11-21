@@ -125,5 +125,27 @@
       "destination": "/",
       "permanent": false
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/que-hacer-en-gran-canaria",
+      "destination": "/api/catalog?page=gran-canaria"
+    },
+    {
+      "source": "/eventos-en-las-palmas-de-gran-canaria",
+      "destination": "/api/catalog?page=las-palmas-de-gran-canaria"
+    },
+    {
+      "source": "/que-hacer-en-ingenio",
+      "destination": "/api/catalog?page=ingenio"
+    },
+    {
+      "source": "/eventos-en-telde",
+      "destination": "/api/catalog?page=telde"
+    },
+    {
+      "source": "/que-hacer-en-aguimes",
+      "destination": "/api/catalog?page=aguimes"
+    }
   ]
 }
