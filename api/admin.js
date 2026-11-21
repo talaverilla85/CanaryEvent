@@ -773,6 +773,18 @@ export default async function handler(req,res){
         (SELECT count(*)::int FROM ad_campaigns) AS ads`;
       return json(res,200,s);
     }
+    if(req.method==='GET'&&op==='arimar-click-stats'){
+      const [counts]=await sql`SELECT
+        COALESCE(SUM(clicks) FILTER (WHERE day=(now() AT TIME ZONE 'Atlantic/Canary')::date),0) AS today,
+        COALESCE(SUM(clicks) FILTER (WHERE day>=(now() AT TIME ZONE 'Atlantic/Canary')::date-6),0) AS last_7_days,
+        COALESCE(SUM(clicks) FILTER (WHERE day>=(now() AT TIME ZONE 'Atlantic/Canary')::date-29),0) AS last_30_days,
+        COALESCE(SUM(clicks),0) AS total
+       FROM ad_daily_stats WHERE campaign_id='arimar-fundador'`;
+      return json(res,200,{today:Number(counts.today||0),
+       last_7_days:Number(counts.last_7_days||0),
+       last_30_days:Number(counts.last_30_days||0),
+       total:Number(counts.total||0),units:'clicks',time_zone:'Atlantic/Canary'});
+    }
     if(req.method==='GET'&&op==='events')return json(res,200,await events(sql,query));
     if(req.method==='GET'&&op==='ads'){
       const rows=await sql`SELECT id,enabled,advertiser,kind,permanent,starts_at,ends_at,

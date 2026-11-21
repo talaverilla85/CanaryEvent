@@ -2324,6 +2324,16 @@ function sponsorUrl(value){
 function sponsorCardHtml(ad){
  const href=sponsorUrl(ad.button_url);
  if(!href)return '';
+ // Preserve the configured AriMar destination and add useful campaign attribution.
+ let trackedHref=href;
+ const arimar=ad.id==='arimar-fundador';
+ if(arimar){
+  const u=new URL(href);
+  u.searchParams.set('utm_source','dparranda');
+  u.searchParams.set('utm_medium','banner');
+  u.searchParams.set('utm_campaign','arimar');
+  trackedHref=u.href;
+ }
  const path=typeof ad.image==='string'&&(/^(\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg))$/i.test(ad.image)||/^\/api\/(media|paid-banner-image|ad-image)\?id=[a-zA-Z0-9_-]+$/.test(ad.image))?ad.image:'';
  const img=path?'<img src="'+escapeHTML(path)+'" alt="'+escapeHTML(ad.image_alt||'Imagen del anunciante')+'" loading="lazy" decoding="async">':'';
  return '<section class="sponsor-slot" aria-label="Espacio patrocinado">'+
@@ -2331,7 +2341,7 @@ function sponsorCardHtml(ad){
    '<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4c0 .8.7 1.5 1.5 1.5H7L9 20h3l-2-4.5 9-4.5V7L10 3.5 7 8.5H4.5C3.7 8.5 3 9.2 3 10z"/><path d="M22 9v4"/></svg>'+
    ' ESPACIO PATROCINADO</span><span class="sponsor-slot-kind">PUBLICIDAD</span></div>'+
    '<aside class="sponsor-card" aria-label="Publicidad de '+escapeHTML(ad.advertiser)+'">'+
-   '<a class="sponsor-hit" href="'+escapeHTML(href)+'" target="_blank" rel="sponsored noopener noreferrer">'+
+   '<a class="sponsor-hit" href="'+escapeHTML(trackedHref)+'"'+(arimar?' data-sponsored-click="arimar-fundador"':'')+' target="_blank" rel="sponsored noopener noreferrer">'+
    '<div class="sponsor-media">'+img+'</div><div class="sponsor-content">'+
    '<span class="sponsor-label">'+escapeHTML(ad.advertiser)+' <span class="sponsor-label-divider" aria-hidden="true">·</span> COMERCIO LOCAL</span>'+
    '<h3 class="sponsor-heading">'+escapeHTML(ad.headline)+'</h3>'+
@@ -3083,7 +3093,21 @@ $('customDateCancel').onclick=closeCustomDatePanel;
   $('clearSearch').classList.add('hidden');render();
  };
  $('sortSelect').onchange=e=>{state.sort=e.target.value;render()};
- $('eventsGrid').onclick=e=>{const share=e.target.closest('[data-share]');if(share){e.stopPropagation();shareEvent(share.dataset.share);return}const fav=e.target.closest('[data-fav]');if(fav){e.stopPropagation();toggleFav(fav.dataset.fav);return}const card=e.target.closest('[data-id]');if(card)showEvent(card.dataset.id)};
+ $('eventsGrid').onclick=e=>{
+  const sponsored=e.target.closest('[data-sponsored-click]');
+  if(sponsored){
+   // A beacon does not delay navigation to AriMar. Only aggregate click totals.
+   const id=sponsored.dataset.sponsoredClick;
+   if(id==='arimar-fundador'){
+    try{
+     const body=new Blob([JSON.stringify({id})],{type:'application/json'});
+     if(!navigator.sendBeacon||!navigator.sendBeacon('/api/ads?op=click',body))
+      fetch('/api/ads?op=click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id}),keepalive:true,credentials:'omit'}).catch(()=>{});
+    }catch{}
+   }
+   return;
+  }
+  const share=e.target.closest('[data-share]');if(share){e.stopPropagation();shareEvent(share.dataset.share);return}const fav=e.target.closest('[data-fav]');if(fav){e.stopPropagation();toggleFav(fav.dataset.fav);return}const card=e.target.closest('[data-id]');if(card)showEvent(card.dataset.id)};
  // The native button handles keyboard activation without a custom role.
  $('resetFilters').onclick=resetDParrandaFilters;
  $('locationButton').onclick=locationDialog;$('publishCta').onclick=()=>{location.href='/anunciate/'};$('sourcesBtn').onclick=showSources;

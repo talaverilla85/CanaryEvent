@@ -36,6 +36,22 @@ async function loadStats(){
  const s=await api('stats');$('statEvents').textContent=s.events;$('statReview').textContent=s.reviews;
  $('statHidden').textContent=s.hidden;$('statAds').textContent=s.active_ads;
 }
+async function loadArimarClicks(){
+ const status=$('arimarClickStatus');
+ if(!status)return;
+ status.textContent='Actualizando recuento de clics…';
+ try{
+  const r=await api('arimar-click-stats');
+  const number=n=>Number.isFinite(Number(n))?Number(n).toLocaleString('es-ES'):'—';
+  $('arimarClicksToday').textContent=number(r.today);
+  $('arimarClicksWeek').textContent=number(r.last_7_days);
+  $('arimarClicksMonth').textContent=number(r.last_30_days);
+  $('arimarClicksAll').textContent=number(r.total);
+  status.textContent='Clics registrados en D’Parranda (horario de Canarias). No incluye visitas anteriores a la activación.';
+ }catch(e){
+  status.textContent='No se han podido leer los clics. Comprueba la conexión con la base de datos.';
+ }
+}
 async function loadAdvertisingIntake(){
  const node=$('adopsIntake');if(!node)return;
  try{
@@ -108,14 +124,15 @@ $('sendResendTest').addEventListener('click',async()=>{
  }catch(err){status.textContent=err.message;message('No se ha podido enviar la prueba')}
  finally{button.disabled=false}
 });
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives(),loadInvoiceReviews(),loadInvoiceAdjustments(),loadInvoiceIssuerProfile(),refreshInvoiceReadiness(),loadFdSandboxStatus()]);if(location.hash==='#publicidad')setSection('ads')}
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadArimarClicks(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives(),loadInvoiceReviews(),loadInvoiceAdjustments(),loadInvoiceIssuerProfile(),refreshInvoiceReadiness(),loadFdSandboxStatus()]);if(location.hash==='#publicidad')setSection('ads')}
 function setSection(next){
  section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
  for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){
   $(id).classList.toggle('active',on);$(id).setAttribute('aria-selected',on?'true':'false')
  }
 }
-$('tabEvents').onclick=()=>setSection('events');$('tabAds').onclick=()=>setSection('ads');
+$('tabEvents').onclick=()=>setSection('events');$('tabAds').onclick=()=>{setSection('ads');loadArimarClicks()};
+$('refreshArimarClicks').onclick=()=>loadArimarClicks();
 const dateLabel=e=>{const d=String(e.start||'').slice(0,10);return /^\d{4}-\d\d-\d\d$/.test(d)?d.split('-').reverse().join('/'):d};
 async function loadEvents(reset=false) {
  if(reset){pagination=0;events=[]}
