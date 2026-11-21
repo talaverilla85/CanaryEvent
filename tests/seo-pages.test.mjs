@@ -24,6 +24,18 @@ test('municipal pages only include upcoming events from that municipality', () =
   assert.deepEqual(selected.map(e => e.id), [11,12,13]);
 });
 
+test('future sessions appear before long-running activities', () => {
+  const page = pageForKey('ingenio');
+  const events = [
+    {id:31, title:'Exposición iniciada', start:'2026-09-01', end:'2026-12-01', municipality:'Ingenio'},
+    {id:32, title:'Concierto próximo', start:'2026-11-23T20:00:00', municipality:'Ingenio'},
+    {id:33, title:'Teatro próximo', start:'2026-11-26T20:00:00', municipality:'Ingenio'}
+  ];
+  assert.deepEqual(upcomingEvents(events, page, '2026-11-21').map(e=>e.id), [32,33,31]);
+  const html = renderLanding(page, events, {today:'2026-11-21'}).html;
+  assert.match(html, /En curso · Hasta el/);
+});
+
 test('island page aggregates upcoming events across municipalities', () => {
   const page = pageForKey('gran-canaria');
   const selected = upcomingEvents(sample, page, '2026-11-21');
