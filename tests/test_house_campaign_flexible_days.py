@@ -19,14 +19,16 @@ class FlexibleHouseCampaigns(unittest.TestCase):
   self.assertIn("validLocalDate(ends)",self.backend)
   self.assertIn("const enabled=body.enabled===true,permanent=false",self.backend)
 
- def test_admin_can_enter_days_and_see_expiry_calculated(self):
-  self.assertIn('id="f-duration_days"',self.panel)
-  self.assertIn('type="number" min="1" step="1" required',self.panel)
-  self.assertIn('name="ends_at" type="date" readonly',self.panel)
-  self.assertIn("function campaignEndFromDays(start,days)",self.panel)
-  self.assertIn("const end=campaignEndFromDays($('f-starts_at').value,$('f-duration_days').value)",self.panel)
-  self.assertIn("f.ends_at=campaignEndFromDays(f.starts_at,f.duration_days)",self.panel)
-  self.assertIn("delete f.duration_days",self.panel)
+ def test_admin_can_choose_start_end_dates_with_calculated_days(self):
+  self.assertIn("field('starts_at','Inicio',startDefault,'',false,'date')",self.panel)
+  self.assertIn("field('ends_at','Fin',endDefault,'',false,'date')",self.panel)
+  self.assertIn("Math.round((Date.parse(end+'T12:00:00Z')-Date.parse(start+'T12:00:00Z'))/86400000)+1",self.panel)
+  self.assertIn("Duración: ",self.panel)
+  self.assertIn("$('f-ends_at').addEventListener('input',syncCampaignDates)",self.panel)
+  self.assertIn("f.ends_at=f.ends_at||null;",self.panel)
+  self.assertNotIn('id="f-duration_days"',self.panel)
+  self.assertNotIn('name="ends_at" type="date" readonly',self.panel)
+  self.assertNotIn("f.ends_at=campaignEndFromDays(f.starts_at,f.duration_days)",self.panel)
   self.assertIn("Las campañas antiguas sin caducidad",self.panel)
 
  def test_admin_shows_expiry_and_days_remaining_even_if_paused(self):
