@@ -11,6 +11,7 @@ import {loadInvoiceIssuer,saveInvoiceIssuer} from '../lib/advertising-invoice-is
 
 const env={
  DPARRANDA_LEADS_ENABLED:'true',
+ DPARRANDA_ADVERTISING_SALES_ENABLED:'true',
  DPARRANDA_SESSION_SECRET:'only-a-fake-test-secret-that-is-more-than-32-characters',
  DATABASE_URL:'postgresql://test.invalid/neondb',
  RESEND_CUSTOMER_EMAILS_ENABLED:'true',
