@@ -615,3 +615,23 @@ body.dp-install-guide-open{overflow:hidden}
 .dp-shortcut{transition:transform .16s}
 .dp-shortcut.active{transition:none}
 @media(prefers-reduced-motion:reduce){.dp-shortcut{transition:none}}
+
+/* Footer contact links: prevent adjacent text from merging on small screens. */
+.footer .footer-links{
+  display:flex;flex-wrap:wrap;align-items:center;align-content:flex-start;
+  justify-content:flex-start;column-gap:18px;row-gap:5px;min-width:0
+}
+.footer .footer-links>a,.footer .footer-links>#sourcesBtn{
+  display:inline-flex;align-items:center;min-height:32px;
+  font-size:12px;line-height:1.4;margin:0;padding:0;
+  color:#07536C;text-decoration:none;overflow-wrap:anywhere
+}
+.footer .footer-links>a:hover,.footer .footer-links>a:focus-visible{
+  text-decoration:underline;text-underline-offset:3px
+}
+@media(max-width:720px){
+  .footer .footer-links{
+    width:100%;flex-direction:column;align-items:flex-start;
+    row-gap:3px;column-gap:0
+  }
+}
