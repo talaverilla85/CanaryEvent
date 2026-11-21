@@ -776,34 +776,34 @@ function editAd(ad){
  field('image','Imagen (ruta /sponsors/...webp)',ad.image||'','/sponsors/archivo.webp',true)+
  field('image_alt','Descripción accesible de la imagen',ad.image_alt||'','',true)+
  field('starts_at','Inicio',startDefault,'',false,'date')+
- '<div class="field"><label for="f-duration_days">Duración (días)</label><input id="f-duration_days" name="duration_days" type="number" min="1" step="1" required value="'+initialDays+'"></div>'+
- '<div class="field"><label for="f-ends_at">Caduca el</label><input id="f-ends_at" name="ends_at" type="date" readonly value="'+endDefault+'"><small class="muted" id="campaignDateHelp"></small></div>'+
+ field('ends_at','Fin',endDefault,'',false,'date')+
+ '<p class="muted small" id="campaignDateHelp" role="status" aria-live="polite"></p>'+
  field('municipalities','Municipios (separados por coma; vacío = toda la isla)',(ad.municipalities||[]).join(', '),'Agüimes, Ingenio',true)+
  '<input type="hidden" name="kind" id="f-kind" value="house"></div>'+
  '<label class="checkbox"><input type="checkbox" id="f-enabled" '+(ad.enabled?'checked':'')+'>Campaña activa</label>'+
  '<div class="field"><label for="f-newImage">Cartel publicitario (JPG, PNG o WebP, opcional)</label><input id="f-newImage" type="file" accept="image/jpeg,image/png,image/webp"><small class="muted">Se prepara a 1200 × 675. Si no subes ninguno, se conserva la imagen que ya tengas.</small></div>'+
- '<p class="notice">Publicidad propia gratuita · Sin Stripe. Elige los días que quieras: la fecha de caducidad se calcula automáticamente. Las campañas antiguas sin caducidad solo cambiarán cuando pulses Guardar.</p>'+
+ '<p class="notice">Publicidad propia gratuita · Sin Stripe. Elige las fechas de inicio y fin. La duración se calcula automáticamente y el último día está incluido. Las campañas antiguas sin caducidad no cambian hasta pulsar Guardar.</p>'+
  '<div class="sheet-footer"><button type="button" class="ghost" data-close>Cancelar</button><button class="primary" type="submit">Guardar campaña</button></div></form>';
  openDialog(content);
  const syncCampaignDates=()=>{
-  const end=campaignEndFromDays($('f-starts_at').value,$('f-duration_days').value);
-  $('f-ends_at').value=end;
-  $('campaignDateHelp').textContent=end?
-   'La campaña caducará el '+formatCampaignDate(end)+'. El último día está incluido.':
-   'Comprueba la fecha de inicio y el número de días.';
+  const start=$('f-starts_at').value,end=$('f-ends_at').value;
+  const duration=start&&end?Math.round((Date.parse(end+'T12:00:00Z')-Date.parse(start+'T12:00:00Z'))/86400000)+1:0;
+  $('campaignDateHelp').textContent=Number.isSafeInteger(duration)&&duration>0?
+   'Duración: '+duration+' día'+(duration===1?'':'s')+'. Caduca el '+formatCampaignDate(end)+' (incluido).':
+   'La fecha de fin debe ser igual o posterior a la de inicio.';
  };
  $('f-starts_at').addEventListener('input',syncCampaignDates);
- $('f-duration_days').addEventListener('input',syncCampaignDates);
+ $('f-ends_at').addEventListener('input',syncCampaignDates);
  syncCampaignDates();
  $('adForm').onsubmit=async ev=>{
   ev.preventDefault();const b=ev.submitter||$('adForm').querySelector('[type=submit]');b.disabled=true;
   const f=Object.fromEntries(new FormData(ev.currentTarget).entries());
   f.id=ad.id||undefined;f.enabled=$('f-enabled').checked;f.permanent=false;f.kind='house';
   f.municipalities=String(f.municipalities||'').split(',').map(x=>x.trim()).filter(Boolean);
-  f.starts_at=f.starts_at||null;f.ends_at=campaignEndFromDays(f.starts_at,f.duration_days)||null;
-  delete f.duration_days;
+  f.starts_at=f.starts_at||null;f.ends_at=f.ends_at||null;
   try{
-   if(!f.ends_at)throw new Error('Indica una duración positiva y una fecha final válida');
+   if(!f.starts_at||!f.ends_at||f.ends_at<f.starts_at)
+    throw new Error('La fecha de fin debe ser igual o posterior a la de inicio');
    const file=$('f-newImage').files?.[0];
    if(file){
     if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>15_000_000)
