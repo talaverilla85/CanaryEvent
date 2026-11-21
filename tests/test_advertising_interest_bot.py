@@ -67,7 +67,8 @@ class InterestBotContract(unittest.TestCase):
         self.assertIn("'/api/advertise-interest'",front)
         self.assertNotIn("image:draft.image",front)
         self.assertIn("INTERES_INICIAL|",panel)
-        self.assertIn('cron: "*/5 * * * *"',wf)
+        self.assertIn('Pausado durante el lanzamiento orgánico',wf)
+        self.assertNotIn('cron: "*/5 * * * *"',wf)
         self.assertIn("secrets.DPARRANDA_DATABASE_URL",wf)
         self.assertIn("secrets.TELEGRAM_BOT_TOKEN",wf)
 
