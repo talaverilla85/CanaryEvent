@@ -81,5 +81,27 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/anunciate",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/anunciate/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/anunciantes",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/anunciantes/:path*",
+      "destination": "/",
+      "permanent": false
+    }
   ]
 }
