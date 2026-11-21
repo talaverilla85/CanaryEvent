@@ -65,6 +65,7 @@ import program_quality
 import venue_quality
 import organizer_venues
 import ingenio_juvenil_program
+import event_enrichment
 from event_images import listing_image,image_fields
 from catalog_changes import compare_public_catalogs, read_published
 
@@ -475,6 +476,13 @@ def upsert(conn,e):
             fields["organizer_url"]=e["source_url"]
         if existing["details"]:
             fields["details"]=existing["details"]
+    # Preserve verified descriptions and dates when tomorrow's listing
+    # contains only a generic summary. Original source may later improve it.
+    if existing and event_enrichment.meaningful_description(existing["details"]) and not event_enrichment.meaningful_description(fields.get("details")):
+        fields["details"]=existing["details"]
+    if existing and str(existing["start"]).startswith(str(fields.get("start") or "")[:10]):
+        if len(str(fields.get("start") or ""))==10 and re.fullmatch(r"20\\d{2}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2})?",str(existing["start"])):
+            fields["start"]=existing["start"]
     # A verified organizer venue is more informative than a later generic
     # municipal placeholder: never erase it during a periodic source refresh.
     if existing and venue_quality.named_venue(dict(existing)) and not venue_quality.named_venue(fields):
@@ -1149,6 +1157,19 @@ def run():
                         "posters_deferred":poster_result["deferred"]})
         conn.commit()
         print("Official event poster venues:",poster_result)
+        # Detect incomplete event facts and revisit the original linked page.
+        # Only exact title/date matches in Event JSON-LD can update fields.
+        # Searches are bounded to the existing daily worker (never on pageviews).
+        enrich_report=event_enrichment.enrich(
+            conn,NOW,TODAY,fetch_html=get_html,
+            leads=event_enrichment.load_radar_leads(ROOT/"data"/"gc_radar_leads.json"),
+            max_requests=8,cooldown_hours=72)
+        results.append({"source":"Enriquecimiento de fuentes originales",
+                        "checked_at":NOW,"found":enrich_report["checked"],
+                        "added":0,"changed":enrich_report["verified"],
+                        "error":""})
+        print("Source-based automatic event enrichment:",enrich_report)
+        conn.commit()
         location_changes=verified_venue_coordinates.backfill(conn,PLACES)
         conn.commit()
         print(f"Verified venue coordinates refreshed for {location_changes} events")
