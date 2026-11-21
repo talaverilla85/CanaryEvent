@@ -55,6 +55,9 @@ test('archived or completed events retain stable detail but cannot index',()=>{
  assert.equal(archived.indexable,false);
  assert.match(past.html,/ESTE EVENTO YA HA TERMINADO/);
  assert.match(archived.html,/YA NO FIGURA EN LA AGENDA ACTUAL/);
+ assert.match(past.html,/Descubrir próximos planes/);
+ assert.doesNotMatch(past.html,/href="\/\?evento=654"/);
+ assert.match(archived.html,/href="\/que-hacer-en-gran-canaria"/);
  assert.match(past.html,/noindex,follow/);
  assert.doesNotMatch(archived.html,/"@type":"Event"/);
 });
