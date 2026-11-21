@@ -1,50 +1,26 @@
 {
-  "checked_at": "2026-11-21T22:22:42.620250+00:00",
+  "checked_at": "2026-11-21T22:32:09.105590+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
-  "api_calls": 2,
-  "usage_usd": 0.0005791,
+  "api_calls": 0,
+  "usage_usd": 0.0,
   "docs": [
     {
-      "name": "Fiestas patronales en honor a San Venancio en el barrio de Casas Nuevas",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/casasnuevas26.pdf",
-      "sha256": "9c649c6cb7e63fd1530dbe48c0426d2699c69c15db8e569976ec59121a389a66",
-      "pages": 4,
-      "bytes": 2054952,
-      "inspected": [
-        {
-          "page": 4,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            923,
-            1310
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 0
-        }
-      ]
+      "name": "Fiestas patronales en honor al Sagrado Corazón de Jesús en el barrio de La Garita",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/lagarita26.pdf",
+      "sha256": "ecd40a83e9f845b2bda3522e9b0e87d20cf8047b3d75224d456c5b19b16f25c9",
+      "pages": 8,
+      "bytes": 3779392,
+      "inspected": []
     },
     {
-      "name": "Fiestas en honor a San Francisco de Asís, Nuestra Señora del Rosario y San Isidro Labrador en el barrio de Cazadores",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/cazadores26.pdf",
-      "sha256": "0f3a936c3b4b736e6e7e2a6afa873e0b7b0fb8af81bef873a2cea01df5b096dd",
-      "pages": 7,
-      "bytes": 1696592,
-      "inspected": [
-        {
-          "page": 7,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 0
-        }
-      ]
+      "name": "Fiestas de la Exaltación de la Cruz en honor al Santo Cristo en Playa de Ojos de Garza",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/playaojosdegarza26.pdf",
+      "sha256": "d3ca33fe8115fe61a986ca83a628752a5c77cc7e436d9f42d526f81df58dfacd",
+      "pages": 2,
+      "bytes": 222232,
+      "inspected": []
     }
   ],
   "deferred_docs": [
@@ -52,6 +28,23 @@
       "pdf_url": "https://www.telde.es/wp-content/uploads/2026/10/caseronesaltos26.pdf",
       "reason": "past_only_cooldown",
       "resume_on": "2026-11-28"
+    },
+    {
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/vallelosnuevealto26.pdf",
+      "reason": "past_only_cooldown",
+      "resume_on": "2026-11-28"
+    },
+    {
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/11/sangregorio26.pdf",
+      "reason": "completed_or_end_verified"
+    },
+    {
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/casasnuevas26.pdf",
+      "reason": "completed_or_end_verified"
+    },
+    {
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/cazadores26.pdf",
+      "reason": "completed_or_end_verified"
     }
   ],
   "pending_review_count": 1,
