@@ -4,3 +4,4 @@ Disallow: /admin/
 Disallow: /anunciate/
 Disallow: /anunciantes/
 Sitemap: https://dparranda.es/sitemap.xml
+Sitemap: https://dparranda.es/sitemap-eventos.xml
