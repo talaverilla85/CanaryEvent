@@ -1,9 +1,16 @@
 import { db } from '../lib/admin-auth.js';
+import { pageForKey, renderLanding } from '../lib/seo-pages.js';
 export default async function handler(req,res) {
+  const pageKey = typeof req.query?.page === 'string' ? req.query.page : '';
+  const seoPage = pageForKey(pageKey);
   res.setHeader('X-Content-Type-Options','nosniff');
-  if(req.method!=='GET'){res.status(405).end();return;}
+  if(pageKey && !seoPage){res.setHeader('X-Robots-Tag','noindex');res.status(404).end('Página no encontrada');return;}
+  if(req.method!=='GET' && !(seoPage && req.method==='HEAD')){res.status(405).end();return;}
   const sql=db();
-  if(!sql){res.status(503).json({error:'Base de datos no configurada'});return;}
+  if(!sql){
+    if(seoPage){res.setHeader('X-Robots-Tag','noindex');res.setHeader('Cache-Control','no-store');res.status(503).end('Agenda temporalmente no disponible');return;}
+    res.status(503).json({error:'Base de datos no configurada'});return;
+  }
   try {
     // Independent public queries run concurrently to reduce cold-start latency.
     const [rows,sponsored]=await Promise.all([
@@ -28,6 +35,13 @@ export default async function handler(req,res) {
       if(o.free_override!==null&&o.free_override!==undefined)e.free=Number(o.free_override);
       return e;
     });
+    if(seoPage){
+      const rendered=renderLanding(seoPage,events);
+      res.setHeader('Content-Type','text/html; charset=utf-8');
+      res.setHeader('Cache-Control','public, s-maxage=300, stale-while-revalidate=600');
+      if(!rendered.indexable)res.setHeader('X-Robots-Tag','noindex, follow');
+      return res.status(200).end(req.method==='HEAD'?'':rendered.html);
+    }
     for(const item of sponsored){
       events.push({
         id:-9000000000-Number(item.id),title:item.title,start:item.start,end:item.end,
@@ -45,6 +59,7 @@ export default async function handler(req,res) {
   }catch(e){
     console.error('DParranda public catalog query failed:',e?.name||'Error');
     res.setHeader('Cache-Control','no-store');
+    if(seoPage){res.setHeader('X-Robots-Tag','noindex');return res.status(503).end('Agenda temporalmente no disponible');}
     return res.status(503).json({error:'Catálogo PostgreSQL temporalmente no disponible'});
   }
 }
