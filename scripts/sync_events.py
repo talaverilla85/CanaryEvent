@@ -481,7 +481,7 @@ def upsert(conn,e):
     if existing and event_enrichment.meaningful_description(existing["details"]) and not event_enrichment.meaningful_description(fields.get("details")):
         fields["details"]=existing["details"]
     if existing and str(existing["start"]).startswith(str(fields.get("start") or "")[:10]):
-        if len(str(fields.get("start") or ""))==10 and re.fullmatch(r"20\\d{2}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2})?",str(existing["start"])):
+        if len(str(fields.get("start") or ""))==10 and re.fullmatch(r"20\d{2}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2})?",str(existing["start"])):
             fields["start"]=existing["start"]
     # A verified organizer venue is more informative than a later generic
     # municipal placeholder: never erase it during a periodic source refresh.
