@@ -454,7 +454,8 @@ async function safelyPreparePayment(sql,id,retryKey=''){
  catch(e){console.error('DParranda Stripe payment link failed',e?.name||'Error');return {status:'failed',email_status:'failed'}}
 }
 function paymentMessage(p){
- if(p.status==='not_configured')return 'Anuncio aprobado. Stripe queda pendiente de configuración en Vercel.';
+ if(p.status==='sales_paused')return 'Contratación de terceros pausada durante el lanzamiento público. No se generará ningún enlace ni se enviará un correo de pago.';
+  if(p.status==='not_configured')return 'Anuncio aprobado. Stripe queda pendiente de configuración en Vercel.';
  if(p.status==='failed')return 'Anuncio aprobado, pero Stripe no pudo generar el enlace. Puedes reintentarlo.';
  if(p.status==='already_paid')return 'Pago confirmado anteriormente.';
  if(p.status==='unavailable')return 'Anuncio aprobado. Necesita área de anunciante antes de cobrar.';

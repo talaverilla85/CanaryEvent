@@ -5,6 +5,7 @@ import {privacyUrl as legalPrivacyUrl} from '../lib/privacy.js';
 import {advertiserPortalReady} from '../lib/advertiser-workspace.js';
 import {parseEmailAccessToken} from '../lib/advertiser-mail.js';
 import {stripePaymentsReady} from '../lib/stripe-advertising.js';
+import {advertisingSalesOpen} from '../lib/advertising-sales.js';
 const PLANS={local:1900,zona:4900,insular:9900};
 const TOWNS=new Set(['Agaete','Agüimes','Artenara','Arucas','Firgas','Gáldar','Ingenio','La Aldea de San Nicolás','Las Palmas de Gran Canaria','Mogán','Moya','San Bartolomé de Tirajana','Santa Brígida','Santa Lucía de Tirajana','Santa María de Guía de Gran Canaria','Tejeda','Telde','Teror','Valleseco','Valsequillo de Gran Canaria','Vega de San Mateo']);
 const AGE=30*24*60*60;
@@ -53,7 +54,8 @@ export default async function handler(req,res){
  res.setHeader('X-Robots-Tag','noindex,noarchive');
  if(!['GET','POST'].includes(req.method))return json(res,405,{error:'Método no permitido'});
  const op=String(req.query?.op||'session');
- if(req.method==='GET'&&op==='config')return json(res,200,{enabled:ready(),payment_enabled:stripePaymentsReady(),privacy_url:privacy()});
+ if(req.method==='GET'&&op==='config')return json(res,200,{enabled:advertisingSalesOpen()&&ready(),payment_enabled:advertisingSalesOpen()&&stripePaymentsReady(),privacy_url:privacy()});
+ if(!advertisingSalesOpen())return json(res,503,{error:'El área comercial está temporalmente desactivada'});
  if(!ready())return json(res,503,{error:'El área de anunciantes está pendiente de activación'});
  if(req.method==='POST'&&!sameOrigin(req))return json(res,403,{error:'Origen no autorizado'});
  const sql=db();

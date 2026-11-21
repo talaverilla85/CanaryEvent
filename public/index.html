@@ -1,9 +1,11 @@
 ﻿<!doctype html>
 <html lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#10364D"><meta name="robots" content="noindex,nofollow"><meta name="description" content="D’Parranda. Disfruta de tus islas: eventos, cultura, gastronomía y planes cerca de ti en Gran Canaria. Muy pronto en las ocho islas.">
+<meta name="theme-color" content="#10364D"><meta name="robots" content="index,follow,max-image-preview:large"><meta name="description" content="D’Parranda. Disfruta de tus islas: eventos, cultura, gastronomía y planes cerca de ti en Gran Canaria. Muy pronto en las ocho islas.">
 <meta property="og:type" content="website"><meta property="og:title" content="D’Parranda | Disfruta de tus islas"><meta property="og:description" content="Una agenda hecha para disfrutar Canarias, empezando por Gran Canaria.">
 <meta name="color-scheme" content="light">
+<link rel="canonical" href="https://dparranda.es/">
+<meta property="og:url" content="https://dparranda.es/">
 <link rel="manifest" href="/manifest.webmanifest?v=8"><link rel="apple-touch-icon" href="/apple-touch-icon.png?v=8"><meta name="apple-mobile-web-app-title" content="D’Parranda"><link rel="icon" href="/favicon.png?v=8" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- DPARRANDA_FEATURE_PRELOAD_START -->
@@ -15,7 +17,7 @@
 @media (min-width:650px){.shell{width:min(1160px,calc(100% - 72px))}.topbar{height:96px}.hero{min-height:340px}.hero-content{padding-left:53px}.hero h1{font-size:78px}.hero p{max-width:340px;font-size:16px}.hero-orbit{right:105px;width:420px;height:420px}.star-one{right:225px;font-size:140px}.star-two{right:99px}.events-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.photo{height:220px}.event-info{padding:17px;min-height:150px}.event-title{font-size:17px}.bottom-nav{left:50%;right:auto;transform:translateX(-50%);width:440px;border-radius:20px 20px 0 0;box-shadow:0 0 32px #33472713}.info-strip{padding:30px 40px}.info-strip h3{font-size:26px}.info-strip p{font-size:14px}}
 @media (min-width:1000px){.hero{min-height:360px}.events-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.photo{height:232px}.discovery{padding-top:36px}.top-filters{margin-top:24px}.categories{margin-top:14px}.quick-toolbar{margin-top:24px;margin-bottom:16px}.bottom-nav{width:490px}}
 @media(max-width:375px){.shell{width:calc(100% - 22px)}.brand{font-size:25px}.brandmark{width:34px;height:34px}.location-btn{font-size:10px;padding:0 9px}.hero-content{padding-left:22px}.hero h1{font-size:48px}.star-one{font-size:75px;right:35px;top:80px}.star-two{display:none}.hero-tag{display:none}.events-grid{gap:9px}.photo{height:145px}.event-info{padding:10px}.event-title{font-size:13px}.event-meta,.distance{font-size:10px}.top-filters{gap:6px}.date-chip{padding:9px 12px}.quick-toolbar{align-items:start;flex-direction:column}.footer{gap:13px;flex-wrap:wrap}.info-strip{gap:10px;padding:18px}.info-orb{display:none}.info-button{padding:10px}}
-#publishCta, #profileBtn, .navtab[data-tab=publish], .info-strip, a[href='mailto:contacto@example.invalid']{display:none!important}
+#publishCta, #profileBtn, .navtab[data-tab=publish], .info-strip{display:none!important}
 #loadMoreBtn[hidden]{display:none!important}
 
 .photo:before,.modal-photo:before{display:none!important;background-image:none!important}
@@ -2049,7 +2051,7 @@ body::before{height:5px;position:fixed;z-index:40}
       <div id="emptyState" class="empty-state hidden"><div class="empty-icon">☀</div><h3 id="emptyTitle">No encontramos planes con estos filtros</h3><p id="emptyMessage">Prueba otra fecha o amplía la zona. La isla tiene mucho por descubrir.</p><button id="resetFilters" class="primary-btn">Ver todos los planes</button></div>
     </section>
     <section class="info-strip"><span class="info-orb">✳</span><div><h3>¿Organizas algo interesante?</h3><p>Da a conocer tus eventos a personas que buscan qué hacer cerca.</p></div><button id="publishCta" class="info-button">Anúnciate aquí ↗</button></section>
-    <footer class="footer"><strong>D’Parranda</strong><p><b>Disfruta de tus islas.</b> Comenzamos en Gran Canaria y seguimos creciendo. Consulta la fuente oficial antes de asistir; las imágenes de ambientación son ilustrativas.</p><div><button id="sourcesBtn" class="text-button">Fuentes y actualización</button><a href="/privacidad/">Privacidad</a><a href="mailto:contacto@example.invalid" class="hidden">Contacto</a></div></footer>
+    <footer class="footer"><strong>D’Parranda</strong><p><b>Disfruta de tus islas.</b> Comenzamos en Gran Canaria y seguimos creciendo. Consulta la fuente oficial antes de asistir; las imágenes de ambientación son ilustrativas.</p><div><button id="sourcesBtn" class="text-button">Fuentes y actualización</button><a href="/privacidad/">Privacidad</a><a href="mailto:hola@dparranda.es">hola@dparranda.es</a></div></footer>
   </main>
   <nav class="bottom-nav" aria-label="Navegación principal"><button class="navtab selected" data-tab="explore"><span><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.6"/><path d="m15.5 15.5 5 5"/></svg></span><small>Explorar</small></button><button class="navtab" data-tab="map"><span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14m6-12v14"/></svg></span><small>Mapa</small></button><button class="navtab" data-tab="saved"><span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.7 4.6a5.5 5.5 0 0 0-7.8 0L12 5.5l-.9-.9a5.5 5.5 0 0 0-7.8 7.8L12 21l8.7-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><small>Guardados</small></button><button class="navtab" data-tab="publish"><span>＋</span><small>Publicar</small></button></nav>
   <aside id="dpInstallDock" class="dp-install-dock hidden" aria-label="Instalar la aplicación D’Parranda">
@@ -2360,10 +2362,10 @@ function houseBannerHtml(){
   '</div></a></div></section>';
 }
 function sponsorForSlot(slot){
+ // Lanzamiento orgánico: solo publicidad existente (incluida AriMar), sin captación comercial.
  const active=state.sponsorAds.filter(sponsorVisible);
- if(!active.length)return houseBannerHtml();
- if(active.length===1)return slot%2===1?houseBannerHtml():sponsorCardHtml(active[0]);
- if(active.length===2)return slot%3===2?houseBannerHtml():sponsorCardHtml(active[slot%3]);
+ if(!active.length)return '';
+ if(active.length===1)return slot%2===0?sponsorCardHtml(active[0]):'';
  return sponsorCardHtml(active[slot%active.length]);
 }
 function houseEventHtml(){
@@ -2611,7 +2613,7 @@ function render(){const renderNow=localTimeKey();renderCategories();renderIsland
   const approx=eventApprox(e);const liked=state.favorites.has(e.id);
   return `<article class="event-card ${verifiedImage(e)?'':'fallback-event'}" data-id="${e.id}"><button type="button" class="event-card-open" aria-label="Ver ${escapeHTML(e.title)}"></button>
   <div class="photo ${CLASSES[e.category]||'p-other'} ${verifiedImage(e)?'':'no-official-cover'}">${coverHtml(e)}<span class="photo-tag">${e.paid_promotion===true?'Patrocinado · ':''}${escapeHTML(textForCat(e.category))}</span><button type="button" class="card-share-btn" data-share="${e.id}" aria-label="Compartir ${escapeHTML(e.title)}" title="Compartir este plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.3 10.8 7.5-4.4m-7.5 6.8 7.5 4.3"/></svg></button><button type="button" class="fav-btn ${liked?'liked':''}" data-fav="${e.id}" aria-label="${liked?'Quitar de':'Guardar en'} favoritos">${liked?'♥':'♡'}</button></div>
-  <div class="event-info"><span class="event-date-chip">${escapeHTML(cardDateLabel(e,renderNow))}</span><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span class="place-icon">⌖</span><span class="event-place"><strong class="place-venue">${escapeHTML(venueName(e))}</strong><small class="place-municipality">${escapeHTML(e.municipality)}</small></span></div><div class="event-bottom">${price(e)?`<span class="price">${escapeHTML(price(e))}</span>`:''}<span class="distance" title="${eventUsesMunicipality(e)?'Distancia aproximada en línea recta al centro del municipio':'Distancia aproximada en línea recta al recinto'}">${approx!==null?'⌖ ≈ '+approx+' km'+(eventUsesMunicipality(e)?' · municipio':''):'Distancia no disponible'}</span></div></div></article>`+(showPromotions&&(i+1)%sponsorAt===0?sponsorForSlot(Math.floor((i+1)/sponsorAt)-1):'')+(showPromotions&&i===11?houseEventHtml():'')});
+  <div class="event-info"><span class="event-date-chip">${escapeHTML(cardDateLabel(e,renderNow))}</span><h3 class="event-title">${escapeHTML(e.title)}</h3><div class="event-meta"><span class="place-icon">⌖</span><span class="event-place"><strong class="place-venue">${escapeHTML(venueName(e))}</strong><small class="place-municipality">${escapeHTML(e.municipality)}</small></span></div><div class="event-bottom">${price(e)?`<span class="price">${escapeHTML(price(e))}</span>`:''}<span class="distance" title="${eventUsesMunicipality(e)?'Distancia aproximada en línea recta al centro del municipio':'Distancia aproximada en línea recta al recinto'}">${approx!==null?'⌖ ≈ '+approx+' km'+(eventUsesMunicipality(e)?' · municipio':''):'Distancia no disponible'}</span></div></div></article>`+(showPromotions&&(i+1)%sponsorAt===0?sponsorForSlot(Math.floor((i+1)/sponsorAt)-1):'')});
  commitGridRows(nextGridMarkup);
  $('emptyState').classList.toggle('hidden',events.length>0);$('eventsGrid').classList.toggle('hidden',events.length===0);
  $('loadingGrid').classList.add('hidden');

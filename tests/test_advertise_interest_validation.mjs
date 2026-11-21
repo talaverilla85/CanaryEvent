@@ -4,6 +4,7 @@ import handler from '../api/advertise-interest.js';
 
 const vars={
  DPARRANDA_LEADS_ENABLED:'true',
+ DPARRANDA_ADVERTISING_SALES_ENABLED:'true',
  DATABASE_URL:'postgres://not-used.example.invalid/dparranda',
  DPARRANDA_LEGAL_NAME:'Titular de pruebas autorizado',
  DPARRANDA_LEGAL_ADDRESS:'Calle de pruebas 12, Gran Canaria',

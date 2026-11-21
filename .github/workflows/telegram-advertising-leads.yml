@@ -1,9 +1,7 @@
 name: Solicitudes y pagos publicitarios DParranda por Telegram
 
 on:
-  schedule:
-    # GitHub Actions scheduled checks are best-effort, not exact real-time.
-    - cron: "*/5 * * * *"
+  # Pausado durante el lanzamiento orgánico; conservar para reactivación futura.
   workflow_dispatch:
   push:
     branches: [main]
@@ -36,6 +34,7 @@ jobs:
       - name: Validar alertas de solicitudes y pagos
         run: python -m unittest discover -s tests -p "test_advertising_interest_bot.py"
       - name: Avisar de solicitudes y pagos confirmados sin datos personales
+        if: github.event_name != 'push'
         env:
           DATABASE_URL: ${{ secrets.DPARRANDA_DATABASE_URL }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

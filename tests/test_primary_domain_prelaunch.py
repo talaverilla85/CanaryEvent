@@ -1,4 +1,4 @@
-"""Primary domain is .es while the site deliberately remains unindexed during testing."""
+"""Primary domain is .es; the homepage is indexable during organic launch."""
 import unittest
 from pathlib import Path
 
@@ -16,9 +16,12 @@ class PrimaryDomainContract(unittest.TestCase):
  def test_legal_links_use_primary_domain(self):
   self.assertIn("https://dparranda.es/privacidad/",self.privacy)
   self.assertNotIn("canaryevent.vercel.app",self.privacy)
- def test_noindex_is_preserved_for_prelaunch(self):
-  self.assertIn("Disallow: /",self.robots)
-  self.assertIn('content="noindex,nofollow"',self.home)
+ def test_home_is_indexable_and_commercial_paths_not_crawlable(self):
+  self.assertIn('Allow: /',self.robots)
+  self.assertNotIn('Disallow: /\n',self.robots)
+  self.assertIn('Disallow: /anunciate/',self.robots)
+  self.assertIn('content="index,follow,max-image-preview:large"',self.home)
+  self.assertIn('href="https://dparranda.es/"',self.home)
  def test_resend_stays_in_sandbox_until_verified(self):
   self.assertIn("RESEND_CUSTOMER_EMAILS_ENABLED==='true'",self.mail)
   self.assertIn("RESEND_TEST_RECIPIENT",self.mail)
