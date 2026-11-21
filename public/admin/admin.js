@@ -1244,7 +1244,7 @@ function renderAdOperations(){
   const status=r.archived?'Archivado':opsStateNames[r.status]||r.status;
   const payment=r.payment==='paid'?'Pagado':r.payment==='pending'?'Pendiente':
     r.payment==='free'?'Sin coste':r.payment==='refunded'?'Reembolsado':'No verificado';
-  const days=r.permanent?'Anterior permanente':Number.isInteger(r.days)&&r.days>0?r.days+' días':'—';
+  const days=r.permanent?'Sin caducidad · editar':Number.isInteger(r.days)&&r.days>0?r.days+' días':'—';
   const amount=r.price===null?'—':Number(r.price).toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:2})+' €';
   const img=r.has_image&&r.image_url?'<img class="adops-thumb" loading="lazy" src="'+escape(r.image_url)+'" alt="Anuncio de '+escape(r.company)+'">':'';
   const area=r.plan?opsPlanNames[r.plan]+' · '+r.area:r.area;
@@ -1252,8 +1252,9 @@ function renderAdOperations(){
    '<td>'+escape(opsDate(r.submitted_at)||'—')+'<small>#'+escape(String(r.id))+'</small></td>'+
    '<td><span class="adops-status st-'+(r.archived?'archived':escape(r.status))+'">'+escape(status)+'</span></td>'+
    '<td><span class="adops-payment p-'+escape(r.payment)+'">'+escape(payment)+'</span></td>'+
-   '<td>'+escape(days)+(r.status==='active'&&r.actual_ends_at?
-    '<small>'+escape(daysLeft(r.actual_ends_at))+'</small>':'')+'</td>'+
+   '<td>'+escape(days)+(r.actual_ends_at&&r.source==='house'?
+    '<small>Caduca: '+escape(formatCampaignDate(r.actual_ends_at))+'</small><small>'+escape(daysLeft(r.actual_ends_at))+'</small>':
+    r.status==='active'&&r.actual_ends_at?'<small>'+escape(daysLeft(r.actual_ends_at))+'</small>':'')+'</td>'+
    '<td>'+escape(r.kind)+'<small>'+escape(area||'Sin cobertura')+'</small></td>'+
    '<td><strong>'+escape(amount)+'</strong></td>'+
    '<td><div class="adops-visual">'+img+
