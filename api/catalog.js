@@ -1,17 +1,73 @@
 import { db } from '../lib/admin-auth.js';
 import { pageForKey, renderLanding } from '../lib/seo-pages.js';
+import { parseEventId, renderEventPage, renderEventSitemap } from '../lib/event-seo.js';
 export default async function handler(req,res) {
   const pageKey = typeof req.query?.page === 'string' ? req.query.page : '';
   const seoPage = pageForKey(pageKey);
+  const eventIdRaw = typeof req.query?.eventId === 'string' ? req.query.eventId : '';
+  const eventId = eventIdRaw ? parseEventId(eventIdRaw) : null;
+  const eventSitemap = req.query?.eventSitemap === '1';
+  const eventRoute = Boolean(eventIdRaw);
+  const seoRoute = Boolean(seoPage || eventRoute || eventSitemap);
   res.setHeader('X-Content-Type-Options','nosniff');
-  if(pageKey && !seoPage){res.setHeader('X-Robots-Tag','noindex');res.status(404).end('Página no encontrada');return;}
-  if(req.method!=='GET' && !(seoPage && req.method==='HEAD')){res.status(405).end();return;}
+  if((pageKey && !seoPage)||(eventRoute && eventId===null)){
+    res.setHeader('X-Robots-Tag','noindex');res.status(404).end('Página no encontrada');return;
+  }
+  if(req.method!=='GET' && !(seoRoute && req.method==='HEAD')){
+    res.status(405).end();return;
+  }
   const sql=db();
   if(!sql){
-    if(seoPage){res.setHeader('X-Robots-Tag','noindex');res.setHeader('Cache-Control','no-store');res.status(503).end('Agenda temporalmente no disponible');return;}
+    if(seoRoute){res.setHeader('X-Robots-Tag','noindex');res.setHeader('Cache-Control','no-store');res.status(503).end('Agenda temporalmente no disponible');return;}
     res.status(503).json({error:'Base de datos no configurada'});return;
   }
   try {
+    // One stable URL per event, including historical rows no longer active in the catalogue.
+    // Read-only query: does not slow down /api/catalog for the application.
+    if(eventRoute){
+      const [record]=await sql`SELECT p.id,p.payload,p.active,
+        o.hidden,o.canonical_event_id,o.title_override,o.details_override,
+        o.venue_override,o.price_override,o.free_override,o.category_override
+        FROM published_events p LEFT JOIN event_overrides o ON o.event_id=p.id
+        WHERE p.id=${eventId} LIMIT 1`;
+      if(!record||record.hidden){
+        res.setHeader('X-Robots-Tag','noindex');
+        return res.status(404).end('Evento no disponible');
+      }
+      if(record.canonical_event_id !== null && record.canonical_event_id !== undefined &&
+        Number(record.canonical_event_id)!==eventId){
+        res.setHeader('Location','/evento/'+encodeURIComponent(String(record.canonical_event_id)));
+        res.setHeader('Cache-Control','public, s-maxage=3600');
+        return res.status(308).end();
+      }
+      const event={...record.payload,id:Number(record.id)};
+      for(const [override,field] of [
+        ['title_override','title'],['details_override','details'],['venue_override','venue'],
+        ['price_override','price'],['category_override','category']
+      ]) if(record[override]!==null&&record[override]!==undefined)event[field]=record[override];
+      if(record.free_override!==null&&record.free_override!==undefined)event.free=Number(record.free_override);
+      const result=renderEventPage(event,{active:record.active});
+      res.setHeader('Content-Type','text/html; charset=utf-8');
+      res.setHeader('Cache-Control','public, s-maxage=120, stale-while-revalidate=300');
+      if(!result.indexable)res.setHeader('X-Robots-Tag','noindex, follow');
+      return res.status(200).end(req.method==='HEAD'?'':result.html);
+    }
+    if(eventSitemap){
+      const rows=await sql`SELECT p.id,p.payload,o.title_override,o.details_override,o.venue_override
+        FROM published_events p LEFT JOIN event_overrides o ON o.event_id=p.id
+        WHERE p.active AND COALESCE(o.hidden,FALSE)=FALSE AND o.canonical_event_id IS NULL
+        ORDER BY p.id LIMIT 3500`;
+      const events=rows.map(row=>({
+        ...row.payload,id:Number(row.id),
+        title:row.title_override??row.payload.title,
+        details:row.details_override??row.payload.details,
+        venue:row.venue_override??row.payload.venue
+      }));
+      const xml=renderEventSitemap(events);
+      res.setHeader('Content-Type','application/xml; charset=utf-8');
+      res.setHeader('Cache-Control','public, s-maxage=300, stale-while-revalidate=600');
+      return res.status(200).end(req.method==='HEAD'?'':xml);
+    }
     // Independent public queries run concurrently to reduce cold-start latency.
     const [rows,sponsored]=await Promise.all([
       sql`SELECT p.payload,o.hidden,o.title_override,o.details_override,
@@ -59,7 +115,7 @@ export default async function handler(req,res) {
   }catch(e){
     console.error('DParranda public catalog query failed:',e?.name||'Error');
     res.setHeader('Cache-Control','no-store');
-    if(seoPage){res.setHeader('X-Robots-Tag','noindex');return res.status(503).end('Agenda temporalmente no disponible');}
+    if(seoRoute){res.setHeader('X-Robots-Tag','noindex');return res.status(503).end('Agenda temporalmente no disponible');}
     return res.status(503).json({error:'Catálogo PostgreSQL temporalmente no disponible'});
   }
 }
