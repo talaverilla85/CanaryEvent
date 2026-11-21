@@ -1,5 +1,9 @@
 /* Run with: node tests/test_install_prompt.js */
 'use strict';
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+const require=createRequire(import.meta.url);
+const __dirname=fileURLToPath(new URL('.',import.meta.url));
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const vm=require('node:vm');
