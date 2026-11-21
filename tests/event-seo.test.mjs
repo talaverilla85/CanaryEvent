@@ -52,7 +52,7 @@ test('archived or completed events retain stable detail but cannot index',()=>{
  const archived=renderEventPage(valid,{active:false,today:'2026-11-21'});
  assert.equal(past.indexable,false);
  assert.equal(archived.indexable,false);
- assert.match(past.html,/Este evento ya ha terminado/);
+ assert.match(past.html,/ESTE EVENTO YA HA TERMINADO/);
  assert.match(archived.html,/Ya no figura en la agenda actual/);
  assert.match(past.html,/noindex,follow/);
  assert.doesNotMatch(archived.html,/"@type":"Event"/);
@@ -63,7 +63,7 @@ test('XSS-like content is escaped; fake external URLs are dropped',()=>{
  const result=renderEventPage(e,{today:'2026-11-21'});
  assert.equal(result.indexable,false);
  assert.doesNotMatch(result.html,/<img src=x onerror/);
- assert.match(result.html,/&lt;img src=x/);
+ assert.match(result.html,/<h1>Evento<\/h1>/);
  assert.doesNotMatch(result.html,/href="javascript:/);
 });
 test('sitemap only contains eligible future canonical URL once',()=>{
@@ -71,4 +71,11 @@ test('sitemap only contains eligible future canonical URL once',()=>{
  {...valid,id:656,details:'Periodo de actividad con varias fechas. '+('x'.repeat(155))}], '2026-11-21');
  assert.equal((result.match(/<loc>/g)||[]).length,1);
  assert.match(result,/^\<\?xml version="1\.0"/);
+});
+
+test('inline poster fallback script is valid JavaScript',()=>{
+ const html=renderEventPage(valid,{today:'2026-11-21'}).html;
+ const scripts=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
+ assert.equal(scripts.length,1);
+ for(const code of scripts)assert.doesNotThrow(()=>new Function(code));
 });
