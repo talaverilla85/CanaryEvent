@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { SEO_PAGES, pageForKey, upcomingEvents, renderLanding, normalizePlace } from '../lib/seo-pages.js';
+import { SEO_PAGES, pageForKey, upcomingEvents, renderLanding, normalizePlace, officialPosterUrl } from '../lib/seo-pages.js';
 
 const sample = [
   {id: 11, title:'Teatro de invierno', start:'2026-11-24T19:00:00', municipality:'Agüimes', venue:'Teatro Cruce de Culturas', category:'cultura', source_url:'https://example.org/11'},
@@ -73,4 +73,28 @@ test('unsafe titles and URLs cannot inject markup or script navigation', () => {
   assert.doesNotMatch(html, /<img src=x onerror/);
   assert.match(html, /&lt;img src=x/);
   assert.doesNotMatch(html, /href="javascript:/);
+});
+
+test('official poster status and trusted host are respected', () => {
+  const official = { image_status:'official_remote', image_url:'https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aabf7f0013a6268e079c63c' };
+  assert.equal(officialPosterUrl(official), official.image_url);
+  assert.equal(officialPosterUrl({...official, image_status:'verified'}), '');
+  assert.equal(officialPosterUrl({...official, image_url:'https://evil.example/image.png'}), '');
+  assert.equal(officialPosterUrl({...official, image_url:'javascript:alert(1)'}), '');
+});
+
+test('brand design and posters render; editorial follows the event cards', () => {
+  const p = pageForKey('aguimes');
+  const source='https://www.eventosgrancanaria.com/controlpanel/files/gridfs/6aabf7f0013a6268e079c63c';
+  const event={id:19, title:'Teatro local', start:'2026-11-26', municipality:'Agüimes', venue:'Teatro', image_status:'official_remote', image_url:source};
+  const html=renderLanding(p,[event, {...event,id:20}, {...event,id:21}],{today:'2026-11-21'}).html;
+  assert.match(html, /brand\/dparranda-logo\.svg/);
+  assert.match(html, /brand\/seo-local\.css/);
+  assert.match(html, /data-poster-source="https:\/\/www\.eventosgrancanaria\.com/);
+  assert.match(html, /posters\/manifest\.js/);
+  assert.ok(html.indexOf('<div class="cards">') < html.indexOf('<section class="editorial"'));
+  assert.ok(html.indexOf('<section class="editorial"') < html.indexOf('</main>'));
+  const scripts=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
+  assert.ok(scripts.length > 0);
+  for(const code of scripts) assert.doesNotThrow(()=>new Function(code));
 });
