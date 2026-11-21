@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-20T23:16:20+00:00",
-  "not_published": 37,
+  "updated_at": "2026-11-21T13:41:45+00:00",
+  "not_published": 33,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -184,18 +184,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 919,
-      "title": "Aprende diseño e impresión en 3 D",
-      "start": "2026-11-10",
-      "end": "2026-11-20",
-      "municipality": "Santa Brígida",
-      "venue": "Biblioteca Municipal",
-      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "source_url": "https://eventos.santabrigida.es/eventos/aprende-diseno-e-impresion-en-3-d/",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 968,
       "title": "CAMPAÑA DE REYES - UN JUGUETE, UNA SONRISA, UNA ILUSIÓN",
       "start": "2026-11-16",
@@ -204,54 +192,6 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Ayuntamiento de Arucas · agenda municipal",
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qUT0=",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 283,
-      "title": "Antígona Negra en la Universidad París 8.",
-      "start": "2026-11-20",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0012/antigona-negra-en-la-universidad-paris-8",
-      "organizer_url": "https://www.casafrica.es/es/evento/antigona-negra-en-la-universidad-paris-8",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 284,
-      "title": "Antígona Negra en la Universidad París 8.",
-      "start": "2026-11-20",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0013/antigona-negra-en-la-universidad-paris-8",
-      "organizer_url": "https://www.casafrica.es/es/evento/antigona-negra-en-la-universidad-paris-8",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 288,
-      "title": "Africana Lab en Madrid: «Un puente, un amuleto, una mesa compartida»",
-      "start": "2026-11-20",
-      "end": null,
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0017/africana-lab-en-madrid-un-puente-un-amuleto-una-mesa-compartida",
-      "organizer_url": "https://www.casafrica.es/es/evento/africana-lab-en-madrid-un-puente-un-amuleto-una-mesa-compartida",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 986,
-      "title": "LA BIBLIOTECA PRESENTA",
-      "start": "2026-11-20",
-      "end": null,
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qYz0=",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
@@ -385,6 +325,18 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261128-0003/i-congreso-internacional-de-formacion-senior",
       "organizer_url": "https://www.ulpgc.es/agenda/2026/11/26/i-congreso-internacional-formacion-senior",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 1000,
+      "title": "‘Libres’, concierto de Mujeres con alma con motivo del 25N",
+      "start": "2026-11-28T19:00:00",
+      "end": "2026-11-28T20:00:00",
+      "municipality": "Santa Brígida",
+      "venue": "CENTRO CULTURAL",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/libres-concierto-de-mujeres-con-alma-con-motivo-del-25n/",
+      "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {

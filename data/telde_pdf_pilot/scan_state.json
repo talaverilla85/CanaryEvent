@@ -31,10 +31,14 @@
     "sha": "e2d30f587c32e3d4846943ff14e69428f8f3f068ed5641e365711d0687d63898",
     "done_pages": [
       0,
-      1
+      1,
+      2,
+      3
     ],
     "complete": false,
-    "checked_at": "2026-11-07"
+    "checked_at": "2026-11-21",
+    "defer_until": "2026-11-28",
+    "defer_reason": "only_old_acts_seen_so_far_unread_pages_remain"
   },
   "ba2c79d07839ce40": {
     "sha": "9c649c6cb7e63fd1530dbe48c0426d2699c69c15db8e569976ec59121a389a66",
@@ -118,9 +122,12 @@
       8,
       9,
       10,
-      11
+      11,
+      12,
+      13,
+      14
     ],
     "complete": false,
-    "checked_at": "2026-11-07"
+    "checked_at": "2026-11-21"
   }
 }

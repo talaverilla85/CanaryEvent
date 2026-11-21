@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-20T23:16:20+00:00",
+  "updated_at": "2026-11-21T13:41:45+00:00",
   "note": "Fichas pendientes de desglose o sin un evento identificable; no publicarlas como planes.",
   "pending_programs": [
     {
@@ -64,14 +64,6 @@
     }
   ],
   "source_venue_conflicts": [
-    {
-      "id": 282,
-      "title": "ESCAPE ROOM de Joel Joan y Hèctor Claramunt",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261120-0008/escape-room-de-joel-joan-y-hector-claramunt",
-      "claimed_venue": "Sala Insular de Teatro",
-      "verified_venue": "Teatro Cuyás",
-      "reason": "conflicting_sister_theatre"
-    },
     {
       "id": 324,
       "title": "EL ENTUSIASMO de Pablo Remón",

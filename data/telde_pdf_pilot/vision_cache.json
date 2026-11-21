@@ -3969,5 +3969,410 @@
       "total_tokens": 4181
     },
     "measured_cost_usd": 0.0007889
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/13/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Concurso de Hípica",
+          "date": "2026-11-21",
+          "time": "09:00 h",
+          "venue": "La Manigua",
+          "evidence": "21 NOV · SÁBADO; 09:00 h Concurso de Hípica.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Feria del coleccionismo",
+          "date": "2026-11-21",
+          "time": "10:00 a 18:00 h",
+          "venue": "Parque Franchy Roca",
+          "evidence": "21 NOV · SÁBADO; 10:00 a 18:00 h Feria del coleccionismo.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "III Feria del Motor Ciudad de Telde 2026",
+          "date": "2026-11-21",
+          "time": "10:00 h",
+          "venue": "Zona Comercial La Mareta",
+          "evidence": "21 NOV · SÁBADO; 10:00 h III Feria del Motor Ciudad de Telde 2026.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Exhibición de Taekwondo San Juan de Dios",
+          "date": "2026-11-21",
+          "time": "17:00 a 19:00 h",
+          "venue": "Polideportivo Juan Carlos Hernández",
+          "evidence": "21 NOV · SÁBADO; 17:00 a 19:00 h Exhibición de Taekwondo San Juan de Dios.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "IV Memorial Arturo García Quintana",
+          "date": "2026-11-21",
+          "time": "19:30 h",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "21 NOV · SÁBADO; 19:30 h IV Memorial Arturo García Quintana.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Actuación musical de Son de la Isla",
+          "date": "2026-11-21",
+          "time": "00:00h",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "21 NOV · SÁBADO; 00:00h Actuación musical de Son de la Isla.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Concurso de Hípica",
+          "date": "2026-11-22",
+          "time": "09:00 h",
+          "venue": "La Manigua",
+          "evidence": "22 NOV · DOMINGO; 09:00 h Concurso de Hípica.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Torneo de Fútbol San Gregorio Cup",
+          "date": "2026-11-22",
+          "time": "08:45 a 14:00 h",
+          "venue": "El Hornillo",
+          "evidence": "22 NOV · DOMINGO; 08:45 a 14:00 h Torneo de Fútbol San Gregorio Cup.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "XXX Memorial de Lucha Canaria Juan León",
+          "date": "2026-11-22",
+          "time": "12:00 h",
+          "venue": "Terrero de Lucha Las Huesas",
+          "evidence": "22 NOV · DOMINGO; 12:00 h XXX Memorial de Lucha Canaria Juan León.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "XXXIV Carrera Popular Paco Artiles",
+          "date": "2026-11-28",
+          "time": "09:00 h",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "28 NOV · SÁBADO; 09:00 h XXXIV Carrera Popular Paco Artiles.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Entrega de trofeos de la XXXIV Carrera Popular Paco Artiles",
+          "date": "2026-11-28",
+          "time": "13:00 h",
+          "venue": "Plaza de San Gregorio",
+          "evidence": "28 NOV · SÁBADO; 13:00 h Entrega de trofeos de la XXXIV Carrera Popular Paco Artiles.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3386,
+      "input_tokens_details": {
+        "cache_write_tokens": 3383,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 3383
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 1402,
+      "output_tokens_details": {
+        "reasoning_tokens": 494
+      },
+      "total_tokens": 4788
+    },
+    "measured_cost_usd": 0.0010396
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/14/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3386,
+      "input_tokens_details": {
+        "cache_write_tokens": 3383,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 3383
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 57,
+      "output_tokens_details": {
+        "reasoning_tokens": 35
+      },
+      "total_tokens": 3443
+    },
+    "measured_cost_usd": 0.0003671
+  },
+  "e2d30f587c32e3d4846943ff14e69428f8f3f068ed5641e365711d0687d63898/2/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Pregón a cargo de Los Hermanos Navarro",
+          "date": "2026-10-03",
+          "time": "19:30",
+          "venue": null,
+          "evidence": "SÁBADO 3 DE OCTUBRE — 19:30h - Pregón a cargo de Los Hermanos Navarro",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Noche de Tradiciones Pepito el Tocador. Baile de Taifas con la actuación de los grupos Yemayá, Achimencey y Los Mauricios",
+          "date": "2026-10-03",
+          "time": "21:00",
+          "venue": null,
+          "evidence": "SÁBADO 3 DE OCTUBRE — 21:00h - Noche de Tradiciones Pepito el Tocador / Baile de Taifas con la actuación de los grupos Yemayá, Achimencey y Los Mauricios",
+          "admission_type": "paid",
+          "admission_details": "Reserva anticipada 10€/mesa.",
+          "type": "musica"
+        },
+        {
+          "title": "Excursión de Motos",
+          "date": "2026-10-04",
+          "time": "09:00",
+          "venue": null,
+          "evidence": "DOMINGO 4 DE OCTUBRE — 09:00h - Excursión de Motos",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "deporte"
+        },
+        {
+          "title": "Fiesta Infantil con Espumita y Castillos Hinchables. Convivencia familiar",
+          "date": "2026-10-04",
+          "time": "12:30",
+          "venue": null,
+          "evidence": "DOMINGO 4 DE OCTUBRE — 12:30h - Fiesta Infantil con Espumita y Castillos Hinchables. Convivencia familiar",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "familia"
+        },
+        {
+          "title": "Concurso “La Arrancadilla”",
+          "date": "2026-10-04",
+          "time": "16:30",
+          "venue": null,
+          "evidence": "DOMINGO 4 DE OCTUBRE — 16:30h - Concurso “La Arrancadilla”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Noche de Humor. Actuaciones de Kike Pérez y Omayra Cazorla",
+          "date": "2026-10-09",
+          "time": "21:00",
+          "venue": null,
+          "evidence": "VIERNES 9 DE OCTUBRE — 21:00h - Noche de Humor / Actuaciones de Kike Pérez y Omayra Cazorla",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Escala en Hifi del barrio",
+          "date": "2026-10-10",
+          "time": "21:00",
+          "venue": null,
+          "evidence": "SÁBADO 10 DE OCTUBRE — 21:00h - Escala en Hifi del barrio",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Romería Ofrenda",
+          "date": "2026-10-11",
+          "time": "19:00",
+          "venue": "Entrada de Tecén (salida)",
+          "evidence": "DOMINGO 11 DE OCTUBRE — 19:00h - Romería Ofrenda / Salida desde la entrada de Tecén",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Verbena a cargo de los grupos Los Favoritos y Grupo Arena",
+          "date": "2026-10-11",
+          "time": "23:00",
+          "venue": null,
+          "evidence": "DOMINGO 11 DE OCTUBRE — 23:00h - Verbena a cargo de los grupos Los Favoritos y Grupo Arena",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3393,
+      "input_tokens_details": {
+        "cache_write_tokens": 3390,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 3390
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 1208,
+      "output_tokens_details": {
+        "reasoning_tokens": 391
+      },
+      "total_tokens": 4601
+    },
+    "measured_cost_usd": 0.0009433
+  },
+  "e2d30f587c32e3d4846943ff14e69428f8f3f068ed5641e365711d0687d63898/3/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Apertura de la Feria de Ganado Local",
+          "date": "2026-10-12",
+          "time": "09:00",
+          "venue": null,
+          "evidence": "LUNES 12 DE OCTUBRE — 09:00h Apertura de la Feria de Ganado Local",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Santa Misa",
+          "date": "2026-10-12",
+          "time": "12:00",
+          "venue": null,
+          "evidence": "LUNES 12 DE OCTUBRE — 12:00h Santa Misa",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Exhibición de levantamiento de arado a cargo de Juanfra, hijo de Pepe el del arado. Pase de Feria de Ganado local y Procesión",
+          "date": "2026-10-12",
+          "time": "13:00",
+          "venue": null,
+          "evidence": "LUNES 12 DE OCTUBRE — 13:00h Exhibición de levantamiento de arado… Pase de Feria de Ganado local y Procesión",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Paella popular a cargo de Víctor Alejandro",
+          "date": "2026-10-12",
+          "time": "14:00",
+          "venue": null,
+          "evidence": "LUNES 12 DE OCTUBRE — 14:00h Paella popular a cargo de Víctor Alejandro (1€ por plato)",
+          "admission_type": "paid",
+          "admission_details": "1€ por plato",
+          "type": "gastronomia"
+        },
+        {
+          "title": "Sangría a cargo de los Hermanos Benítez",
+          "date": "2026-10-12",
+          "time": "14:00",
+          "venue": null,
+          "evidence": "LUNES 12 DE OCTUBRE — 14:00h … Sangría a cargo de los Hermanos Benítez",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "Verbena a cargo del grupo N-Klave",
+          "date": "2026-10-12",
+          "time": "15:30",
+          "venue": null,
+          "evidence": "LUNES 12 DE OCTUBRE — 15:30h Verbena a cargo del grupo N-Klave",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Gala de MISS Telde",
+          "date": "2026-10-16",
+          "time": "21:00",
+          "venue": null,
+          "evidence": "VIERNES 16 DE OCTUBRE — 21:00h Gala de MISS Telde",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Concurso “Caca de la Vaca”",
+          "date": "2026-10-17",
+          "time": "12:00",
+          "venue": null,
+          "evidence": "SÁBADO 17 DE OCTUBRE — 12:00h Concurso “Caca de la Vaca”",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "otros"
+        },
+        {
+          "title": "Gala Drag Queen",
+          "date": "2026-10-17",
+          "time": "21:00",
+          "venue": null,
+          "evidence": "SÁBADO 17 DE OCTUBRE — 21:00h Gala Drag Queen",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "cultura"
+        },
+        {
+          "title": "Santa Misa por los Difuntos del Barrio",
+          "date": "2026-10-24",
+          "time": "18:00",
+          "venue": null,
+          "evidence": "SÁBADO 24 DE OCTUBRE — 18:00h Santa Misa por los Difuntos del Barrio",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "religioso"
+        },
+        {
+          "title": "Excursión fin de fiestas Área Recreativa Huertas del Rey, Gáldar. Parada en Mercado de Guía",
+          "date": "2026-10-25",
+          "time": "08:30",
+          "venue": null,
+          "evidence": "DOMINGO 25 DE OCTUBRE — 08:30h Excursión fin de fiestas Área Recreativa Huertas del Rey, Gáldar. Parada en Mercado de Guía — Reserva de plaza 8€/ persona",
+          "admission_type": "paid",
+          "admission_details": "Reserva de plaza 8€/ persona",
+          "type": "familia"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3393,
+      "input_tokens_details": {
+        "cache_write_tokens": 3390,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 3390
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 1517,
+      "output_tokens_details": {
+        "reasoning_tokens": 583
+      },
+      "total_tokens": 4910
+    },
+    "measured_cost_usd": 0.0010978
   }
 }
