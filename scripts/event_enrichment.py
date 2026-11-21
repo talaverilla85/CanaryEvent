@@ -140,7 +140,7 @@ def structured_evidence(event, soup):
             if (not meaningful_description(event.get("details")) and
                 meaningful_description(description)):
                 # A concise original description, never a full scraped article.
-                changes["details"] = description[:400].rsplit(" ", 1)[0]
+                changes["details"] = description[:260].rsplit(" ", 1)[0]
         # A date-only listing can safely inherit the verified published clock.
         start = str(schema.get("startDate") or "")
         if "hora" in gaps(event) and ISO_TIME.match(start):
@@ -164,6 +164,15 @@ def init(conn):
       missing_after TEXT NOT NULL,
       verified_changes TEXT NOT NULL DEFAULT '{}',
       outcome TEXT NOT NULL DEFAULT ''
+    )""")
+    conn.execute("""CREATE TABLE IF NOT EXISTS event_enrichment_proofs (
+      event_id INTEGER NOT NULL,
+      field_name TEXT NOT NULL,
+      verified_value TEXT NOT NULL,
+      original_source TEXT NOT NULL,
+      evidence_url TEXT NOT NULL,
+      verified_at TEXT NOT NULL,
+      PRIMARY KEY(event_id,field_name)
     )""")
 
 def load_radar_leads(path):
@@ -196,6 +205,10 @@ def enrich(conn, now, today, *, fetch_html, leads=(), max_requests=8, cooldown_h
     html_cache = {}
     inspected = changed = requests = skipped = 0
     outcomes = {"verified": 0, "no_matching_evidence": 0, "source_failed": 0, "no_eligible_source": 0}
+    gap_counts = {field: 0 for field in ("hora", "recinto", "descripcion", "cartel", "precio")}
+    for row in rows:
+        for field in gaps(row):
+            gap_counts[field] += 1
     for e in rows:
         before = gaps(e)
         if not any(field in before for field in ("descripcion", "recinto", "hora")):
@@ -246,6 +259,15 @@ def enrich(conn, now, today, *, fetch_html, leads=(), max_requests=8, cooldown_h
                     raise ValueError("Unexpected enrichment field")
                 conn.execute("UPDATE events SET "+field+"=?,updated_at=? WHERE id=?",
                              (value, now_iso, e["id"]))
+                conn.execute("""INSERT INTO event_enrichment_proofs
+                    (event_id,field_name,verified_value,original_source,evidence_url,verified_at)
+                    VALUES(?,?,?,?,?,?)
+                    ON CONFLICT(event_id,field_name) DO UPDATE SET
+                      verified_value=excluded.verified_value,
+                      original_source=excluded.original_source,
+                      evidence_url=excluded.evidence_url,
+                      verified_at=excluded.verified_at""",
+                    (e["id"], field, str(value), str(e.get("source_url") or ""), proof, now_iso))
                 e[field] = value
             changed += 1
         outcomes[outcome] += 1
@@ -267,5 +289,5 @@ def enrich(conn, now, today, *, fetch_html, leads=(), max_requests=8, cooldown_h
     return {
         "active_events": len(rows), "checked": inspected, "verified": changed,
         "requests": requests, "cooldown_skipped": skipped,
-        "outcomes": outcomes
+        "missing_by_field": gap_counts, "outcomes": outcomes
     }
