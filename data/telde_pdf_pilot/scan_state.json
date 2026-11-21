@@ -48,12 +48,11 @@
     "done_pages": [
       0,
       1,
-      2
+      2,
+      3
     ],
-    "complete": false,
-    "checked_at": "2026-10-27",
-    "defer_until": "2026-11-03",
-    "defer_reason": "only_old_acts_seen_so_far_unread_pages_remain"
+    "complete": true,
+    "checked_at": "2026-11-21"
   },
   "85dc87d2aa51309a": {
     "sha": "0f3a936c3b4b736e6e7e2a6afa873e0b7b0fb8af81bef873a2cea01df5b096dd",
@@ -63,12 +62,11 @@
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
-    "complete": false,
-    "checked_at": "2026-11-05",
-    "defer_until": "2026-11-12",
-    "defer_reason": "only_old_acts_seen_so_far_unread_pages_remain"
+    "complete": true,
+    "checked_at": "2026-11-21"
   },
   "e354fa5e1c974284": {
     "sha": "ecd40a83e9f845b2bda3522e9b0e87d20cf8047b3d75224d456c5b19b16f25c9",

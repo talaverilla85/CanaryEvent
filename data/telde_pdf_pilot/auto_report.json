@@ -1,20 +1,40 @@
 {
-  "checked_at": "2026-11-21T21:35:50.089706+00:00",
+  "checked_at": "2026-11-21T22:22:42.620250+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
-  "api_calls": 4,
-  "usage_usd": 0.0021455,
+  "api_calls": 2,
+  "usage_usd": 0.0005791,
   "docs": [
     {
-      "name": "Fiestas en honor a San Gregorio Taumaturgo",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/11/sangregorio26.pdf",
-      "sha256": "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df",
-      "pages": 16,
-      "bytes": 2979368,
+      "name": "Fiestas patronales en honor a San Venancio en el barrio de Casas Nuevas",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/casasnuevas26.pdf",
+      "sha256": "9c649c6cb7e63fd1530dbe48c0426d2699c69c15db8e569976ec59121a389a66",
+      "pages": 4,
+      "bytes": 2054952,
       "inspected": [
         {
-          "page": 16,
+          "page": 4,
+          "native_text_chars": 0,
+          "route": "ai_vision",
+          "render_size": [
+            923,
+            1310
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 0
+        }
+      ]
+    },
+    {
+      "name": "Fiestas en honor a San Francisco de Asís, Nuestra Señora del Rosario y San Isidro Labrador en el barrio de Cazadores",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/cazadores26.pdf",
+      "sha256": "0f3a936c3b4b736e6e7e2a6afa873e0b7b0fb8af81bef873a2cea01df5b096dd",
+      "pages": 7,
+      "bytes": 1696592,
+      "inspected": [
+        {
+          "page": 7,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
@@ -25,57 +45,18 @@
           "candidates_pending_review": 0
         }
       ]
-    },
-    {
-      "name": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Caserones Altos",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/10/caseronesaltos26.pdf",
-      "sha256": "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0",
-      "pages": 15,
-      "bytes": 2981599,
-      "inspected": [
-        {
-          "page": 12,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 4,
-          "verification": "expired_acts_no_second_api_pass"
-        },
-        {
-          "page": 13,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 3,
-          "verification": "expired_acts_no_second_api_pass"
-        },
-        {
-          "page": 14,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 2,
-          "verification": "expired_acts_no_second_api_pass"
-        }
-      ]
     }
   ],
-  "deferred_docs": [],
+  "deferred_docs": [
+    {
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/10/caseronesaltos26.pdf",
+      "reason": "past_only_cooldown",
+      "resume_on": "2026-11-28"
+    }
+  ],
   "pending_review_count": 1,
   "auto_verified_count": 1,
   "archived_count": 225,
-  "archived_this_run": 9,
+  "archived_this_run": 0,
   "notes": "Future events require independent date, time and venue verification. Expired records move to the historic archive; incomplete past-only PDFs are temporarily deferred."
 }

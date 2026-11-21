@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-21T21:36:41+00:00",
+  "checked_at": "2026-11-21T22:23:38+00:00",
   "quality_counts": {
     "publicados": 347,
     "recintos_sin_verificar": 33,
     "programas_y_fichas_por_revisar": 7,
     "precios_sin_confirmar": 226,
     "distancia_a_centro_municipal": 213,
-    "fuentes_con_error": 3,
+    "fuentes_con_error": 4,
     "duplicados_potenciales": 0
   },
   "sources": [
@@ -92,13 +92,13 @@
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 8,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 8,
       "distancia_al_centro_municipal": 8,
-      "fichas_leidas_en_esta_ejecucion": 12,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Sala Insular de Teatro · agenda oficial",
@@ -407,7 +407,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 2,
+      "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
     {
@@ -462,6 +462,10 @@
     }
   ],
   "reported_errors": [
+    {
+      "source": "Teatro Cuyás · agenda oficial",
+      "error": "RuntimeError"
+    },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
       "error": "Galdar calendar returned no future structured events"
