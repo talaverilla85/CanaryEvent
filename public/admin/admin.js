@@ -716,6 +716,10 @@ async function loadAds() {
  try{const response=await api('ads');ads=response.ads||[];renderAds();renderAdOperations()}
  catch(e){$('adsList').innerHTML='<div class="empty">'+escape(e.message)+'</div>'}
 }
+function formatCampaignDate(iso){
+ const key=String(iso||'').slice(0,10);
+ return /^\d{4}-\d{2}-\d{2}$/.test(key)?key.slice(8,10)+'/'+key.slice(5,7)+'/'+key.slice(0,4):key;
+}
 function renderAds(){
  const visibleAds=ads.filter(a=>!isArchived(a.kind==='house'?'house':'published',a.id));
  if(!visibleAds.length){$('adsList').innerHTML='<div class="empty">Todavía no hay campañas publicitarias.</div>';return}
@@ -724,8 +728,14 @@ function renderAds(){
     a.enquiry_id?'/api/admin?op=leadimage&id='+Number(a.enquiry_id):a.image;
   const image=/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(preview||'')||/^\/api\/admin\?op=(leadimage&id=[0-9]+|adimage&id=[a-zA-Z0-9_-]+)$/.test(preview)?
     '<img src="'+escape(preview)+'" alt="'+escape(a.image_alt||'Anuncio')+'" loading="lazy">':'Imagen pendiente';
-  const dates=a.permanent?'Permanente':(a.starts_at?String(a.starts_at).slice(0,10):'Desde ahora')+' – '+(a.ends_at?String(a.ends_at).slice(0,10):'Sin final')+' · '+daysLeft(a.ends_at);
-  return '<article class="ad-card"><div class="ad-media">'+image+'</div><div class="ad-content"><span class="pill '+(a.enabled?'':'off')+'">'+(a.enabled?'Activa':'Pausada')+'</span>'+
+  const started=a.starts_at?String(a.starts_at).slice(0,10):'',ended=a.ends_at?String(a.ends_at).slice(0,10):'';
+ const dates=a.permanent?'Sin caducidad · Edita y establece una duración':
+  'Inicio: '+(started?formatCampaignDate(started):'Pendiente')+' · Caduca: '+(ended?formatCampaignDate(ended):'Sin fecha')+
+  ' · '+daysLeft(ended);
+ const today=opsToday();
+ const live=a.enabled&&(!started||started<=today)&&(!ended||ended>=today);
+ const displayStatus=ended&&ended<today?'Finalizada':!a.enabled?'Pausada':started&&started>today?'Programada':live?'Activa':'Pausada';
+  return '<article class="ad-card"><div class="ad-media">'+image+'</div><div class="ad-content"><span class="pill '+(live?'':'off')+'">'+escape(displayStatus)+'</span>'+
    '<h3>'+escape(a.headline)+'</h3><p>'+escape(a.description)+'</p><small class="muted">'+escape(a.advertiser)+' · '+escape(dates)+'</small>'+
    '<div class="ad-footer"><small class="muted">'+(Array.isArray(a.municipalities)&&a.municipalities.length?escape(a.municipalities.join(', ')):'Toda Gran Canaria')+'</small>'+
    '<button class="ghost mini" data-ad="'+escape(a.id)+'" type="button">Editar</button></div></div></article>';
