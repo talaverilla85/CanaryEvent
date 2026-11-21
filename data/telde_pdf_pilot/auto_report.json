@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-11-21T13:40:15.868481+00:00",
+  "checked_at": "2026-11-21T21:35:50.089706+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
   "api_calls": 4,
-  "usage_usd": 0.0034478,
+  "usage_usd": 0.0021455,
   "docs": [
     {
       "name": "Fiestas en honor a San Gregorio Taumaturgo",
@@ -14,26 +14,7 @@
       "bytes": 2979368,
       "inspected": [
         {
-          "page": 13,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "status": "cached",
-          "candidates_pending_review": 3,
-          "verification": "expired_acts_no_second_api_pass"
-        },
-        {
-          "page": 14,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 0
-        },
-        {
-          "page": 15,
+          "page": 16,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
@@ -46,14 +27,14 @@
       ]
     },
     {
-      "name": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Valle los Nueve Alto",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/vallelosnuevealto26.pdf",
-      "sha256": "e2d30f587c32e3d4846943ff14e69428f8f3f068ed5641e365711d0687d63898",
-      "pages": 5,
-      "bytes": 1062090,
+      "name": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Caserones Altos",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/10/caseronesaltos26.pdf",
+      "sha256": "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0",
+      "pages": 15,
+      "bytes": 2981599,
       "inspected": [
         {
-          "page": 3,
+          "page": 12,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
@@ -61,11 +42,11 @@
             1853
           ],
           "status": "new_api_result",
-          "candidates_pending_review": 9,
+          "candidates_pending_review": 4,
           "verification": "expired_acts_no_second_api_pass"
         },
         {
-          "page": 4,
+          "page": 13,
           "native_text_chars": 0,
           "route": "ai_vision",
           "render_size": [
@@ -73,14 +54,20 @@
             1853
           ],
           "status": "new_api_result",
-          "candidates_pending_review": 11,
+          "candidates_pending_review": 3,
           "verification": "expired_acts_no_second_api_pass"
         },
         {
-          "page": 5,
+          "page": 14,
           "native_text_chars": 0,
           "route": "ai_vision",
-          "status": "skipped_api_budget"
+          "render_size": [
+            1309,
+            1853
+          ],
+          "status": "new_api_result",
+          "candidates_pending_review": 2,
+          "verification": "expired_acts_no_second_api_pass"
         }
       ]
     }
@@ -88,7 +75,7 @@
   "deferred_docs": [],
   "pending_review_count": 1,
   "auto_verified_count": 1,
-  "archived_count": 216,
-  "archived_this_run": 22,
+  "archived_count": 225,
+  "archived_this_run": 9,
   "notes": "Future events require independent date, time and venue verification. Expired records move to the historic archive; incomplete past-only PDFs are temporarily deferred."
 }

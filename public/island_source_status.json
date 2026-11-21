@@ -117,7 +117,7 @@
       ],
       "status": "activo",
       "adapter": "island_eventon_agendas",
-      "found_last_run": 2,
+      "found_last_run": 1,
       "last_error": "",
       "published_cards": 2,
       "has_live_connector": true

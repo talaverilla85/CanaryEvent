@@ -4374,5 +4374,190 @@
       "total_tokens": 4910
     },
     "measured_cost_usd": 0.0010978
+  },
+  "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df/15/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3386,
+      "input_tokens_details": {
+        "cache_write_tokens": 3383,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 3383
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 38,
+      "output_tokens_details": {
+        "reasoning_tokens": 16
+      },
+      "total_tokens": 3424
+    },
+    "measured_cost_usd": 0.0003576
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/11/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Scala en Hifi de los niños y mayores del barrio amenizada por Dj Sercy",
+          "date": "2026-10-15",
+          "time": "19:00",
+          "venue": "Plaza de Caserones",
+          "evidence": "15 de octubre. 19:00 Scala en Hifi de los niños y mayores del barrio",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Noche de vinos y tapas «tapeando en Caserones»",
+          "date": "2026-10-16",
+          "time": "20:00",
+          "venue": "Plaza de Caserones",
+          "evidence": "16 de octubre. 20:00 | Noche de vinos y tapas «tapeando en Caserones»",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "III. Caca de La Vaca de Caserones",
+          "date": "2026-10-17",
+          "time": "12:00",
+          "venue": "Cancha de fútbol",
+          "evidence": "17 de octubre. 12:00 III. Caca de La Vaca de Caserones",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Verbena a cargo de Nueva Imagen y su Bandurria",
+          "date": "2026-10-17",
+          "time": "22:30",
+          "venue": "Plaza de Caserones",
+          "evidence": "17 de octubre. 22:30 Verbena a cargo de Nueva Imagen y su Bandurria",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3393,
+      "input_tokens_details": {
+        "cache_write_tokens": 3390,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 3390
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 698,
+      "output_tokens_details": {
+        "reasoning_tokens": 344
+      },
+      "total_tokens": 4091
+    },
+    "measured_cost_usd": 0.0006883
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/12/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Bajada del Pitón acompañados por la Banda Isleña",
+          "date": "2026-10-18",
+          "time": "12:00",
+          "venue": "Salida de los Pisos",
+          "evidence": "18 de octubre. 12:00 Bajada del Pitón acompañados por la Banda Isleña · Salida de los Pisos.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "fiesta"
+        },
+        {
+          "title": "Verbena del solajero a cargo de Paco Guedes y Pepe Benavente",
+          "date": "2026-10-18",
+          "time": "13:30",
+          "venue": "Plaza de Caserones",
+          "evidence": "18 de octubre. 13:30 Verbena del solajero a cargo de Paco Guedes y Pepe Benavente. · Plaza de Caserones",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "musica"
+        },
+        {
+          "title": "Paella popular",
+          "date": "2026-10-18",
+          "time": "14:00",
+          "venue": "Plaza de Caserones",
+          "evidence": "18 de octubre. 14:00 Paella popular. Donativo 3 euros. · Plaza de Caserones.",
+          "admission_type": "donation",
+          "admission_details": "Donativo 3 euros.",
+          "type": "gastronomia"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3393,
+      "input_tokens_details": {
+        "cache_write_tokens": 3390,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 3390
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 470,
+      "output_tokens_details": {
+        "reasoning_tokens": 183
+      },
+      "total_tokens": 3863
+    },
+    "measured_cost_usd": 0.0005743
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/13/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [
+        {
+          "title": "Sancocho popular en la plaza",
+          "date": "2026-10-24",
+          "time": "13:00",
+          "venue": "La plaza",
+          "evidence": "24 de Octubre. 13:00 Sancocho popular en la plaza.",
+          "admission_type": "unknown",
+          "admission_details": null,
+          "type": "gastronomia"
+        },
+        {
+          "title": "Excursión fin de fiestas a Tenerife",
+          "date": "2026-10-25",
+          "time": null,
+          "venue": "Salida desde Las Palmas de G.C.",
+          "evidence": "25 de Octubre. Excursión fin de fiestas a Tenerife. 25 DE OCTUBRE DE 2026.",
+          "admission_type": "paid",
+          "admission_details": "PRECIO TOTAL POR PERSONA 70€",
+          "type": "otros"
+        }
+      ],
+      "page_is_program": true
+    },
+    "usage": {
+      "input_tokens": 3393,
+      "input_tokens_details": {
+        "cache_write_tokens": 3390,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 3390
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 372,
+      "output_tokens_details": {
+        "reasoning_tokens": 197
+      },
+      "total_tokens": 3765
+    },
+    "measured_cost_usd": 0.0005253
   }
 }

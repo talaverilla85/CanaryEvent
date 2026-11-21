@@ -20,11 +20,14 @@
       7,
       8,
       9,
-      10
+      10,
+      11,
+      12,
+      13
     ],
     "complete": false,
-    "checked_at": "2026-10-27",
-    "defer_until": "2026-11-03",
+    "checked_at": "2026-11-21",
+    "defer_until": "2026-11-28",
     "defer_reason": "only_old_acts_seen_so_far_unread_pages_remain"
   },
   "f02a475369fa59dd": {
@@ -125,9 +128,10 @@
       11,
       12,
       13,
-      14
+      14,
+      15
     ],
-    "complete": false,
+    "complete": true,
     "checked_at": "2026-11-21"
   }
 }
