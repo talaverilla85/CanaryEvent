@@ -8,7 +8,7 @@ class AriMarClickTracking(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
   cls.home=(ROOT/'public/index.html').read_text(encoding='utf-8-sig')
-  cls.endpoint=(ROOT/'api/ad-click.js').read_text(encoding='utf-8')
+  cls.endpoint=(ROOT/'api/ads.js').read_text(encoding='utf-8')
   cls.admin=(ROOT/'api/admin.js').read_text(encoding='utf-8')
   cls.admin_ui=(ROOT/'public/admin/admin.js').read_text(encoding='utf-8')
   cls.admin_html=(ROOT/'public/admin/index.html').read_text(encoding='utf-8')
@@ -24,12 +24,12 @@ class AriMarClickTracking(unittest.TestCase):
 
  def test_click_is_sent_without_delaying_navigation(self):
   self.assertIn("e.target.closest('[data-sponsored-click]')",self.home)
-  self.assertIn("navigator.sendBeacon('/api/ad-click',body)",self.home)
+  self.assertIn("navigator.sendBeacon('/api/ads?op=click',body)",self.home)
   self.assertIn("keepalive:true",self.home)
-  self.assertNotIn("window.location='/api/ad-click'",self.home)
+  self.assertNotIn("window.location='/api/ads?op=click'",self.home)
 
  def test_counter_only_records_valid_live_arimar_clicks(self):
-  self.assertIn("if(req.method!=='POST')",self.endpoint)
+  self.assertIn("if(req.method==='POST'&&req.query?.op==='click')",self.endpoint)
   self.assertIn("if(!sameOrigin(req))",self.endpoint)
   self.assertIn("if(req.body?.id!=='arimar-fundador')",self.endpoint)
   self.assertIn("FROM ad_campaigns",self.endpoint)
