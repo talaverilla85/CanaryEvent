@@ -1,0 +1,32 @@
+{
+  "id": "/admin/",
+  "name": "D’Parranda · Administración",
+  "short_name": "DParranda Admin",
+  "description": "Panel privado para gestionar eventos y publicidad de D’Parranda.",
+  "start_url": "/admin/",
+  "scope": "/admin/",
+  "display": "standalone",
+  "background_color": "#F3F7FA",
+  "theme_color": "#0B253A",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "/admin/icons/admin-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/admin/icons/admin-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/admin/admin-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

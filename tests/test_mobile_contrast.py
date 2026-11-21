@@ -43,7 +43,7 @@ class MobileContrastTests(unittest.TestCase):
 
     def test_updated_stylesheet_is_requested(self):
         self.assertIn('id="dparranda-brand-styles"',HTML)
-        self.assertIn('meta name="robots" content="noindex,nofollow"',HTML)
+        self.assertIn('meta name="robots" content="index,follow,max-image-preview:large"',HTML)
 
 if __name__=="__main__":
     unittest.main()

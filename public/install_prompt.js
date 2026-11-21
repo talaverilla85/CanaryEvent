@@ -13,8 +13,15 @@
  const steps=document.getElementById('dpInstallGuideSteps');
  const description=document.getElementById('dpInstallGuideDescription');
  if(!dock||!action||!dismiss||!overlay||!close||!done||!steps||!description)return;
- // Do not use a persisted multi-day suppression: a dismissed or removed PWA
- // must remain discoverable during development and on future visits.
+ // Remember confirmed installations for a limited time when the same user reopens
+ // the browser tab; do not suppress permanently after an uninstall.
+ const installedKey='dparranda_install_confirmed_v1';
+ const installedHintMs=90*24*60*60*1000;
+ function installedRecently(){
+   try{const ts=Number(localStorage.getItem(installedKey));
+    return Number.isFinite(ts)&&ts>0&&Date.now()-ts<installedHintMs;
+   }catch{return false}
+ }
  let dismissedForVisit=false;
  let installedInThisVisit=false;
  let nativePrompt=null;
@@ -29,13 +36,14 @@
    // Only an actual standalone window means that the current context is
    // installed. Historical localStorage flags may outlive an uninstallation.
    return narrowScreen() && !isStandalone() &&
-     !dismissedForVisit && !installedInThisVisit;
+     !dismissedForVisit && !installedInThisVisit && !installedRecently();
  }
  function update(){
    dock.classList.toggle('hidden',!shouldShow());
  }
  function markInstalled(){
    installedInThisVisit=true;
+   try{localStorage.setItem(installedKey,String(Date.now()))}catch{}
    nativePrompt=null;
    closeGuide();
    update();

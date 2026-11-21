@@ -1,5 +1,9 @@
 /* Run with: node tests/test_install_prompt.js */
 'use strict';
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+const require=createRequire(import.meta.url);
+const __dirname=fileURLToPath(new URL('.',import.meta.url));
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const vm=require('node:vm');
@@ -44,7 +48,7 @@ function setup({ios=false,mobile=true,standalone=false}={}){
  };
  const navigator={userAgent:ios?'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)':'Mozilla/5.0 (Linux; Android 15)',
    platform:ios?'iPhone':'Linux',maxTouchPoints:ios?5:1,standalone:false};
- const ctx={window:win,document:doc,navigator,Date,Promise,console};
+ const ctx={window:win,document:doc,navigator,localStorage:win.localStorage,Date,Promise,console};
  vm.runInNewContext(source,ctx,{filename:'install_prompt.js'});
  const emit=(name,e={})=>(windowEvents[name]||[]).forEach(fn=>fn(e));
  const shown=()=>!el.dpInstallDock.classList.contains('hidden');
@@ -73,7 +77,7 @@ async function main(){
  let dismissed=setup();
  dismissed.el.dpInstallDismiss.click();
  assert.equal(dismissed.shown(),false);
- assert.ok(Number(dismissed.stored.get('dparranda_install_dismissed_until_v1'))>Date.now());
+ assert.equal(dismissed.stored.size,0,'dismiss hides for the visit only without persisting a block');
 
  let native=setup();
  let calls=0,prevented=false;
@@ -87,6 +91,7 @@ async function main(){
  await Promise.resolve();await Promise.resolve();await Promise.resolve();await Promise.resolve();
  assert.equal(calls,1,'native prompt called once during gesture');
  assert.equal(native.shown(),false,'accepted install removes CTA');
+ assert.ok(Number(native.stored.get('dparranda_install_confirmed_v1'))>0,'confirmed install is remembered');
 
  let viaEvent=setup();
  viaEvent.emit('appinstalled');

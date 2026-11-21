@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Administración de DParranda">
+<rect width="512" height="512" rx="110" fill="#10364d"/>
+<rect x="47" y="47" width="418" height="418" rx="92" fill="#125a70"/>
+<circle cx="250" cy="233" r="145" stroke="#75dfc5" stroke-width="19" fill="none"/>
+<path d="M155 118h72c88 0 151 61 151 137s-63 139-151 139h-72z" fill="#fff"/>
+<path d="M222 175v162h11c49 0 84-33 84-81s-35-81-84-81z" fill="#125a70"/>
+<rect x="302" y="293" width="159" height="145" rx="31" fill="#75dfc5" stroke="#10364d" stroke-width="8"/>
+<path d="M338 339v-12c0-50 87-50 87 0v12" fill="none" stroke="#10364d" stroke-width="19"/>
+<rect x="339" y="333" width="84" height="67" rx="12" fill="#10364d"/>
+<circle cx="381" cy="363" r="8" fill="#75dfc5"/><path d="M381 366v13" stroke="#75dfc5" stroke-width="6"/>
+</svg>

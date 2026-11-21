@@ -64,5 +64,6 @@ assert.equal(verify({image_url:expected,image_status:'official_remote'}),expecte
  'If the manifest script fails, the public catalog must still show official posters');
 assert.ok(html.indexOf('/posters/manifest.js')<first,'Load manifest before choosing images');
 assert.ok(html.indexOf('/posters/remote-manifest.js')<first,'Load remote manifest before choosing images');
-assert.ok(html.includes('name="robots" content="noindex,nofollow"'));
+assert.ok(html.includes('name="robots" content="index,follow,max-image-preview:large"'),
+ 'Organic launch requires an indexable public homepage');
 console.log('Poster selection OK: static WebP, fallback official poster, unchanged sponsored media');
