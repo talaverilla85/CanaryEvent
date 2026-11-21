@@ -716,6 +716,10 @@ async function loadAds() {
  try{const response=await api('ads');ads=response.ads||[];renderAds();renderAdOperations()}
  catch(e){$('adsList').innerHTML='<div class="empty">'+escape(e.message)+'</div>'}
 }
+function formatCampaignDate(iso){
+ const key=String(iso||'').slice(0,10);
+ return /^\d{4}-\d{2}-\d{2}$/.test(key)?key.slice(8,10)+'/'+key.slice(5,7)+'/'+key.slice(0,4):key;
+}
 function renderAds(){
  const visibleAds=ads.filter(a=>!isArchived(a.kind==='house'?'house':'published',a.id));
  if(!visibleAds.length){$('adsList').innerHTML='<div class="empty">Todavía no hay campañas publicitarias.</div>';return}
@@ -724,8 +728,14 @@ function renderAds(){
     a.enquiry_id?'/api/admin?op=leadimage&id='+Number(a.enquiry_id):a.image;
   const image=/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(preview||'')||/^\/api\/admin\?op=(leadimage&id=[0-9]+|adimage&id=[a-zA-Z0-9_-]+)$/.test(preview)?
     '<img src="'+escape(preview)+'" alt="'+escape(a.image_alt||'Anuncio')+'" loading="lazy">':'Imagen pendiente';
-  const dates=a.permanent?'Permanente':(a.starts_at?String(a.starts_at).slice(0,10):'Desde ahora')+' – '+(a.ends_at?String(a.ends_at).slice(0,10):'Sin final')+' · '+daysLeft(a.ends_at);
-  return '<article class="ad-card"><div class="ad-media">'+image+'</div><div class="ad-content"><span class="pill '+(a.enabled?'':'off')+'">'+(a.enabled?'Activa':'Pausada')+'</span>'+
+  const started=a.starts_at?String(a.starts_at).slice(0,10):'',ended=a.ends_at?String(a.ends_at).slice(0,10):'';
+ const dates=a.permanent?'Sin caducidad · Edita y establece una duración':
+  'Inicio: '+(started?formatCampaignDate(started):'Pendiente')+' · Caduca: '+(ended?formatCampaignDate(ended):'Sin fecha')+
+  ' · '+daysLeft(ended);
+ const today=opsToday();
+ const live=a.enabled&&(!started||started<=today)&&(!ended||ended>=today);
+ const displayStatus=ended&&ended<today?'Finalizada':!a.enabled?'Pausada':started&&started>today?'Programada':live?'Activa':'Pausada';
+  return '<article class="ad-card"><div class="ad-media">'+image+'</div><div class="ad-content"><span class="pill '+(live?'':'off')+'">'+escape(displayStatus)+'</span>'+
    '<h3>'+escape(a.headline)+'</h3><p>'+escape(a.description)+'</p><small class="muted">'+escape(a.advertiser)+' · '+escape(dates)+'</small>'+
    '<div class="ad-footer"><small class="muted">'+(Array.isArray(a.municipalities)&&a.municipalities.length?escape(a.municipalities.join(', ')):'Toda Gran Canaria')+'</small>'+
    '<button class="ghost mini" data-ad="'+escape(a.id)+'" type="button">Editar</button></div></div></article>';
@@ -734,12 +744,27 @@ function renderAds(){
 $('adsList').onclick=e=>{const btn=e.target.closest('[data-ad]');if(!btn)return;editAd(ads.find(a=>a.id===btn.dataset.ad))};
 $('newAd').onclick=()=>editAd(null);
 $('createOwnAd').onclick=()=>editAd(null);
+function campaignEndFromDays(start,days){
+ const count=Number(days);
+ if(!/^20\d{2}-\d{2}-\d{2}$/.test(String(start||''))||!Number.isSafeInteger(count)||count<1)return '';
+ const timestamp=Date.parse(start+'T12:00:00Z')+(count-1)*86400000;
+ if(!Number.isFinite(timestamp))return '';
+ const date=new Date(timestamp);
+ if(!Number.isFinite(date.getTime()))return '';
+ const key=date.toISOString().slice(0,10);
+ return /^20\d{2}-\d{2}-\d{2}$/.test(key)?key:'';
+}
 function editAd(ad){
  if(ad&&ad.kind!=='house'){message('Esta opción es para gestionar publicidad propia sin coste.');return}
  if(!ad)ad={enabled:false,kind:'house',permanent:false,municipalities:[],advertiser:'AriMar'};
  const dates=v=>typeof v==='string'?v.slice(0,10):'';
- const today=opsToday(),defaultEnd=new Date(Date.parse(today+'T12:00:00Z')+29*86400000).toISOString().slice(0,10);
- const startDefault=dates(ad.starts_at)||today,endDefault=dates(ad.ends_at)||defaultEnd;
+ const today=opsToday();
+ // Legacy permanently running AriMar ad stays as-is until the admin saves new dates.
+ const startDefault=ad.permanent?today:(dates(ad.starts_at)||today);
+ const existingEnd=ad.permanent?'':dates(ad.ends_at);
+ const calculatedDays=existingEnd?Math.round((Date.parse(existingEnd+'T12:00:00Z')-Date.parse(startDefault+'T12:00:00Z'))/86400000)+1:30;
+ const initialDays=Number.isSafeInteger(calculatedDays)&&calculatedDays>0?calculatedDays:30;
+ const endDefault=campaignEndFromDays(startDefault,initialDays);
  let content='<div class="sheet-head"><div><span class="eyebrow">Publicidad · Solo administración</span><h2 id="dialogTitle">'+(ad.id?'Editar campaña':'Nueva campaña')+'</h2></div><button class="ghost mini" type="button" data-close>✕</button></div>'+
  '<form id="adForm"><div class="form-grid">'+
  field('advertiser','Anunciante',ad.advertiser||'')+
@@ -751,21 +776,34 @@ function editAd(ad){
  field('image','Imagen (ruta /sponsors/...webp)',ad.image||'','/sponsors/archivo.webp',true)+
  field('image_alt','Descripción accesible de la imagen',ad.image_alt||'','',true)+
  field('starts_at','Inicio',startDefault,'',false,'date')+
- field('ends_at','Finalización',endDefault,'',false,'date')+
+ '<div class="field"><label for="f-duration_days">Duración (días)</label><input id="f-duration_days" name="duration_days" type="number" min="1" step="1" required value="'+initialDays+'"></div>'+
+ '<div class="field"><label for="f-ends_at">Caduca el</label><input id="f-ends_at" name="ends_at" type="date" readonly value="'+endDefault+'"><small class="muted" id="campaignDateHelp"></small></div>'+
  field('municipalities','Municipios (separados por coma; vacío = toda la isla)',(ad.municipalities||[]).join(', '),'Agüimes, Ingenio',true)+
  '<input type="hidden" name="kind" id="f-kind" value="house"></div>'+
  '<label class="checkbox"><input type="checkbox" id="f-enabled" '+(ad.enabled?'checked':'')+'>Campaña activa</label>'+
  '<div class="field"><label for="f-newImage">Cartel publicitario (JPG, PNG o WebP, opcional)</label><input id="f-newImage" type="file" accept="image/jpeg,image/png,image/webp"><small class="muted">Se prepara a 1200 × 675. Si no subes ninguno, se conserva la imagen que ya tengas.</small></div>'+
- '<p class="notice">Publicidad propia gratuita · Sin Stripe. Cada campaña se puede activar, pausar y modificar por separado. Duración de 1 a 60 días; al editar un anuncio antiguo permanente, se aplicarán las fechas que elijas.</p>'+
+ '<p class="notice">Publicidad propia gratuita · Sin Stripe. Elige los días que quieras: la fecha de caducidad se calcula automáticamente. Las campañas antiguas sin caducidad solo cambiarán cuando pulses Guardar.</p>'+
  '<div class="sheet-footer"><button type="button" class="ghost" data-close>Cancelar</button><button class="primary" type="submit">Guardar campaña</button></div></form>';
  openDialog(content);
+ const syncCampaignDates=()=>{
+  const end=campaignEndFromDays($('f-starts_at').value,$('f-duration_days').value);
+  $('f-ends_at').value=end;
+  $('campaignDateHelp').textContent=end?
+   'La campaña caducará el '+formatCampaignDate(end)+'. El último día está incluido.':
+   'Comprueba la fecha de inicio y el número de días.';
+ };
+ $('f-starts_at').addEventListener('input',syncCampaignDates);
+ $('f-duration_days').addEventListener('input',syncCampaignDates);
+ syncCampaignDates();
  $('adForm').onsubmit=async ev=>{
   ev.preventDefault();const b=ev.submitter||$('adForm').querySelector('[type=submit]');b.disabled=true;
   const f=Object.fromEntries(new FormData(ev.currentTarget).entries());
   f.id=ad.id||undefined;f.enabled=$('f-enabled').checked;f.permanent=false;f.kind='house';
   f.municipalities=String(f.municipalities||'').split(',').map(x=>x.trim()).filter(Boolean);
-  f.starts_at=f.starts_at||null;f.ends_at=f.ends_at||null;
+  f.starts_at=f.starts_at||null;f.ends_at=campaignEndFromDays(f.starts_at,f.duration_days)||null;
+  delete f.duration_days;
   try{
+   if(!f.ends_at)throw new Error('Indica una duración positiva y una fecha final válida');
    const file=$('f-newImage').files?.[0];
    if(file){
     if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>15_000_000)
@@ -1206,7 +1244,7 @@ function renderAdOperations(){
   const status=r.archived?'Archivado':opsStateNames[r.status]||r.status;
   const payment=r.payment==='paid'?'Pagado':r.payment==='pending'?'Pendiente':
     r.payment==='free'?'Sin coste':r.payment==='refunded'?'Reembolsado':'No verificado';
-  const days=r.permanent?'Anterior permanente':Number.isInteger(r.days)&&r.days>0?r.days+' días':'—';
+  const days=r.permanent?'Sin caducidad · editar':Number.isInteger(r.days)&&r.days>0?r.days+' días':'—';
   const amount=r.price===null?'—':Number(r.price).toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:2})+' €';
   const img=r.has_image&&r.image_url?'<img class="adops-thumb" loading="lazy" src="'+escape(r.image_url)+'" alt="Anuncio de '+escape(r.company)+'">':'';
   const area=r.plan?opsPlanNames[r.plan]+' · '+r.area:r.area;
@@ -1214,8 +1252,9 @@ function renderAdOperations(){
    '<td>'+escape(opsDate(r.submitted_at)||'—')+'<small>#'+escape(String(r.id))+'</small></td>'+
    '<td><span class="adops-status st-'+(r.archived?'archived':escape(r.status))+'">'+escape(status)+'</span></td>'+
    '<td><span class="adops-payment p-'+escape(r.payment)+'">'+escape(payment)+'</span></td>'+
-   '<td>'+escape(days)+(r.status==='active'&&r.actual_ends_at?
-    '<small>'+escape(daysLeft(r.actual_ends_at))+'</small>':'')+'</td>'+
+   '<td>'+escape(days)+(r.actual_ends_at&&r.source==='house'?
+    '<small>Caduca: '+escape(formatCampaignDate(r.actual_ends_at))+'</small><small>'+escape(daysLeft(r.actual_ends_at))+'</small>':
+    r.status==='active'&&r.actual_ends_at?'<small>'+escape(daysLeft(r.actual_ends_at))+'</small>':'')+'</td>'+
    '<td>'+escape(r.kind)+'<small>'+escape(area||'Sin cobertura')+'</small></td>'+
    '<td><strong>'+escape(amount)+'</strong></td>'+
    '<td><div class="adops-visual">'+img+

@@ -163,16 +163,18 @@ async function saveAd(sql, body) {
   const image=safeText(body.image,400);
   if(image && !/^\/sponsors\/[a-z0-9._/-]+\.(webp|png|jpeg|jpg)$/i.test(image))
     throw new Error('Por ahora, la imagen debe existir en /sponsors/ del proyecto');
+  const kind=kinds.has(body.kind)?body.kind:'house';
   const starts=body.starts_at||null, ends=body.ends_at||null;
   if(!starts||!ends||!validLocalDate(starts)||!validLocalDate(ends)||starts>ends)
-    throw new Error('Indica una fecha de inicio y una duración de 1 a 60 días');
+    throw new Error('Indica fechas válidas de inicio y caducidad');
   const duration=Math.round((Date.parse(ends+'T00:00:00Z')-Date.parse(starts+'T00:00:00Z'))/86400000)+1;
-  if(duration<1||duration>60)throw new Error('La campaña no puede superar 60 días. Puedes renovarla después.');
+  if(!Number.isSafeInteger(duration)||duration<1)throw new Error('La campaña debe durar como mínimo un día');
+  // Las campañas propias no tienen límite de 60 días. Las contrataciones externas no cambian.
+  if(kind!=='house'&&duration>60)throw new Error('Las campañas comerciales no pueden superar 60 días');
   const asset=adminImageData(body.image_data);
   if(asset && (Number(body.image_width)!==1200||Number(body.image_height)!==675))
     throw new Error('La imagen debe prepararse en formato horizontal 1200 × 675');
 
-  const kind=kinds.has(body.kind)?body.kind:'house';
   // An existing contracted advertiser campaign cannot be converted into a free house ad.
   const [original]=await sql`SELECT kind FROM ad_campaigns WHERE id=${id}`;
    const [archived]=await sql`SELECT 1 FROM advertising_archives WHERE source IN ('house','published') AND record_id=${id}`;
