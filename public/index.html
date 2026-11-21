@@ -1067,6 +1067,26 @@ body.dp-install-guide-open{overflow:hidden}
 .dp-shortcut.active{transition:none}
 @media(prefers-reduced-motion:reduce){.dp-shortcut{transition:none}}
 
+/* Footer contact links: prevent adjacent text from merging on small screens. */
+.footer .footer-links{
+  display:flex;flex-wrap:wrap;align-items:center;align-content:flex-start;
+  justify-content:flex-start;column-gap:18px;row-gap:5px;min-width:0
+}
+.footer .footer-links>a,.footer .footer-links>#sourcesBtn{
+  display:inline-flex;align-items:center;min-height:32px;
+  font-size:12px;line-height:1.4;margin:0;padding:0;
+  color:#07536C;text-decoration:none;overflow-wrap:anywhere
+}
+.footer .footer-links>a:hover,.footer .footer-links>a:focus-visible{
+  text-decoration:underline;text-underline-offset:3px
+}
+@media(max-width:720px){
+  .footer .footer-links{
+    width:100%;flex-direction:column;align-items:flex-start;
+    row-gap:3px;column-gap:0
+  }
+}
+
 /* DParranda · Editorial edition.
  * A distinct Canary Islands agenda, not a generic card template.
  * This layer changes presentation only; existing discovery, booking links,
@@ -1976,27 +1996,6 @@ body::before{height:5px;position:fixed;z-index:40}
 .bottom-nav .navtab.selected,.bottom-nav .navtab.selected small{color:#075D74!important}
 #openFiltersBtn.dp-filter-entry{color:#173E4E}
 #openFiltersBtn.dp-filter-entry .filter-entry-copy small{color:#334F59}
-
-
-/* Footer contact links: prevent adjacent text from merging on small screens. */
-.footer .footer-links{
-  display:flex;flex-wrap:wrap;align-items:center;align-content:flex-start;
-  justify-content:flex-start;column-gap:18px;row-gap:5px;min-width:0
-}
-.footer .footer-links>a,.footer .footer-links>#sourcesBtn{
-  display:inline-flex;align-items:center;min-height:32px;
-  font-size:12px;line-height:1.4;margin:0;padding:0;
-  color:#07536C;text-decoration:none;overflow-wrap:anywhere
-}
-.footer .footer-links>a:hover,.footer .footer-links>a:focus-visible{
-  text-decoration:underline;text-underline-offset:3px
-}
-@media(max-width:720px){
-  .footer .footer-links{
-    width:100%;flex-direction:column;align-items:flex-start;
-    row-gap:3px;column-gap:0
-  }
-}
 
 </style>
 <!-- DPARRANDA_INLINE_BRAND_END -->
