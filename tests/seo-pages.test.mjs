@@ -51,7 +51,7 @@ test('HTML renders server-side cards, canonical, and structured collection metad
   assert.match(result.html, /<meta name="robots" content="index,follow/);
   assert.match(result.html, /https:\/\/dparranda\.es\/que-hacer-en-aguimes/);
   assert.match(result.html, /Teatro de invierno/);
-  assert.match(result.html, /\/\?evento=11/);
+  assert.match(result.html, /\/evento\/11/);
   assert.match(result.html, /"@type":"CollectionPage"/);
 });
 
