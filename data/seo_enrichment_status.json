@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-11-22T19:08:47+00:00",
+  "active_events": 419,
+  "pending": 414,
+  "checked": 16,
+  "verified": 6,
+  "restored": 0,
+  "newly_eligible": 0,
+  "requests": 16,
+  "cooldown_skipped": 5,
+  "missing_by_field": {
+    "hora": 146,
+    "recinto": 30,
+    "ubicacion": 224,
+    "descripcion": 410,
+    "cartel": 156,
+    "precio": 297
+  },
+  "outcomes": {
+    "verified": 6,
+    "no_matching_evidence": 9,
+    "source_failed": 1,
+    "no_eligible_source": 0
+  }
+}
