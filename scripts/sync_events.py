@@ -1157,7 +1157,11 @@ def run():
             enrich_report=event_enrichment.enrich(
                 conn,NOW,TODAY,fetch_html=get_html,
                 leads=event_enrichment.load_radar_leads(ROOT/"data"/"gc_radar_leads.json"),
-                max_requests=8,cooldown_hours=72)
+                max_requests=16,cooldown_hours=72,max_events=40)
+            # Keep an audit-friendly daily progress snapshot, without personal
+            # data or a new dashboard/manual review workflow.
+            write_json(ROOT/"data"/"seo_enrichment_status.json",
+                       {"checked_at":NOW,**enrich_report})
             results.append({"source":"Enriquecimiento de fuentes originales",
                             "checked_at":NOW,"found":enrich_report["checked"],
                             "added":0,"changed":enrich_report["verified"],
