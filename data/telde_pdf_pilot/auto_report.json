@@ -1,20 +1,11 @@
 {
-  "checked_at": "2026-11-22T13:33:16.772347+00:00",
+  "checked_at": "2026-11-22T18:27:49.430913+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
   "api_calls": 0,
   "usage_usd": 0.0,
-  "docs": [
-    {
-      "name": "Fiestas en honor a San Francisco en el barrio de San Francisco",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/sanfrancisco26.pdf",
-      "sha256": "ce84859aea4f81ca4b08d1f0ae7986079efdb7d8ae58b15788b11de1bec417a1",
-      "pages": 1,
-      "bytes": 982630,
-      "inspected": []
-    }
-  ],
+  "docs": [],
   "deferred_docs": [
     {
       "pdf_url": "https://www.telde.es/wp-content/uploads/2026/10/caseronesaltos26.pdf",
@@ -44,6 +35,10 @@
     },
     {
       "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/playaojosdegarza26.pdf",
+      "reason": "completed_or_end_verified"
+    },
+    {
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/sanfrancisco26.pdf",
       "reason": "completed_or_end_verified"
     }
   ],
