@@ -12,8 +12,8 @@ const sample = [
 ];
 
 test('pilot routes have unique, readable paths', () => {
-  assert.equal(SEO_PAGES.length, 5);
-  assert.equal(new Set(SEO_PAGES.map(p => p.path)).size, 5);
+  assert.equal(SEO_PAGES.length, 9);
+  assert.equal(new Set(SEO_PAGES.map(p => p.path)).size, 9);
   assert.equal(pageForKey('unknown'), null);
   assert.equal(normalizePlace('Agüimes'), 'aguimes');
 });

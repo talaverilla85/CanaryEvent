@@ -1,5 +1,5 @@
 import { db } from '../lib/admin-auth.js';
-import { pageForKey, renderLanding } from '../lib/seo-pages.js';
+import { pageForKey, renderLanding, renderIntentSitemap } from '../lib/seo-pages.js';
 import { parseEventId, eventPageRemoved, renderEventPage, renderEventSitemap } from '../lib/event-seo.js';
 export default async function handler(req,res) {
   const pageKey = typeof req.query?.page === 'string' ? req.query.page : '';
@@ -7,8 +7,9 @@ export default async function handler(req,res) {
   const eventIdRaw = typeof req.query?.eventId === 'string' ? req.query.eventId : '';
   const eventId = eventIdRaw ? parseEventId(eventIdRaw) : null;
   const eventSitemap = req.query?.eventSitemap === '1';
+  const intentSitemap = req.query?.intentSitemap === '1';
   const eventRoute = Boolean(eventIdRaw);
-  const seoRoute = Boolean(seoPage || eventRoute || eventSitemap);
+  const seoRoute = Boolean(seoPage || eventRoute || eventSitemap || intentSitemap);
   res.setHeader('X-Content-Type-Options','nosniff');
   if((pageKey && !seoPage)||(eventRoute && eventId===null)){
     res.setHeader('X-Robots-Tag','noindex');res.status(404).end('Página no encontrada');return;
@@ -98,6 +99,12 @@ export default async function handler(req,res) {
       if(o.free_override!==null&&o.free_override!==undefined)e.free=Number(o.free_override);
       return e;
     });
+    if(intentSitemap){
+      const xml=renderIntentSitemap(events);
+      res.setHeader('Content-Type','application/xml; charset=utf-8');
+      res.setHeader('Cache-Control','public, s-maxage=300, stale-while-revalidate=600');
+      return res.status(200).end(req.method==='HEAD'?'':xml);
+    }
     if(seoPage){
       const rendered=renderLanding(seoPage,events);
       res.setHeader('Content-Type','text/html; charset=utf-8');

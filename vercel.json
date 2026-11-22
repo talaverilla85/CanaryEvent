@@ -148,6 +148,26 @@
       "destination": "/api/catalog?page=aguimes"
     },
     {
+      "source": "/que-hacer-este-fin-de-semana-gran-canaria",
+      "destination": "/api/catalog?page=fin-de-semana"
+    },
+    {
+      "source": "/que-hacer-hoy-gran-canaria",
+      "destination": "/api/catalog?page=hoy"
+    },
+    {
+      "source": "/que-hacer-con-ninos-gran-canaria",
+      "destination": "/api/catalog?page=con-ninos"
+    },
+    {
+      "source": "/planes-gratis-gran-canaria",
+      "destination": "/api/catalog?page=gratis"
+    },
+    {
+      "source": "/sitemap-planes.xml",
+      "destination": "/api/catalog?intentSitemap=1"
+    },
+    {
       "source": "/evento/:eventId",
       "destination": "/api/catalog?eventId=:eventId"
     },
