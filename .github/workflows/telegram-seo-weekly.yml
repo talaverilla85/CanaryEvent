@@ -1,0 +1,111 @@
+name: Informe SEO semanal y alertas críticas DParranda
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Informe dominical o comprobación de incidencias"
+        required: true
+        type: choice
+        options:
+          - weekly
+          - health
+        default: weekly
+  push:
+    branches: [main]
+    paths:
+      # Primera medición al incorporar el flujo; futuros cambios no duplican la semana.
+      - ".github/workflows/telegram-seo-weekly.yml"
+  schedule:
+    # Domingo 10:17 UTC: después de la sincronización diaria de las 05:37 UTC.
+    - cron: "17 10 * * 0"
+    # Todos los días 11:37 UTC: únicamente avisos ante averías persistentes.
+    - cron: "37 11 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dparranda-seo-telegram
+  cancel-in-progress: false
+
+jobs:
+  weekly:
+    if: ${{ github.event_name == 'push' || (github.event_name == 'schedule' && github.event.schedule == '17 10 * * 0') || (github.event_name == 'workflow_dispatch' && inputs.mode == 'weekly') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Leer estado y datos de DParranda
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar Telegram
+        run: python -m pip install 'requests>=2.32,<3'
+      - name: Comprobar generador de informes
+        run: python -m unittest discover -s tests -p 'test_telegram_seo_report.py' -q
+      - name: Enviar resumen semanal usando el bot existente
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/telegram_seo_report.py --weekly
+      - name: Guardar la medición sin duplicar mensajes
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! -f data/seo_weekly_snapshot.json ]]; then
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/seo_weekly_snapshot.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "data(seo): guardar evolución semanal [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+  health:
+    if: ${{ (github.event_name == 'schedule' && github.event.schedule == '37 11 * * *') || (github.event_name == 'workflow_dispatch' && inputs.mode == 'health') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Leer estado de las fuentes y de SEO
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar Telegram
+        run: python -m pip install 'requests>=2.32,<3'
+      - name: Comprobar monitor de incidencias
+        run: python -m unittest discover -s tests -p 'test_telegram_seo_report.py' -q
+      - name: Avisar solo ante errores persistentes o su recuperación
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/telegram_seo_report.py --health
+      - name: Conservar estado anti-duplicados
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! -f data/seo_monitor_state.json ]]; then
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/seo_monitor_state.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "data(seo): estado de incidencias Telegram [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
