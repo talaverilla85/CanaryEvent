@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-22T18:28:14+00:00",
+  "checked_at": "2026-11-22T18:52:56+00:00",
   "quality_counts": {
     "publicados": 328,
     "recintos_sin_verificar": 27,
@@ -87,7 +87,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 19,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 19,
+      "fichas_leidas_en_esta_ejecucion": 10,
       "error": ""
     },
     {
@@ -382,7 +382,7 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "sin_resultados_en_esta_revision",
+      "estado": "al_dia_sin_fichas_pendientes",
       "publicados": 111,
       "recinto_sin_verificar": 17,
       "precio_sin_confirmar": 93,
@@ -467,7 +467,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 8,
+      "fichas_leidas_en_esta_ejecucion": 7,
       "error": ""
     }
   ],
@@ -507,7 +507,7 @@
     {
       "id": 539,
       "title": "Yoga Terapéutico para mujeres",
-      "start": "2026-02-25T05:00:00",
+      "start": "2026-02-25",
       "municipality": "Santa Brígida",
       "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "source_url": "https://eventos.santabrigida.es/eventos/yoga-terapeutico-para-mujeres/"
