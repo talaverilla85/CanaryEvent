@@ -1,6 +1,6 @@
 import { db } from '../lib/admin-auth.js';
 import { pageForKey, renderLanding } from '../lib/seo-pages.js';
-import { parseEventId, renderEventPage, renderEventSitemap } from '../lib/event-seo.js';
+import { parseEventId, eventPageRemoved, renderEventPage, renderEventSitemap } from '../lib/event-seo.js';
 export default async function handler(req,res) {
   const pageKey = typeof req.query?.page === 'string' ? req.query.page : '';
   const seoPage = pageForKey(pageKey);
@@ -22,8 +22,8 @@ export default async function handler(req,res) {
     res.status(503).json({error:'Base de datos no configurada'});return;
   }
   try {
-    // One stable URL per event, including historical rows no longer active in the catalogue.
-    // Read-only query: does not slow down /api/catalog for the application.
+    // Stable URLs for current events; expired or withdrawn events return 410 Gone.
+    // The rows remain in PostgreSQL for history/dedup; public requests stay read-only.
     if(eventRoute){
       const [record]=await sql`SELECT p.id,p.payload,p.active,
         o.hidden,o.canonical_event_id,o.title_override,o.details_override,
@@ -41,6 +41,13 @@ export default async function handler(req,res) {
         return res.status(308).end();
       }
       const event={...record.payload,id:Number(record.id)};
+      if(eventPageRemoved(event,record.active)){
+        res.setHeader('X-Robots-Tag','noindex');
+        res.setHeader('Cache-Control','no-store');
+        res.setHeader('Content-Type','text/html; charset=utf-8');
+        const gone='<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>Evento finalizado | D’Parranda</title></head><body><main><h1>Este evento ya no está disponible</h1><p>Descubre los planes actuales en D’Parranda.</p><a href="/que-hacer-en-gran-canaria">Ver planes próximos</a></main></body></html>';
+        return res.status(410).end(req.method==='HEAD'?'':gone);
+      }
       for(const [override,field] of [
         ['title_override','title'],['details_override','details'],['venue_override','venue'],
         ['price_override','price'],['category_override','category']

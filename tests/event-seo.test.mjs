@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
- parseEventId,eventUrl,eventIndexable,eventExpired,renderEventPage,renderEventSitemap
+ parseEventId,eventUrl,eventIndexable,eventExpired,eventPageRemoved,renderEventPage,renderEventSitemap
 } from '../lib/event-seo.js';
 
 const valid={
@@ -48,7 +48,14 @@ test('event with thin description still has page but stays out of sitemap',()=>{
  assert.match(sitemap, /\/evento\/654/);
  assert.doesNotMatch(sitemap, /\/evento\/1001/);
 });
-test('archived or completed events retain stable detail but cannot index',()=>{
+test('expired or withdrawn events are removed, but incomplete active ones remain available',()=>{
+ assert.equal(eventPageRemoved(valid,true,'2026-11-22'),false);
+ assert.equal(eventPageRemoved(valid,true,'2026-11-23'),true);
+ assert.equal(eventPageRemoved(valid,false,'2026-11-21'),true);
+ const unknownDate={...valid,id:1002,start:'',end:null};
+ assert.equal(eventExpired(unknownDate,'2026-11-29'),false);
+ assert.equal(eventPageRemoved(unknownDate,true,'2026-11-29'),false);
+ assert.equal(eventIndexable(unknownDate,true,'2026-11-29'),false);
  const past=renderEventPage(valid,{active:true,today:'2026-11-29'});
  const archived=renderEventPage(valid,{active:false,today:'2026-11-21'});
  assert.equal(past.indexable,false);
