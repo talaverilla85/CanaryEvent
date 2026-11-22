@@ -1,25 +1,25 @@
 {
-  "checked_at": "2026-11-22T20:08:04+00:00",
+  "checked_at": "2026-11-22T20:20:52+00:00",
   "active_events": 419,
-  "pending": 398,
-  "checked": 15,
-  "verified": 6,
+  "pending": 383,
+  "checked": 13,
+  "verified": 5,
   "restored": 3,
-  "newly_eligible": 0,
+  "newly_eligible": 1,
   "requests": 16,
-  "cooldown_skipped": 21,
+  "cooldown_skipped": 36,
   "missing_by_field": {
     "hora": 144,
     "recinto": 30,
     "ubicacion": 224,
-    "descripcion": 404,
+    "descripcion": 398,
     "cartel": 153,
     "precio": 297
   },
   "outcomes": {
-    "verified": 6,
-    "no_matching_evidence": 9,
-    "source_failed": 0,
+    "verified": 5,
+    "no_matching_evidence": 7,
+    "source_failed": 1,
     "no_eligible_source": 0
   }
 }
