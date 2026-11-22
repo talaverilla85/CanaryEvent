@@ -146,6 +146,14 @@
     {
       "source": "/que-hacer-en-aguimes",
       "destination": "/api/catalog?page=aguimes"
+    },
+    {
+      "source": "/evento/:eventId",
+      "destination": "/api/catalog?eventId=:eventId"
+    },
+    {
+      "source": "/sitemap-eventos.xml",
+      "destination": "/api/catalog?eventSitemap=1"
     }
   ]
 }
