@@ -20,6 +20,18 @@ El enriquecimiento SEO no sustituye los conectores ni sus reglas, y nunca se inv
 - Fuentes culturales, cartelería, ayuntamientos y programas PDF: siguen sus conectores, validaciones y políticas propias.
 - Las páginas SEO consultan los datos ya publicados; no fuerzan búsquedas, transformaciones o lecturas de imágenes durante la visita.
 
+## Enriquecimiento diario incremental (22 noviembre 2026)
+- La cola se alimenta de **todos los eventos aprobados y vigentes** guardados en SQLite. Los eventos ya completos dejan de consumir consultas hasta que aparezca una carencia nueva.
+- Cada registro conserva `attempts`, `next_check_at`, `outcome`, campos pendientes y evidencias de los cambios en `event_enrichment_checks` y `event_enrichment_proofs`.
+- La tarea programada ejecuta **hasta 16 documentos oficiales y 40 fichas por pasada**; los reintentos fallidos se espacian progresivamente hasta 14 días. Los eventos nuevos se priorizan y el resto avanza en las siguientes ejecuciones.
+- Se comprueban las carencias de hora, recinto, precisión de la ubicación, descripción, cartel y precio. Para indexar no se exige cartel ni precio, pero sí los requisitos originales de la ficha SEO.
+- Primero se busca el enlace original o del organizador; se permite seguir enlaces internos del mismo portal únicamente cuando el enlace coincide con el título. El candidato final siempre debe acreditar **título y fecha exactos**.
+- La prueba primaria es un objeto `Event` de JSON-LD del organizador. Como alternativa se aceptan descripciones y horas **solo** cuando la ficha oficial contiene un `h1` exacto y un único `time datetime` del mismo día; los listados generales no sirven.
+- Carteles, precios y coordenadas solo se incorporan desde metadatos explícitos de la ficha verificada, y las coordenadas exigen también municipio confirmado. Imágenes externas a los dominios autorizados se descartan.
+- Una copia verificable de los datos se reutiliza si la fuente vuelve a publicar un resumen incompleto, pero **solo mientras coincidan ID, título, día y URL originales**. Los extractores no se modifican.
+- El resumen agregado de cada pasada queda en `data/seo_enrichment_status.json`, sin exponer datos de usuarios ni credenciales. El estado de cada evento y sus pruebas permanecen en SQLite.
+- Si una fuente oficial no publica el dato, se mantiene pendiente: **nunca se inventa ni se afirma que todas las fichas llegarán a indexarse**.
+
 ## Restricciones del enriquecimiento
 - No crear eventos nuevos por una coincidencia aproximada, ni cambiar el ID.
 - No modificar un dato completo si el conector lo ha obtenido correctamente.

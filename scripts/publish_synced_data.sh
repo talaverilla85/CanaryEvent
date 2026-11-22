@@ -15,6 +15,7 @@ for attempt in 1 2 3; do
     if [[ -f "$file" ]]; then git add "$file"; fi
   done
   if [[ -f data/gc_radar_leads.json ]]; then git add data/gc_radar_leads.json; fi
+  if [[ -f data/seo_enrichment_status.json ]]; then git add data/seo_enrichment_status.json; fi
   for file in data/poster_venue_pilot/reviewed.json data/poster_venue_pilot/report.json; do
     if [[ -f "$file" ]]; then git add "$file"; fi
   done

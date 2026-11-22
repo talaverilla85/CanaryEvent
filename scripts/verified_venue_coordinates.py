@@ -7,6 +7,7 @@ An unknown, vague, or multi-location venue falls back to the municipality.
 These are venue/map reference points, not verified entrance coordinates.
 """
 from __future__ import annotations
+import json
 import re
 import unicodedata
 
@@ -89,11 +90,31 @@ def backfill(conn,places):
     fields, previous date/source/approval state and event identity.
     """
     changed=0
-    rows=conn.execute("SELECT id,municipality,venue,lat,lng,accuracy FROM events").fetchall()
+    # Proven event-specific GeoCoordinates from the original organizer's
+    # title+date matched JSON-LD may extend the curated venue list safely.
+    # Do not trust a stored proof if venue, date or original URL has changed.
+    proof_rows={}
+    if conn.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='event_enrichment_proofs'").fetchone():
+        proof_rows={id:(value,origin) for id,value,origin in conn.execute(
+            "SELECT event_id,verified_value,original_source FROM event_enrichment_proofs WHERE field_name='geo'")}
+    rows=conn.execute("SELECT id,municipality,venue,lat,lng,accuracy,source_url,start,title FROM events").fetchall()
     for row in rows:
-        id,muni,venue,old_lat,old_lng,old_accuracy=row
+        id,muni,venue,old_lat,old_lng,old_accuracy,source_url,start,title=row
         if muni not in places:continue
         lat,lng,accuracy=resolve(muni,venue,places)
+        if accuracy!='venue' and id in proof_rows:
+            value,origin=proof_rows[id]
+            try:
+                p=json.loads(value)
+                plat,plng=float(p['lat']),float(p['lng'])
+                if (origin==source_url and normalize(p.get('venue'))==normalize(venue)
+                    and normalize(p.get('municipality'))==normalize(muni)
+                    and normalize(p.get('title'))==normalize(title)
+                    and p.get('day')==str(start or '')[:10]
+                    and 27.65<=plat<=28.30 and -16.05<=plng<=-15.25):
+                    lat,lng,accuracy=plat,plng,'venue'
+            except (TypeError,ValueError,KeyError):
+                pass
         if (old_lat,old_lng,old_accuracy)!=(lat,lng,accuracy):
             conn.execute("UPDATE events SET lat=?,lng=?,accuracy=? WHERE id=?",
                          (lat,lng,accuracy,id))
