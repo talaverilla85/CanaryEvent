@@ -1,53 +1,53 @@
 {
-  "checked_at": "2026-11-21T22:32:44+00:00",
+  "checked_at": "2026-11-22T13:33:49+00:00",
   "quality_counts": {
-    "publicados": 347,
-    "recintos_sin_verificar": 33,
+    "publicados": 328,
+    "recintos_sin_verificar": 27,
     "programas_y_fichas_por_revisar": 7,
-    "precios_sin_confirmar": 226,
-    "distancia_a_centro_municipal": 213,
-    "fuentes_con_error": 3,
+    "precios_sin_confirmar": 215,
+    "distancia_a_centro_municipal": 197,
+    "fuentes_con_error": 4,
     "duplicados_potenciales": 0
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 12,
+      "publicados": 11,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 6,
-      "distancia_al_centro_municipal": 12,
-      "fichas_leidas_en_esta_ejecucion": 11,
+      "precio_sin_confirmar": 4,
+      "distancia_al_centro_municipal": 11,
+      "fichas_leidas_en_esta_ejecucion": 9,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Agüimes",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 0,
-      "recinto_sin_verificar": 1,
+      "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 1,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "No verified entries; parser or page may have changed"
     },
     {
       "source": "Juventud Las Palmas de Gran Canaria",
       "estado": "operativa",
-      "publicados": 8,
+      "publicados": 7,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 8,
+      "distancia_al_centro_municipal": 7,
       "fichas_leidas_en_esta_ejecucion": 6,
       "error": ""
     },
     {
       "source": "Circuito de Artes Escénicas GC",
       "estado": "operativa",
-      "publicados": 10,
+      "publicados": 8,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 10,
-      "distancia_al_centro_municipal": 9,
-      "fichas_leidas_en_esta_ejecucion": 12,
+      "precio_sin_confirmar": 8,
+      "distancia_al_centro_municipal": 8,
+      "fichas_leidas_en_esta_ejecucion": 9,
       "error": ""
     },
     {
@@ -83,11 +83,11 @@
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
       "estado": "operativa",
-      "publicados": 18,
+      "publicados": 17,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 18,
+      "precio_sin_confirmar": 17,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 18,
+      "fichas_leidas_en_esta_ejecucion": 15,
       "error": ""
     },
     {
@@ -97,7 +97,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 8,
       "distancia_al_centro_municipal": 8,
-      "fichas_leidas_en_esta_ejecucion": 12,
+      "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
     {
@@ -107,7 +107,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 11,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 12,
+      "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
     {
@@ -133,10 +133,10 @@
     {
       "source": "Ayuntamiento de Agüimes · Teatro Cruce de Culturas",
       "estado": "operativa",
-      "publicados": 2,
+      "publicados": 1,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 2,
+      "distancia_al_centro_municipal": 1,
       "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
@@ -164,7 +164,7 @@
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
       "publicados": 1,
-      "recinto_sin_verificar": 8,
+      "recinto_sin_verificar": 5,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
       "fichas_leidas_en_esta_ejecucion": 7,
@@ -193,10 +193,10 @@
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
       "estado": "operativa",
-      "publicados": 2,
+      "publicados": 1,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 2,
-      "distancia_al_centro_municipal": 2,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 1,
       "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
@@ -253,21 +253,21 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 17,
+      "publicados": 16,
       "recinto_sin_verificar": 5,
-      "precio_sin_confirmar": 17,
-      "distancia_al_centro_municipal": 17,
-      "fichas_leidas_en_esta_ejecucion": 22,
+      "precio_sin_confirmar": 16,
+      "distancia_al_centro_municipal": 16,
+      "fichas_leidas_en_esta_ejecucion": 21,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Teror · programación del Auditorio",
       "estado": "operativa",
-      "publicados": 9,
+      "publicados": 8,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 2,
-      "distancia_al_centro_municipal": 9,
-      "fichas_leidas_en_esta_ejecucion": 9,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 8,
+      "fichas_leidas_en_esta_ejecucion": 8,
       "error": ""
     },
     {
@@ -383,21 +383,21 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "sin_resultados_en_esta_revision",
-      "publicados": 119,
-      "recinto_sin_verificar": 19,
-      "precio_sin_confirmar": 98,
-      "distancia_al_centro_municipal": 59,
+      "publicados": 113,
+      "recinto_sin_verificar": 17,
+      "precio_sin_confirmar": 95,
+      "distancia_al_centro_municipal": 54,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 73,
+      "publicados": 69,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 72,
-      "fichas_leidas_en_esta_ejecucion": 100,
+      "distancia_al_centro_municipal": 68,
+      "fichas_leidas_en_esta_ejecucion": 98,
       "error": ""
     },
     {
@@ -463,6 +463,10 @@
   ],
   "reported_errors": [
     {
+      "source": "Ayuntamiento de Agüimes",
+      "error": "No verified entries; parser or page may have changed"
+    },
+    {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
       "error": "Galdar calendar returned no future structured events"
     },
@@ -478,19 +482,15 @@
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 19
-    },
-    {
-      "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 8
+      "count": 17
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "count": 5
     },
     {
-      "source": "Ayuntamiento de Agüimes",
-      "count": 1
+      "source": "Ayuntamiento de Arucas · agenda municipal",
+      "count": 5
     }
   ],
   "upcoming_venue_review": [
@@ -583,22 +583,6 @@
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261020-0014/mi-espacio-mi-poder"
     },
     {
-      "id": 51,
-      "title": "DIVINA MUERTE 2026",
-      "start": "2026-10-23",
-      "municipality": "Arucas",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0037/divina-muerte-2026"
-    },
-    {
-      "id": 528,
-      "title": "DIVINA MUERTE 2026",
-      "start": "2026-10-23",
-      "municipality": "Arucas",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrM01BPT0="
-    },
-    {
       "id": 711,
       "title": "DIA INTERNACIONAL PARA LA ELIMINACIÓN DE LA VIOLENCIA CONTRA LA MUJER ARUCAS 2026",
       "start": "2026-10-26",
@@ -621,38 +605,6 @@
       "municipality": "Arucas",
       "source_name": "Ayuntamiento de Arucas · agenda municipal",
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qUT0="
-    },
-    {
-      "id": 948,
-      "title": "RECORRIDO POR UN BARRIO ANTIGUO",
-      "start": "2026-11-21",
-      "municipality": "Arucas",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01UZz0="
-    },
-    {
-      "id": 987,
-      "title": "CUENTOS EN EL PATIO",
-      "start": "2026-11-21",
-      "municipality": "Arucas",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qWT0="
-    },
-    {
-      "id": 289,
-      "title": "Teror Patea por GC: Cruz Tejeda - Talayón - Teror",
-      "start": "2026-11-21T09:00:00",
-      "municipality": "Teror",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261121-0000/teror-patea-por-gc-cruz-tejeda-talayon-teror"
-    },
-    {
-      "id": 610,
-      "title": "Multiaventura",
-      "start": "2026-11-21T10:00:00",
-      "municipality": "Santa Lucía de Tirajana",
-      "source_name": "Ayuntamiento de Agüimes",
-      "source_url": "https://eventos.aguimes.es/events/ccdafbbf1c5103317a5db6a225aed63324a31a4b"
     },
     {
       "id": 832,
@@ -693,6 +645,54 @@
       "municipality": "Santa María de Guía",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261128-0000/10-encuentro-entre-corderos-y-fogones"
+    },
+    {
+      "id": 331,
+      "title": "Trofeo Rector - Vóley Playa femenino y masculino",
+      "start": "2026-11-28",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261128-0004/trofeo-rector-voley-playa-femenino-y-masculino"
+    },
+    {
+      "id": 330,
+      "title": "I Congreso Internacional de Formación Sénior",
+      "start": "2026-11-28T18:00:00",
+      "municipality": "Las Palmas de Gran Canaria",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261128-0003/i-congreso-internacional-de-formacion-senior"
+    },
+    {
+      "id": 1000,
+      "title": "‘Libres’, concierto de Mujeres con alma con motivo del 25N",
+      "start": "2026-11-28T19:00:00",
+      "municipality": "Santa Brígida",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/libres-concierto-de-mujeres-con-alma-con-motivo-del-25n/"
+    },
+    {
+      "id": 949,
+      "title": "GRAN RETO PUZZLERO III",
+      "start": "2026-12-05",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01Uaz0="
+    },
+    {
+      "id": 969,
+      "title": "UN POZO, DOS RELATOS",
+      "start": "2026-12-10",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qTT0="
+    },
+    {
+      "id": 366,
+      "title": "Teror Patea por GC: Artenara - Juncalillo - Fagajesto",
+      "start": "2026-12-12T09:00:00",
+      "municipality": "Teror",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261212-0000/teror-patea-por-gc-artenara-juncalillo-fagajesto"
     }
   ],
   "guidance": [

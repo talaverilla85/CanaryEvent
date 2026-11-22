@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-21T22:32:44+00:00",
-  "not_published": 33,
+  "updated_at": "2026-11-22T13:33:49+00:00",
+  "not_published": 27,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -136,30 +136,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 51,
-      "title": "DIVINA MUERTE 2026",
-      "start": "2026-10-23",
-      "end": "2026-11-21",
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261023-0037/divina-muerte-2026",
-      "organizer_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrM01BPT0=",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 528,
-      "title": "DIVINA MUERTE 2026",
-      "start": "2026-10-23",
-      "end": "2026-11-21",
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrM01BPT0=",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 711,
       "title": "DIA INTERNACIONAL PARA LA ELIMINACIÓN DE LA VIOLENCIA CONTRA LA MUJER ARUCAS 2026",
       "start": "2026-10-26",
@@ -192,54 +168,6 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Ayuntamiento de Arucas · agenda municipal",
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qUT0=",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 948,
-      "title": "RECORRIDO POR UN BARRIO ANTIGUO",
-      "start": "2026-11-21",
-      "end": null,
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01UZz0=",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 987,
-      "title": "CUENTOS EN EL PATIO",
-      "start": "2026-11-21",
-      "end": null,
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qWT0=",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 289,
-      "title": "Teror Patea por GC: Cruz Tejeda - Talayón - Teror",
-      "start": "2026-11-21T09:00:00",
-      "end": "2026-11-21T12:45:00",
-      "municipality": "Teror",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261121-0000/teror-patea-por-gc-cruz-tejeda-talayon-teror",
-      "organizer_url": "https://teror.es/events/teror-patea-por-gc-cruz-tejeda-talayon-teror/var/ri-.l-L1",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 610,
-      "title": "Multiaventura",
-      "start": "2026-11-21T10:00:00",
-      "end": null,
-      "municipality": "Santa Lucía de Tirajana",
-      "venue": "Santa Lucía De Tirajana",
-      "source_name": "Ayuntamiento de Agüimes",
-      "source_url": "https://eventos.aguimes.es/events/ccdafbbf1c5103317a5db6a225aed63324a31a4b",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },

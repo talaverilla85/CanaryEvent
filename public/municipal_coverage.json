@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-11-21",
+  "updated_on": "2026-11-22",
   "scope": "21 municipios de Gran Canaria",
   "municipalities_total": 21,
   "municipalities_with_any_catalog_cards": 18,
@@ -34,14 +34,14 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 9,
-      "municipal_cards_total": 6,
+      "catalog_cards_total": 8,
+      "municipal_cards_total": 5,
       "other_sources_cards_total": 3,
       "source_health": [
         {
           "source": "Ayuntamiento de Agüimes",
-          "found": 1,
-          "error": ""
+          "found": 0,
+          "error": "No verified entries; parser or page may have changed"
         },
         {
           "source": "Ayuntamiento de Agüimes · programación de teatros",
@@ -82,9 +82,9 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 8,
+      "catalog_cards_total": 7,
       "municipal_cards_total": 1,
-      "other_sources_cards_total": 7,
+      "other_sources_cards_total": 6,
       "source_health": [
         {
           "source": "Ayuntamiento de Arucas · agenda municipal",
@@ -149,13 +149,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 23,
-      "municipal_cards_total": 12,
-      "other_sources_cards_total": 11,
+      "catalog_cards_total": 21,
+      "municipal_cards_total": 11,
+      "other_sources_cards_total": 10,
       "source_health": [
         {
           "source": "Ayuntamiento de Ingenio",
-          "found": 11,
+          "found": 9,
           "error": ""
         },
         {
@@ -186,9 +186,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 175,
-      "municipal_cards_total": 8,
-      "other_sources_cards_total": 167,
+      "catalog_cards_total": 169,
+      "municipal_cards_total": 7,
+      "other_sources_cards_total": 162,
       "source_health": [
         {
           "source": "Juventud Las Palmas de Gran Canaria",
@@ -224,9 +224,9 @@
       "original_connector_state": "conector_parcial_folleto_2026_revisado",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial_folleto_2026_revisado",
-      "catalog_cards_total": 2,
+      "catalog_cards_total": 1,
       "municipal_cards_total": 1,
-      "other_sources_cards_total": 1,
+      "other_sources_cards_total": 0,
       "source_health": [
         {
           "source": "Ayuntamiento de Moya · Otoño es Cultura 2026",
@@ -243,9 +243,9 @@
       "original_connector_state": "conector_parcial_articulos_verificados",
       "coverage_level": "sin_extraccion_municipal_automatizada",
       "data_status": "fuente_oficial_contrastada_sin_actos_futuros",
-      "catalog_cards_total": 13,
+      "catalog_cards_total": 11,
       "municipal_cards_total": 0,
-      "other_sources_cards_total": 13,
+      "other_sources_cards_total": 11,
       "source_health": [],
       "full_coverage_claim": false
     },
@@ -256,13 +256,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 19,
-      "municipal_cards_total": 17,
+      "catalog_cards_total": 18,
+      "municipal_cards_total": 16,
       "other_sources_cards_total": 2,
       "source_health": [
         {
           "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-          "found": 22,
+          "found": 21,
           "error": ""
         }
       ],
@@ -275,9 +275,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 27,
+      "catalog_cards_total": 26,
       "municipal_cards_total": 1,
-      "other_sources_cards_total": 26,
+      "other_sources_cards_total": 25,
       "source_health": [],
       "full_coverage_claim": false
     },
@@ -288,9 +288,9 @@
       "original_connector_state": "conector_parcial_articulos_verificados",
       "coverage_level": "sin_extraccion_municipal_automatizada",
       "data_status": "fuente_oficial_contrastada_sin_actos_futuros",
-      "catalog_cards_total": 6,
+      "catalog_cards_total": 5,
       "municipal_cards_total": 0,
-      "other_sources_cards_total": 6,
+      "other_sources_cards_total": 5,
       "source_health": [
         {
           "source": "Municipio · descubrimiento oficial · Santa María de Guía",
@@ -326,9 +326,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 23,
+      "catalog_cards_total": 22,
       "municipal_cards_total": 1,
-      "other_sources_cards_total": 22,
+      "other_sources_cards_total": 21,
       "source_health": [
         {
           "source": "Ayuntamiento de Telde · fiestas y cultura 2026",
@@ -360,13 +360,13 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 14,
-      "municipal_cards_total": 9,
-      "other_sources_cards_total": 5,
+      "catalog_cards_total": 12,
+      "municipal_cards_total": 8,
+      "other_sources_cards_total": 4,
       "source_health": [
         {
           "source": "Ayuntamiento de Teror · programación del Auditorio",
-          "found": 9,
+          "found": 8,
           "error": ""
         }
       ],

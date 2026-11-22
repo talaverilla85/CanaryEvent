@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-21T22:32:09.105590+00:00",
+  "checked_at": "2026-11-22T13:33:16.772347+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
@@ -7,19 +7,11 @@
   "usage_usd": 0.0,
   "docs": [
     {
-      "name": "Fiestas patronales en honor al Sagrado Corazón de Jesús en el barrio de La Garita",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/lagarita26.pdf",
-      "sha256": "ecd40a83e9f845b2bda3522e9b0e87d20cf8047b3d75224d456c5b19b16f25c9",
-      "pages": 8,
-      "bytes": 3779392,
-      "inspected": []
-    },
-    {
-      "name": "Fiestas de la Exaltación de la Cruz en honor al Santo Cristo en Playa de Ojos de Garza",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/playaojosdegarza26.pdf",
-      "sha256": "d3ca33fe8115fe61a986ca83a628752a5c77cc7e436d9f42d526f81df58dfacd",
-      "pages": 2,
-      "bytes": 222232,
+      "name": "Fiestas en honor a San Francisco en el barrio de San Francisco",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/sanfrancisco26.pdf",
+      "sha256": "ce84859aea4f81ca4b08d1f0ae7986079efdb7d8ae58b15788b11de1bec417a1",
+      "pages": 1,
+      "bytes": 982630,
       "inspected": []
     }
   ],
@@ -44,6 +36,14 @@
     },
     {
       "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/cazadores26.pdf",
+      "reason": "completed_or_end_verified"
+    },
+    {
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/lagarita26.pdf",
+      "reason": "completed_or_end_verified"
+    },
+    {
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/playaojosdegarza26.pdf",
       "reason": "completed_or_end_verified"
     }
   ],

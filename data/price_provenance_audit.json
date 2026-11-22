@@ -1,22 +1,22 @@
 {
-  "checked_on": "2026-11-21T22:36:18.646128+00:00",
-  "total_events": 347,
-  "known_price_or_free": 121,
+  "checked_on": "2026-11-22T13:36:32.629488+00:00",
+  "total_events": 328,
+  "known_price_or_free": 113,
   "classification": {
-    "minimum_zero_ambiguous": 4,
-    "minimum_positive": 104,
-    "free": 9,
+    "minimum_zero_ambiguous": 3,
+    "minimum_positive": 98,
+    "free": 8,
     "fixed_positive": 4
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 73,
-    "Juventud Las Palmas de Gran Canaria": 8,
-    "Portal oficial de Eventos Gran Canaria (Cabildo)": 21,
-    "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 2,
-    "Ayuntamiento de Ingenio": 6,
+    "TuReservaOnline · agenda de Gran Canaria": 69,
+    "Juventud Las Palmas de Gran Canaria": 7,
+    "Ayuntamiento de Ingenio": 7,
     "Ayuntamiento de Teror · programación del Auditorio": 7,
     "Ayuntamiento de Agüimes · programación de teatros": 3,
-    "LPA Cultura · agenda municipal oficial": 1
+    "Portal oficial de Eventos Gran Canaria (Cabildo)": 18,
+    "LPA Cultura · agenda municipal oficial": 1,
+    "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 1
   },
   "issues": [
     {
@@ -27,15 +27,6 @@
       "free": 0,
       "category": "minimum_zero_ambiguous",
       "url": "https://www.tureservaonline.es/es/events/copa-hipica-san-vicente-2627-carrera-de-caballo"
-    },
-    {
-      "id": 478,
-      "title": "TALLERES EXPOBIENESTAR CANARIAS 2026",
-      "source": "TuReservaOnline · agenda de Gran Canaria",
-      "label": "Desde 0 €",
-      "free": 0,
-      "category": "minimum_zero_ambiguous",
-      "url": "https://www.tureservaonline.es/es/events/talleres-expobienestar-canarias-2026"
     },
     {
       "id": 508,
