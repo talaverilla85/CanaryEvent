@@ -32,6 +32,15 @@ El enriquecimiento SEO no sustituye los conectores ni sus reglas, y nunca se inv
 - El resumen agregado de cada pasada queda en `data/seo_enrichment_status.json`, sin exponer datos de usuarios ni credenciales. El estado de cada evento y sus pruebas permanecen en SQLite.
 - Si una fuente oficial no publica el dato, se mantiene pendiente: **nunca se inventa ni se afirma que todas las fichas llegarán a indexarse**.
 
+## Prioridad SEO de la cola (23 noviembre 2026)
+- No se bajan los umbrales para indexar ni se habilitan nuevas fuentes no fiables. Se conserva la comprobación de título + fecha exacta, procedencia, y el historial de pruebas.
+- En **cada ciclo de ocho eventos seleccionados**, cuatro plazas corresponden a eventos con **una** carencia SEO obligatoria, dos a los de **dos** carencias, una a los de **tres o más** carencias y una a eventos que solo necesitan mejoras opcionales (precio/cartel). Si alguna categoría está vacía, las plazas se redistribuyen automáticamente.
+- Las carencias SEO obligatorias son horario exacto, nombre del recinto, **precisión de la ubicación** y descripción útil. Recinto desconocido + ubicación municipal se cuentan como **dos carencias**, aunque un mismo dato oficial pueda resolver ambas.
+- Dentro de cada categoría, las sesiones aún futuras tienen preferencia sobre los programas largos empezados anteriormente. Dos de cada tres revisiones favorecen eventos no comprobados; la tercera se reserva para comprobaciones vencidas. **Nunca** se elude `next_check_at` ni el descanso de 72 horas de comprobaciones antiguas.
+- Se mantiene el límite existente de **16 documentos oficiales y 40 fichas por ejecución**. La cuota de 6/8 plazas priorizadas se aplica a fichas seleccionadas; las consultas reales pueden variar porque una ficha puede requerir varios documentos y las URL ya comprobadas se reutilizan dentro de la ejecución.
+- El informe `data/seo_enrichment_status.json` incluye `one_seo_gap`, `two_seo_gaps`, `near_ready` y `checked_by_priority`. **Estas cifras se calculan en SQLite de recopilación**, antes de las posibles correcciones del panel de publicación; no equivalen al número de páginas efectivamente incluidas en el sitemap ni a páginas indexadas por Google. Para ese resultado se consulta el sitemap real.
+- La cola se reevalúa sola con cada sincronización programada; no se añade otro bot, dashboard ni acción manual.
+
 ## Restricciones del enriquecimiento
 - No crear eventos nuevos por una coincidencia aproximada, ni cambiar el ID.
 - No modificar un dato completo si el conector lo ha obtenido correctamente.
