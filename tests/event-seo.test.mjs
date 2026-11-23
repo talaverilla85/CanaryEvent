@@ -41,7 +41,10 @@ test('complete verified event receives canonical and Event structured data',()=>
  assert.match(page.html, /"@type":"Event"/);
  assert.match(page.html, /"startDate":"2026-11-22T19:00:00\+00:00"/);
  assert.match(page.html, /Teatro Pérez Galdós/);
- assert.match(page.html, /Abrir en D’Parranda/);
+ assert.match(page.html, /Guardar, compartir o recordar/);
+ assert.match(page.html, /href="\/\?evento=654"/);
+ assert.match(page.html, /crear un recordatorio/);
+ assert.doesNotMatch(page.html, /Abrir en D’Parranda/);
  assert.match(page.html, /brand\/dparranda-logo.svg/);
  assert.doesNotMatch(page.html, /mailto:|Ayúdanos a completar o corregir/);
 });
