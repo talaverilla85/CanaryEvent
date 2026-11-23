@@ -9,6 +9,7 @@ import re
 from urllib.parse import urljoin, urlsplit
 from bs4 import BeautifulSoup
 import venue_facts
+from official_municipal_posters import from_official_article
 
 SITES = {
  "Firgas": ("https://www.villadefirgas.es/", "villadefirgas.es"),
@@ -124,7 +125,7 @@ def parse_guia_article(soup,title,url,today,categorize):
         # the story stays out of the public catalog.
         venue=venue_facts.from_description(body[:1000],"Santa María de Guía")
     if not venue:return None
-    return {"title":title,"start":next(iter(days)).isoformat()+
+    event = {"title":title,"start":next(iter(days)).isoformat()+
             f"T{hour:02d}:{minute:02d}:00","end":None,
             "municipality":"Santa María de Guía","venue":venue,
             "category":("deporte" if re.search(r"\b(?:correr|carrera)\b",title,re.I)
@@ -132,6 +133,8 @@ def parse_guia_article(soup,title,url,today,categorize):
             "details":"Actividad confirmada en una noticia del Ayuntamiento de Guía.",
             "source_name":PREFIX+"Santa María de Guía","source_url":url,
             "status":"approved"}
+    event.update(from_official_article(soup,url))
+    return event
 
 def discover(listing, host):
     if host==GUIA_HOST:return discover_guia(listing)

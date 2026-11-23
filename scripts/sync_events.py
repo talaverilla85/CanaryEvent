@@ -49,6 +49,7 @@ import telde_pdf_auto
 import municipal_pdf_sources
 import municipal_pdf_auto
 import gc_documented_events
+import official_municipal_posters
 import aldea_ecoentradas
 import moya_autumn_agenda
 import valsequillo_calendar
@@ -1190,6 +1191,15 @@ def run():
             results.append({"source":"Enriquecimiento de fuentes originales",
                             "checked_at":NOW,"found":0,"added":0,"changed":0,
                             "error":type(exc).__name__})
+        # The Guía news and Vega market pages include real official images.
+        # Repair existing image-less records even when Guía's article has
+        # scrolled off the front-page discovery feed; source-bound and safe.
+        municipal_images=official_municipal_posters.backfill_approved_missing(
+            conn,NOW,TODAY,fetch_html=get_html)
+        results.append(municipal_images)
+        if municipal_images["changed"] or municipal_images["error"]:
+            print("Municipal official posters:",municipal_images)
+        conn.commit()
         location_changes=verified_venue_coordinates.backfill(conn,PLACES)
         conn.commit()
         print(f"Verified venue coordinates refreshed for {location_changes} events")

@@ -9,6 +9,7 @@ import datetime as dt
 import re
 import unicodedata
 from collections import defaultdict
+from official_municipal_posters import from_official_article
 
 SOURCES=(
  {"municipality":"Agaete",
@@ -171,7 +172,7 @@ def extract(get_html,today,municipalities,*,source_specs=SOURCES):
                     audit.append({"municipality":name,"source_url":source["url"],
                                   "title":item["title"],"status":"unverified_text"})
                     continue
-                rows.append({
+                record = {
                     "title":item["title"],
                     "start":(item["date"]+"T"+item["time"]+":00"
                              if item.get("time") else item["date"]),
@@ -184,7 +185,9 @@ def extract(get_html,today,municipalities,*,source_specs=SOURCES):
                     "source_name":"Ayuntamiento de "+name+" · actos documentados",
                     "source_url":source["url"],
                     "status":"approved"
-                })
+                }
+                record.update(from_official_article(page, source["url"]))
+                rows.append(record)
                 found+=1
             audit.append({"municipality":name,"source_url":source["url"],
                           "checked":len(eligible),"verified":found,"status":"checked"})
