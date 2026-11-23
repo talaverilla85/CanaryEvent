@@ -1,20 +1,21 @@
 {
-  "checked_on": "2026-11-22T20:23:28.065875+00:00",
-  "total_events": 328,
-  "known_price_or_free": 113,
+  "checked_on": "2026-11-23T16:29:32.618615+00:00",
+  "total_events": 326,
+  "known_price_or_free": 115,
   "classification": {
     "minimum_zero_ambiguous": 3,
-    "minimum_positive": 98,
-    "free": 8,
+    "free": 11,
+    "minimum_positive": 97,
     "fixed_positive": 4
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 69,
+    "TuReservaOnline · agenda de Gran Canaria": 68,
     "Juventud Las Palmas de Gran Canaria": 7,
     "Ayuntamiento de Ingenio": 7,
     "Ayuntamiento de Teror · programación del Auditorio": 7,
     "Ayuntamiento de Agüimes · programación de teatros": 3,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 18,
+    "Ayuntamiento de Agüimes": 3,
     "LPA Cultura · agenda municipal oficial": 1,
     "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 1
   },

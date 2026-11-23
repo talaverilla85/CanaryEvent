@@ -1,43 +1,43 @@
 {
-  "checked_at": "2026-11-22T20:20:52+00:00",
+  "checked_at": "2026-11-23T16:25:05+00:00",
   "quality_counts": {
-    "publicados": 328,
-    "recintos_sin_verificar": 27,
+    "publicados": 326,
+    "recintos_sin_verificar": 26,
     "programas_y_fichas_por_revisar": 7,
-    "precios_sin_confirmar": 215,
+    "precios_sin_confirmar": 211,
     "distancia_a_centro_municipal": 197,
-    "fuentes_con_error": 4,
+    "fuentes_con_error": 5,
     "duplicados_potenciales": 0
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 11,
+      "publicados": 9,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 4,
-      "distancia_al_centro_municipal": 11,
-      "fichas_leidas_en_esta_ejecucion": 8,
+      "precio_sin_confirmar": 2,
+      "distancia_al_centro_municipal": 9,
+      "fichas_leidas_en_esta_ejecucion": 9,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Agüimes",
-      "estado": "error",
-      "publicados": 0,
+      "estado": "operativa",
+      "publicados": 3,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "No verified entries; parser or page may have changed"
+      "distancia_al_centro_municipal": 3,
+      "fichas_leidas_en_esta_ejecucion": 3,
+      "error": ""
     },
     {
       "source": "Juventud Las Palmas de Gran Canaria",
       "estado": "operativa",
-      "publicados": 7,
+      "publicados": 8,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 7,
-      "fichas_leidas_en_esta_ejecucion": 6,
+      "precio_sin_confirmar": 1,
+      "distancia_al_centro_municipal": 8,
+      "fichas_leidas_en_esta_ejecucion": 7,
       "error": ""
     },
     {
@@ -92,13 +92,13 @@
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 8,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 8,
       "distancia_al_centro_municipal": 8,
-      "fichas_leidas_en_esta_ejecucion": 11,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Sala Insular de Teatro · agenda oficial",
@@ -252,13 +252,13 @@
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 16,
-      "recinto_sin_verificar": 5,
+      "recinto_sin_verificar": 4,
       "precio_sin_confirmar": 16,
       "distancia_al_centro_municipal": 16,
-      "fichas_leidas_en_esta_ejecucion": 21,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "HTTPSConnectionPool(host='eventos.santabrigida.es', port=443): Read timed out. (read timeout=25)"
     },
     {
       "source": "Ayuntamiento de Teror · programación del Auditorio",
@@ -292,12 +292,12 @@
     },
     {
       "source": "Ayuntamiento de Telde · programas PDF verificados (doble lectura IA)",
-      "estado": "operativa",
-      "publicados": 1,
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 0,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 1,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -382,10 +382,10 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "al_dia_sin_fichas_pendientes",
-      "publicados": 111,
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 109,
       "recinto_sin_verificar": 17,
-      "precio_sin_confirmar": 93,
+      "precio_sin_confirmar": 91,
       "distancia_al_centro_municipal": 54,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
@@ -393,10 +393,10 @@
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 69,
+      "publicados": 68,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 68,
+      "distancia_al_centro_municipal": 67,
       "fichas_leidas_en_esta_ejecucion": 98,
       "error": ""
     },
@@ -467,14 +467,14 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 13,
+      "fichas_leidas_en_esta_ejecucion": 15,
       "error": ""
     }
   ],
   "reported_errors": [
     {
-      "source": "Ayuntamiento de Agüimes",
-      "error": "No verified entries; parser or page may have changed"
+      "source": "Teatro Cuyás · agenda oficial",
+      "error": "RuntimeError"
     },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
@@ -483,6 +483,10 @@
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
+    },
+    {
+      "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "error": "HTTPSConnectionPool(host='eventos.santabrigida.es', port=443): Read timed out. (read timeout=25)"
     },
     {
       "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
@@ -495,12 +499,12 @@
       "count": 17
     },
     {
-      "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source": "Ayuntamiento de Arucas · agenda municipal",
       "count": 5
     },
     {
-      "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 5
+      "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "count": 4
     }
   ],
   "upcoming_venue_review": [
@@ -617,14 +621,6 @@
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qUT0="
     },
     {
-      "id": 832,
-      "title": "Canarias Brass Connection en el Centro Cultural",
-      "start": "2026-11-22T12:30:00",
-      "municipality": "Santa Brígida",
-      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "source_url": "https://eventos.santabrigida.es/eventos/canarias-brass-connection-en-el-centro-cultural/"
-    },
-    {
       "id": 307,
       "title": "Exposición y charla 'Conocer para Conservar'",
       "start": "2026-11-23",
@@ -703,6 +699,14 @@
       "municipality": "Teror",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261212-0000/teror-patea-por-gc-artenara-juncalillo-fagajesto"
+    },
+    {
+      "id": 402,
+      "title": "I Maratón Solidaria de Envite a Firgas",
+      "start": "2026-12-19T09:00:00",
+      "municipality": "Firgas",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261219-0007/i-maraton-solidaria-de-envite-a-firgas"
     }
   ],
   "guidance": [

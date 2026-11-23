@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-22T20:20:21.587306+00:00",
+  "checked_at": "2026-11-23T16:24:35.797187+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
@@ -42,9 +42,9 @@
       "reason": "completed_or_end_verified"
     }
   ],
-  "pending_review_count": 1,
-  "auto_verified_count": 1,
-  "archived_count": 225,
-  "archived_this_run": 0,
+  "pending_review_count": 0,
+  "auto_verified_count": 0,
+  "archived_count": 227,
+  "archived_this_run": 2,
   "notes": "Future events require independent date, time and venue verification. Expired records move to the historic archive; incomplete past-only PDFs are temporarily deferred."
 }
