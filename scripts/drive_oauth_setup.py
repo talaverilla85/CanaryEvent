@@ -2,7 +2,7 @@
 """Genera localmente el secreto OAuth de Drive para el propietario del archivo.
 
 Nunca compartir el JSON ni subirlo al repositorio. Usar con la cuenta
-proyectocanariasbot@gmail.com y guardarlo en GitHub Actions Secrets.
+la cuenta propietaria del Drive y guardarlo en GitHub Actions Secrets.
 """
 from __future__ import annotations
 import argparse
