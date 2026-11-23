@@ -25,3 +25,31 @@ Cada fuente respeta robots.txt, límites de descarga y conexión HTTPS del sincr
 - HTML servido en servidor, enlaces a las fuentes, canónica, título estacional y sitemap dinámico. Se indexa solo cuando al menos tres planes diferentes cumplen calidad suficiente; si no, noindex.
 - El banner activo de AriMar aparece en una posición claramente etiquetada «ESPACIO PATROCINADO · PUBLICIDAD» después de tres fichas, desde la misma campaña administrada en la base de datos, con parámetros UTM incluyendo utm_content=navidad, y el mismo registro de clics de la portada. No implica medición de impresiones ni modifica las campañas existentes.
 - La programación sigue actualizándose con el trabajo automático diario, sin intervención de usuarios.
+
+## Criterio de sesiones detalladas (23/11/2026)
+
+- **Una ficha por actividad y día.** Si el mismo taller tiene horario de mañana
+  y tarde, sus dos franjas se indican expresamente en la tarjeta y en el
+  detalle: «Dos sesiones: 11:00–14:00 y 17:00–20:00». No se crean fichas
+  duplicadas ni se anuncia una actividad continua de 11 a 20 h.
+- **Las Arenas:** el extractor desglosa el programa completo de Club Arenillo
+  por día y actividad. Cuando existe un cartel oficial conjunto de la
+  temporada se muestra como «Imagen oficial del programa navideño de Las
+  Arenas», sin atribuir esa imagen a un taller concreto.
+- **Mesa y López:** se mantiene una ficha del mercado navideño, con su periodo
+  completo; **además** se extrae el programa específico de espectáculos
+  familiares publicado oficialmente:
+  https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia .
+  Hay 13 actuaciones distintas, entre el 4 y el 30 de diciembre de 2026,
+  de 18:00 a 19:00 h, con entrada libre anunciada. Cada actuación tiene
+  título, fecha, horario, fuente y fotografía del programa original.
+- La página de los espectáculos no expresa el año en su programación; **solo
+  se utiliza como fuente automática si la página oficial del mercado del
+  mismo centro confirma explícitamente la temporada 2026–27** y todos los
+  días de la semana coinciden con el calendario. De lo contrario, no se
+  incorporan fichas. Tras el 30 de diciembre no se consultan sus actuaciones
+  pasadas.
+- Se evitan fichas individuales indexadas casi idénticas para estos
+  programas de sesiones, sin ocultarlas del buscador ni de la agenda de
+  Navidad. La página temática reúne los actos y el anuncio de AriMar queda
+  como publicidad diferenciada.

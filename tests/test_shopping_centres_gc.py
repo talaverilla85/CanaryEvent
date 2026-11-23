@@ -141,5 +141,69 @@ class ChristmasShoppingCentreTests(unittest.TestCase):
         self.assertEqual(malls.extract_eci_market(without_free,dt.date(2026,11,23),2026),[])
 
 
+    def test_eci_shows_create_one_entry_per_actual_day_and_activity(self):
+        html = """<main><h1>Una Navidad llena de magia, risas y diversión para toda la familia</h1>
+        <p>Fecha: Del 4 de diciembre al 30 de diciembre</p>
+        <p>Horario: 18:00 - 19:00</p><p>Acceso: Libre</p>
+        <p>PROGRAMACIÓN DE DICIEMBRE</p>
+        <ul><li>🤡 Viernes, 4 de diciembre: Payaso Che Pedro.</li>
+        <li>🎩 Sábado, 5 de diciembre: Mago Aníbal.</li>
+        <li>🎤 Martes, 15 de diciembre: Coros escolares.</li>
+        <li>🎭 Jueves, 6 de diciembre: Fecha incoherente.</li>
+        <li>🤡 Viernes, 4 de diciembre: Payaso Che Pedro.</li></ul>
+        <img alt="Una Navidad llena de magia, risas y diversión para toda la familia"
+        src="https://www.centroscomerciales.elcorteingles.es/centroscomerciales/uploads/events/eci-eventosinfantiles.jpg">
+        </main>"""
+        soup=BeautifulSoup(html,"html.parser")
+        entries=malls.extract_eci_shows(soup,dt.date(2026,11,23),2026,verified_market=True)
+        self.assertEqual(len(entries),3)
+        self.assertEqual([e["start"] for e in entries],
+                         ["2026-12-04T18:00:00","2026-12-05T18:00:00","2026-12-15T18:00:00"])
+        self.assertTrue(all(e["end"].endswith("T19:00:00") for e in entries))
+        self.assertTrue(all(e["free"] == 1 and e["price"] == "Entrada libre" for e in entries))
+        self.assertTrue(all(e["image_status"] == "official_remote" for e in entries))
+        self.assertTrue(all(e["source_url"] == malls.ECI_SHOWS_URL for e in entries))
+        self.assertEqual(entries[2]["category"], "musica")
+        self.assertEqual(malls.extract_eci_shows(soup,dt.date(2026,11,23),2026,False),[])
+        self.assertEqual(malls.extract_eci_shows(soup,dt.date(2026,11,23),2025,True),[])
+        self.assertEqual(malls.extract_eci_shows(soup,dt.date(2027,1,7),2026,True),[])
+        self.assertEqual(malls.extract_eci_shows(
+            BeautifulSoup(html.replace("Acceso: Libre","Acceso: consultar"),"html.parser"),
+            dt.date(2026,11,23),2026,True),[])
+
+    def test_eci_show_synchronization_is_isolated_from_market_source(self):
+        conn=sqlite3.connect(":memory:")
+        conn.execute("""CREATE TABLE source_log(source TEXT PRIMARY KEY,
+           checked_at TEXT,found INTEGER,added INTEGER,changed INTEGER,error TEXT)""")
+        market_html="""<main><h1>Mercado Navideño Las Palmas</h1><p>Ubicación: Avda. José Mesa y López, 18</p>
+        <p>Horario: 12:00 - 23:00</p><p>Acceso: Libre</p>
+        <p>Del 20 de noviembre de 2026 al 5 de enero de 2027</p></main>"""
+        show_html="""<main><h1>Una Navidad llena de magia, risas y diversión para toda la familia</h1>
+        <p>Del 4 de diciembre al 30 de diciembre</p><p>Horario: 18:00 - 19:00</p>
+        <p>Acceso: Libre</p><p>PROGRAMACIÓN DE DICIEMBRE</p>
+        <ul><li>Viernes, 4 de diciembre: Payaso Che Pedro.</li></ul></main>"""
+        entries={}
+        def fetch(url):
+            if url == malls.ECI_URL:return BeautifulSoup(market_html,"html.parser")
+            if url == malls.ECI_SHOWS_URL:return BeautifulSoup(show_html,"html.parser")
+            raise AssertionError("Unapproved source")
+        def upsert(_conn,row):
+            key=(row["title"],row["start"])
+            was=key in entries
+            entries[key]=row
+            return "unchanged" if was else "added"
+        result=malls.synchronize_eci_shows(
+            conn,"2026-11-23T16:00:00",dt.date(2026,11,23),upsert,fetch)
+        self.assertEqual(result["found"],1)
+        self.assertEqual(result["added"],1)
+        self.assertEqual(result["error"],"")
+        again=malls.synchronize_eci_shows(
+            conn,"2026-11-24T16:00:00",dt.date(2026,11,24),upsert,fetch)
+        self.assertEqual(again["added"],0)
+        self.assertEqual(again["found"],1)
+        self.assertEqual(len(entries),1)
+        conn.close()
+
+
 if __name__=="__main__":
     unittest.main()

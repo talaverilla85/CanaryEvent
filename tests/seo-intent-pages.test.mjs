@@ -50,6 +50,18 @@ test('Christmas selection includes official family, retail-centre and municipal 
  assert.equal(empty.indexable,false);
 });
 
+test('one Christmas workshop card clearly includes both sessions on the same date',()=>{
+ const event=official(812,'Taller de muñecos de nieve · Navidad en Las Arenas',
+   '2026-12-05T11:00:00',{
+     end:'2026-12-05T20:00:00',
+     details:'Actividad navideña familiar. Horario anunciado: 11:00–14:00, 17:00–20:00 h. Consulta la programación oficial.',
+   });
+ const html=renderLanding(pageForKey('navidad'),[event],{today:'2026-11-23'}).html;
+ assert.equal((html.match(/class="event-card"/g)||[]).length,1);
+ assert.match(html,/Dos sesiones: 11:00–14:00 y 17:00–20:00/);
+ assert.doesNotMatch(html,/11:00–20:00/);
+});
+
 test('Christmas displays validated official programme artwork, not arbitrary remote images',()=>{
  const item=official(198,'Tren de renos del Polo Norte','2026-12-04T17:00:00',{
   source_name:'Centro Comercial Las Arenas · Club Arenillo',
