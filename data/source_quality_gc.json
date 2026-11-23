@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-23T18:47:54+00:00",
+  "checked_at": "2026-11-23T19:02:49+00:00",
   "quality_counts": {
-    "publicados": 379,
+    "publicados": 392,
     "recintos_sin_verificar": 26,
     "programas_y_fichas_por_revisar": 7,
     "precios_sin_confirmar": 263,
-    "distancia_a_centro_municipal": 199,
-    "fuentes_con_error": 3,
+    "distancia_a_centro_municipal": 212,
+    "fuentes_con_error": 4,
     "duplicados_potenciales": 0
   },
   "sources": [
@@ -71,6 +71,16 @@
       "error": ""
     },
     {
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "estado": "operativa",
+      "publicados": 13,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 13,
+      "fichas_leidas_en_esta_ejecucion": 13,
+      "error": ""
+    },
+    {
       "source": "LPA Cultura · agenda municipal oficial",
       "estado": "operativa",
       "publicados": 2,
@@ -97,18 +107,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 29,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 29,
+      "fichas_leidas_en_esta_ejecucion": 14,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 19,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 19,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 19,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -487,11 +497,15 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 18,
+      "fichas_leidas_en_esta_ejecucion": 22,
       "error": ""
     }
   ],
   "reported_errors": [
+    {
+      "source": "Auditorio Alfredo Kraus · programación oficial",
+      "error": "RuntimeError"
+    },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
       "error": "Galdar calendar returned no future structured events"

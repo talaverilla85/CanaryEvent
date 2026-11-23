@@ -1,10 +1,10 @@
 {
-  "checked_on": "2026-11-23T18:50:58.241673+00:00",
-  "total_events": 379,
-  "known_price_or_free": 116,
+  "checked_on": "2026-11-23T19:05:34.363261+00:00",
+  "total_events": 392,
+  "known_price_or_free": 129,
   "classification": {
     "minimum_zero_ambiguous": 3,
-    "contradictory_free": 1,
+    "contradictory_free": 14,
     "free": 11,
     "minimum_positive": 97,
     "fixed_positive": 4
@@ -18,6 +18,7 @@
     "Ayuntamiento de Agüimes · programación de teatros": 3,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 18,
     "Ayuntamiento de Agüimes": 3,
+    "El Corte Inglés Mesa y López · Espectáculos de Navidad": 13,
     "LPA Cultura · agenda municipal oficial": 1,
     "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 1
   },
@@ -39,6 +40,123 @@
       "free": 1,
       "category": "contradictory_free",
       "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/mercado-navideno-las-palmas"
+    },
+    {
+      "id": 1064,
+      "title": "Payaso Che Pedro · Navidad en Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "label": "Entrada libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1065,
+      "title": "Mago Aníbal · Navidad en Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "label": "Entrada libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1066,
+      "title": "Payaso Tadeo · Navidad en Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "label": "Entrada libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1067,
+      "title": "Coros escolares · Navidad en Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "label": "Entrada libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1068,
+      "title": "Coros escolares · Navidad en Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "label": "Entrada libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1069,
+      "title": "Coros escolares · Navidad en Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "label": "Entrada libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1070,
+      "title": "Rafaelillo Clown · Navidad en Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "label": "Entrada libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1071,
+      "title": "Octavio Clown · Navidad en Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "label": "Entrada libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1072,
+      "title": "Mago Aníbal · Navidad en Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "label": "Entrada libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1073,
+      "title": "Mago Abel · Navidad en Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "label": "Entrada libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1074,
+      "title": "Cuentacuentos · Navidad en Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "label": "Entrada libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1075,
+      "title": "Giuseppe Salchichone · Navidad en Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "label": "Entrada libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1076,
+      "title": "Maga Miriam · Navidad en Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Espectáculos de Navidad",
+      "label": "Entrada libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
     },
     {
       "id": 508,
