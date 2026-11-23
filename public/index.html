@@ -1026,6 +1026,9 @@ body.dp-install-guide-open{overflow:hidden}
 .dp-shortcut:hover{border-color:#65AEB8;transform:translateY(-1px)}
 .dp-shortcut.active{background:#10364D;border-color:#10364D;color:#FFFFFF;box-shadow:0 5px 16px rgba(16,54,77,.17)}
 .dp-shortcut-free.active{background:#096C7F;border-color:#096C7F}
+.dp-shortcut-christmas{background:#fff9f2;color:#70411f;border-color:#eed3b6;text-decoration:none;white-space:nowrap}
+.dp-shortcut-christmas:hover{color:#60311b;border-color:#c6955b}
+.dp-shortcut-christmas[hidden]{display:none!important}
 .dp-shortcut:focus-visible{outline:3px solid #21B7C5;outline-offset:2px}
 
 /* Share lives on each event card, independent of the detail modal. */
@@ -2049,7 +2052,7 @@ body::before{height:5px;position:fixed;z-index:40}
  <button id="openFiltersBtn" class="ochea-filter-entry dp-filter-entry" type="button" aria-controls="filtersPanel" aria-haspopup="dialog" aria-expanded="false">
  <span class="filter-entry-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.6"/><path d="m15.5 15.5 5 5"/></svg></span><span class="filter-entry-copy"><strong>¿Qué te apetece hacer?</strong><small id="filterSummary">Gran Canaria · Hoy · Todas las categorías</small></span>
  <span class="filter-entry-action">Explorar <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 7h16M7 12h10M10 17h4"/></svg></span></button>
-      <div class="dp-shortcuts" aria-label="Descubre planes rápidamente"><span class="dp-shortcuts-label">ENCUENTRA TU PLAN</span><div class="dp-shortcuts-scroll" role="group" aria-label="Accesos rápidos a los eventos"><button type="button" class="dp-shortcut" data-quick-when="today" aria-pressed="true">☀ Hoy</button><button type="button" class="dp-shortcut" data-quick-when="tomorrow" aria-pressed="false">↗ Mañana</button><button type="button" class="dp-shortcut" data-quick-when="weekend" aria-pressed="false">✳ Este finde</button><button type="button" class="dp-shortcut" data-quick-when="week" aria-pressed="false">▦ 7 días</button><button type="button" class="dp-shortcut dp-shortcut-free" data-quick-free aria-pressed="false">€ Gratis</button><button type="button" class="dp-shortcut" data-quick-when="all" aria-pressed="false">Todos los planes</button></div></div>
+      <div class="dp-shortcuts" aria-label="Descubre planes rápidamente"><span class="dp-shortcuts-label">ENCUENTRA TU PLAN</span><div class="dp-shortcuts-scroll" role="group" aria-label="Accesos rápidos a los eventos"><a class="dp-shortcut dp-shortcut-christmas" id="dpChristmasShortcut" href="/navidad-gran-canaria" aria-label="Ver los planes de Navidad en Gran Canaria">🎄 Navidad</a><button type="button" class="dp-shortcut" data-quick-when="today" aria-pressed="true">☀ Hoy</button><button type="button" class="dp-shortcut" data-quick-when="tomorrow" aria-pressed="false">↗ Mañana</button><button type="button" class="dp-shortcut" data-quick-when="weekend" aria-pressed="false">✳ Este finde</button><button type="button" class="dp-shortcut" data-quick-when="week" aria-pressed="false">▦ 7 días</button><button type="button" class="dp-shortcut dp-shortcut-free" data-quick-free aria-pressed="false">€ Gratis</button><button type="button" class="dp-shortcut" data-quick-when="all" aria-pressed="false">Todos los planes</button></div></div>
       <section id="dpWeekendShelf" class="dp-weekend-shelf" aria-labelledby="dpWeekendHeading" hidden>
         <div class="dp-shelf-heading">
           <div class="dp-shelf-heading-copy"><span class="dp-shelf-kicker">UN PLAN LLEVA A OTRO</span><h2 id="dpWeekendHeading">Tu próximo <em>finde.</em></h2><p id="dpShelfDate">Planes del fin de semana</p></div>
@@ -3048,6 +3051,10 @@ function discardOutdatedFeaturedPreview(){
  }
 }
 function init(){
+ // Show the festive shortcut only October–10 January (Canary date), without
+ // leaving a Christmas chip in the everyday search after the season ends.
+ const christmasDate=todayKey().split('-').map(Number);
+ $('dpChristmasShortcut').hidden=!(christmasDate[1]>=10 || (christmasDate[1]===1 && christmasDate[2]<=10));
  discardOutdatedFeaturedPreview();
  $('dpTopExplore').onclick=()=>document.querySelector('.navtab[data-tab="explore"]')?.click();
  $('dpTopMap').onclick=()=>document.querySelector('.navtab[data-tab="map"]')?.click();
