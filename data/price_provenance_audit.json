@@ -1,15 +1,17 @@
 {
-  "checked_on": "2026-11-23T17:23:06.440152+00:00",
-  "total_events": 327,
-  "known_price_or_free": 115,
+  "checked_on": "2026-11-23T18:33:10.998279+00:00",
+  "total_events": 379,
+  "known_price_or_free": 116,
   "classification": {
     "minimum_zero_ambiguous": 3,
+    "contradictory_free": 1,
     "free": 11,
     "minimum_positive": 97,
     "fixed_positive": 4
   },
   "known_by_source": {
     "TuReservaOnline · agenda de Gran Canaria": 68,
+    "El Corte Inglés Mesa y López · Mercado de Navidad": 1,
     "Juventud Las Palmas de Gran Canaria": 7,
     "Ayuntamiento de Ingenio": 7,
     "Ayuntamiento de Teror · programación del Auditorio": 7,
@@ -28,6 +30,15 @@
       "free": 0,
       "category": "minimum_zero_ambiguous",
       "url": "https://www.tureservaonline.es/es/events/copa-hipica-san-vicente-2627-carrera-de-caballo"
+    },
+    {
+      "id": 1063,
+      "title": "Mercado Navideño Las Palmas · Mesa y López",
+      "source": "El Corte Inglés Mesa y López · Mercado de Navidad",
+      "label": "Acceso libre",
+      "free": 1,
+      "category": "contradictory_free",
+      "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/mercado-navideno-las-palmas"
     },
     {
       "id": 508,
