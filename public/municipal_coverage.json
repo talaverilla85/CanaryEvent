@@ -256,14 +256,14 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 18,
-      "municipal_cards_total": 16,
+      "catalog_cards_total": 19,
+      "municipal_cards_total": 17,
       "other_sources_cards_total": 2,
       "source_health": [
         {
           "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-          "found": 0,
-          "error": "HTTPSConnectionPool(host='eventos.santabrigida.es', port=443): Read timed out. (read timeout=25)"
+          "found": 21,
+          "error": ""
         }
       ],
       "full_coverage_claim": false

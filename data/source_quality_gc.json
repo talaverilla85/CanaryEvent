@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-11-23T16:25:05+00:00",
+  "checked_at": "2026-11-23T17:18:42+00:00",
   "quality_counts": {
-    "publicados": 326,
+    "publicados": 327,
     "recintos_sin_verificar": 26,
     "programas_y_fichas_por_revisar": 7,
-    "precios_sin_confirmar": 211,
-    "distancia_a_centro_municipal": 197,
-    "fuentes_con_error": 5,
+    "precios_sin_confirmar": 212,
+    "distancia_a_centro_municipal": 198,
+    "fuentes_con_error": 4,
     "duplicados_potenciales": 0
   },
   "sources": [
@@ -77,28 +77,28 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 29,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 29,
+      "fichas_leidas_en_esta_ejecucion": 28,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 19,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 19,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 19,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
-      "estado": "error",
+      "estado": "operativa",
       "publicados": 8,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 8,
       "distancia_al_centro_municipal": 8,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "fichas_leidas_en_esta_ejecucion": 11,
+      "error": ""
     },
     {
       "source": "Sala Insular de Teatro · agenda oficial",
@@ -252,13 +252,13 @@
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "estado": "error",
-      "publicados": 16,
+      "estado": "operativa",
+      "publicados": 17,
       "recinto_sin_verificar": 4,
-      "precio_sin_confirmar": 16,
-      "distancia_al_centro_municipal": 16,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "HTTPSConnectionPool(host='eventos.santabrigida.es', port=443): Read timed out. (read timeout=25)"
+      "precio_sin_confirmar": 17,
+      "distancia_al_centro_municipal": 17,
+      "fichas_leidas_en_esta_ejecucion": 21,
+      "error": ""
     },
     {
       "source": "Ayuntamiento de Teror · programación del Auditorio",
@@ -467,13 +467,13 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 15,
+      "fichas_leidas_en_esta_ejecucion": 14,
       "error": ""
     }
   ],
   "reported_errors": [
     {
-      "source": "Teatro Cuyás · agenda oficial",
+      "source": "Auditorio Alfredo Kraus · programación oficial",
       "error": "RuntimeError"
     },
     {
@@ -483,10 +483,6 @@
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
-    },
-    {
-      "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "error": "HTTPSConnectionPool(host='eventos.santabrigida.es', port=443): Read timed out. (read timeout=25)"
     },
     {
       "source": "EcoEntradas · Centro Municipal de Cultura de La Aldea",
