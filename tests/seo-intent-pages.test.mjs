@@ -62,6 +62,24 @@ test('one Christmas workshop card clearly includes both sessions on the same dat
  assert.doesNotMatch(html,/11:00–20:00/);
 });
 
+test('Christmas card opens details without asking users already on D’Parranda to visit D’Parranda',()=>{
+  const p=pageForKey('navidad');
+  const e=official(998,'Encendido de Navidad en Guía','2026-11-26T20:30:00',{
+    image_status:'official_remote',
+    image_url:'https://santamariadeguia.es/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-20-at-14.19.48.jpeg',
+    image_alt:'Imagen oficial del encendido',
+  });
+  const page=renderLanding(p,[e],{today:'2026-11-23'});
+  assert.match(page.html,/Ver detalles del evento/);
+  assert.doesNotMatch(page.html,/Ver el plan en D’Parranda/);
+  assert.match(page.html,/href="\/evento\/998"/);
+  assert.match(page.html,/src="https:\/\/santamariadeguia.es\/wp-content/);
+  const v=renderLanding(p,[official(618,'III Mercado Navideño','2026-11-28T10:00:00',{
+    image_status:'official_remote',image_url:'https://www.vegadesanmateo.es/sites/default/files/noticias/Cartel.jpg',
+  })],{today:'2026-11-23'});
+  assert.match(v.html,/src="https:\/\/www.vegadesanmateo.es\/sites\/default\/files\/noticias\/Cartel.jpg"/);
+});
+
 test('Christmas displays validated official programme artwork, not arbitrary remote images',()=>{
  const item=official(198,'Tren de renos del Polo Norte','2026-12-04T17:00:00',{
   source_name:'Centro Comercial Las Arenas · Club Arenillo',
