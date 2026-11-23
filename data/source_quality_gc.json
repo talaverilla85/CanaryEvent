@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-23T18:29:57+00:00",
+  "checked_at": "2026-11-23T18:47:54+00:00",
   "quality_counts": {
     "publicados": 379,
     "recintos_sin_verificar": 26,
@@ -107,7 +107,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 19,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 5,
+      "fichas_leidas_en_esta_ejecucion": 19,
       "error": ""
     },
     {
@@ -402,7 +402,7 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "sin_resultados_en_esta_revision",
+      "estado": "al_dia_sin_fichas_pendientes",
       "publicados": 109,
       "recinto_sin_verificar": 17,
       "precio_sin_confirmar": 91,
@@ -487,7 +487,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 19,
+      "fichas_leidas_en_esta_ejecucion": 18,
       "error": ""
     }
   ],
