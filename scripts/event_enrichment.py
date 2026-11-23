@@ -13,6 +13,7 @@ import re
 import sqlite3
 import unicodedata
 from difflib import SequenceMatcher
+from collections import deque
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 from zoneinfo import ZoneInfo
@@ -63,6 +64,10 @@ MAX_EVENTS_PER_RUN = 40
 SEO_DESCRIPTION_MIN = 145
 CANARY_TZ = ZoneInfo("Atlantic/Canary")
 MAIN_GAPS = frozenset(("hora", "recinto", "ubicacion", "descripcion", "cartel", "precio"))
+SEO_GAPS = frozenset(("hora", "recinto", "ubicacion", "descripcion"))
+# 6 of every 8 queue slots target events with only one or two SEO blockers.
+# Reserve the remaining slots for deeper enrichment and poster/price maintenance.
+PRIORITY_SLOTS = ("one", "two", "one", "deep", "one", "two", "one", "polish")
 
 
 def norm(value):
@@ -84,7 +89,9 @@ def gaps(event):
         missing.append("hora")
     if not venue_quality.named_venue(event):
         missing.append("recinto")
-    elif event.get("accuracy") != "venue":
+    # A confirmed name does not imply an accurately verified map location;
+    # these are separate requirements when estimating distance to SEO readiness.
+    if event.get("accuracy") != "venue":
         missing.append("ubicacion")
     if not meaningful_description(event.get("details")):
         missing.append("descripcion")
@@ -442,6 +449,68 @@ def load_radar_leads(path):
         return ()
 
 
+def seo_blockers(event):
+    """Mandatory gaps only; optional poster and price never mask SEO progress."""
+    return tuple(field for field in gaps(event) if field in SEO_GAPS)
+
+
+def priority_bucket(event, missing=None):
+    """Bucket by actual missing SEO fields, not by number of all fields."""
+    required = sum(field in SEO_GAPS for field in (missing if missing is not None else gaps(event)))
+    return "one" if required == 1 else "two" if required == 2 else "deep" if required else "polish"
+
+
+def prioritize_pending(pending, today):
+    """Fair, deterministic queue: close-to-ready first, never starve long-tail.
+
+    Eight slots: four single-gap, two double-gap, one deep-gap, one
+    non-blocking (poster/price). Empty lanes yield their slot to the
+    nearest remaining lane. Inside a lane, every third turn is reserved
+    for due rechecks so recurring new records cannot starve older events.
+    """
+    lanes = {name: {"new": deque(), "due": deque(), "served": 0}
+             for name in ("one", "two", "deep", "polish")}
+    ordered = sorted(pending, key=lambda item: (
+        # Explicit sessions that have not started yet are more useful for SEO
+        # than multi-month listings that started long ago.
+        (str(item[0].get("start") or "")[:10] < str(today)),
+        str(item[0].get("start") or "9999")[:10],
+        item[0]["id"],
+    ))
+    for event, missing, previous in ordered:
+        lane = lanes[priority_bucket(event, missing)]
+        lane["due" if previous else "new"].append((event, missing, previous))
+    selected = []
+    while len(selected) < len(pending):
+        remaining_before = len(selected)
+        for requested in PRIORITY_SLOTS:
+            if len(selected) >= len(pending):
+                break
+            # One/two-gap priority is never absolute: deep and optional
+            # records retain a guaranteed share whenever those pools exist.
+            options = {
+                "one": ("one", "two", "deep", "polish"),
+                "two": ("two", "one", "deep", "polish"),
+                "deep": ("deep", "two", "one", "polish"),
+                "polish": ("polish", "deep", "two", "one"),
+            }[requested]
+            for name in options:
+                lane = lanes[name]
+                if not lane["new"] and not lane["due"]:
+                    continue
+                # Keep due retries progressing even during an influx of new
+                # events, without skipping the separate next_check_at gate.
+                prefer_due = (lane["served"] % 3 == 2)
+                first, second = ("due", "new") if prefer_due else ("new", "due")
+                pool = lane[first] if lane[first] else lane[second]
+                selected.append(pool.popleft())
+                lane["served"] += 1
+                break
+        if len(selected) == remaining_before:
+            break
+    return selected
+
+
 def retry_at(now, outcome, attempts, still_missing):
     if not still_missing:
         return ""
@@ -503,23 +572,25 @@ def enrich(conn, now, today, *, fetch_html, leads=(), max_requests=16,
             except (TypeError, ValueError):
                 pass
         pending.append((e, missing, prev if unchanged else None))
-    # First work on unvisited events, then due rechecks; among each group,
-    # give priority to upcoming sessions and items blocking SEO indexing.
-    pending.sort(key=lambda item: (
-        1 if item[2] else 0,
-        1 if seo_ready(item[0]) else 0,
-        (item[0].get("end") or item[0].get("start") or "9999")[:10],
-        -sum(name in item[1] for name in ("hora", "recinto", "ubicacion", "descripcion")),
-        item[0]["id"],
-    ))
+    near_ready = sum(1 for e in rows if not seo_ready(e)
+                     and len(seo_blockers(e)) in (1, 2))
+    one_gap = sum(1 for e in rows if not seo_ready(e)
+                  and len(seo_blockers(e)) == 1)
+    two_gaps = sum(1 for e in rows if not seo_ready(e)
+                   and len(seo_blockers(e)) == 2)
+    # Fairly interleave near-ready candidates, deep work and optional fields.
+    # Eligibility and official evidence requirements are never relaxed.
+    pending = prioritize_pending(pending, today_text)
     cache = {}
     requests = checked = verified = newly_eligible = 0
+    checked_by_priority = {name: 0 for name in ("one", "two", "deep", "polish")}
     outcomes = {"verified": 0, "no_matching_evidence": 0,
                 "source_failed": 0, "no_eligible_source": 0}
     for e, before, prev in pending:
         if checked >= max_events or requests >= max_requests:
             break
         checked += 1
+        checked_by_priority[priority_bucket(e, before)] += 1
         ready_before = seo_ready(e)
         sources = candidate_sources(e, leads)
         outcome = "no_eligible_source" if not sources else "no_matching_evidence"
@@ -609,6 +680,8 @@ def enrich(conn, now, today, *, fetch_html, leads=(), max_requests=16,
     return {
         "active_events": len(rows), "pending": len(pending), "checked": checked,
         "verified": verified, "restored": restored, "newly_eligible": newly_eligible,
+        "one_seo_gap": one_gap, "two_seo_gaps": two_gaps,
+        "near_ready": near_ready, "checked_by_priority": checked_by_priority,
         "requests": requests, "cooldown_skipped": skipped,
         "missing_by_field": gap_counts, "outcomes": outcomes,
     }
