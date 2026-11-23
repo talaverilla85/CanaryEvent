@@ -66,6 +66,7 @@ import venue_quality
 import organizer_venues
 import ingenio_juvenil_program
 import event_enrichment
+import shopping_centres_gc
 from event_images import listing_image,image_fields
 from catalog_changes import compare_public_catalogs, read_published
 
@@ -536,6 +537,17 @@ def run():
             results.append({"source":src["name"],"checked_at":NOW,"found":found,"added":added,"changed":changed,"error":error})
             print(f"{src['name']}: candidates={found} added={added} changed={changed} error={error[:100]}")
             time.sleep(0.4)
+        # Public family workshops from a centre's own dated programme.
+        # These are editorial plans, NOT paid banners or retail offers.
+        # Failed/blocked sources do not interrupt the ordinary daily sync.
+        mall_result = shopping_centres_gc.synchronize(
+            conn, NOW, TODAY, upsert=upsert, fetch_html=get_html)
+        results.append(mall_result)
+        eci_result = shopping_centres_gc.synchronize_eci(
+            conn, NOW, TODAY, upsert=upsert, fetch_html=get_html)
+        results.append(eci_result)
+        print("Shopping centre official events:", mall_result, eci_result)
+
         # Original organizers publish precise hours and hall names. These
         # cultural sources bring concert, theatre and musical sessions missing
         # from the Cabildo index. Each is checked against official HTTPS only.

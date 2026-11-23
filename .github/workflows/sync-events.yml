@@ -9,6 +9,7 @@ on:
     paths:
       - "scripts/sync_events.py"
       - "scripts/event_enrichment.py"
+      - "scripts/shopping_centres_gc.py"
       - "scripts/catalog_changes.py"
       - "scripts/curated_official_images.py"
       - "data/official_event_images.json"

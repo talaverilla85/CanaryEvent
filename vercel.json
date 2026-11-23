@@ -160,6 +160,10 @@
       "destination": "/api/catalog?page=con-ninos"
     },
     {
+      "source": "/navidad-gran-canaria",
+      "destination": "/api/catalog?page=navidad"
+    },
+    {
       "source": "/planes-gratis-gran-canaria",
       "destination": "/api/catalog?page=gratis"
     },

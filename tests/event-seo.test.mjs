@@ -19,6 +19,17 @@ test('stable numeric event URL, no slugs or changing titles',()=>{
  assert.equal(parseEventId('-28220261122'),-28220261122);
  for(const bad of ['0','NaN','1-script','1/other','9007199254740992','-0',''])assert.equal(parseEventId(bad),null);
 });
+test('source-generated daily shopping workshops stay visible but not indexed as near-duplicates',()=>{
+ const e={...valid,id:9001,start:'2026-12-04T17:00:00',
+   source_name:'Centro Comercial Las Arenas · Club Arenillo',
+   title:'Tren de renos del Polo Norte en Las Arenas'};
+ assert.equal(eventIndexable(e,true,'2026-11-23'),false);
+ const page=renderEventPage(e,{active:true,today:'2026-11-23'});
+ assert.equal(page.indexable,false);
+ assert.match(page.html,/noindex,follow/);
+ assert.doesNotMatch(renderEventSitemap([e],'2026-11-23'),/\/evento\/9001/);
+});
+
 test('complete verified event receives canonical and Event structured data',()=>{
  assert.equal(eventIndexable(valid,true,'2026-11-21'),true);
  const page=renderEventPage(valid,{active:true,today:'2026-11-21'});

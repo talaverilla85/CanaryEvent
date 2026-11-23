@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   SEO_PAGES, pageForKey, canaryToday, intentPeriod, familyFriendly,
-  upcomingEvents, landingIndexable, renderLanding, renderIntentSitemap
+  upcomingEvents, christmasRelated, landingIndexable, renderLanding, renderIntentSitemap
 } from '../lib/seo-pages.js';
 
 const official=(id,title,start,extra={})=>({
@@ -13,11 +13,11 @@ const official=(id,title,start,extra={})=>({
  ...extra
 });
 
-test('four evergreen intent pages have unique readable URL, title and metadata',()=>{
- const types=['weekend','today','kids','free'];
- assert.equal(SEO_PAGES.filter(p=>p.kind).length,4);
+test('five evergreen intent pages have unique readable URL, title and metadata',()=>{
+ const types=['weekend','today','kids','christmas','free'];
+ assert.equal(SEO_PAGES.filter(p=>p.kind).length,5);
  assert.deepEqual(SEO_PAGES.filter(p=>p.kind).map(p=>p.kind),types);
- assert.equal(new Set(SEO_PAGES.map(p=>p.path)).size,9);
+ assert.equal(new Set(SEO_PAGES.map(p=>p.path)).size,10);
  for(const page of SEO_PAGES.filter(p=>p.kind)){
    assert.equal(pageForKey(page.key),page);
    assert.match(page.path,/^\/[a-z-]+$/);
@@ -25,6 +25,62 @@ test('four evergreen intent pages have unique readable URL, title and metadata',
    assert.ok(page.description.length>=80);
  }
 });
+
+
+test('Christmas selection includes official family, retail-centre and municipal plans, but no sales or sponsored events',()=>{
+ const christmas=pageForKey('navidad');
+ const data=[
+  official(201,'Visita de Papá Noel','2026-12-20T17:00:00'),
+  official(202,'Encendido de luces de Navidad','2026-11-27T19:00:00'),
+  official(203,'Cabalgata de Reyes Magos','2027-01-05T18:00:00'),
+  official(204,'Gran mercadillo navideño','2026-12-02T12:00:00'),
+  official(205,'Rebajas de invierno','2026-12-03T10:00:00'),
+  official(206,'Concierto de Los Coquillos','2026-12-04T20:00:00'),
+  official(207,'Visita de Papá Noel','2026-12-05T17:00:00',{paid_promotion:true}),
+  official(208,'Taller infantil de Navidad ya terminado','2026-11-20T17:00:00')
+ ];
+ const result=upcomingEvents(data,christmas,'2026-11-23');
+ assert.deepEqual(result.map(x=>x.id),[202,204,201,203]);
+ assert.equal(christmasRelated(data[4]),false);
+ assert.equal(christmasRelated(data[0]),true);
+ assert.equal(landingIndexable(christmas,result),true);
+ assert.match(renderIntentSitemap(data,'2026-11-23'),/\/navidad-gran-canaria/);
+ assert.doesNotMatch(renderIntentSitemap([data[0],data[1]],'2026-11-23'),/\/navidad-gran-canaria/);
+ const empty=renderLanding(christmas,data,{today:'2027-01-07'});
+ assert.equal(empty.indexable,false);
+});
+
+test('Christmas page has a current seasonal title, accessible cards and an explicit separately labelled AriMar ad',()=>{
+ const page=pageForKey('navidad');
+ const e=[
+  official(201,'Visita de Papá Noel','2026-12-20T17:00:00'),
+  official(202,'Encendido de luces de Navidad','2026-12-19T19:00:00'),
+  official(203,'Cabalgata de Reyes Magos','2027-01-05T18:00:00'),
+  official(204,'Tren de renos','2026-12-04T17:00:00')
+ ];
+ const ad={
+  id:'arimar-fundador',enabled:true,advertiser:'AriMar',
+  headline:'AriMar · comida casera 100 % sin gluten',
+  description:'Pide online en Playa de Arinaga',
+  button_url:'https://arimarfoodlab.es/pedir',button_text:'Pedir online',
+  image:'/sponsors/arimar-pollo-asado.webp',image_alt:'Pollo asado'
+ };
+ const result=renderLanding(page,e,{today:'2026-11-23',sponsor:ad});
+ assert.equal(result.indexable,true);
+ assert.match(result.html,/Navidad en Gran Canaria 2026/);
+ assert.match(result.html,/canonical" href="https:\/\/dparranda.es\/navidad-gran-canaria/);
+ assert.match(result.html,/ESPACIO PATROCINADO/);
+ assert.match(result.html,/utm_content=navidad/);
+ assert.match(result.html,/data-sponsored-click="arimar-fundador"/);
+ assert.equal((result.html.match(/data-sponsored-click="arimar-fundador"/g)||[]).length,1);
+ assert.match(result.html,/rel="sponsored noopener noreferrer"/);
+ const normal=renderLanding(pageForKey('con-ninos'),e,{today:'2026-11-23',sponsor:ad});
+ assert.doesNotMatch(normal.html,/ESPACIO PATROCINADO/);
+ const paused=renderLanding(page,e,{today:'2026-11-23',sponsor:{...ad,enabled:false}});
+ assert.doesNotMatch(paused.html,/ESPACIO PATROCINADO/);
+ assert.match(renderLanding(page,e,{today:'2027-01-02'}).html,/Navidad en Gran Canaria 2026/);
+});
+
 test('weekend changes in Canary local dates (including Sunday and year boundaries)',()=>{
  const weekend=pageForKey('fin-de-semana');
  assert.deepEqual(intentPeriod(weekend,'2026-11-23'),
