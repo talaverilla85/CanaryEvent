@@ -106,7 +106,20 @@ export default async function handler(req,res) {
       return res.status(200).end(req.method==='HEAD'?'':xml);
     }
     if(seoPage){
-      const rendered=renderLanding(seoPage,events);
+      // The Christmas landing may carry the same active, explicitly
+      // labelled AriMar banner as the home feed, not a promoted event.
+      // Never show a disabled/expired campaign; keep SEO page read-only.
+      let christmasAd=null;
+      if(seoPage.kind==='christmas'){
+        const [candidate]=await sql`SELECT id,enabled,advertiser,headline,description,
+          location,button_text,button_url,image,image_alt
+          FROM ad_campaigns WHERE id='arimar-fundador' AND enabled=TRUE
+          AND (starts_at IS NULL OR starts_at<=((now() AT TIME ZONE 'Atlantic/Canary')::date))
+          AND (ends_at IS NULL OR ends_at>=((now() AT TIME ZONE 'Atlantic/Canary')::date))
+          LIMIT 1`;
+        christmasAd=candidate||null;
+      }
+      const rendered=renderLanding(seoPage,events,{sponsor:christmasAd});
       res.setHeader('Content-Type','text/html; charset=utf-8');
       res.setHeader('Cache-Control','public, s-maxage=300, stale-while-revalidate=600');
       if(!rendered.indexable)res.setHeader('X-Robots-Tag','noindex, follow');
