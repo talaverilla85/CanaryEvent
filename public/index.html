@@ -2255,9 +2255,15 @@ function nextWeekendDates(today){
  return [friday,plusDays(friday,1),plusDays(friday,2)];
 }
 const dayName=s=>canaryDayFormat.format(new Date(s.slice(0,10)+'T12:00:00Z')).replace('.','');
-const timeLabel=e=>e.end&&e.end.length===10&&e.end.slice(0,10)>e.start.slice(0,10)?'Consulta las sesiones':e.start.length>10?e.start.slice(11,16):'Hora por confirmar';
+const multiSessionLabel=e=>{
+ const found=/Horario anunciado:\s*((?:\d{2}:\d{2}[–-]\d{2}:\d{2})(?:,\s*\d{2}:\d{2}[–-]\d{2}:\d{2})+)/.exec(String(e.details||''));
+ return found ? 'Dos sesiones: '+found[1].replace(/,\s*/g,' y ') : '';
+};
+const timeLabel=e=>multiSessionLabel(e)||(e.end&&e.end.length===10&&e.end.slice(0,10)>e.start.slice(0,10)?'Consulta las sesiones':e.start.length>10?e.start.slice(11,16):'Hora por confirmar');
 const dayLabel=e=>dayName(e.start);
 function cardDateLabel(e,now=localTimeKey()){
+ const multi=multiSessionLabel(e);
+ if(multi)return dayName(e.start)+' · '+multi;
  const first=e.start.slice(0,10),last=eventEndDate(e),today=now.slice(0,10);
  if(DParrandaTime.isInProgress(e,now))
    return 'En curso · hasta '+(e.end.slice(0,10)===today?e.end.slice(11,16):dayName(e.end));
@@ -2725,7 +2731,7 @@ function showEvent(id){const e=state.events.find(x=>x.id===+id);if(!e)return;
  const mapQuery=encodeURIComponent([venueName(e),e.municipality,'Gran Canaria'].join(', '));
  const approx=eventApprox(e),srcInfo=originalSourceInfo(e);const extra=eventUsesMunicipality(e)?'Ubicación aproximada (centro del municipio). Consulta la fuente para encontrar el punto exacto.':'Ubicación indicada por el organizador.';
  openModal(`<div class="modal-photo ${CLASSES[e.category]||'p-other'}">${coverHtml(e,true)}<span class="modal-photo-label">${e.paid_promotion===true?'PATROCINADO · ':''}${escapeHTML(textForCat(e.category)).toUpperCase()} · GRAN CANARIA</span></div><div class="modal-body"><span class="eyebrow">PLAN Nº ${e.id} · ${escapeHTML(e.municipality).toUpperCase()}</span><h2 class="modal-title" id="modalHeading">${escapeHTML(e.title)}</h2>
- <div class="event-dateblock"><span class="ico">▦</span><div><strong>${escapeHTML(dateLabel(e))}</strong><small>${escapeHTML(timeLabel(e))}${e.end?.length===10?' · Hasta '+escapeHTML(e.end.slice(8,10)+'/'+e.end.slice(5,7)):e.end?.includes('T')?' – '+escapeHTML(e.end.slice(11,16)):''}</small></div></div>
+ <div class="event-dateblock"><span class="ico">▦</span><div><strong>${escapeHTML(dateLabel(e))}</strong><small>${escapeHTML(timeLabel(e))}${multiSessionLabel(e)?'':e.end?.length===10?' · Hasta '+escapeHTML(e.end.slice(8,10)+'/'+e.end.slice(5,7)):e.end?.includes('T')?' – '+escapeHTML(e.end.slice(11,16)):''}</small></div></div>
  <div class="event-dateblock"><span class="ico">⌖</span><div><strong>${escapeHTML(venueName(e))}</strong><small>${escapeHTML(e.municipality)} · ${approx!==null?'aprox. '+approx+' km · ':''}${escapeHTML(extra)}</small></div></div>
  ${price(e)?`<div class="event-dateblock"><span class="ico">€</span><div><strong>${escapeHTML(price(e))}</strong><small>Comprueba las condiciones de acceso con la organización.</small></div></div>`:''}
  <p>${escapeHTML(e.details||'Información disponible en la fuente original del evento.')}</p>${srcInfo.note?'<p class="source-context-note">ⓘ '+escapeHTML(srcInfo.note)+'</p>':''}<div class="modal-actions"><a class="primary-action" href="${safeUrl(e.source_url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(srcInfo.label)}</a><a href="https://www.google.com/maps/search/?api=1&query=${mapQuery}" target="_blank" rel="noopener noreferrer" class="${venueName(e)==='Recinto por confirmar'?'hidden':''}">Cómo llegar ↗</a>${organizerAction(e)}</div>

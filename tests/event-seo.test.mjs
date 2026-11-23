@@ -24,6 +24,8 @@ test('source-generated daily shopping workshops stay visible but not indexed as 
    source_name:'Centro Comercial Las Arenas · Club Arenillo',
    title:'Tren de renos del Polo Norte en Las Arenas'};
  assert.equal(eventIndexable(e,true,'2026-11-23'),false);
+ assert.equal(eventIndexable({...e,source_name:'El Corte Inglés Mesa y López · Espectáculos de Navidad'},
+                              true,'2026-11-23'),false);
  const page=renderEventPage(e,{active:true,today:'2026-11-23'});
  assert.equal(page.indexable,false);
  assert.match(page.html,/noindex,follow/);

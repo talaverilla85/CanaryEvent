@@ -71,7 +71,7 @@ def clock(value):
         return None
 
 
-def official_image(soup, host, required_path):
+def official_image(soup, host, required_path, match_alt="mercado navideno las palmas"):
     """Only a source page's own HTTPS campaign photo, never unrelated banners.
 
     Reusing a genuine season-wide banner is explicitly described as a
@@ -82,7 +82,7 @@ def official_image(soup, host, required_path):
         candidate = tag.get("content", "") if tag else ""
     elif host == "www.centroscomerciales.elcorteingles.es":
         tag = next((el for el in soup.select('img[alt][src]')
-                    if normalized(el.get("alt")) == "mercado navideno las palmas"), None)
+                    if normalized(el.get("alt")) == match_alt), None)
         candidate = tag.get("src", "") if tag else ""
     else:
         return ""
@@ -100,8 +100,9 @@ def official_image(soup, host, required_path):
 def extract_las_arenas(soup, today, season):
     """Parse only the dated Club Arenillo programme, not sales or page banners.
 
-    One card per day/activity; schedules with morning and afternoon slots keep
-    both ranges in the description rather than inventing continuous opening.
+    One card per day/activity. Morning and afternoon sessions of the
+    same workshop remain inside one record with both schedules stated; never
+    infer that the activity runs through the intervening break.
     """
     if not isinstance(soup, BeautifulSoup):
         soup = BeautifulSoup(str(soup), "html.parser")
@@ -327,3 +328,120 @@ def synchronize_eci(conn, now, today, upsert, fetch_html):
     return {"source": ECI_NAME, "checked_at": str(now), "found": found,
             "added": added, "changed": changed, "error": error,
             "official_url": ECI_URL if season else ""}
+
+
+ECI_SHOWS_NAME = "El Corte Inglés Mesa y López · Espectáculos de Navidad"
+ECI_SHOWS_URL = (
+    "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/"
+    "eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/"
+    "una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+)
+ECI_SHOWS_TITLE = "una navidad llena de magia, risas y diversion para toda la familia"
+ECI_SHOW_PATTERN = re.compile(
+    r"\b(lunes|martes|miércoles|jueves|viernes|sábado|domingo)\s*,?\s*"
+    r"(\d{1,2})\s+de\s+diciembre\s*:\s*(.+)$", re.I,
+)
+
+
+def extract_eci_shows(soup, today, season, verified_market=False):
+    """One card per dated show, only after 2026 market validates the season.
+
+    The shows article has dates and weekdays but NO year. The independently
+    confirmed companion market programme anchors the season; each weekday
+    must then agree with the actual calendar year. No auto-guessing a year
+    from a December-only undated programme.
+    """
+    if not verified_market or season is None:
+        return []
+    if not isinstance(soup, BeautifulSoup):
+        soup = BeautifulSoup(str(soup), "html.parser")
+    headings = [normalized(h.get_text(" ", strip=True))
+                for h in soup.select("h1")]
+    if not any(h.startswith('una navidad llena de magia') and 'toda la familia' in h for h in headings):
+        return []
+    text = " ".join(soup.get_text(" ", strip=True).split())
+    if not all(value in normalized(text) for value in (
+        "programacion de diciembre", "acceso: libre",
+        "del 4 de diciembre al 30 de diciembre",
+        "horario: 18:00 - 19:00",
+    )):
+        return []
+    image = official_image(
+        soup, "www.centroscomerciales.elcorteingles.es",
+        "/centroscomerciales/uploads/events/", ECI_SHOWS_TITLE)
+    result, seen = [], set()
+    for li in soup.select("li"):
+        label = " ".join(li.get_text(" ", strip=True).split())
+        match = ECI_SHOW_PATTERN.search(label)
+        if not match:
+            continue
+        stamp = dated(match[1], match[2], 12, season)
+        if not stamp or not (dt.date(season, 12, 4) <= stamp <=
+                             dt.date(season, 12, 30)):
+            continue
+        raw_title = re.sub(r"[.!?]+$", "", match[3]).strip()
+        if not raw_title or len(raw_title) < 5 or len(raw_title) > 85:
+            continue
+        key = (stamp, normalized(raw_title))
+        if key in seen or stamp < today:
+            continue
+        seen.add(key)
+        category = "musica" if "coros" in normalized(raw_title) else "familia"
+        title = f"{raw_title} · Navidad en Mesa y López"
+        detail = (
+            f"{raw_title}, actividad de la programación navideña familiar "
+            f"en el Mercado de Navidad de El Corte Inglés José Mesa y López, "
+            f"Las Palmas de Gran Canaria. Día {stamp.strftime('%d/%m/%Y')}, "
+            "de 18:00 a 19:00 h. Entrada libre según el programa oficial. "
+            "Consulta el enlace de la organización por posibles cambios."
+        )
+        result.append({
+            "title": title, "start": stamp.isoformat() + "T18:00:00",
+            "end": stamp.isoformat() + "T19:00:00",
+            "municipality": TOWN, "venue": "El Corte Inglés José Mesa y López",
+            "category": category, "free": 1, "price": "Entrada libre",
+            "details": detail, "source_name": ECI_SHOWS_NAME,
+            "source_url": ECI_SHOWS_URL, "organizer_url": "",
+            "status": "approved",
+            "image_url": image,
+            "image_alt": "Imagen oficial del programa de espectáculos familiares de Navidad"
+                         if image else "",
+            "image_origin": ECI_SHOWS_URL if image else "",
+            "image_status": "official_remote" if image else "",
+        })
+    return result
+
+
+def synchronize_eci_shows(conn, now, today, upsert, fetch_html):
+    """Separate failure log. Verify the companion market's explicit year."""
+    season = season_for(today)
+    found = added = changed = 0
+    error = ""
+    if season is not None and today <= dt.date(season, 12, 30):
+        try:
+            market = extract_eci_market(
+                fetch_html(ECI_URL), today, season)
+            if not market:
+                raise ValueError("Cannot verify December programme season")
+            events = extract_eci_shows(
+                fetch_html(ECI_SHOWS_URL), today, season,
+                verified_market=True)
+            if not events:
+                raise ValueError("No dated future performances verified")
+            for event in events:
+                outcome = upsert(conn, event)
+                found += 1
+                added += int(outcome == "added")
+                changed += int(outcome == "changed")
+        except Exception as exc:
+            error = type(exc).__name__ + ": " + str(exc)[:160]
+    conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+        VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+        checked_at=excluded.checked_at,found=excluded.found,
+        added=excluded.added,changed=excluded.changed,error=excluded.error""",
+        (ECI_SHOWS_NAME, str(now), found, added, changed, error))
+    conn.commit()
+    return {"source": ECI_SHOWS_NAME, "checked_at": str(now),
+            "found": found, "added": added, "changed": changed,
+            "error": error,
+            "official_url": ECI_SHOWS_URL if season else ""}

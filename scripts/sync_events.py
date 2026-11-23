@@ -546,7 +546,11 @@ def run():
         eci_result = shopping_centres_gc.synchronize_eci(
             conn, NOW, TODAY, upsert=upsert, fetch_html=get_html)
         results.append(eci_result)
-        print("Shopping centre official events:", mall_result, eci_result)
+        eci_shows_result = shopping_centres_gc.synchronize_eci_shows(
+            conn, NOW, TODAY, upsert=upsert, fetch_html=get_html)
+        results.append(eci_shows_result)
+        print("Shopping centre official events:",
+              mall_result, eci_result, eci_shows_result)
 
         # Original organizers publish precise hours and hall names. These
         # cultural sources bring concert, theatre and musical sessions missing
