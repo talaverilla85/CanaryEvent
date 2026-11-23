@@ -12,6 +12,7 @@ import re
 import unicodedata
 
 from bs4 import BeautifulSoup
+from urllib.parse import urlsplit
 
 NAME = "Centro Comercial Las Arenas · Club Arenillo"
 BASE = "https://cclasarenas.com/"
@@ -70,6 +71,32 @@ def clock(value):
         return None
 
 
+def official_image(soup, host, required_path):
+    """Only a source page's own HTTPS campaign photo, never unrelated banners.
+
+    Reusing a genuine season-wide banner is explicitly described as a
+    programme image, not falsely as a photograph of each individual workshop.
+    """
+    if host == "cclasarenas.com":
+        tag = soup.select_one('meta[property="og:image"][content]')
+        candidate = tag.get("content", "") if tag else ""
+    elif host == "www.centroscomerciales.elcorteingles.es":
+        tag = next((el for el in soup.select('img[alt][src]')
+                    if normalized(el.get("alt")) == "mercado navideno las palmas"), None)
+        candidate = tag.get("src", "") if tag else ""
+    else:
+        return ""
+    try:
+        parsed = urlsplit(candidate)
+        if (parsed.scheme == "https" and parsed.hostname == host and
+                parsed.path.startswith(required_path) and
+                re.search(r"\.(?:jpe?g|png|webp)$", parsed.path, re.I)):
+            return candidate
+    except ValueError:
+        pass
+    return ""
+
+
 def extract_las_arenas(soup, today, season):
     """Parse only the dated Club Arenillo programme, not sales or page banners.
 
@@ -91,6 +118,8 @@ def extract_las_arenas(soup, today, season):
     november_hours = []
     results, seen = [], set()
     source = official_url(season)
+    programme_image = official_image(soup, "cclasarenas.com",
+                                   f"/wp-content/uploads/{season}/")
     until = dt.date(season + 1, 1, 10)
 
     def publish(title, stamp, periods, location):
@@ -120,6 +149,10 @@ def extract_las_arenas(soup, today, season):
             "free": None, "price": "", "details": details,
             "source_name": NAME, "source_url": source,
             "organizer_url": "", "status": "approved",
+            "image_url": programme_image,
+            "image_alt": "Imagen oficial del programa navideño de Las Arenas" if programme_image else "",
+            "image_origin": source if programme_image else "",
+            "image_status": "official_remote" if programme_image else "",
         })
 
     for tag in article.find_all(["p", "li"]):
@@ -242,6 +275,9 @@ def extract_eci_market(soup, today, season):
         return []
     if today > dt.date(season+1, 1, 5):
         return []
+    market_image = official_image(
+        soup, "www.centroscomerciales.elcorteingles.es",
+        "/centroscomerciales/uploads/events/")
     return [{
         "title": "Mercado Navideño Las Palmas · Mesa y López",
         "start": f"{season}-11-20T12:00:00",
@@ -258,6 +294,10 @@ def extract_eci_market(soup, today, season):
         ),
         "source_name": ECI_NAME, "source_url": ECI_URL,
         "organizer_url": "", "status": "approved",
+        "image_url": market_image,
+        "image_alt": "Imagen oficial del Mercado Navideño Las Palmas" if market_image else "",
+        "image_origin": ECI_URL if market_image else "",
+        "image_status": "official_remote" if market_image else "",
     }]
 
 

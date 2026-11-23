@@ -70,6 +70,20 @@ class ChristmasShoppingCentreTests(unittest.TestCase):
         # The adapter is intentionally confined to Club Arenillo; it never
         # tries to scrape unrelated store or retail promotional articles.
 
+    def test_official_image_must_come_from_matching_source_domain(self):
+        html = FIXTURE.replace(
+            "<article>", '<meta property="og:image" content="https://cclasarenas.com/wp-content/uploads/2026/11/programa.jpg"><article>')
+        records=self.parse(html)
+        self.assertTrue(records)
+        self.assertEqual(records[0]["image_status"],"official_remote")
+        self.assertIn("/2026/11/programa.jpg", records[0]["image_url"])
+        self.assertIn("programa navideño", records[0]["image_alt"])
+        poisoned=html.replace("https://cclasarenas.com/wp-content/uploads",
+                              "https://evil.example/wp-content/uploads")
+        self.assertEqual(self.parse(poisoned)[0]["image_url"],"")
+        unrelated=html.replace("/2026/11/programa.jpg","/2025/11/programa.jpg")
+        self.assertEqual(self.parse(unrelated)[0]["image_url"],"")
+
     def test_no_stale_season_republication(self):
         self.assertIsNone(malls.season_for(dt.date(2027,2,1)))
         self.assertEqual(malls.season_for(dt.date(2027,1,3)),2026)
@@ -112,11 +126,14 @@ class ChristmasShoppingCentreTests(unittest.TestCase):
         <p>Ubicación: Avda. José Mesa y López, 18</p><p>Horario: 12:00 - 23:00</p>
         <p>Acceso: Libre</p>
         <p>Del 20 de noviembre de 2026 al 5 de enero de 2027 podrás recorrer las casetas.</p></main>"""
+        html=html.replace("</main>",'<img alt="Mercado Navideño Las Palmas" src="https://www.centroscomerciales.elcorteingles.es/centroscomerciales/uploads/events/navidad.jpg"></main>')
         soup=BeautifulSoup(html,"html.parser")
         row=malls.extract_eci_market(soup,dt.date(2026,11,23),2026)
         self.assertEqual(len(row),1)
         self.assertEqual(row[0]["free"],1)
         self.assertEqual(row[0]["price"],"Acceso libre")
+        self.assertEqual(row[0]["image_status"],"official_remote")
+        self.assertIn("/uploads/events/navidad.jpg",row[0]["image_url"])
         self.assertIn("Cierra el 25 de diciembre",row[0]["details"])
         self.assertEqual(malls.extract_eci_market(soup,dt.date(2027,1,6),2026),[])
         self.assertEqual(malls.extract_eci_market(soup,dt.date(2026,11,23),2025),[])

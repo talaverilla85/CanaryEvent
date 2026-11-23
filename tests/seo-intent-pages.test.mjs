@@ -50,6 +50,20 @@ test('Christmas selection includes official family, retail-centre and municipal 
  assert.equal(empty.indexable,false);
 });
 
+test('Christmas displays validated official programme artwork, not arbitrary remote images',()=>{
+ const item=official(198,'Tren de renos del Polo Norte','2026-12-04T17:00:00',{
+  source_name:'Centro Comercial Las Arenas · Club Arenillo',
+  source_url:'https://cclasarenas.com/club-arenillo-programacion-navidad-2026/',
+  image_url:'https://cclasarenas.com/wp-content/uploads/2026/11/cartel.jpg',
+  image_status:'official_remote',
+  image_alt:'Imagen oficial del programa navideño de Las Arenas',
+ });
+ const html=renderLanding(pageForKey('navidad'),[item],{today:'2026-11-23'}).html;
+ assert.match(html, /<img class="official-cover[^"]*" src="https:\/\/cclasarenas.com\/wp-content\/uploads\/2026\/11\/cartel.jpg"/);
+ assert.match(html, /alt="Imagen oficial del programa navideño de Las Arenas"/);
+ const bad=renderLanding(pageForKey('navidad'),[{...item,image_url:'https://evil.example/cartel.jpg'}],{today:'2026-11-23'}).html;
+ assert.doesNotMatch(bad, /<img class="official-cover/);
+});
 test('Christmas page has a current seasonal title, accessible cards and an explicit separately labelled AriMar ad',()=>{
  const page=pageForKey('navidad');
  const e=[
