@@ -60,6 +60,27 @@ class SietePalmasTests(unittest.TestCase):
         self.assertEqual(entry["image_url"], "")
         self.assertIn("26/11/2026", entry["details"])
 
+    def test_official_event_image_kept_by_url_without_downloading(self):
+        image = "https://sietepalmascc.com/media/carteles/taller-familiar-2026.webp"
+        html = UPCOMING.replace(
+            "<main>", '<meta property="og:image" content="' + image + '"><main>')
+        event = self.extract(html)
+        self.assertEqual(event["image_url"], image)
+        self.assertEqual(event["image_status"], "official_remote")
+        self.assertEqual(event["image_origin"], self.source())
+        self.assertIn("Siete Palmas", event["image_alt"])
+
+    def test_untrusted_or_generic_images_not_assigned(self):
+        for image in (
+            "http://example.com/evento.jpg",
+            "https://sietepalmascc.com/assets/logo.png",
+            "https://localhost/private.jpg",
+        ):
+            with self.subTest(image=image):
+                html = UPCOMING.replace(
+                    "<main>", '<meta property="og:image" content="' + image + '"><main>')
+                self.assertEqual(self.extract(html)["image_url"], "")
+
     def test_actual_november_20_article_is_past_not_republished(self):
         self.assertIsNone(self.extract(OLD))
 
