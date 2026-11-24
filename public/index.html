@@ -2180,7 +2180,8 @@ const IMAGE_HOSTS=new Set(['ingenio.es','www.ingenio.es','eventos.aguimes.es',
  'auditorioalfredokraus.es','teatroperezgaldos.es','salainsulardeteatro.com','teatrocuyas.com',
  'eventos.santabrigida.es','lpacultura.com','cdn.prod.website-files.com',
  'tejeda.eu','valleseco.es','santamariadeguia.es','www.vegadesanmateo.es','vegadesanmateo.es','api.sociedadfilarmonicalpgc.com','teror.es',
- 'www.galdar.es','www.arucas.org','lpabibliotecas.com','www.maspalomas.com','www.santaluciagc.com','www.telde.es']);
+ 'www.galdar.es','www.arucas.org','lpabibliotecas.com','www.maspalomas.com','www.santaluciagc.com','www.telde.es',
+  'cclasarenas.com','www.centroscomerciales.elcorteingles.es','sietepalmascc.com']);
 const CLASSES={musica:'p-music',gastronomia:'p-food',familia:'p-family',cultura:'p-culture',deporte:'p-sports',naturaleza:'p-nature',ocio:'p-leisure',otros:'p-other'};
 const escapeHTML=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const textForCat=k=>CATS.find(c=>c[0]===k)?.[2]||'Actividad';
@@ -2212,6 +2213,18 @@ function verifiedImage(e,large=false){
   if(variants)return large?variants.detail:variants.thumb;
   const existing=window.DParrandaPosterThumbs?.[url.href]||window.DParrandaExtraPosterThumbs?.[url.href];
   if(typeof existing==='string'&&/^\/posters\/[a-f0-9]{24}\.webp$/.test(existing))return existing;
+  // El Corte Inglés explicitly marks its official photos CORP same-site.
+  // The source URL remains in the event; serve its two verified programme
+  // images from D'Parranda on demand so the browser can display them.
+  if(url.hostname==='www.centroscomerciales.elcorteingles.es'&&
+     url.pathname.startsWith('/centroscomerciales/uploads/events/')&&
+     e.image_origin===e.source_url&&
+     e.venue==='El Corte Inglés José Mesa y López'&&
+     Number.isSafeInteger(e.id)&&e.id>0){
+    const kind=e.source_name==='El Corte Inglés Mesa y López · Mercado de Navidad'?'market':
+      e.source_name==='El Corte Inglés Mesa y López · Espectáculos de Navidad'?'shows':'';
+    if(kind)return '/api/official-poster?kind='+kind;
+  }
   return url.href;
  }catch{return ''}
 }
