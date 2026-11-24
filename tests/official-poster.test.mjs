@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { ECI_PROGRAMMES, eciOfficialImageUrl, eciOfficialImageKind, browserPosterUrl } from '../lib/official-poster.js';
 import { relayOfficialPoster } from '../lib/official-poster-relay.js';
 import { pageForKey, renderLanding, officialPosterUrl } from '../lib/seo-pages.js';
@@ -133,4 +133,14 @@ test('relay rejects arbitrary kinds, unauthorized source rows and bad upstream f
     database:dbWith(sample()),fetchRemote:async()=>new Response('Redirect',{status:301,headers:{location:'https://evil.example'}})
   });
   assert.equal(res.code,502);
+});
+
+test('Hobby deployment remains under the 12 serverless-function limit',()=>{
+  const root=new URL('../api/',import.meta.url);
+  const apiFiles=readdirSync(root).filter(name=>name.endsWith('.js'));
+  assert.equal(apiFiles.length,12);
+  assert.ok(apiFiles.includes('media.js'));
+  assert.ok(!apiFiles.includes('official-poster.js'));
+  const media=readFileSync(new URL('../api/media.js',import.meta.url),'utf8');
+  assert.match(media,/if\(req\.query\?\.kind !== undefined\)return relayOfficialPoster/);
 });
