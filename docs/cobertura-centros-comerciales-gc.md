@@ -17,7 +17,7 @@ sin publicar nada hasta encontrar actividades futuras con fecha y hora. No confu
 | Las Ramblas (Las Palmas GC) | https://lasramblascentro.com/noticias/ | Pendiente. La página «Eventos de diciembre» corresponde a una Navidad que cita 2025; nunca atribuir a 2026 |
 | La Minilla (Las Palmas GC) | https://laminillacc.com/ | Pendiente. Programa web visible sin calendario navideño completo |
 | Las Terrazas Outlet (Telde) | https://lasterrazasoutlet.com/ | Pendiente. La web muestra novedades comerciales, no una agenda concreta validada |
-| Mogán Mall (Puerto Rico, Mogán) | https://moganmall.com/eventos/ | Pendiente. Programación navideña localizada en la web pública pero el robot recibió HTTP 403; no eludir bloqueo |
+| Mogán Mall (Puerto Rico, Mogán) | https://moganmall.com/navidad/ · [PDF oficial 2026](https://drive.google.com/file/d/1VxOoS5Y20SZCoFPqLlxEgPCHIkk9YT3v/view) | **Programa 2026–27 transcrito y sincronizado automáticamente desde un listado verificado**: fecha, hora, imagen remota oficial y enlace al PDF. El sitio HTML mantiene HTTP 403 para el bot: NO se elude. Las siguientes temporadas exigirán revisión de un nuevo PDF oficial |
 | Alisios (Tamaraceite, Las Palmas GC) | Pendiente de localizar feed público oficial estable | No integrado. El encendido del 21/11 ya terminó |
 | El Mirador (Jinámar, Telde) | Pendiente de localizar feed público oficial estable | No integrado |
 | El Tablero (San Bartolomé de Tirajana) | Pendiente de localizar agenda pública oficial | No integrado |
@@ -37,3 +37,12 @@ no pretende ser exhaustivo de cada pequeño centro o zona comercial de la isla.
   siendo independientes; ninguna inclusión genera derecho a un banner.
 - Prioridad de próximos conectores: La Ballena, El Muelle y Atlántico Vecindario;
   Mogán Mall solo si se dispone de acceso permitido y fechas verificadas.
+
+## Mogán Mall · control de procedencia (24 noviembre 2026)
+
+- El propio centro enlaza públicamente `MOGANMALL_AgendaDeNavidad_2026.pdf`, creado el 10/11/2026, desde `https://moganmall.com/navidad/`.
+- PDF público: `https://drive.google.com/file/d/1VxOoS5Y20SZCoFPqLlxEgPCHIkk9YT3v/view` (3.415.654 bytes; SHA-256 `8da43f340ba9affb91dbee347a9dc432bf4c17dc136cefed8bb74c5257eabe38`). Es una sola página rasterizada, sin texto legible automáticamente.
+- Las actividades se transcribieron y comprobaron visualmente contra el cartel oficial. `scripts/mogan_mall_official.py` almacena exclusivamente este calendario 2026–27; el sincronizador filtra fechas ya pasadas y deduplica. No afirma extraer cada día el HTML bloqueado ni reutiliza fechas en futuras Navidades.
+- Imagen de las fichas: miniatura **externa** del PDF oficial, `https://drive.google.com/thumbnail?id=1VxOoS5Y20SZCoFPqLlxEgPCHIkk9YT3v&sz=w640`. D'Parranda no sube imágenes a Drive, ni guarda una copia del PDF, y enlaza su fuente original.
+- La página SEO `/centros-comerciales/mogan-mall` aparece automáticamente cuando existan suficientes actividades futuras verificadas; desaparece del índice tras su finalización.
+- Para la Navidad 2027/28 habrá que identificar otro programa oficial; este conector no debe inventar una edición anual.
