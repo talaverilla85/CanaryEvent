@@ -1,5 +1,8 @@
 import { db } from '../lib/admin-auth.js';
+import { relayOfficialPoster } from '../lib/official-poster-relay.js';
 export default async function handler(req,res){
+ // Reuse the existing media function instead of exceeding Vercel Hobby's 12-function limit.
+ if(req.query?.kind !== undefined)return relayOfficialPoster(req,res);
  if(req.method!=='GET'){res.status(405).end();return}
  res.setHeader('X-Content-Type-Options','nosniff');
  const id=Number(req.query?.id);
