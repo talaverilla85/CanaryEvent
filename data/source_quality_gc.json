@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-11-24T01:40:14+00:00",
+  "checked_at": "2026-11-24T01:49:07+00:00",
   "quality_counts": {
-    "publicados": 389,
+    "publicados": 433,
     "recintos_sin_verificar": 26,
     "programas_y_fichas_por_revisar": 7,
-    "precios_sin_confirmar": 261,
-    "distancia_a_centro_municipal": 209,
+    "precios_sin_confirmar": 305,
+    "distancia_a_centro_municipal": 253,
     "fuentes_con_error": 3,
     "duplicados_potenciales": 0
   },
@@ -88,6 +88,16 @@
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
+      "error": ""
+    },
+    {
+      "source": "Centro Comercial Mogán Mall · Agenda de Navidad 2026",
+      "estado": "operativa",
+      "publicados": 44,
+      "recinto_sin_verificar": 0,
+      "precio_sin_confirmar": 44,
+      "distancia_al_centro_municipal": 44,
+      "fichas_leidas_en_esta_ejecucion": 44,
       "error": ""
     },
     {
@@ -507,7 +517,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 13,
+      "fichas_leidas_en_esta_ejecucion": 34,
       "error": ""
     },
     {

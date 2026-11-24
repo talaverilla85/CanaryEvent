@@ -205,10 +205,15 @@
       "original_connector_state": "conector_parcial_noticia_2026_revisada",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial_noticia_2026_revisada",
-      "catalog_cards_total": 2,
+      "catalog_cards_total": 46,
       "municipal_cards_total": 0,
-      "other_sources_cards_total": 2,
+      "other_sources_cards_total": 46,
       "source_health": [
+        {
+          "source": "Centro Comercial Mogán Mall · Agenda de Navidad 2026",
+          "found": 44,
+          "error": ""
+        },
         {
           "source": "Ayuntamiento de Mogán · actividades documentadas",
           "found": 0,
