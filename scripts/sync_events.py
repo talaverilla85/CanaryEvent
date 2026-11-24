@@ -68,6 +68,7 @@ import organizer_venues
 import ingenio_juvenil_program
 import event_enrichment
 import shopping_centres_gc
+import mogan_mall_official
 from event_images import listing_image,image_fields
 from catalog_changes import compare_public_catalogs, read_published
 
@@ -555,8 +556,15 @@ def run():
         siete_palmas_result = shopping_centres_gc.synchronize_siete_palmas(
             conn, NOW, TODAY, upsert=upsert, fetch_html=get_html)
         results.append(siete_palmas_result)
+        # Mogán Mall's own official 2026 PDF is an image-only publication.
+        # Its manually verified date/session snapshot is season-limited.
+        # The organiser website blocks our bot: never bypass HTTP 403.
+        mogan_result = mogan_mall_official.synchronize(
+            conn, NOW, TODAY, upsert=upsert)
+        results.append(mogan_result)
         print("Shopping centre official events:",
-              mall_result, eci_result, eci_shows_result, siete_palmas_result)
+              mall_result, eci_result, eci_shows_result,
+              siete_palmas_result, mogan_result)
 
         # Original organizers publish precise hours and hall names. These
         # cultural sources bring concert, theatre and musical sessions missing
