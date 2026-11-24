@@ -11,7 +11,7 @@ sin publicar nada hasta encontrar actividades futuras con fecha y hora. No confu
 | Las Arenas (Las Palmas GC) | https://cclasarenas.com/club-arenillo-programacion-navidad-2026/ | **Automático**: sesiones verificadas y cartel oficial general |
 | El Corte Inglés Mesa y López (Las Palmas GC) | https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/mercado-navideno-las-palmas | **Automático**: mercado navideño y cartel propio |
 | Atlántico Vecindario | https://ccatlantico.com/novedades/?sector=eventos | Pendiente de extractor. Existen anuncios, pero hay que separar promociones comerciales de talleres con fechas |
-| Siete Palmas (Las Palmas GC) | https://sietepalmascc.com/ahora-mas/eventos | **Monitor automático en pruebas**: noticias oficiales; sin eventos futuros fechados a 24/11. No copia carteles ni imágenes |
+| Siete Palmas (Las Palmas GC) | https://sietepalmascc.com/ahora-mas/eventos | **Monitor automático en pruebas**: noticias oficiales; sin eventos futuros fechados a 24/11. Reutiliza la URL oficial de la imagen cuando está disponible; no archiva fotos en Drive |
 | El Muelle (Las Palmas GC) | https://ccelmuelle.es/eventos-noticias/ | Pendiente. Mezcla anuncios antiguos y recientes; se debe comprobar el año original |
 | La Ballena (Las Palmas GC) | https://centrocomerciallaballena.com/cat/eventos/ | Pendiente. Publica campaña Navidad 2026 sin fechas individuales |
 | Las Ramblas (Las Palmas GC) | https://lasramblascentro.com/noticias/ | Pendiente. La página «Eventos de diciembre» corresponde a una Navidad que cita 2025; nunca atribuir a 2026 |
