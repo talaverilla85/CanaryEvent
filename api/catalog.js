@@ -1,6 +1,7 @@
 import { db } from '../lib/admin-auth.js';
 import { pageForKey, renderLanding, renderIntentSitemap } from '../lib/seo-pages.js';
 import { parseEventId, eventPageRemoved, renderEventPage, renderEventSitemap } from '../lib/event-seo.js';
+import { renderMallPage, renderMallSitemap, mallNavigationLinks } from '../lib/mall-seo.js';
 export default async function handler(req,res) {
   const pageKey = typeof req.query?.page === 'string' ? req.query.page : '';
   const seoPage = pageForKey(pageKey);
@@ -8,10 +9,14 @@ export default async function handler(req,res) {
   const eventId = eventIdRaw ? parseEventId(eventIdRaw) : null;
   const eventSitemap = req.query?.eventSitemap === '1';
   const intentSitemap = req.query?.intentSitemap === '1';
+  const mallSitemap = req.query?.mallSitemap === '1';
+  const mallSlugRaw = typeof req.query?.mallSlug === 'string' ? req.query.mallSlug : '';
+  const mallRoute = Boolean(mallSlugRaw);
   const eventRoute = Boolean(eventIdRaw);
-  const seoRoute = Boolean(seoPage || eventRoute || eventSitemap || intentSitemap);
+  const seoRoute = Boolean(seoPage || eventRoute || eventSitemap || intentSitemap || mallSitemap || mallRoute);
   res.setHeader('X-Content-Type-Options','nosniff');
-  if((pageKey && !seoPage)||(eventRoute && eventId===null)){
+  if((pageKey && !seoPage)||(eventRoute && eventId===null)||
+      (mallRoute && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(mallSlugRaw))){
     res.setHeader('X-Robots-Tag','noindex');res.status(404).end('Página no encontrada');return;
   }
   if(req.method!=='GET' && !(seoRoute && req.method==='HEAD')){
@@ -99,11 +104,29 @@ export default async function handler(req,res) {
       if(o.free_override!==null&&o.free_override!==undefined)e.free=Number(o.free_override);
       return e;
     });
+    if(mallSitemap){
+      const xml=renderMallSitemap(events);
+      res.setHeader('Content-Type','application/xml; charset=utf-8');
+      res.setHeader('Cache-Control','public, s-maxage=300, stale-while-revalidate=600');
+      return res.status(200).end(req.method==='HEAD'?'':xml);
+    }
     if(intentSitemap){
       const xml=renderIntentSitemap(events);
       res.setHeader('Content-Type','application/xml; charset=utf-8');
       res.setHeader('Cache-Control','public, s-maxage=300, stale-while-revalidate=600');
       return res.status(200).end(req.method==='HEAD'?'':xml);
+    }
+    if(mallRoute){
+      const rendered=renderMallPage(mallSlugRaw,events);
+      if(!rendered){
+        res.setHeader('X-Robots-Tag','noindex');
+        res.setHeader('Cache-Control','public, s-maxage=120');
+        return res.status(404).end('No hay programación verificada para este centro');
+      }
+      res.setHeader('Content-Type','text/html; charset=utf-8');
+      res.setHeader('Cache-Control','public, s-maxage=300, stale-while-revalidate=600');
+      if(!rendered.indexable)res.setHeader('X-Robots-Tag','noindex, follow');
+      return res.status(200).end(req.method==='HEAD'?'':rendered.html);
     }
     if(seoPage){
       // The Christmas landing may carry the same active, explicitly
@@ -119,7 +142,10 @@ export default async function handler(req,res) {
           LIMIT 1`;
         christmasAd=candidate||null;
       }
-      const rendered=renderLanding(seoPage,events,{sponsor:christmasAd});
+      const rendered=renderLanding(seoPage,events,{
+        sponsor:christmasAd,
+        mallLinks:seoPage.kind==='christmas' ? mallNavigationLinks(events) : []
+      });
       res.setHeader('Content-Type','text/html; charset=utf-8');
       res.setHeader('Cache-Control','public, s-maxage=300, stale-while-revalidate=600');
       if(!rendered.indexable)res.setHeader('X-Robots-Tag','noindex, follow');
