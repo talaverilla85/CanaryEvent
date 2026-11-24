@@ -1,18 +1,18 @@
 {
-  "checked_on": "2026-11-23T19:45:40.507777+00:00",
-  "total_events": 392,
-  "known_price_or_free": 129,
+  "checked_on": "2026-11-24T00:50:46.791357+00:00",
+  "total_events": 389,
+  "known_price_or_free": 128,
   "classification": {
     "minimum_zero_ambiguous": 3,
     "contradictory_free": 14,
-    "free": 11,
+    "free": 10,
     "minimum_positive": 97,
     "fixed_positive": 4
   },
   "known_by_source": {
     "TuReservaOnline · agenda de Gran Canaria": 68,
     "El Corte Inglés Mesa y López · Mercado de Navidad": 1,
-    "Juventud Las Palmas de Gran Canaria": 7,
+    "Juventud Las Palmas de Gran Canaria": 6,
     "Ayuntamiento de Ingenio": 7,
     "Ayuntamiento de Teror · programación del Auditorio": 7,
     "Ayuntamiento de Agüimes · programación de teatros": 3,

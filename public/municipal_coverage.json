@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-11-23",
+  "updated_on": "2026-11-24",
   "scope": "21 municipios de Gran Canaria",
   "municipalities_total": 21,
   "municipalities_with_any_catalog_cards": 18,
@@ -88,7 +88,7 @@
       "source_health": [
         {
           "source": "Ayuntamiento de Arucas · agenda municipal",
-          "found": 7,
+          "found": 6,
           "error": ""
         }
       ],
@@ -186,13 +186,13 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 232,
-      "municipal_cards_total": 8,
-      "other_sources_cards_total": 224,
+      "catalog_cards_total": 230,
+      "municipal_cards_total": 7,
+      "other_sources_cards_total": 223,
       "source_health": [
         {
           "source": "Juventud Las Palmas de Gran Canaria",
-          "found": 7,
+          "found": 6,
           "error": ""
         }
       ],
@@ -256,13 +256,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 19,
-      "municipal_cards_total": 17,
+      "catalog_cards_total": 18,
+      "municipal_cards_total": 16,
       "other_sources_cards_total": 2,
       "source_health": [
         {
           "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-          "found": 21,
+          "found": 20,
           "error": ""
         }
       ],
