@@ -2208,7 +2208,13 @@ function verifiedImage(e,large=false){
  if(e.image_status!=='official_remote'||!e.image_url)return '';
  try{
   const url=new URL(e.image_url);
-  if(url.protocol!=='https:'||!IMAGE_HOSTS.has(url.hostname))return '';
+  // Mogán Mall publishes its 2026 programme as a public Drive PDF.
+  // Its thumbnail is a remote official programme image, not a Drive archive.
+  const moganPdf='https://drive.google.com/file/d/1VxOoS5Y20SZCoFPqLlxEgPCHIkk9YT3v/view';
+  const moganImage='https://drive.google.com/thumbnail?id=1VxOoS5Y20SZCoFPqLlxEgPCHIkk9YT3v&sz=w640';
+  const moganAllowed=e.source_name==='Centro Comercial Mogán Mall · Agenda de Navidad 2026'&&
+    e.source_url===moganPdf&&e.image_origin===moganPdf&&url.href===moganImage;
+  if(url.protocol!=='https:'||(!IMAGE_HOSTS.has(url.hostname)&&!moganAllowed))return '';
   const variants=posterVariants(e);
   if(variants)return large?variants.detail:variants.thumb;
   const existing=window.DParrandaPosterThumbs?.[url.href]||window.DParrandaExtraPosterThumbs?.[url.href];
@@ -2233,7 +2239,7 @@ function coverHtml(e,large=false){
  const variants=posterVariants(e);
  // Most list posters are 120-180 CSS pixels wide; don't request 480px art for them.
  const srcset=variants&&!large?' srcset="'+escapeHTML(variants.thumb)+' 320w" sizes="(max-width: 720px) 145px, 220px"':'';
- const poster=src&&(/\/plot\/event_/.test(src)||/https:\/\/(?:eventos\.santabrigida\.es|lpacultura\.com|teror\.es|tejeda\.eu|www\.galdar\.es|www\.arucas\.org|santamariadeguia\.es)\//.test(src));
+ const poster=src&&(e.source_name==='Centro Comercial Mogán Mall · Agenda de Navidad 2026'||/\/plot\/event_/.test(src)||/https:\/\/(?:eventos\.santabrigida\.es|lpacultura\.com|teror\.es|tejeda\.eu|www\.galdar\.es|www\.arucas\.org|santamariadeguia\.es)\//.test(src));
  const fallback='<div class="cover-fallback" aria-hidden="true">'+
    '<div class="fallback-top"><span>D’PARRANDA</span><span>'+escapeHTML(textForCat(e.category))+' · '+(COVER_SYMBOLS[e.category]||'✳')+'</span></div>'+
    '<div class="fallback-main"><span class="fallback-symbol">'+(COVER_SYMBOLS[e.category]||'✳')+'</span>'+
