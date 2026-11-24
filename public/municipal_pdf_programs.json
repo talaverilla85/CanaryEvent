@@ -1,14 +1,12 @@
 {
-  "checked_at": "2026-11-24T00:45:23.736854+00:00",
+  "checked_at": "2026-11-24T01:12:16.074179+00:00",
   "year": 2026,
   "scope": [
     "Santa Lucía de Tirajana",
     "Agüimes",
     "Gáldar"
   ],
-  "errors": {
-    "Agüimes": "RuntimeError: Robots policy unavailable for aguimes.es"
-  },
+  "errors": {},
   "program_count": 7,
   "events_imported": 0,
   "note": "Official PDF inventory only. Unverified acts never enter the public calendar.",
@@ -35,15 +33,15 @@
     },
     {
       "municipality": "Agüimes",
-      "title": "Programa oficial 2026 de Agüimes",
+      "title": "Programa municipal de fiestas",
       "pdf_url": "https://aguimes.es/wp-content/uploads/2026/09/AF_FIESTAS-DEL-ROSARIO-2026-DIGITAL.pdf",
       "year": 2026,
       "official_index_url": "https://aguimes.es/festejos/",
-      "discovery": "official_pdf_confirmed_2026",
+      "discovery": "official_html",
       "event_date_verified": false,
+      "first_seen_at": "2026-10-27T23:00:48.804859+00:00",
       "program_end_hint": "2026-10-13",
-      "program_end_evidence_url": "https://aguimes.es/wp-content/uploads/2026/09/AF_FIESTAS-DEL-ROSARIO-2026-DIGITAL.pdf",
-      "first_seen_at": "2026-10-27T23:00:48.804859+00:00"
+      "program_end_evidence_url": "https://aguimes.es/wp-content/uploads/2026/09/AF_FIESTAS-DEL-ROSARIO-2026-DIGITAL.pdf"
     },
     {
       "municipality": "Agüimes",

@@ -4,48 +4,47 @@
   "no_auto_publication": true,
   "inspected": [
     {
-      "municipality": "Agaete",
+      "municipality": "San Bartolomé de Tirajana",
       "outcome": "ok",
       "links": 0
     },
     {
-      "municipality": "Artenara",
+      "municipality": "Santa Lucía de Tirajana",
       "outcome": "ok",
-      "links": 0
+      "links": 3
     },
     {
-      "municipality": "Firgas",
-      "outcome": "ok",
-      "links": 4
-    },
-    {
-      "municipality": "Gáldar",
-      "outcome": "ok",
-      "links": 4
-    },
-    {
-      "municipality": "La Aldea de San Nicolás",
-      "outcome": "needs_review",
-      "error_type": "ConnectTimeout",
-      "links": 0
-    },
-    {
-      "municipality": "Las Palmas de Gran Canaria",
+      "municipality": "Santa María de Guía",
       "outcome": "needs_review",
       "error_type": "RuntimeError",
       "links": 0
     },
     {
-      "municipality": "Mogán",
+      "municipality": "Telde",
+      "outcome": "ok",
+      "links": 11
+    },
+    {
+      "municipality": "Teror",
       "outcome": "needs_review",
       "error_type": "RuntimeError",
       "links": 0
     },
     {
-      "municipality": "Moya",
-      "outcome": "needs_review",
-      "error_type": "PermissionError",
+      "municipality": "Valleseco",
+      "outcome": "ok",
       "links": 0
+    },
+    {
+      "municipality": "Valsequillo",
+      "outcome": "needs_review",
+      "error_type": "SSLError",
+      "links": 0
+    },
+    {
+      "municipality": "Vega de San Mateo",
+      "outcome": "ok",
+      "links": 3
     }
   ],
   "scan_state": {
@@ -82,40 +81,193 @@
       "outcome": "needs_review"
     },
     "San Bartolomé de Tirajana": {
-      "checked_on": "2026-11-23",
+      "checked_on": "2026-11-24",
       "outcome": "ok"
     },
     "Santa Lucía de Tirajana": {
-      "checked_on": "2026-11-23",
+      "checked_on": "2026-11-24",
       "outcome": "ok"
     },
     "Santa María de Guía": {
-      "checked_on": "2026-11-23",
+      "checked_on": "2026-11-24",
       "outcome": "needs_review"
     },
     "Telde": {
-      "checked_on": "2026-11-23",
+      "checked_on": "2026-11-24",
       "outcome": "ok"
     },
     "Teror": {
-      "checked_on": "2026-11-23",
+      "checked_on": "2026-11-24",
       "outcome": "needs_review"
     },
     "Valleseco": {
-      "checked_on": "2026-11-23",
+      "checked_on": "2026-11-24",
       "outcome": "ok"
     },
     "Valsequillo": {
-      "checked_on": "2026-11-23",
+      "checked_on": "2026-11-24",
       "outcome": "needs_review"
     },
     "Vega de San Mateo": {
-      "checked_on": "2026-11-23",
+      "checked_on": "2026-11-24",
       "outcome": "ok"
     }
   },
   "candidate_count": 68,
   "leads": [
+    {
+      "url": "https://vegadesanmateo.es/areas/patrimonio-cultural-e-historico",
+      "label": "Patrimonio Cultural e Histórico",
+      "kind": "unverified_official_link",
+      "municipality": "Vega de San Mateo",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://vegadesanmateo.es/areas/mercado-municipal",
+      "label": "Mercado Municipal",
+      "kind": "unverified_official_link",
+      "municipality": "Vega de San Mateo",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://vegadesanmateo.es/areas/ferias-y-eventos",
+      "label": "Ferias y Eventos",
+      "kind": "unverified_official_link",
+      "municipality": "Vega de San Mateo",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/tramites-presenciales/mercados/",
+      "label": "Mercados",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/el-mercado-municipal-de-telde-recibe-30-solicitudes-para-optar-a-los-21-puestos-ofertados/",
+      "label": "El Mercado Municipal de Telde recibe 30 solicitudes para optar a los 21 puestos ofertados",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/el-alcalde-juan-antonio-pena-y-el-concejal-cristhian-santana-inauguran-la-iii-feria-del-motor-ciudad-de-telde/",
+      "label": "El alcalde Juan Antonio Peña y el concejal Cristhian Santana inauguran la III Feria del Motor Ciudad de Telde",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/pymes-comercio-y-consumo/mercados/",
+      "label": "Mercados",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/juventud/",
+      "label": "Juventud",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/",
+      "label": "Festejos y ferias",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/cultura/programacion-cultural/",
+      "label": "Noticias",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/cultura/programacion-cultural-2/",
+      "label": "Noticias",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/bibliotecas/",
+      "label": "Bibliotecas",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/",
+      "label": "Ocio, cultura y juventud",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.telde.es/areas/agricultura-ganaderia-y-pesca/",
+      "label": "Agricultura, Ganadería y Pesca",
+      "kind": "unverified_official_link",
+      "municipality": "Telde",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.santaluciagc.com/areas/desarrollo-economico/mercados-mercado-agricola-sabados-y-mercadillo/",
+      "label": "Mercados Municipales",
+      "kind": "unverified_official_link",
+      "municipality": "Santa Lucía de Tirajana",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.santaluciagc.com/areas/desarrollo-economico/agricultura-y-ganaderia/",
+      "label": "Agricultura y Ganadería",
+      "kind": "unverified_official_link",
+      "municipality": "Santa Lucía de Tirajana",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
+    {
+      "url": "https://www.santaluciagc.com/agenda/",
+      "label": "Agenda / eventos",
+      "kind": "unverified_official_link",
+      "municipality": "Santa Lucía de Tirajana",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-24",
+      "publication_status": "not_an_event"
+    },
     {
       "url": "https://www.galdar.es/mercado/",
       "label": "Mercado Municipal \"La Recova\"",
@@ -186,159 +338,6 @@
       "municipality": "Firgas",
       "first_seen": "2026-10-27",
       "last_seen": "2026-11-24",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://vegadesanmateo.es/areas/patrimonio-cultural-e-historico",
-      "label": "Patrimonio Cultural e Histórico",
-      "kind": "unverified_official_link",
-      "municipality": "Vega de San Mateo",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://vegadesanmateo.es/areas/mercado-municipal",
-      "label": "Mercado Municipal",
-      "kind": "unverified_official_link",
-      "municipality": "Vega de San Mateo",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://vegadesanmateo.es/areas/ferias-y-eventos",
-      "label": "Ferias y Eventos",
-      "kind": "unverified_official_link",
-      "municipality": "Vega de San Mateo",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/tramites-presenciales/mercados/",
-      "label": "Mercados",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/el-mercado-municipal-de-telde-recibe-30-solicitudes-para-optar-a-los-21-puestos-ofertados/",
-      "label": "El Mercado Municipal de Telde recibe 30 solicitudes para optar a los 21 puestos ofertados",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-11-23",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/el-alcalde-juan-antonio-pena-y-el-concejal-cristhian-santana-inauguran-la-iii-feria-del-motor-ciudad-de-telde/",
-      "label": "El alcalde Juan Antonio Peña y el concejal Cristhian Santana inauguran la III Feria del Motor Ciudad de Telde",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-11-23",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/pymes-comercio-y-consumo/mercados/",
-      "label": "Mercados",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/juventud/",
-      "label": "Juventud",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/festejos-y-ferias/",
-      "label": "Festejos y ferias",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/cultura/programacion-cultural/",
-      "label": "Noticias",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/cultura/programacion-cultural-2/",
-      "label": "Noticias",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-11-23",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/bibliotecas/",
-      "label": "Bibliotecas",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/ocio-cultura-y-juventud/",
-      "label": "Ocio, cultura y juventud",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.telde.es/areas/agricultura-ganaderia-y-pesca/",
-      "label": "Agricultura, Ganadería y Pesca",
-      "kind": "unverified_official_link",
-      "municipality": "Telde",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.santaluciagc.com/areas/desarrollo-economico/mercados-mercado-agricola-sabados-y-mercadillo/",
-      "label": "Mercados Municipales",
-      "kind": "unverified_official_link",
-      "municipality": "Santa Lucía de Tirajana",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.santaluciagc.com/areas/desarrollo-economico/agricultura-y-ganaderia/",
-      "label": "Agricultura y Ganadería",
-      "kind": "unverified_official_link",
-      "municipality": "Santa Lucía de Tirajana",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
-      "publication_status": "not_an_event"
-    },
-    {
-      "url": "https://www.santaluciagc.com/agenda/",
-      "label": "Agenda / eventos",
-      "kind": "unverified_official_link",
-      "municipality": "Santa Lucía de Tirajana",
-      "first_seen": "2026-10-27",
-      "last_seen": "2026-11-23",
       "publication_status": "not_an_event"
     },
     {

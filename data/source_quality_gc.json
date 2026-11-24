@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-24T00:45:49+00:00",
+  "checked_at": "2026-11-24T01:12:28+00:00",
   "quality_counts": {
     "publicados": 389,
     "recintos_sin_verificar": 26,
@@ -507,7 +507,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 13,
+      "fichas_leidas_en_esta_ejecucion": 17,
       "error": ""
     },
     {
