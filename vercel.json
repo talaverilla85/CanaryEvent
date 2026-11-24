@@ -178,6 +178,14 @@
     {
       "source": "/sitemap-eventos.xml",
       "destination": "/api/catalog?eventSitemap=1"
+    },
+    {
+      "source": "/centros-comerciales/:mallSlug",
+      "destination": "/api/catalog?mallSlug=:mallSlug"
+    },
+    {
+      "source": "/sitemap-centros-comerciales.xml",
+      "destination": "/api/catalog?mallSitemap=1"
     }
   ]
 }
