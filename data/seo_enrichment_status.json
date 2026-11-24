@@ -1,22 +1,22 @@
 {
-  "checked_at": "2026-11-24T01:32:01+00:00",
+  "checked_at": "2026-11-24T01:40:14+00:00",
   "active_events": 477,
-  "pending": 303,
-  "checked": 17,
-  "verified": 0,
+  "pending": 286,
+  "checked": 13,
+  "verified": 2,
   "restored": 10,
   "newly_eligible": 0,
   "one_seo_gap": 122,
   "two_seo_gaps": 238,
   "near_ready": 360,
   "checked_by_priority": {
-    "one": 9,
-    "two": 4,
+    "one": 7,
+    "two": 3,
     "deep": 2,
-    "polish": 2
+    "polish": 1
   },
   "requests": 16,
-  "cooldown_skipped": 174,
+  "cooldown_skipped": 191,
   "missing_by_field": {
     "hora": 140,
     "recinto": 29,
@@ -26,9 +26,9 @@
     "precio": 340
   },
   "outcomes": {
-    "verified": 0,
-    "no_matching_evidence": 15,
+    "verified": 2,
+    "no_matching_evidence": 10,
     "source_failed": 0,
-    "no_eligible_source": 2
+    "no_eligible_source": 1
   }
 }
