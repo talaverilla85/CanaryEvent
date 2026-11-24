@@ -450,7 +450,7 @@ def synchronize_eci_shows(conn, now, today, upsert, fetch_html):
 # Siete Palmas is a news feed, not an event calendar: publish only specific,
 # future activities with an actual date AND advertised starting time. Its
 # promotional articles, old celebrations and undated Christmas campaigns are
-# never individual events. We do not copy any artwork or photograph.
+# never individual events. We link the official event image without copying.
 SP_NAME = "Centro Comercial Siete Palmas · agenda oficial"
 SP_URL = "https://sietepalmascc.com/ahora-mas/eventos"
 SP_VENUE = "Centro Comercial Siete Palmas"
@@ -518,6 +518,42 @@ def siete_palmas_published(soup):
         return dt.date(int(m[3]), SP_MONTHS[normalized(m[2])], int(m[1]))
     except (ValueError, KeyError):
         return None
+
+
+
+def siete_palmas_official_image(soup):
+    """Reference official article images by URL, without downloading them."""
+    for selector, attribute in (
+        ('meta[property="og:image"][content]', "content"),
+        ('meta[name="twitter:image"][content]', "content"),
+        ("main article img[src]", "src"),
+        ("main picture img[src]", "src"),
+        ("main img[src]", "src"),
+    ):
+        for node in soup.select(selector):
+            candidate = node.get(attribute, "")
+            if not candidate:
+                continue
+            url = urljoin("https://sietepalmascc.com/", str(candidate).strip())
+            try:
+                parsed = urlsplit(url)
+                if (parsed.scheme != "https" or not parsed.hostname or
+                        parsed.username or parsed.password or
+                        parsed.port not in (None, 443)):
+                    continue
+            except ValueError:
+                continue
+            host = parsed.hostname.lower()
+            if (host in ("localhost", "127.0.0.1", "::1") or
+                    host.endswith((".local", ".internal")) or
+                    re.fullmatch(r"\d+(?:\.\d+){3}", host)):
+                continue
+            pathname = parsed.path.lower()
+            if (not re.search(r"\.(?:jpe?g|png|webp|avif)$", pathname) or
+                    re.search(r"(?:^|[/_-])(?:logo|favicon|avatar|placeholder|icon)(?:[/_.-]|$)", pathname)):
+                continue
+            return url
+    return ""
 
 
 def extract_siete_palmas_article(soup, source_url, today):
@@ -590,7 +626,10 @@ def extract_siete_palmas_article(soup, source_url, today):
             "source_name": SP_NAME,
             "source_url": source_url,
             "status": "approved",
-            "image_url": "",  # no image collection or copying to Drive
+            "image_url": siete_palmas_official_image(soup),
+            "image_origin": source_url,
+            "image_alt": "Imagen oficial del programa de Siete Palmas",
+            "image_status": "official_remote" if siete_palmas_official_image(soup) else ""
         }
     return None
 
