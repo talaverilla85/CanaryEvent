@@ -550,8 +550,13 @@ def run():
         eci_shows_result = shopping_centres_gc.synchronize_eci_shows(
             conn, NOW, TODAY, upsert=upsert, fetch_html=get_html)
         results.append(eci_shows_result)
+        # Siete Palmas: monitor official news, only precisely dated future plans.
+        # No image collection; a feed with no future activity is not an error.
+        siete_palmas_result = shopping_centres_gc.synchronize_siete_palmas(
+            conn, NOW, TODAY, upsert=upsert, fetch_html=get_html)
+        results.append(siete_palmas_result)
         print("Shopping centre official events:",
-              mall_result, eci_result, eci_shows_result)
+              mall_result, eci_result, eci_shows_result, siete_palmas_result)
 
         # Original organizers publish precise hours and hall names. These
         # cultural sources bring concert, theatre and musical sessions missing
