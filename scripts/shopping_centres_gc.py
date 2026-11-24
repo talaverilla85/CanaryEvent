@@ -12,7 +12,7 @@ import re
 import unicodedata
 
 from bs4 import BeautifulSoup
-from urllib.parse import urlsplit
+from urllib.parse import urljoin, urlsplit
 
 NAME = "Centro Comercial Las Arenas · Club Arenillo"
 BASE = "https://cclasarenas.com/"
@@ -445,3 +445,186 @@ def synchronize_eci_shows(conn, now, today, upsert, fetch_html):
             "found": found, "added": added, "changed": changed,
             "error": error,
             "official_url": ECI_SHOWS_URL if season else ""}
+
+
+# Siete Palmas is a news feed, not an event calendar: publish only specific,
+# future activities with an actual date AND advertised starting time. Its
+# promotional articles, old celebrations and undated Christmas campaigns are
+# never individual events. We do not copy any artwork or photograph.
+SP_NAME = "Centro Comercial Siete Palmas · agenda oficial"
+SP_URL = "https://sietepalmascc.com/ahora-mas/eventos"
+SP_VENUE = "Centro Comercial Siete Palmas"
+SP_MONTHS = {
+    "enero": 1, "febrero": 2, "marzo": 3, "abril": 4,
+    "mayo": 5, "junio": 6, "julio": 7, "agosto": 8,
+    "septiembre": 9, "octubre": 10, "noviembre": 11, "diciembre": 12,
+}
+SP_DATE = re.compile(
+    r"\b(?:(?P<weekday>lunes|martes|miércoles|miercoles|jueves|viernes|"
+    r"sábado|sabado|domingo)\s*,?\s+)?(?:el\s+)?"
+    r"(?P<day>\d{1,2})\s+de\s+"
+    r"(?P<month>enero|febrero|marzo|abril|mayo|junio|julio|agosto|"
+    r"septiembre|octubre|noviembre|diciembre)"
+    r"(?:\s+de\s+(?P<year>20\d{2}))?\b", re.I)
+SP_TIME_RANGE = re.compile(
+    r"\b(?:de|desde las)\s+(\d{1,2}:\d{2})\s*(?:a|hasta las|[-–])\s*"
+    r"(\d{1,2}:\d{2})\b", re.I)
+SP_START_TIME = re.compile(r"\b(?:a las|desde las)\s+(\d{1,2}:\d{2})\b", re.I)
+SP_RETAIL = re.compile(
+    r"\b(?:rebajas|black friday|descuentos?|promociones?|ofertas?|"
+    r"liquidación|liquidacion|reabre sus puertas|apertura de tienda|"
+    r"inauguraci[oó]n de tienda|nueva colección|nueva coleccion)\b", re.I)
+SP_ACTIVITY = re.compile(
+    r"\b(?:taller(?:es)?|festival|música|musica|concierto|magia|"
+    r"papá noel|papa noel|navidad|encendido|espectáculo|espectaculo|"
+    r"cuentacuentos|teatro|recogida de juguetes|animación|animacion|"
+    r"infantil|familiar|juegos|lego|actuación|actuacion)\b", re.I)
+
+
+def siete_palmas_links(soup):
+    """Recent same-origin official articles only, never external links."""
+    if not isinstance(soup, BeautifulSoup):
+        soup = BeautifulSoup(str(soup), "html.parser")
+    main = soup.select_one("main") or soup
+    found = []
+    for a in main.select("a[href]"):
+        url = urljoin(SP_URL + "/", a.get("href", ""))
+        p = urlsplit(url)
+        if (p.scheme != "https" or p.netloc != "sietepalmascc.com" or
+                not re.fullmatch(r"/ahora-mas/eventos/[a-z0-9-]+/?", p.path)):
+            continue
+        canonical = "https://sietepalmascc.com" + p.path.rstrip("/")
+        if canonical not in found:
+            found.append(canonical)
+    return found
+
+
+def siete_palmas_published(soup):
+    """Use the official article date ONLY to disambiguate its own near-future
+    yearless dates; never publish the article date as an event by itself."""
+    for node in soup.select("meta[property='article:published_time'][content],"
+                            " time[datetime]"):
+        value = node.get("content") or node.get("datetime") or ""
+        try:
+            return dt.date.fromisoformat(value[:10])
+        except ValueError:
+            pass
+    text = soup.get_text(" ", strip=True)
+    m = re.search(r"\bFecha\s+(\d{1,2})\s+de\s+"
+                  r"([A-Za-zÁÉÍÓÚÜáéíóúü]+)\s+(20\d{2})\b", text, re.I)
+    if not m:
+        return None
+    try:
+        return dt.date(int(m[3]), SP_MONTHS[normalized(m[2])], int(m[1]))
+    except (ValueError, KeyError):
+        return None
+
+
+def extract_siete_palmas_article(soup, source_url, today):
+    """Return a verified dated event or None (no guesswork on stale stories)."""
+    if not isinstance(soup, BeautifulSoup):
+        soup = BeautifulSoup(str(soup), "html.parser")
+    url = urlsplit(source_url)
+    if (url.scheme != "https" or url.netloc != "sietepalmascc.com" or
+            not re.fullmatch(r"/ahora-mas/eventos/[a-z0-9-]+/?", url.path)):
+        return None
+    main = soup.select_one("main") or soup
+    heading = main.select_one("h1")
+    if not heading:
+        return None
+    title = " ".join(heading.get_text(" ", strip=True).split())[:160]
+    if not title or SP_RETAIL.search(title) or not SP_ACTIVITY.search(title):
+        return None
+    published = siete_palmas_published(soup)
+    for tag in main.select("p"):
+        sentence = " ".join(tag.get_text(" ", strip=True).split())
+        dates = list(SP_DATE.finditer(sentence))
+        if len(dates) != 1:
+            continue  # no ambiguous multi-day schedules
+        match = dates[0]
+        time_range = SP_TIME_RANGE.search(sentence)
+        time_start = SP_START_TIME.search(sentence) if not time_range else None
+        if not (time_range or time_start):
+            continue
+        try:
+            month = SP_MONTHS[normalized(match["month"])]
+            year = int(match["year"]) if match["year"] else (published.year if published else None)
+            if year is None:
+                continue
+            stamp = dt.date(year, month, int(match["day"]))
+            # A yearless date is valid only close to its dated publication.
+            if not match["year"] and not (
+                    published <= stamp <= published + dt.timedelta(days=60)):
+                continue
+            weekday = match["weekday"]
+            if weekday and WEEKDAYS.get(normalized(weekday)) != stamp.weekday():
+                continue
+            if not today <= stamp <= today + dt.timedelta(days=180):
+                continue
+            start_value = (time_range or time_start)[1]
+            start = dt.time.fromisoformat(start_value)
+            end = dt.time.fromisoformat(time_range[2]) if time_range else None
+            if end is not None and end <= start:
+                continue
+        except (TypeError, ValueError, KeyError):
+            continue
+        info = (f"{title}. Actividad anunciada para el "
+                f"{stamp.strftime('%d/%m/%Y')} a las {start.strftime('%H:%M')} h"
+                + (f", hasta las {end.strftime('%H:%M')} h" if end else "")
+                + f" en {SP_VENUE}. Consulta la fuente oficial antes de acudir.")
+        price_known_free = bool(re.search(
+            r"\b(?:gratis|gratuit[oa]s?|acceso libre|entrada libre)\b",
+            sentence, re.I))
+        return {
+            "title": title,
+            "start": stamp.isoformat() + "T" + start.strftime("%H:%M:%S"),
+            "end": (stamp.isoformat() + "T" + end.strftime("%H:%M:%S")) if end else None,
+            "municipality": TOWN,
+            "venue": SP_VENUE,
+            "category": "familia" if re.search(
+                r"infantil|familiar|niñ|papa noel|papá noel|lego|taller",
+                normalized(title)) else "ocio",
+            "free": 1 if price_known_free else None,
+            "price": "Entrada libre" if price_known_free else "",
+            "details": info,
+            "source_name": SP_NAME,
+            "source_url": source_url,
+            "status": "approved",
+            "image_url": "",  # no image collection or copying to Drive
+        }
+    return None
+
+
+def synchronize_siete_palmas(conn, now, today, upsert, fetch_html):
+    found = added = changed = checked = 0
+    error = ""
+    try:
+        links = siete_palmas_links(fetch_html(SP_URL))
+        if not links:
+            raise ValueError("No official articles found in the events feed")
+        problems = []
+        for url in links[:8]:
+            try:
+                item = extract_siete_palmas_article(fetch_html(url), url, today)
+                checked += 1
+                if not item:
+                    continue
+                result = upsert(conn, item)
+                found += 1
+                added += int(result == "added")
+                changed += int(result == "changed")
+            except Exception as exc:
+                problems.append(type(exc).__name__ + ": " + str(exc)[:80])
+        if problems:
+            error = "; ".join(problems[:2])[:200]
+    except Exception as exc:
+        error = type(exc).__name__ + ": " + str(exc)[:180]
+    conn.execute("""INSERT INTO source_log(source,checked_at,found,added,changed,error)
+        VALUES(?,?,?,?,?,?) ON CONFLICT(source) DO UPDATE SET
+        checked_at=excluded.checked_at,found=excluded.found,
+        added=excluded.added,changed=excluded.changed,error=excluded.error""",
+        (SP_NAME, str(now), found, added, changed, error))
+    conn.commit()
+    return {"source": SP_NAME, "checked_at": str(now), "found": found,
+            "added": added, "changed": changed, "error": error,
+            "articles_checked": checked, "official_url": SP_URL}
