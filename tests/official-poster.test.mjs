@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { ECI_PROGRAMMES, eciOfficialImageUrl, eciOfficialImageKind, browserPosterUrl } from '../lib/official-poster.js';
-import { relayOfficialPoster } from '../api/official-poster.js';
+import { relayOfficialPoster } from '../lib/official-poster-relay.js';
 import { pageForKey, renderLanding, officialPosterUrl } from '../lib/seo-pages.js';
 import { renderEventPage } from '../lib/event-seo.js';
 import { renderMallPage } from '../lib/mall-seo.js';
@@ -61,19 +61,19 @@ test('SEO cards, event details, and the automatic mall page show images from DPa
     sample('market',1063)
   ];
   assert.equal(officialPosterUrl(events[0]),showsImage);
-  assert.equal(browserPosterUrl(events[0],showsImage),'/api/official-poster?kind=shows');
-  assert.equal(browserPosterUrl(events[3],marketImage),'/api/official-poster?kind=market');
+  assert.equal(browserPosterUrl(events[0],showsImage),'/api/media?kind=shows');
+  assert.equal(browserPosterUrl(events[3],marketImage),'/api/media?kind=market');
   const christmas=renderLanding(pageForKey('navidad'),events,{today:'2026-11-24'});
-  assert.match(christmas.html,/src="\/api\/official-poster\?kind=shows"/);
-  assert.match(christmas.html,/src="\/api\/official-poster\?kind=market"/);
+  assert.match(christmas.html,/src="\/api\/media\?kind=shows"/);
+  assert.match(christmas.html,/src="\/api\/media\?kind=market"/);
   assert.match(christmas.html,/data-poster-source="https:\/\/www.centroscomerciales.elcorteingles.es/);
   const detailPage=renderEventPage(events[0],{today:'2026-11-24'});
-  assert.match(detailPage.html,/src="\/api\/official-poster\?kind=shows"/);
+  assert.match(detailPage.html,/src="\/api\/media\?kind=shows"/);
   assert.match(detailPage.html,/https:\/\/www.centroscomerciales.elcorteingles.es\/centroscomerciales\/uploads\/events/);
   const mall=renderMallPage('mesa-y-lopez',events,{today:'2026-11-24'});
   assert.ok(mall?.indexable);
-  assert.match(mall.html,/src="\/api\/official-poster\?kind=shows"/);
-  assert.match(mall.html,/src="\/api\/official-poster\?kind=market"/);
+  assert.match(mall.html,/src="\/api\/media\?kind=shows"/);
+  assert.match(mall.html,/src="\/api\/media\?kind=market"/);
   assert.match(mall.html,/Fuente del evento/);
   assert.doesNotMatch(mall.html,/drive.google.com/);
 });
@@ -81,7 +81,7 @@ test('SEO cards, event details, and the automatic mall page show images from DPa
 test('front page permits official shopping-centre image host and chooses the relay',()=>{
   const html=readFileSync(new URL('../public/index.html',import.meta.url),'utf8');
   assert.match(html,/'cclasarenas.com','www.centroscomerciales.elcorteingles.es','sietepalmascc.com'/);
-  assert.match(html,/return '\/api\/official-poster\?kind='\+kind/);
+  assert.match(html,/return '\/api\/media\?kind='\+kind/);
   assert.match(html,/e.image_origin===e.source_url/);
 });
 
@@ -133,4 +133,14 @@ test('relay rejects arbitrary kinds, unauthorized source rows and bad upstream f
     database:dbWith(sample()),fetchRemote:async()=>new Response('Redirect',{status:301,headers:{location:'https://evil.example'}})
   });
   assert.equal(res.code,502);
+});
+
+test('Hobby deployment remains under the 12 serverless-function limit',()=>{
+  const root=new URL('../api/',import.meta.url);
+  const apiFiles=readdirSync(root).filter(name=>name.endsWith('.js'));
+  assert.equal(apiFiles.length,12);
+  assert.ok(apiFiles.includes('media.js'));
+  assert.ok(!apiFiles.includes('official-poster.js'));
+  const media=readFileSync(new URL('../api/media.js',import.meta.url),'utf8');
+  assert.match(media,/if\(req\.query\?\.kind !== undefined\)return relayOfficialPoster/);
 });
