@@ -163,7 +163,7 @@
       "status": "activo_solo_recinto_la_aldea;_expansion_islena_pendiente",
       "adapter": "aldea_ecoentradas",
       "found_last_run": 0,
-      "last_error": "ValueError: EcoEntradas listing has wrong town or island",
+      "last_error": "",
       "published_cards": 0,
       "has_live_connector": true
     }

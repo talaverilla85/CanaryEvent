@@ -1,19 +1,19 @@
 {
-  "checked_on": "2026-11-24T01:51:36.976566+00:00",
-  "total_events": 433,
-  "known_price_or_free": 128,
+  "checked_on": "2026-11-24T16:18:36.654691+00:00",
+  "total_events": 440,
+  "known_price_or_free": 132,
   "classification": {
-    "minimum_zero_ambiguous": 3,
+    "minimum_zero_ambiguous": 4,
     "contradictory_free": 14,
     "free": 10,
-    "minimum_positive": 97,
+    "minimum_positive": 100,
     "fixed_positive": 4
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 68,
+    "TuReservaOnline · agenda de Gran Canaria": 71,
     "El Corte Inglés Mesa y López · Mercado de Navidad": 1,
     "Juventud Las Palmas de Gran Canaria": 6,
-    "Ayuntamiento de Ingenio": 7,
+    "Ayuntamiento de Ingenio": 8,
     "Ayuntamiento de Teror · programación del Auditorio": 7,
     "Ayuntamiento de Agüimes · programación de teatros": 3,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 18,
@@ -130,6 +130,15 @@
       "free": 1,
       "category": "contradictory_free",
       "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1126,
+      "title": "PLANETA GRAN CANARIA 2026",
+      "source": "TuReservaOnline · agenda de Gran Canaria",
+      "label": "Desde 0 €",
+      "free": 0,
+      "category": "minimum_zero_ambiguous",
+      "url": "https://www.tureservaonline.es/es/events/planetagc26"
     },
     {
       "id": 1074,
