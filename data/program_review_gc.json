@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-24T16:15:50+00:00",
+  "updated_at": "2026-11-25T15:59:24+00:00",
   "note": "Fichas pendientes de desglose o sin un evento identificable; no publicarlas como planes.",
   "pending_programs": [
     {
@@ -11,16 +11,6 @@
       "source_name": "TuReservaOnline · agenda de Gran Canaria",
       "source_url": "https://www.tureservaonline.es/es/events/reserva-area-recreativa-huertas-del-rey",
       "reason": "Reserva administrativa de una instalación, no un evento"
-    },
-    {
-      "id": 543,
-      "title": "«TALLERES DE BIENESTAR EMOCIONAL Y ENVEJECIMIENTO ACTIVO»",
-      "start": "2026-10-06T11:00:00",
-      "end": "2026-11-24",
-      "municipality": "Santa Brígida",
-      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "source_url": "https://eventos.santabrigida.es/eventos/talleres-de-bienestar-emocional-y-envejecimiento-activo/",
-      "reason": "Programa con varias actividades: desglosar por fecha, hora y recinto"
     },
     {
       "id": 120,

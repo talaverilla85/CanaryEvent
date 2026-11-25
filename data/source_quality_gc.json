@@ -1,22 +1,22 @@
 {
-  "checked_at": "2026-11-24T16:15:50+00:00",
+  "checked_at": "2026-11-25T15:59:24+00:00",
   "quality_counts": {
-    "publicados": 440,
+    "publicados": 454,
     "recintos_sin_verificar": 26,
-    "programas_y_fichas_por_revisar": 7,
-    "precios_sin_confirmar": 308,
-    "distancia_a_centro_municipal": 260,
-    "fuentes_con_error": 3,
+    "programas_y_fichas_por_revisar": 6,
+    "precios_sin_confirmar": 321,
+    "distancia_a_centro_municipal": 273,
+    "fuentes_con_error": 2,
     "duplicados_potenciales": 0
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 13,
+      "publicados": 11,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 5,
-      "distancia_al_centro_municipal": 13,
+      "precio_sin_confirmar": 4,
+      "distancia_al_centro_municipal": 11,
       "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
@@ -53,9 +53,9 @@
     {
       "source": "Centro Comercial Las Arenas · Club Arenillo",
       "estado": "operativa",
-      "publicados": 51,
+      "publicados": 53,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 51,
+      "precio_sin_confirmar": 53,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 51,
       "error": ""
@@ -133,22 +133,22 @@
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
       "estado": "operativa",
-      "publicados": 19,
+      "publicados": 18,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 19,
+      "precio_sin_confirmar": 18,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 19,
+      "fichas_leidas_en_esta_ejecucion": 12,
       "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
-      "estado": "error",
-      "publicados": 8,
+      "estado": "operativa",
+      "publicados": 24,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 8,
-      "distancia_al_centro_municipal": 8,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "precio_sin_confirmar": 24,
+      "distancia_al_centro_municipal": 24,
+      "fichas_leidas_en_esta_ejecucion": 27,
+      "error": ""
     },
     {
       "source": "Sala Insular de Teatro · agenda oficial",
@@ -213,10 +213,10 @@
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
-      "publicados": 1,
+      "publicados": 0,
       "recinto_sin_verificar": 5,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 1,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 6,
       "error": ""
     },
@@ -242,12 +242,12 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
-      "estado": "operativa",
+      "estado": "sin_resultados_en_esta_revision",
       "publicados": 1,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 1,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -307,7 +307,7 @@
       "recinto_sin_verificar": 4,
       "precio_sin_confirmar": 16,
       "distancia_al_centro_municipal": 16,
-      "fichas_leidas_en_esta_ejecucion": 20,
+      "fichas_leidas_en_esta_ejecucion": 19,
       "error": ""
     },
     {
@@ -433,21 +433,21 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "sin_resultados_en_esta_revision",
-      "publicados": 108,
+      "publicados": 107,
       "recinto_sin_verificar": 17,
-      "precio_sin_confirmar": 90,
-      "distancia_al_centro_municipal": 53,
+      "precio_sin_confirmar": 88,
+      "distancia_al_centro_municipal": 52,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 71,
+      "publicados": 72,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 70,
-      "fichas_leidas_en_esta_ejecucion": 102,
+      "distancia_al_centro_municipal": 71,
+      "fichas_leidas_en_esta_ejecucion": 103,
       "error": ""
     },
     {
@@ -517,7 +517,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 34,
+      "fichas_leidas_en_esta_ejecucion": 28,
       "error": ""
     },
     {
@@ -532,10 +532,6 @@
     }
   ],
   "reported_errors": [
-    {
-      "source": "Teatro Cuyás · agenda oficial",
-      "error": "RuntimeError"
-    },
     {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
       "error": "Galdar calendar returned no future structured events"
