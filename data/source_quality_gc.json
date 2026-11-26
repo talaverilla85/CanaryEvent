@@ -1,22 +1,22 @@
 {
-  "checked_at": "2026-11-25T15:59:24+00:00",
+  "checked_at": "2026-11-26T15:40:50+00:00",
   "quality_counts": {
     "publicados": 454,
     "recintos_sin_verificar": 26,
     "programas_y_fichas_por_revisar": 6,
     "precios_sin_confirmar": 321,
     "distancia_a_centro_municipal": 273,
-    "fuentes_con_error": 2,
+    "fuentes_con_error": 4,
     "duplicados_potenciales": 0
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 11,
+      "publicados": 12,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 4,
-      "distancia_al_centro_municipal": 11,
+      "precio_sin_confirmar": 5,
+      "distancia_al_centro_municipal": 12,
       "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
@@ -33,10 +33,10 @@
     {
       "source": "Juventud Las Palmas de Gran Canaria",
       "estado": "operativa",
-      "publicados": 7,
+      "publicados": 6,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 7,
+      "distancia_al_centro_municipal": 6,
       "fichas_leidas_en_esta_ejecucion": 6,
       "error": ""
     },
@@ -103,11 +103,11 @@
     {
       "source": "LPA Cultura · agenda municipal oficial",
       "estado": "operativa",
-      "publicados": 2,
+      "publicados": 1,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 2,
-      "fichas_leidas_en_esta_ejecucion": 2,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 1,
+      "fichas_leidas_en_esta_ejecucion": 1,
       "error": ""
     },
     {
@@ -127,18 +127,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 29,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 29,
+      "fichas_leidas_en_esta_ejecucion": 24,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 18,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 18,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 12,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -214,10 +214,10 @@
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
       "publicados": 0,
-      "recinto_sin_verificar": 5,
+      "recinto_sin_verificar": 6,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 6,
+      "fichas_leidas_en_esta_ejecucion": 7,
       "error": ""
     },
     {
@@ -232,13 +232,13 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Firgas",
-      "estado": "sin_resultados_en_esta_revision",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
-      "error": ""
+      "error": "No event links found in official listing; check layout"
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
@@ -434,7 +434,7 @@
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "sin_resultados_en_esta_revision",
       "publicados": 107,
-      "recinto_sin_verificar": 17,
+      "recinto_sin_verificar": 16,
       "precio_sin_confirmar": 88,
       "distancia_al_centro_municipal": 52,
       "fichas_leidas_en_esta_ejecucion": 0,
@@ -443,10 +443,10 @@
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 72,
+      "publicados": 73,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 71,
+      "distancia_al_centro_municipal": 72,
       "fichas_leidas_en_esta_ejecucion": 103,
       "error": ""
     },
@@ -517,7 +517,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 28,
+      "fichas_leidas_en_esta_ejecucion": 17,
       "error": ""
     },
     {
@@ -533,8 +533,16 @@
   ],
   "reported_errors": [
     {
+      "source": "Auditorio Alfredo Kraus · programación oficial",
+      "error": "RuntimeError"
+    },
+    {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
       "error": "Galdar calendar returned no future structured events"
+    },
+    {
+      "source": "Municipio · descubrimiento oficial · Firgas",
+      "error": "No event links found in official listing; check layout"
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
@@ -544,11 +552,11 @@
   "missing_venue_by_source": [
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "count": 17
+      "count": 16
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 5
+      "count": 6
     },
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
@@ -579,14 +587,6 @@
       "municipality": "Firgas",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260925-0010/ii-campeonato-de-envite-pal-pie-villa-de-firgas"
-    },
-    {
-      "id": 259,
-      "title": "Costura Creativa",
-      "start": "2026-09-30",
-      "municipality": "Las Palmas de Gran Canaria",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260930-0003/costura-creativa"
     },
     {
       "id": 253,
@@ -683,6 +683,14 @@
       "municipality": "Las Palmas de Gran Canaria",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261126-0005/casa-africa-en-los-encuentros-de-bamako-202627"
+    },
+    {
+      "id": 1148,
+      "title": "CARLOS PAZOS PRESENTA: CLIC Y CLARA EN LA ERA DE LOS DINOSAURIOS",
+      "start": "2026-11-26",
+      "municipality": "Arucas",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd016TT0="
     },
     {
       "id": 792,

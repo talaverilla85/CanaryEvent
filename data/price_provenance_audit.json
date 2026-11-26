@@ -1,20 +1,20 @@
 {
-  "checked_on": "2026-11-25T16:02:41.988116+00:00",
+  "checked_on": "2026-11-26T15:44:40.566159+00:00",
   "total_events": 454,
   "known_price_or_free": 133,
   "classification": {
-    "minimum_zero_ambiguous": 4,
+    "minimum_zero_ambiguous": 5,
     "contradictory_free": 14,
-    "free": 10,
     "minimum_positive": 101,
+    "free": 9,
     "fixed_positive": 4
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 72,
+    "TuReservaOnline · agenda de Gran Canaria": 73,
     "El Corte Inglés Mesa y López · Mercado de Navidad": 1,
-    "Juventud Las Palmas de Gran Canaria": 6,
     "Ayuntamiento de Ingenio": 7,
     "Ayuntamiento de Teror · programación del Auditorio": 7,
+    "Juventud Las Palmas de Gran Canaria": 5,
     "Ayuntamiento de Agüimes · programación de teatros": 3,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 19,
     "Ayuntamiento de Agüimes": 3,
@@ -67,6 +67,15 @@
       "free": 1,
       "category": "contradictory_free",
       "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/una-navidad-llena-de-magia-risas-y-diversion-para-toda-la-familia"
+    },
+    {
+      "id": 1149,
+      "title": "COPA HÍPICA SAN VICENTE 26/27 - CARRERA DE CABALLO",
+      "source": "TuReservaOnline · agenda de Gran Canaria",
+      "label": "Desde 0 €",
+      "free": 0,
+      "category": "minimum_zero_ambiguous",
+      "url": "https://www.tureservaonline.es/es/events/copa-hipica-san-vicente-2627-carrera-de-caballo"
     },
     {
       "id": 1067,

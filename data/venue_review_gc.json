@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-25T15:59:24+00:00",
+  "updated_at": "2026-11-26T15:40:50+00:00",
   "not_published": 26,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
@@ -36,18 +36,6 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20260925-0010/ii-campeonato-de-envite-pal-pie-villa-de-firgas",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 259,
-      "title": "Costura Creativa",
-      "start": "2026-09-30",
-      "end": "2026-11-25",
-      "municipality": "Las Palmas de Gran Canaria",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20260930-0003/costura-creativa",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
@@ -193,6 +181,18 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261126-0005/casa-africa-en-los-encuentros-de-bamako-202627",
       "organizer_url": "https://www.casafrica.es/es/evento/casa-africa-en-los-encuentros-de-bamako-202627",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 1148,
+      "title": "CARLOS PAZOS PRESENTA: CLIC Y CLARA EN LA ERA DE LOS DINOSAURIOS",
+      "start": "2026-11-26",
+      "end": null,
+      "municipality": "Arucas",
+      "venue": "Consultar el recinto en la ficha oficial",
+      "source_name": "Ayuntamiento de Arucas · agenda municipal",
+      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd016TT0=",
+      "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
