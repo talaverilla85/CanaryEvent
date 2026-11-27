@@ -37,6 +37,7 @@ import santalucia_festivals
 import arucas_agenda
 import galdar_agenda
 import santabrigida_agenda
+import event_copy_quality
 import teror_auditorio
 import telde_fiestas
 import artenara_ferias
@@ -469,7 +470,7 @@ def upsert(conn,e):
     event_columns=("title","start","end","municipality","venue","category","free","price","details",
                    "lat","lng","accuracy","source_name","source_url","status",
                    "image_url","image_alt","image_origin","image_status","organizer_url")
-    fields=dict(e)
+    fields=event_copy_quality.normalize_event(e)
     if existing and existing["status"]=="duplicate" and fields.get("status")=="approved":
         fields["status"]="duplicate"
     if existing and str(e.get("source_name","")).startswith("TuReservaOnline") and not existing["source_name"].startswith("TuReservaOnline"):
@@ -1230,7 +1231,7 @@ def run():
             if municipal_live_discovery.invalid_legacy_guia(e):
                 invalid_guia_legacy+=1
                 continue
-            events.append(ulpgc_venue_facts.enhance(e))
+            events.append(event_copy_quality.normalize_event(ulpgc_venue_facts.enhance(e)))
         if invalid_guia_legacy:
             print("Guía legacy news metadata withheld from export:",invalid_guia_legacy)
         # Apply the policy to old SQLite records, not only future imports.

@@ -92,5 +92,7 @@ jobs:
         run: node --test tests/official-poster.test.mjs
       - name: Verificar imágenes, SEO y fichas de Mogán Mall
         run: node --test tests/mogan-mall-seo.test.mjs
+      - name: Validar limpieza de descripciones y seguridad de las ubicaciones
+        run: node --test tests/event-content-quality.test.mjs
       - name: Pruebas de la interfaz y compatibilidad
         run: python -m unittest discover -s tests -q

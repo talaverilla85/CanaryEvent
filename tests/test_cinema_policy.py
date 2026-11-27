@@ -44,10 +44,13 @@ class CinemaPolicyTest(unittest.TestCase):
   self.assertTrue(cinema_policy.is_commercial_screening(entry("Dune Parte Tres",venue="Cines Yelmo Las Arenas")))
  def test_existing_catalog_has_commercial_items_to_remove(self):
   es=json.loads((ROOT/"public/events.json").read_text(encoding="utf8"))["events"]
-  kept,discarded=cinema_policy.remove_commercial_screenings(es)
+  # Stable cultural screening fixture: do not assume past live events remain
+  # in a rolling catalogue after their scheduled date.
+  cultural_fixture=entry("Efecto cinema: El tren fluvial")
+  kept,discarded=cinema_policy.remove_commercial_screenings(es+[cultural_fixture])
   self.assertTrue(all(cinema_policy.is_commercial_screening(e) for e in discarded))
-  self.assertEqual(len(kept)+len(discarded),len(es))
-  self.assertTrue(any("Efecto cinema" in e["title"] for e in kept))
+  self.assertEqual(len(kept)+len(discarded),len(es)+1)
+  self.assertIn(cultural_fixture,kept)
   # This particular concert is no longer necessarily in the rolling catalog.
   # Protect the policy itself, not the presence of an expired event fixture.
   self.assertFalse(cinema_policy.is_commercial_screening(
