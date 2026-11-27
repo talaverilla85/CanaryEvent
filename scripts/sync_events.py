@@ -1239,7 +1239,7 @@ def run():
         print(f"Routine commercial cinema excluded from public agenda: {len(cinema_excluded)}")
         # Quality-filter source records before projecting verified calendar
         # days: one brochure or theatre programme is not 30 sessions.
-        events,programs_pending=program_quality.filter_public_plans(events)
+        events,programs_pending=program_quality.filter_public_plans(events,TODAY)
         # An incorrect Cabildo copy can name Sala Insular although the
         # same exact show/date is verified by the original Teatro Cuyas.
         # Avoid publishing a fictitious last day from the copy.
