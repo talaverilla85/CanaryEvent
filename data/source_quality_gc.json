@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-11-27T16:07:39+00:00",
+  "checked_at": "2026-11-27T17:50:22+00:00",
   "quality_counts": {
-    "publicados": 451,
+    "publicados": 450,
     "recintos_sin_verificar": 27,
-    "programas_y_fichas_por_revisar": 6,
-    "precios_sin_confirmar": 319,
-    "distancia_a_centro_municipal": 273,
+    "programas_y_fichas_por_revisar": 8,
+    "precios_sin_confirmar": 318,
+    "distancia_a_centro_municipal": 272,
     "fuentes_con_error": 3,
     "duplicados_potenciales": 0
   },
@@ -127,18 +127,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 28,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 28,
+      "fichas_leidas_en_esta_ejecucion": 20,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "operativa",
+      "estado": "error",
       "publicados": 19,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 19,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 19,
-      "error": ""
+      "fichas_leidas_en_esta_ejecucion": 0,
+      "error": "RuntimeError"
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -232,13 +232,13 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Firgas",
-      "estado": "error",
+      "estado": "sin_resultados_en_esta_revision",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "No event links found in official listing; check layout"
+      "error": ""
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
@@ -303,10 +303,10 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 22,
+      "publicados": 20,
       "recinto_sin_verificar": 6,
-      "precio_sin_confirmar": 21,
-      "distancia_al_centro_municipal": 22,
+      "precio_sin_confirmar": 20,
+      "distancia_al_centro_municipal": 20,
       "fichas_leidas_en_esta_ejecucion": 27,
       "error": ""
     },
@@ -443,11 +443,11 @@
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 71,
+      "publicados": 72,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 70,
-      "fichas_leidas_en_esta_ejecucion": 101,
+      "distancia_al_centro_municipal": 71,
+      "fichas_leidas_en_esta_ejecucion": 102,
       "error": ""
     },
     {
@@ -517,7 +517,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 17,
+      "fichas_leidas_en_esta_ejecucion": 14,
       "error": ""
     },
     {
@@ -533,12 +533,12 @@
   ],
   "reported_errors": [
     {
-      "source": "Ayuntamiento de Gáldar · agenda de Cultura",
-      "error": "Galdar calendar returned no future structured events"
+      "source": "Auditorio Alfredo Kraus · programación oficial",
+      "error": "RuntimeError"
     },
     {
-      "source": "Municipio · descubrimiento oficial · Firgas",
-      "error": "No event links found in official listing; check layout"
+      "source": "Ayuntamiento de Gáldar · agenda de Cultura",
+      "error": "Galdar calendar returned no future structured events"
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",

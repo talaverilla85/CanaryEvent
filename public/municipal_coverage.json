@@ -108,7 +108,7 @@
         {
           "source": "Municipio · descubrimiento oficial · Firgas",
           "found": 0,
-          "error": "No event links found in official listing; check layout"
+          "error": ""
         },
         {
           "source": "Firgas · Finaos 2026 contrastados con fuentes locales",
@@ -149,9 +149,9 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 23,
+      "catalog_cards_total": 24,
       "municipal_cards_total": 13,
-      "other_sources_cards_total": 10,
+      "other_sources_cards_total": 11,
       "source_health": [
         {
           "source": "Ayuntamiento de Ingenio",
@@ -261,8 +261,8 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 24,
-      "municipal_cards_total": 22,
+      "catalog_cards_total": 22,
+      "municipal_cards_total": 20,
       "other_sources_cards_total": 2,
       "source_health": [
         {
