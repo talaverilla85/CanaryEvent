@@ -59,6 +59,62 @@ class ProgrammeQualityTests(unittest.TestCase):
   self.assertFalse(q.is_multi_activity(plan("Pregón de las fiestas de San Gregorio",start="2026-11-06",end=None,venue="Plaza de San Gregorio")))
   self.assertFalse(q.is_multi_activity(plan("Concierto de Navidad",start="2026-12-20",end=None,venue="Auditorio")))
 
+
+ def test_closed_registration_excursion_does_not_return_as_public_event(self):
+  excursion=plan("«SALIDA CULTURAL JARDÍN DE LA MARQUESA»",
+                start="2026-11-27T09:00:00",end="2026-11-27T18:00:00",
+                venue="Club Municipal de Mayores de Santa Brígida")
+  excursion.update(id=941,municipality="Santa Brígida",
+   source_url="https://eventos.santabrigida.es/eventos/salida-cultural-jardin-de-la-marquesa/",
+   details=("Actividad dirigida a socios del Club de Mayores; el público general "
+            "solo puede participar si quedan plazas libres. Inscripción presencial "
+            "anunciada del 16 al 18 de noviembre (8:00–14:00)."))
+  self.assertIn("Acceso al público general condicionado",
+                q.public_access_blocker(excursion,dt.date(2026,11,27)))
+  accepted,held=q.filter_public_plans([excursion],dt.date(2026,11,27))
+  self.assertFalse(accepted)
+  self.assertEqual(held[0]["id"],941)
+  self.assertIn("plazas",held[0]["reason"])
+
+ def test_conditional_membership_in_other_source_is_also_held(self):
+  item=plan("Taller de coronas de Adviento",start="2026-12-01T09:30:00",
+             end=None,venue="Club de Mayores de Santa Brígida")
+  item["details"]=("Inscripción presencial a partir del 24 de noviembre. "
+                    "Dirigido a soci@s del Club de mayores (si quedan plazas "
+                    "se cubrirán con público en general).")
+  self.assertIn("Acceso al público general condicionado",
+                q.public_access_blocker(item,dt.date(2026,11,27)))
+  accepted,held=q.filter_public_plans([item],dt.date(2026,11,27))
+  self.assertEqual(accepted,[])
+  self.assertEqual(len(held),1)
+
+ def test_expired_explicit_deadline_disqualifies_regardless_of_event_date(self):
+  item=plan("Excursión cultural",start="2026-12-02T10:00:00",
+            end=None,venue="Parque de Arucas")
+  item["details"]="Inscripción hasta el 20 de noviembre de 2026. Abierta al público."
+  self.assertIn("Inscripción cerrada",q.public_access_blocker(item,dt.date(2026,11,27)))
+  self.assertEqual(q.public_access_blocker(item,dt.date(2026,11,19)),"")
+  item["details"]="Inscripción del 16 al 18 de noviembre de 2026."
+  self.assertIn("Inscripción cerrada",q.public_access_blocker(item,dt.date(2026,11,27)))
+
+ def test_no_overbroad_exclusion_of_ticketed_age_limited_or_open_events(self):
+  for details in (
+   "Exclusivo para jóvenes de 12 a 30 años. Consulta plazas e inscripción.",
+   "Reserva de entradas para una sesión familiar de teatro.",
+   "Taller del Club de Mayores con participación abierta al público.",
+   "Inscripción a partir del 24 de noviembre, mientras queden plazas.",
+   "Inscripción hasta el 10 de diciembre de 2026.",
+   "Entrada de pago: 16 € y reserva obligatoria, plazas limitadas."
+  ):
+   with self.subTest(details=details):
+    item=plan("Taller creativo para adultos",start="2026-12-10T18:00:00",
+              end=None,venue="Centro Cultural")
+    item["details"]=details
+    self.assertFalse(q.public_access_blocker(item,dt.date(2026,11,27)))
+    accepted,held=q.filter_public_plans([item],dt.date(2026,11,27))
+    self.assertEqual(len(accepted),1)
+    self.assertEqual(held,[])
+
  def test_ingenio_actual_municipality_is_las_palmas(self):
   items=ing.extract(program_page(),dt.date(2026,10,26),sync.PLACES)
   self.assertEqual(len(items),1)
