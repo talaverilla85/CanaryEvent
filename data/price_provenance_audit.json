@@ -1,22 +1,24 @@
 {
-  "checked_on": "2026-11-26T15:44:40.566159+00:00",
-  "total_events": 454,
-  "known_price_or_free": 133,
+  "checked_on": "2026-11-27T16:13:26.851431+00:00",
+  "total_events": 451,
+  "known_price_or_free": 132,
   "classification": {
     "minimum_zero_ambiguous": 5,
     "contradictory_free": 14,
-    "minimum_positive": 101,
+    "unrecognized": 1,
+    "minimum_positive": 99,
     "free": 9,
     "fixed_positive": 4
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 73,
+    "TuReservaOnline · agenda de Gran Canaria": 71,
     "El Corte Inglés Mesa y López · Mercado de Navidad": 1,
-    "Ayuntamiento de Ingenio": 7,
+    "Ayuntamiento de Santa Brígida · agenda de eventos": 1,
+    "Ayuntamiento de Ingenio": 8,
     "Ayuntamiento de Teror · programación del Auditorio": 7,
     "Juventud Las Palmas de Gran Canaria": 5,
     "Ayuntamiento de Agüimes · programación de teatros": 3,
-    "Portal oficial de Eventos Gran Canaria (Cabildo)": 19,
+    "Portal oficial de Eventos Gran Canaria (Cabildo)": 18,
     "Ayuntamiento de Agüimes": 3,
     "El Corte Inglés Mesa y López · Espectáculos de Navidad": 13,
     "LPA Cultura · agenda municipal oficial": 1,
@@ -40,6 +42,15 @@
       "free": 1,
       "category": "contradictory_free",
       "url": "https://www.centroscomerciales.elcorteingles.es/centroscomerciales/es/eci/centros/centro-comercial-jose-mesa-y-lopez/eventos/mercado-navideno-las-palmas"
+    },
+    {
+      "id": 941,
+      "title": "«SALIDA CULTURAL JARDÍN DE LA MARQUESA»",
+      "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "label": "16 € almuerzo + 6 € entrada",
+      "free": 0,
+      "category": "unrecognized",
+      "url": "https://eventos.santabrigida.es/eventos/salida-cultural-jardin-de-la-marquesa/"
     },
     {
       "id": 1064,

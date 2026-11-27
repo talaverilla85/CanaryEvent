@@ -1,14 +1,14 @@
 {
-  "checked_at": "2026-11-26T15:40:50+00:00",
-  "active_events": 539,
-  "pending": 301,
+  "checked_at": "2026-11-27T16:07:39+00:00",
+  "active_events": 536,
+  "pending": 421,
   "checked": 17,
-  "verified": 1,
+  "verified": 7,
   "restored": 11,
-  "newly_eligible": 1,
-  "one_seo_gap": 171,
-  "two_seo_gaps": 253,
-  "near_ready": 424,
+  "newly_eligible": 0,
+  "one_seo_gap": 176,
+  "two_seo_gaps": 251,
+  "near_ready": 427,
   "checked_by_priority": {
     "one": 9,
     "two": 4,
@@ -16,18 +16,18 @@
     "polish": 2
   },
   "requests": 16,
-  "cooldown_skipped": 238,
+  "cooldown_skipped": 115,
   "missing_by_field": {
-    "hora": 138,
-    "recinto": 28,
-    "ubicacion": 327,
-    "descripcion": 370,
-    "cartel": 140,
-    "precio": 398
+    "hora": 134,
+    "recinto": 29,
+    "ubicacion": 328,
+    "descripcion": 355,
+    "cartel": 146,
+    "precio": 395
   },
   "outcomes": {
-    "verified": 1,
-    "no_matching_evidence": 14,
+    "verified": 7,
+    "no_matching_evidence": 8,
     "source_failed": 0,
     "no_eligible_source": 2
   }

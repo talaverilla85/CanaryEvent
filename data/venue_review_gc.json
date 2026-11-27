@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-26T15:40:50+00:00",
-  "not_published": 26,
+  "updated_at": "2026-11-27T16:07:39+00:00",
+  "not_published": 27,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -184,18 +184,6 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
-      "id": 1148,
-      "title": "CARLOS PAZOS PRESENTA: CLIC Y CLARA EN LA ERA DE LOS DINOSAURIOS",
-      "start": "2026-11-26",
-      "end": null,
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd016TT0=",
-      "organizer_url": "",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
       "id": 792,
       "title": "EXPOSICIÓN PICTÓRICA ´DENTRO DEL CAMBIO´DE GABRIELA DÍAZ",
       "start": "2026-11-27",
@@ -268,6 +256,18 @@
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {
+      "id": 1153,
+      "title": "Bridget Bazile y New Orleans Gospel Stars llegan a Santa Brígida",
+      "start": "2026-12-05T20:00:00",
+      "end": "2026-12-05T21:00:00",
+      "municipality": "Santa Brígida",
+      "venue": "CENTRO CULTURAL",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/bridget-bazile-y-new-orleans-gospel-stars-llegan-a-santa-brigida/",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
       "id": 969,
       "title": "UN POZO, DOS RELATOS",
       "start": "2026-12-10",
@@ -276,6 +276,18 @@
       "venue": "Consultar el recinto en la ficha oficial",
       "source_name": "Ayuntamiento de Arucas · agenda municipal",
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qTT0=",
+      "organizer_url": "",
+      "reason": "Falta confirmar recinto concreto, no solo municipio"
+    },
+    {
+      "id": 1154,
+      "title": "La Joven Canarijazz Big Band lleva su Concierto de Navidad al Centro Cultural",
+      "start": "2026-12-10T19:30:00",
+      "end": "2026-12-10T20:30:00",
+      "municipality": "Santa Brígida",
+      "venue": "CENTRO CULTURAL",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/la-joven-canarijazz-big-band-lleva-su-concierto-de-navidad-al-centro-cultural/",
       "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },

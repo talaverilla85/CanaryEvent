@@ -1586,5 +1586,27 @@
     "extractor": "ai_vision",
     "archived_from": "pending_review",
     "archived_on": "2026-11-26"
+  },
+  {
+    "id": "municipal-pdf-bfc6d87fce0eb625",
+    "title": "Merienda y baile de mayores",
+    "date": "2026-11-26",
+    "time": "18:00",
+    "venue": "Plaza Primero de Mayo",
+    "type": "fiesta",
+    "evidence": "26 NOVIEMBRE — 18:00 Merienda y baile de mayores.",
+    "municipality": "Agüimes",
+    "program_title": "FIESTAS LA MILAGROSA 2026",
+    "pdf_url": "https://aguimes.es/wp-content/uploads/2026/11/AF_PROGRAMA-FIESTAS-DE-LA-MILAGROSA-2026_DIGITAL.pdf",
+    "admission_type": "unknown",
+    "admission_details": null,
+    "pdf_sha256": "3766a1857f77c18e492442079d9ced6ecf16fbbc81bde1c42635e7345a3fcdf4",
+    "pdf_page": 9,
+    "review_status": "archived",
+    "date_state": "expired",
+    "note": "NO PUBLICAR sin contrastar fecha/horario con la página escaneada",
+    "extractor": "ai_vision",
+    "archived_from": "pending_review",
+    "archived_on": "2026-11-27"
   }
 ]

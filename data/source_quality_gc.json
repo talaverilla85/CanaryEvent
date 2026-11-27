@@ -1,22 +1,22 @@
 {
-  "checked_at": "2026-11-26T15:40:50+00:00",
+  "checked_at": "2026-11-27T16:07:39+00:00",
   "quality_counts": {
-    "publicados": 454,
-    "recintos_sin_verificar": 26,
+    "publicados": 451,
+    "recintos_sin_verificar": 27,
     "programas_y_fichas_por_revisar": 6,
-    "precios_sin_confirmar": 321,
+    "precios_sin_confirmar": 319,
     "distancia_a_centro_municipal": 273,
-    "fuentes_con_error": 4,
+    "fuentes_con_error": 3,
     "duplicados_potenciales": 0
   },
   "sources": [
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 12,
+      "publicados": 13,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 5,
-      "distancia_al_centro_municipal": 12,
+      "distancia_al_centro_municipal": 13,
       "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
@@ -43,21 +43,21 @@
     {
       "source": "Circuito de Artes Escénicas GC",
       "estado": "operativa",
-      "publicados": 8,
+      "publicados": 7,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 8,
-      "distancia_al_centro_municipal": 8,
-      "fichas_leidas_en_esta_ejecucion": 9,
+      "precio_sin_confirmar": 7,
+      "distancia_al_centro_municipal": 7,
+      "fichas_leidas_en_esta_ejecucion": 8,
       "error": ""
     },
     {
       "source": "Centro Comercial Las Arenas · Club Arenillo",
       "estado": "operativa",
-      "publicados": 53,
+      "publicados": 52,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 53,
+      "precio_sin_confirmar": 52,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 51,
+      "fichas_leidas_en_esta_ejecucion": 50,
       "error": ""
     },
     {
@@ -123,22 +123,22 @@
     {
       "source": "Teatro Pérez Galdós · programación oficial",
       "estado": "operativa",
-      "publicados": 29,
+      "publicados": 28,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 29,
+      "precio_sin_confirmar": 28,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 24,
+      "fichas_leidas_en_esta_ejecucion": 28,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "error",
-      "publicados": 18,
+      "estado": "operativa",
+      "publicados": 19,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 18,
+      "precio_sin_confirmar": 19,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "fichas_leidas_en_esta_ejecucion": 19,
+      "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -214,10 +214,10 @@
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
       "publicados": 0,
-      "recinto_sin_verificar": 6,
+      "recinto_sin_verificar": 5,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 7,
+      "fichas_leidas_en_esta_ejecucion": 5,
       "error": ""
     },
     {
@@ -243,10 +243,10 @@
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
       "estado": "sin_resultados_en_esta_revision",
-      "publicados": 1,
+      "publicados": 0,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 1,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
@@ -303,11 +303,11 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 16,
-      "recinto_sin_verificar": 4,
-      "precio_sin_confirmar": 16,
-      "distancia_al_centro_municipal": 16,
-      "fichas_leidas_en_esta_ejecucion": 19,
+      "publicados": 22,
+      "recinto_sin_verificar": 6,
+      "precio_sin_confirmar": 21,
+      "distancia_al_centro_municipal": 22,
+      "fichas_leidas_en_esta_ejecucion": 27,
       "error": ""
     },
     {
@@ -433,21 +433,21 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "sin_resultados_en_esta_revision",
-      "publicados": 107,
+      "publicados": 102,
       "recinto_sin_verificar": 16,
-      "precio_sin_confirmar": 88,
-      "distancia_al_centro_municipal": 52,
+      "precio_sin_confirmar": 84,
+      "distancia_al_centro_municipal": 49,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 73,
+      "publicados": 71,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 72,
-      "fichas_leidas_en_esta_ejecucion": 103,
+      "distancia_al_centro_municipal": 70,
+      "fichas_leidas_en_esta_ejecucion": 101,
       "error": ""
     },
     {
@@ -533,10 +533,6 @@
   ],
   "reported_errors": [
     {
-      "source": "Auditorio Alfredo Kraus · programación oficial",
-      "error": "RuntimeError"
-    },
-    {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
       "error": "Galdar calendar returned no future structured events"
     },
@@ -555,12 +551,12 @@
       "count": 16
     },
     {
-      "source": "Ayuntamiento de Arucas · agenda municipal",
+      "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "count": 6
     },
     {
-      "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-      "count": 4
+      "source": "Ayuntamiento de Arucas · agenda municipal",
+      "count": 5
     }
   ],
   "upcoming_venue_review": [
@@ -685,14 +681,6 @@
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261126-0005/casa-africa-en-los-encuentros-de-bamako-202627"
     },
     {
-      "id": 1148,
-      "title": "CARLOS PAZOS PRESENTA: CLIC Y CLARA EN LA ERA DE LOS DINOSAURIOS",
-      "start": "2026-11-26",
-      "municipality": "Arucas",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd016TT0="
-    },
-    {
       "id": 792,
       "title": "EXPOSICIÓN PICTÓRICA ´DENTRO DEL CAMBIO´DE GABRIELA DÍAZ",
       "start": "2026-11-27",
@@ -741,6 +729,14 @@
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01Uaz0="
     },
     {
+      "id": 1153,
+      "title": "Bridget Bazile y New Orleans Gospel Stars llegan a Santa Brígida",
+      "start": "2026-12-05T20:00:00",
+      "municipality": "Santa Brígida",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/bridget-bazile-y-new-orleans-gospel-stars-llegan-a-santa-brigida/"
+    },
+    {
       "id": 969,
       "title": "UN POZO, DOS RELATOS",
       "start": "2026-12-10",
@@ -749,20 +745,20 @@
       "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=TVRBd01qTT0="
     },
     {
+      "id": 1154,
+      "title": "La Joven Canarijazz Big Band lleva su Concierto de Navidad al Centro Cultural",
+      "start": "2026-12-10T19:30:00",
+      "municipality": "Santa Brígida",
+      "source_name": "Ayuntamiento de Santa Brígida · agenda de eventos",
+      "source_url": "https://eventos.santabrigida.es/eventos/la-joven-canarijazz-big-band-lleva-su-concierto-de-navidad-al-centro-cultural/"
+    },
+    {
       "id": 366,
       "title": "Teror Patea por GC: Artenara - Juncalillo - Fagajesto",
       "start": "2026-12-12T09:00:00",
       "municipality": "Teror",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261212-0000/teror-patea-por-gc-artenara-juncalillo-fagajesto"
-    },
-    {
-      "id": 402,
-      "title": "I Maratón Solidaria de Envite a Firgas",
-      "start": "2026-12-19T09:00:00",
-      "municipality": "Firgas",
-      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "source_url": "https://www.eventosgrancanaria.com/event/E-20261219-0007/i-maraton-solidaria-de-envite-a-firgas"
     }
   ],
   "guidance": [
