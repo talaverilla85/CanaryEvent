@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - "scripts/sync_events.py"
+      - "scripts/event_copy_quality.py"
       - "scripts/event_enrichment.py"
       - "scripts/shopping_centres_gc.py"
       - "scripts/mogan_mall_official.py"
