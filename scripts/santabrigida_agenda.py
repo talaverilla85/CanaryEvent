@@ -81,6 +81,60 @@ def extract_pages(soups,today,places,categorize):
                       source_name=NAME,source_url=u,status="approved")
     if not events:raise ValueError("Santa Brígida calendars contain no verifiable future events")
     return list(events.values())
+def article_description(soup):
+    """Readable excerpts from the actual event, never WordPress 'Read more' HTML.
+
+    Prefer useful information on access/booking to long promotional prose.
+    No HTML is copied into JSON; this is a bounded editorial excerpt.
+    """
+    section=soup.select_one(".tribe-events-single-event-description")
+    if section is None:
+        return ""
+    paragraphs=[]
+    for tag in section.select("p, li"):
+        text=" ".join(tag.get_text(" ",strip=True).split())
+        if len(text)>=15 and text not in paragraphs:
+            paragraphs.append(text)
+    if not paragraphs:
+        return ""
+    lead=" ".join(paragraphs[:2])
+    if len(lead)>650:
+        lead=lead[:650].rsplit(" ",1)[0].rstrip(" ,;:")
+        if not lead.endswith((".","!","?")):
+            lead+="…"
+    priority=[]
+    for text in paragraphs[2:]:
+        if any(word in text.casefold() for word in (
+                "precio","inscrip","reserva","plazas","gratis","gratuit",
+                "dirigid","acceso","edad","informaci","contacto","aforo")):
+            priority.append(text[:240])
+        if len(priority)==3:
+            break
+    return " ".join([lead]+priority)[:1450]
+
+
+def enrich_event_articles(rows,rp,client):
+    """Read linked municipal articles after robots permission. Fail safe per item."""
+    for event in rows[:25]:
+        url=event["source_url"]
+        parts=urlsplit(url)
+        if (parts.scheme!="https" or parts.hostname!="eventos.santabrigida.es"
+                or not parts.path.startswith("/eventos/")
+                or not rp.can_fetch(AGENT,url)):
+            continue
+        try:
+            response=polite_get(client,url,18)
+            if response.status_code!=200 or len(response.content)>1_500_000:
+                continue
+            description=article_description(BeautifulSoup(response.content,"html.parser"))
+            if description:
+                event["details"]=description
+        except (requests.RequestException,ValueError,TypeError):
+            # Keep the qualified calendar event rather than publish a teaser.
+            pass
+    return rows
+
+
 def fetch_and_extract(today,places,categorize,client=requests):
     # Consistent robots policy for the exact two calendar paths.
     robots=polite_get(client,BASE+"/robots.txt",18)
@@ -89,4 +143,5 @@ def fetch_and_extract(today,places,categorize,client=requests):
     urls=month_urls(today)
     if any(not rp.can_fetch(AGENT,u) for u in urls):raise PermissionError("Santa Brígida calendars disallowed")
     soups=[fetch_month(client,u) for u in urls]
-    return extract_pages(soups,today,places,categorize)
+    rows=extract_pages(soups,today,places,categorize)
+    return enrich_event_articles(rows,rp,client)
