@@ -52,6 +52,45 @@ async function loadArimarClicks(){
   status.textContent='No se han podido leer los clics. Comprueba la conexión con la base de datos.';
  }
 }
+async function loadPwaGrowth(){
+ const status=$('growthStatus');if(!status)return;
+ status.textContent='Consultando instalaciones y aperturas de la PWA…';
+ const format=value=>Number.isFinite(Number(value))?Number(value).toLocaleString('es-ES'):'—';
+ try{
+  const result=await api('pwa-growth-stats');
+  const metrics=result.metrics||{};
+  const mappings=[
+   ['install_click','growthClicks30','growthClicksToday','growthClicksTotal'],
+   ['native_install','growthNative30','growthNativeToday','growthNativeTotal'],
+   ['standalone_first','growthFirst30','growthFirstToday','growthFirstTotal'],
+   ['standalone_day','growthDays30',null,'growthDaysTotal']
+  ];
+  for(const [type,monthId,todayId,totalId] of mappings){
+   const item=metrics[type]||{};
+   $(monthId).textContent=format(item.last_30_days||0);
+   if(todayId)$(todayId).textContent=format(item.today||0);
+   $(totalId).textContent=format(item.total||0);
+  }
+  $('growthDays7').textContent=format(metrics.standalone_day?.last_7_days||0);
+  const byDay=new Map();
+  for(const item of result.daily||[]){
+   if(!/^20\\d{2}-\\d{2}-\\d{2}$/.test(String(item.day)))continue;
+   if(!byDay.has(item.day))byDay.set(item.day,{});
+   byDay.get(item.day)[item.event_type]=Number(item.count)||0;
+  }
+  const days=[...byDay.keys()].sort().reverse();
+  $('growthDailyRows').innerHTML=days.length?days.map(day=>{
+   const counts=byDay.get(day);
+   const values=['install_click','native_install','standalone_first','standalone_day'].map(type=>
+     '<td>'+format(counts[type]||0)+'</td>').join('');
+   return '<tr><td>'+escape(day.split('-').reverse().join('/'))+'</td>'+values+'</tr>';
+  }).join(''):'<tr><td colspan="5">Todavía no hay actividad registrada.</td></tr>';
+  status.textContent='Datos de los últimos 30 días, agrupados por fecha de Canarias. Solo se registran señales anónimas.';
+ }catch(err){
+  status.textContent='No se han podido consultar las estadísticas: '+err.message;
+  $('growthDailyRows').innerHTML='<tr><td colspan="5">Información temporalmente no disponible.</td></tr>';
+ }
+}
 async function loadAdvertisingIntake(){
  const node=$('adopsIntake');if(!node)return;
  try{
@@ -124,15 +163,17 @@ $('sendResendTest').addEventListener('click',async()=>{
  }catch(err){status.textContent=err.message;message('No se ha podido enviar la prueba')}
  finally{button.disabled=false}
 });
-async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadArimarClicks(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives(),loadInvoiceReviews(),loadInvoiceAdjustments(),loadInvoiceIssuerProfile(),refreshInvoiceReadiness(),loadFdSandboxStatus()]);if(location.hash==='#publicidad')setSection('ads')}
+async function loadPanel(){await Promise.allSettled([loadStats(),loadEvents(true),loadAds(),loadArimarClicks(),loadPwaGrowth(),loadLeads(),loadPromotions(),loadAdvertiserAccounts(),loadAdvertiserDrafts(),loadAdvertisingIntake(),loadResendSandbox(),loadAdvertisingArchives(),loadInvoiceReviews(),loadInvoiceAdjustments(),loadInvoiceIssuerProfile(),refreshInvoiceReadiness(),loadFdSandboxStatus()]);if(location.hash==='#publicidad')setSection('ads');else if(location.hash==='#crecimiento')setSection('growth')}
 function setSection(next){
- section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');
- for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads']]){
+ section=next;display('eventsSection',next==='events');display('adsSection',next==='ads');display('growthSection',next==='growth');
+ for(const [id,on] of [['tabEvents',next==='events'],['tabAds',next==='ads'],['tabGrowth',next==='growth']]){
   $(id).classList.toggle('active',on);$(id).setAttribute('aria-selected',on?'true':'false')
  }
 }
 $('tabEvents').onclick=()=>setSection('events');$('tabAds').onclick=()=>{setSection('ads');loadArimarClicks()};
 $('refreshArimarClicks').onclick=()=>loadArimarClicks();
+$('tabGrowth').onclick=()=>{setSection('growth');loadPwaGrowth()};
+$('refreshGrowth').onclick=()=>loadPwaGrowth();
 const dateLabel=e=>{const d=String(e.start||'').slice(0,10);return /^\d{4}-\d\d-\d\d$/.test(d)?d.split('-').reverse().join('/'):d};
 async function loadEvents(reset=false) {
  if(reset){pagination=0;events=[]}
