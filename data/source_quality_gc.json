@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-11-27T17:50:22+00:00",
+  "checked_at": "2026-11-28T00:42:58+00:00",
   "quality_counts": {
-    "publicados": 450,
-    "recintos_sin_verificar": 27,
-    "programas_y_fichas_por_revisar": 8,
-    "precios_sin_confirmar": 318,
-    "distancia_a_centro_municipal": 272,
+    "publicados": 430,
+    "recintos_sin_verificar": 26,
+    "programas_y_fichas_por_revisar": 6,
+    "precios_sin_confirmar": 302,
+    "distancia_a_centro_municipal": 257,
     "fuentes_con_error": 3,
     "duplicados_potenciales": 0
   },
@@ -13,10 +13,10 @@
     {
       "source": "Ayuntamiento de Ingenio",
       "estado": "operativa",
-      "publicados": 13,
+      "publicados": 12,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 5,
-      "distancia_al_centro_municipal": 13,
+      "distancia_al_centro_municipal": 12,
       "fichas_leidas_en_esta_ejecucion": 11,
       "error": ""
     },
@@ -43,21 +43,21 @@
     {
       "source": "Circuito de Artes Escénicas GC",
       "estado": "operativa",
-      "publicados": 7,
+      "publicados": 3,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 7,
-      "distancia_al_centro_municipal": 7,
-      "fichas_leidas_en_esta_ejecucion": 8,
+      "precio_sin_confirmar": 3,
+      "distancia_al_centro_municipal": 3,
+      "fichas_leidas_en_esta_ejecucion": 4,
       "error": ""
     },
     {
       "source": "Centro Comercial Las Arenas · Club Arenillo",
       "estado": "operativa",
-      "publicados": 52,
+      "publicados": 50,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 52,
+      "precio_sin_confirmar": 50,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 50,
+      "fichas_leidas_en_esta_ejecucion": 48,
       "error": ""
     },
     {
@@ -93,11 +93,11 @@
     {
       "source": "Centro Comercial Mogán Mall · Agenda de Navidad 2026",
       "estado": "operativa",
-      "publicados": 44,
+      "publicados": 43,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 44,
-      "distancia_al_centro_municipal": 44,
-      "fichas_leidas_en_esta_ejecucion": 44,
+      "precio_sin_confirmar": 43,
+      "distancia_al_centro_municipal": 43,
+      "fichas_leidas_en_esta_ejecucion": 43,
       "error": ""
     },
     {
@@ -127,18 +127,18 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 28,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 20,
+      "fichas_leidas_en_esta_ejecucion": 28,
       "error": ""
     },
     {
       "source": "Auditorio Alfredo Kraus · programación oficial",
-      "estado": "error",
-      "publicados": 19,
+      "estado": "operativa",
+      "publicados": 18,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 19,
+      "precio_sin_confirmar": 18,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "RuntimeError"
+      "fichas_leidas_en_esta_ejecucion": 18,
+      "error": ""
     },
     {
       "source": "Teatro Cuyás · agenda oficial",
@@ -147,7 +147,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 24,
       "distancia_al_centro_municipal": 24,
-      "fichas_leidas_en_esta_ejecucion": 27,
+      "fichas_leidas_en_esta_ejecucion": 26,
       "error": ""
     },
     {
@@ -173,11 +173,11 @@
     {
       "source": "Ayuntamiento de Agüimes · programación de teatros",
       "estado": "operativa",
-      "publicados": 4,
+      "publicados": 3,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 4,
-      "fichas_leidas_en_esta_ejecucion": 4,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 3,
+      "fichas_leidas_en_esta_ejecucion": 3,
       "error": ""
     },
     {
@@ -214,7 +214,7 @@
       "source": "Ayuntamiento de Arucas · agenda municipal",
       "estado": "operativa",
       "publicados": 0,
-      "recinto_sin_verificar": 5,
+      "recinto_sin_verificar": 4,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 5,
@@ -232,13 +232,13 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Firgas",
-      "estado": "sin_resultados_en_esta_revision",
+      "estado": "error",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
-      "error": ""
+      "error": "No event links found in official listing; check layout"
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
@@ -303,21 +303,21 @@
     {
       "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
       "estado": "operativa",
-      "publicados": 20,
+      "publicados": 19,
       "recinto_sin_verificar": 6,
-      "precio_sin_confirmar": 20,
-      "distancia_al_centro_municipal": 20,
-      "fichas_leidas_en_esta_ejecucion": 27,
+      "precio_sin_confirmar": 19,
+      "distancia_al_centro_municipal": 19,
+      "fichas_leidas_en_esta_ejecucion": 25,
       "error": ""
     },
     {
       "source": "Ayuntamiento de Teror · programación del Auditorio",
       "estado": "operativa",
-      "publicados": 8,
+      "publicados": 7,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 8,
-      "fichas_leidas_en_esta_ejecucion": 8,
+      "distancia_al_centro_municipal": 7,
+      "fichas_leidas_en_esta_ejecucion": 7,
       "error": ""
     },
     {
@@ -367,7 +367,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 7,
+      "fichas_leidas_en_esta_ejecucion": 6,
       "error": ""
     },
     {
@@ -382,12 +382,12 @@
     },
     {
       "source": "Ayuntamiento de Moya · Otoño es Cultura 2026",
-      "estado": "operativa",
-      "publicados": 1,
+      "estado": "sin_resultados_en_esta_revision",
+      "publicados": 0,
       "recinto_sin_verificar": 0,
-      "precio_sin_confirmar": 1,
-      "distancia_al_centro_municipal": 1,
-      "fichas_leidas_en_esta_ejecucion": 1,
+      "precio_sin_confirmar": 0,
+      "distancia_al_centro_municipal": 0,
+      "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
@@ -433,21 +433,21 @@
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "estado": "sin_resultados_en_esta_revision",
-      "publicados": 102,
+      "publicados": 98,
       "recinto_sin_verificar": 16,
-      "precio_sin_confirmar": 84,
-      "distancia_al_centro_municipal": 49,
+      "precio_sin_confirmar": 80,
+      "distancia_al_centro_municipal": 47,
       "fichas_leidas_en_esta_ejecucion": 0,
       "error": ""
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
       "estado": "operativa",
-      "publicados": 72,
+      "publicados": 70,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
-      "distancia_al_centro_municipal": 71,
-      "fichas_leidas_en_esta_ejecucion": 102,
+      "distancia_al_centro_municipal": 69,
+      "fichas_leidas_en_esta_ejecucion": 98,
       "error": ""
     },
     {
@@ -517,7 +517,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
-      "fichas_leidas_en_esta_ejecucion": 14,
+      "fichas_leidas_en_esta_ejecucion": 15,
       "error": ""
     },
     {
@@ -533,12 +533,12 @@
   ],
   "reported_errors": [
     {
-      "source": "Auditorio Alfredo Kraus · programación oficial",
-      "error": "RuntimeError"
-    },
-    {
       "source": "Ayuntamiento de Gáldar · agenda de Cultura",
       "error": "Galdar calendar returned no future structured events"
+    },
+    {
+      "source": "Municipio · descubrimiento oficial · Firgas",
+      "error": "No event links found in official listing; check layout"
     },
     {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
@@ -556,7 +556,7 @@
     },
     {
       "source": "Ayuntamiento de Arucas · agenda municipal",
-      "count": 5
+      "count": 4
     }
   ],
   "upcoming_venue_review": [
@@ -681,14 +681,6 @@
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261126-0005/casa-africa-en-los-encuentros-de-bamako-202627"
     },
     {
-      "id": 792,
-      "title": "EXPOSICIÓN PICTÓRICA ´DENTRO DEL CAMBIO´DE GABRIELA DÍAZ",
-      "start": "2026-11-27",
-      "municipality": "Arucas",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrNU5BPT0="
-    },
-    {
       "id": 327,
       "title": "10º Encuentro Entre Corderos y Fogones",
       "start": "2026-11-28",
@@ -759,6 +751,14 @@
       "municipality": "Teror",
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261212-0000/teror-patea-por-gc-artenara-juncalillo-fagajesto"
+    },
+    {
+      "id": 402,
+      "title": "I Maratón Solidaria de Envite a Firgas",
+      "start": "2026-12-19T09:00:00",
+      "municipality": "Firgas",
+      "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "source_url": "https://www.eventosgrancanaria.com/event/E-20261219-0007/i-maraton-solidaria-de-envite-a-firgas"
     }
   ],
   "guidance": [

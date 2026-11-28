@@ -1,5 +1,5 @@
 {
-  "checked_on": "2026-11-27",
+  "checked_on": "2026-11-28",
   "active_publication_islands": [
     "Gran Canaria"
   ],
@@ -102,9 +102,9 @@
       ],
       "status": "activo",
       "adapter": "island_eventon_agendas",
-      "found_last_run": 4,
+      "found_last_run": 3,
       "last_error": "",
-      "published_cards": 4,
+      "published_cards": 3,
       "has_live_connector": true
     },
     {

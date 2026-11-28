@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-27T17:50:22+00:00",
-  "not_published": 27,
+  "updated_at": "2026-11-28T00:42:58+00:00",
+  "not_published": 26,
   "note": "Actividades sin recinto verificado: guardadas en SQLite para revisar el organizador; no se publican como planes completos.",
   "events": [
     {
@@ -181,18 +181,6 @@
       "source_name": "Portal oficial de Eventos Gran Canaria (Cabildo)",
       "source_url": "https://www.eventosgrancanaria.com/event/E-20261126-0005/casa-africa-en-los-encuentros-de-bamako-202627",
       "organizer_url": "https://www.casafrica.es/es/evento/casa-africa-en-los-encuentros-de-bamako-202627",
-      "reason": "Falta confirmar recinto concreto, no solo municipio"
-    },
-    {
-      "id": 792,
-      "title": "EXPOSICIÓN PICTÓRICA ´DENTRO DEL CAMBIO´DE GABRIELA DÍAZ",
-      "start": "2026-11-27",
-      "end": null,
-      "municipality": "Arucas",
-      "venue": "Consultar el recinto en la ficha oficial",
-      "source_name": "Ayuntamiento de Arucas · agenda municipal",
-      "source_url": "https://www.arucas.org/modules.php?mod=portal&file=ver_gen&id=T1RrNU5BPT0=",
-      "organizer_url": "",
       "reason": "Falta confirmar recinto concreto, no solo municipio"
     },
     {

@@ -1,10 +1,10 @@
 {
-  "updated_on": "2026-11-27",
+  "updated_on": "2026-11-28",
   "scope": "21 municipios de Gran Canaria",
   "municipalities_total": 21,
-  "municipalities_with_any_catalog_cards": 18,
-  "municipalities_with_official_municipal_cards": 9,
-  "municipalities_without_municipal_cards": 12,
+  "municipalities_with_any_catalog_cards": 17,
+  "municipalities_with_official_municipal_cards": 8,
+  "municipalities_without_municipal_cards": 13,
   "full_coverage_confirmed": false,
   "important": "Municipal coverage is NOT the same as having third-party events near that town. Partial official connectors do not guarantee every local event.",
   "municipalities": [
@@ -34,8 +34,8 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 11,
-      "municipal_cards_total": 8,
+      "catalog_cards_total": 10,
+      "municipal_cards_total": 7,
       "other_sources_cards_total": 3,
       "source_health": [
         {
@@ -45,7 +45,7 @@
         },
         {
           "source": "Ayuntamiento de Agüimes · programación de teatros",
-          "found": 4,
+          "found": 3,
           "error": ""
         },
         {
@@ -108,7 +108,7 @@
         {
           "source": "Municipio · descubrimiento oficial · Firgas",
           "found": 0,
-          "error": ""
+          "error": "No event links found in official listing; check layout"
         },
         {
           "source": "Firgas · Finaos 2026 contrastados con fuentes locales",
@@ -149,9 +149,9 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 24,
-      "municipal_cards_total": 13,
-      "other_sources_cards_total": 11,
+      "catalog_cards_total": 22,
+      "municipal_cards_total": 12,
+      "other_sources_cards_total": 10,
       "source_health": [
         {
           "source": "Ayuntamiento de Ingenio",
@@ -173,9 +173,9 @@
       "original_connector_state": "taquilla_recinto_verificada_tlsoficial_pendiente",
       "coverage_level": "sin_extraccion_municipal_automatizada",
       "data_status": "taquilla_recinto_verificada_tlsoficial_pendiente",
-      "catalog_cards_total": 1,
+      "catalog_cards_total": 0,
       "municipal_cards_total": 0,
-      "other_sources_cards_total": 1,
+      "other_sources_cards_total": 0,
       "source_health": [],
       "full_coverage_claim": false
     },
@@ -186,9 +186,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 240,
+      "catalog_cards_total": 233,
       "municipal_cards_total": 6,
-      "other_sources_cards_total": 234,
+      "other_sources_cards_total": 227,
       "source_health": [
         {
           "source": "Juventud Las Palmas de Gran Canaria",
@@ -205,13 +205,13 @@
       "original_connector_state": "conector_parcial_noticia_2026_revisada",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial_noticia_2026_revisada",
-      "catalog_cards_total": 46,
+      "catalog_cards_total": 45,
       "municipal_cards_total": 0,
-      "other_sources_cards_total": 46,
+      "other_sources_cards_total": 45,
       "source_health": [
         {
           "source": "Centro Comercial Mogán Mall · Agenda de Navidad 2026",
-          "found": 44,
+          "found": 43,
           "error": ""
         },
         {
@@ -229,13 +229,13 @@
       "original_connector_state": "conector_parcial_folleto_2026_revisado",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial_folleto_2026_revisado",
-      "catalog_cards_total": 2,
-      "municipal_cards_total": 1,
+      "catalog_cards_total": 1,
+      "municipal_cards_total": 0,
       "other_sources_cards_total": 1,
       "source_health": [
         {
           "source": "Ayuntamiento de Moya · Otoño es Cultura 2026",
-          "found": 1,
+          "found": 0,
           "error": ""
         }
       ],
@@ -261,13 +261,13 @@
       "original_connector_state": "conector_activo",
       "coverage_level": "conector_automatico_parcial",
       "data_status": "conector_activo",
-      "catalog_cards_total": 22,
-      "municipal_cards_total": 20,
+      "catalog_cards_total": 21,
+      "municipal_cards_total": 19,
       "other_sources_cards_total": 2,
       "source_health": [
         {
           "source": "Ayuntamiento de Santa Brígida · agenda de eventos",
-          "found": 27,
+          "found": 25,
           "error": ""
         }
       ],
@@ -280,9 +280,9 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 26,
+      "catalog_cards_total": 24,
       "municipal_cards_total": 1,
-      "other_sources_cards_total": 25,
+      "other_sources_cards_total": 23,
       "source_health": [],
       "full_coverage_claim": false
     },
@@ -293,9 +293,9 @@
       "original_connector_state": "conector_parcial_articulos_verificados",
       "coverage_level": "sin_extraccion_municipal_automatizada",
       "data_status": "fuente_oficial_contrastada_sin_actos_futuros",
-      "catalog_cards_total": 4,
+      "catalog_cards_total": 2,
       "municipal_cards_total": 0,
-      "other_sources_cards_total": 4,
+      "other_sources_cards_total": 2,
       "source_health": [
         {
           "source": "Municipio · descubrimiento oficial · Santa María de Guía",
@@ -365,13 +365,13 @@
       "original_connector_state": "conector_parcial",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial",
-      "catalog_cards_total": 12,
-      "municipal_cards_total": 8,
+      "catalog_cards_total": 11,
+      "municipal_cards_total": 7,
       "other_sources_cards_total": 4,
       "source_health": [
         {
           "source": "Ayuntamiento de Teror · programación del Auditorio",
-          "found": 8,
+          "found": 7,
           "error": ""
         }
       ],
@@ -421,8 +421,8 @@
       "original_connector_state": "conector_parcial_articulos_verificados",
       "coverage_level": "cobertura_parcial_o_en_revision",
       "data_status": "conector_parcial_articulos_contrastados",
-      "catalog_cards_total": 3,
-      "municipal_cards_total": 3,
+      "catalog_cards_total": 2,
+      "municipal_cards_total": 2,
       "other_sources_cards_total": 0,
       "source_health": [
         {

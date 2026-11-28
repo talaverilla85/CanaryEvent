@@ -1,24 +1,24 @@
 {
-  "checked_on": "2026-11-27T17:55:28.407460+00:00",
-  "total_events": 450,
-  "known_price_or_free": 132,
+  "checked_on": "2026-11-28T00:49:17.060612+00:00",
+  "total_events": 430,
+  "known_price_or_free": 128,
   "classification": {
     "minimum_zero_ambiguous": 5,
     "contradictory_free": 14,
-    "minimum_positive": 100,
     "free": 9,
+    "minimum_positive": 96,
     "fixed_positive": 4
   },
   "known_by_source": {
-    "TuReservaOnline · agenda de Gran Canaria": 72,
+    "TuReservaOnline · agenda de Gran Canaria": 70,
     "El Corte Inglés Mesa y López · Mercado de Navidad": 1,
-    "Ayuntamiento de Ingenio": 8,
-    "Ayuntamiento de Teror · programación del Auditorio": 7,
     "Juventud Las Palmas de Gran Canaria": 5,
     "Ayuntamiento de Agüimes · programación de teatros": 3,
     "Portal oficial de Eventos Gran Canaria (Cabildo)": 18,
     "Ayuntamiento de Agüimes": 3,
     "El Corte Inglés Mesa y López · Espectáculos de Navidad": 13,
+    "Ayuntamiento de Ingenio": 7,
+    "Ayuntamiento de Teror · programación del Auditorio": 6,
     "LPA Cultura · agenda municipal oficial": 1,
     "Ayuntamiento de Agüimes · Teatro Cruce de Culturas": 1
   },

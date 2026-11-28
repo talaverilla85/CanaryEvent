@@ -4605,5 +4605,51 @@
       "total_tokens": 3444
     },
     "measured_cost_usd": 0.0003612
+  },
+  "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0/14/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3393,
+      "input_tokens_details": {
+        "cache_write_tokens": 3390,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 3390
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 48,
+      "output_tokens_details": {
+        "reasoning_tokens": 26
+      },
+      "total_tokens": 3441
+    },
+    "measured_cost_usd": 0.0003633
+  },
+  "e2d30f587c32e3d4846943ff14e69428f8f3f068ed5641e365711d0687d63898/4/gpt-6-luna/text-fallback-vision-v3/ai_vision": {
+    "output": {
+      "events": [],
+      "page_is_program": false
+    },
+    "usage": {
+      "input_tokens": 3393,
+      "input_tokens_details": {
+        "cache_write_tokens": 3390,
+        "cache_write_tokens_details": {
+          "ttl_12h_tokens": 0,
+          "ttl_30m_tokens": 3390
+        },
+        "cached_tokens": 0
+      },
+      "output_tokens": 48,
+      "output_tokens_details": {
+        "reasoning_tokens": 26
+      },
+      "total_tokens": 3441
+    },
+    "measured_cost_usd": 0.0003633
   }
 }
