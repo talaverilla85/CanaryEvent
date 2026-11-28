@@ -1,53 +1,34 @@
 {
-  "checked_at": "2026-11-28T00:42:17.689315+00:00",
+  "checked_at": "2026-11-28T14:28:14.224912+00:00",
   "mode": "api_fallback",
   "model": "gpt-6-luna",
   "api_key_configured": true,
-  "api_calls": 2,
-  "usage_usd": 0.0007266,
+  "api_calls": 0,
+  "usage_usd": 0.0,
   "docs": [
     {
-      "name": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Caserones Altos",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/10/caseronesaltos26.pdf",
-      "sha256": "e4816f361dcaf1ec43ff7b1bc42a47b4c017fa8d2845828c417e9803392e48b0",
-      "pages": 15,
-      "bytes": 2981599,
-      "inspected": [
-        {
-          "page": 15,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 0
-        }
-      ]
+      "name": "Fiestas en honor a San Gregorio Taumaturgo",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/11/sangregorio26.pdf",
+      "sha256": "d7ccd179e26c55070583fa428843470e8a1ae2a71e0158388d1a62ad7a4636df",
+      "pages": 16,
+      "bytes": 2979368,
+      "inspected": []
     },
     {
-      "name": "Fiestas en honor a Nuestra Señora del Pilar en el barrio de Valle los Nueve Alto",
-      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/vallelosnuevealto26.pdf",
-      "sha256": "e2d30f587c32e3d4846943ff14e69428f8f3f068ed5641e365711d0687d63898",
-      "pages": 5,
-      "bytes": 1062090,
-      "inspected": [
-        {
-          "page": 5,
-          "native_text_chars": 0,
-          "route": "ai_vision",
-          "render_size": [
-            1309,
-            1853
-          ],
-          "status": "new_api_result",
-          "candidates_pending_review": 0
-        }
-      ]
+      "name": "Fiestas patronales en honor a San Venancio en el barrio de Casas Nuevas",
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/09/casasnuevas26.pdf",
+      "sha256": "9c649c6cb7e63fd1530dbe48c0426d2699c69c15db8e569976ec59121a389a66",
+      "pages": 4,
+      "bytes": 2054952,
+      "inspected": []
     }
   ],
-  "deferred_docs": [],
+  "deferred_docs": [
+    {
+      "pdf_url": "https://www.telde.es/wp-content/uploads/2026/10/caseronesaltos26.pdf",
+      "reason": "completed_or_end_verified"
+    }
+  ],
   "pending_review_count": 0,
   "auto_verified_count": 0,
   "archived_count": 227,

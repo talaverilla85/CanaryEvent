@@ -1,14 +1,14 @@
 {
-  "checked_at": "2026-11-28T00:42:58+00:00",
+  "checked_at": "2026-11-28T14:28:37+00:00",
   "active_events": 512,
-  "pending": 386,
+  "pending": 371,
   "checked": 15,
-  "verified": 6,
-  "restored": 17,
+  "verified": 0,
+  "restored": 20,
   "newly_eligible": 0,
-  "one_seo_gap": 174,
-  "two_seo_gaps": 234,
-  "near_ready": 408,
+  "one_seo_gap": 176,
+  "two_seo_gaps": 233,
+  "near_ready": 409,
   "checked_by_priority": {
     "one": 8,
     "two": 4,
@@ -16,19 +16,19 @@
     "polish": 1
   },
   "requests": 16,
-  "cooldown_skipped": 126,
+  "cooldown_skipped": 141,
   "missing_by_field": {
     "hora": 127,
     "recinto": 27,
     "ubicacion": 309,
-    "descripcion": 337,
-    "cartel": 131,
+    "descripcion": 334,
+    "cartel": 128,
     "precio": 375
   },
   "outcomes": {
-    "verified": 6,
-    "no_matching_evidence": 8,
-    "source_failed": 0,
-    "no_eligible_source": 1
+    "verified": 0,
+    "no_matching_evidence": 6,
+    "source_failed": 7,
+    "no_eligible_source": 2
   }
 }

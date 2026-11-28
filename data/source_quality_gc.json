@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-28T00:42:58+00:00",
+  "checked_at": "2026-11-28T14:28:37+00:00",
   "quality_counts": {
     "publicados": 430,
     "recintos_sin_verificar": 26,
@@ -37,7 +37,7 @@
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 1,
       "distancia_al_centro_municipal": 6,
-      "fichas_leidas_en_esta_ejecucion": 6,
+      "fichas_leidas_en_esta_ejecucion": 5,
       "error": ""
     },
     {
@@ -232,13 +232,13 @@
     },
     {
       "source": "Municipio · descubrimiento oficial · Firgas",
-      "estado": "error",
+      "estado": "sin_resultados_en_esta_revision",
       "publicados": 0,
       "recinto_sin_verificar": 0,
       "precio_sin_confirmar": 0,
       "distancia_al_centro_municipal": 0,
       "fichas_leidas_en_esta_ejecucion": 0,
-      "error": "No event links found in official listing; check layout"
+      "error": ""
     },
     {
       "source": "Municipio · descubrimiento oficial · Santa María de Guía",
@@ -432,13 +432,13 @@
     },
     {
       "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
-      "estado": "sin_resultados_en_esta_revision",
+      "estado": "error",
       "publicados": 98,
       "recinto_sin_verificar": 16,
       "precio_sin_confirmar": 80,
       "distancia_al_centro_municipal": 47,
       "fichas_leidas_en_esta_ejecucion": 0,
-      "error": ""
+      "error": "HTTPSConnectionPool(host='www.eventosgrancanaria.com', port=443): Max retries exceeded with url: /robots.txt (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.eventosgrancanaria.com', port=443) at 0x788c30c6dcd0>, 'Connection to www.eventosgr"
     },
     {
       "source": "TuReservaOnline · agenda de Gran Canaria",
@@ -537,12 +537,12 @@
       "error": "Galdar calendar returned no future structured events"
     },
     {
-      "source": "Municipio · descubrimiento oficial · Firgas",
-      "error": "No event links found in official listing; check layout"
-    },
-    {
       "source": "Ayuntamiento de Tejeda · agenda oficial",
       "error": "Tejeda: web oficial no disponible; HTTP 301 sin destino de redirección al consultar robots.txt"
+    },
+    {
+      "source": "Portal oficial de Eventos Gran Canaria (Cabildo)",
+      "error": "HTTPSConnectionPool(host='www.eventosgrancanaria.com', port=443): Max retries exceeded with url: /robots.txt (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.eventosgrancanaria.com', port=443) at 0x788c30c6dcd0>, 'Connection to www.eventosgr"
     }
   ],
   "missing_venue_by_source": [
