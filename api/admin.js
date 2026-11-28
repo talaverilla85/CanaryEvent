@@ -1,4 +1,5 @@
 import { createHmac, createHash, randomBytes, randomUUID } from 'node:crypto';
+import { growthStatsPayload } from '../lib/pwa-growth.js';
 // Uploaded WebP creatives can be ~800 KB before base64 encoding; accept the encoded form safely.
 export const config={api:{bodyParser:{sizeLimit:'2mb'}}};
 import { authenticated, db, isConfigured, json, passwordValid, safeText, sameOrigin, setSession, validLocalDate } from '../lib/admin-auth.js';
@@ -786,6 +787,23 @@ export default async function handler(req,res){
        last_7_days:Number(counts.last_7_days||0),
        last_30_days:Number(counts.last_30_days||0),
        total:Number(counts.total||0),units:'clicks',time_zone:'Atlantic/Canary'});
+    }
+    if(req.method==='GET'&&op==='pwa-growth-stats'){
+      // Protected by the same authenticated-admin guard as other metrics.
+      const [totals,daily]=await Promise.all([
+        sql`SELECT event_type,
+          COALESCE(SUM(count) FILTER (WHERE day=(now() AT TIME ZONE 'Atlantic/Canary')::date),0) AS today,
+          COALESCE(SUM(count) FILTER (WHERE day>=(now() AT TIME ZONE 'Atlantic/Canary')::date-6),0) AS last_7_days,
+          COALESCE(SUM(count) FILTER (WHERE day>=(now() AT TIME ZONE 'Atlantic/Canary')::date-29),0) AS last_30_days,
+          COALESCE(SUM(count),0) AS total
+          FROM pwa_daily_stats GROUP BY event_type`,
+        sql`SELECT to_char(day,'YYYY-MM-DD') AS day,event_type,count
+          FROM pwa_daily_stats
+          WHERE day BETWEEN (now() AT TIME ZONE 'Atlantic/Canary')::date-29
+            AND (now() AT TIME ZONE 'Atlantic/Canary')::date
+          ORDER BY day,event_type`
+      ]);
+      return json(res,200,growthStatsPayload(totals,daily));
     }
     if(req.method==='GET'&&op==='events')return json(res,200,await events(sql,query));
     if(req.method==='GET'&&op==='ads'){
