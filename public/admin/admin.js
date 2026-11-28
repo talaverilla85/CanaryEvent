@@ -74,7 +74,7 @@ async function loadPwaGrowth(){
   $('growthDays7').textContent=format(metrics.standalone_day?.last_7_days||0);
   const byDay=new Map();
   for(const item of result.daily||[]){
-   if(!/^20\\d{2}-\\d{2}-\\d{2}$/.test(String(item.day)))continue;
+   if(!/^20\d{2}-\d{2}-\d{2}$/.test(String(item.day)))continue;
    if(!byDay.has(item.day))byDay.set(item.day,{});
    byDay.get(item.day)[item.event_type]=Number(item.count)||0;
   }
