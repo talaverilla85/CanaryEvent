@@ -34,7 +34,8 @@
 <div class="stat"><span>Fichas ocultas</span><strong id="statHidden">—</strong></div>
 <div class="stat"><span>Campañas activas</span><strong id="statAds">—</strong></div></div>
 <div class="tabs" role="tablist" aria-label="Secciones"><button class="tab active" id="tabEvents" type="button" role="tab" aria-selected="true">Eventos</button>
-<button class="tab" id="tabAds" type="button" role="tab" aria-selected="false">Publicidad</button></div>
+<button class="tab" id="tabAds" type="button" role="tab" aria-selected="false">Publicidad</button>
+<button class="tab" id="tabGrowth" type="button" role="tab" aria-selected="false">Crecimiento</button></div>
 <section id="eventsSection"><div class="toolbar"><div class="tools">
 <input class="search" id="searchEvents" type="search" placeholder="Buscar evento o municipio…" aria-label="Buscar eventos">
 <select id="eventFilter" aria-label="Filtrar eventos"><option value="all">Todos los eventos</option><option value="duplicates">Posibles duplicados</option><option value="review">Requieren revisión</option><option value="hidden">Ocultos · restaurables</option></select></div>
@@ -42,6 +43,27 @@
 <div id="eventsList" class="results" aria-live="polite"></div>
 <p class="muted spaced">Los posibles duplicados se pueden retirar de la web con «Quitar duplicado». No se borra la ficha original: podrás recuperarla en «Ocultos · restaurables». Las correcciones se conservan tras las sincronizaciones automáticas.</p>
 <button id="moreEvents" class="ghost spaced" type="button" hidden>Cargar más eventos</button></section>
+<section id="growthSection" hidden>
+ <div class="card adops-overview growth-overview">
+  <div class="adops-heading"><div>
+   <span class="eyebrow">D’PARRANDA · CRECIMIENTO DE LA APP</span>
+   <h2>Instalaciones y uso</h2>
+   <p class="muted">Evolución del botón «Instalar app» y de las aperturas desde la aplicación instalada.</p>
+  </div><div class="adops-top-actions"><button id="refreshGrowth" class="ghost mini" type="button">Actualizar métricas</button></div></div>
+  <div class="adops-kpis">
+   <div class="adops-kpi"><span>Clics en instalar</span><strong id="growthClicks30">—</strong><small>30 días · Hoy: <b id="growthClicksToday">—</b> · Total: <b id="growthClicksTotal">—</b></small></div>
+   <div class="adops-kpi"><span>Confirmaciones nativas</span><strong id="growthNative30">—</strong><small>30 días · Hoy: <b id="growthNativeToday">—</b> · Total: <b id="growthNativeTotal">—</b></small></div>
+   <div class="adops-kpi"><span>Primeras aperturas PWA</span><strong id="growthFirst30">—</strong><small>30 días · Hoy: <b id="growthFirstToday">—</b> · Total: <b id="growthFirstTotal">—</b></small></div>
+   <div class="adops-kpi"><span>Días con uso de PWA</span><strong id="growthDays30">—</strong><small>30 días · 7 días: <b id="growthDays7">—</b> · Total: <b id="growthDaysTotal">—</b></small></div>
+  </div>
+  <p id="growthStatus" class="muted small" role="status" aria-live="polite">Cargando estadísticas…</p>
+  <div class="adops-table-scroll"><table class="adops-table growth-table" aria-label="Actividad de instalación y uso por día">
+   <thead><tr><th>Fecha</th><th>Clics</th><th>Confirmaciones</th><th>Primeras aperturas</th><th>Uso diario</th></tr></thead>
+   <tbody id="growthDailyRows"><tr><td colspan="5">Cargando datos…</td></tr></tbody>
+  </table></div>
+  <p class="muted small">Datos agregados desde la activación del seguimiento, con días según Canarias. No representan personas únicas ni descargas de tiendas. Una confirmación nativa y una primera apertura pueden ser de la misma instalación. En iOS no siempre es posible detectar la instalación.</p>
+ </div>
+</section>
 <section id="adsSection" hidden>
 <div class="card adops-overview" id="arimarClickDashboard">
  <div class="adops-heading"><div>
@@ -219,6 +241,6 @@
  <p class="muted">Instalarla no inicia sesión ni guarda tu contraseña: necesitarás identificarte para administrar.</p>
  <button id="adminInstallClose" class="primary" type="button">Entendido</button>
 </dialog>
-<script src="/admin/admin.js?v=20" defer></script>
+<script src="/admin/admin.js?v=21" defer></script>
 <script src="/admin/install.js?v=1" defer></script>
 </body></html>
