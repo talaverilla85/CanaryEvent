@@ -98,6 +98,16 @@ CREATE TABLE IF NOT EXISTS ad_daily_stats (
  PRIMARY KEY(campaign_id,day)
 );
 
+-- Aggregate only: no visitor IDs, IP addresses, browser fingerprints or cookies.
+-- Each daily count is one reported browser event, not a unique person.
+CREATE TABLE IF NOT EXISTS pwa_daily_stats (
+ day DATE NOT NULL,
+ event_type TEXT NOT NULL CHECK (event_type IN (
+  'install_click','native_install','standalone_first','standalone_day')),
+ count BIGINT NOT NULL DEFAULT 0 CHECK(count>=0),
+ PRIMARY KEY(day,event_type)
+);
+
 CREATE TABLE IF NOT EXISTS catalog_sync (
  id SMALLINT PRIMARY KEY DEFAULT 1 CHECK(id=1),
  generated_at TEXT,
