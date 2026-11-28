@@ -31,6 +31,45 @@
    window.matchMedia('(display-mode: fullscreen)').matches ||
    navigator.standalone===true
  );
+ const metricEndpoint='/api/ads?op=pwa-event';
+ // Send only a validated event name; never a visitor or device identifier.
+ function reportMetric(event){
+   const payload=JSON.stringify({event});
+   try{
+     if(typeof navigator.sendBeacon==='function' && typeof Blob!=='undefined'){
+       const body=new Blob([payload],{type:'application/json'});
+       if(navigator.sendBeacon(metricEndpoint,body))return;
+     }
+   }catch{}
+   try{
+     if(typeof fetch==='function')fetch(metricEndpoint,{
+       method:'POST',headers:{'Content-Type':'application/json'},
+       body:payload,credentials:'omit',keepalive:true
+     }).catch(()=>{});
+   }catch{}
+ }
+ function storedValue(key){try{return localStorage.getItem(key)}catch{return null}}
+ function markMetricOnce(key,event){
+   if(storedValue(key))return;
+   try{localStorage.setItem(key,'1')}catch{}
+   reportMetric(event);
+ }
+ function canaryDay(){
+   const parts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{
+     timeZone:'Atlantic/Canary',year:'numeric',month:'2-digit',day:'2-digit'
+   }).formatToParts(new Date()).filter(p=>p.type!=='literal').map(p=>[p.type,p.value]));
+   return parts.year+'-'+parts.month+'-'+parts.day;
+ }
+ function trackStandalone(){
+   if(!isStandalone())return;
+   markMetricOnce('dparranda_pwa_first_open_v1','standalone_first');
+   const today=canaryDay();
+   const key='dparranda_pwa_last_open_day_v1';
+   if(storedValue(key)!==today){
+     try{localStorage.setItem(key,today)}catch{}
+     reportMetric('standalone_day');
+   }
+ }
  const narrowScreen=()=>window.matchMedia('(max-width: 720px)').matches;
  function shouldShow(){
    // Only an actual standalone window means that the current context is
@@ -39,9 +78,11 @@
      !dismissedForVisit && !installedInThisVisit && !installedRecently();
  }
  function update(){
+   trackStandalone();
    dock.classList.toggle('hidden',!shouldShow());
  }
- function markInstalled(){
+ function markInstalled(nativeConfirmed=true){
+   if(nativeConfirmed)markMetricOnce('dparranda_pwa_native_confirmed_v1','native_install');
    installedInThisVisit=true;
    try{localStorage.setItem(installedKey,String(Date.now()))}catch{}
    nativePrompt=null;
@@ -82,7 +123,8 @@
    close.focus();
  }
  action.addEventListener('click',()=>{
-   if(isStandalone()){markInstalled();return}
+   if(isStandalone()){markInstalled(false);return}
+   reportMetric('install_click');
    if(!nativePrompt){openGuide();return}
    const prompt=nativePrompt;
    nativePrompt=null;
@@ -101,6 +143,7 @@
  close.addEventListener('click',closeGuide);
  done.addEventListener('click',closeGuide);
  overlay.addEventListener('click',e=>{if(e.target===overlay)closeGuide()});
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)update()});
  document.addEventListener('keydown',e=>{
    if(e.key==='Escape'&&!overlay.classList.contains('hidden')){e.stopImmediatePropagation();closeGuide()}
  });

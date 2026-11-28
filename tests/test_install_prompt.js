@@ -12,6 +12,7 @@ const source=fs.readFileSync(path.join(__dirname,'../public/install_prompt.js'),
 
 function setup({ios=false,mobile=true,standalone=false}={}){
  const state={ios,mobile,standalone,installed:false};
+ const reports=[];
  const stored=new Map(),windowEvents={},docEvents={};
  let doc;
  const cls=(initial=[])=>{
@@ -46,13 +47,13 @@ function setup({ios=false,mobile=true,standalone=false}={}){
    },
    addEventListener:(name,fn)=>{(windowEvents[name]??=[]).push(fn)}
  };
- const navigator={userAgent:ios?'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)':'Mozilla/5.0 (Linux; Android 15)',
+ const navigator={sendBeacon:(url,payload)=>{reports.push({url,payload});return true},userAgent:ios?'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)':'Mozilla/5.0 (Linux; Android 15)',
    platform:ios?'iPhone':'Linux',maxTouchPoints:ios?5:1,standalone:false};
- const ctx={window:win,document:doc,navigator,localStorage:win.localStorage,Date,Promise,console};
+ const ctx={window:win,document:doc,navigator,localStorage:win.localStorage,Date,Promise,console,Blob,Intl};
  vm.runInNewContext(source,ctx,{filename:'install_prompt.js'});
  const emit=(name,e={})=>(windowEvents[name]||[]).forEach(fn=>fn(e));
  const shown=()=>!el.dpInstallDock.classList.contains('hidden');
- return {state,stored,el,emit,shown,doc};
+ return {state,stored,el,emit,shown,doc,reports};
 }
 async function main(){
  let a=setup();
@@ -96,6 +97,18 @@ async function main(){
  let viaEvent=setup();
  viaEvent.emit('appinstalled');
  assert.equal(viaEvent.shown(),false,'appinstalled removes CTA');
- console.log('PASS: 8 mobile installation CTA / iOS / Android / dismiss / installed scenarios');
+ assert.equal(await i.reports[0].payload.text(),'{"event":"install_click"}','iOS manual guide click is counted');
+ assert.equal(native.reports.length,2,'native tap and confirmed install reported once each');
+ assert.equal(await native.reports[0].payload.text(),'{"event":"install_click"}');
+ assert.equal(await native.reports[1].payload.text(),'{"event":"native_install"}');
+ native.emit('appinstalled');
+ assert.equal(native.reports.length,2,'native event plus accepted prompt does not double count');
+ assert.equal(await viaEvent.reports[0].payload.text(),'{"event":"native_install"}');
+ assert.equal(installed.reports.length,2,'first installed standalone open creates two signals');
+ assert.equal(await installed.reports[0].payload.text(),'{"event":"standalone_first"}');
+ assert.equal(await installed.reports[1].payload.text(),'{"event":"standalone_day"}');
+ installed.emit('pageshow');
+ assert.equal(installed.reports.length,2,'same-day standalone reload is deduplicated locally');
+ console.log('PASS: installation CTA and anonymous growth signals');
 }
 main().catch(e=>{console.error(e);process.exitCode=1});

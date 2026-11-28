@@ -43,7 +43,7 @@ class DualPwaInstallContract(unittest.TestCase):
  def test_public_install_button_is_preserved_and_remembers_confirmation(self):
   self.assertIn('id="dpInstallDock"',self.public_html)
   self.assertIn('id="dpInstallAction"',self.public_html)
-  self.assertIn('src="/install_prompt.js?v=3"',self.public_html)
+  self.assertIn('src="/install_prompt.js?v=4"',self.public_html)
   self.assertIn("window.addEventListener('appinstalled',markInstalled)",self.public_install)
   self.assertIn("localStorage.setItem(installedKey,String(Date.now()))",self.public_install)
   self.assertIn("!installedInThisVisit && !installedRecently()",self.public_install)

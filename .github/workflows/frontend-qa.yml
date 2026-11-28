@@ -63,6 +63,9 @@ jobs:
           node --check public/admin/install.js
           node --check public/install_prompt.js
           node tests/test_install_prompt.js
+          node --test tests/pwa-growth.test.mjs
+          node --check api/ads.js
+          node --check api/admin.js
           node tests/test_admin_install.js
           node scripts/check_frontend_syntax.cjs
           node scripts/check_catalog_runtime.cjs

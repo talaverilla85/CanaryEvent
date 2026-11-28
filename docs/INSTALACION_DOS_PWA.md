@@ -27,3 +27,14 @@
 - La instalación automática de una PWA diferente bajo el mismo dominio puede variar según versión del navegador y otras PWA instaladas; los IDs distintos y rutas específicas evitan compartir la misma identidad de instalación.
 - El panel de administración requiere conexión a internet; deliberadamente no hay versión offline de datos privados.
 - Si una PWA se desinstala, la confirmación de instalación guardada temporalmente en el navegador podría mantener oculto el botón hasta que caduque el recordatorio; el navegador permite volver a instalar desde su menú.
+
+## Medición agregada de la PWA pública (noviembre de 2026)
+
+- La pestaña privada **Crecimiento** del administrador consulta `/api/admin?op=pwa-growth-stats` (requiere sesión administrativa).
+- La PWA pública envía a `/api/ads?op=pwa-event` cuatro eventos sin identificadores: `install_click`, `native_install`, `standalone_first` y `standalone_day`.
+- `native_install` es la señal de instalación aceptada en navegadores compatibles; `standalone_first` es la primera apertura detectada como aplicación independiente en ese almacenamiento, útil también para iOS.
+- `standalone_day` se cuenta como máximo una vez por día y almacenamiento local de navegador/PWA, en fecha de Canarias; no equivale a usuarios únicos.
+- Los eventos se agrupan únicamente por `day`, `event_type` y `count` en la tabla Neon `pwa_daily_stats`. No se envían ni guardan ID de dispositivo, cookies, IP, geolocalización ni historial de navegación en esta tabla.
+- Una confirmación nativa y una primera apertura pueden corresponder a la misma instalación: **no sumar ambas métricas como instalaciones únicas**. La instalación manual iOS no puede confirmarse siempre; la primera apertura independiente es solo un indicador.
+- No se crea ninguna función adicional de Vercel. La tabla de Postgres se añade con la migración idempotente `sql/postgres_schema.sql` y requiere estar creada antes de activar la recopilación.
+- El seguimiento comienza a contar desde su publicación; no recupera instalaciones ni aperturas antiguas.
