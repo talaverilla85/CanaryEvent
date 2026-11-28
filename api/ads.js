@@ -1,4 +1,5 @@
 import { db,sameOrigin } from '../lib/admin-auth.js';
+import { validPwaEvent } from '../lib/pwa-growth.js';
 // Only AriMar clicks are counted during the organic launch, without personal identifiers.
 async function recordArimarClick(req,res){
  res.setHeader('Cache-Control','private, no-store');
@@ -21,9 +22,35 @@ async function recordArimarClick(req,res){
   return res.status(503).end();
  }
 }
+// Reuse the existing /api/ads function (Vercel Hobby has a 12-function limit).
+// No personal identifiers or device IDs arrive at or are stored by this endpoint.
+async function recordPwaSignal(req,res){
+  res.setHeader('Cache-Control','private, no-store');
+  res.setHeader('X-Robots-Tag','noindex, noarchive');
+  if(!sameOrigin(req))return res.status(403).end();
+  if(req.headers['sec-fetch-site'] && req.headers['sec-fetch-site']!=='same-origin')
+    return res.status(403).end();
+  if(!String(req.headers['content-type']||'').toLowerCase().startsWith('application/json'))
+    return res.status(415).end();
+  const event=validPwaEvent(req.body);
+  if(!event)return res.status(400).end();
+  const sql=db();
+  if(!sql)return res.status(503).end();
+  try {
+    await sql`INSERT INTO pwa_daily_stats(day,event_type,count)
+      VALUES((now() AT TIME ZONE 'Atlantic/Canary')::date,${event},1)
+      ON CONFLICT(day,event_type)
+      DO UPDATE SET count=pwa_daily_stats.count+1`;
+    return res.status(204).end();
+  }catch(e){
+    console.error('DParranda PWA aggregate counter failed:',e?.name||'Error');
+    return res.status(503).end();
+  }
+}
 export default async function handler(req,res) {
   res.setHeader('X-Content-Type-Options','nosniff');
   if(req.method==='POST'&&req.query?.op==='click')return recordArimarClick(req,res);
+  if(req.method==='POST'&&req.query?.op==='pwa-event')return recordPwaSignal(req,res);
   if(req.method!=='GET'){res.status(405).end();return;}
   const sql=db();
   if(!sql){res.status(503).json({error:'Base de datos no configurada'});return;}
